@@ -1,0 +1,18 @@
+.status_settings_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 35px;
+  gap: 35px;
+}
+
+.status_settings {
+  max-width: 473px;
+  width: 31.7%;
+  min-width: 356px;
+}
+
+.logs {
+  flex-grow: 1;
+  min-width: 356px;
+  max-width: 981px;
+}

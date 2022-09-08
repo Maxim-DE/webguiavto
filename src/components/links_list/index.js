@@ -1,0 +1,46 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import './index.css'
+
+const links_items = [
+  {id: 'status', name: "Статус"},
+  {id: 'settings', name: "Общие настроки"},
+  {id: 'network', name: "Сетевые настройки"},
+  {id: 'rds_settings', name: "Настройки RDS"},
+  {id: 'info', name: "Данные об устройстве"},
+]
+
+function Links_list() {
+  const [active, SetActive] = React.useState('');
+
+  function handleClick(event) {
+    SetActive(
+      links_items.findIndex(item => {
+        return event.target.id === item.id
+      })
+    );
+
+    const el = document.getElementById(`${event.target.id}_section`);
+    el.scrollIntoView({block: "center", behavior: "smooth"});
+  }
+
+  return (
+    <ul className="nav_linksList">
+      {links_items.map((item, index) => (
+        <li
+          key={item.id}
+          id={item.id}
+          onClick={handleClick}
+          className={index === active ? 'active' : ''}>
+          <div className="nav_linkLabel">{item.name}</div>
+          <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="nav_linkArrow">
+            <path id="Vector 2" d="M1 1L7.21084 6.76721C7.6369 7.16284 7.6369 7.83716 7.21084 8.23279L1 14" stroke="#6D8EA0" strokeWidth="2" stroke-linecap="round"/>
+          </svg>
+        </li>
+        ))}
+    </ul>
+  )
+}
+
+export default Links_list;

@@ -1,0 +1,18 @@
+.section_header .loading_text {
+  margin-left: 10px;
+
+  color: #626879;
+  font-size: 20px;
+  line-height: 25px;
+  animation: blink 2s linear infinite;
+}
+
+.section_header .loading_active {
+  display: inline;
+}
+
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: 1;}
+100%{opacity: 0;}
+}

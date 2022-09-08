@@ -1,0 +1,67 @@
+.snackbar-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.snackbar-container {
+    display: flex;
+    width: 195px;
+    height: 67px;
+    box-shadow: 0 2px 8px 0 #1a273d40;
+    border: solid 1px #e0e7ff;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.snackbar-container>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.snackbar-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.snackbar-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    /* background-image: url(/static/media/alertCircle.3856fc8a.svg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 12px;
+}
+
+.snackbar-info-container h5 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+}
+
+.error-snackbar-icon {
+    background-color: red;
+}
+
+.info-snackbar-icon {
+    background-color: #2b89e9;
+}
+
+.success-snackbar-icon {
+    background-color: #4cd16d;
+}
+
+.warning-snackbar-icon {
+    background-color: #ffbc22;
+}
+
+#snackbar-fixed-container {
+    position: fixed;
+    top: 118px;
+    right: 25px;
+}

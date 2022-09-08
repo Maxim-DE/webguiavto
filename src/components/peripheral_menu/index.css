@@ -1,0 +1,109 @@
+.nav_fillblock {  
+  flex-grow: 1;
+}
+
+ .peripheral_container {
+  position: relative;
+
+  width: 79%;
+  height: auto;
+
+  background-color: #444955;
+
+  border-radius: 20px;
+
+  margin: 10.4%;
+}
+
+
+.peripheral_time {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8.2%;
+  margin: 14px 22px 0;
+}
+
+.time_label, .time_value {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 29px;
+  
+  color: #FFFFFF;
+}
+
+.time_value {
+  flex-grow: 1;
+}
+
+
+.linear_indicator_wrapper {
+  width: 104px;
+  height: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: 0 auto;
+}
+
+
+.peripheral_option_label {
+  color: #FFFFFF;
+
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 29px;
+
+  text-align: center;
+}
+
+.linear_progress_percent {
+
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 15px;
+
+}
+
+.extra_linear_wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.linear_bar {
+  width: 55px;
+  border-radius: 4px;
+  background-color: #626879;
+}
+
+.linear_progress {
+  width: 1%;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #7ADC47;
+
+  transition: all 1s ease-in-out;
+}
+
+.linear_indicator_percentage {
+  color: #FAFFFF;
+
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 29px;
+}
+
+.linear_indicatiors {
+  /* margin: 8px 18px; */
+
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  row-gap: 15px;
+  
+  margin: 12px 12px 25px;
+}
