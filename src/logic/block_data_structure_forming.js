@@ -62,4 +62,20 @@ function blockData_structure_forming(primary_items, additional_items, data_struc
   return blockData_structure;
 }
 
-export {blockData_structure_forming}
+function flat_input_data(obj) {
+  let newObj = {};
+
+  Object.keys(obj).forEach(key => {
+    if (typeof obj[key] === 'object') {
+      Object.keys(obj[key]).forEach(innerKey => {
+        newObj[`${key}_${innerKey}`] = obj[key][innerKey];
+      });
+    } else {
+      newObj[key] = obj[key];
+    }
+  });
+
+  return newObj;
+}
+
+export { blockData_structure_forming, flat_input_data}

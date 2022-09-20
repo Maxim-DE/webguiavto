@@ -6,6 +6,8 @@ import Settings_block from '../settings_block';
 import Status_logs from "../status_logs_block"
 import Status_graphs from "../graph_blocks"
 
+import * as windows1251 from 'windows-1251';
+
 import './index.css'
 
 function StatusSection(props) {
@@ -22,13 +24,37 @@ function StatusSection(props) {
     // })
   }
 
+
+  React.useEffect(() => {
+    let request_obj = {
+      name: 'status',
+    }
+
+    let status_timer = setInterval(() => {
+      // console.dir(graph_blocks_map);
+      props.updateHandler(request_obj)
+
+      let win1251decoder = new TextDecoder('windows-1251');
+
+    }, 1500)
+
+  }, [])
+
   return (
     <section
       id={`${props.section_name}_section`}
       className='section'>
       <div className="section_header">
-        <h2>{props.section_header}: Вкл.</h2>
-        <span>2022-03-21 13:13:46</span>
+        <h2>СТАТУС: 
+          {/* {
+            !!(props.status_data.device_status) 
+              ? ' ВКЛ.'
+              : ' ВЫКЛ.'
+          } */}
+        </h2>
+        <span>
+          {props.status_data && props.status_data.time}
+        </span>
       </div>
       <div className="section_status">
         <Status_graphs

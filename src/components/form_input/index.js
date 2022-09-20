@@ -43,7 +43,7 @@ function FormInput(props) {
         id={props.id}
         name={`${props.name}`}
         type="checkbox"
-        checked={props.input_value}
+        checked={!!(props.input_value)}
         onChange={changeHandler}
       />
     )
@@ -54,7 +54,7 @@ function FormInput(props) {
         name={`${props.name}`}
         type='checkbox'
         className='switch'
-        checked={props.input_value}
+        checked={!!(props.input_value)}
         onChange={changeHandler}
       />
     )

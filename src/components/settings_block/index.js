@@ -9,6 +9,7 @@ import FormInput from '../form_input'
 import Modal from '../modal';
 
 import { blockData_structure_forming } from '../../logic/block_data_structure_forming';
+import { flat_input_data } from '../../logic/block_data_structure_forming';
 import additional_items_description from '../../logic/additional_items_description';
 
 import silence_det_block from '../custom_groups/silence_det_settings';
@@ -93,6 +94,24 @@ function Settings_block({ settings_type, className = "", ...rest }) {
     }
   }, [blockData])
 
+  React.useEffect(() => {
+    if (rest.data) {
+      let data_flattened = flat_input_data(rest.data),
+          state_copy = blockData;
+
+      console.log(data_flattened);
+      console.log(state_copy);
+
+      for (const key in state_copy) {
+        if (data_flattened.hasOwnProperty(key)) {
+          state_copy[key] = data_flattened[key];
+        }
+      }
+
+      setBlockData(state_copy);
+    }
+  }, [rest.data])
+
   const handleChange = (event) => {
     const target = event.target;
     let value;
@@ -141,10 +160,10 @@ function Settings_block({ settings_type, className = "", ...rest }) {
 
   const handleClick = event => {
     event.preventDefault();
-    let data_stringify = JSON.stringify(blockData)
+    let block_data = blockData;
     let request_obj = {
       name: null,
-      data: data_stringify,
+      data: block_data,
     };
     rest.clickHandler(request_obj);
   }

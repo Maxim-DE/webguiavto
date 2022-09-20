@@ -61,7 +61,7 @@ function SettingsSection(props) {
                 settings_type={item.settings_type}
                 clickHandler={handleClick}
                 data={
-                  props.section_data ? props.section_data[index] : ''
+                  props.section_data ? props.section_data[item.settings_type] : ''
                 }
                 section_name={props.section_name}
               />

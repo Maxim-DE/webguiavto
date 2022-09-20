@@ -1,4 +1,5 @@
 import React from 'react';
+import debounce from 'lodash.debounce';
 import logo from './logo.png';
 import './App.css';
 
@@ -13,7 +14,7 @@ import SettingsSection from "./components/settings_section"
 
 const status_settings_item = [
   { id: 'device_supply_switch', name: "Питание передатчика", type: "switch" },
-  { id: 'rds_mode_switch', name: "Включить RDS", type: "switch" },
+  // { id: 'rds_mode_switch', name: "Включить RDS", type: "switch" },
   { id: 'freq_control', name: "Изменение цастоты, МГц", type: "text" },
   { id: 'output_control', name: "Изменение мощности, Вт", type: "text_buttons" },
 ];
@@ -38,19 +39,19 @@ const settings_map = [
           { id: 'time_server_sync', name: "Синхронизация времени с сервером", type: "custom_group" }
         ]
       },
-      {
-        settings_type: 'silence_det_settings',
-        settings_header: 'настройки тишины',
-        settings_items: [
-          {id: 'silence_det_settings', name: "Включить детектор тишины", type: "custom_group"}
-        ]
-        // [
-        //   {id: 'border_on', name: "Порог на вкл.", type: "text"},
-        //   {id: 'react_time_on', name: 'Время реакции', type: 'text_range'},
-        //   {id: 'border_off', name: "Порог на выкл.", type: "text"},
-        //   {id: 'react_time_off', name: 'Время реакции', type: 'text_range'}
-        // ],
-      },
+      // {
+      //   settings_type: 'silence_det_settings',
+      //   settings_header: 'настройки тишины',
+      //   settings_items: [
+      //     {id: 'silence_det_settings', name: "Включить детектор тишины", type: "custom_group"}
+      //   ]
+      //   // [
+      //   //   {id: 'border_on', name: "Порог на вкл.", type: "text"},
+      //   //   {id: 'react_time_on', name: 'Время реакции', type: 'text_range'},
+      //   //   {id: 'border_off', name: "Порог на выкл.", type: "text"},
+      //   //   {id: 'react_time_off', name: 'Время реакции', type: 'text_range'}
+      //   // ],
+      // },
       {
         settings_type: 'misc_settings',
         settings_header: 'прочие настройки',
@@ -93,32 +94,32 @@ const settings_map = [
         settings_items: [
           {id: 'community_read', name: "Community Read", type: "text"},
           {id: 'community_write', name: "Community Write", type: "text"},
-          {id: 'trap_settings', name: "Настройки TRAP-сервера", type: "group", items:[
-            {id: 'trap_ip', name: "IP-адрес", type: "text"},
-            {id: 'trap_port', name: "Порт", type: "text"},
-            {id: 'trap_community', name: "Сommunity", type: "text"},
-          ]}
+          // {id: 'trap_settings', name: "Настройки TRAP-сервера", type: "group", items:[
+          //   {id: 'trap_ip', name: "IP-адрес", type: "text"},
+          //   {id: 'trap_port', name: "Порт", type: "text"},
+          //   {id: 'trap_community', name: "Сommunity", type: "text"},
+          // ]}
         ],
       },
     ],
   },
-  {
-    section_id: 'rds_settings',
-    section_name: 'rds-настройки',
-    section_blocks: [
-      {
-        settings_type: 'rds_general_settings',
-        settings_header: 'общие настройки',
-        settings_items: [
-          {id: 'tp_checkbox', name: 'TP', type: 'checkbox'},
-          {id: 'ta_checkbox', name: 'TA', type: 'checkbox'},
-          {id: 'pi', name: "PI", type: "text"},
-          {id: 'ps_name', name: "PS Name", type: "text_large_split"},
-          {id: 'radio_text', name: "Radio text", type: "text_large"},
-        ],
-      },
-    ],
-  },
+  // {
+  //   section_id: 'rds_settings',
+  //   section_name: 'rds-настройки',
+  //   section_blocks: [
+  //     {
+  //       settings_type: 'rds_general_settings',
+  //       settings_header: 'общие настройки',
+  //       settings_items: [
+  //         {id: 'tp_checkbox', name: 'TP', type: 'checkbox'},
+  //         {id: 'ta_checkbox', name: 'TA', type: 'checkbox'},
+  //         {id: 'pi', name: "PI", type: "text"},
+  //         {id: 'ps_name', name: "PS Name", type: "text_large_split"},
+  //         {id: 'radio_text', name: "Radio text", type: "text_large"},
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     section_id: 'info',
     section_name: 'Данные об устройстве',
@@ -153,73 +154,131 @@ const settings_map = [
 let debounceTimer;
 
 function App() {
+
   const [requestPool, setRequestPool] = React.useState({
-    pool: [],
+    pool: []
+  })
+  
+  const [statusData, setStatusData] = React.useState({
+    status_info: null,
+    status_graph: null,
+    status_logs: null,
+    status_settings: null,
   })
 
   const [sectionData, setSectionData] = React.useState({
-    status_data: null,
-    status_graph: null,
-    status_logs: null,
-    peripheral_menu: null,
-    status_settings: null,
     settings: null,
     network: null,
     rds: null,
     info: null,
   })
 
+  const [peripheralData, setPeripheralData] = React.useState({
+    structure: [],
+  })
+
+  const outputData_assignment = (output_name, output_data) => {
+    if (output_name === 'peripheral_structure') {
+      setPeripheralData(prevState => ({
+        ...prevState,
+        structure: output_data[`structure`],
+      }))
+    } else if (/^status/.test(output_name)) {
+      let status_state_copy = statusData;
+      for (const key in output_data) {
+        status_state_copy[key] = output_data[key];
+      }
+      setStatusData(status_state_copy)
+
+    } else {
+      setSectionData(prevState => ({
+        ...prevState,
+        [output_name]: output_data,
+      }))
+    }
+
+  }
+
   React.useEffect(() => {
     clearTimeout(debounceTimer);
+    
+    if (requestPool.pool.length > 0) {
 
-    if (requestPool.pool.length != 0) {
-      console.log(requestPool.pool);
+      // let state_copy = JSON.parse(JSON.stringify(sectionData));
 
       debounceTimer = setTimeout(() => {
-        let state_copy = JSON.parse(JSON.stringify(sectionData));
-
-        requestPool.pool.forEach((item, i) => {
+        const pool_state = requestPool.pool;
+        console.log('cached pool state');
+        console.log(pool_state);
+          
+        pool_state.forEach((request, k) => {
+          const last_index = pool_state.length - 1;
+          
           setTimeout(() => {
+            console.log('do do' + k);
+            console.log(request);
+            
             const host = "192.168.1.21"
-            const query = item.name + '.cgi';
-            const data = item.data ? `?${item.data}` : '';
+            const query = request.name + '.cgi';
+            const data = request.data ? `?${request.data}` : '';
             const url = `http://${host}/${query}${data}`;
-
+      
             const test_url = "http://192.168.1.114/GetDebug.CGI"
 
+            console.log(url);
+            
             fetch(url)
             .then(res => res.json())
             .then(
               (result) => {
+                console.log('harosh');
+                outputData_assignment(request.name, result);
                 console.dir(result);
-                sectionData_format(state_copy, item.name, result);
-                if (i == requestPool.pool.length) {
-                  setSectionData(state_copy);
-                }
-                showErrorMessage("", 'Сохранено');
+                // sectionData_format(state_copy, item.name, result);
+                // if (i == requestPool.pool.length) {
+                //   setSectionData(state_copy);
+                // }
+                // showSuccessMessage("", 'Сохранено');
+                
               },
 
               (error) => {
-                showErrorMessage("", error.message);
+                // showErrorMessage("", error.message);
+                console.log('sasi zhopu sukka');
                 console.dir(error);
               })
 
-              if (i == requestPool.pool.length) {
-                setRequestPool({
-                  pool: [],
-                });
-              }
-
-            }, 100 * ++i)
+          }, 150 * k);
+  
+          if (k == last_index) {
+            setRequestPool({
+              pool: []
+            });
+  
+            console.log('done');
+            
+          }
+  
         });
-
-      }, 300)
+      }, 200)
     }
+
   }, [requestPool])
 
-  const handlePoolUpdate = requestData => {
-    setRequestPool(updatePool(requestPool, requestData))
-    console.log('sasasamthing');
+  const handlePoolClick = (event) => {
+    const req_test_obj = {
+      name: 'test',
+      data: []
+    }
+
+    handlePoolUpdate(req_test_obj)
+  }
+
+  const handlePoolUpdate = (requestData) => {   
+    setRequestPool(prevState => ({
+      pool: prevState.pool.concat(requestData),
+    }))
+
   }
 
   return (
@@ -231,12 +290,14 @@ function App() {
             <a href="http://okbalfa.ru/">
             <img src={logo} className="app_logo" />
           </a>
-        </div>
-        <Links_list />
-        <div className='nav_fillblock'></div>
-        <PeripheralMenu
-          updateHandler={handlePoolUpdate}
-          data={sectionData.peripheral_menu} />
+          </div>
+          <Links_list />
+          <input type="button" value="добавить в очередь" onClick={handlePoolClick} />
+          <div className='nav_fillblock'></div>
+          <PeripheralMenu
+            updateHandler={handlePoolUpdate}
+            structure={peripheralData.structure}
+            data={statusData.status_graph} />
         </nav>
         <div className='main_wrap'>
           <header>
@@ -248,10 +309,10 @@ function App() {
               section_name="status"
               section_header="Статус"
               updateHandler={handlePoolUpdate}
-              status_data={sectionData.status_data}
-              graph_data={sectionData.status_graph}
-              logs_data={sectionData.status_logs}
-              settings_data={sectionData.status_settings}
+              status_data={statusData.status_info}
+              graph_data={statusData.status_graph}
+              logs_data={statusData.status_logs}
+              settings_data={statusData.status_settings}
               settings_map={status_settings_item} />
               {
                 settings_map.map(item => (
