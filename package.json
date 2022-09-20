@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "npm run build:react && npm run build:archive",
-    "build:react": "react-scripts build",
+    "build:react": "react-scripts build && npx gulp full_gzip_build",
     "build:archive": "mkdir build_arch || find build -type f | cpio -o > build_arch.cpio && mv build_arch.cpio build_arch",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -39,6 +39,13 @@
     ]
   },
   "devDependencies": {
-    "webpack-cli": "^4.10.0"
+    "del": "^7.0.0",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-gzip": "^1.4.2",
+    "gulp-inline-source": "^4.0.0",
+    "gulp-replace": "^1.1.3",
+    "webpack-cli": "^4.10.0",
+    "windows-1251": "^3.0.4"
   }
 }
