@@ -10,6 +10,7 @@ import { showErrorMessage, showSuccessMessage } from './components/notifications
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
 import StatusSection from "./components/status_section"
+import CalibSection from './components/calib_section';
 import SettingsSection from "./components/settings_section"
 
 const status_settings_item = [
@@ -35,9 +36,9 @@ const settings_map = [
           //   {id: 'supply_period', name: "Период работы", type: "text_range"},
           // ]},
         ],
-        additional_items: [
-          { id: 'time_server_sync', name: "Синхронизация времени с сервером", type: "custom_group" }
-        ]
+        // additional_items: [
+        //   { id: 'time_server_sync', name: "Синхронизация времени с сервером", type: "custom_group" }
+        // ]
       },
       // {
       //   settings_type: 'silence_det_settings',
@@ -151,9 +152,21 @@ const settings_map = [
 
 ];
 
+const calib_settings_map = [
+  {
+    settings_type: 'calibration_i',
+    settings_header: 'калибровка токов',
+    settings_items: [
+      { id: 'amperage_calib', name: "Калибровка токов", type: "custom_group" },
+      { id: 'amperage_zeros_calib', name: "Калибровка токов", type: "custom_group" },
+    ],
+  },
+]
+
 let debounceTimer;
 
 function App() {
+
 
   const [requestPool, setRequestPool] = React.useState({
     pool: []
@@ -164,6 +177,7 @@ function App() {
     status_graph: null,
     status_logs: null,
     status_settings: null,
+    calib_adc: null,
   })
 
   const [sectionData, setSectionData] = React.useState({
@@ -175,6 +189,11 @@ function App() {
 
   const [peripheralData, setPeripheralData] = React.useState({
     structure: [],
+  })
+
+  const [calibState, setCalibState] = React.useState({
+    isOpen: false,
+    data: {}
   })
 
   const outputData_assignment = (output_name, output_data) => {
@@ -189,6 +208,12 @@ function App() {
         status_state_copy[key] = output_data[key];
       }
       setStatusData(status_state_copy)
+
+    } else if (output_name === 'calibration') {
+      setCalibState(prevState => ({
+        ...prevState,
+        data: output_data
+      }))
 
     } else {
       setSectionData(prevState => ({
@@ -218,8 +243,8 @@ function App() {
             console.log('do do' + k);
             console.log(request);
             
-            const host = "192.168.1.21"
-            const query = request.name + '.cgi';
+            const host = "192.168.1.114"
+            const query = request.address;
             const data = request.data ? `?${request.data}` : '';
             const url = `http://${host}/${query}${data}`;
       
@@ -232,7 +257,16 @@ function App() {
             .then(
               (result) => {
                 console.log('harosh');
-                outputData_assignment(request.name, result);
+                if (Object.keys(result).length == 1) {
+
+                  return
+                    
+                } else {
+                  console.log(this);
+                  let request_name = request.address.replace('.cgi', '')
+                  request_name = request_name.replace('set_', '')
+                  outputData_assignment(request_name, result);
+                }
                 console.dir(result);
                 // sectionData_format(state_copy, item.name, result);
                 // if (i == requestPool.pool.length) {
@@ -265,6 +299,8 @@ function App() {
 
   }, [requestPool])
 
+  const nav_ref = React.useRef()
+
   const handlePoolClick = (event) => {
     const req_test_obj = {
       name: 'test',
@@ -281,6 +317,14 @@ function App() {
 
   }
 
+  const navRefUpdate = (nav_link_name) => {
+    nav_ref.current = document.getElementById(`${nav_link_name}_section`)
+
+    nav_ref.current.scrollIntoView({ block: "start", behavior: "smooth" })
+  }
+
+
+
   return (
     <>
       {/* <div>gfsj</div> */}
@@ -291,13 +335,13 @@ function App() {
             <img src={logo} className="app_logo" />
           </a>
           </div>
-          <Links_list />
-          <input type="button" value="добавить в очередь" onClick={handlePoolClick} />
+          <Links_list 
+            updateHandler={navRefUpdate} />
           <div className='nav_fillblock'></div>
-          <PeripheralMenu
+          {/* <PeripheralMenu
             updateHandler={handlePoolUpdate}
             structure={peripheralData.structure}
-            data={statusData.status_graph} />
+            data={statusData.status_graph} /> */}
         </nav>
         <div className='main_wrap'>
           <header>
@@ -325,6 +369,11 @@ function App() {
                   />
                   ))
               }
+            <CalibSection section_name="calibration"
+                          section_header="калибровка"
+                          section_data={calibState.data}
+                          updateHandler={handlePoolUpdate}
+                          adc_data={statusData.calib_adc} />
           </main>
         </div>
       </div>

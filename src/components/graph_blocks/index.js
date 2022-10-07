@@ -6,10 +6,10 @@ import './index.css'
 
 
 const status_colors = [
-  '#658E9C', //hibernation
   '#7adc47', //good
   '#f9c22e', //warning
   '#fe5f55', //error
+  '#658E9C', //hibernation
 ]
 
 
@@ -66,7 +66,7 @@ function Status_graphs(props) {
           new_value = (input_value / divider).toFixed(round_index)
           new_value = new_value + postfix
 
-          if (status != 1) {
+          if (status != 0) {
             graph_block_value_span.attributes["font-weight"].value = "500";
             graph_block_value_span.style.fill = status_colors[status];
           }

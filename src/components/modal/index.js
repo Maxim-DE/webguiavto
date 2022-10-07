@@ -21,23 +21,23 @@ const Modal = ({ setIsOpen, ...props }) => {
 
   const merged_items = [...props.items, ...props.additional_items];
 
-  React.useEffect(() => {
-    const modalData_stringify = JSON.stringify(modalData),
-      savedData_stringify = JSON.stringify(isChanged.saved_data);
+  // React.useEffect(() => {
+  //   const modalData_stringify = JSON.stringify(modalData),
+  //     savedData_stringify = JSON.stringify(isChanged.saved_data);
 
-    if (modalData_stringify != savedData_stringify) {
-      setIsChanged(prevState => ({
-        ...prevState,
-        'changed': true
-      }))
+  //   if (modalData_stringify != savedData_stringify) {
+  //     setIsChanged(prevState => ({
+  //       ...prevState,
+  //       'changed': true
+  //     }))
 
-    } else {
-      setIsChanged(prevState => ({
-        ...prevState,
-        'changed': false
-      }))
-    }
-  }, [modalData])
+  //   } else {
+  //     setIsChanged(prevState => ({
+  //       ...prevState,
+  //       'changed': false
+  //     }))
+  //   }
+  // }, [modalData])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -108,10 +108,10 @@ const Modal = ({ setIsOpen, ...props }) => {
             <h3>{props.header}</h3>
             <button 
               className='save_form_button'
-              style={{
-                display: isChanged.changed ? 'block' : 'none',
-                opacity: isChanged.changed ? '1' : '0'
-              }}
+              // style={{
+              //   display: isChanged.changed ? 'block' : 'none',
+              //   opacity: isChanged.changed ? '1' : '0'
+              // }}
               onClick={(event) => {
                 props.setBlockData(modalData);
                 props.clickHandler(event);
@@ -119,7 +119,7 @@ const Modal = ({ setIsOpen, ...props }) => {
                 }}>
               <MdDone style={{ margin: "3px 0 0 0" }} />
             </button>
-            <button
+            {/* <button
               className='reset_form_button'
               style={{
                 display: isChanged.changed ? 'block' : 'none',
@@ -128,7 +128,7 @@ const Modal = ({ setIsOpen, ...props }) => {
               onClick={reset_modal_handleClick}
               title='Сбросить' >
               <GrPowerReset style={{ margin: "4px -1px 0" }} />
-            </button>
+            </button> */}
           </div>
           <button 
             className='closeBtn'

@@ -76,23 +76,23 @@ function Settings_block({ settings_type, className = "", ...rest }) {
     'saved_data': blockData_structure,
   });
 
-  React.useEffect(() => {
-    const blockData_stringify = JSON.stringify(blockData),
-          savedData_stringify = JSON.stringify(isChanged.saved_data);
+  // React.useEffect(() => {
+  //   const blockData_stringify = JSON.stringify(blockData),
+  //         savedData_stringify = JSON.stringify(isChanged.saved_data);
 
-    if (blockData_stringify != savedData_stringify) {
-      setIsChanged(prevState => ({
-        ...prevState,
-        'changed': true
-      }))
+  //   if (blockData_stringify != savedData_stringify) {
+  //     setIsChanged(prevState => ({
+  //       ...prevState,
+  //       'changed': true
+  //     }))
 
-    } else {
-      setIsChanged(prevState => ({
-        ...prevState,
-        'changed': false
-      }))
-    }
-  }, [blockData])
+  //   } else {
+  //     setIsChanged(prevState => ({
+  //       ...prevState,
+  //       'changed': false
+  //     }))
+  //   }
+  // }, [blockData])
 
   React.useEffect(() => {
     if (rest.data) {
@@ -161,10 +161,17 @@ function Settings_block({ settings_type, className = "", ...rest }) {
   const handleClick = event => {
     event.preventDefault();
     let block_data = blockData;
+    let data_string = '';
+    
+    for (const key in block_data) {
+      data_string += `${key}$${block_data[key]};`
+    }
+    
     let request_obj = {
-      name: null,
-      data: block_data,
+      address: null,
+      data: data_string,
     };
+
     rest.clickHandler(request_obj);
   }
 
@@ -189,15 +196,15 @@ function Settings_block({ settings_type, className = "", ...rest }) {
           <h3>{rest.header}</h3>
           <button 
             className='save_form_button'
-            style={{
-              display: isChanged.changed ? 'block' : 'none',
-              opacity: isChanged.changed ? '1' : '0'
-            }}
+            // style={{
+            //   display: isChanged.changed ? 'block' : 'none',
+            //   opacity: isChanged.changed ? '1' : '0'
+            // }}
             onClick={handleClick}
             title='Сохранить' >
             <MdDone style={{ margin: "3px 0 0 0" }} />
           </button>
-          <button
+          {/* <button
             className='reset_form_button'
             style={{
               display: isChanged.changed ? 'block' : 'none',
@@ -206,7 +213,7 @@ function Settings_block({ settings_type, className = "", ...rest }) {
             onClick={reset_form_handleClick}
             title='Сбросить' >
             <GrPowerReset style={{ margin: "3px -1px 0" }} />
-          </button>
+          </button> */}
         </div>
         <ul className="settings_list">
           {rest.items.map(item => {

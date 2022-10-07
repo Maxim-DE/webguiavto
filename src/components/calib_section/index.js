@@ -1,0 +1,105 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import useFetch from '../hooks'
+
+import Settings_block_calib from '../settings_block_calib'
+
+import CurrentCalibSettings from '../settings_block_calib/forms/current_calib';
+import CurrentThresholdCalibSettings from '../settings_block_calib/forms/current_threshold_calib';
+import VoltageCalibSettings from '../settings_block_calib/forms/voltage_calib';
+import WattagePrimaryCalibSettings from '../settings_block_calib/forms/wattage_primary_calib';
+import FanCalibSettings from '../settings_block_calib/forms/fan_calib';
+import TempThresholdCalibSettings from '../settings_block_calib/forms/temp_thrashold';
+import SerialNumVersionCalibSettings from '../settings_block_calib/forms/serialnum_version_calib';
+
+import LoadingSpan from '../loading_span'
+
+import FormInput from '../form_input';
+
+import '../settings_section/index.css'
+
+function CalibSection(props) {
+  const [sectionState, setSectionState] = React.useState({
+    isLoading: false
+  });
+
+  React.useEffect(() => {
+    if (props.section_data) {
+      setSectionState({
+        isLoading: false
+      })
+    }
+  }, [props.section_data]);
+
+  React.useEffect(() => {
+    let request_obj = {
+      address: `${props.section_name}.cgi`,
+    }
+    props.updateHandler(request_obj);
+
+    // setSectionState({
+    //   isLoading: true
+    // })
+  }, [])
+
+  const handleClick = block_data => {
+    
+    props.updateHandler(block_data);
+    // setSectionState({
+    //   isLoading: true
+    // })
+  }
+
+  return (
+    <section id={`${props.section_name}_section`}>
+      <div className="section_header">
+        <h2>
+          {props.section_header}
+          <LoadingSpan loading={sectionState.isLoading} />
+        </h2>
+      </div>
+      <div className="section_content">
+        <CurrentCalibSettings
+          adc_data={props.adc_data != null ? 
+                    props.adc_data.current_calib : ''}
+          calib_data={Object.keys(props.section_data).length != 0 ? 
+                      props.section_data.calib_current.current_value
+                       : ''}
+          clickHandler={handleClick}/>
+        <CurrentThresholdCalibSettings
+          adc_data={props.adc_data != null ?
+                    props.adc_data.current_threshhold_calib : ''}
+          calib_data={Object.keys(props.section_data).length != 0 ?
+                      props.section_data.calib_current.threshold : ''} 
+          clickHandler={handleClick} />
+        <VoltageCalibSettings
+          adc_data={props.adc_data != null ?
+            props.adc_data.voltage_calib : ''}
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_voltage : ''}
+          clickHandler={handleClick} />
+        <WattagePrimaryCalibSettings
+          adc_data={props.adc_data != null ?
+            props.adc_data.power_calib : ''}
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_power : ''}
+          clickHandler={handleClick} />
+        <TempThresholdCalibSettings 
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_temp : ''}
+          clickHandler={handleClick}/>
+        <FanCalibSettings
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_fan : ''}
+          clickHandler={handleClick} />
+        <SerialNumVersionCalibSettings
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_power : ''}
+          clickHandler={handleClick} />
+      </div>
+    </section>
+  )
+}
+
+export default CalibSection

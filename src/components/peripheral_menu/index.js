@@ -1,27 +1,37 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import Pie from '../circle_indicator'
 
 import './index.css'
 
+const translation_dict = {
+  'pout': 'Вых. мощ., Вт',
+  'swr': 'КСВ',
+  'voltage': 'Напряж., В'
+}
 
 
 function PeripheralMenu(props) {
-  const [peripheral_data, setPeripheralData] = React.useState({
+  const [peripheralData, setPeripheralData] = React.useState({
+    structure: [],
     data: {},
   })
 
   React.useEffect(() => {
     let request_obj = {
-      name: 'peripheral_data',
+      address: 'peripheral_structure.cgi',
     }
-
-    let peripheral_timer = setInterval(() => {
-      props.updateHandler(request_obj)
-    }, 8000)
-
+    props.updateHandler(request_obj)
   }, [])
+
+  React.useEffect(() => {
+    if (props.structure.length > 0) {
+      setPeripheralData(prevState => ({
+        ...prevState,
+        structure: props.structure
+      }))
+    }
+  }, [props.structure])
 
 
   return (
@@ -31,10 +41,16 @@ function PeripheralMenu(props) {
         <span className="time_value">2022-03-21 13:13:46</span>
       </div>
       <div className="linear_indicatiors">
-        <Pie percentage={23} value={106.4} label='Частота, МГц'/>
-        <Pie percentage={20} value={106.4} label='Частота, МГц' />
-        <Pie percentage={23} value={106.4} label='Частота, МГц' />
-        <Pie percentage={23} value={106.4} label='Частота, МГц' />
+        {peripheralData.structure.length > 0 &&
+         peripheralData.structure.map(item => {
+          return (
+            <Pie 
+              min={item.min}
+              max={item.max}
+              value={''} 
+              label={translation_dict[item.name]} />
+          )
+        })}
       </div>
     </div>
   )

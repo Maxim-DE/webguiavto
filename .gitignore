@@ -25,3 +25,4 @@ yarn-error.log*
 src/prj_start_script
 
 src/imgs/raw/
+package-lock.json

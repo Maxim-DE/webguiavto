@@ -27,16 +27,16 @@ function StatusSection(props) {
 
   React.useEffect(() => {
     let request_obj = {
-      name: 'status',
+      address: 'status.cgi',
     }
 
-    let status_timer = setInterval(() => {
-      // console.dir(graph_blocks_map);
-      props.updateHandler(request_obj)
+    // let status_timer = setInterval(() => {
+    //   // console.dir(graph_blocks_map);
+    //   props.updateHandler(request_obj)
 
-      let win1251decoder = new TextDecoder('windows-1251');
+    //   let win1251decoder = new TextDecoder('windows-1251');
 
-    }, 1500)
+    // }, 1000)
 
   }, [])
 

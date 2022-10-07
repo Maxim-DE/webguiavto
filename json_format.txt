@@ -1,0 +1,206 @@
+Серийный номер
+
+{
+  "device_type": 1,
+  "serial_number": "11А123",
+}
+
+
+Статус - status.cgi
+
+{ 
+  "status_info": {
+    "device_status": "1",
+    "time": "2022-03-21 13:13:46"
+  },
+
+  "status_logs": {
+    "0": {
+      "message": "Питание передатчика",
+      "time": "2022-03-17 13:16:28"
+    },
+    "1": {
+      "message": "Питание передатчика",
+        "time": "2022-03-17 13:16:28"
+    },
+    "2": {
+      "message": "Питание передатчика",
+        "time": "2022-03-17 13:16:28"
+    },
+    "3": {
+      "message": "Питание передатчика",
+        "time": "2022-03-17 13:16:28"
+    },
+    "4": {
+      "message": "Питание передатчика",
+        "time": "2022-03-17 13:16:28"
+    },
+    "5": {
+      "message": "Питание передатчика",
+        "time": "2022-03-17 13:16:28"
+    },
+  },
+
+  "status_graph": {
+    "modulator": {
+      "status": 1,
+      "output_pwr": "0.01",
+      "channel": "23",
+      "temperature": "30",
+
+    },
+
+    "amplifier_1": {
+      "status": 1,
+      "input_pwr": "0.01",
+      "output_pwr": "120",
+      "amperage": 32,
+      "voltage": 48,
+      "temperature": 30
+    },
+
+    "amplifier_2": {
+      "status": 1,
+      "input_pwr": "0.01",
+      "output_pwr": "120",
+      "voltage": 48,
+      "amperage": 32,
+      "temperature": 30
+    },
+
+    "adder": {
+      "status": 1,
+      "ballast": "30",
+      "output_pwr": "120",
+    },
+
+    "output": {
+      "status": 1,
+      "input_pwr": "120",
+      "refl_pwr": 48,
+      "swr": 32,
+    },
+  }
+
+  "status_settings": {
+    "device_supply_switch": "1",
+    "freq_control": "108.8",
+    "output_control": "165"
+  }
+
+  "calib_adc": {
+    "current_calib": {
+      "I1": 3500,
+      "I2": 3500,
+      "I3": 3500
+    },
+    "current_threshold_calib":{
+      "I1": 3500,
+      "I2": 3500,
+      "I3": 3500
+    }
+  }
+}
+
+
+Общие настройки - settings.cgi
+
+{
+  "time_settings": {
+    "date": "2022-03-21",
+    "time": "13:54:47",
+    "time_schedule": {
+      "period":"01:00,17:00"
+    }
+  },
+  
+  "misc_settings": {
+    "request_period": "1000",
+    "bootloader_enabled_switch": true
+  }
+}
+
+RDS - rds_settings.cgi
+
+{
+  "rds_general_settings": {
+    "tp": 1,
+    "ta": 0,
+    "pi": "0x1A3F",
+    "ms": 1,
+    "pty": 10,
+    "ps_name": "TEST RDS, , , ",
+    "radio_text":"*** TEST RDS ***"
+  }
+}
+
+Сетевые настройки - network.CGI
+
+{
+  "device_adress": {
+    "mac_deafult": "08:00:4C:00:10:50",
+    "mac": "08:00:4C:00:10:50",
+    "ip": "192.168.1.4",
+    "subnet_mask": "255.255.255.0",
+    "gateway": "192.168.0.1",
+  },
+
+  "remote_control": {
+    "remote_ip_addr_1": "192.168.1.4/24",
+    "remote_ip_addr_2": "192.168.1.4/24",
+    "remote_ip_addr_3": "192.168.1.4/24",
+    "remote_ip_addr_4": "192.168.1.4/24"
+  },
+
+  "snmp_agent": {
+    "community_read": "public",
+    "community_write": "private",
+    "trap_settings": {
+      "trap_ip": "192.168.0.63",
+      "trap_port": "162",
+      "trap_community": "public",
+    }
+  }
+}
+
+Информация об устройстве - info.CGI
+
+{
+  "info_general": {
+    "serial_number": "plain text",
+    "plate_number": "plain text",
+    "plate_version": "plain text",
+    "time_from_on": "plain text",
+    "time_failure_on": "plain text",
+    "time_failure_off": "plain text",
+    "memory_type": "plain text"
+  },
+
+  "software_version": {
+    "os_version": "plain text",
+    "bootloader_version": "plain text",
+    "audio_version": "plain text"
+  }
+}
+
+Боковые индикаторы - peripheral_structure.cgi
+
+{
+  [
+    {
+      'name': "voltage",
+      "min": "",
+      "max": ""
+    },
+    {
+      "name": "swr",
+      "min": "",
+      "max": ""
+    },
+    {
+      "name": "pout",
+      "min": "",
+      "max": ""
+    }
+  ]
+}

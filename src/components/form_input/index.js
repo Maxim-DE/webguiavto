@@ -34,6 +34,7 @@ function FormInput(props) {
         type="text"
         onChange={changeHandler}
         value={props.input_value}
+        style={props.style}
       />
     )
   } 
@@ -62,28 +63,28 @@ function FormInput(props) {
   // else if (props.type == "text_range") {
   //   const value_range = inputValue.split(',')
   //   return (
-  //     <div
-  //       className="text_range_container"
-  //       id={props.id}
-  //       name={props.name}
-  //     >
-  //       <span>от</span>
-  //       <input
-  //         type="text"
-  //         className="text_range"
-  //         onChange={changeHandler}
-  //         data-range="0"
-  //         value={value_range[0]}
-  //       />
-  //       <span>до</span>
-  //       <input
-  //         type="text"
-  //         className="text_range"
-  //         data-range="1"
-  //         onChange={changeHandler}
-  //         value={value_range[1]}
-  //       />
-  //     </div>
+      // <div
+      //   className="text_range_container"
+        // id={props.id}
+        // name={props.name}
+      // >
+      //   <span>от</span>
+      //   <input
+      //     type="text"
+      //     className="text_range"
+      //     onChange={changeHandler}
+      //     data-range="0"
+      //     value={value_range[0]}
+      //   />
+      //   <span>до</span>
+      //   <input
+      //     type="text"
+      //     className="text_range"
+      //     data-range="1"
+      //     onChange={changeHandler}
+      //     value={value_range[1]}
+      //   />
+      // </div>
   //   )
   // } 
   // else if (props.type == "text_buttons") {
@@ -232,7 +233,18 @@ function FormInput(props) {
       </div>
     )
     
-  } 
+  } else if (props.type == "button") {
+    return (
+      <input
+        id={props.id}
+        name={props.name}
+        className='button_input'
+        type="button"
+        value={props.label}
+        onClick={props.clickHandler} />
+    )
+  }
+
   else if (props.type == "custom") {
     return custom_inputs[props.id](changeHandler, props.input_value, props.id)
   }

@@ -7,22 +7,24 @@ const links_items = [
   {id: 'status', name: "Статус"},
   {id: 'settings', name: "Общие настроки"},
   {id: 'network', name: "Сетевые настройки"},
-  {id: 'rds_settings', name: "Настройки RDS"},
   {id: 'info', name: "Данные об устройстве"},
 ]
 
-function Links_list() {
+function Links_list(props) {
   const [active, SetActive] = React.useState('');
 
   function handleClick(event) {
+    event.stopPropagation()
+    console.log('nav li')
+
     SetActive(
       links_items.findIndex(item => {
-        return event.target.id === item.id
+        return event.currentTarget.id === item.id
       })
     );
 
-    const el = document.getElementById(`${event.target.id}_section`);
-    el.scrollIntoView({block: "center", behavior: "smooth"});
+    props.updateHandler(event.currentTarget.id)
+
   }
 
   return (
@@ -33,8 +35,17 @@ function Links_list() {
           id={item.id}
           onClick={handleClick}
           className={index === active ? 'active' : ''}>
-          <div className="nav_linkLabel">{item.name}</div>
-          <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="nav_linkArrow">
+          <div 
+          className="nav_linkLabel"
+          onClick={(e) => {console.log('nav span');}}
+          >{item.name}</div>
+          <svg 
+            width="9" 
+            height="15" 
+            viewBox="0 0 9 15" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg" className="nav_linkArrow"
+            onClick={(e) => {console.log('nav svg');}}>
             <path id="Vector 2" d="M1 1L7.21084 6.76721C7.6369 7.16284 7.6369 7.83716 7.21084 8.23279L1 14" stroke="#6D8EA0" strokeWidth="2" stroke-linecap="round"/>
           </svg>
         </li>

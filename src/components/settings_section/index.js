@@ -23,7 +23,7 @@ function SettingsSection(props) {
 
   React.useEffect(() => {
     let request_obj = {
-      name: props.section_name,
+      address: `${props.section_name}.cgi`,
     }
     props.updateHandler(request_obj);
 
@@ -33,7 +33,8 @@ function SettingsSection(props) {
   }, [])
 
   const handleClick = block_data => {
-    block_data.name = props.section_name;
+    let address = `set_${props.section_name}.cgi`
+    block_data.address = address;
     props.updateHandler(block_data);
     setSectionState({
       isLoading: true

@@ -102,10 +102,29 @@ input[type='checkbox'].switch:checked:before {
   }
 }
 
-/* TEXT STYLES */
-input[type="text"],
+/* BUTTON & SELECT STYLES */
 input[type='button'], 
 select {
+  max-width: 150px;
+  height: 24px;
+
+  padding: 1px 7px;
+  
+  background: #E0E7EB;
+  
+  border: 0;
+  border-radius: 7px;
+  
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  color: #2F323A;
+}
+
+/* TEXT STYLES */
+input[type="text"] {
   max-width: 150px;
   height: 24px;
 
@@ -133,6 +152,7 @@ select {
   row-gap: 5px;
 
 }
+
 
 input[type="text"].text_range {
   max-width: 35px;
