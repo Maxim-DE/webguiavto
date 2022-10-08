@@ -1,0 +1,12 @@
+.log_button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 16px;
+
+  cursor: pointer;
+}
+
+.log_label {
+  font-size: 18px;
+}

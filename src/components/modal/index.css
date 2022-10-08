@@ -31,6 +31,15 @@
 
 }
 
+.modal_header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin: 20px 0 5px 0;
+    column-gap: 14px;
+}
+
 .modal_header > h3 {
     margin-top: 0;
     margin-left: 0;

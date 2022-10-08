@@ -13,6 +13,8 @@ import StatusSection from "./components/status_section"
 import CalibSection from './components/calib_section';
 import SettingsSection from "./components/settings_section"
 
+import CalibLogButton from './components/calib_log_button';
+
 const status_settings_item = [
   { id: 'device_supply_switch', name: "Питание передатчика", type: "switch" },
   // { id: 'rds_mode_switch', name: "Включить RDS", type: "switch" },
@@ -152,16 +154,6 @@ const settings_map = [
 
 ];
 
-const calib_settings_map = [
-  {
-    settings_type: 'calibration_i',
-    settings_header: 'калибровка токов',
-    settings_items: [
-      { id: 'amperage_calib', name: "Калибровка токов", type: "custom_group" },
-      { id: 'amperage_zeros_calib', name: "Калибровка токов", type: "custom_group" },
-    ],
-  },
-]
 
 let debounceTimer;
 
@@ -178,6 +170,7 @@ function App() {
     status_logs: null,
     status_settings: null,
     calib_adc: null,
+    calib_available: 0
   })
 
   const [sectionData, setSectionData] = React.useState({
@@ -336,7 +329,8 @@ function App() {
           </a>
           </div>
           <Links_list 
-            updateHandler={navRefUpdate} />
+            updateHandler={navRefUpdate}
+            calibaAvailable={statusData.calib_available} />
           <div className='nav_fillblock'></div>
           {/* <PeripheralMenu
             updateHandler={handlePoolUpdate}
@@ -347,6 +341,8 @@ function App() {
           <header>
             <h1>fm-трансмиттер</h1>
             {/* <span className="log_button"></span> */}
+            <CalibLogButton 
+              updateHandler = {handlePoolUpdate}/>
           </header>
           <main>
             <StatusSection
@@ -369,11 +365,13 @@ function App() {
                   />
                   ))
               }
-            <CalibSection section_name="calibration"
-                          section_header="калибровка"
-                          section_data={calibState.data}
-                          updateHandler={handlePoolUpdate}
-                          adc_data={statusData.calib_adc} />
+            {!!statusData.calib_available &&
+              <CalibSection section_name="calibration"
+                            section_header="калибровка"
+                            section_data={calibState.data}
+                            updateHandler={handlePoolUpdate}
+                            adc_data={statusData.calib_adc} />
+            }
           </main>
         </div>
       </div>

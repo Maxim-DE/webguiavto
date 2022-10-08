@@ -241,6 +241,7 @@ function FormInput(props) {
         className='button_input'
         type="button"
         value={props.label}
+        style={props.style}
         onClick={props.clickHandler} />
     )
   }
