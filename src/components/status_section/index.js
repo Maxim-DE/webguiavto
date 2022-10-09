@@ -61,11 +61,8 @@ function StatusSection(props) {
           settings_type="graphs"
           updateHandler={handleUpdate}
           data={props.graph_data}/>
-        <div className='status_settings_wrap'>
+        {/* <div className='status_settings_wrap'>
           <Status_logs settings_type="logs" header="журнал" />
-          {/* <Status_settings
-            className={`${props.section_name}_settings`}
-            settings_type="settings" header="настройки" updateHandler={handleUpdate}/> */}
           <Settings_block
             header='настройки'
             items={props.settings_map}
@@ -73,8 +70,7 @@ function StatusSection(props) {
             settings_type='status_settings'
             clickHandler={handleClick}
             data={props.settings_data ? props.settings_data : ''}/>
-          
-        </div>
+        </div> */}
       </div>
     </section>
   )

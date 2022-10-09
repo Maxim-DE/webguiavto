@@ -20,8 +20,6 @@ section {
 .section_header h2,
 .section_header span {
   color: #2B2927;
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 700;
   font-size: 35px;
   line-height: 41px;
@@ -29,23 +27,21 @@ section {
 }
 
 .section_content {
-  display: flex;
-  flex-wrap: wrap;
-  /* grid-template-columns: repeat(auto-fill, minmax(356px, 473px)); */
+  display: grid;
+  --columns: 1;
+  
+  grid-template-columns: repeat(var(--columns),1fr);
   gap: 35px;
 }
 
-/* @media (max-width: 1275px) {
+@media (min-width: 1162px) {
   .section_content {
-    grid-template-columns: repeat(2, minmax(356px, 473px));
+    --columns: 2
   }
+}
 
-  .settings_item > label {
-    font-size: 16px;
+@media (min-width: 1553px) {
+  .section_content {
+    --columns: 3
   }
-
-  h3 {
-    font-size: 23px;
-  }
-
-} */
+}

@@ -14,11 +14,11 @@ function SettingsSection(props) {
   });
 
   React.useEffect(() => {
-    if (props.section_data) {
-      setSectionState({
-        isLoading: false
-      })
-    }
+    // if (props.section_data) {
+    //   setSectionState({
+    //     isLoading: false
+    //   })
+    // }
   }, [props.section_data]);
 
   React.useEffect(() => {
@@ -27,18 +27,18 @@ function SettingsSection(props) {
     }
     props.updateHandler(request_obj);
 
-    setSectionState({
-      isLoading: true
-    })
+    // setSectionState({
+    //   isLoading: true
+    // })
   }, [])
 
   const handleClick = block_data => {
     let address = `set_${props.section_name}.cgi`
     block_data.address = address;
     props.updateHandler(block_data);
-    setSectionState({
-      isLoading: true
-    })
+    // setSectionState({
+    //   isLoading: true
+    // })
   }
 
   return (

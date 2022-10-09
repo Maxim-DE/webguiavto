@@ -11,7 +11,6 @@
 }
 
 .logs_header > span {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -52,7 +51,6 @@
 }
 
 .log_item > span {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
