@@ -30,13 +30,11 @@ function StatusSection(props) {
       address: 'status.cgi',
     }
 
-    // let status_timer = setInterval(() => {
-    //   // console.dir(graph_blocks_map);
-    //   props.updateHandler(request_obj)
+    let status_timer = setInterval(() => {
+      // console.dir(graph_blocks_map);
+      props.updateHandler(request_obj)
 
-    //   let win1251decoder = new TextDecoder('windows-1251');
-
-    // }, 1000)
+    }, 1500)
 
   }, [])
 

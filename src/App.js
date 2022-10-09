@@ -161,7 +161,8 @@ function App() {
 
 
   const [requestPool, setRequestPool] = React.useState({
-    pool: []
+    pool: [],
+    error_pool: [],
   })
   
   const [statusData, setStatusData] = React.useState({
@@ -273,6 +274,8 @@ function App() {
                 // showErrorMessage("", error.message);
                 console.log('sasi zhopu sukka');
                 console.dir(error);
+
+                handlePoolUpdate(request);
               })
 
           }, 150 * k);
@@ -290,7 +293,7 @@ function App() {
       }, 200)
     }
 
-  }, [requestPool])
+  }, [requestPool.pool])
 
   const nav_ref = React.useRef()
 

@@ -8,6 +8,7 @@ const links_items = [
   {id: 'settings', name: "Общие настроки"},
   {id: 'network', name: "Сетевые настройки"},
   {id: 'info', name: "Данные об устройстве"},
+  // {id: 'calibration', name: "Калибровка"}
 ]
 
 function Links_list(props) {
