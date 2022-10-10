@@ -67,7 +67,8 @@ function time_schedule_settings(form_handler, block_state, group_id, group_name)
             {work_days.map(item => {
               return (
                 <div
-                  className='work_day_checkbox_container'>
+                  className='work_day_checkbox_container'
+                  key={`time_schedule_${item.day}`}>
                   <FormInput
                     id={`time_schedule_${item.day}_on_input`}
                     name={`time_schedule_${item.day}_on`}

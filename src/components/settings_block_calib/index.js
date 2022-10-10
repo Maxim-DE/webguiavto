@@ -16,7 +16,7 @@ function Settings_block_calib({ settings_type, className = "", ...rest }) {
 
   // const blockData_structure = blockData_structure_forming(rest.children);
   
-  const [isOpen, setIsOpen] = React.useState(false);
+  // const [isOpen, setIsOpen] = React.useState(false);
 
   // const [isChanged, setIsChanged] = React.useState({
   //   'changed': false,
@@ -41,79 +41,79 @@ function Settings_block_calib({ settings_type, className = "", ...rest }) {
   //   }
   // }, [blockData])
 
-  React.useEffect(() => {
-    if (rest.data) {
-      let data_flattened = flat_input_data(rest.data),
-          state_copy = blockData;
+  // React.useEffect(() => {
+  //   if (rest.data) {
+  //     let data_flattened = flat_input_data(rest.data),
+  //         state_copy = blockData;
 
-      console.log(data_flattened);
-      console.log(state_copy);
+  //     console.log(data_flattened);
+  //     console.log(state_copy);
 
-      for (const key in state_copy) {
-        if (data_flattened.hasOwnProperty(key)) {
-          state_copy[key] = data_flattened[key];
-        }
-      }
+  //     for (const key in state_copy) {
+  //       if (data_flattened.hasOwnProperty(key)) {
+  //         state_copy[key] = data_flattened[key];
+  //       }
+  //     }
 
-      setBlockData(state_copy);
-    }
-  }, [rest.data])
+  //     setBlockData(state_copy);
+  //   }
+  // }, [rest.data])
 
-  const handleChange = (event) => {
-    const target = event.target;
-    let value;
+  // const handleChange = (event) => {
+  //   const target = event.target;
+  //   let value;
 
-    if (target.classList.contains('split')) {
-      let split_value = target.value,
-            separator = ' ',
-            limit = 8,
-            unmask_value = split_value.replace(/[^\d]/g, '')
+  //   if (target.classList.contains('split')) {
+  //     let split_value = target.value,
+  //           separator = ' ',
+  //           limit = 8,
+  //           unmask_value = split_value.replace(/[^\d]/g, '')
 
-      let output = [];
+  //     let output = [];
 
-      if (unmask_value.length > (limit * 4)) {
-        unmask_value = unmask_value.slice(0, (limit * 4))
-      }
+  //     if (unmask_value.length > (limit * 4)) {
+  //       unmask_value = unmask_value.slice(0, (limit * 4))
+  //     }
 
-      for (let i = 0; i < unmask_value.length; i++) {
-        if (i !== 0 && i % limit === 0) {
-          output.push(separator);
-        }
+  //     for (let i = 0; i < unmask_value.length; i++) {
+  //       if (i !== 0 && i % limit === 0) {
+  //         output.push(separator);
+  //       }
 
-        output.push(unmask_value[i]);
-      }
+  //       output.push(unmask_value[i]);
+  //     }
 
-      value = output.join('');
+  //     value = output.join('');
 
-    } else if (target.className == 'slider') {
-      const value_string = `${event.target.min},${event.target.value},${event.target.max}`;
-      value = value_string;
+  //   } else if (target.className == 'slider') {
+  //     const value_string = `${event.target.min},${event.target.value},${event.target.max}`;
+  //     value = value_string;
 
-    } else if (event.target.className == 'text_range') {
-      let range_inputs = event.target.parentElement.children;
-      value = `${range_inputs[1].value},${range_inputs[3].value}`;
+  //   } else if (event.target.className == 'text_range') {
+  //     let range_inputs = event.target.parentElement.children;
+  //     value = `${range_inputs[1].value},${range_inputs[3].value}`;
 
-    } else {
-      value = target.type === 'checkbox' ? target.checked : target.value;
-    }
+  //   } else {
+  //     value = target.type === 'checkbox' ? target.checked : target.value;
+  //   }
 
-    const name = target.name;
+  //   const name = target.name;
 
-    setBlockData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  }
+  //   setBlockData(prevState => ({
+  //     ...prevState,
+  //     [name]: value
+  //   }));
+  // }
 
-  const handleClick = event => {
-    event.preventDefault();
-    let block_data = blockData;
-    let request_obj = {
-      name: null,
-      data: block_data,
-    };
-    rest.clickHandler(request_obj);
-  }
+  // const handleClick = event => {
+  //   event.preventDefault();
+  //   let block_data = blockData;
+  //   let request_obj = {
+  //     name: null,
+  //     data: block_data,
+  //   };
+  //   rest.clickHandler(request_obj);
+  // }
 
   return (
 

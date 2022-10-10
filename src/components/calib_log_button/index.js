@@ -25,8 +25,8 @@ const CalibLogButton = (props) => {
 
 	const changeHandler = (event) => {
 		const target = event.target,
-    			value = target.value,
-    			name = target.name
+					value = target.value,
+					name = target.name
 		setCalibPassw(prevState => ({
 			...prevState,
 			[name]: value
@@ -53,11 +53,11 @@ const CalibLogButton = (props) => {
 			className="log_button"
 			onClick={clickHandler}>
 			<span className='log_label'>Войти в калибровку</span>
-			<img src={log_icon} alt="Войти" sizes="" />
+			{/* <img src={log_icon} alt="Войти" sizes="" /> */}
 		</div>
 		{isOpen &&
-		 <ModalCalib
-		 	header={`авторизация`}
+		<ModalCalib
+			header={`авторизация`}
 			setIsOpen = {setIsOpen}>
 				<ul className="settings_list">
 					<li

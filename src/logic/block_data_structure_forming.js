@@ -4,10 +4,11 @@ function blockData_structure_forming(primary_items, additional_items, data_struc
 
   for (let k = 0; k < primary_items.length; k++) {
     switch (primary_items[k].type) {
-      case 'custom':
+      case 'custom': {
         break;
+      }
 
-      case 'group':
+      case 'group': {
         const group_items = primary_items[k].items;
         for (let m = 0; m < group_items.length; m++) {
           const input_name = group_items[m].id;
@@ -20,8 +21,9 @@ function blockData_structure_forming(primary_items, additional_items, data_struc
         }
 
         break;
+      }
     
-      default:
+      default: {
         const input_name = primary_items[k].id;
         if (/switch/g.test(input_name) ||
           /checkbox/g.test(input_name)) {
@@ -31,6 +33,7 @@ function blockData_structure_forming(primary_items, additional_items, data_struc
         }
 
         break;
+      }
     }
   }
 

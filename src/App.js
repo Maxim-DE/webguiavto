@@ -1,10 +1,7 @@
 import React from 'react';
-import debounce from 'lodash.debounce';
 import logo from './logo.png';
 import './App.css';
 
-import useFetch from './components/hooks'
-import {updatePool, sectionData_format} from './logic/request_logic'
 import { showErrorMessage, showSuccessMessage } from './components/notifications/notifications_utilites';
 
 import Links_list from './components/links_list'
@@ -360,6 +357,7 @@ function App() {
               {
                 settings_map.map(item => (
                   <SettingsSection
+                    key={item.section_id}
                     section_name={item.section_id}
                     section_header={item.section_name}
                     blocks={item.section_blocks}

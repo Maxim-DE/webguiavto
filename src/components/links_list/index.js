@@ -47,7 +47,7 @@ function Links_list(props) {
             fill="none" 
             xmlns="http://www.w3.org/2000/svg" className="nav_linkArrow"
             onClick={(e) => {console.log('nav svg');}}>
-            <path id="Vector 2" d="M1 1L7.21084 6.76721C7.6369 7.16284 7.6369 7.83716 7.21084 8.23279L1 14" stroke="#6D8EA0" strokeWidth="2" stroke-linecap="round"/>
+            <path id="Vector 2" d="M1 1L7.21084 6.76721C7.6369 7.16284 7.6369 7.83716 7.21084 8.23279L1 14" stroke="#6D8EA0" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </li>
         ))}

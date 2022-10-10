@@ -17,7 +17,7 @@ const Pie = ({label, value, min, max}) => {
   const percentage = ((value-min) /(max-min))* 100
   
   return (
-  <div class="linear_indicator_wrapper">
+  <div className="linear_indicator_wrapper">
     <div className='peripheral_option_label'>{label}</div>
     <div className='extra_linear_wrap'>
       <div className='linear_bar'>

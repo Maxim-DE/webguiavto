@@ -193,7 +193,9 @@ function FormInput(props) {
       {props.variants &&
         props.variants.map((item, index) => {
           return (
-            <option value={index}>{item}</option>
+            <option 
+              key={index}
+              value={index}>{item}</option>
           )
         })
       }

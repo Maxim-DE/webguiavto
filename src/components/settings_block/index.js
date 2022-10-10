@@ -103,7 +103,7 @@ function Settings_block({ settings_type, className = "", ...rest }) {
       console.log(state_copy);
 
       for (const key in state_copy) {
-        if (data_flattened.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(data_flattened, key)) {
           state_copy[key] = data_flattened[key];
         }
       }

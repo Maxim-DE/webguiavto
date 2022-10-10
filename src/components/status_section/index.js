@@ -34,7 +34,7 @@ function StatusSection(props) {
       // console.dir(graph_blocks_map);
       props.updateHandler(request_obj)
 
-    }, 1500)
+    }, 1000)
 
   }, [])
 

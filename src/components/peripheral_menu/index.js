@@ -44,7 +44,8 @@ function PeripheralMenu(props) {
         {peripheralData.structure.length > 0 &&
          peripheralData.structure.map(item => {
           return (
-            <Pie 
+            <Pie
+              key={item.name} 
               min={item.min}
               max={item.max}
               value={''} 

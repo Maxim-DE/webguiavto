@@ -54,6 +54,7 @@ function SettingsSection(props) {
           props.blocks.map((item, index) => {
             return (
               <Settings_block
+                key={item.settings_type}
                 header={item.settings_header}
                 items={item.settings_items == 'custom' ? [{type: 'custom'}] : item.settings_items}
                 additional_items={
