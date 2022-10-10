@@ -29,8 +29,9 @@ function FanCalibSettings(props) {
           
         } else {
           const divident = props.calib_data[key][0],
-                divider = props.calib_data[key][1]
-          calib_state_copy[key] = (divident / divider).toFixed(1)
+                divider = props.calib_data[key][1],
+                digits = Math.log10(divider)
+          calib_state_copy[key] = (divident / divider).toFixed(digits)
         }
       }
 
@@ -110,7 +111,7 @@ function FanCalibSettings(props) {
                           save_handler={handleClick_save}>
 
 
-      {/* <li
+      <li
         key='fan_pwm_calib'
         id='fan_pwm_calib'
         className="settings_item calib">
@@ -143,7 +144,7 @@ function FanCalibSettings(props) {
             label='Сохранить'
             type="button" />
         </div>
-      </li> */}
+      </li>
       <li
         key='fan_temp_threshold_on_calib'
         id='fan_temp_threshold_on'

@@ -18,8 +18,9 @@ function PowerCalibSettings(props) {
 
       for (const key in props.calib_data) {
         const divident = props.calib_data[key][0],
-              divider = props.calib_data[key][1]
-        calib_state_copy[key] = (divident / divider).toFixed(1)
+              divider = props.calib_data[key][1],
+              digits = Math.log10(divider)
+        calib_state_copy[key] = (divident / divider).toFixed(digits)
       }
 
       setPowerCalibState(calib_state_copy)
@@ -203,7 +204,7 @@ function PowerCalibSettings(props) {
             id={`сoupling_coeff_calib_input`}
             name={`coupling_coeff_calib`}
             changeHandler={handleChange}
-            input_value={powerCalibState.сoupling_coeff}
+            input_value={powerCalibState.coupling_coeff}
             style={{ margin: '0', maxWidth: '57px' }}
             type="text" />
           <FormInput
