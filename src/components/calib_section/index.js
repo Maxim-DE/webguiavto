@@ -9,6 +9,7 @@ import CurrentCalibSettings from '../settings_block_calib/forms/current_calib';
 import CurrentThresholdCalibSettings from '../settings_block_calib/forms/current_threshold_calib';
 import VoltageCalibSettings from '../settings_block_calib/forms/voltage_calib';
 import WattagePrimaryCalibSettings from '../settings_block_calib/forms/wattage_primary_calib';
+import WattageAdditionalCalibSettings from '../settings_block_calib/forms/wattage_additional_calib';
 import FanCalibSettings from '../settings_block_calib/forms/fan_calib';
 import TempThresholdCalibSettings from '../settings_block_calib/forms/temp_thrashold';
 import SerialNumVersionCalibSettings from '../settings_block_calib/forms/serialnum_version_calib';
@@ -85,6 +86,12 @@ function CalibSection(props) {
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_power : ''}
           clickHandler={handleClick} />
+        <WattageAdditionalCalibSettings
+          adc_data={props.adc_data != null ?
+            props.adc_data.power_additional_calib : ''}
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_additional_power : ''}
+          clickHandler={handleClick} />
         <TempThresholdCalibSettings 
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_temp : ''}
@@ -95,7 +102,7 @@ function CalibSection(props) {
           clickHandler={handleClick} />
         <SerialNumVersionCalibSettings
           calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_power : ''}
+            props.section_data.calib_serialNum : ''}
           clickHandler={handleClick} />
       </div>
     </section>
