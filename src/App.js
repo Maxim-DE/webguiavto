@@ -290,18 +290,10 @@ function App() {
       }, 200)
     }
 
+    console.log(logo)
   }, [requestPool.pool])
 
   const nav_ref = React.useRef()
-
-  const handlePoolClick = (event) => {
-    const req_test_obj = {
-      name: 'test',
-      data: []
-    }
-
-    handlePoolUpdate(req_test_obj)
-  }
 
   const handlePoolUpdate = (requestData) => {   
     setRequestPool(prevState => ({
@@ -339,7 +331,8 @@ function App() {
         </nav>
         <div className='main_wrap'>
           <header>
-            <h1>fm-трансмиттер</h1>
+            <h1>{sectionData.info ? sectionData.info.info_general.serial_number :
+                                    '...'}</h1>
             {/* <span className="log_button"></span> */}
             <CalibLogButton 
               updateHandler = {handlePoolUpdate}/>

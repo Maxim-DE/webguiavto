@@ -19,9 +19,6 @@ function StatusSection(props) {
   const handleClick = block_data => {
     block_data.name = props.section_name;
     props.updateHandler(block_data);
-    // setSectionState({
-    //   isLoading: true
-    // })
   }
 
 
@@ -31,9 +28,7 @@ function StatusSection(props) {
     }
 
     let status_timer = setInterval(() => {
-      // console.dir(graph_blocks_map);
       props.updateHandler(request_obj)
-
     }, 1000)
 
   }, [])
@@ -44,13 +39,13 @@ function StatusSection(props) {
       className='section'>
       <div className="section_header">
         <h2>СТАТУС: 
-          {/* {
-            !!(props.status_data.device_status) 
-              ? ' ВКЛ.'
-              : ' ВЫКЛ.'
-          } */}
+          {props.status_data && !!(props.status_data.device_status) 
+            ? ' ВКЛ.'
+            : ' ВЫКЛ.'
+          }
         </h2>
-        <span>
+        <span
+          style={{textAlign: "right"}}>
           {props.status_data && props.status_data.time}
         </span>
       </div>
@@ -59,7 +54,7 @@ function StatusSection(props) {
           settings_type="graphs"
           updateHandler={handleUpdate}
           data={props.graph_data}/>
-        {/* <div className='status_settings_wrap'>
+        <div className='status_settings_wrap'>
           <Status_logs settings_type="logs" header="журнал" />
           <Settings_block
             header='настройки'
@@ -68,7 +63,7 @@ function StatusSection(props) {
             settings_type='status_settings'
             clickHandler={handleClick}
             data={props.settings_data ? props.settings_data : ''}/>
-        </div> */}
+        </div>
       </div>
     </section>
   )

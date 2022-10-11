@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { ReactComponent as Graph_digital } from '../../imgs/digital_exiter.svg'
+import graph from '../../imgs/digital_exiter.svg'
 import './index.css'
 
 
@@ -27,6 +28,10 @@ function Status_graphs(props) {
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
       let graph_block_data = graph_data[key]
+
+      if (graph_block === null) {
+        continue;
+      }
 
       for (const item in graph_block_data) {
         
@@ -76,23 +81,11 @@ function Status_graphs(props) {
           new_value = graph_block_data[item]
         }
 
-        // if (item == "input_pwr" ||
-        //     item == "output_pwr") {
-        //   new_value = new_value + " Вт"
-        // }
-
         console.log(graph_block_value_span);
 
         graph_block_value_span.innerHTML = new_value
       }
     }
-
-
-    // let amplifier_amperage_value = graph_svg.querySelector('#amplifier_amperage1_value')
-    // console.dir(graph_ref.current);
-    // console.log(amplifier_amperage_value);
-    // amplifier_amperage_value.children[0].innerHTML = '9999';
-    
   }, [props.data])
 
   return (

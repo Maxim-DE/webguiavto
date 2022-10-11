@@ -1,18 +1,25 @@
 .status_settings_wrap {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  --columns: 1;
+
+  grid-template-columns: repeat(var(--columns), 1fr);
   margin-top: 35px;
   gap: 35px;
 }
 
-.status_settings {
-  max-width: 473px;
-  width: 31.7%;
-  min-width: 356px;
-}
+@media (min-width: 1162px) {
+  .status_settings_wrap {
+    --columns: 3;
 
-.logs {
-  flex-grow: 1;
-  min-width: 356px;
-  max-width: 981px;
+    grid-template-areas: 
+      'logs logs settings';
+  }
+  
+  .status_settings {
+    grid-area: settings;
+  }
+  
+  .logs {
+    grid-area: logs;
+  }
 }

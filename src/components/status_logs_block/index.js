@@ -17,7 +17,9 @@ function Status_logs({settings_type, className = "", ...rest}) {
     <div
       className={`settings_block ${settings_type ? settings_type : ""}`}>
       <div className="settings_container">
-        <h3>{rest.header}</h3>
+        <div className="settings_block_header">
+          <h3>{rest.header}</h3>
+        </div>
         <div className="logs_header">
           <span className="header_num">№</span>
           <span className="header_message">сообщение</span>
