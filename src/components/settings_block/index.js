@@ -164,6 +164,17 @@ function Settings_block({ settings_type, className = "", ...rest }) {
     let data_string = '';
     
     for (const key in block_data) {
+      if (block_data[key].length === 0) {
+        data_string += `${key}$NULL;`
+
+        setBlockData(prevState => ({
+          ...prevState,
+          [key]: ''
+        }));
+
+        continue
+      }
+
       data_string += `${key}$${block_data[key]};`
     }
     
