@@ -64,6 +64,7 @@ function CurrentCalibSettings(props) {
     if (/all/gi.test(name)) {
       request_obj = {
         address: 'calib_current_zeros.cgi',
+        data: `Ix$${value}`
       }
     } else {
       request_obj = {
@@ -148,7 +149,7 @@ function CurrentCalibSettings(props) {
           </label>
           <FormInput
             id={`I2_zeros_calib_input`}
-            name={`I2_zero_calib`}
+            name={`I2_zeros_calib`}
             label='Калибровка нуля'
             clickHandler={handleClick_calib_zeros}
             type="button" />
