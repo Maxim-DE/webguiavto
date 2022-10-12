@@ -37,12 +37,13 @@ function WattageAdditionalCalibSettings(props) {
 
   const handleClick_save = (event) => {
     const target = event.target,
-      name = target.name.replace('_calib', ''),
-      value = wattageAdditionalCalibState[name]
+          name = target.name.replace('_calib', ''),
+          value = wattageAdditionalCalibState[name],
+          multipier = props.calib_data ? props.calib_data[name][1] : 10
 
     const request_obj = {
       address: 'calib_input_power.cgi',
-      data: `${name}$${value * 10}`,
+      data: `${name}$${value * multipier}`,
       update_data: wattageAdditionalCalibState,
     }
 

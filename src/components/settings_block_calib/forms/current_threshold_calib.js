@@ -60,12 +60,16 @@ function CurrentThresholdCalibSettings(props) {
   }
 
   const handleClick_save = (event) => {
-    const target = event.target,
-          id = `${target.name}_input`,
-          name = `${target.name}`,
-          state_value = thresholdCalibState[id]
+    const target = event.target
+    const id = `${target.name}_input`
+    const name = `${target.name}`
+    const calib_data_name = name.replace('_threshold', '')
+    const state_value = thresholdCalibState[id]
+    const multipier_low = props.calib_data ? props.calib_data[calib_data_name].low[1] : 10
+    const multipier_high = props.calib_data ? props.calib_data[calib_data_name].high[1] : 10
 
-    const value = `${name}_low$${state_value[0]*10};${name}_high$${state_value[1]*10};`
+
+    const value = `${name}_low$${state_value[0] * multipier_low};${name}_high$${state_value[1] * multipier_high};`
     
     const request_obj = {
       address: 'calib_current_threshold.cgi',

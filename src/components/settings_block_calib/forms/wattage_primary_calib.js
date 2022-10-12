@@ -42,11 +42,12 @@ function PowerCalibSettings(props) {
   const handleClick_save = (event) => {
     const target = event.target,
           name = target.name.replace('_calib', ''),
-          value = powerCalibState[name]
+          value = powerCalibState[name],
+          multipier = props.calib_data ? props.calib_data[name][1] : 10
 
     const request_obj = {
       address: 'calib_power.cgi',
-      data: `${name}$${value * 10}`
+      data: `${name}$${value * multipier}`
     }
 
     props.clickHandler(request_obj);
