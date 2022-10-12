@@ -25,10 +25,10 @@ function delete_raw_files() {
 }
 
 function delete_http() {
-  return src(['build/static/js/*.js'])
+  return src(['src/App.js'])
   .pipe(replace('192.168.1.114', ''))
   .pipe(replace('http://', ''))
-  .pipe(dest('build/static/js/'))
+  .pipe(dest('src/'))
 }
 
 function add_gz_to_filename() {
@@ -61,4 +61,4 @@ exports.delete_raw_files = delete_raw_files;
 exports.delete_http = delete_http;
 exports.add_gz_to_filename = add_gz_to_filename;
 
-exports.full_gzip_build = series(delete_http, build_gzip, delete_raw_files, add_gz_to_filename)
+exports.full_gzip_build = series(build_gzip, delete_raw_files, add_gz_to_filename)

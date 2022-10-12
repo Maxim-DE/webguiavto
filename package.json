@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run build:react && npm run build:archive",
+    "build": "npx gulp delete_http && npm run build:react && npm run build:archive",
     "build:react": "react-scripts build && npx gulp full_gzip_build",
     "build:archive": "mkdir build_arch || find build -type f | cpio -o > build_arch.cpio && mv build_arch.cpio build_arch",
     "test": "react-scripts test",
