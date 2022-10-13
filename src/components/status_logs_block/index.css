@@ -45,9 +45,14 @@
   justify-content: space-between;
   align-items: center;
 
-  border-top: 1px #DFDFDF solid;
+  /* border-top: 1px #DFDFDF solid; */
   border-radius: 12px;
+}
 
+.log_divider {
+  width: 100%;
+  height: 1px;
+  background-color: #DFDFDF;
 }
 
 .log_item > span {
@@ -57,4 +62,40 @@
   line-height: 18px;
 
   color: #202020;
+}
+
+.additional {
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: normal;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.log_refresh {
+  margin-top: 15px;
+  float: right;
+}
+
+.full_log_modal {
+  width: 715px;
+  max-height: 850px;
+}
+
+.full_log_modal .log_list {
+  max-height: 671px;
+  overflow: hidden scroll;
+}
+
+.log_critical {
+  background-color: #F9C2BE;
+}
+
+.log_user {
+  background-color: #ABE188;
+}
+
+.log_hibernation {
+  background-color: #81d6e3;
 }

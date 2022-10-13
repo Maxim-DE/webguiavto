@@ -19,7 +19,7 @@ function ModalCalib(props) {
       className='darkBG'
       onClick={handleClose} />
     <div className='centered'>
-      <div className='modal'>
+      <div className={`modal ${props.class}`}>
         <div className="modal_header">
           <h3>{props.header}</h3>
         </div>

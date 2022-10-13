@@ -55,7 +55,12 @@ function StatusSection(props) {
           updateHandler={handleUpdate}
           data={props.graph_data}/>
         <div className='status_settings_wrap'>
-          <Status_logs settings_type="logs" header="журнал" />
+          <Status_logs 
+            settings_type="logs" 
+            header="журнал" 
+            data={props.logs_data}
+            full_data={props.full_logs_data}
+            updateHandler={handleUpdate}/>
           <Settings_block
             header='настройки'
             items={props.settings_map}

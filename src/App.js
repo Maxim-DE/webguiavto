@@ -166,6 +166,7 @@ function App() {
     status_info: null,
     status_graph: null,
     status_logs: null,
+    status_full_logs: null,
     status_settings: null,
     calib_adc: null,
     calib_available: 0
@@ -198,6 +199,14 @@ function App() {
       for (const key in output_data) {
         status_state_copy[key] = output_data[key];
       }
+      setStatusData(status_state_copy)
+
+    } else if (output_name === 'GetLogErrorFull') {
+      let status_state_copy = statusData;
+      for (const key in output_data) {
+        status_state_copy[key] = output_data[key];
+      }
+
       setStatusData(status_state_copy)
 
     } else if (output_name === 'calibration') {
@@ -248,7 +257,8 @@ function App() {
             .then(
               (result) => {
                 console.log('harosh');
-                if (Object.keys(result).length == 1) {
+                if (Object.keys(result).length == 1 &&
+                    Object.hasOwn(result, 'STATUS')) {
 
                   return
                     
@@ -272,7 +282,7 @@ function App() {
                 console.log('sasi zhopu sukka');
                 console.dir(error);
 
-                handlePoolUpdate(request);
+                // handlePoolUpdate(request);
               })
 
           }, 150 * k);
@@ -316,7 +326,7 @@ function App() {
       <div className="App">
         <nav>
           <div className="nav_header">
-            <a href="http://okbalfa.ru/">
+            <a href="okbalfa.ru/">
             <img src={logo} className="app_logo" />
           </a>
           </div>
@@ -345,6 +355,7 @@ function App() {
               status_data={statusData.status_info}
               graph_data={statusData.status_graph}
               logs_data={statusData.status_logs}
+              full_logs_data={statusData.status_full_logs}
               settings_data={statusData.status_settings}
               settings_map={status_settings_item} />
               {
