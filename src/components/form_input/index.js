@@ -240,7 +240,7 @@ function FormInput(props) {
       <input
         id={props.id}
         name={props.name}
-        className='button_input'
+        className={`button_input ${props.class}`}
         type="button"
         value={props.label}
         style={props.style}

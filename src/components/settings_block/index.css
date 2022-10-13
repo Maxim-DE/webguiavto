@@ -26,11 +26,26 @@
 }
 
 .save_form_button {
+  cursor: pointer;
   background: #E0E7EB;
 }
 
 .reset_form_button {
+  cursor: pointer;
   background: #DBDBDB;
+}
+
+.animate_button {
+
+  transition: background-color 0.6s, transform 0.3s;
+}
+
+.animate_button:hover {
+    background: #cdd9df;
+}
+
+.animate_button:active {
+  transform: scale(94%);
 }
 
 .settings_block_header > button > svg {

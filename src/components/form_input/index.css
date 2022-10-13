@@ -104,9 +104,13 @@ input[type='checkbox'].switch:checked:before {
 }
 
 /* BUTTON & SELECT STYLES */
-input[type='button'], 
+
+.button_input, 
 select {
-  max-width: 150px;
+  /* max-width: 150px; */
+  font-family: inherit;
+  font-size: inherit;
+
   height: 24px;
 
   padding: 1px 7px;
@@ -125,10 +129,28 @@ select {
   cursor: pointer;
 }
 
+.button_input {
+  transition: background-color 0.6s, transform 0.3s;
+}
+
+.button_input:hover {
+  background: #cdd9df;
+}
+
+.button_input:active {
+  /* transform: translateY(1px); */
+  transform: scale(99%);
+}
+
 /* TEXT STYLES */
 input[type="text"] {
   max-width: 150px;
   height: 24px;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
 
   padding: 1px 7px;
 
@@ -156,7 +178,7 @@ input[type="text"] {
 
 
 input[type="text"].text_range {
-  max-width: 35px;
+  max-width: 48px;
   margin-left: 10px;
 }
 
@@ -255,7 +277,7 @@ select::-ms-expand {
 
 .slider_container>span {
   margin: 0 10px;
-  font-weight: 300;
+  /* font-weight: 300; */
 }
 
 .slider {

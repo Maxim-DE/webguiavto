@@ -206,7 +206,7 @@ function Settings_block({ settings_type, className = "", ...rest }) {
         <div className="settings_block_header">
           <h3>{rest.header}</h3>
           <button 
-            className='save_form_button'
+            className='save_form_button animate_button'
             // style={{
             //   display: isChanged.changed ? 'block' : 'none',
             //   opacity: isChanged.changed ? '1' : '0'
