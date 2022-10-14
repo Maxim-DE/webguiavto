@@ -1,46 +1,94 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import './index.css'
 import FormInput from '../form_input';
 
-const settings_items = [
-  {id: 'device_supply', name: "Питание передатчика", type: "switch"},
-  {id: 'rds_mode', name: "Включить RDS", type: "switch"},
-  {id: 'freq_control', name: "Изменение цастоты, МГц", type: "text"},
-  {id: 'output_control', name: "Изменение мощности, Вт", type: "text_with_buttons"},
-]
+import Settings_block_calib from '../settings_block_calib';
 
-function Status_settings({settings_type, className = "", ...rest}) {
+function Status_settings(props) {
+  const [statusSettingsState, setStatusSettingsState] = React.useState({
+    supply_on_setting: false,
+    power_setting: ''
+  })
+
+  React.useEffect(() => {
+    if (props.settings_data != undefined &&
+        Object.keys(props.settings_data).length != 0) {
+      let calib_state_copy = {}
+
+      for (const key in props.calib_data) {
+        calib_state_copy[key] = props.settings_data[key]
+      }
+
+      setStatusSettingsState(calib_state_copy)
+
+    }
+  }, [props.settings_data])
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    setStatusSettingsState(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+
+    const request_obj = {
+      address: 'transmitter.cgi',
+      data: `${name}$${value}`
+    }
+
+    props.updateHandler(request_obj)
+  }
+
   return (
-    <div
-      className={`settings_block ${settings_type ? settings_type : ""}`}>
-      <div className="settings_block_header">
-        <h3>{rest.header}</h3>
-      </div>
-      <div className="settings_container">
-        <ul className="settings_list">
-          {settings_items.map(item => (
-            <li
-              key={item.id}
-              id={item.id}
-              className="settings_item">
-              <label
-                htmlFor={`${item.id}_input`}
-                className="settings_itemLabel">
-                {item.name}
-              </label>
-              <FormInput
-                id={`${item.id}_input`}
-                name={item.id}
-                type={item.type}
-                // changeHandler={updateBlock}
-                input_value={17}/>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <Settings_block_calib header={`настройки`}
+      settings_type={`status_calib`}
+      section_name={props.section_name}>
+      <li
+        key='supply_on_setting'
+        id='supply_on_setting'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`supply_on_setting_input`}
+            className="settings_itemLabel">
+            Выкл./вкл. питание устройства
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`supply_on_setting_input`}
+            name={`supply_on_setting`}
+            changeHandler={handleChange}
+            input_value={statusSettingsState.supply_on_setting}
+            type="switch" />
+        </div>
+      </li>
+      <li
+        key='power_setting'
+        id='power_setting'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`power_setting_input`}
+            className="settings_itemLabel">
+            Изменение мощности
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`power_setting_input`}
+            name={`power_setting`}
+            changeHandler={handleChange}
+            input_value={statusSettingsState.power_setting}
+            statusHandler={setStatusSettingsState}
+            type="text_buttons" />
+        </div>
+      </li>
+    </Settings_block_calib>
   )
 }
 

@@ -6,8 +6,6 @@ import Settings_block from '../settings_block';
 import Status_logs from "../status_logs_block"
 import Status_graphs from "../graph_blocks"
 
-import * as windows1251 from 'windows-1251';
-
 import './index.css'
 
 function StatusSection(props) {
@@ -61,13 +59,9 @@ function StatusSection(props) {
             data={props.logs_data}
             full_data={props.full_logs_data}
             updateHandler={handleUpdate}/>
-          <Settings_block
-            header='настройки'
-            items={props.settings_map}
-            additional_items={props.settings_map.additional_items ? props.settings_map.additional_items : ''}
-            settings_type='status_settings'
-            clickHandler={handleClick}
-            data={props.settings_data ? props.settings_data : ''}/>
+          <Status_settings
+            updateHandler={handleUpdate} 
+          />
         </div>
       </div>
     </section>

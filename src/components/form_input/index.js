@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 
 import './index.css'
 
+
+import { MdOutlineExposurePlus2 } from 'react-icons/md'
+import { TbPlus } from 'react-icons/tb'
+import { TbMinus } from 'react-icons/tb'
+
 import h_and_min_input from '../custom_inputs/silence_det_border_time'
 import silence_det_channel_modes_input from '../custom_inputs/silence_det_channel_modes'
 
@@ -12,6 +17,33 @@ function FormInput(props) {
 
   const changeHandler = (event) => {
     props.changeHandler(event)
+  }
+
+  const plusMinusHandler = (event, control_input_name) => {
+    event.preventDefault()
+
+    const target = event.currentTarget,
+          name = target.name
+          
+    let target_data = name.split('_'),
+        action = target_data[0],
+        action_value = parseInt(target_data[2])
+    
+    console.log(target_data);
+
+    let output_value = props.input_value != undefined ? props.input_value : 0
+
+    if (/minus/g.test(action)) {
+      output_value = output_value - action_value
+    } else if (/plus/g.test(action)) {
+      output_value = output_value + action_value
+    }
+
+    props.statusHandler(prevState => ({
+      ...prevState,
+      [props.name]: output_value
+    }))
+    
   }
 
 
@@ -87,25 +119,55 @@ function FormInput(props) {
       // </div>
   //   )
   // } 
-  // else if (props.type == "text_buttons") {
-  //   return (
-  //     <div className="text_buttons_container">
-  //       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-  //         <path d="M15.6667 10.6667H4V9H15.6667V10.6667Z" fill="black"/>
-  //       </svg>
-  //       <input
-  //         id={props.id}
-  //         name={props.name}
-  //         type="text"
-  //         onChange={changeHandler}
-  //         value={inputValue}
-  //       />
-  //       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-  //         <path d="M15.8333 10.8333H10.8333V15.8333H9.16667V10.8333H4.16667V9.16666H9.16667V4.16666H10.8333V9.16666H15.8333V10.8333Z" fill="#3C3C3C"/>
-  //       </svg>
-  //     </div>
-  //   )
-  // } 
+
+  else if (props.type == "text_buttons") {
+    return (
+      <div className="text_buttons_container">
+        <button 
+          className='button_input plus_minus'
+          name='minus_value_3'
+          onClick={(e) => {
+            plusMinusHandler(e, props.name)
+          }}>
+          <TbMinus />
+          3
+        </button>
+        <button 
+          className='button_input plus_minus'
+          name='minus_value_1'
+          onClick={(e) => {
+            plusMinusHandler(e, props.name)
+          }}>
+          <TbMinus />
+        </button>
+        <input
+          id={props.id}
+          name={props.name}
+          type="text"
+          onChange={changeHandler}
+          value={props.input_value}
+        />
+        <button 
+          className='button_input plus_minus'
+          name='plus_value_1'
+          onClick={(e) => {
+            plusMinusHandler(e, props.name)
+          }}>
+          <TbPlus />
+        </button>
+        <button 
+          className='button_input plus_minus'
+          name='plus_value_3'
+          onClick={(e) => {
+            plusMinusHandler(e, props.name)
+          }}>
+          <TbPlus />
+          3
+        </button>
+      </div>
+    )
+  } 
+
   else if (props.type == "text_large") {
 
     return (
