@@ -44,7 +44,21 @@ function Status_graphs(props) {
         }
         
         let graph_block_value_span_id = `#${key}_${item}_value`
-        let graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
+        let graph_block_value_span = null
+
+        if (graph_block_value_span_id == undefined) {
+          continue
+        }
+
+        try {
+          graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
+          console.log(graph_block_value_span);
+        } catch (error) {
+          console.log(error);
+          continue
+        }
+
+        
         
         let new_value
 
