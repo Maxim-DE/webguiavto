@@ -52,15 +52,15 @@ const settings_map = [
       //   //   {id: 'react_time_off', name: 'Время реакции', type: 'text_range'}
       //   // ],
       // },
-      {
-        settings_type: 'misc_settings',
-        settings_header: 'прочие настройки',
-        settings_items: [
-          {id: 'request_period', name: "Период запросов, мс", type: "text"},
-          {id: 'bootloader_enabled_switch', name: "Включить Bootloader", type: "switch"},
-          {id: 'conf_file_upload', name: "Внеш. файл настроек", type: "custom_group"},
-        ],
-      },
+      // {
+      //   settings_type: 'misc_settings',
+      //   settings_header: 'прочие настройки',
+      //   settings_items: [
+      //     {id: 'request_period', name: "Период запросов, мс", type: "text"},
+      //     {id: 'bootloader_enabled_switch', name: "Включить Bootloader", type: "switch"},
+      //     {id: 'conf_file_upload', name: "Внеш. файл настроек", type: "custom_group"},
+      //   ],
+      // },
     ],
   },
   {
@@ -128,12 +128,12 @@ const settings_map = [
         settings_type: 'info_general',
         settings_header: 'общее',
         settings_items: [
-          {id: 'serlial_number', name: "Серийный номер", type: "text_sample"},
+          {id: 'serial_number', name: "Серийный номер", type: "text_sample"},
           {id: 'plate_number', name: "Номер платы", type: "text_sample"},
-          {id: 'plate_version', name: "Версия платы", type: "text_sample"},
-          {id: 'time_from_on', name: "Время с моента включения", type: "text_sample"},
-          {id: 'time_failure_on', name: "Наработка наотказ с вкл. усил., ч", type: "text_sample"},
-          {id: 'time_failure_off', name: "Наработка наотказ с выкл. усил., ч", type: "text_sample"},
+          {id: 'plate_version', name: "Ревизия платы", type: "text_sample"},
+          // {id: 'time_from_on', name: "Время с моента включения", type: "text_sample"},
+          // {id: 'time_failure_on', name: "Наработка наотказ с вкл. усил., ч", type: "text_sample"},
+          // {id: 'time_failure_off', name: "Наработка наотказ с выкл. усил., ч", type: "text_sample"},
           {id: 'memory_type', name: "Тип памяти", type: "text_sample"},
         ],
       },
@@ -142,8 +142,8 @@ const settings_map = [
         settings_header: 'версия по',
         settings_items: [
           {id: 'os_version', name: "Версия прошивки", type: "text_sample"},
-          {id: 'bootloader_version', name: "Версия загрузчика", type: "text_sample"},
-          {id: 'audio_version', name: "Версия Audio", type: "text_sample"},
+          // {id: 'bootloader_version', name: "Версия загрузчика", type: "text_sample"},
+          // {id: 'audio_version', name: "Версия Audio", type: "text_sample"},
         ],
       },
     ],
@@ -268,6 +268,7 @@ function App() {
                   request_name = request_name.replace('set_', '')
                   outputData_assignment(request_name, result);
                 }
+
                 console.dir(result);
                 // sectionData_format(state_copy, item.name, result);
                 // if (i == requestPool.pool.length) {
@@ -327,8 +328,9 @@ function App() {
         <nav>
           <div className="nav_header">
             <a href="okbalfa.ru/">
-            <img src={logo} className="app_logo" />
-          </a>
+            {/* <img src={logo} className="app_logo" /> */}
+            ОКБ АЛЬФА
+            </a>
           </div>
           <Links_list 
             updateHandler={navRefUpdate}
@@ -341,7 +343,7 @@ function App() {
         </nav>
         <div className='main_wrap'>
           <header>
-            <h1>{sectionData.info ? sectionData.info.info_general.serial_number :
+            <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} ${sectionData.info.info_general.serial_number}` :
                                     '...'}</h1>
             {/* <span className="log_button"></span> */}
             <CalibLogButton 
