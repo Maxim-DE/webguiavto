@@ -31,7 +31,7 @@ function FormInput(props) {
     
     console.log(target_data);
 
-    let output_value = props.input_value != undefined ? props.input_value : 0
+    let output_value = props.input_value != undefined ? parseInt(props.input_value) : 0
 
     if (/minus/g.test(action)) {
       output_value = output_value - action_value
