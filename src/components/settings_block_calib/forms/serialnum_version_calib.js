@@ -140,7 +140,7 @@ function SerialNumVersionCalibSettings(props) {
             name={`device_serial_num_calib`}
             changeHandler={handleChange}
             input_value={serialNumVersionCalibState.device_serial_num}
-            style={{ margin: '0', maxWidth: '66px' }}
+            style={{ margin: '0', maxWidth: '76px' }}
             type="text" />
           <FormInput
             id={`device_serial_num_calib_save`}
