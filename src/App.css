@@ -86,3 +86,19 @@ nav {
   align-items: center;
   justify-content: center;
 }
+
+.nav_header a {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+
+  font-family: 'URW Bookman';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 37px;
+  color: #FFFFFF;
+
+  text-align: center;
+  letter-spacing: 0.02em;
+}
