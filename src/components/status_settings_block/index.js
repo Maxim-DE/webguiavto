@@ -11,7 +11,7 @@ import Settings_block_calib from '../settings_block_calib';
 function Status_settings(props) {
 
   const [statusSettingsState, setStatusSettingsState] = React.useState({
-    supply_on_setting: false,
+    supply_on_setting: 0,
   })
 
   React.useEffect(() => {
@@ -30,7 +30,7 @@ function Status_settings(props) {
 
   const handleChange = (event) => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? (+ target.checked) : target.value;
     const name = target.name;
 
     setStatusSettingsState(prevState => ({
@@ -47,6 +47,7 @@ function Status_settings(props) {
   }
 
   const plusMinusHandler = (event) => {
+
     event.preventDefault()
 
     const target = event.currentTarget,
