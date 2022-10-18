@@ -23,11 +23,15 @@ function StatusSection(props) {
   React.useEffect(() => {
     let request_obj = {
       address: 'status.cgi',
+      notifications: {
+        good: 'none',
+        bad: 'default'
+      }
     }
 
-    let status_timer = setInterval(() => {
-      props.updateHandler(request_obj)
-    }, 1000)
+    // let status_timer = setInterval(() => {
+    //   props.updateHandler(request_obj)
+    // }, 1000)
 
   }, [])
 
@@ -60,7 +64,8 @@ function StatusSection(props) {
             full_data={props.full_logs_data}
             updateHandler={handleUpdate}/>
           <Status_settings
-            updateHandler={handleUpdate} 
+            updateHandler={handleUpdate}
+            settings_data={props.status_data && props.settings_data} 
           />
         </div>
       </div>

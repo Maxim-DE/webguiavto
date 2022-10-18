@@ -123,7 +123,7 @@ function FormInput(props) {
   else if (props.type == "text_buttons") {
     return (
       <div className="text_buttons_container">
-        <button 
+        {/* <button 
           className='button_input plus_minus'
           name='minus_value_3'
           onClick={(e) => {
@@ -131,7 +131,7 @@ function FormInput(props) {
           }}>
           <TbMinus />
           3
-        </button>
+        </button> */}
         <button 
           className='button_input plus_minus'
           name='minus_value_1'
@@ -155,7 +155,7 @@ function FormInput(props) {
           }}>
           <TbPlus />
         </button>
-        <button 
+        {/* <button 
           className='button_input plus_minus'
           name='plus_value_3'
           onClick={(e) => {
@@ -163,7 +163,7 @@ function FormInput(props) {
           }}>
           <TbPlus />
           3
-        </button>
+        </button> */}
       </div>
     )
   } 

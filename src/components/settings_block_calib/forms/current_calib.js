@@ -48,6 +48,10 @@ function CurrentCalibSettings(props) {
       address: 'calib_current.cgi',
       data: `${name}$${value*10}`,
       update_data: amperageCalibState,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

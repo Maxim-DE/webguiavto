@@ -52,9 +52,7 @@ function Status_graphs(props) {
 
         try {
           graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
-          console.log(graph_block_value_span);
         } catch (error) {
-          console.log(error);
           continue
         }
 
@@ -94,8 +92,6 @@ function Status_graphs(props) {
         } else {
           new_value = graph_block_data[item]
         }
-
-        console.log(graph_block_value_span);
 
         graph_block_value_span.innerHTML = new_value
       }

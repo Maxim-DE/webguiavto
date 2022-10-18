@@ -40,7 +40,11 @@ function Status_settings(props) {
 
     const request_obj = {
       address: 'transmitter.cgi',
-      data: `${name}$${value}`
+      data: `${name}$${value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.updateHandler(request_obj)

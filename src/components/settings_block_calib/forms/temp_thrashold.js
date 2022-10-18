@@ -59,7 +59,11 @@ function TempThresholdCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_temp_threshold.cgi',
-      data: `${name}$${value * multiplier}`
+      data: `${name}$${value * multiplier}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

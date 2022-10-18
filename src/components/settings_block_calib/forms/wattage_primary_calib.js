@@ -47,7 +47,11 @@ function PowerCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_power.cgi',
-      data: `${name}$${value * multipier}`
+      data: `${name}$${value * multipier}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

@@ -181,6 +181,10 @@ function Settings_block({ settings_type, className = "", ...rest }) {
     let request_obj = {
       address: null,
       data: data_string,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     };
 
     rest.clickHandler(request_obj);

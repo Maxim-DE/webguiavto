@@ -36,7 +36,11 @@ const CalibLogButton = (props) => {
 	const saveHandler = () => {
 		const request_obj = {
       address: 'calib_passw.cgi',
-      data: `login$${calibPassw.login};password$${calibPassw.password}`
+      data: `login$${calibPassw.login};password$${calibPassw.password}`,
+			notifications: {
+				good: 'default',
+				bad: 'default'
+			}
     }
 
 		props.updateHandler(request_obj)

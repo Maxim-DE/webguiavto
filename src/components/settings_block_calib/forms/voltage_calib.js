@@ -42,7 +42,11 @@ function VoltageCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_voltage.cgi',
-      data: `${name}$${value * 10}`
+      data: `${name}$${value * 10}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

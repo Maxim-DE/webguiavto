@@ -45,6 +45,10 @@ function WattageAdditionalCalibSettings(props) {
       address: 'calib_input_power.cgi',
       data: `${name}$${value * multipier}`,
       update_data: wattageAdditionalCalibState,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

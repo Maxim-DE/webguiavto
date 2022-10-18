@@ -72,7 +72,11 @@ function FanCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_fan.cgi',
-      data: data_string
+      data: data_string,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

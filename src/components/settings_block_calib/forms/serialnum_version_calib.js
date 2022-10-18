@@ -93,7 +93,11 @@ function SerialNumVersionCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_serialNum_vesrion.cgi',
-      data: `${name}$${value}`
+      data: `${name}$${value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);

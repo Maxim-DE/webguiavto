@@ -257,6 +257,11 @@ function App() {
             .then(
               (result) => {
                 console.log('harosh');
+                if (request.notifications) {
+                  if (request.notifications.good == 'default') {
+                    showSuccessMessage("", 'Успешно');
+                  } 
+                }
                 if (Object.keys(result).length == 1 &&
                     Object.hasOwn(result, 'STATUS')) {
 
@@ -270,20 +275,17 @@ function App() {
                 }
 
                 console.dir(result);
-                // sectionData_format(state_copy, item.name, result);
-                // if (i == requestPool.pool.length) {
-                //   setSectionData(state_copy);
-                // }
-                // showSuccessMessage("", 'Сохранено');
                 
               },
 
               (error) => {
-                // showErrorMessage("", error.message);
-                console.log('sasi zhopu sukka');
-                console.dir(error);
+                console.log(error.message);
+                if (request.notifications) {
+                  if (request.notifications.bad == 'default') {
+                    showErrorMessage("", 'Ошибка');
+                  }
+                }
 
-                // handlePoolUpdate(request);
               })
 
           }, 150 * k);

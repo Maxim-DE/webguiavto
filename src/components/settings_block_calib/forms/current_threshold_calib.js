@@ -73,7 +73,11 @@ function CurrentThresholdCalibSettings(props) {
     
     const request_obj = {
       address: 'calib_current_threshold.cgi',
-      data: value
+      data: value,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);
