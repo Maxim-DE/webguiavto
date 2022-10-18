@@ -17,13 +17,13 @@ function Status_settings(props) {
   React.useEffect(() => {
     if (props.settings_data != undefined &&
         Object.keys(props.settings_data).length != 0) {
-      let calib_state_copy = {}
+      let state_copy = {}
 
-      for (const key in props.calib_data) {
-        calib_state_copy[key] = props.settings_data[key]
+      for (const key in props.settings_data) {
+        state_copy[key] = props.settings_data[key]
       }
 
-      setStatusSettingsState(calib_state_copy)
+      setStatusSettingsState(state_copy)
 
     }
   }, [props.settings_data])
