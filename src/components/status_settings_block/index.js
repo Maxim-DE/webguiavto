@@ -3,12 +3,15 @@ import React from 'react';
 import './index.css'
 import FormInput from '../form_input';
 
+import { TbPlus } from 'react-icons/tb'
+import { TbMinus } from 'react-icons/tb'
+
 import Settings_block_calib from '../settings_block_calib';
 
 function Status_settings(props) {
+
   const [statusSettingsState, setStatusSettingsState] = React.useState({
     supply_on_setting: false,
-    power_setting: ''
   })
 
   React.useEffect(() => {
@@ -41,6 +44,29 @@ function Status_settings(props) {
     }
 
     props.updateHandler(request_obj)
+  }
+
+  const plusMinusHandler = (event) => {
+    event.preventDefault()
+
+    const target = event.currentTarget,
+      name = target.name
+
+    let target_data = name.split('_'),
+      action = target_data[0],
+      action_value = parseInt(target_data[2])
+
+    console.log(target_data);
+
+    let output_string = `power_${action}$${action_value}`
+
+    const request_obj = {
+      address: 'transmitter.cgi',
+      data: output_string
+    }
+
+    props.updateHandler(request_obj)
+
   }
 
   return (
@@ -79,13 +105,55 @@ function Status_settings(props) {
           </label>
         </div>
         <div className='item_input'>
-          <FormInput
+
+          {/* <FormInput
             id={`power_setting_input`}
             name={`power_setting`}
             changeHandler={handleChange}
             input_value={statusSettingsState.power_setting}
             statusHandler={setStatusSettingsState}
-            type="text_buttons" />
+            type="text_buttons" /> */}
+          
+          <button
+            className='button_input plus_minus'
+            name='minus_value_3'
+            onClick={(e) => {
+              plusMinusHandler(e)
+            }}
+            >
+            <TbMinus />
+            3
+          </button>
+          <button
+            className='button_input plus_minus'
+            name='minus_value_1'
+            onClick={(e) => {
+              plusMinusHandler(e)
+            }}
+            >
+            <TbMinus />
+            1
+          </button>
+          <button
+            className='button_input plus_minus'
+            name='plus_value_1'
+            onClick={(e) => {
+              plusMinusHandler(e)
+            }}
+            >
+            <TbPlus />
+            1
+          </button>
+          <button
+            className='button_input plus_minus'
+            name='plus_value_3'
+            onClick={(e) => {
+              plusMinusHandler(e)
+            }}
+            >
+            <TbPlus />
+            3
+          </button>
         </div>
       </li>
     </Settings_block_calib>
