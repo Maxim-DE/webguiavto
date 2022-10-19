@@ -26,12 +26,13 @@ function StatusSection(props) {
       notifications: {
         good: 'none',
         bad: 'default'
-      }
+      },
+      
     }
 
-    // let status_timer = setInterval(() => {
-    //   props.updateHandler(request_obj)
-    // }, 1000)
+    let status_timer = setInterval(() => {
+      props.updateHandler(request_obj)
+    }, 1000)
 
   }, [])
 

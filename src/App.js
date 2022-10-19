@@ -1,8 +1,13 @@
 import React from 'react';
 import logo from './logo.png';
+
 import './App.css';
 
+import 'react-toastify/dist/ReactToastify.css';
+import './components/notifications/index.css'
+
 import { showErrorMessage, showSuccessMessage } from './components/notifications/notifications_utilites';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
@@ -259,7 +264,26 @@ function App() {
                 console.log('harosh');
                 if (request.notifications) {
                   if (request.notifications.good == 'default') {
-                    showSuccessMessage("", 'Успешно', 1500);
+                    // showSuccessMessage("", 'Успешно', 1500);
+                    if (Object.hasOwn(result, 'Notific')) {
+                      const message = result.Notific.text,
+                            status = result.Notific.status
+
+                      switch (status) {
+                        case 'ok':
+                          toast.success(message, {autoClose: 1500})
+                          break;
+
+                        case 'error':
+                          toast.error(message, { autoClose: 1500 })
+                          break;
+                      
+                        default:
+                          break;
+                      }
+                    } else {
+                      toast.success('Соханено', { autoClose: 1500 })
+                    }
                   } 
                 }
                 if (Object.keys(result).length == 1 &&
@@ -282,7 +306,8 @@ function App() {
                 console.log(error.message);
                 if (request.notifications) {
                   if (request.notifications.bad == 'default') {
-                    showErrorMessage("", 'Ошибка', 1500);
+                    toast.error('Не удалось выполнить действие', { autoClose: 1500 })
+                    // showErrorMessage("", 'Ошибка', 1500);
                   }
                 }
 
@@ -326,6 +351,9 @@ function App() {
   return (
     <>
       {/* <div>gfsj</div> */}
+      <ToastContainer
+        transition={Zoom}
+      />
       <div className="App">
         <nav>
           <div className="nav_header">

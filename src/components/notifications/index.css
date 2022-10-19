@@ -61,7 +61,30 @@
 }
 
 #snackbar-fixed-container {
-    position: fixed;
-    top: 118px;
-    right: 25px;
+	position: fixed;
+	top: 118px;
+	right: 25px;
+}
+
+.Toastify__toast-container {
+	width: auto;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 29px;
+}
+
+.Toastify__toast-container--top-right {
+	top: 118px;
+  right: 30px;
+}
+
+.Toastify__toast {
+	border-radius: 12px;
+}
+.Toastify__toast-icon {
+	--toastify-color-success: #7ADC47;
+}
+
+.Toastify__progress-bar {
+	visibility: hidden;
 }

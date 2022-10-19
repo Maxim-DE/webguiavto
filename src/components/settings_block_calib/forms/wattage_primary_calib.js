@@ -137,7 +137,7 @@ function PowerCalibSettings(props) {
             name={`output_power_calib`}
             changeHandler={handleChange}
             input_value={powerCalibState.output_power}
-            style={{ margin: '0', maxWidth: '57px' }}
+            style={{ margin: '0', maxWidth: '75px' }}
             type="text" />
           <FormInput
             id={`output_power_calib_save`}
