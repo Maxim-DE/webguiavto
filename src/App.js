@@ -259,7 +259,7 @@ function App() {
                 console.log('harosh');
                 if (request.notifications) {
                   if (request.notifications.good == 'default') {
-                    showSuccessMessage("", 'Успешно');
+                    showSuccessMessage("", 'Успешно', 1500);
                   } 
                 }
                 if (Object.keys(result).length == 1 &&
@@ -282,7 +282,7 @@ function App() {
                 console.log(error.message);
                 if (request.notifications) {
                   if (request.notifications.bad == 'default') {
-                    showErrorMessage("", 'Ошибка');
+                    showErrorMessage("", 'Ошибка', 1500);
                   }
                 }
 
