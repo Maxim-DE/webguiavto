@@ -55,7 +55,7 @@ function TempThresholdCalibSettings(props) {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = tempThresholdCalibState[name],
-          multiplier =  props.calib_data ? (props.calib_data[name][1]) : 10
+          multiplier =  Array.isArray(props.calib_data[name]) ? (props.calib_data[name][1]) : 1
 
     const request_obj = {
       address: 'calib_temp_threshold.cgi',
