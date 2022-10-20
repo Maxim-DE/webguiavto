@@ -42,7 +42,7 @@ section {
   }
 }
 
-@media (min-width: 1553px) {
+@media (min-width: 1645px) {
   .section_content {
     --columns: 3
   }
