@@ -12,6 +12,7 @@ import WattagePrimaryCalibSettings from '../settings_block_calib/forms/wattage_p
 import WattageAdditionalCalibSettings from '../settings_block_calib/forms/wattage_additional_calib';
 import FanCalibSettings from '../settings_block_calib/forms/fan_calib';
 import TempThresholdCalibSettings from '../settings_block_calib/forms/temp_thrashold';
+import MiscCalibSettings from '../settings_block_calib/forms/misc_calib';
 import SerialNumVersionCalibSettings from '../settings_block_calib/forms/serialnum_version_calib';
 
 import LoadingSpan from '../loading_span'
@@ -99,6 +100,8 @@ function CalibSection(props) {
         <FanCalibSettings
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_fan : ''}
+          clickHandler={handleClick} />
+        <MiscCalibSettings
           clickHandler={handleClick} />
         <SerialNumVersionCalibSettings
           calib_data={Object.keys(props.section_data).length != 0 ?

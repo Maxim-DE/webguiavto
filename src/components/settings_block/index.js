@@ -18,6 +18,7 @@ import time_schedule_settings from '../custom_groups/time_schedule_settings';
 import { time_server_sync_settings } from '../custom_groups/time_server_sync_settings';
 import { silence_det_settings } from '../custom_groups/silence_det_settings';
 import { conf_file_upload } from '../custom_groups/conf_file_upload';
+import { mib_file_download } from '../custom_groups/mib_file_download';
 
 
 function Settings_block({ settings_type, className = "", ...rest }) {
@@ -56,6 +57,13 @@ function Settings_block({ settings_type, className = "", ...rest }) {
       'conf_file_upload': {
         'render_structure': conf_file_upload.render_structure,
         'data_structure': conf_file_upload.data_structure,
+      }
+    },
+
+    'snmp_agent': {
+      'mib_file_download': {
+        'render_structure': mib_file_download.render_structure,
+        'data_structure': mib_file_download.data_structure,
       }
     }
   }

@@ -78,6 +78,19 @@ function Status_settings(props) {
 
   }
 
+  const power_save_handleClick = (event) => {
+    const request_obj = {
+      address: 'transmitter.cgi',
+      data: `save_power$1`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    props.updateHandler(request_obj)
+  }
+
   return (
     <Settings_block_calib header={`настройки`}
       settings_type={`status_calib`}
@@ -163,6 +176,13 @@ function Status_settings(props) {
             <TbPlus />
             3
           </button>
+          <FormInput
+            id={`status_save_power_input`}
+            name={`status_save_power`}
+            label='Сохр.'
+            clickHandler={power_save_handleClick}
+            type="button"
+            />
         </div>
       </li>
     </Settings_block_calib>

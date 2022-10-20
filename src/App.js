@@ -63,8 +63,7 @@ const settings_map = [
       //   settings_items: [
       //     {id: 'request_period', name: "Период запросов, мс", type: "text"},
       //     {id: 'bootloader_enabled_switch', name: "Включить Bootloader", type: "switch"},
-      //     {id: 'conf_file_upload', name: "Внеш. файл настроек", type: "custom_group"},
-      //   ],
+      // ],
       // },
     ],
   },
@@ -99,6 +98,7 @@ const settings_map = [
         settings_items: [
           {id: 'community_read', name: "Community Read", type: "text"},
           {id: 'community_write', name: "Community Write", type: "text"},
+          {id: 'mib_file_download', name: "Загрузить MIB-файл", type: "custom_group"},
           // {id: 'trap_settings', name: "Настройки TRAP-сервера", type: "group", items:[
           //   {id: 'trap_ip', name: "IP-адрес", type: "text"},
           //   {id: 'trap_port', name: "Порт", type: "text"},
