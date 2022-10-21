@@ -83,6 +83,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
   // }, [data])
 
   const refreshHandler = () => {
+    setFullLogData([])
     getFullLog()
   }
 

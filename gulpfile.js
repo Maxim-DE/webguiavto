@@ -2,6 +2,7 @@ const { src, dest, parallel, series, watch } = require('gulp');
 const gzip = require('gulp-gzip');
 const clean = require('gulp-clean');
 const replace = require('gulp-replace');
+const gulpClean = require('gulp-clean');
 
 let gzip_file_array = [
   'build/static/js/*.js',
@@ -32,15 +33,11 @@ function delete_http() {
 }
 
 function add_gz_to_filename() {
+
   let filenames_gz = [
     'build/static/js/*.js',
     'build/static/css/*.css',
   ]
-
-  function handleReplace(match) {
-    console.log(match + '.gz');
-    return match + '.gz'
-  }
 
   return src(['build/index.html'])
     .pipe(replace(/\/static\/css\/main\..{1,}\.css/g, function handleReplace(match) {
@@ -55,10 +52,16 @@ function add_gz_to_filename() {
 
 }
 
+function copy_mib_file() {
+  return src(['src/mib/okb_alpha.mib'])
+  .pipe(dest('build/mib/'))
+}
+
 
 exports.build_gzip = build_gzip;
 exports.delete_raw_files = delete_raw_files;
 exports.delete_http = delete_http;
 exports.add_gz_to_filename = add_gz_to_filename;
+exports.copy_mib_file = copy_mib_file;
 
-exports.full_gzip_build = series(build_gzip, delete_raw_files, add_gz_to_filename)
+exports.full_gzip_build = series(copy_mib_file, build_gzip, delete_raw_files, add_gz_to_filename)

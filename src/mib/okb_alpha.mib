@@ -1,0 +1,1359 @@
+OKBALFA-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+        enterprises
+                FROM RFC1155-SMI
+        OBJECT-TYPE,INTEGER
+                FROM RFC-1212
+        DisplayString
+                FROM RFC-1213
+        mib-2
+                FROM RFC-2578;
+------------------------------------------------------------------
+system 	OBJECT IDENTIFIER ::= {mib-2 1 }
+---1.3.6.1.2.1.1
+okbalfa OBJECT IDENTIFIER ::= {enterprises  57170}
+---1.3.6.1.4.1.57170
+okbalfa_V0 OBJECT IDENTIFIER ::= {enterprises 50001}
+---1.3.6.1.4.1.50001
+RTRS OBJECT IDENTIFIER ::= {enterprises 3}
+_RTRS OBJECT IDENTIFIER ::= {RTRS 2}
+RTRS-Param OBJECT IDENTIFIER ::= {_RTRS 1}
+---1.3.6.1.4.1.3.2.1.0.0
+RTRS-RDS-Param OBJECT IDENTIFIER ::= {_RTRS 3}
+---1.3.6.1.4.1.3.2.3.0.0
+------------------------------------------------------------------
+RadioExciterV0        OBJECT IDENTIFIER ::= {okbalfa_V0 10}
+------------------------------------------------------------------
+----------------------V11------------------------------------------
+------------------------------------------------------------------
+RadioExciter              OBJECT IDENTIFIER ::= {okbalfa 0}
+RadioExciter-Info         OBJECT IDENTIFIER ::= {RadioExciter 1}
+RadioExciter-Param        OBJECT IDENTIFIER ::= {RadioExciter 2}
+RadioExciter-ParamMod     OBJECT IDENTIFIER ::= {RadioExciter 3}
+RadioExciter-ParamStatus  OBJECT IDENTIFIER ::= {RadioExciter 4}
+--RadioExciter-Trap       OBJECT IDENTIFIER ::= {RadioExciter 5}
+RadioExciter-Setting      OBJECT IDENTIFIER ::= {RadioExciter 6}
+------------------------------------------------------------------
+Amplifier             OBJECT IDENTIFIER ::= {okbalfa 1}
+Amplifier-Info        OBJECT IDENTIFIER ::= {Amplifier 1}
+Amplifier-Param       OBJECT IDENTIFIER ::= {Amplifier 2}
+Amplifier-Setting     OBJECT IDENTIFIER ::= {Amplifier 3}
+Amplifier-Status      OBJECT IDENTIFIER ::= {Amplifier 4}
+------------------------------------------------------------------
+BlockControl          OBJECT IDENTIFIER ::= {okbalfa 2}
+BlockControl-Info     OBJECT IDENTIFIER ::= {BlockControl 1}
+BlockControl-Param    OBJECT IDENTIFIER ::= {BlockControl 2}
+BlockControl-Setting  OBJECT IDENTIFIER ::= {BlockControl 3}
+BlockControl-Status   OBJECT IDENTIFIER ::= {BlockControl 4}
+------------------------------------------------------------------
+DigitalExciter          OBJECT IDENTIFIER ::= {okbalfa 3}
+DigitalExciter-Info     OBJECT IDENTIFIER ::= {DigitalExciter 1}
+DigitalExciter-Param    OBJECT IDENTIFIER ::= {DigitalExciter 2}
+DigitalExciter-Setting  OBJECT IDENTIFIER ::= {DigitalExciter 3}
+DigitalExciter-Status   OBJECT IDENTIFIER ::= {DigitalExciter 4}
+DigitalExciter-options  OBJECT IDENTIFIER ::= {DigitalExciter 5}
+------------------------------------------------------------------
+-----------------------RTRS---------------------------------------
+------------------------------------------------------------------
+RTRS-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+  ::= {RTRS-Param 0}
+----------------------------------------------------------------------
+RTRS-TypeDevice OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+  ::= {RTRS-Param 1}
+----------------------------------------------------------------------
+RTRS-StatusDevice OBJECT-TYPE
+  SYNTAX  INTEGER {ON(1),OFF(0)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+  ::= {RTRS-Param 2}
+----------------------------------------------------------------------
+RTRS-P-Out OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+        "Output power(divider=10,W)"
+  ::= {RTRS-Param 3}
+----------------------------------------------------------------------
+RTRS-P-ref OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+        "Reflected power(divider=10,W)"
+  ::= {RTRS-Param 4}
+----------------------------------------------------------------------
+RTRS-U1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Power Supply Voltage,V"
+  ::= {RTRS-Param 5}
+----------------------------------------------------------------------
+RTRS-I1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "end-stage current,A"
+  ::= {RTRS-Param 6}
+----------------------------------------------------------------------
+RTRS-Frequency OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+    "Value, KHz"
+  ::= {RTRS-Param 8}
+----------------------------------------------------------------------
+RTRS-Level-Sound OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+    "Left channel Value, dB"
+  ::= {RTRS-Param 9}
+----------------------------------------------------------------------
+RTRS-T OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value, Celsius degree"
+  ::= {RTRS-Param 10}
+----------------------------------------------------------------------
+RTRS-RadioText OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+  ::= {RTRS-RDS-Param 0}
+----------------------------------------------------------------------
+------------------Системные ------------------------------------------
+----------------------------------------------------------------------
+sysUpTime OBJECT-TYPE
+  SYNTAX  TimeTicks
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "The time (in hundredths of a second) since the network management portion of the system was last re-initialized."
+  ::= {system 3}
+
+sysName OBJECT-TYPE
+    SYNTAX      DisplayString (SIZE (0..255))
+    ACCESS  read-only
+    STATUS  mandatory
+    DESCRIPTION
+            ""
+    ::= { system 5 }
+----------------------------------------------------------------------
+-----------------RadioExciter-----------------------------------------
+----------------------------------------------------------------------
+RadioExciter-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {RadioExciter-Info 1}
+----------------------------------------------------------------------
+-----------------------Версия ПО -------------------------------------
+----------------------------------------------------------------------
+RadioExciter-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {RadioExciter-Info 2}
+----------------------------------------------------------------------
+RadioExciter-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {RadioExciter-Info 3}
+----------------------------------------------------------------------
+RadioExciter-Software-bord OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bord"
+  ::= {RadioExciter-Info 4}
+----------------------------------------------------------------------
+RadioExciter-Software-Audio OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software Audio MCU"
+  ::= {RadioExciter-Info 5}
+
+----------------------------------------------------------------------
+--------------------------Power --------------------------------------
+----------------------------------------------------------------------
+
+
+RadioExciter-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {RadioExciter-Param 1}
+----------------------------------------------------------------------
+RadioExciter-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef ,W"
+  ::= {RadioExciter-Param 2}
+----------------------------------------------------------------------
+RadioExciter-SWR OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {RadioExciter-Param 3}
+----------------------------------------------------------------------
+RadioExciter-PowerBallast OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {RadioExciter-Param 5}
+----------------------------------------------------------------------
+RadioExciter-I1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {RadioExciter-Param 20}
+----------------------------------------------------------------------
+RadioExciter-I2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {RadioExciter-Param 21}
+----------------------------------------------------------------------
+RadioExciter-I3 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {RadioExciter-Param 22}
+----------------------------------------------------------------------
+RadioExciter-U1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {RadioExciter-Param 10}
+----------------------------------------------------------------------
+RadioExciter-U2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {RadioExciter-Param 11}
+----------------------------------------------------------------------
+RadioExciter-U3 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {RadioExciter-Param 12}
+----------------------------------------------------------------------
+RadioExciter-PosU12 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {RadioExciter-Param 13}
+----------------------------------------------------------------------
+RadioExciter-NegU12 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {RadioExciter-Param 14}
+----------------------------------------------------------------------
+RadioExciter-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, Celsius degree"
+  ::= {RadioExciter-Param 30}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+RadioExciter-mod-Deviation OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamMod 1}
+----------------------------------------------------------------------
+RadioExciter-mod-Frequency OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+		"Value/100, MHz"
+  ::= {RadioExciter-ParamMod 2}
+----------------------------------------------------------------------
+RadioExciter-mod-Lvl-Left OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {RadioExciter-ParamMod 3}
+----------------------------------------------------------------------
+RadioExciter-mod-Lvl-Right OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {RadioExciter-ParamMod 4}
+----------------------------------------------------------------------
+-----------------------Статусы параметров-----------------------------
+----------------------------------------------------------------------
+RadioExciter-status-Pout OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 1}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+RadioExciter-status-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 2}
+----------------------------------------------------------------------
+RadioExciter-status-SWR OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 3}
+----------------------------------------------------------------------
+RadioExciter-status-PowerBallast OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 5}
+----------------------------------------------------------------------
+RadioExciter-status-I1 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 20}
+----------------------------------------------------------------------
+RadioExciter-status-I2 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 21}
+----------------------------------------------------------------------
+RadioExciter-status-I3 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 22}
+----------------------------------------------------------------------
+RadioExciter-status-U1 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 10}
+----------------------------------------------------------------------
+RadioExciter-status-U2 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 11}
+----------------------------------------------------------------------
+RadioExciter-status-U3 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 12}
+----------------------------------------------------------------------
+RadioExciter-status-PosU12 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 13}
+----------------------------------------------------------------------
+RadioExciter-status-NegU12 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 14}
+----------------------------------------------------------------------
+RadioExciter-status-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-ParamStatus 30}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+RadioExciter-power-on-off OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {RadioExciter-Setting 1}
+----------------------------------------------------------------------
+RadioExciter-status-power-on-off OBJECT-TYPE
+  SYNTAX  INTEGER{OFF_USER(0),ON(1),OFF_WEB(2),OFF_RTC(3)}
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          ""
+  ::= {RadioExciter-Setting 2}
+----------------------------------------------------------------------
+RadioExciter-Set-Connect-BlockControl OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {RadioExciter-Setting 3}  
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+RadioExciter-RadioText OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+  ::= {RadioExciter-Setting 4} 
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+RadioExciter-ToggleProfile OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  write
+  STATUS  mandatory
+  DESCRIPTION
+  ::= {RadioExciter-Setting 5}
+
+----------------------------------------------------------------------
+-----------------Amplifier--------------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+-----------------Amplifier-Setting------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Amplifier-Reset-web OBJECT-TYPE
+  SYNTAX  INTEGER{reset(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reset http"
+  ::= {Amplifier-Setting 1}
+----------------------------------------------------------------------
+Amplifier-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ACCESS_DENIED(0),ACCESS_ALLOWED(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "ACCESS_DENIED(0),ACCESS_ALLOWED(1))"
+  ::= {Amplifier-Setting 2}
+----------------------------------------------------------------------
+Amplifier-Access-web-reset-1h OBJECT-TYPE
+  SYNTAX  INTEGER{DISABLE(0),ENABLE(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "DISABLE(0),ENABLE(1))"
+  ::= {Amplifier-Setting 3}
+----------------------------------------------------------------------
+-----------Состояние БП1 (вкл,выкл)-----------------------------------
+----------------------------------------------------------------------
+Status-PS1 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OFF(0),STATUS_OK(1),STATUS_WEB_OFF(4),STATUS_BLOCK(5)}
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Status of the device, power supply 1"
+  ::= {Amplifier-Setting 10}
+----------------------------------------------------------------------
+-----------Состояние БП2 (вкл,выкл)---------------------------------
+----------------------------------------------------------------------
+Status-PS2 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OFF(0),STATUS_OK(1),STATUS_WEB_OFF(4),STATUS_BLOCK(5)}
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Status of the device, power supply 2"
+  ::= {Amplifier-Setting 11}
+----------------------------------------------------------------------
+-----------------------Версия ПО -------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Amplifier-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {Amplifier-Info 1}
+----------------------------------------------------------------------
+Amplifier-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {Amplifier-Info 2}
+----------------------------------------------------------------------
+Amplifier-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {Amplifier-Info 3}
+----------------------------------------------------------------------
+Amplifier-Software-bord OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bord"
+  ::= {Amplifier-Info 4}
+----------------------------------------------------------------------
+-----------------------Param Amplifier--------------------------------
+----------------------------------------------------------------------
+Amplifier-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {Amplifier-Param 1}
+----------------------------------------------------------------------
+Amplifier-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef ,W"
+  ::= {Amplifier-Param 2}
+----------------------------------------------------------------------
+Amplifier-SWR OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {Amplifier-Param 3}
+----------------------------------------------------------------------
+Amplifier-Pin OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100, W"
+  ::= {Amplifier-Param 4}
+----------------------------------------------------------------------
+Amplifier-PowerBallast OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {Amplifier-Param 5}
+----------------------------------------------------------------------
+Amplifier-U1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {Amplifier-Param 10}
+----------------------------------------------------------------------
+Amplifier-U2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {Amplifier-Param 11}
+----------------------------------------------------------------------
+Amplifier-U3 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {Amplifier-Param 12}
+----------------------------------------------------------------------
+Amplifier-I1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {Amplifier-Param 20}
+----------------------------------------------------------------------
+Amplifier-I2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {Amplifier-Param 21}
+  ----------------------------------------------------------------------
+Amplifier-I3 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {Amplifier-Param 22}
+  ----------------------------------------------------------------------
+Amplifier-I4 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {Amplifier-Param 23}
+----------------------------------------------------------------------
+Amplifier-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Celsius degree"
+  ::= {Amplifier-Param 30}
+
+----------------------------------------------------------------------
+-----------------------status Amplifier--------------------------------
+----------------------------------------------------------------------
+Amplifier-status-PowerOut OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 1}
+----------------------------------------------------------------------
+Amplifier-status-PowerRef OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 2}
+----------------------------------------------------------------------
+Amplifier-status-SWR OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 3}  
+----------------------------------------------------------------------
+Amplifier-status-Pin OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 4}  
+----------------------------------------------------------------------
+Amplifier-status-PowerBallast OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 5}
+----------------------------------------------------------------------
+Amplifier-status-U1 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 10}
+----------------------------------------------------------------------
+Amplifier-status-U2 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 11}
+----------------------------------------------------------------------
+Amplifier-status-U3 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 12}
+----------------------------------------------------------------------
+Amplifier-status-I1 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 20}  
+----------------------------------------------------------------------
+Amplifier-status-I2 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 21}
+----------------------------------------------------------------------
+Amplifier-status-I3 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 22}
+----------------------------------------------------------------------
+Amplifier-status-I4 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 23}   
+----------------------------------------------------------------------
+Amplifier-status-T OBJECT-TYPE
+  SYNTAX  INTEGER{TempIsNotExist(0),TempIsNorm(1),TempIsOverheat(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Amplifier-Status 30}
+----------------------------------------------------------------------
+-----------------BlockControl-----------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+-----------------------BlockControl Setting---------------------------
+----------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------
+BlockControl-Reset-web OBJECT-TYPE
+  SYNTAX  INTEGER{reset(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reset http"
+  ::= {BlockControl-Setting 1}
+----------------------------------------------------------------------
+BlockControl-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ACCESS_DENIED(0),ACCESS_ALLOWED(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "ACCESS_DENIED(0),ACCESS_ALLOWED(1))"
+  ::= {BlockControl-Setting 2}
+----------------------------------------------------------------------
+BlockControl-Access-web-reset-1h OBJECT-TYPE
+  SYNTAX  INTEGER{DISABLE(0),ENABLE(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "DISABLE(0),ENABLE(1))"
+  ::= {BlockControl-Setting 3}
+----------------------------------------------------------------------
+BlockControl-Reboot OBJECT-TYPE
+  SYNTAX  INTEGER{ENABLE(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Block reboot"
+  ::= {BlockControl-Setting 4}
+
+----------------------------------------------------------------------
+-----------------------Версия ПО BlockControl-------------------------
+----------------------------------------------------------------------
+
+
+BlockControl-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {BlockControl-Info 1}
+----------------------------------------------------------------------
+BlockControl-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {BlockControl-Info 2}
+----------------------------------------------------------------------
+BlockControl-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {BlockControl-Info 3}
+----------------------------------------------------------------------
+BlockControl-Software-bord OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bord"
+  ::= {BlockControl-Info 4}
+
+
+----------------------------------------------------------------------
+-----------------------Param-BlockControl-----------------------------
+----------------------------------------------------------------------
+
+
+BlockControl-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {BlockControl-Param 1}
+----------------------------------------------------------------------
+BlockControl-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {BlockControl-Param 2}
+----------------------------------------------------------------------
+BlockControl-PowerSWR OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {BlockControl-Param 3}
+----------------------------------------------------------------------
+BlockControl-PowerBallast1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {BlockControl-Param 5}
+----------------------------------------------------------------------
+BlockControl-PowerBallast2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {BlockControl-Param 6}
+----------------------------------------------------------------------
+BlockControl-PowerBallast3 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {BlockControl-Param 7}
+----------------------------------------------------------------------
+BlockControl-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Celsius degree"
+  ::= {BlockControl-Param 30}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+BlockControl-Status-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 1} 
+----------------------------------------------------------------------
+BlockControl-Status-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 2}
+----------------------------------------------------------------------
+BlockControl-Status-PowerSWR OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 3}
+----------------------------------------------------------------------
+BlockControl-Status-PowerBallast1 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 5}
+----------------------------------------------------------------------
+BlockControl-Status-PowerBallast2 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 6}
+----------------------------------------------------------------------
+BlockControl-Status-PowerBallast3 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 7}
+----------------------------------------------------------------------
+BlockControl-Status-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {BlockControl-Status 30}
+----------------------------------------------------------------------
+-----------------------RadioExciterV0---------------------------------
+----------------------------------------------------------------------
+Voltage OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+    "Voltage in volts"
+  ::= {RadioExciterV0 161}
+----------------------------------------------------------------------
+I OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+    ""
+  ::= {RadioExciterV0 165}
+----------------------------------------------------------------------
+Temperature OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+      "Temperature in Celsius"
+  ::= {RadioExciterV0 169}
+----------------------------------------------------------------------
+Output-Power OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+      "Output power in watts*10"
+  ::= {RadioExciterV0 172}
+----------------------------------------------------------------------
+Reflected-Power OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+      "Reflected power in watts*10"
+  ::= {RadioExciterV0 173}
+----------------------------------------------------------------------
+Sound-Level OBJECT-TYPE
+  SYNTAX INTEGER {-12dB(0),-11dB(1),-10dB(2),-9dB(3),-8dB(4),-7dB(5),-6dB(6),-5dB(7),-4dB(8),-3dB(9),-2dB(10),-1dB(11),0dB(12),1dB(13),2dB(14),3dB(15)}
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+        "Range is -12dB(0) - 3dB(15)"
+  ::= {RadioExciterV0 181}
+----------------------------------------------------------------------
+Output-Power-Restriction OBJECT-TYPE
+    SYNTAX INTEGER {ON(1), OFF(0)}
+    ACCESS read-only
+    STATUS current
+    DESCRIPTION
+    ::= {RadioExciterV0 184}
+----------------------------------------------------------------------
+Mode OBJECT-TYPE
+  SYNTAX INTEGER {MONO(1), STEREO(0)}
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+  ::= {RadioExciterV0 185}
+----------------------------------------------------------------------
+Carrier-Frequency OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+    "Frequency in kHz"
+  ::= {RadioExciterV0 186}
+----------------------------------------------------------------------
+Exciter-Power-supply OBJECT-TYPE
+  SYNTAX INTEGER {ON(1), OFF(0)}
+  ACCESS write
+  STATUS current
+  DESCRIPTION
+  ::= {RadioExciterV0 180}
+----------------------------------------------------------------------
+Ethernet-Power-Control OBJECT-TYPE
+  SYNTAX INTEGER {ON(1), OFF(1)}
+  ACCESS write
+  STATUS current
+  DESCRIPTION
+    "Output power in watts*10"
+  ::= {RadioExciterV0 187}
+----------------------------------------------------------------------
+Serial-Number OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+  ::= {RadioExciterV0 300}
+----------------------------------------------------------------------
+Version-Software OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+  ::= {RadioExciterV0 301}
+----------------------------------------------------------------------
+Version-Bootloader OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+    "Bootloader version - 1 byte. Senior tetrad - number of version, junior tetrad - numberof subversion"
+  ::= {RadioExciterV0 302}
+----------------------------------------------------------------------
+Connection-Status OBJECT-TYPE
+  SYNTAX INTEGER {ENABLED(1), DISABLED(0)}
+  ACCESS read-only
+  STATUS current
+  DESCRIPTION
+  ::= {RadioExciterV0 310}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+---------------------Версия ПО DigitalExciter-------------------------
+----------------------------------------------------------------------
+DigitalExciter-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {DigitalExciter-Info 1}
+----------------------------------------------------------------------
+DigitalExciter-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {DigitalExciter-Info 2}
+----------------------------------------------------------------------
+DigitalExciter-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {DigitalExciter-Info 3}
+----------------------------------------------------------------------
+DigitalExciter-Software-bord OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bord"
+  ::= {DigitalExciter-Info 4}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+DigitalExciter-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {DigitalExciter-Param 1}
+----------------------------------------------------------------------
+DigitalExciter-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef ,W"
+  ::= {DigitalExciter-Param 2}
+----------------------------------------------------------------------
+DigitalExciter-SWR OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {DigitalExciter-Param 3}
+----------------------------------------------------------------------
+DigitalExciter-Pin OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value, µW"
+  ::= {DigitalExciter-Param 4}
+----------------------------------------------------------------------
+DigitalExciter-PowerBallast OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {DigitalExciter-Param 5}
+----------------------------------------------------------------------
+DigitalExciter-U1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {DigitalExciter-Param 10}
+----------------------------------------------------------------------
+DigitalExciter-U2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {DigitalExciter-Param 11}
+----------------------------------------------------------------------
+DigitalExciter-I1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Param 20}
+  ----------------------------------------------------------------------
+DigitalExciter-I2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Param 21}
+----------------------------------------------------------------------
+DigitalExciter-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, Celsius degree"
+  ::= {DigitalExciter-Param 30}
+----------------------------------------------------------------------
+--------------------------STATUS--------------------------------------
+----------------------------------------------------------------------
+DigitalExciter-status-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {DigitalExciter-Status 1}
+----------------------------------------------------------------------
+DigitalExciter-status-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef ,W"
+  ::= {DigitalExciter-Status 2}
+----------------------------------------------------------------------
+DigitalExciter-status-SWR OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OFF(0),STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {DigitalExciter-Status 3}
+----------------------------------------------------------------------
+DigitalExciter-status-Pin OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value, µW"
+  ::= {DigitalExciter-Status 4}
+----------------------------------------------------------------------
+DigitalExciter-status-PowerBallast OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Ballast power, W"
+  ::= {DigitalExciter-Status 5}
+----------------------------------------------------------------------
+DigitalExciter-status-U1 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OFF(0),STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {DigitalExciter-Status 10}
+----------------------------------------------------------------------
+DigitalExciter-status-U2 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OFF(0),STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {DigitalExciter-Status 11}
+----------------------------------------------------------------------
+DigitalExciter-status-I1 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Status 20}
+  ----------------------------------------------------------------------
+DigitalExciter-status-I2 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Status 21}
+----------------------------------------------------------------------
+DigitalExciter-status-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Celsius degree"
+  ::= {DigitalExciter-Status 30}  
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+DigitalExciter-power-on-off OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(4),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          ""
+  ::= {DigitalExciter-Setting 1}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+DigitalExciter-options-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ON(0),OFF(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "Bootloader on/off"
+  ::= {DigitalExciter-options 1}
+----------------------------------------------------------------------
+DigitalExciter-options-Web-Reset OBJECT-TYPE
+  SYNTAX  INTEGER{ON(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Web reset"
+  ::= {DigitalExciter-options 2}
+----------------------------------------------------------------------
+DigitalExciter-options-web-reset-1h OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "Restart web every hour"
+  ::= {DigitalExciter-options 3}
+
+
+
+END
