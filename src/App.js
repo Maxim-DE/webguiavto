@@ -35,7 +35,7 @@ const settings_map = [
         settings_items: [
           {id: 'date', name: "Дата", type: "text"},
           {id: 'time', name: "Время", type: "text"},
-          {id: 'supply_schedule', name: "Настройки расписания", type: "custom_group"},
+          // {id: 'supply_schedule', name: "Настройки расписания", type: "custom_group"},
           // {id: 'supply_schedule', name: "Настройки расписания", type: "group", items:[
           //   {id: 'supply_period', name: "Период работы", type: "text_range"},
           // ]},
