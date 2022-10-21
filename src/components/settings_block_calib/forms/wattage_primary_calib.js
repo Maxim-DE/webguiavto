@@ -168,12 +168,12 @@ function PowerCalibSettings(props) {
           <label
             htmlFor={`output_power_threshold_calib_input`}
             className="settings_itemLabel">
-            Ограничение P<sub>вых</sub>
+            Ограничение P<sub>вых</sub> по ЦАП
           </label>
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.output_power_threshold}
+            ЦАП: {props.adc_data.output_power_threshold}
           </span>
           <FormInput
             id={`output_power_threshold_calib_input`}
