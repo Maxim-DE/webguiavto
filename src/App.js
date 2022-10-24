@@ -248,12 +248,12 @@ function App() {
             console.log('do do' + k);
             console.log(request);
             
-            const host = "192.168.1.114"
+            const host = ""
             const query = request.address;
             const data = request.data ? `?${request.data}` : '';
-            const url = `http://${host}/${query}${data}`;
+            const url = `${host}/${query}${data}`;
       
-            const test_url = "http://192.168.1.114/GetDebug.CGI"
+            const test_url = "/GetDebug.CGI"
 
             console.log(url);
             
@@ -373,7 +373,7 @@ function App() {
         </nav>
         <div className='main_wrap'>
           <header>
-            <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} ${sectionData.info.info_general.serial_number}` :
+            <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} №${sectionData.info.info_general.serial_number}` :
                                     '...'}</h1>
             <CalibLogButton 
               updateHandler = {handlePoolUpdate}/>
