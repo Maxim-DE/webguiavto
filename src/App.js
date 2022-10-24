@@ -373,7 +373,7 @@ function App() {
         </nav>
         <div className='main_wrap'>
           <header>
-            <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device}/${sectionData.info.info_general.serial_number}` :
+            <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} ${sectionData.info.info_general.serial_number}` :
                                     '...'}</h1>
             <CalibLogButton 
               updateHandler = {handlePoolUpdate}/>
