@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ReactComponent as Graph_digital } from '../../imgs/digital_exiter.svg'
-import graph from '../../imgs/digital_exiter.svg'
+// import { ReactComponent as Graph_digital } from '../../imgs/st_100.svg'
+// import graph from '../../imgs/st_100.svg'
 import './index.css'
 
 
@@ -13,16 +13,15 @@ const status_colors = [
   '#68CEDE', //hibernation
 ]
 
-
 function Status_graphs(props) {
-  // const [graph_data, setGraphData] = React.useState({
-  //   data: {},
-  // })
 
-  const graph_ref = React.useRef(null)
+  const [graphSvg, setGraphSvg] = React.useState(null)
+
+  const graph_container_ref = React.useRef(null)
 
   React.useEffect(() => {
-    let graph_svg = graph_ref.current
+    let graph_svg_container = graph_container_ref.current
+    let graph_svg = graph_svg_container.children[0]
     let graph_data = props.data
 
     for (const key in graph_data) {
@@ -101,10 +100,18 @@ function Status_graphs(props) {
     }
   }, [props.data])
 
+  React.useEffect(() => {
+    if (props.graph_svg == null) {
+      return
+    } 
+
+    let graph_container = graph_container_ref.current
+    graph_container.innerHTML = props.graph_svg;
+
+  }, [props.graph_svg])
+
   return (
-    <div className="graphs">
-      <Graph_digital ref={graph_ref} />
-    </div>
+    <div className="graphs" ref={graph_container_ref} />
   )
 }
 

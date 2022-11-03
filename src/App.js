@@ -170,6 +170,9 @@ function App() {
   const [statusData, setStatusData] = React.useState({
     status_info: null,
     status_graph: null,
+    status_svg: {
+      img: ''
+    },
     status_logs: null,
     status_full_logs: null,
     status_settings: null,
@@ -205,6 +208,18 @@ function App() {
         status_state_copy[key] = output_data[key];
       }
       setStatusData(status_state_copy)
+
+    } else if (/media\/status_graph/gi.test(output_name)) {
+      let status_state_copy = statusData;
+      let output_obj = {
+        img: output_data
+      }
+      status_state_copy.status_svg = output_obj;
+      // setStatusData(status_state_copy)
+      setStatusData(prevState => ({
+        ...prevState,
+        status_svg: output_obj,
+      }))
 
     } else if (output_name === 'GetLogErrorFull') {
       let status_state_copy = statusData;
@@ -251,14 +266,20 @@ function App() {
             const host = ""
             const query = request.address;
             const data = request.data ? `?${request.data}` : '';
-            const url = `${host}/${query}${data}`;
+            const url = `http://192.168.1.114${host}/${query}${data}`;
       
-            const test_url = "/GetDebug.CGI"
+            const test_url = "http://192.168.1.114/GetDebug.CGI"
 
             console.log(url);
-            
+            let responseClone;
+
             fetch(url)
-            .then(res => res.json())
+
+            .then(res => {
+              responseClone = res.clone();
+              return res.json();
+            })
+
             .then(
               (result) => {
                 console.log('harosh');
@@ -304,13 +325,40 @@ function App() {
 
               (error) => {
                 console.log(error.message);
-                if (request.notifications) {
-                  if (request.notifications.bad == 'default') {
-                    toast.error('Не удалось выполнить действие', { autoClose: 1500 })
-                    // showErrorMessage("", 'Ошибка', 1500);
+                console.log(responseClone);
+                if (request.type) {
+                  switch (request.type) {
+                    case 'text':
+                      responseClone.text()
+                      .then(
+                        (resText) => {
+                          // console.log(resText);
+                          let request_name = request.address.replace('.cgi', '')
+                          request_name = request_name.replace('set_', '')
+                          outputData_assignment(request_name, resText);
+                        },
+                        (errText) => {
+                          if (request.notifications) {
+                            if (request.notifications.bad == 'default') {
+                              toast.error('Не удалось выполнить действие', { autoClose: 1500 })
+                              // showErrorMessage("", 'Ошибка', 1500);
+                            }
+                          }
+                        }
+                      )
+                      break;
+                  
+                    default:
+                      break;
+                  }
+                } else {
+                  if (request.notifications) {
+                    if (request.notifications.bad == 'default') {
+                      toast.error('Не удалось выполнить действие', { autoClose: 1500 })
+                      // showErrorMessage("", 'Ошибка', 1500);
+                    }
                   }
                 }
-
               })
 
           }, 150 * k);
@@ -385,10 +433,12 @@ function App() {
               updateHandler={handlePoolUpdate}
               status_data={statusData.status_info}
               graph_data={statusData.status_graph}
+              graph_svg={statusData.status_svg}
               logs_data={statusData.status_logs}
               full_logs_data={statusData.status_full_logs}
               settings_data={statusData.status_settings}
-              settings_map={status_settings_item} />
+              device_type={sectionData.info ? sectionData.info.info_general.Type_Device : ''} />
+              
               {
                 settings_map.map(item => (
                   <SettingsSection

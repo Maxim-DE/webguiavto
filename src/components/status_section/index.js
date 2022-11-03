@@ -9,6 +9,7 @@ import Status_graphs from "../graph_blocks"
 import './index.css'
 
 function StatusSection(props) {
+  const timerRef = React.useRef();
 
   const handleUpdate = request => {
     props.updateHandler(request);
@@ -21,8 +22,27 @@ function StatusSection(props) {
 
 
   React.useEffect(() => {
+    let svg_req_str = ''
+
+    switch (props.device_type) {
+      case 'СТ-100':
+        svg_req_str = 'st_100.svg.gz'
+        break;
+
+      case 'СТ-250':
+        svg_req_str = 'st_250.svg.gz'
+        break;
+
+      case '':
+        return;
+    
+      default:
+        break;
+    }
+
     let request_obj = {
-      address: 'status.cgi',
+      address: 'static/media/status_graph/' + svg_req_str,
+      type: 'text',
       notifications: {
         good: 'none',
         bad: 'default'
@@ -30,11 +50,24 @@ function StatusSection(props) {
       
     }
 
-    let status_timer = setInterval(() => {
-      props.updateHandler(request_obj)
+    props.updateHandler(request_obj)
+
+    let status_request_obj = {
+      address: 'status.cgi',
+      notifications: {
+        good: 'none',
+        bad: 'default'
+      },
+    }
+
+    clearInterval(timerRef.current)
+
+    timerRef.current = setInterval(() => {
+      props.updateHandler(status_request_obj)
     }, 1000)
 
-  }, [])
+
+  }, [props.device_type])
 
   return (
     <section
@@ -55,6 +88,7 @@ function StatusSection(props) {
       <div className="section_status">
         <Status_graphs
           settings_type="graphs"
+          graph_svg={props.graph_svg.img}
           updateHandler={handleUpdate}
           data={props.graph_data}/>
         <div className='status_settings_wrap'>
