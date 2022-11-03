@@ -194,6 +194,7 @@ function SerialNumVersionCalibSettings(props) {
             value={serialNumVersionCalibState.device_type[1]}>
             <option value="" disabled selected hidden>Мощн.</option>
             <option value='1'>100</option>
+            <option value='2'>250</option>
           </select>
           <FormInput
             id={`device_type_calib_save`}
