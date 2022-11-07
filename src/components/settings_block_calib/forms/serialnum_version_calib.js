@@ -10,6 +10,25 @@ function SerialNumVersionCalibSettings(props) {
     device_serial_num: '',
     device_type: [1, 1]
   })
+  
+  const device_power_table = [
+    { index: 0, value: '10' },
+    { index: 1, value: '50' },
+    { index: 2, value: '100' },
+    { index: 3, value: '250' },
+    { index: 4, value: '300' },
+    { index: 5, value: '500' },
+    { index: 6, value: '1000' },
+    { index: 7, value: '2000' },
+    { index: 8, value: '5000' }
+  ]
+
+  const device_name_table = [
+    { index: 0, value: 'УРЦ' },
+    { index: 1, value: 'УСТ' },
+    { index: 2, value: 'СТ' },
+    { index: 3, value: 'БЛОК УПР.' }
+  ]
 
   React.useEffect(() => {
     if (Object.keys(props.calib_data).length != 0) {
@@ -28,6 +47,7 @@ function SerialNumVersionCalibSettings(props) {
     const target = event.target;
     const name = target.name.replace('_calib', '');
     const value = target.value
+
 
     let state_array = serialNumVersionCalibState.device_type
 
@@ -51,7 +71,11 @@ function SerialNumVersionCalibSettings(props) {
     
     const request_obj = {
       address: 'calib_serialNum_vesrion.cgi',
-      data: `${series_str};${pwr_str}`
+      data: `${series_str};${pwr_str}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
     }
 
     props.clickHandler(request_obj);
@@ -180,10 +204,12 @@ function SerialNumVersionCalibSettings(props) {
             style={{ width: 'auto' }}
             title='Тип'
             onChange={device_type_handleChange}
-            value={serialNumVersionCalibState.device_type[0]}
-            >
+            value={serialNumVersionCalibState.device_type[0]}>
               <option value="" disabled selected hidden>Тип</option>
-              <option value='1'>СТ</option>
+              {device_name_table.map(item => (
+                <option key={item.index} value={item.index}>{item.value}</option>
+              ))}
+            
           </select>
           <select
             id={`device_power_calib_input`}
@@ -193,8 +219,9 @@ function SerialNumVersionCalibSettings(props) {
             onChange={device_type_handleChange}
             value={serialNumVersionCalibState.device_type[1]}>
             <option value="" disabled selected hidden>Мощн.</option>
-            <option value='1'>100</option>
-            <option value='2'>250</option>
+            {device_power_table.map(item => (
+              <option key={item.index} value={item.index}>{item.value}</option>
+            ))}
           </select>
           <FormInput
             id={`device_type_calib_save`}
