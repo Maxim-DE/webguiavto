@@ -24,6 +24,12 @@ function SettingsSection(props) {
   React.useEffect(() => {
     let request_obj = {
       address: `${props.section_name}.cgi`,
+      notifications: {
+        good: 'none',
+        bad: () => {
+          return 'Не удалось получить данные'
+        }
+      },
     }
     props.updateHandler(request_obj);
 

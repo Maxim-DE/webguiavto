@@ -373,6 +373,8 @@ function App() {
                     if (request.notifications.bad == 'default') {
                       toast.error('Не удалось выполнить действие', { autoClose: 1500 })
                       // showErrorMessage("", 'Ошибка', 1500);
+                    } else {
+                      toast.error(request.notifications.bad, { autoClose: 1500 })
                     }
                   }
                 }
