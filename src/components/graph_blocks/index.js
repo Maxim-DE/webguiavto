@@ -42,7 +42,7 @@ function Status_graphs(props) {
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
 
-          device_icon.attributes.fill.value = status_colors[graph_block_data[item]]
+          device_icon.style.fill = status_colors[graph_block_data[item]]
           
           continue
         }
