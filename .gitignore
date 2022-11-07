@@ -27,3 +27,4 @@ src/prj_start_script
 src/imgs/raw/
 package-lock.json
 src/mib/okb_alfa.mib
+.vscode/settings.json

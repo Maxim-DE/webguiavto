@@ -176,10 +176,24 @@ function Status_settings(props) {
             <TbPlus />
             3
           </button>
+        </div>
+      </li>
+      <li
+        key='status_save_power_setting'
+        id='status_save_power_setting'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`status_save_power_input`}
+            className="settings_itemLabel">
+            Фиксация мощности
+          </label>
+        </div>
+        <div className='item_input'>
           <FormInput
             id={`status_save_power_input`}
             name={`status_save_power`}
-            label='Сохр.'
+            label='Фиксировать'
             clickHandler={power_save_handleClick}
             type="button"
             />

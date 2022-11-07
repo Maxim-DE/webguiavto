@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react_dom';
 
 import Status_settings from "../status_settings_block"
 import Settings_block from '../settings_block';
@@ -22,23 +22,51 @@ function StatusSection(props) {
 
 
   React.useEffect(() => {
-    let svg_req_str = ''
 
-    switch (props.device_type) {
-      case 'СТ-100':
-        svg_req_str = 'st_100.svg.gz'
-        break;
-
-      case 'СТ-250':
-        svg_req_str = 'st_250.svg.gz'
-        break;
-
-      case '':
-        return;
-    
-      default:
-        break;
+    if (!Array.isArray(props.device_type)) {
+      return
     }
+
+    const device_power_table = {
+            0: '_10',
+            1: '_50',
+            2: '_100',
+            3: '_250',
+            4: '_300',
+            5: '_500',
+            6: '_1000',
+            7: '_2000',
+            8: '_5000',
+          },
+
+          device_name_table = {
+            0: 'urc',
+            1: 'ust',
+            2: 'st',
+            3: 'bc'
+          }
+    
+    const device_name = device_name_table[props.device_type[0]],
+          device_power = device_power_table[props.device_type[1]]
+          
+    let svg_req_str = `${device_name}${device_power}.svg.gz`
+
+    // switch (props.device_type) {
+    //   case 'СТ-100':
+    //     svg_req_str = 'st_100.svg.gz'
+    //     break;
+
+    //   case 'СТ-250':
+    //     svg_req_str = 'st_250.svg.gz'
+    //     break;
+
+    //   case '':
+    //     return;
+    
+    //   default:
+    //     break;
+    // }
+
 
     let request_obj = {
       address: 'static/media/status_graph/' + svg_req_str,

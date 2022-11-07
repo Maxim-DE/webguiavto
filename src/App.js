@@ -9,6 +9,8 @@ import './components/notifications/index.css'
 import { showErrorMessage, showSuccessMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 
+import { type_device_toStr } from './logic/output_data_management';
+
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
 import StatusSection from "./components/status_section"
@@ -215,7 +217,7 @@ function App() {
         img: output_data
       }
       status_state_copy.status_svg = output_obj;
-      // setStatusData(status_state_copy)
+
       setStatusData(prevState => ({
         ...prevState,
         status_svg: output_obj,
@@ -236,9 +238,26 @@ function App() {
       }))
 
     } else {
+      let output_data_copy
+
+      switch (output_name) {
+        case 'info':
+          if (Object.hasOwn(output_data.info_general, 'type')) {
+            output_data_copy = type_device_toStr(output_data)
+          } else {
+            output_data_copy = output_data
+          }
+          
+          break;
+      
+        default:
+          output_data_copy = output_data
+          break;
+      }
+
       setSectionData(prevState => ({
         ...prevState,
-        [output_name]: output_data,
+        [output_name]: output_data_copy,
       }))
     }
 
@@ -248,8 +267,6 @@ function App() {
     clearTimeout(debounceTimer);
     
     if (requestPool.pool.length > 0) {
-
-      // let state_copy = JSON.parse(JSON.stringify(sectionData));
 
       debounceTimer = setTimeout(() => {
         const pool_state = requestPool.pool;
@@ -390,7 +407,6 @@ function App() {
 
   const navRefUpdate = (nav_link_name) => {
     nav_ref.current = document.getElementById(`${nav_link_name}_section`)
-
     nav_ref.current.scrollIntoView({ block: "start", behavior: "smooth" })
   }
 
@@ -398,7 +414,6 @@ function App() {
 
   return (
     <>
-      {/* <div>gfsj</div> */}
       <ToastContainer
         transition={Zoom}
       />
@@ -437,7 +452,7 @@ function App() {
               logs_data={statusData.status_logs}
               full_logs_data={statusData.status_full_logs}
               settings_data={statusData.status_settings}
-              device_type={sectionData.info ? sectionData.info.info_general.Type_Device : ''} />
+              device_type={sectionData.info ? sectionData.info.info_general.type : ''} />
               
               {
                 settings_map.map(item => (

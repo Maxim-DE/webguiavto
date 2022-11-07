@@ -24,6 +24,11 @@ function Status_graphs(props) {
     let graph_svg = graph_svg_container.children[0]
     let graph_data = props.data
 
+    if (graph_svg == null ||
+        graph_svg == '') {
+      return
+    }
+
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
       let graph_block_data = graph_data[key]
