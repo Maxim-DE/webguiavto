@@ -304,7 +304,7 @@ function App() {
                   if (request.notifications.good == 'default') {
                     // showSuccessMessage("", 'Успешно', 1500);
                     if (Object.hasOwn(result, 'Notific')) {
-                      const message = result.Notific.text,
+                      const message = `${result.Notific.text} (${request.address.replace('.cgi', '')})`,
                             status = result.Notific.status
 
                       switch (status) {
@@ -320,7 +320,7 @@ function App() {
                           break;
                       }
                     } else {
-                      toast.success('Соханено', { autoClose: 1500 })
+                      toast.success(`Успешно (${request.address.replace('.cgi', '')})`, { autoClose: 1500 })
                     }
                   } 
                 }
@@ -357,7 +357,7 @@ function App() {
                         (errText) => {
                           if (request.notifications) {
                             if (request.notifications.bad == 'default') {
-                              toast.error('Не удалось выполнить действие', { autoClose: 1500 })
+                              toast.error(`Ошибка (${request.address.replace('.cgi', '')})`, { autoClose: 1500 })
                               // showErrorMessage("", 'Ошибка', 1500);
                             }
                           }
@@ -371,7 +371,7 @@ function App() {
                 } else {
                   if (request.notifications) {
                     if (request.notifications.bad == 'default') {
-                      toast.error('Не удалось выполнить действие', { autoClose: 1500 })
+                      toast.error(`Ошибка (${request.address.replace('.cgi', '')})`, { autoClose: 1500 })
                       // showErrorMessage("", 'Ошибка', 1500);
                     } else {
                       toast.error(request.notifications.bad, { autoClose: 1500 })
