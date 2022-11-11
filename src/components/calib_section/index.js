@@ -102,6 +102,8 @@ function CalibSection(props) {
             props.section_data.calib_fan : ''}
           clickHandler={handleClick} />
         <MiscCalibSettings
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_misc : ''}
           clickHandler={handleClick} />
         <SerialNumVersionCalibSettings
           calib_data={Object.keys(props.section_data).length != 0 ?

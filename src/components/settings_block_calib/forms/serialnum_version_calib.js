@@ -194,14 +194,6 @@ function SerialNumVersionCalibSettings(props) {
           </label>
         </div>
         <div className='item_input'>
-          {/* <FormInput
-            id={`device_type_calib_input`}
-            name={`device_type_calib`}
-            changeHandler={handleChange}
-            input_value={serialNumVersionCalibState.device_type}
-            style={{ margin: '0', maxWidth: '66px' }}
-            type="text" /> */}
-
           <select
             id={`device_series_calib_input`}
             name={`device_series_calib`}
@@ -212,8 +204,7 @@ function SerialNumVersionCalibSettings(props) {
               <option value="" disabled selected hidden>Тип</option>
               {device_name_table.map(item => (
                 <option key={item.index} value={item.index}>{item.value}</option>
-              ))}
-            
+              ))}      
           </select>
           <select
             id={`device_power_calib_input`}

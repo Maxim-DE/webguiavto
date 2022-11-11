@@ -1,38 +1,32 @@
 import React from 'react';
 
 import Settings_block_calib from '..';
+import Syslog_calib from './syslog_calib';
 import FormInput from '../../form_input';
 
 function MiscCalibSettings(props) {
+  const [miscCalibState, setMiscCalibState] = React.useState({
+    sys_log: []
+  })
 
-  // React.useEffect(() => {
-  //   if (Object.keys(props.calib_data).length != 0) {
-  //     let calib_state_copy = tempThresholdCalibState
+  React.useEffect(() => {
+    if (props.calib_data == undefined) {
+      return
+    }
 
-  //     for (const key in props.calib_data) {
+    if (Object.keys(props.calib_data).length == 0) {
+      return
+    }
 
-  //       if (key == 'temp_address') {
-  //         calib_state_copy[key] = props.calib_data[key]
-  //         continue;
-  //       }
+    let calib_state_copy = miscCalibState
 
-  //       const divident = props.calib_data[key][0],
-  //         divider = props.calib_data[key][1],
-  //         digits = Math.log10(divider)
+    for (const key in props.calib_data) {
+      calib_state_copy[key] = props.calib_data[key]
+    }
 
-  //       // if (divider == 1) {
-  //       //   digits = 0
-  //       // } else {
-  //       //   digits = Math.log10(divider)
-  //       // }
+    setMiscCalibState(calib_state_copy)
 
-  //       calib_state_copy[key] = (divident / divider).toFixed(digits)
-  //     }
-
-  //     setTempThresholdCalibState(calib_state_copy)
-
-  //   }
-  // }, [props.calib_data])
+  }, [props.calib_data])
 
   // const handleChange = (event) => {
   //   const target = event.target;
@@ -89,7 +83,10 @@ function MiscCalibSettings(props) {
             type="button" />
         </div>
       </li>
-      <li
+      <Syslog_calib
+        updateHandler={props.clickHandler}
+        logData={miscCalibState.sys_log} />
+      {/* <li
         key='delete_sys_logs_calib'
         id='delete_sys_logs_calib'
         className="settings_item">
@@ -108,7 +105,7 @@ function MiscCalibSettings(props) {
             label='Удалить'
             type="button" />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }

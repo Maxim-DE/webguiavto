@@ -195,7 +195,7 @@ function App() {
 
   const [calibState, setCalibState] = React.useState({
     isOpen: false,
-    data: {}
+    data: {},
   })
 
   const outputData_assignment = (output_name, output_data) => {
@@ -223,7 +223,8 @@ function App() {
         status_svg: output_obj,
       }))
 
-    } else if (output_name === 'GetLogErrorFull') {
+    } 
+    else if (output_name === 'GetLogErrorFull') {
       let status_state_copy = statusData;
       for (const key in output_data) {
         status_state_copy[key] = output_data[key];
@@ -231,6 +232,26 @@ function App() {
 
       setStatusData(status_state_copy)
 
+    } else if (output_name === 'SysLog') {
+      // const upd_obj = {
+      //   data: {
+      //     calib_misc: {
+      //       sys_log: output_data
+      //     }
+      //   }
+      // }
+
+      setCalibState(prevState => ({
+        ...prevState,
+        data: {
+          ...prevState.data,
+          calib_misc: {
+            ...prevState.data.calib_misc,
+            sys_log: output_data
+          }
+        }
+      }))
+      
     } else if (output_name === 'calibration') {
       setCalibState(prevState => ({
         ...prevState,
