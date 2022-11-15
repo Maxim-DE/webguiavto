@@ -133,6 +133,10 @@ select {
   transition: background-color 0.6s, transform 0.1s;
 }
 
+.button_input svg {
+  pointer-events: none;
+}
+
 .button_input:hover {
   background: #cdd9df;
 }

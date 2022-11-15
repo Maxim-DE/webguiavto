@@ -82,6 +82,10 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
 
   // }, [data])
 
+  const handleModalClose = (event) => {
+    setIsOpen(false)
+  }
+
   const refreshHandler = () => {
     setFullLogData([])
     getFullLog()
@@ -141,7 +145,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
         {isOpen &&
           <ModalCalib
           header='полный журнал'
-          setIsOpen={setIsOpen}
+          setIsOpen={handleModalClose}
           class='full_log_modal'>
              <>
               <div className="logs_header">

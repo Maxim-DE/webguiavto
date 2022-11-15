@@ -1,0 +1,20 @@
+.sys_log_modal {
+  width: 825px;
+}
+
+.sys_log_modal .log_list {
+  overflow: hidden;
+}
+
+.sys_log_links .active_link {
+  background: #E0E7EB;
+}
+
+.sys_log_buttons {
+  justify-content: space-between;
+}
+
+.sys_log_buttons {
+  display: flex;
+  column-gap: 11px;
+}

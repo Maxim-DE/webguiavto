@@ -10,7 +10,7 @@ import FormInput from '../form_input'
 function ModalCalib(props) {
 
   const handleClose = () => {
-    props.setIsOpen(false)
+    props.setIsOpen()
   }
 
   return (

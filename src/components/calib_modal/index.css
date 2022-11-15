@@ -1,0 +1,7 @@
+.modal_footer {
+  display: flex;
+  margin-top: 24px;
+  /* column-gap: 11px; */
+  align-items: center;
+  align-content: center;
+}

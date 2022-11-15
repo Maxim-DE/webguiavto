@@ -8,6 +8,9 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 4.2%;
+  padding-right: 4.2%;
+  column-gap: 4.2%;
 }
 
 .logs_header > span {
@@ -23,18 +26,17 @@
 
 .header_num,
 .log_num {
-  margin-left: 4.2%;
-  width: 9.2%;
+  width: 6.2%;
 }
 
 .header_message,
 .log_message {
-  width: 60%;
+  flex-grow: 1;
 }
 
 .header_time,
 .log_time {
-  width: 26.6%;
+  width: 208px;
 }
 
 .log_item {
@@ -47,6 +49,9 @@
 
   /* border-top: 1px #DFDFDF solid; */
   border-radius: 12px;
+  padding-left: 4.2%;
+  padding-right: 4.2%;
+  column-gap: 4.2%;
 }
 
 .log_divider {
