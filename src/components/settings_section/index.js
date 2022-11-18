@@ -27,8 +27,9 @@ function SettingsSection(props) {
       notifications: {
         good: 'none',
         bad: () => {
-          return 'Не удалось получить данные'
+          return `Ошибка, обновите страницу (${props.section_name})`
         }
+        
       },
     }
     props.updateHandler(request_obj);

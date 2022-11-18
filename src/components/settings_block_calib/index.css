@@ -1,3 +1,4 @@
+/* SYS_LOG MODAL STYLES */
 .sys_log_modal {
   width: 825px;
 }
@@ -17,4 +18,15 @@
 .sys_log_buttons {
   display: flex;
   column-gap: 11px;
+}
+
+/* HEX UPLOAD MODAL STYLES */
+.hex_upload_modal {
+  width: 464px;
+}
+.hex_upload_modal .hex_upload_zone {
+  margin-top: 20px;
+  height: 312px;
+  background: #E0E7EB;
+  border-radius: 12px;
 }

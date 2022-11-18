@@ -2,6 +2,7 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import Syslog_calib from './syslog_calib';
+import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
 
 function MiscCalibSettings(props) {
@@ -57,6 +58,50 @@ function MiscCalibSettings(props) {
 
   }
 
+  async function handleClick_postReq_test() {
+    let user = 'name:john;age:12';
+
+    // const request_obj = {
+    //   address: 'write_dump_memory',
+    //   fetch_opts: {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'text/plain',
+    //     },
+    //     body: user
+    //   },
+    //   notifications: {
+    //     good: 'default',
+    //     bad: 'default'
+    //   }
+    // }
+
+    // props.clickHandler(request_obj);
+
+    let response = await fetch('/write_dump_memory', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: user
+    });
+
+    let result = await response.text();
+    alert(result.message);
+
+    // let xhr = new XMLHttpRequest();
+
+    // let json = JSON.stringify({
+    //   name: "Вася",
+    //   surname: "Петров"
+    // });
+
+    // xhr.open("POST", 'http://192.168.1.114/write_dump_memory')
+    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    // xhr.send(json);
+
+  }
 
   return (
     <Settings_block_calib header={`прочее`}
@@ -86,6 +131,27 @@ function MiscCalibSettings(props) {
       <Syslog_calib
         updateHandler={props.clickHandler}
         logData={miscCalibState.sys_log} />
+      <li
+        key='test_post_req'
+        id='test_post_req'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`test_post_req_input`}
+            className="settings_itemLabel">
+            Проверка POST-запроса
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`test_post_req_input`}
+            name={`test_post_req`}
+            clickHandler={handleClick_postReq_test}
+            label='Отправить'
+            type="button" />
+        </div>
+      </li>
+      <Hex_upload />
       {/* <li
         key='delete_sys_logs_calib'
         id='delete_sys_logs_calib'
