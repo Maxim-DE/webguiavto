@@ -29,17 +29,6 @@ function MiscCalibSettings(props) {
 
   }, [props.calib_data])
 
-  // const handleChange = (event) => {
-  //   const target = event.target;
-  //   const value = target.value;
-  //   const name = target.name.replace('_calib', '');
-
-  //   setTempThresholdCalibState(prevState => ({
-  //     ...prevState,
-  //     [name]: value
-  //   }))
-  // }
-
   const handleClick_save = (event) => {
     const target = event.target,
           name = target.name.replace('_calib', ''),
@@ -61,23 +50,6 @@ function MiscCalibSettings(props) {
   async function handleClick_postReq_test() {
     let user = 'name:john;age:12';
 
-    // const request_obj = {
-    //   address: 'write_dump_memory',
-    //   fetch_opts: {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'text/plain',
-    //     },
-    //     body: user
-    //   },
-    //   notifications: {
-    //     good: 'default',
-    //     bad: 'default'
-    //   }
-    // }
-
-    // props.clickHandler(request_obj);
-
     let response = await fetch('/write_dump_memory', {
       method: 'POST',
       headers: {
@@ -88,19 +60,6 @@ function MiscCalibSettings(props) {
 
     let result = await response.text();
     alert(result.message);
-
-    // let xhr = new XMLHttpRequest();
-
-    // let json = JSON.stringify({
-    //   name: "Вася",
-    //   surname: "Петров"
-    // });
-
-    // xhr.open("POST", 'http://192.168.1.114/write_dump_memory')
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    // xhr.send(json);
-
   }
 
   return (
@@ -151,27 +110,8 @@ function MiscCalibSettings(props) {
             type="button" />
         </div>
       </li>
-      <Hex_upload />
-      {/* <li
-        key='delete_sys_logs_calib'
-        id='delete_sys_logs_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`delete_sys_logs_calib_input`}
-            className="settings_itemLabel">
-            Удалить системный журнал
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`delete_sys_logs_calib_save`}
-            name={`delete_sys_logs_calib_calib`}
-            clickHandler={handleClick_save}
-            label='Удалить'
-            type="button" />
-        </div>
-      </li> */}
+      <Hex_upload
+        updateHandler={props.clickHandler} />
     </Settings_block_calib>
   )
 }

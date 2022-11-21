@@ -17,17 +17,19 @@ function ModalCalib(props) {
     <>
     <div 
       className='darkBG'
-      onClick={handleClose} />
+      onClick={props.user_controllable && handleClose} />
     <div className='centered'>
       <div className={`modal ${props.class}`}>
         <div className="modal_header">
           <h3>{props.header}</h3>
         </div>
-        <button 
-          className='closeBtn'
-          onClick={handleClose}>
-          <IoMdClose style={{ marginBottom: "-3px" }} />
-        </button>
+        {props.user_controllable &&
+          <button 
+            className='closeBtn'
+            onClick={handleClose}>
+            <IoMdClose style={{ marginBottom: "-3px" }} />
+          </button>
+        }
         {props.children}
       </div>
     </div>
