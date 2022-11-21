@@ -48,6 +48,8 @@ function Hex_upload(props) {
       })
 
       hex_dropzone.on('error', (file, message) => {
+        const xhr_response_obj = file.xhr
+        console.log(xhr_response_obj);
         setIsUploading(false)
         setIsUploadModalOpen(false)
         toast.error(`Ошибка загрузки`, { autoClose: 1500 })
