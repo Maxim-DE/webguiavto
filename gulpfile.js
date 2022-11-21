@@ -41,19 +41,27 @@ function delete_http() {
 
 function add_gz_to_filename() {
 
-  let filenames_gz = [
-    'build/static/js/*.js',
-    'build/static/css/*.css',
-  ]
+  let filenames_gz = []
 
   return src(['build/index.html'])
     .pipe(replace(/\/static\/css\/main\..{1,}\.css/g, function handleReplace(match) {
-      return match + '.gz'
+      const match_gz = match + '.gz'
+      filenames_gz.push(match_gz)
+      console.log(match_gz);
+      console.log(filenames_gz);
+      return match_gz
     }))
     .pipe(replace(/\/static\/js\/main\..{1,}\.js/g, function handleReplace(match) {
-      return match + '.gz'
+      const match_gz = match + '.gz'
+      filenames_gz.push(match_gz)
+      console.log(match_gz);
+      console.log(filenames_gz);
+      return match_gz
     }))
-    .pipe(dest('build/'))
+    .pipe(replace('<script defer="defer" src="/static/js/main.481026e7.js.gz"></script><link href="/static/css/main.5ce765c0.css.gz" rel="stylesheet">', ''))
+    .pipe(replace('react_css_build', '/static/css/main.5ce765c0.css.gz'))
+    .pipe(replace('react_js_build', '/static/js/main.481026e7.js.gz'))
+    .pipe(dest('build/')) 
 
 }
 

@@ -39,12 +39,34 @@
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
-
+      
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
+        
+        To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    async function create_script_element(src) {
+      let script = document.createElement('script');
+      script.src = src;
+      document.body.append(script);
+      script.onload = function () {
+        return Promise.resolve('done');
+      };
+    }
+    async function defer_resourse_load () {
+      const resource_list = [
+        'react_js_build',
+        'react_css_build',
+      ]
+      for (let index = 0; index < resource_list.length; index++) {
+        const defer_item_resove = await create_script_element(resource_list[index]);
+        console.log(defer_item_resove);
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", defer_resourse_load());
+  </script>
 </html>
