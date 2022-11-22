@@ -47,26 +47,87 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-  <script>
-    async function create_script_element(src) {
+  <!-- defer_load_script
+    <script>
+    async function create_script_element(content) {
       let script = document.createElement('script');
-      script.src = src;
-      document.body.append(script);
+      script.innerHTML = content;
       script.onload = function () {
-        return Promise.resolve('done');
+        console.log('js loaded!');
       };
+      return script
     }
-    async function defer_resourse_load () {
-      const resource_list = [
-        'react_js_build',
-        'react_css_build',
-      ]
-      for (let index = 0; index < resource_list.length; index++) {
-        const defer_item_resove = await create_script_element(resource_list[index]);
-        console.log(defer_item_resove);
+
+    async function create_css_element(content) {
+      let css = document.createElement('style');
+      css.innerHTML = content;
+      css.onload = function () {
+        console.log('css loaded!');
+      };
+      return css
+    }
+
+    async function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function fetch_resource({src, retry_count}) {
+      try {
+        let response = await fetch(src);
+        let content = await response.text()
+        return content;
+
+      } catch (error) {
+        if (retry_count <= 1) return error;
+        await sleep(100);
+        return await fetch_resource({ src, retry_count: retry_count - 1 });
       }
     }
     
-    document.addEventListener("DOMContentLoaded", defer_resourse_load());
+    async function form_resource_tag (resource) {
+      let tag_instance;
+      let tag_content = await fetch_resource(resource)
+      console.log(typeof tag_content);
+      if (tag_content instanceof Error) {
+        return `Cannot mount resource '${resource.type}' with URL '${resource.url}': ${tag_content.message}`
+      }
+
+      switch (resource.type) {
+        case 'script':
+          tag_instance = await create_script_element(tag_content)
+          document.body.append(tag_instance)
+          break;
+        
+        case 'link/css':
+          tag_instance = await create_css_element(tag_content)
+          document.head.append(tag_instance)
+          break;
+
+        default:
+          break;
+      }
+
+
+      return `Resource '${resource.type}' with URL '${resource.url}' is mounted`
+    }
+
+    async function defer_resourse_load () {
+
+      const resource_list = [
+        {src: 'react_js_build', type: 'script', retry_count: 3},
+        {src: 'react_css_build', type: 'link/css', retry_count: 3 },
+      ]
+
+      for (let index = 0; index < resource_list.length; index++) {
+        const resource = resource_list[index];
+        const resource_mount_response = await form_resource_tag(resource)
+        console.log(resource_mount_response);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+      defer_resourse_load()
+    });
   </script>
+  defer_load_script -->
 </html>

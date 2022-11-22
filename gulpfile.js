@@ -39,26 +39,19 @@ function delete_http() {
   .pipe(dest('src/'))
 }
 
+function delete_defer_load_comment() {
+  return src(['public/index.html'])
+  .pipe(replace('<!-- defer_load_script', ''))
+  .pipe(replace('defer_load_script -->', ''))
+  .pipe(dest('public/'))
+}
+
 function add_gz_to_filename() {
 
   let filenames_gz = []
 
   return src(['build/index.html'])
-    .pipe(replace(/\/static\/css\/main\..{1,}\.css/g, function handleReplace(match) {
-      const match_gz = match + '.gz'
-      filenames_gz.push(match_gz)
-      console.log(match_gz);
-      console.log(filenames_gz);
-      return match_gz
-    }))
-    .pipe(replace(/\/static\/js\/main\..{1,}\.js/g, function handleReplace(match) {
-      const match_gz = match + '.gz'
-      filenames_gz.push(match_gz)
-      console.log(match_gz);
-      console.log(filenames_gz);
-      return match_gz
-    }))
-    .pipe(replace('<script defer="defer" src="/static/js/main.481026e7.js.gz"></script><link href="/static/css/main.5ce765c0.css.gz" rel="stylesheet">', ''))
+    .pipe(replace('<script defer="defer" src="/static/js/main.481026e7.js"></script><link href="/static/css/main.5ce765c0.css" rel="stylesheet">', ''))
     .pipe(replace('react_css_build', '/static/css/main.5ce765c0.css.gz'))
     .pipe(replace('react_js_build', '/static/js/main.481026e7.js.gz'))
     .pipe(dest('build/')) 
@@ -74,8 +67,10 @@ function copy_mib_file() {
 exports.build_gzip = build_gzip;
 exports.delete_raw_files = delete_raw_files;
 exports.delete_http = delete_http;
+exports.delete_defer_load_comment = delete_defer_load_comment;
 exports.add_gz_to_filename = add_gz_to_filename;
 exports.copy_mib_file = copy_mib_file;
 exports.graph_svg_min = graph_svg_min;
 
+exports.pre_build_preparation = series(delete_http, delete_defer_load_comment)
 exports.full_gzip_build = series(copy_mib_file, build_gzip, delete_raw_files, add_gz_to_filename)
