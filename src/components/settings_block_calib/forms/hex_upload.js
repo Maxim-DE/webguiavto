@@ -17,7 +17,7 @@ function Hex_upload(props) {
       let hex_dropzone = new Dropzone(hex_dropzone_ref.current, {
         url: '/write_dump_memory',
         chunking: true,
-        chunkSize: 1.5 * 1024,
+        chunkSize: 1024,
         parallelUploads: 1,
         forceChunking: true,
         retryChunks: true,
