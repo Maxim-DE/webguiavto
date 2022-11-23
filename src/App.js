@@ -305,9 +305,9 @@ function App() {
             const host = ""
             const query = request.address;
             const data = request.data ? `?${request.data}` : '';
-            const url = `${host}/${query}${data}`;
+            const url = `http://192.168.1.114${host}/${query}${data}`;
       
-            const test_url = "/GetDebug.CGI"
+            const test_url = "http://192.168.1.114/GetDebug.CGI"
 
             console.log(url);
             let responseClone;

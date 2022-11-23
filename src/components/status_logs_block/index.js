@@ -146,6 +146,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
           <ModalCalib
           header='полный журнал'
           setIsOpen={handleModalClose}
+          user_controllable={true}
           class='full_log_modal'>
              <>
               <div className="logs_header">

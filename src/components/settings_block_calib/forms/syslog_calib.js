@@ -282,6 +282,7 @@ function Syslog_calib(props) {
       <ModalCalib
         header='системный журнал'
         setIsOpen={handleModalClose}
+        user_controllable={true}
         class='full_log_modal sys_log_modal'>
         <>
           <div className="logs_header">
