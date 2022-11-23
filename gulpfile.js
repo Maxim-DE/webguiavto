@@ -51,9 +51,28 @@ function add_gz_to_filename() {
   let filenames_gz = []
 
   return src(['build/index.html'])
-    .pipe(replace('<script defer="defer" src="/static/js/main.481026e7.js"></script><link href="/static/css/main.5ce765c0.css" rel="stylesheet">', ''))
-    .pipe(replace('react_css_build', '/static/css/main.5ce765c0.css.gz'))
-    .pipe(replace('react_js_build', '/static/js/main.481026e7.js.gz'))
+    .pipe(replace(/<link href="\/static\/css\/main\..{1,}\.css" rel="stylesheet">/g, (match) => {
+      const regex = /\/static\/css\/main\..{1,}\.css/g
+      const regex_match = match.match(regex)[0]
+      const match_gz = regex_match + '.gz'
+      filenames_gz.push(match_gz)
+      return ''
+    }))
+    .pipe(replace(/<script defer="defer" src="\/static\/js\/main\..{1,}\.js"><\/script>/g, (match) => {
+      const regex = /\/static\/js\/main\..{1,}\.js/g
+      const regex_match = match.match(regex)[0]
+      const match_gz = regex_match + '.gz'
+      filenames_gz.push(match_gz)
+      return ''
+    }))
+    .pipe(replace('react_css_build', (match) => {
+      console.log(filenames_gz);
+      return filenames_gz[0]
+    }))
+    .pipe(replace('react_js_build', (match) => {
+      console.log(filenames_gz);
+      return filenames_gz[1]
+    }))
     .pipe(dest('build/')) 
 
 }
