@@ -26,7 +26,8 @@ function ModalCalib(props) {
         {props.user_controllable &&
           <button 
             className='closeBtn'
-            onClick={handleClose}>
+            onClick={handleClose}
+            type='button'>
             <IoMdClose style={{ marginBottom: "-3px" }} />
           </button>
         }

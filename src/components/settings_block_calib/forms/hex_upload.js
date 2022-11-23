@@ -12,13 +12,14 @@ function Hex_upload(props) {
   const [uploadProgress, setUploadProgress] = React.useState({
     progress: 0
   });
-  const hex_dropzone_ref = React.useRef(null)
 
+  const hex_dropzone_ref = React.useRef(null)
+  const hex_dropzone_instance = React.useRef(null)
+
+  
   React.useEffect(() => {
-    console.dir(hex_dropzone_ref.current);
-    if (hex_dropzone_ref.current != null &&
-        !hex_dropzone_ref.current.dropzone) {
-      let hex_dropzone = new Dropzone(hex_dropzone_ref.current, {
+    if (!hex_dropzone_instance.current) {
+      hex_dropzone_instance.current = new Dropzone(hex_dropzone_ref.current, {
         url: '/write_dump_memory',
         chunking: true,
         chunkSize: 1.5 * 1024,
@@ -27,56 +28,69 @@ function Hex_upload(props) {
         retryChunks: true,
         retryChunksLimit: 2
       });
-
-      hex_dropzone.on('addedfile', file => {
+  
+      hex_dropzone_instance.current.on('addedfile', file => {
         setIsUploading(true)
-        setIsUploadModalOpen(true)
       })
-
-      hex_dropzone.on('uploadprogress', (file, progress, bytesSent) => {
-        console.log(progress);
+  
+      hex_dropzone_instance.current.on('uploadprogress', (file, progress, bytesSent) => {
+        let progress_rounded = progress.toFixed()
+        console.log(progress_rounded);
         
         setUploadProgress({
-          progress: progress,
+          progress: progress_rounded,
         })
       })
-
-      hex_dropzone.on('success', file => {
+  
+      hex_dropzone_instance.current.on('success', file => {
         setIsUploading(false)
-        setIsUploadModalOpen(false)
+        setUploadProgress({
+          progress: 0,
+        })
         toast.success(`Успешно загружено`, { autoClose: 1500 })
       })
-
-      hex_dropzone.on('error', (file, message) => {
+  
+      hex_dropzone_instance.current.on('error', (file, message) => {
         const xhr_response_obj = file.xhr
         console.log(xhr_response_obj);
         setIsUploading(false)
-        setIsUploadModalOpen(false)
+        setUploadProgress({
+          progress: 0,
+        })
         toast.error(`Ошибка загрузки`, { autoClose: 1500 })
       })
+  
+      console.warn('dropzone created successfully');
     }
-  }, [hex_dropzone_ref.current])
+  }, [])
 
   React.useEffect(() => {
-    console.log(isUploading);
     let request_obj
 
     if (isUploading) {
+      setIsUploadModalOpen(true)
       request_obj = {
         action: 'block_queue'
       }
+
     } else {
+      setIsUploadModalOpen(false)
       request_obj = {
         action: 'unblock_queue'
       }
     }
     
-
     props.updateHandler(request_obj)
   }, [isUploading])
 
+
+
   const handleModalClose = () => {
-    setIsUploadModalOpen(false)
+    setIsUploading(false)
+    
+    if (hex_dropzone_ref.current.dropzone) {
+      hex_dropzone_instance.current.removeAllFiles(true)
+    }
   }
 
   return (
@@ -93,28 +107,20 @@ function Hex_upload(props) {
         </label>
       </div>
       <div className='item_input'>
-        {isUploading ? 
-          <PulseLoader
-            color="#bbcacf"
-            loading
-            margin={6}
-            size={9}
-            speedMultiplier={0.5}
-          /> :
-          <input
-            id="hex_upload_zone"
-            name='file'
-            ref={hex_dropzone_ref}
-            className={`button_input`}
-            type="button"
-            value='Открыть файл' />
-        }
+        <input
+          id="hex_upload_zone"
+          name='file'
+          ref={hex_dropzone_ref}
+          className={`button_input`}
+          type="button"
+          value='Открыть файл' />
       </div>
     </li>
     {isUploadModalOpen &&
       <ModalCalib
         header='загрузка hex-прошивки'
         setIsOpen={handleModalClose}
+        user_controllable={true}
         class='full_log_modal hex_upload_modal'>
         <div className='hex_upload_message_wrap'>
           <PulseLoader
@@ -130,6 +136,12 @@ function Hex_upload(props) {
           <span className='hex_upload_upload_message'>
             Идет загрузка прошивки... Пожалуйста, не перезагружайте страницу во время процесса.
           </span>
+          <FormInput
+            id={`cancel_hex_upload_input`}
+            name={`cancel_hex_upload`}
+            clickHandler={handleModalClose}
+            label='Отменить загрузку'
+            type="button" />
         </div>
         
       </ModalCalib>}
