@@ -165,6 +165,7 @@ function App() {
 
 
   const [requestPool, setRequestPool] = React.useState({
+    state: 'active',
     pool: [],
     error_pool: [],
   })
@@ -401,15 +402,14 @@ function App() {
                 }
               })
 
-          }, 150 * k);
+          }, 300 * k);
   
           if (k == last_index) {
-            setRequestPool({
+            setRequestPool(prevState => ({
+              ...prevState,
               pool: []
-            });
-  
+            }) );
             console.log('done');
-            
           }
   
         });
@@ -421,10 +421,34 @@ function App() {
 
   const nav_ref = React.useRef()
 
-  const handlePoolUpdate = (requestData) => {   
-    setRequestPool(prevState => ({
-      pool: prevState.pool.concat(requestData),
-    }))
+  const handlePoolUpdate = (requestData) => {
+    if (requestData.action) {
+      switch (requestData.action) {
+        case 'block_queue':
+          setRequestPool(prevState => ({
+            ...prevState,
+            state: 'blocked'
+          }))
+          return;
+          
+        case 'unblock_queue':
+          setRequestPool(prevState => ({
+            ...prevState,
+            state: 'active'
+          }))
+          return;
+
+        default:
+          break;
+      }
+    }   
+
+    if (requestPool.state == 'active') {
+      setRequestPool(prevState => ({
+        ...prevState,
+        pool: prevState.pool.concat(requestData),
+      })) 
+    }
 
   }
 
