@@ -10,6 +10,7 @@ import { showErrorMessage, showSuccessMessage } from './components/notifications
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
+import { async_Fetch_queue } from './logic/request_logic';
 
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
@@ -200,11 +201,13 @@ function App() {
   })
 
   const outputData_assignment = (output_name, output_data) => {
+
     if (output_name === 'peripheral_structure') {
       setPeripheralData(prevState => ({
         ...prevState,
         structure: output_data[`structure`],
       }))
+
     } else if (/^status/.test(output_name)) {
       let status_state_copy = statusData;
       for (const key in output_data) {
@@ -213,6 +216,7 @@ function App() {
       setStatusData(status_state_copy)
 
     } else if (/media\/status_graph/gi.test(output_name)) {
+
       let status_state_copy = statusData;
       let output_obj = {
         img: output_data
@@ -224,8 +228,8 @@ function App() {
         status_svg: output_obj,
       }))
 
-    } 
-    else if (output_name === 'GetLogErrorFull') {
+    } else if (output_name === 'GetLogErrorFull') {
+
       let status_state_copy = statusData;
       for (const key in output_data) {
         status_state_copy[key] = output_data[key];
@@ -234,14 +238,6 @@ function App() {
       setStatusData(status_state_copy)
 
     } else if (output_name === 'SysLog') {
-      // const upd_obj = {
-      //   data: {
-      //     calib_misc: {
-      //       sys_log: output_data
-      //     }
-      //   }
-      // }
-
       setCalibState(prevState => ({
         ...prevState,
         data: {
@@ -287,137 +283,84 @@ function App() {
 
   React.useEffect(() => {
     clearTimeout(debounceTimer);
-    
     if (requestPool.pool.length > 0) {
-
       debounceTimer = setTimeout(() => {
-        const pool_state = requestPool.pool;
-        console.log('cached pool state');
-        console.log(pool_state);
-          
-        pool_state.forEach((request, k) => {
-          const last_index = pool_state.length - 1;
-          
-          setTimeout(() => {
-            console.log('do do' + k);
-            console.log(request);
-            
-            const host = ""
-            const query = request.address;
-            const data = request.data ? `?${request.data}` : '';
-            const url = `http://192.168.1.114${host}/${query}${data}`;
-      
-            const test_url = "http://192.168.1.114/GetDebug.CGI"
+        const async_queue_processing = async (queue_arr) => {
+          let queue_resp = await async_Fetch_queue(queue_arr)
 
-            console.log(url);
-            let responseClone;
+          for (let index = 0; index < queue_resp.length; index++) {
+            const req_queue_data = queue_arr[index]
+            const req_resp = queue_resp[index]
+            const resp_status = req_resp.status
 
-            fetch(url)
-
-            .then(res => {
-              responseClone = res.clone();
-              return res.json();
-            })
-
-            .then(
-              (result) => {
-                console.log('harosh');
-                if (request.notifications) {
-                  if (request.notifications.good == 'default') {
-                    // showSuccessMessage("", 'Успешно', 1500);
-                    if (Object.hasOwn(result, 'Notific')) {
-                      const message = `${result.Notific.text} (${request.address.replace('.cgi', '')})`,
-                            status = result.Notific.status
-
+            if (req_queue_data.notifications) {
+              switch (resp_status) {
+                case 'success':
+                  if (req_queue_data.notifications.good == 'default') {
+                    if (Object.hasOwn(req_resp.data, 'Notific')) {
+                      const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
+                            status = req_resp.data.Notific.status
+    
                       switch (status) {
                         case 'ok':
-                          toast.success(message, {autoClose: 1500})
+                          toast.success(message, { autoClose: 1500 })
                           break;
-
+    
                         case 'error':
                           toast.error(message, { autoClose: 1500 })
                           break;
-                      
+    
                         default:
                           break;
                       }
-                    } else {
-                      toast.success(`Успешно (${request.address.replace('.cgi', '')})`, { autoClose: 1500 })
                     }
-                  } 
-                }
-                if (Object.keys(result).length == 1 &&
-                    Object.hasOwn(result, 'STATUS')) {
-
-                  return
-                    
-                } else {
-                  console.log(this);
-                  let request_name = request.address.replace('.cgi', '')
-                  request_name = request_name.replace('set_', '')
-                  outputData_assignment(request_name, result);
-                }
-
-                console.dir(result);
-                
-              },
-
-              (error) => {
-                console.log(error.message);
-                console.log(responseClone);
-                if (request.type) {
-                  switch (request.type) {
-                    case 'text':
-                      responseClone.text()
-                      .then(
-                        (resText) => {
-                          // console.log(resText);
-                          let request_name = request.address.replace('.cgi', '')
-                          request_name = request_name.replace('set_', '')
-                          outputData_assignment(request_name, resText);
-                        },
-                        (errText) => {
-                          if (request.notifications) {
-                            if (request.notifications.bad == 'default') {
-                              toast.error(`Ошибка (${request.address.replace('.cgi', '')})`, { autoClose: 1500 })
-                              // showErrorMessage("", 'Ошибка', 1500);
-                            }
-                          }
-                        }
-                      )
-                      break;
+                  } else {
+                    toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
+                  }
                   
-                    default:
-                      break;
-                  }
-                } else {
-                  if (request.notifications) {
-                    if (request.notifications.bad == 'default') {
-                      toast.error(`Ошибка (${request.address.replace('.cgi', '')})`, { autoClose: 1500 })
-                      // showErrorMessage("", 'Ошибка', 1500);
+                  break;
+
+                case 'error':
+                  if (req_queue_data.notifications) {
+                    if (req_queue_data.notifications.bad == 'default') {
+                      toast.error(`Ошибка (${req_resp.name})`, { autoClose: 1500 })
                     } else {
-                      toast.error(request.notifications.bad, { autoClose: 1500 })
+                      toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                     }
                   }
-                }
-              })
 
-          }, 300 * k);
-  
-          if (k == last_index) {
-            setRequestPool(prevState => ({
-              ...prevState,
-              pool: []
-            }) );
-            console.log('done');
+                  break;
+              
+                default:
+                  break;
+              }
+            }
+
+            if (Object.keys(req_resp.data).length == 1 &&
+                Object.hasOwn(req_resp.data, 'STATUS')) {
+                  return
+            }
+
+            if (resp_status == 'success') {
+              let request_name = req_resp.name,
+                  req_data = req_resp.data  
+              outputData_assignment(request_name, req_data);
+            }
           }
-  
-        });
+        }
+
+        let queue = requestPool.pool
+        async_queue_processing(queue)
+
+        setRequestPool(prevState => ({
+          ...prevState,
+          pool: []
+        }));
       }, 200)
     }
 
     console.log(logo)
-  }, [requestPool.pool])
+  }, [requestPool.active_pool])
 
   const nav_ref = React.useRef()
 
