@@ -360,7 +360,7 @@ function App() {
     }
 
     console.log(logo)
-  }, [requestPool.active_pool])
+  }, [requestPool.pool])
 
   const nav_ref = React.useRef()
 
