@@ -6,7 +6,7 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './components/notifications/index.css'
 
-import { showErrorMessage, showSuccessMessage } from './components/notifications/notifications_utilites';
+import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
@@ -391,6 +391,13 @@ function App() {
         ...prevState,
         pool: prevState.pool.concat(requestData),
       })) 
+    } else if (requestPool.state == 'blocked') {
+      
+      if (requestData.address == "status") {
+        return
+      }
+
+      showInfoMessage(`Дождитесь завершения предыдуших запросов`, { autoClose: 1500 })
     }
 
   }
