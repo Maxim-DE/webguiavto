@@ -3,6 +3,28 @@ function sectionData_format(state, section_name, data) {
   state[section_name] = data_entries;
 }
 
+function dataArray_to_string(data_array) {
+  let block_data = data_array;
+  let data_string = '';
+
+  for (const key in block_data) {
+    if (block_data[key].length === 0) {
+      data_string += `${key}$NULL;`
+
+      // setBlockData(prevState => ({
+      //   ...prevState,
+      //   [key]: ''
+      // }));
+
+      continue
+    }
+
+    data_string += `${key}$${block_data[key]};`
+  }
+
+  return data_string
+}
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -85,4 +107,4 @@ const async_Fetch_queue = async (queue_arr) => {
   return queue_response;
 }
 
-export {sectionData_format, async_Fetch_queue}
+export { sectionData_format, async_Fetch_queue, dataArray_to_string }

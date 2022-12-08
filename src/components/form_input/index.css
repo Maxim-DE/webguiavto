@@ -129,7 +129,8 @@ select {
   cursor: pointer;
 }
 
-.button_input {
+.button_input,
+.save_form_button {
   transition: background-color 0.6s, transform 0.1s;
 }
 
@@ -137,11 +138,13 @@ select {
   pointer-events: none;
 }
 
-.button_input:hover {
+.button_input:hover,
+.save_form_button:hover {
   background: #cdd9df;
 }
 
-.button_input:active {
+.button_input:active,
+.save_form_button:active {
   /* transform: translateY(1px); */
   transform: scale(96%);
 }
