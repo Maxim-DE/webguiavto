@@ -80,6 +80,7 @@ const async_Fetch_queue = async (queue_arr) => {
   for (let i = 0; i < queue_arr.length; i++) {
     let req_data = await fetch_data(queue_arr[i])
     queue_response.push(req_data)
+    await sleep(100);
   }
 
   return queue_response;

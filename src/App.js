@@ -313,10 +313,10 @@ function App() {
                         default:
                           break;
                       }
+                    } else {
+                      toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
                     }
-                  } else {
-                    toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
-                  }
+                  } 
                   
                   break;
 

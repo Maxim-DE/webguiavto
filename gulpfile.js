@@ -33,10 +33,10 @@ function delete_raw_files() {
 }
 
 function delete_http() {
-  return src(['src/App.js'])
+  return src(['src/logic/request_logic.js'])
   .pipe(replace('192.168.1.114', ''))
   .pipe(replace('http://', ''))
-  .pipe(dest('src/'))
+  .pipe(dest('src/logic'))
 }
 
 function delete_defer_load_comment() {

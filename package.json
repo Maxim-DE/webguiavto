@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "build": "npx gulp pre_build_preparation && npm run build:react && npm run build:archive",
     "build:react": "react-scripts build && npx gulp full_gzip_build",
-    "build:archive": "mkdir build_arch || find build -type f | cpio -o > build_arch.cpio && mv build_arch.cpio build_arch",
+    "build:archive": "./archive.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
