@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from './logo.png';
 
 import './App.css';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './components/notifications/index.css'
+
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -19,6 +20,8 @@ import CalibSection from './components/calib_section';
 import SettingsSection from "./components/settings_section"
 
 import CalibLogButton from './components/calib_log_button';
+
+import useGlobalStore from './logic/auth_store';
 
 const status_settings_item = [
   { id: 'device_supply_switch', name: "Питание передатчика", type: "switch" },
@@ -171,6 +174,8 @@ function App() {
     error_pool: [],
   })
   
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
+
   const [statusData, setStatusData] = React.useState({
     status_info: null,
     status_graph: null,
@@ -195,10 +200,12 @@ function App() {
     structure: [],
   })
 
+
   const [calibState, setCalibState] = React.useState({
     isOpen: false,
     data: {},
   })
+
 
   const outputData_assignment = (output_name, output_data) => {
 
@@ -254,6 +261,14 @@ function App() {
         ...prevState,
         data: output_data
       }))
+
+    } else if (output_name === 'calib_passw') {
+
+      authGlobalActions.set_is_auth(true)
+      authGlobalActions.set_auth_level(2)
+
+      // store.login()
+      // store.set_auth_level(2)
 
     } else {
       let output_data_copy
@@ -362,6 +377,18 @@ function App() {
     console.log(logo)
   }, [requestPool.pool])
 
+  React.useEffect(() => {
+    if (sectionData.info) {
+      if (!Object.hasOwn(sectionData.info, 'auth_info')) {
+        return
+      } 
+      // store.set_auth_level('0')
+
+      const auth_info = sectionData.info.auth_info
+      // store.set_auth_level(auth_info.level)
+    }
+  }, [sectionData.info])
+
   const nav_ref = React.useRef()
 
   const handlePoolUpdate = (requestData) => {
@@ -450,26 +477,31 @@ function App() {
               full_logs_data={statusData.status_full_logs}
               settings_data={statusData.status_settings}
               device_type={sectionData.info ? sectionData.info.info_general.type : ''} />
-              
-              {
-                settings_map.map(item => (
-                  <SettingsSection
-                    key={item.section_id}
-                    section_name={item.section_id}
-                    section_header={item.section_name}
-                    blocks={item.section_blocks}
-                    updateHandler={handlePoolUpdate}
-                    section_data={sectionData[item.section_id]}
-                  />
-                  ))
-              }
+
+            {authGlobalState.auth_access.settings &&
+              settings_map.map(item => (
+                <SettingsSection
+                  key={item.section_id}
+                  section_name={item.section_id}
+                  section_header={item.section_name}
+                  blocks={item.section_blocks}
+                  updateHandler={handlePoolUpdate}
+                  section_data={sectionData[item.section_id]}
+                />
+                ))
+                
+            }
+            
             {!!statusData.calib_available &&
+             authGlobalState.auth_access.calib &&
+             
               <CalibSection section_name="calibration"
                             section_header="калибровка"
                             section_data={calibState.data}
                             updateHandler={handlePoolUpdate}
                             adc_data={statusData.calib_adc} />
             }
+              
           </main>
         </div>
       </div>

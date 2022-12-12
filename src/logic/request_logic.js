@@ -22,7 +22,7 @@ async function fetch_data(req_obj) {
   const request = req_obj;
   const query = request.address;
   const data = request.data ? `?${request.data}` : '';
-  const url = `http://192.168.1.114${host}/${query}${data}`;
+  const url = `http://192.168.1.9${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
   const test_url = "http://192.168.1.114/GetDebug.CGI"

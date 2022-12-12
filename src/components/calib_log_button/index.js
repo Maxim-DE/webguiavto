@@ -62,6 +62,7 @@ const CalibLogButton = (props) => {
 		{isOpen &&
 		<ModalCalib
 			header={`авторизация`}
+			user_controllable={true}
 			setIsOpen = {setIsOpen}>
 				<ul className="settings_list">
 					<li
