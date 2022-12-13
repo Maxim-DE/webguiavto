@@ -107,7 +107,7 @@ const CalibLogButton = (props) => {
 						<FormInput
 							id={`calib_password_input`}
 							name={`password`}
-							type={`text`}
+							type={`password`}
 							changeHandler={changeHandler}
 							input_value={calibPassw.password}
 						/>

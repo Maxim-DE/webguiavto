@@ -69,7 +69,18 @@ function FormInput(props) {
         style={props.style}
       />
     )
-  } 
+  } else if (props.type == "password") {
+    return (
+      <input
+        id={props.id}
+        name={props.name}
+        type="password"
+        onChange={changeHandler}
+        value={props.input_value}
+        style={props.style}
+      />
+    )
+  }
   else if (props.type == "checkbox") {
     return (
       <input

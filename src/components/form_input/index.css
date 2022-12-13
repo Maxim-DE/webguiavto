@@ -161,7 +161,8 @@ select {
 }
 
 /* TEXT STYLES */
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   max-width: 160px;
   height: 24px;
 
