@@ -373,8 +373,6 @@ function App() {
         }));
       }, 200)
     }
-
-    console.log(logo)
   }, [requestPool.pool])
 
   React.useEffect(() => {
@@ -388,6 +386,22 @@ function App() {
       // store.set_auth_level(auth_info.level)
     }
   }, [sectionData.info])
+
+  React.useEffect(() => {
+
+    let request_obj = {
+      address: `info.cgi`,
+      notifications: {
+        good: 'none',
+        bad: () => {
+          return `Ошибка, обновите страницу (info)`
+        }
+      },
+    }
+
+    handlePoolUpdate(request_obj);
+
+  }, [])
 
   const nav_ref = React.useRef()
 
@@ -463,7 +477,8 @@ function App() {
             <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} №${sectionData.info.info_general.serial_number}` :
                                     '...'}</h1>
             <CalibLogButton 
-              updateHandler = {handlePoolUpdate}/>
+              updateHandler = {handlePoolUpdate}
+              isAuthComplete = {authGlobalState.is_auth}/>
           </header>
           <main>
             <StatusSection

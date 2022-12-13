@@ -5,10 +5,14 @@ import Syslog_calib from './syslog_calib';
 import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
 
+import useGlobalStore from '../../../logic/auth_store';
+
 function MiscCalibSettings(props) {
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: []
   })
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (props.calib_data == undefined) {
@@ -67,29 +71,33 @@ function MiscCalibSettings(props) {
       settings_type={`misc_calib`}
       // save_handler={handleClick_save}
       >
-      <li
-        key='delete_userlogs_calib'
-        id='delete_user_logs_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`delete_user_logs_calib_input`}
-            className="settings_itemLabel">
-            Удалить пользовательский журнал
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`delete_user_logs_calib_save`}
-            name={`delete_user_logs_calib`}
-            clickHandler={handleClick_save}
-            label='Удалить'
-            type="button" />
-        </div>
-      </li>
-      <Syslog_calib
+      {authGlobalState.auth_access.calib_extend &&
+       <>
+        <Syslog_calib
         updateHandler={props.clickHandler}
         logData={miscCalibState.sys_log} />
+        <li
+          key='delete_userlogs_calib'
+          id='delete_user_logs_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`delete_user_logs_calib_input`}
+              className="settings_itemLabel">
+              Удалить пользовательский журнал
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`delete_user_logs_calib_save`}
+              name={`delete_user_logs_calib`}
+              clickHandler={handleClick_save}
+              label='Удалить'
+              type="button" />
+          </div>
+        </li>
+       </>
+      }
       <li
         key='test_post_req'
         id='test_post_req'

@@ -52,7 +52,12 @@ async function fetch_data(req_obj) {
       } else {
         req_data = await response.json()
       }
-      console.log(req_data);
+
+      if (Object.hasOwnProperty.call(req_data, 'Notific')) {
+        const req_status = req_data.Notific.status
+        if (req_status == 'error') throw new Error(req_data.Notific.text)
+      }
+
       resp_obj = {
         name: request_name,
         status: 'success',
@@ -62,8 +67,7 @@ async function fetch_data(req_obj) {
     }
   } catch (error) {
     const message = `An error has occured: ${error}`;
-    console.log(message);
-    console.dir(error)
+    console.error(message);
     resp_obj = {
       name: request_name,
       status: 'error',

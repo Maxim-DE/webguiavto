@@ -1,5 +1,5 @@
 import React from 'react'
-import useStore from 'use-global-hook'
+import globalHook from 'use-global-hook'
 
 const initial_store = {
   user_id : '',
@@ -8,6 +8,7 @@ const initial_store = {
     status: true,
     settings: false,
     calib: false,
+    calib_extend: false,
   }
 }
 
@@ -22,6 +23,7 @@ const actions = {
       status: false,
       settings: false,
       calib: false,
+      calib_extend: false,
     }
 
     switch (auth_level) {
@@ -39,6 +41,13 @@ const actions = {
         auth_access.settings = true
         auth_access.calib = true
         break
+
+      case 3:
+        auth_access.status = true
+        auth_access.settings = true
+        auth_access.calib = true
+        auth_access.calib_extend = true
+        break
     
       default:
         auth_access.status = true
@@ -49,6 +58,6 @@ const actions = {
   }
 }
 
-const useGlobalStore = useStore(initial_store, actions)
+const useGlobalStore = globalHook(initial_store, actions)
 
 export default useGlobalStore

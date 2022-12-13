@@ -9,6 +9,8 @@ import ModalCalib from '../calib_modal';
 
 import FormInput from '../form_input';
 
+import useGlobalStore from '../../logic/auth_store';
+
 const CalibLogButton = (props) => {
 
 	const [calibPassw, setCalibPassw] = React.useState({
@@ -16,7 +18,16 @@ const CalibLogButton = (props) => {
 		password: ''
 	})
 
+	const [authGlobalState, authGlobalActions] = useGlobalStore()
+
 	const [isOpen, setIsOpen] = React.useState(false);
+
+	React.useEffect(() => {
+		console.log(props.isAuthComplete);
+		if (props.isAuthComplete) {
+			setIsOpen(false)
+		} 
+	}, [props.isAuthComplete])
 
 	const clickHandler = (event) => {
 		event.stopPropagation();
@@ -34,6 +45,8 @@ const CalibLogButton = (props) => {
 	}
 
 	const saveHandler = () => {
+		authGlobalActions.set_is_auth(false)
+
 		const request_obj = {
       address: 'calib_passw.cgi',
       data: `login$${calibPassw.login};password$${calibPassw.password}`,

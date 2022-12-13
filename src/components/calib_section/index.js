@@ -5,6 +5,8 @@ import useFetch from '../hooks'
 
 import Settings_block_calib from '../settings_block_calib'
 
+import useGlobalStore from '../../logic/auth_store';
+
 import CurrentCalibSettings from '../settings_block_calib/forms/current_calib';
 import CurrentThresholdCalibSettings from '../settings_block_calib/forms/current_threshold_calib';
 import VoltageCalibSettings from '../settings_block_calib/forms/voltage_calib';
@@ -25,6 +27,8 @@ function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
     isLoading: false
   });
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (props.section_data) {
@@ -105,10 +109,13 @@ function CalibSection(props) {
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_misc : ''}
           clickHandler={handleClick} />
-        <SerialNumVersionCalibSettings
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_serialNum : ''}
-          clickHandler={handleClick} />
+
+        {authGlobalState.auth_access.calib_extend && 
+          <SerialNumVersionCalibSettings
+            calib_data={Object.keys(props.section_data).length != 0 ?
+              props.section_data.calib_serialNum : ''}
+            clickHandler={handleClick} />
+        }
       </div>
     </section>
   )
