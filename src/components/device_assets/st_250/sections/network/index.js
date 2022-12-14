@@ -39,21 +39,21 @@ export default function NetworkSettingsSection(props) {
       section_header="сетевые настройки">
       <Device_address
         section_name="network"
-        settings_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.device_address
-          : ''}
+        settings_data={props.section_data === 'null' ?
+          'null'
+          : props.section_data.device_adress}
         clickHandler={updateHandler} />
       <Remote_control
         section_name="network"
-        settings_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.remote_control
-          : ''}
+        settings_data={props.section_data === 'null' ?
+          'null'
+          : props.section_data.remote_control}
         clickHandler={updateHandler} />
       <Snmp_agent
         section_name="network"
-        settings_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.snmp_agent
-          : ''}
+        settings_data={props.section_data === 'null' ?
+          'null'
+          : props.section_data.snmp_agent}
         clickHandler={updateHandler} />
     </SettingsSectionWrap>
   )

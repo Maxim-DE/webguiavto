@@ -22,6 +22,8 @@ import CalibLogButton from './components/calib_log_button';
 
 import DeviceWrap_ST250 from './components/device_assets/st_250';
 
+import useGlobalStore from './logic/auth_store';
+
 const status_settings_item = [
   { id: 'device_supply_switch', name: "Питание передатчика", type: "switch" },
   // { id: 'rds_mode_switch', name: "Включить RDS", type: "switch" },
@@ -213,8 +215,8 @@ function App() {
             }
 
             if (Object.keys(req_resp.data).length == 1 &&
-                Object.hasOwn(req_resp.data, 'STATUS')) {
-                  return
+                Object.hasOwn(req_resp.data, 'Notific')) {
+                  continue
             }
 
             if (resp_status == 'success') {
@@ -264,8 +266,6 @@ function App() {
     handlePoolUpdate(request_obj);
 
   }, [])
-
-  const nav_ref = React.useRef()
 
   const handlePoolUpdate = (requestData) => {
     if (requestData.action) {
@@ -356,17 +356,9 @@ function App() {
               device_type={sectionData.info ? sectionData.info.info_general.type : ''} />
 
             {authGlobalState.auth_access.settings &&
-              settings_map.map(item => (
-                <SettingsSection
-                  key={item.section_id}
-                  section_name={item.section_id}
-                  section_header={item.section_name}
-                  blocks={item.section_blocks}
-                  updateHandler={handlePoolUpdate}
-                  section_data={sectionData[item.section_id]}
-                />
-                ))
-                
+              <DeviceWrap_ST250
+                updateHandler={handlePoolUpdate}
+                sectionData={sectionData} />
             }
             
             {!!statusData.calib_available &&

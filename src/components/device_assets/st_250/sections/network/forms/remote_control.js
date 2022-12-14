@@ -14,7 +14,7 @@ export default function Remote_control(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.settings_data).length != 0) {
+    if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = remoteControlState
 
       for (const key in props.settings_data) {
@@ -40,7 +40,7 @@ export default function Remote_control(props) {
     const req_data_str = dataArray_to_string(remoteControlState)
 
     const request_obj = {
-      address: 'set_device_adress.cgi',
+      address: `set_${props.section_name}.cgi`,
       data: req_data_str,
       notifications: {
         good: 'default',

@@ -8,12 +8,14 @@ import { dataArray_to_string } from '../../../../../../logic/request_logic'
 export default function Time_settings(props) {
 
   const [timeSettingsState, setTimeSettingsState] = React.useState({
-    date_settings: '',
-    time_settings: ''
+    date: '',
+    time: ''
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.settings_data).length != 0) {
+    console.log(props.settings_data);
+
+    if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = timeSettingsState
 
       for (const key in props.settings_data) {
@@ -39,11 +41,14 @@ export default function Time_settings(props) {
     const req_data_str = dataArray_to_string(timeSettingsState)
 
     const request_obj = {
-      address: 'set_general_settings.cgi',
+      address: `set_${props.section_name}.cgi`,
       data: req_data_str,
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+      save_data: {
+        time_settings: timeSettingsState
       }
     }
 
@@ -57,42 +62,42 @@ export default function Time_settings(props) {
                        save_handler={handleClick_save}>
       
       <li
-        key='date_settings'
-        id='date_settings'
+        key='date'
+        id='date'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`date_settings_input`}
+            htmlFor={`date_input`}
             className="settings_itemLabel">
             Дата
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`date_settings`}
-            name={`date_settings`}
+            id={`date_input`}
+            name={`date`}
             changeHandler={handleChange}
-            input_value={timeSettingsState.date_settings}
+            input_value={timeSettingsState.date}
             type="text" />
         </div>
       </li>
       <li
-        key='time_settings'
-        id='time_settings'
+        key='time'
+        id='time'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`time_settings_input`}
+            htmlFor={`time_input`}
             className="settings_itemLabel">
             Время
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`time_settings`}
-            name={`time_settings`}
+            id={`time_input`}
+            name={`time`}
             changeHandler={handleChange}
-            input_value={timeSettingsState.time_settings}
+            input_value={timeSettingsState.time}
             type="text" />
         </div>
       </li>

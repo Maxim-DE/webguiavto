@@ -12,10 +12,17 @@ export default function Info_general(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.settings_data).length != 0) {
+    console.log(props.settings_data);
+    if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = infoGeneralState
 
       for (const key in props.settings_data) {
+        
+        if (props.settings_data[key].length === 0) {
+          settings_state_copy[key] = 'N/A'
+          continue
+        }
+
         settings_state_copy[key] = props.settings_data[key]
       }
 

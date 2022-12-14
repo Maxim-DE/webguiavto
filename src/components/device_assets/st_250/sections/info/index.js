@@ -14,7 +14,7 @@ export default function InfoSection(props) {
       notifications: {
         good: 'none',
         bad: () => {
-          return `Ошибка, обновите страницу (network)`
+          return `Ошибка, обновите страницу (info)`
         }
 
       },
@@ -37,15 +37,15 @@ export default function InfoSection(props) {
       section_header="данные об устройстве">
       <Info_general
         section_name="info"
-        settings_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.general_info
-          : ''}
+        settings_data={props.section_data === 'null' ?
+          'null'
+          : props.section_data.info_general}
         clickHandler={updateHandler} />
       <Software_version
         section_name="info"
-        settings_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.software_version
-          : ''}
+        settings_data={props.section_data === 'null' ?
+          'null'
+          : props.section_data.software_version}
         clickHandler={updateHandler} />
     </SettingsSectionWrap>
   )

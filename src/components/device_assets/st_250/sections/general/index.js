@@ -35,8 +35,9 @@ export default function GeneralSettingsSection(props) {
       section_header="общие настройки">
       <Time_settings 
         section_name="settings"
-        settings_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.time_settings : ''}
+        settings_data={props.section_data === 'null' ?
+          'null'
+          : props.section_data.time_settings}
         clickHandler={updateHandler} />
     </SettingsSectionWrap>
   )

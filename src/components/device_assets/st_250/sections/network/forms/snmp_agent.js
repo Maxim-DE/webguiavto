@@ -7,12 +7,12 @@ import { dataArray_to_string } from '../../../../../../logic/request_logic'
 
 export default function Snmp_agent(props) {
   const [snmpAgentState, setSnmpAgentState] = React.useState({
-    community_read_settings: '',
-    community_write_settings: '',
+    community_read: '',
+    community_write: '',
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.settings_data).length != 0) {
+    if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = snmpAgentState
 
       for (const key in props.settings_data) {
@@ -38,7 +38,7 @@ export default function Snmp_agent(props) {
     const req_data_str = dataArray_to_string(snmpAgentState)
 
     const request_obj = {
-      address: 'set_snmp_agent.cgi',
+      address: `set_${props.section_name}.cgi`,
       data: req_data_str,
       notifications: {
         good: 'default',
@@ -62,42 +62,42 @@ export default function Snmp_agent(props) {
       save_handler={handleClick_save}>
 
       <li
-        key='community_read_settings'
-        id='community_read_settings'
+        key='community_read'
+        id='community_read'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`community_read_settings_input`}
+            htmlFor={`community_read_input`}
             className="settings_itemLabel">
             Community Read
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`community_read_settings_input`}
-            name={`community_read_settings`}
+            id={`community_read_input`}
+            name={`community_read`}
             changeHandler={handleChange}
-            input_value={snmpAgentState.community_read_settings}
+            input_value={snmpAgentState.community_read}
             type="text" />
         </div>
       </li>
       <li
-        key='community_write_settings'
-        id='community_write_settings'
+        key='community_write'
+        id='community_write'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`community_write_settings_input`}
+            htmlFor={`community_write_input`}
             className="settings_itemLabel">
             Community Write
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`community_write_settings_input`}
-            name={`community_write_settings`}
+            id={`community_write_input`}
+            name={`community_write`}
             changeHandler={handleChange}
-            input_value={snmpAgentState.community_write_settings}
+            input_value={snmpAgentState.community_write}
             type="text" />
         </div>
       </li>

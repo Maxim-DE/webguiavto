@@ -7,15 +7,17 @@ import { dataArray_to_string } from '../../../../../../logic/request_logic'
 
 export default function Device_address(props) {
   const [deviceAddressState, setDeviceAddressState] = React.useState({
-    mac_defаult_settings: '',
-    mac_settings: '',
-    ip_settings: '',
-    subnet_mask_settings: '',
-    gateway_settings: ''
+    mac_deafult: '',
+    mac: '',
+    ip: '',
+    subnet_mask: '',
+    gateway: ''
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.settings_data).length != 0) {
+    console.log(props.settings_data);
+
+    if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = deviceAddressState
 
       for (const key in props.settings_data) {
@@ -41,7 +43,7 @@ export default function Device_address(props) {
     const req_data_str = dataArray_to_string(deviceAddressState)
 
     const request_obj = {
-      address: 'set_device_adress.cgi',
+      address: `set_${props.section_name}.cgi`,
       data: req_data_str,
       notifications: {
         good: 'default',
@@ -60,102 +62,102 @@ export default function Device_address(props) {
       save_handler={handleClick_save}>
 
       <li
-        key='mac_defаult_settings'
-        id='mac_defаult_settings'
+        key='mac_deafult'
+        id='mac_deafult'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`mac_defаult_settings_input`}
+            htmlFor={`mac_deafult_input`}
             className="settings_itemLabel">
             Дефолтный MAC-адрес
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`mac_defаult_settings_input`}
-            name={`mac_defаult_settings`}
+            id={`mac_deafult_input`}
+            name={`mac_deafult`}
             changeHandler={handleChange}
-            input_value={deviceAddressState.mac_defаult_settings}
+            input_value={deviceAddressState.mac_deafult}
             type="text" />
         </div>
       </li>
       <li
-        key='mac_settings'
-        id='mac_settings'
+        key='mac'
+        id='mac'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`mac_settings_input`}
+            htmlFor={`mac_input`}
             className="settings_itemLabel">
             MAC-адрес
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`mac_settings_input`}
-            name={`mac_settings`}
+            id={`mac_input`}
+            name={`mac`}
             changeHandler={handleChange}
-            input_value={deviceAddressState.mac_settings}
+            input_value={deviceAddressState.mac}
             type="text" />
         </div>
       </li>
       <li
-        key='ip_settings'
-        id='ip_settings'
+        key='ip'
+        id='ip'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`ip_settings`}
+            htmlFor={`ip`}
             className="settings_itemLabel">
             IP-адрес
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`ip_settings_input`}
-            name={`ip_settings`}
+            id={`ip_input`}
+            name={`ip`}
             changeHandler={handleChange}
-            input_value={deviceAddressState.ip_settings}
+            input_value={deviceAddressState.ip}
             type="text" />
         </div>
       </li>
       <li
-        key='subnet_mask_settings'
-        id='subnet_mask_settings'
+        key='subnet_mask'
+        id='subnet_mask'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`subnet_mask_settings`}
+            htmlFor={`subnet_mask`}
             className="settings_itemLabel">
             Маска подсети
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`subnet_mask_settings_input`}
-            name={`subnet_mask_settings`}
+            id={`subnet_mask_input`}
+            name={`subnet_mask`}
             changeHandler={handleChange}
-            input_value={deviceAddressState.subnet_mask_settings}
+            input_value={deviceAddressState.subnet_mask}
             type="text" />
         </div>
       </li>
       <li
-        key='gateway_settings'
-        id='gateway_settings'
+        key='gateway'
+        id='gateway'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`gateway_settings`}
+            htmlFor={`gateway`}
             className="settings_itemLabel">
             Шлюз
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`gateway_settings_input`}
-            name={`gateway_settings`}
+            id={`gateway_input`}
+            name={`gateway`}
             changeHandler={handleChange}
-            input_value={deviceAddressState.gateway_settings}
+            input_value={deviceAddressState.gateway}
             type="text" />
         </div>
       </li>
