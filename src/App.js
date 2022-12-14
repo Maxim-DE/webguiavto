@@ -263,12 +263,8 @@ function App() {
       }))
 
     } else if (output_name === 'calib_passw') {
-
       authGlobalActions.set_is_auth(true)
-      authGlobalActions.set_auth_level(2)
-
-      // store.login()
-      // store.set_auth_level(2)
+      authGlobalActions.set_auth_level(output_data.auth_level)
 
     } else {
       let output_data_copy
@@ -378,12 +374,13 @@ function App() {
   React.useEffect(() => {
     if (sectionData.info) {
       if (!Object.hasOwn(sectionData.info, 'auth_info')) {
+        authGlobalActions.set_auth_level(0)
         return
       } 
-      // store.set_auth_level('0')
 
       const auth_info = sectionData.info.auth_info
-      // store.set_auth_level(auth_info.level)
+      console.log(auth_info);
+      authGlobalActions.set_auth_level(auth_info.auth_level)
     }
   }, [sectionData.info])
 
