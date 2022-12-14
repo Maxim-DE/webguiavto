@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from './logo.png';
 
 import './App.css';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './components/notifications/index.css'
+
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -38,6 +39,8 @@ function App() {
     error_pool: [],
   })
   
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
+
   const [statusData, setStatusData] = React.useState({
     status_info: null,
     status_graph: null,
@@ -61,6 +64,7 @@ function App() {
   const [peripheralData, setPeripheralData] = React.useState({
     structure: [],
   })
+
 
   const [calibState, setCalibState] = React.useState({
     isOpen: false,
@@ -124,6 +128,10 @@ function App() {
         data: output_data
       }))
 
+    } else if (output_name === 'calib_passw') {
+      authGlobalActions.set_is_auth(true)
+      authGlobalActions.set_auth_level(output_data.auth_level)
+
     } else {
       let output_data_copy
 
@@ -181,10 +189,10 @@ function App() {
                         default:
                           break;
                       }
+                    } else {
+                      toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
                     }
-                  } else {
-                    toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
-                  }
+                  } 
                   
                   break;
 
@@ -226,9 +234,38 @@ function App() {
         }));
       }, 200)
     }
-
-    console.log(logo)
   }, [requestPool.pool])
+
+  React.useEffect(() => {
+    if (sectionData.info) {
+      if (!Object.hasOwn(sectionData.info, 'auth_info')) {
+        authGlobalActions.set_auth_level(0)
+        return
+      } 
+
+      const auth_info = sectionData.info.auth_info
+      console.log(auth_info);
+      authGlobalActions.set_auth_level(auth_info.auth_level)
+    }
+  }, [sectionData.info])
+
+  React.useEffect(() => {
+
+    let request_obj = {
+      address: `info.cgi`,
+      notifications: {
+        good: 'none',
+        bad: () => {
+          return `Ошибка, обновите страницу (info)`
+        }
+      },
+    }
+
+    handlePoolUpdate(request_obj);
+
+  }, [])
+
+  const nav_ref = React.useRef()
 
   const handlePoolUpdate = (requestData) => {
     if (requestData.action) {
@@ -302,7 +339,8 @@ function App() {
             <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} №${sectionData.info.info_general.serial_number}` :
                                     '...'}</h1>
             <CalibLogButton 
-              updateHandler = {handlePoolUpdate}/>
+              updateHandler = {handlePoolUpdate}
+              isAuthComplete = {authGlobalState.is_auth}/>
           </header>
           <main>
             <StatusSection
@@ -316,16 +354,31 @@ function App() {
               full_logs_data={statusData.status_full_logs}
               settings_data={statusData.status_settings}
               device_type={sectionData.info ? sectionData.info.info_general.type : ''} />
-            <DeviceWrap_ST250
-              updateHandler={handlePoolUpdate}
-              section_data={sectionData} />
+
+            {authGlobalState.auth_access.settings &&
+              settings_map.map(item => (
+                <SettingsSection
+                  key={item.section_id}
+                  section_name={item.section_id}
+                  section_header={item.section_name}
+                  blocks={item.section_blocks}
+                  updateHandler={handlePoolUpdate}
+                  section_data={sectionData[item.section_id]}
+                />
+                ))
+                
+            }
+            
             {!!statusData.calib_available &&
+             authGlobalState.auth_access.calib &&
+             
               <CalibSection section_name="calibration"
                             section_header="калибровка"
                             section_data={calibState.data}
                             updateHandler={handlePoolUpdate}
                             adc_data={statusData.calib_adc} />
             }
+              
           </main>
         </div>
       </div>

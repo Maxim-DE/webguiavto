@@ -11337,6 +11337,11 @@
     "querystringify" "^2.1.1"
     "requires-port" "^1.0.0"
 
+"use-global-hook@^0.3.0":
+  "integrity" "sha512-uzQmqPuBUEZV4oJOpnhnwLEVkGOfc471k6uul1SgNM43HWS3ZjL8tb1QKa2VjoGPNk40nvnl8kndZnIyiVNvtA=="
+  "resolved" "https://registry.npmjs.org/use-global-hook/-/use-global-hook-0.3.0.tgz"
+  "version" "0.3.0"
+
 "use@^3.1.0":
   "integrity" "sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ=="
   "resolved" "https://registry.npmjs.org/use/-/use-3.1.1.tgz"
