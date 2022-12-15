@@ -15,7 +15,7 @@ export default function Snmp_agent(props) {
     if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = snmpAgentState
 
-      for (const key in props.settings_data) {
+      for (const key in settings_state_copy) {
         settings_state_copy[key] = props.settings_data[key]
       }
 
@@ -43,6 +43,9 @@ export default function Snmp_agent(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+      save_data: {
+        snmp_agent: snmpAgentState
       }
     }
 

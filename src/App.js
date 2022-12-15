@@ -6,6 +6,8 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './components/notifications/index.css'
 
+import merge from 'lodash/merge'
+// import { cloneDeep } from 'lodash/cloneDeep';
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -186,11 +188,12 @@ function App() {
     
                         case 'error':
                           toast.error(message, { autoClose: 1500 })
-                          break;
+                          continue;
     
                         default:
                           break;
                       }
+
                     } else {
                       toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
                     }
@@ -214,14 +217,47 @@ function App() {
               }
             }
 
-            if (Object.keys(req_resp.data).length == 1 &&
-                Object.hasOwn(req_resp.data, 'Notific')) {
-                  continue
-            }
 
             if (resp_status == 'success') {
               let request_name = req_resp.name,
-                  req_data = req_resp.data  
+                  req_data
+
+              if (Object.keys(req_resp.data).length == 1 &&
+                  Object.hasOwn(req_resp.data, 'Notific')) {
+
+                if (!req_queue_data.save_data) continue
+
+                let state_copy = {},
+                    save_data = req_queue_data.save_data,
+                    new_state
+
+                switch (request_name) {
+                  case 'settings':
+                    state_copy = JSON.parse(JSON.stringify(sectionData.settings))
+                    break;
+
+                  case 'network':
+                    state_copy = JSON.parse(JSON.stringify(sectionData.network))
+                    break;
+
+                  case 'rds':
+                    state_copy = JSON.parse(JSON.stringify(sectionData.rds))
+                    break;
+                
+                  default:
+                    break;
+                }
+
+                new_state = merge(state_copy, save_data)
+
+                req_data = new_state
+
+                    
+              } else {
+                req_data = req_resp.data  
+              }
+              
+
               outputData_assignment(request_name, req_data);
             }
           }

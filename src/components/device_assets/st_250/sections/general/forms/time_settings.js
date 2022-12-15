@@ -18,7 +18,7 @@ export default function Time_settings(props) {
     if (props.settings_data != 'null' && props.settings_data != undefined) {
       let settings_state_copy = timeSettingsState
 
-      for (const key in props.settings_data) {
+      for (const key in settings_state_copy) {
         settings_state_copy[key] = props.settings_data[key]
       }
 
