@@ -48,13 +48,12 @@ function SerialNumVersionCalibSettings(props) {
     const name = target.name.replace('_calib', '');
     const value = target.value
 
-
     let state_array = serialNumVersionCalibState.device_type
 
     if (/series/gi.test(name)) {
-      state_array[0] = value
+      state_array[0] = Number(value)
     } else {
-      state_array[1] = value
+      state_array[1] = Number(value)
     }
 
     setSerialNumVersionCalibState(prevState => ({
@@ -75,6 +74,11 @@ function SerialNumVersionCalibSettings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+      save_data: {
+        calib_serialNum: {
+          device_type: state_value
+        }
       }
     }
 
@@ -108,6 +112,12 @@ function SerialNumVersionCalibSettings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+
+      save_data: {
+        calib_serialNum: {
+          [name]: value
+        }
       }
     }
 
@@ -125,6 +135,12 @@ function SerialNumVersionCalibSettings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+
+      save_data: {
+        calib_serialNum: {
+          [name]: value
+        }
       }
     }
 

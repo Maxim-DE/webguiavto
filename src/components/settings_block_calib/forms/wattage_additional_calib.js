@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+
 function WattageAdditionalCalibSettings(props) {
   const [wattageAdditionalCalibState, setWattageAdditionalCalibState] = React.useState({
     input_power: '',
@@ -41,6 +43,9 @@ function WattageAdditionalCalibSettings(props) {
           value = wattageAdditionalCalibState[name],
           multipier = props.calib_data ? props.calib_data[name][1] : 10
 
+    let state_obj = { [name]: value },
+        converted_state = calib_state_conversion(state_obj, props.calib_data)
+
     const request_obj = {
       address: 'calib_input_power.cgi',
       data: `${name}$${value * multipier}`,
@@ -48,7 +53,10 @@ function WattageAdditionalCalibSettings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
-      }
+      },
+      save_data: {
+        calib_additional_power: converted_state
+      } 
     }
 
     props.clickHandler(request_obj);

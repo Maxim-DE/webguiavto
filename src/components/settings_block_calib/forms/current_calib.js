@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+
 function CurrentCalibSettings(props) {
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
@@ -33,16 +35,23 @@ function CurrentCalibSettings(props) {
     const value = target.value;
     const name = target.name.replace('_calib', '');
 
+    
+    
+
     setAmperageCalibState(prevState => ({
       ...prevState,
       [name]: value
     }))
   }
-
+  
   const handleClick_save = (event) => {
     const target = event.target,
-          name = target.name.replace('_calib', ''),
-          value = amperageCalibState[name]
+    name = target.name.replace('_calib', ''),
+    value = amperageCalibState[name]
+    
+    
+    let state_obj = { [name]: value },
+        converted_state = calib_state_conversion(state_obj, props.calib_data)
 
     const request_obj = {
       address: 'calib_current.cgi',
@@ -51,6 +60,12 @@ function CurrentCalibSettings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+
+      save_data: {
+        calib_current: {
+          current_value: converted_state
+        }
       }
     }
 

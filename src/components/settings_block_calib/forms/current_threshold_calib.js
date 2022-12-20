@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import { calib_double_array_conversion } from '../../../logic/calib_state_conversion';
+
 function CurrentThresholdCalibSettings(props) {
 
   const [thresholdCalibState, setThresholdCalibState] = React.useState({
@@ -68,6 +70,9 @@ function CurrentThresholdCalibSettings(props) {
     const multipier_low = props.calib_data ? props.calib_data[calib_data_name].low[1] : 10
     const multipier_high = props.calib_data ? props.calib_data[calib_data_name].high[1] : 10
 
+    let state_obj = { [calib_data_name]: state_value },
+        converted_state = calib_double_array_conversion(state_obj, props.calib_data)
+
 
     const value = `${name}_low$${state_value[0] * multipier_low};${name}_high$${state_value[1] * multipier_high};`
     
@@ -77,6 +82,12 @@ function CurrentThresholdCalibSettings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+
+      save_data: {
+        calib_current: {
+          threshold: converted_state
+        }
       }
     }
 

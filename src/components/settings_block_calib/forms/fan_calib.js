@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+
 function FanCalibSettings(props) {
 
   const [fanCalibState, setFanCalibState] = React.useState({
@@ -61,21 +63,30 @@ function FanCalibSettings(props) {
   const fan_pwm_save = (event) => {
     const state_array = fanCalibState.fan_pwm,
           name = 'fan_pwm'
-
-    let data_string = ''
+    
+    let output_value,
+        data_string = ''
 
     if (state_array[0] == 1) {
-      data_string = `${name}$0`
+      output_value = 0
     } else {
-      data_string = `${name}$1`
+      output_value = 1
     }
 
+    data_string = `${name}$${output_value}`
+    
     const request_obj = {
       address: 'calib_fan.cgi',
       data: data_string,
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+
+      save_data: {
+        calib_fan: {
+          fan_pwm: output_value
+        }
       }
     }
 
@@ -100,9 +111,15 @@ function FanCalibSettings(props) {
           name = target.name.replace('_calib', ''),
           value = fanCalibState[name]
 
+    let state_obj = { [name]: value },
+        converted_state = calib_state_conversion(state_obj, props.calib_data)
+
     const request_obj = {
       address: 'calib_fan.cgi',
-      data: `${name}$${value * 10}`
+      data: `${name}$${value * 10}`,
+      save_data: {
+        calib_fan: converted_state
+      }
     }
 
     props.clickHandler(request_obj);

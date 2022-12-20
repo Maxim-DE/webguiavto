@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+
 function PowerCalibSettings(props) {
 
   const [powerCalibState, setPowerCalibState] = React.useState({
@@ -45,12 +47,18 @@ function PowerCalibSettings(props) {
           value = powerCalibState[name],
           multipier = props.calib_data ? props.calib_data[name][1] : 10
 
+    let state_obj = { [name]: value },
+        converted_state = calib_state_conversion(state_obj, props.calib_data)
+
     const request_obj = {
       address: 'calib_power.cgi',
       data: `${name}$${value * multipier}`,
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+      save: {
+        calib_power: converted_state
       }
     }
 

@@ -136,6 +136,11 @@ function App() {
       authGlobalActions.set_is_auth(true)
       authGlobalActions.set_auth_level(output_data.auth_level)
 
+    } else if (/^calib_.*/g.test(output_name)) {
+      setCalibState(prevState => ({
+        ...prevState,
+        data: output_data
+      }))
     } else {
       let output_data_copy
 
@@ -243,7 +248,11 @@ function App() {
                   case 'rds':
                     state_copy = JSON.parse(JSON.stringify(sectionData.rds))
                     break;
-                
+
+                  case request_name.match(/^calib_.*/)?.input:
+                    state_copy = JSON.parse(JSON.stringify(calibState.data))
+                    break;
+
                   default:
                     break;
                 }
