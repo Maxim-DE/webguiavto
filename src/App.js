@@ -134,7 +134,7 @@ function App() {
 
     } else if (output_name === 'calib_passw') {
       authGlobalActions.set_is_auth(true)
-      authGlobalActions.set_auth_level(output_data.auth_level)
+      authGlobalActions.set_auth_level(3)
 
     } else if (/^calib_.*/g.test(output_name)) {
       setCalibState(prevState => ({
@@ -374,10 +374,10 @@ function App() {
             updateHandler={navRefUpdate}
             calibaAvailable={statusData.calib_available} />
           <div className='nav_fillblock'></div>
-          {/* <PeripheralMenu
+          <PeripheralMenu
             updateHandler={handlePoolUpdate}
             structure={peripheralData.structure}
-            data={statusData.status_graph} /> */}
+            data={statusData} />
         </nav>
         <div className='main_wrap'>
           <header>
@@ -414,8 +414,8 @@ function App() {
                             section_data={calibState.data}
                             updateHandler={handlePoolUpdate}
                             adc_data={statusData.calib_adc} />
+
             }
-              
           </main>
         </div>
       </div>
