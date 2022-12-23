@@ -27,35 +27,35 @@
 .time_label, .time_value {
   font-weight: 400;
   font-size: 14px;
-  line-height: 29px;
+  line-height: 24px;
   
   color: #FFFFFF;
 }
 
 .time_value {
+  font-weight: 600;
   flex-grow: 1;
 }
 
 
 .linear_indicator_wrapper {
-  width: 104px;
+  width: auto;
   height: auto;
-
   display: flex;
-  flex-wrap: wrap;
-
   margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  align-items: stretch;
 }
 
 
 .peripheral_option_label {
   color: #FFFFFF;
-
+  min-width: 96px;
   font-weight: 400;
   font-size: 15px;
   line-height: 29px;
-
-  text-align: center;
 }
 
 .linear_progress_percent {
@@ -73,8 +73,9 @@
 }
 
 .linear_bar {
-  width: 55px;
+  /* width: 55px; */
   border-radius: 4px;
+  flex-grow: 1;
   background-color: #626879;
 }
 
@@ -97,13 +98,32 @@
 
 .linear_indicatiors {
   /* margin: 8px 18px; */
-
-  display: flex;
+  /* display: flex;
 
   flex-direction: row;
   flex-wrap: wrap;
 
   row-gap: 15px;
+  */
   
-  margin: 12px 12px 25px;
+  margin: 12px 22px 25px; 
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+@media (max-width: 1745px) {
+  .linear_indicatiors {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 15px;
+    justify-items: stretch;
+  }
+
+  .linear_indicator_wrapper {
+    width: 100%;
+    align-items: stretch;
+  }
 }
