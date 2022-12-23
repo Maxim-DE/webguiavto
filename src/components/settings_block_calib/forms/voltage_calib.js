@@ -17,7 +17,7 @@ function VoltageCalibSettings(props) {
 
       for (const key in props.calib_data) {
         const divident = props.calib_data[key][0],
-          divider = props.calib_data[key][1]
+              divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1]
         calib_state_copy[key] = (divident / divider).toFixed(1)
       }
 

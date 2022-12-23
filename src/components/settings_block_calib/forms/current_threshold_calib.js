@@ -28,13 +28,13 @@ function CurrentThresholdCalibSettings(props) {
             high_value
         
         divident = props.calib_data[key].low[0]
-        divider = props.calib_data[key].low[1]
+        divider = props.calib_data[key].low[1] == 0 ? 1 : props.calib_data[key].low[1]
         digits = Math.log10(divider)
         low_value = (divident / divider).toFixed(digits)
         value_array.push(low_value)
 
         divident = props.calib_data[key].high[0]
-        divider = props.calib_data[key].high[1]
+        divider = props.calib_data[key].high[1] == 0 ? 1 : props.calib_data[key].high[1]
         digits = Math.log10(divider)
         high_value = (divident / divider).toFixed(digits)
         value_array.push(high_value)

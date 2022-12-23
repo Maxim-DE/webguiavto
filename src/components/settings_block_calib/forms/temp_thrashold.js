@@ -23,7 +23,7 @@ function TempThresholdCalibSettings(props) {
         }
         
         const divident = props.calib_data[key][0],
-              divider = props.calib_data[key][1],
+              divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
               digits = Math.log10(divider)
 
         // if (divider == 1) {
