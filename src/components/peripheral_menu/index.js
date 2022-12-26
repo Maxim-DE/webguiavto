@@ -46,6 +46,34 @@ function PeripheralMenu(props) {
     }))
   }, [props.data.status_info])
 
+  React.useEffect(() => {
+    if (props.data.status_peripheral == null) {
+      return
+    }
+
+    let peripheral_data_obj = {}
+
+    for (const key in props.data.status_peripheral) {
+      let data_arr = []
+
+      const input_value = props.data.status_peripheral[key][0],
+            divider = props.data.status_peripheral[key][1] != 0 ? 
+                      props.data.status_peripheral[key][1] : 1,
+            status = props.data.status_peripheral[key][2],
+            postfix = props.data.status_peripheral[key][3] ? 
+                      ' ' + props.data.status_peripheral[key][3] :
+                      ''
+      data_arr[0] = (input_value / divider).toFixed(1)
+      data_arr[1] = status
+      peripheral_data_obj[key] = data_arr
+    }
+
+    setPeripheralData(prevState => ({
+      ...prevState,
+      data: peripheral_data_obj
+    }))
+  }, [props.data.status_peripheral])
+
 
   return (
     <div className="peripheral_container">
@@ -59,9 +87,10 @@ function PeripheralMenu(props) {
           return (
             <Pie
               key={item.name} 
-              min={0}
-              max={200}
-              value={''} 
+              min={item.min}
+              max={item.max}
+              status={peripheralData.data[item.name] ? peripheralData.data[item.name][1] : 0}
+              value={peripheralData.data[item.name] ? peripheralData.data[item.name][0] : 0.0} 
               label={translation_dict[item.name]} />
           )
         })}

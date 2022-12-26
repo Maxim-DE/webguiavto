@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './index.css'
 
 
-const status_colors = [
+export const status_colors = [
   '#ABE188', //good
   '#f9c22e', //warning
   '#fe5f55', //error

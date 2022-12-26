@@ -55,6 +55,7 @@ function App() {
     status_full_logs: null,
     status_settings: null,
     calib_adc: null,
+    status_peripheral: null,
     calib_available: 0
   })
   
