@@ -9,7 +9,7 @@ import ModalCalib from '../calib_modal';
 
 import FormInput from '../form_input';
 
-import useGlobalStore from '../../logic/auth_store';
+import useAuthStore from '../../logic/auth_store';
 
 const CalibLogButton = (props) => {
 
@@ -18,7 +18,7 @@ const CalibLogButton = (props) => {
 		password: ''
 	})
 
-	const [authGlobalState, authGlobalActions] = useGlobalStore()
+	const [authGlobalState, authGlobalActions] = useAuthStore()
 
 	const [isOpen, setIsOpen] = React.useState(false);
 

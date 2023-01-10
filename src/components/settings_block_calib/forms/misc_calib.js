@@ -5,14 +5,14 @@ import Syslog_calib from './syslog_calib';
 import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
 
-import useGlobalStore from '../../../logic/auth_store';
+import useAuthStore from '../../../logic/auth_store';
 
 function MiscCalibSettings(props) {
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: []
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const [authGlobalState, authGlobalActions] = useAuthStore()
 
   React.useEffect(() => {
     if (props.calib_data == undefined) {

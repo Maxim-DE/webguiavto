@@ -1,3 +1,102 @@
+import useAuthStore from "./auth_store";
+import useGlobalStore from "./global_store";
+
+import { type_device_toStr } from "./output_data_management";
+
+const [authGlobalState, authGlobalActions] = useAuthStore()
+const [allGlobalState, allGlobalActions] = useGlobalStore()
+
+const test_outputData_assignment = (output_name, output_data) => {
+  if (output_name === 'peripheral_structure') {
+    console.log(allGlobalState.peripheral_data);
+    // setPeripheralData(prevState => ({
+    //   ...prevState,
+    //   structure: output_data[`structure`],
+    // }))
+
+  } else if (/^status/.test(output_name)) {
+    let status_state_copy = allGlobalState.status_data;
+    console.log(status_state_copy);
+    for (const key in output_data) {
+      status_state_copy[key] = output_data[key];
+    }
+    // setStatusData(status_state_copy)
+
+  } else if (/media\/status_graph/gi.test(output_name)) {
+    let status_state_copy = allGlobalState.status_data;
+    let output_obj = {
+      img: output_data
+    }
+    status_state_copy.status_svg = output_obj;
+
+    console.log(status_state_copy);
+
+    // setStatusData(prevState => ({
+    //   ...prevState,
+    //   status_svg: output_obj,
+    // }))
+
+  } else if (output_name === 'GetLogErrorFull') {
+
+    let status_state_copy = allGlobalState.status_data;
+    for (const key in output_data) {
+      status_state_copy[key] = output_data[key];
+    }
+
+    // setStatusData(status_state_copy)
+
+  } else if (output_name === 'SysLog') {
+    // setCalibState(prevState => ({
+    //   ...prevState,
+    //   data: {
+    //     ...prevState.data,
+    //     calib_misc: {
+    //       ...prevState.data.calib_misc,
+    //       sys_log: output_data
+    //     }
+    //   }
+    // }))
+
+  } else if (output_name === 'calibration') {
+    // setCalibState(prevState => ({
+    //   ...prevState,
+    //   data: output_data
+    // }))
+
+  } else if (output_name === 'calib_passw') {
+    // authGlobalActions.set_is_auth(true)
+    // authGlobalActions.set_auth_level(3)
+
+  } else if (/^calib_.*/g.test(output_name)) {
+    // setCalibState(prevState => ({
+    //   ...prevState,
+    //   data: output_data
+    // }))
+  } else {
+    let output_data_copy
+
+    switch (output_name) {
+      case 'info':
+        if (Object.hasOwn(output_data.info_general, 'type')) {
+          output_data_copy = type_device_toStr(output_data)
+        } else {
+          output_data_copy = output_data
+        }
+
+        break;
+
+      default:
+        output_data_copy = output_data
+        break;
+    }
+
+    // setSectionData(prevState => ({
+    //   ...prevState,
+    //   [output_name]: output_data_copy,
+    // }))
+  }
+}
+
 function sectionData_format(state, section_name, data) {
   let data_entries = Object.entries(data);
   state[section_name] = data_entries;
@@ -112,4 +211,4 @@ const async_Fetch_queue = async (queue_arr) => {
   return queue_response;
 }
 
-export { sectionData_format, async_Fetch_queue, dataArray_to_string }
+export { sectionData_format, async_Fetch_queue, dataArray_to_string, test_outputData_assignment }

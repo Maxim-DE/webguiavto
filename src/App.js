@@ -14,6 +14,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
 import { async_Fetch_queue } from './logic/request_logic';
+import { test_outputData_assignment } from './logic/request_logic';
 
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
@@ -24,7 +25,8 @@ import CalibLogButton from './components/calib_log_button';
 
 import DeviceWrap_ST250 from './components/device_assets/st_250';
 
-import useGlobalStore from './logic/auth_store';
+import useAuthStore from './logic/auth_store';
+import useGlobalStore from './logic/global_store';
 
 const status_settings_item = [
   { id: 'device_supply_switch', name: "Питание передатчика", type: "switch" },
@@ -43,7 +45,7 @@ function App() {
     error_pool: [],
   })
   
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const [authGlobalState, authGlobalActions] = useAuthStore()
 
   const [statusData, setStatusData] = React.useState({
     status_info: null,
@@ -262,12 +264,12 @@ function App() {
 
                 req_data = new_state
 
-                    
               } else {
                 req_data = req_resp.data  
               }
               
 
+              test_outputData_assignment(request_name, req_data)
               outputData_assignment(request_name, req_data);
             }
           }
