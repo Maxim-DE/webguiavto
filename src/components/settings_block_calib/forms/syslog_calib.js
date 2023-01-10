@@ -5,27 +5,39 @@ import ModalCalib from '../../calib_modal'
 import time_ArrToStr from '../../../logic/time_ArrToStr'
 import '../../status_logs_block/index.css'
 
+import Syslog_wrap from './syslog/syslog'
+import HttpLog_wrap from './syslog/http_log'
+
 import { BsChevronDoubleLeft, BsChevronLeft,
          BsChevronRight, BsChevronDoubleRight } from 'react-icons/bs'
 
 import '../index.css'
 
-const log_status = [
+export const log_status = [
   '',
   'log_critical',
   'log_user',
   'log_hibernation'
 ]
 
+const sys_log_types = [
+  {type: 'SysLog', name: 'Cистемный'},
+  {type: 'http_log', name: 'HTTP-жур.'}
+]
+
 function Syslog_calib(props) {
 
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const [logType, setLogType] = React.useState({
+    log_type: 'SysLog'
+  })
 
   const [sysLogLinks, setSysLogLinks] = React.useState({
     max_msgs: 0,
     active_page: 1,
     active_page_logs: [],
-    max_active_logs: 13,
+    max_active_logs: 24,
     max_pages: 0,
     max_links: 5,
     links: [],
@@ -84,8 +96,15 @@ function Syslog_calib(props) {
         active_page_logs = []
 
     if (sysLogLinks.active_page < sysLogLinks.max_links) {
+      let links_counter
 
-      for (let index = 1; index < sysLogLinks.max_links + 1; index++) {
+      if (sysLogLinks.log_data.length < (sysLogLinks.max_links * sysLogLinks.max_pages)) {
+        links_counter = sysLogLinks.max_pages
+      } else {
+        links_counter = sysLogLinks.max_links
+      }
+
+      for (let index = 1; index < links_counter + 1; index++) {
         const link_obj = {
           index: index,
           active: index == sysLogLinks.active_page ? true : false
@@ -139,7 +158,11 @@ function Syslog_calib(props) {
 
     if (sysLogLinks.active_page == 1) {
       low_active_logs_border = 0
-      high_active_logs_border = sysLogLinks.max_active_logs
+      if (sysLogLinks.log_data.length < sysLogLinks.max_active_logs) {
+        high_active_logs_border = sysLogLinks.log_data.length
+      } else {
+        high_active_logs_border = sysLogLinks.max_active_logs
+      }
     } else if (sysLogLinks.active_page == sysLogLinks.max_pages) {
       low_active_logs_border = ((sysLogLinks.active_page - 1) * sysLogLinks.max_active_logs)
       high_active_logs_border = low_active_logs_border + (sysLogLinks.max_msgs - low_active_logs_border)
@@ -149,15 +172,17 @@ function Syslog_calib(props) {
     }
 
     for (let log = low_active_logs_border; log < high_active_logs_border; log++) {
+      if (log > (sysLogLinks.log_data.length - 1)) return
 
       let active_log_data = sysLogLinks.log_data[log]
       let active_log_instance = {
         id: active_log_data[0],
         message: active_log_data[3],
         status: active_log_data[1],
-        time: time_ArrToStr(active_log_data[2]) 
+        time: time_ArrToStr(active_log_data[2]),
+        log_expand: active_log_data[4] ? false : 'none',
+        log_expand_data: active_log_data[4] ? active_log_data[4] : 'none'
       }
-
 
       active_page_logs.push(active_log_instance)
     }
@@ -169,8 +194,6 @@ function Syslog_calib(props) {
     }))
     
   }, [sysLogLinks.active_page])
-
-
 
   const handleClick_open = () => {
     setIsOpen(true)
@@ -254,6 +277,46 @@ function Syslog_calib(props) {
 
   }
 
+  const handle_logType_change = async (event) => {
+    const target = event.target,
+          name = target.name
+
+    await setSysLogLinks(prevState => ({
+      ...prevState,
+      max_msgs: 0,
+      log_data: [],
+    }))
+
+    const request_obj = {
+      address: `${name}.cgi`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    props.updateHandler(request_obj)
+
+    setLogType(prevState => (
+      {
+        ...prevState,
+        log_type: name
+      }
+    ))
+  }
+
+  const handle_logExpand = (log_num) => {
+    let logs_data = sysLogLinks.active_page_logs,
+        expanded_log = logs_data[log_num]
+
+    expanded_log.log_expand = !expanded_log.log_expand
+
+    setSysLogLinks(prevState => ({
+      ...prevState,
+      active_page_logs: logs_data
+    }))
+  }
+
 
 
   return (
@@ -285,26 +348,28 @@ function Syslog_calib(props) {
         user_controllable={true}
         class='full_log_modal sys_log_modal'>
         <>
-          <div className="logs_header">
-            <span className="header_num">№</span>
-            <span className="header_message">сообщение</span>
-            <span className="header_time">дата и время</span>
-          </div>
-          <ul className="log_list">
-            {sysLogLinks.active_page_logs.map(item => (
-              <>
-                <div className='log_divider'></div>
-                <li
-                  key={item.id}
-                  id={`log_${item.id}`}
-                  className={`log_item ${log_status[item.status]}`}>
-                  <span className="log_num">{item.id}</span>
-                  <span className="log_message">{item.message}</span>
-                  <span className="log_time">{item.time}</span>
-                </li>
-              </>
+          <div className='logs_type_switch'>
+            {sys_log_types.map(item => (
+              <button 
+                className={`log_type_item button_input ${item.type == logType.log_type ? 'active_type' : ''}`}
+                type='button'
+                name={item.type}
+                onClick={handle_logType_change}
+                key={item.type}>
+                {item.name}
+              </button>
             ))}
-          </ul>
+          </div>
+          {logType.log_type == 'SysLog' &&
+            <Syslog_wrap
+              logs_list={sysLogLinks.active_page_logs}
+              logs_expand={handle_logExpand}
+              updateHandler={props.updateHandler} />}
+          {logType.log_type == 'http_log' &&
+            <HttpLog_wrap
+              logs_list={sysLogLinks.active_page_logs}
+              logs_expand={handle_logExpand}
+              updateHandler={props.updateHandler} />}
           <div className="modal_footer sys_log_buttons">
             {sysLogLinks.max_pages != 0 && 
               <div className="sys_log_links">

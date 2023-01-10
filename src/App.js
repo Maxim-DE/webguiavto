@@ -115,7 +115,8 @@ function App() {
 
       setStatusData(status_state_copy)
 
-    } else if (output_name === 'SysLog') {
+    } else if (output_name === 'SysLog' ||
+               output_name === 'http_log') {
       setCalibState(prevState => ({
         ...prevState,
         data: {

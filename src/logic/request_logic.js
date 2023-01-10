@@ -47,7 +47,7 @@ async function fetch_data(req_obj) {
   const url = `http://192.168.1.9${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
-  const test_url = "http://192.168.1.114/GetDebug.CGI"
+  const test_url = "http://192.168.1.9/GetDebug.CGI"
 
   console.log(url);
   let responseClone;
