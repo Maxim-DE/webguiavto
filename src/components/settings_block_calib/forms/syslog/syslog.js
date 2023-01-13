@@ -69,7 +69,7 @@ export default function Syslog_wrap(props) {
                     className='log_expand_button'
                     type='button'
                     onClick={(e) => {
-                      props.logs_expand(index)
+                      props.logs_expand(index, item.id)
                   }}>
                     {item.log_expand ? <TbMinus /> :
                                        <TbPlus />
@@ -83,10 +83,20 @@ export default function Syslog_wrap(props) {
               <span className="log_time">{item.time}</span>
             </li>
             {item.log_expand === true && 
-             item.log_expand_data !== 'none' &&
+            //  item.log_expand_data !== 'none' &&
               <div
                 className='log_expand_message'>
-                {item.log_expand_data}
+                {item.log_expand_data !== 'none' ? 
+                
+                  item.log_expand_data :
+                  <PulseLoader
+                    color="#bbcacf"
+                    loading
+                    margin={9}
+                    size={13}
+                    speedMultiplier={0.5}
+                  />
+                }
               </div>
             }
           </>

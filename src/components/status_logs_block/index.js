@@ -5,6 +5,10 @@ import FormInput from '../form_input';
 import ModalCalib from '../calib_modal';
 import time_ArrToStr from '../../logic/time_ArrToStr';
 
+import { TbPlus } from 'react-icons/tb';
+import { TbMinus } from 'react-icons/tb';
+import { PulseLoader } from 'react-spinners';
+
 import './index.css'
 
 const log_items = [
@@ -38,6 +42,8 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
       log_obj.status = data[log][1];
       log_obj.message = data[log][2];
       log_obj.time = time_ArrToStr(data[log][3]);
+      log_obj.log_expand = data[log][4] ? false : 'none'
+      log_obj.expand_info = data[log][4] ? data[log][4][4] : 'none';
       logs_array.push(log_obj);
     }
     return logs_array;
@@ -99,6 +105,35 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
     rest.updateHandler(request_obj)
   }
 
+  const handle_logExpand = (log_num, log_id) => {
+
+    let logs_data = fullLogData,
+        expanded_log = logs_data[log_num]
+
+    expanded_log.log_expand = !expanded_log.log_expand
+
+    handle_logExpand_request(log_id, expanded_log.log_expand)
+
+    setFullLogData(logs_data)
+  }
+
+  const handle_logExpand_request = (log_num, expand_bool) => {
+    let request_obj
+
+    if (expand_bool) {
+      request_obj = {
+        address: 'get_expanded_user_log.cgi',
+        data: `$${log_num}`,
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        }
+      }
+    }
+
+    rest.updateHandler(request_obj)
+  }
+
   return (
     <div
       className={`settings_block ${settings_type ? settings_type : ""}`}>
@@ -154,18 +189,49 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
                 <span className="header_message">сообщение</span>
                 <span className="header_time">дата и время</span>
               </div>
-              <ul className="log_list">
-                {fullLogData.map(item => (
+              <ul className="user_log log_list">
+                {fullLogData.map((item, index) => (
                   <>
                   <div className='log_divider'></div>
                   <li
                     key={item.id}
                     id={`log_${item.id}`}
                     className={`log_item ${log_status[item.status]}`}>
+                      <div className='log_expand_button_wrap'>
+                        {item.log_expand !== 'none' &&
+                          <button
+                            className='log_expand_button'
+                            type='button'
+                            onClick={(e) => {
+                              handle_logExpand(index, item.id)
+                            }}>
+                            {item.log_expand ? <TbMinus /> :
+                                               <TbPlus />
+                            }
+                          </button>
+                        }
+                      </div>
                     <span className="log_num">{item.id}</span>
                     <span className="log_message">{item.message}</span>
                     <span className="log_time">{item.time}</span>
                   </li>
+                  {item.log_expand === true &&
+                    //  item.log_expand_data !== 'none' &&
+                    <div
+                      className='log_expand_message'>
+                      {item.expand_info !== 'none' ?
+
+                        item.expand_info :
+                        <PulseLoader
+                          color="#bbcacf"
+                          loading
+                          margin={9}
+                          size={13}
+                          speedMultiplier={0.5}
+                        />
+                      }
+                    </div>
+                  }
                   </>
                 ))}
               </ul>
@@ -177,11 +243,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
                 label='Обновить журнал'
                 type="button"
               />
-             </>
-            {/* {full_data != null &&
-            } */}
-
-            
+             </>            
           </ModalCalib>
          }
       </div>

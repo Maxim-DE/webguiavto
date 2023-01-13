@@ -73,7 +73,6 @@ export default function HttpLog_wrap(props) {
                       {item.log_expand ? <TbMinus /> :
                                          <TbPlus />
                       }
-
                     </button>
                   }
                 </div>
@@ -82,10 +81,19 @@ export default function HttpLog_wrap(props) {
                 <span className="log_time">{item.time}</span>
               </li>
               {item.log_expand === true &&
-               item.log_expand_data !== 'none' &&
+              //  item.log_expand_data !== 'none' &&
                 <div
                   className='log_expand_message'>
-                  {item.log_expand_data}
+                  {item.log_expand_data !== 'none' ? 
+                    item.log_expand_data :
+                    <PulseLoader
+                      color="#bbcacf"
+                      loading
+                      margin={9}
+                      size={13}
+                      speedMultiplier={0.5}
+                    />
+                  }
                 </div>
               }
             </>
@@ -94,5 +102,4 @@ export default function HttpLog_wrap(props) {
       </>
     )
   }
-
 }

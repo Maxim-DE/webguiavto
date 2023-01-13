@@ -39,12 +39,16 @@
   width: 220px;
 }
 
+.user_log .log_expand_button_wrap {
+  width: 30px
+}
+
 .log_item {
   height: 45px;
 
   display:flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 
   /* border-top: 1px #DFDFDF solid; */
@@ -92,6 +96,13 @@
   max-height: 671px;
   overflow: hidden scroll;
 }
+
+.full_log_modal .log_item {
+    padding-left: 0;
+    column-gap: 0;
+}
+
+
 
 .log_critical {
   background-color: #F9C2BE;

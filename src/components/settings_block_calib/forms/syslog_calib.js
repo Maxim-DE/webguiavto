@@ -305,16 +305,36 @@ function Syslog_calib(props) {
     ))
   }
 
-  const handle_logExpand = (log_num) => {
+  const handle_logExpand = (log_num, log_id) => {
+    
     let logs_data = sysLogLinks.active_page_logs,
-        expanded_log = logs_data[log_num]
-
+    expanded_log = logs_data[log_num]
+    
     expanded_log.log_expand = !expanded_log.log_expand
+
+    handle_logExpand_request(log_id, expanded_log.log_expand)
 
     setSysLogLinks(prevState => ({
       ...prevState,
       active_page_logs: logs_data
     }))
+  }
+
+  const handle_logExpand_request = (log_num, expand_bool) => {
+    let request_obj
+
+    if (expand_bool) {
+      request_obj = {
+        address: 'get_expanded_sys_log.cgi',
+        data: `$${log_num}`,
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        }
+      }
+    }
+
+    props.updateHandler(request_obj)
   }
 
 

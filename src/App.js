@@ -14,6 +14,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
 import { async_Fetch_queue } from './logic/request_logic';
+import { syslog_handle_expand } from './logic/syslog_handle_expand';
 
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
@@ -127,7 +128,23 @@ function App() {
           }
         }
       }))
-      
+  
+    } else if (output_name === 'get_expanded_log') {
+      let log_data = calibState.data.calib_misc.sys_log,
+          new_log_data = syslog_handle_expand(output_data, log_data)
+
+      setCalibState(prevState => ({
+        ...prevState,
+        data: {
+          ...prevState.data,
+          calib_misc: {
+            ...prevState.data.calib_misc,
+            sys_log: new_log_data
+          }
+        }
+      }))
+
+
     } else if (output_name === 'calibration') {
       setCalibState(prevState => ({
         ...prevState,
