@@ -7,7 +7,10 @@ import { status_colors } from '../graph_blocks';
 
 const Pie = ({label, value, min, max, status}) => {
   
-  const percentage = ((value-min) /(max-min))* 100
+  let percentage
+
+  percentage = percentage >= 100 ? 100 :
+                                   ((value-min) /(max-min)) * 100
   
   return (
   <div className="linear_indicator_wrapper">

@@ -32,13 +32,14 @@ input[type='checkbox'].switch:before {
   border-radius: 20px;
   top: -2px;
   left: 0;
-  background: #90A9B6;
+  background: #ededed;
   transition: .2s;
   transform: scale(1.1);
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  box-shadow: 0 1px 5px rgba(0,0,0,.3);
 }
 
 input[type='checkbox'].switch:checked:before {
+  background: #90A9B6;
   left: 14px;
 }
 
@@ -85,8 +86,8 @@ input[type='checkbox'].switch:checked:before {
     border: 2px solid var(--active-color);
     border-top: 0;
     border-left: 0;
-    left: 3px;
-    top: -1px;
+    left: 4px;
+    top: 0px;
     transform: rotate(var(--r, 45deg));
   }
 
