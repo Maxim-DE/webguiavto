@@ -129,7 +129,7 @@ function App() {
         }
       }))
   
-    } else if (output_name === 'get_expanded_log') {
+    } else if (output_name === 'get_expanded_sys_log') {
       let log_data = calibState.data.calib_misc.sys_log,
           new_log_data = syslog_handle_expand(output_data, log_data)
 
@@ -144,6 +144,15 @@ function App() {
         }
       }))
 
+
+    } else if (output_name === 'get_expanded_user_log') {
+      let log_data = statusData.status_full_logs,
+          new_log_data = syslog_handle_expand(output_data, log_data)
+
+      setStatusData(prevState => ({
+        ...prevState,
+        status_full_logs: new_log_data
+      }))
 
     } else if (output_name === 'calibration') {
       setCalibState(prevState => ({
