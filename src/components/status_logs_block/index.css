@@ -102,6 +102,10 @@
     column-gap: 0;
 }
 
+.expand_info_list li {
+  margin: 6px 0;
+}
+
 
 
 .log_critical {

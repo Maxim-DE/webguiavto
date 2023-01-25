@@ -68,7 +68,7 @@ export default function HttpLog_wrap(props) {
                       className='log_expand_button'
                       type='button'
                       onClick={(e) => {
-                        props.logs_expand(index)
+                        // props.logs_expand(index)
                       }}>
                       {item.log_expand ? <TbMinus /> :
                                          <TbPlus />

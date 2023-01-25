@@ -21,7 +21,7 @@ export const log_status = [
 ]
 
 const sys_log_types = [
-  {type: 'SysLog', name: 'Cистемный'},
+  {type: 'syslog', name: 'Cистемный'},
   {type: 'http_log', name: 'HTTP-жур.'}
 ]
 
@@ -30,7 +30,7 @@ function Syslog_calib(props) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const [logType, setLogType] = React.useState({
-    log_type: 'SysLog'
+    log_type: 'syslog'
   })
 
   const [sysLogLinks, setSysLogLinks] = React.useState({
@@ -48,11 +48,11 @@ function Syslog_calib(props) {
 
   React.useEffect(() => {
 
-    if (!Array.isArray(props.logData.SysLog)) {
+    if (!Array.isArray(props.logData)) {
       return
     }
 
-    const logData = props.logData.SysLog,
+    const logData = props.logData,
           maxMsg = logData.length
 
     setSysLogLinks(prevState => ({
@@ -98,7 +98,7 @@ function Syslog_calib(props) {
     if (sysLogLinks.active_page < sysLogLinks.max_links) {
       let links_counter
 
-      if (sysLogLinks.log_data.length < (sysLogLinks.max_links * sysLogLinks.max_pages)) {
+      if (sysLogLinks.max_links > sysLogLinks.max_pages) {
         links_counter = sysLogLinks.max_pages
       } else {
         links_counter = sysLogLinks.max_links
@@ -177,11 +177,11 @@ function Syslog_calib(props) {
       let active_log_data = sysLogLinks.log_data[log]
       let active_log_instance = {
         id: active_log_data[0],
-        message: active_log_data[3],
+        message: active_log_data[2],
         status: active_log_data[1],
-        time: time_ArrToStr(active_log_data[2]),
-        log_expand: active_log_data[4] ? false : 'none',
-        log_expand_data: active_log_data[4] ? active_log_data[4] : 'none'
+        time: time_ArrToStr(active_log_data[3]),
+        log_expand: active_log_data[4] == 1 ? false : 'none',
+        log_expand_data: active_log_data[5] ? active_log_data[4] : 'none'
       }
 
       active_page_logs.push(active_log_instance)
@@ -202,7 +202,8 @@ function Syslog_calib(props) {
   
   const handleSysLogRequest = () => {
     const request_obj = {
-      address: 'SysLog.cgi',
+      address: 'GetLogErrorFull.cgi',
+      data: 'syslog$1',
       notifications: {
         good: 'default',
         bad: 'default'
@@ -288,7 +289,8 @@ function Syslog_calib(props) {
     }))
 
     const request_obj = {
-      address: `${name}.cgi`,
+      address: `GetLogErrorFull.cgi`,
+      data: `${name}$1`,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -320,13 +322,13 @@ function Syslog_calib(props) {
     }))
   }
 
-  const handle_logExpand_request = (log_num, expand_bool) => {
+  const handle_logExpand_request = (log_type, log_num, expand_bool) => {
     let request_obj
 
     if (expand_bool) {
       request_obj = {
-        address: 'get_expanded_sys_log.cgi',
-        data: `$${log_num}`,
+        address: 'get_expanded_log.cgi',
+        data: `${log_type}$1;log_num$${log_num}`,
         notifications: {
           good: 'default',
           bad: 'default'
@@ -380,7 +382,7 @@ function Syslog_calib(props) {
               </button>
             ))}
           </div>
-          {logType.log_type == 'SysLog' &&
+          {logType.log_type == 'syslog' &&
             <Syslog_wrap
               logs_list={sysLogLinks.active_page_logs}
               logs_expand={handle_logExpand}

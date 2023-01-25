@@ -62,7 +62,11 @@
 }
 
 .log_expand_message {
-  margin: 7px 0;
+  margin: 15px 29px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .active_type {

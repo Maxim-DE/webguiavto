@@ -11,7 +11,8 @@ export default function Syslog_wrap(props) {
 
   React.useEffect(() => {
     const request_obj = {
-      address: 'SysLog.cgi',
+      address: 'GetLogErrorFull.cgi',
+      data: 'syslog$1',
       notifications: {
         good: 'default',
         bad: 'default'
@@ -69,7 +70,7 @@ export default function Syslog_wrap(props) {
                     className='log_expand_button'
                     type='button'
                     onClick={(e) => {
-                      props.logs_expand(index, item.id)
+                      props.logs_expand('syslog', index, item.id)
                   }}>
                     {item.log_expand ? <TbMinus /> :
                                        <TbPlus />

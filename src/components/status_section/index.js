@@ -80,6 +80,15 @@ function StatusSection(props) {
 
     props.updateHandler(request_obj)
 
+    
+    let full_log_req_obj = {
+      address: 'GetLogErrorFull.cgi',
+      data: 'userlog$1'
+    }
+    
+    props.updateHandler(full_log_req_obj)
+    
+
     let status_request_obj = {
       address: 'status.cgi',
       notifications: {
@@ -93,8 +102,6 @@ function StatusSection(props) {
     timerRef.current = setInterval(() => {
       props.updateHandler(status_request_obj)
     }, 1000)
-
-
   }, [props.device_type])
 
   return (
