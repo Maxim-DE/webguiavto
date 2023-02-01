@@ -2,6 +2,7 @@ import React from 'react'
 import { log_status } from '../syslog_calib'
 
 import { PulseLoader } from 'react-spinners';
+import { Log_expand_info } from '../../../status_logs_block';
 
 import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
@@ -70,11 +71,11 @@ export default function Syslog_wrap(props) {
                     className='log_expand_button'
                     type='button'
                     onClick={(e) => {
-                      props.logs_expand('syslog', index, item.id)
+                      props.logs_expand('syslog', index, item.id, item.unique_id)
                   }}>
                     {item.log_expand ? <TbMinus /> :
                                        <TbPlus />
-                                       }
+                    }
                     
                   </button>
                 }
@@ -89,7 +90,8 @@ export default function Syslog_wrap(props) {
                 className='log_expand_message'>
                 {item.log_expand_data !== 'none' ? 
                 
-                  item.log_expand_data :
+                  <Log_expand_info
+                    expand_obj={item.expand_info} /> :
                   <PulseLoader
                     color="#bbcacf"
                     loading

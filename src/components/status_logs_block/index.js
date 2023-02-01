@@ -96,27 +96,6 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
 
   }, [full_data])
 
-  // React.useEffect(() => {
-
-  //   if (data != null && Object.keys(data).length != 0) {
-  //     let logs_array = []
-
-  //     for (const log in data) {
-  //       let log_obj = {}
-
-  //       log_obj.id = log
-  //       log_obj.message = data[log].message
-  //       log_obj.time = data[log].time
-  //       log_obj.status = data[log].status
-
-  //       logs_array.push(log_obj)
-  //     }
-
-  //     setLogData(logs_array)
-  //   }
-
-  // }, [data])
-
   const handleModalClose = (event) => {
     setIsOpen(false)
   }
@@ -292,7 +271,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
 
 }
 
-function Log_expand_info({expand_obj, ...rest}) {
+export function Log_expand_info({expand_obj, ...rest}) {
 
   function expand_obj_to_arr(obj) {
     let extend_arr = []

@@ -14,7 +14,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
 import { async_Fetch_queue } from './logic/request_logic';
-import { syslog_handle_expand } from './logic/syslog_handle_expand';
+import { set_logs_id, syslog_handle_expand } from './logic/syslog_handle_expand';
 
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
@@ -118,7 +118,7 @@ function App() {
         setStatusData((prevState) => {
           return {
             ...prevState,
-            status_full_logs: output_data_copy
+            status_full_logs: set_logs_id(output_data_copy)
           }
         })
 
@@ -129,7 +129,7 @@ function App() {
             ...prevState.data,
             calib_misc: {
               ...prevState.data.calib_misc,
-              sys_log: output_data.syslog
+              sys_log: set_logs_id(output_data.syslog)
             }
           }
         }))
@@ -159,7 +159,7 @@ function App() {
         }))
 
       } else if (Object.hasOwn(output_params, 'syslog')) {
-        let log_data = calibState.data.calib_misc.sys_log,
+        let log_data = cloneDeep(calibState.data.calib_misc.sys_log),
             new_log_data = syslog_handle_expand(output_data, log_data, log_id)
   
         setCalibState(prevState => ({

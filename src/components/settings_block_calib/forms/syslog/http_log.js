@@ -1,6 +1,8 @@
 import React from 'react'
+
 import { log_status } from '../syslog_calib'
 import { PulseLoader } from 'react-spinners';
+import { Log_expand_info } from '../../../status_logs_block';
 
 import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
@@ -10,7 +12,8 @@ export default function HttpLog_wrap(props) {
 
   React.useEffect(() => {
     const request_obj = {
-      address: 'http_log.cgi',
+      address: 'GetLogErrorFull.cgi',
+      data: 'http_log$1',
       notifications: {
         good: 'default',
         bad: 'default'
@@ -85,7 +88,8 @@ export default function HttpLog_wrap(props) {
                 <div
                   className='log_expand_message'>
                   {item.log_expand_data !== 'none' ? 
-                    item.log_expand_data :
+                    <Log_expand_info
+                      expand_obj={item.expand_info} /> :
                     <PulseLoader
                       color="#bbcacf"
                       loading
