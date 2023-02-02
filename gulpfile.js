@@ -4,6 +4,8 @@ const clean = require('gulp-clean');
 const replace = require('gulp-replace');
 const gulpClean = require('gulp-clean');
 const svgo = require('gulp-svgmin')
+const stripDebug = require('gulp-strip-debug')
+
 
 let gzip_file_array = [
   'build/static/js/*.js',
@@ -82,6 +84,12 @@ function copy_mib_file() {
   .pipe(dest('build/mib/'))
 }
 
+function delete_logs() {
+  return src(['build/static/js/*.js'])
+  .pipe(stripDebug())
+  .pipe(dest('build/static/js/'))
+}
+
 
 exports.build_gzip = build_gzip;
 exports.delete_raw_files = delete_raw_files;
@@ -90,6 +98,7 @@ exports.delete_defer_load_comment = delete_defer_load_comment;
 exports.add_gz_to_filename = add_gz_to_filename;
 exports.copy_mib_file = copy_mib_file;
 exports.graph_svg_min = graph_svg_min;
+exports.delete_logs = delete_logs
 
 exports.pre_build_preparation = series(delete_http, delete_defer_load_comment)
-exports.full_gzip_build = series(copy_mib_file, build_gzip, delete_raw_files, add_gz_to_filename)
+exports.full_gzip_build = series(delete_http, copy_mib_file, build_gzip, delete_raw_files, add_gz_to_filename)
