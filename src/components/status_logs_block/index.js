@@ -60,7 +60,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
       log_obj.status = data[log][1];
       log_obj.message = data[log][2];
       log_obj.time = time_ArrToStr(data[log][3]);
-      if (fullLogData.length != 0) {
+      if (fullLogData.length != 0 && fullLogData[log]) {
         log_obj.log_expand = set_expand_state(data[log][4], fullLogData[log].log_expand)
         if (fullLogData[log].expand_info === 'none') {
           log_obj.expand_info = data[log][5] ? data[log][5] : 'none';
@@ -88,7 +88,6 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
 
   React.useEffect(() => {
     if (full_data != null && full_data.length != 0) {
-      console.debug('full_data upd')
       let logs_array = logArrToObj(full_data);
 
       setFullLogData(logs_array)
@@ -300,8 +299,8 @@ export function Log_expand_info({expand_obj, ...rest}) {
     return (
       <ul
         className='expand_info_list'>
-      {info_arr.map((item) => (
-        <li>
+      {info_arr.map((item, index) => (
+        <li key={index}>
           <span className='expand_li_label'>
             {param_label_translate(item.label)}: </span>
           <span 
