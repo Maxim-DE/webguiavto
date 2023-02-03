@@ -7,13 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import './components/notifications/index.css'
 
 import merge from 'lodash/merge'
-// import { cloneDeep } from 'lodash/cloneDeep';
+import cloneDeep from 'lodash/cloneDeep';
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
 import { async_Fetch_queue } from './logic/request_logic';
+import { set_logs_id, syslog_handle_expand } from './logic/syslog_handle_expand';
 
 import Links_list from './components/links_list'
 import PeripheralMenu from './components/peripheral_menu'
@@ -41,6 +42,7 @@ function App() {
     state: 'active',
     pool: [],
     error_pool: [],
+    delayed_pool: []
   })
   
   const [authGlobalState, authGlobalActions] = useGlobalStore()
@@ -78,7 +80,7 @@ function App() {
 
   const nav_ref = React.useRef()
 
-  const outputData_assignment = (output_name, output_data) => {
+  const outputData_assignment = (output_name, output_data, output_params) => {
 
     if (output_name === 'peripheral_structure') {
       setPeripheralData(prevState => ({
@@ -107,26 +109,70 @@ function App() {
       }))
 
     } else if (output_name === 'GetLogErrorFull') {
+      if (typeof output_param == 'string' &&
+          output_params.length == 0) return
 
-      let status_state_copy = statusData;
-      for (const key in output_data) {
-        status_state_copy[key] = output_data[key];
+      if (Object.hasOwn(output_params, 'userlog')) {
+        let output_data_copy = cloneDeep(output_data.userlog)
+
+        setStatusData((prevState) => {
+          return {
+            ...prevState,
+            status_full_logs: set_logs_id(output_data_copy)
+          }
+        })
+
+      } else if (Object.hasOwn(output_params, 'syslog')) {
+        setCalibState(prevState => ({
+          ...prevState,
+          data: {
+            ...prevState.data,
+            calib_misc: {
+              ...prevState.data.calib_misc,
+              sys_log: set_logs_id(output_data.syslog)
+            }
+          }
+        }))
+      }
+    } 
+
+    // else if (output_name === 'SysLog' ||
+    //            output_name === 'http_log') {} 
+
+    else if (output_name === 'get_expanded_log') {
+      if (typeof output_param == 'string' &&
+          output_params.length == 0) return
+      
+      let log_id = 0
+
+      if (Object.hasOwn(output_params, 'log_num')) {
+        log_id = output_params.log_num
       }
 
-      setStatusData(status_state_copy)
+      if (Object.hasOwn(output_params, 'userlog')) {
+        let log_data = JSON.parse(JSON.stringify(statusData.status_full_logs))
+        let new_log_data = syslog_handle_expand(output_data, log_data, log_id)
+  
+        setStatusData(prevState => ({
+          ...prevState,
+          status_full_logs: new_log_data
+        }))
 
-    } else if (output_name === 'SysLog') {
-      setCalibState(prevState => ({
-        ...prevState,
-        data: {
-          ...prevState.data,
-          calib_misc: {
-            ...prevState.data.calib_misc,
-            sys_log: output_data
+      } else if (Object.hasOwn(output_params, 'syslog')) {
+        let log_data = cloneDeep(calibState.data.calib_misc.sys_log),
+            new_log_data = syslog_handle_expand(output_data, log_data, log_id)
+  
+        setCalibState(prevState => ({
+          ...prevState,
+          data: {
+            ...prevState.data,
+            calib_misc: {
+              ...prevState.data.calib_misc,
+              sys_log: new_log_data
+            }
           }
-        }
-      }))
-      
+        }))
+      }
     } else if (output_name === 'calibration') {
       setCalibState(prevState => ({
         ...prevState,
@@ -160,10 +206,12 @@ function App() {
           break;
       }
 
-      setSectionData(prevState => ({
-        ...prevState,
-        [output_name]: output_data_copy,
-      }))
+      setSectionData((prevState) => {
+        return {
+          ...prevState,
+          [output_name]: output_data_copy,
+        }
+      })
     }
   }
 
@@ -172,6 +220,11 @@ function App() {
     if (requestPool.pool.length > 0) {
       debounceTimer = setTimeout(() => {
         const async_queue_processing = async (queue_arr) => {
+          setRequestPool(prevState => ({
+            ...prevState,
+            pool: []
+          }))
+          
           let queue_resp = await async_Fetch_queue(queue_arr)
 
           for (let index = 0; index < queue_resp.length; index++) {
@@ -226,6 +279,7 @@ function App() {
 
             if (resp_status == 'success') {
               let request_name = req_resp.name,
+                  request_params = req_resp.params,
                   req_data
 
               if (Object.keys(req_resp.data).length == 1 &&
@@ -268,18 +322,20 @@ function App() {
               }
               
 
-              outputData_assignment(request_name, req_data);
+              outputData_assignment(request_name, req_data, request_params);
             }
           }
+
+
         }
 
         let queue = requestPool.pool
         async_queue_processing(queue)
 
-        setRequestPool(prevState => ({
-          ...prevState,
-          pool: []
-        }));
+        // setRequestPool(prevState => ({
+        //   ...prevState,
+        //   pool: []
+        // }));
       }, 200)
     }
   }, [requestPool.pool])
@@ -333,7 +389,7 @@ function App() {
         default:
           break;
       }
-    }   
+    }
 
     if (requestPool.state == 'active') {
       setRequestPool(prevState => ({
@@ -347,8 +403,7 @@ function App() {
       }
 
       showInfoMessage(`Дождитесь завершения предыдуших запросов`, { autoClose: 1500 })
-    }
-
+    } 
   }
 
   const navRefUpdate = (nav_link_name) => {

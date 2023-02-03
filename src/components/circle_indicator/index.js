@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 
 import './index.css'
 
+import clamp  from 'lodash/clamp';
 import { status_colors } from '../graph_blocks';
 
 const Pie = ({label, value, min, max, status}) => {
   
-  let percentage
-
-  percentage = percentage >= 100 ? 100 :
-                                   ((value-min) /(max-min)) * 100
+  const clamped_value = clamp(value, min, max),
+        percentage = (clamped_value - min) / (max - min) * 100
   
   return (
   <div className="linear_indicator_wrapper">
