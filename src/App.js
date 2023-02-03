@@ -137,6 +137,10 @@ function App() {
       authGlobalActions.set_is_auth(true)
       authGlobalActions.set_auth_level(3)
 
+    } else if (output_name === 'calib_logout') {
+      authGlobalActions.set_is_auth(false)
+      authGlobalActions.set_auth_level(0)
+      
     } else if (/^calib_.*/g.test(output_name)) {
       setCalibState(prevState => ({
         ...prevState,
