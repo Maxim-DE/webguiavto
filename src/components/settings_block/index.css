@@ -92,9 +92,9 @@ h3 {
   height: 37px;
 }
 
-.nested_item > label {
+.nested_item label {
   margin-left: 14px;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .group_divider {
@@ -139,6 +139,11 @@ h3 {
   color: #ABABAB;
   background: transparent;
   transition: all 0.25s ease;
+}
+
+.action_buttons {
+  display: flex;
+  column-gap: 10px;
 }
 
 .primaryBtn:hover {

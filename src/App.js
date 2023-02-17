@@ -14,6 +14,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import { type_device_toStr } from './logic/output_data_management';
 import { async_Fetch_queue } from './logic/request_logic';
+import { add_info_to_conf } from './components/custom_groups/conf_manage_settings';
 import { set_logs_id, syslog_handle_expand } from './logic/syslog_handle_expand';
 
 import Links_list from './components/links_list'
@@ -24,6 +25,7 @@ import CalibSection from './components/calib_section';
 import CalibLogButton from './components/calib_log_button';
 
 import DeviceWrap_ST250 from './components/device_assets/st_250';
+import DeviceWrap_RE100 from './components/device_assets/re_100';
 
 import useGlobalStore from './logic/auth_store';
 
@@ -173,6 +175,20 @@ function App() {
           }
         }))
       }
+    } else if (output_name === 'get_conf_info') {
+      if (output_params.length == 0) return
+
+      let conf_name = output_params.name
+      let conf_data = cloneDeep(sectionData.settings.conf_manage)
+      let new_conf_data = add_info_to_conf(output_data, conf_data, conf_name)
+
+      setSectionData(prevState => ({
+        ...prevState,
+        settings: {
+          ...prevState,
+          conf_manage: new_conf_data
+        }
+      }))
     } else if (output_name === 'calibration') {
       setCalibState(prevState => ({
         ...prevState,

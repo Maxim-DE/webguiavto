@@ -170,7 +170,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
               <>
               <div className='log_divider'></div>
               <li
-              key={item.id}
+                key={item.id}
                 id={`log_${item.id}`}
                 className={`log_item ${log_status[item.status]}`}>
                 <span className="log_num">{item.id}</span>

@@ -66,6 +66,7 @@ function FormInput(props) {
         type="text"
         onChange={changeHandler}
         value={props.input_value}
+        placeholder={props.placeholder}
         style={props.style}
       />
     )
@@ -193,7 +194,7 @@ function FormInput(props) {
           onChange={changeHandler}
         />
         <input 
-          className='text_large_expand_input'
+            className='text_large_expand_input button_input'
           type="button" 
           value="..."
           onClick={modal_clickHandler} />
@@ -201,7 +202,7 @@ function FormInput(props) {
           className='text_large_expanded_wrap'
             style={{ 
               // display: openModal ? 'block' : 'block' ,
-              margin: openModal ? '11px 0 0 11px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 11px' : '16px 0 0 11px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'}}>
           <input
@@ -231,14 +232,14 @@ function FormInput(props) {
             onChange={changeHandler}
           />
           <input
-            className='text_large_expand_input'
+            className='text_large_expand_input button_input'
             type="button"
             value="..."
             onClick={modal_clickHandler} />
           <div
             className='text_large_expanded_wrap'
             style={{
-              margin: openModal ? '11px 0 0 11px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 18px' : '16px 0 0 11px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'
             }}>

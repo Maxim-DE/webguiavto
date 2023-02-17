@@ -3,23 +3,27 @@ function sectionData_format(state, section_name, data) {
   state[section_name] = data_entries;
 }
 
+
 function dataArray_to_string(data_array) {
   let block_data = data_array;
   let data_string = '';
 
-  for (const key in block_data) {
-    if (block_data[key].length === 0) {
-      data_string += `${key}$NULL;`
+  recursvive_obj_handle(block_data)
 
-      // setBlockData(prevState => ({
-      //   ...prevState,
-      //   [key]: ''
-      // }));
-
-      continue
+  function recursvive_obj_handle(object) {
+    for (const key in object) {
+      if (object[key].length === 0) {
+        data_string += `${key}$NULL;`
+        continue
+  
+      } else if (typeof object[key] === 'object') {
+        recursvive_obj_handle(object[key])
+      } else if (typeof object[key] === 'boolean') {
+        data_string += `${key}$${Number(object[key])};`
+      } else {
+        data_string += `${key}$${object[key]};`
+      }
     }
-
-    data_string += `${key}$${block_data[key]};`
   }
 
   return data_string
@@ -64,7 +68,7 @@ async function fetch_data(req_obj) {
   const request = req_obj;
   const query = request.address;
   const data = request.data ? `?${request.data}` : '';
-  const url = `http://192.168.0.114${host}/${query}${data}`;
+  const url = `http://192.168.1.9${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
   const test_url = "http://192.168.1.9/GetDebug.CGI"

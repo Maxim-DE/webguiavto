@@ -94,12 +94,12 @@ function StatusSection(props) {
       },
     }
     
-    // clearInterval(timerRef.current)
+    clearInterval(timerRef.current)
 
     props.updateHandler(full_log_req_obj)
     
+    props.updateHandler(status_request_obj)
     timerRef.current = setInterval(() => {
-      props.updateHandler(status_request_obj)
     }, 1000)
   }, [props.device_type])
 

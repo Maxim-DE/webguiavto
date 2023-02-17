@@ -94,7 +94,7 @@ h3 {
 
 .nested_item > label {
   margin-left: 14px;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .group_divider {
@@ -141,10 +141,10 @@ h3 {
   transition: all 0.25s ease;
 }
 
-.primaryBtn:hover {
-  /* transform: translateY(-5px);
-  box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6); */
-}
+/* .primaryBtn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6); 
+} */
 
 
 #time_schedule_work_days.settings_item {
@@ -161,7 +161,7 @@ h3 {
   row-gap: 10px;
 }
 
-.calib .item_input {
+.item_input {
   display: flex;
   column-gap: 15px;
 }
