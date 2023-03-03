@@ -288,24 +288,26 @@ function FormInput(props) {
     )
   } 
   else if (props.type == "slider") {
-    const value_range = props.input_value.split(',')
+    // const value_range = props.input_value.split(',')
     return (
       <div
         className="slider_container"
         id={props.id}>
-        <span>{value_range[0]}</span>
+        {/* <span>{value_range[0]}</span> */}
+        <span>{props.input_value}</span>
 
         <input
           id={props.id}
           name={props.name}
           type='range'
-          className="slider"
+          className="range_slider"
           onChange={changeHandler}
-          value={value_range[1]}
-          min={value_range[0]}
-          max={value_range[2]} />
+          onMouseUp={props.mouseupHandler}
+          value={props.input_value}
+          step={props.step}
+          min={props.min}
+          max={props.max} />
 
-        <span>{value_range[2]}</span>
       </div>
     )
     

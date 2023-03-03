@@ -473,12 +473,14 @@ function App() {
               device_type={sectionData.info ? sectionData.info.info_general.type : ''} />
 
             {authGlobalState.auth_access.settings &&
-              <DeviceWrap_ST250
+              <DeviceWrap_RE100
                 updateHandler={handlePoolUpdate}
-                sectionData={sectionData} />
+                section_data={sectionData}
+                calib_data={calibState.data}
+                adc_data={statusData.calib_adc} />
             }
             
-            {!!statusData.calib_available &&
+            {/* {!!statusData.calib_available &&
              authGlobalState.auth_access.calib &&
              
               <CalibSection section_name="calibration"
@@ -487,7 +489,7 @@ function App() {
                             updateHandler={handlePoolUpdate}
                             adc_data={statusData.calib_adc} />
 
-            }
+            } */}
           </main>
         </div>
       </div>

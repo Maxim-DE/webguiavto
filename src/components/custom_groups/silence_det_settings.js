@@ -15,7 +15,7 @@ function Silence_det_settings({ parent_state, state_handler, ...rest }) {
     border_on: '',
     reaction_on: '',
     detection_event: 0,
-    silence_det_pwr_down: '',
+    silence_det_pwr_down: 10,
     silence_det_primary_channel: 0,
     silence_det_backup_channel: 0,
     silence_det_channel_switch: false
@@ -195,6 +195,8 @@ function Silence_det_settings({ parent_state, state_handler, ...rest }) {
                 name="silence_det_pwr_down"
                 type="slider"
                 changeHandler={changeHandler}
+                min={10}
+                max={90}
                 input_value={silenceDetState.silence_det_pwr_down} />
             </li>
           }

@@ -14,9 +14,12 @@ export const calib_state_conversion = (state, props) => {
   }
 
   for (const key in state_copy) {
-    if (typeof state_copy[key] != 'string') {
+    if (typeof state_copy[key] === 'boolean') {
+      state_copy[key] = state[key] ? state[key] : ''
       continue
-    }
+    } else if (typeof state_copy[key] != 'string') {
+      continue
+    } 
 
     let output_arr = []
     
