@@ -28,6 +28,8 @@ import DeviceWrap_ST250 from './components/device_assets/st_250';
 import DeviceWrap_RE100 from './components/device_assets/re_100';
 
 import useGlobalStore from './logic/auth_store';
+import useGlobalErrPool from './logic/err_store';
+import { fetch_error_handler } from './logic/fetch_error_handler';
 
 const status_settings_item = [
   { id: 'device_supply_switch', name: "Питание передатчика", type: "switch" },
@@ -39,6 +41,13 @@ const status_settings_item = [
 let debounceTimer;
 
 function App() {
+
+  const [errGlobalState, errGlobalActions] = useGlobalErrPool()
+
+  const [errPool, setErrPool] = React.useState({
+    total_err_count: 0,
+    status_err_count: 0
+  })
 
   const [requestPool, setRequestPool] = React.useState({
     state: 'active',
@@ -96,6 +105,10 @@ function App() {
         status_state_copy[key] = output_data[key];
       }
       setStatusData(status_state_copy)
+
+      if (errGlobalState.status_err_count > 0) {
+        errGlobalActions.err_erase('status')
+      }
 
     } else if (/media\/status_graph/gi.test(output_name)) {
 
@@ -277,9 +290,12 @@ function App() {
                   break;
 
                 case 'error':
+                  fetch_error_handler(errGlobalActions, req_resp)
                   if (req_queue_data.notifications) {
                     if (req_queue_data.notifications.bad == 'default') {
                       toast.error(`Ошибка (${req_resp.name})`, { autoClose: 1500 })
+                    } else if (req_queue_data.notifications.bad == 'none') {
+                      continue
                     } else {
                       toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                     }
@@ -470,7 +486,9 @@ function App() {
               logs_data={statusData.status_logs}
               full_logs_data={statusData.status_full_logs}
               settings_data={statusData.status_settings}
-              device_type={sectionData.info ? sectionData.info.info_general.type : ''} />
+              device_type={sectionData.info ? sectionData.info.info_general.type : ''}
+              err_count={errGlobalState.status_err_count}
+              err_pool_actions={errGlobalActions} />
 
             {authGlobalState.auth_access.settings &&
               <DeviceWrap_RE100

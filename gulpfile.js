@@ -36,7 +36,7 @@ function delete_raw_files() {
 
 function delete_http() {
   return src(['src/logic/request_logic.js'])
-  .pipe(replace('192.168.1.114', ''))
+  .pipe(replace('192.168.1.9', ''))
   .pipe(replace('http://', ''))
   .pipe(dest('src/logic'))
 }

@@ -53,9 +53,21 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetch_req(url, options, n) {
+async function fetch_req(url, options = {}, n) {
+  const {timeout = 8000} = options
+
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeout)
+
   try {
-    return await fetch(url, options);
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+    clearTimeout(id)
+    
+    return response
+
   } catch (e) {
     if (n <= 1) throw e;
     await sleep(50);
