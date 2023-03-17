@@ -491,7 +491,7 @@ function App() {
               err_pool_actions={errGlobalActions} />
 
             {authGlobalState.auth_access.settings &&
-              <DeviceWrap_RE100
+              <DeviceWrap_ST250
                 updateHandler={handlePoolUpdate}
                 section_data={sectionData}
                 calib_data={calibState.data}

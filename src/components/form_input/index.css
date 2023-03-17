@@ -356,3 +356,8 @@ select::-ms-expand {
   width: 36px;
   font-weight: 300;
 }
+
+.button_input.download_link {
+  outline: none;
+  text-decoration: none;
+}
