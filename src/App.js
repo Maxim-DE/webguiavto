@@ -210,10 +210,12 @@ function App() {
 
     } else if (output_name === 'calib_passw') {
       authGlobalActions.set_is_auth(true)
+      authGlobalActions.set_user_id(output_params.login)
       authGlobalActions.set_auth_level(3)
 
-    } else if (output_name === 'calib_logout') {
+    } else if (output_name === 'logout') {
       authGlobalActions.set_is_auth(false)
+      authGlobalActions.set_user_id('')
       authGlobalActions.set_auth_level(0)
       
     } else if (/^calib_.*/g.test(output_name)) {
@@ -280,7 +282,7 @@ function App() {
     
                         case 'error':
                           toast.error(message, { autoClose: 1500 })
-                          continue;
+                          break;
     
                         default:
                           break;
@@ -289,7 +291,9 @@ function App() {
                     } else {
                       toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
                     }
-                  } 
+                  } else if (req_queue_data.notifications.good != 'none') {
+                    toast.success(req_queue_data.notifications.good, { autoClose: 1500 })
+                  }
                   
                   break;
 
@@ -321,7 +325,11 @@ function App() {
               if (Object.keys(req_resp.data).length == 1 &&
                   Object.hasOwn(req_resp.data, 'Notific')) {
 
-                if (!req_queue_data.save_data) continue
+                if (!req_queue_data.save_data) {
+                  req_data = {}
+                  outputData_assignment(request_name, req_data, request_params)
+                  continue
+                }
 
                 let state_copy = {},
                     save_data = req_queue_data.save_data,

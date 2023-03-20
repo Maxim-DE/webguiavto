@@ -16,7 +16,10 @@ const actions = {
     const is_auth = bool
     store.setState({ is_auth })
   },
-
+  set_user_id: (store, id) => {
+    const user_id = id
+    store.setState({ user_id })
+  },
   set_auth_level: (store, auth_level) => {
     let auth_access = {
       status: false,

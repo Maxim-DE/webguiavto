@@ -131,7 +131,10 @@ async function fetch_data(req_obj) {
         data: req_data
       }
       return resp_obj
+    } else if (!response.ok) {
+      throw new Error(`request failed with status ${response.status}`)
     }
+
   } catch (error) {
     const message = `An error has occured: ${error}`;
     console.error(message);

@@ -124,8 +124,8 @@ function StatusSection(props) {
     }
 
     timerRef.current = setInterval(() => {
-      console.log(typeof timerRef.current);
       props.updateHandler(status_request_obj)
+      console.log(typeof timerRef.current);
     }, 1000)
   }
 

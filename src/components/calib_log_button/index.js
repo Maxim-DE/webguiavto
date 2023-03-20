@@ -52,10 +52,10 @@ const CalibLogButton = (props) => {
 			
 			case 'logout': {
 				const request_obj = {
-					address: 'calib_logout.cgi',
+					address: 'logout.cgi',
 					// data: `login$${calibPassw.login};password$${calibPassw.password}`,
 					notifications: {
-						good: 'default',
+						good: 'Выход выполнен',
 						bad: 'default'
 					}
 				}
@@ -105,7 +105,7 @@ const CalibLogButton = (props) => {
 			className="log_button"
 			onClick={clickHandler}>
 			{calibPassw.is_auth ?
-				<span className='log_label' data-action='logout'>Выйти</span> :
+				<span className='log_label' data-action='logout'>Выйти ({authGlobalState.user_id})</span> :
 				<span className='log_label' data-action='login'>Войти в калибровку</span>}
 			{/* <img src={log_icon} alt="Войти" sizes="" /> */}
 		</div>
