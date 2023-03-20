@@ -2,13 +2,17 @@ import React from 'react';
 // import ReactDOM from 'react_dom';
 
 import Status_settings from "../status_settings_block"
-import Settings_block from '../settings_block';
+import Settings_block from '../settings_block'
 import Status_logs from "../status_logs_block"
 import Status_graphs from "../graph_blocks"
+
+import ModalCalib from '../calib_modal'
+import FormInput from '../form_input';
 
 import './index.css'
 
 function StatusSection(props) {
+
   const timerRef = React.useRef();
 
   const handleUpdate = request => {
@@ -80,24 +84,58 @@ function StatusSection(props) {
 
     props.updateHandler(request_obj)
 
-    let status_request_obj = {
-      address: 'status.cgi',
-      notifications: {
-        good: 'none',
-        bad: 'default'
-      },
-    }
-
+    
+    let full_log_req_obj = {
+      address: 'GetLogErrorFull.cgi',
+      data: 'userlog$1'
+    }    
+    
     clearInterval(timerRef.current)
 
-    timerRef.current = setInterval(() => {
-      props.updateHandler(status_request_obj)
-    }, 1000)
-
+    props.updateHandler(full_log_req_obj)
+    
+    handleConnectionEstablish()
 
   }, [props.device_type])
 
+  React.useEffect(() => {
+    console.log(props.err_count, typeof timerRef.current);
+    
+    if (props.err_count > 10) {
+      clearInterval(timerRef.current)
+    } else if (props.err_count == 0 &&
+               typeof timerRef.current != 'number' &&
+               Array.isArray(props.device_type)) {
+
+      handleConnectionEstablish()
+    }
+  }, [props.err_count])
+
+  const handleConnectionEstablish = () => {
+    let status_request_obj = {
+      address: 'status.cgi',
+      fetch_opts: {
+        timeout: 1000
+      },
+      notifications: {
+        good: 'none',
+        bad: 'none'
+      },
+    }
+
+    timerRef.current = setInterval(() => {
+      console.log(typeof timerRef.current);
+      props.updateHandler(status_request_obj)
+    }, 1000)
+  }
+
+  const handleConnectionRetry = () => {
+    props.err_pool_actions.err_erase('status')
+    handleConnectionEstablish()
+  }
+
   return (
+    <>
     <section
       id={`${props.section_name}_section`}
       className='section'>
@@ -133,7 +171,56 @@ function StatusSection(props) {
         </div>
       </div>
     </section>
+    {props.err_count > 10 &&
+    <DisconnectPlaceholder
+      err_pool_actions={props.err_pool_actions}
+      connection_retry_handler={handleConnectionRetry} />
+    }
+    </>
   )
 }
+
+function DisconnectPlaceholder({connection_retry_handler, ...rest}) {
+
+  const [isPlaceholderOpen, setIsPlaceholderOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsPlaceholderOpen(true)
+  }, [])
+
+  const handlePlaceholderClose = (bool) => {
+    setIsPlaceholderOpen(bool)
+  }
+
+  return (
+    <>
+    {isPlaceholderOpen &&
+    <ModalCalib
+      header='соединение потеряно'
+      setIsOpen={(e) => {
+        setIsPlaceholderOpen(false)
+      }}
+      user_controllable={false}
+      class='full_log_modal hex_upload_modal'>
+      <div className='hex_upload_message_wrap'>
+        <span className='hex_upload_upload_message'>
+          Произошла ошибка соединения. Чтобы продолжить, необходимо повторить попытку соединения
+        </span>
+        <FormInput
+          id={`retry_status_connection_input`}
+          name={`retry_status_connection`}
+          clickHandler={(e) => {
+            connection_retry_handler()
+            setIsPlaceholderOpen(false)
+          }}
+          label='Повторить попытку'
+          type="button" />
+      </div>
+    </ModalCalib>
+    }
+    </>
+  )
+}
+
 
 export default StatusSection;

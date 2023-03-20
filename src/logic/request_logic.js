@@ -3,35 +3,71 @@ function sectionData_format(state, section_name, data) {
   state[section_name] = data_entries;
 }
 
+
 function dataArray_to_string(data_array) {
   let block_data = data_array;
   let data_string = '';
 
-  for (const key in block_data) {
-    if (block_data[key].length === 0) {
-      data_string += `${key}$NULL;`
+  recursvive_obj_handle(block_data)
 
-      // setBlockData(prevState => ({
-      //   ...prevState,
-      //   [key]: ''
-      // }));
-
-      continue
+  function recursvive_obj_handle(object) {
+    for (const key in object) {
+      if (object[key].length === 0) {
+        data_string += `${key}$NULL;`
+        continue
+  
+      } else if (typeof object[key] === 'object') {
+        recursvive_obj_handle(object[key])
+      } else if (typeof object[key] === 'boolean') {
+        data_string += `${key}$${Number(object[key])};`
+      } else {
+        data_string += `${key}$${object[key]};`
+      }
     }
-
-    data_string += `${key}$${block_data[key]};`
   }
 
   return data_string
+}
+
+function params_to_obj(param_array) {
+  if (param_array.length == 0) {
+    return ''
+  }
+
+  let param_obj = {}
+
+  for (let param = 0; param < param_array.length; param++) {
+    if (param_array[param].length == 0) continue
+
+    const param_divided = param_array[param].split('$'),
+          key = param_divided[0],
+          value = param_divided[1]
+
+    param_obj[key] = value
+  }
+
+  return param_obj
 }
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetch_req(url, options, n) {
+async function fetch_req(url, options = {}, n) {
+  const {timeout = 8000} = options
+
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeout)
+
   try {
-    return await fetch(url, options);
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+    clearTimeout(id)
+    
+    return response
+
   } catch (e) {
     if (n <= 1) throw e;
     await sleep(50);
@@ -47,13 +83,21 @@ async function fetch_data(req_obj) {
   const url = `http://192.168.1.9${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
-  const test_url = "http://192.168.1.114/GetDebug.CGI"
+  const test_url = "http://192.168.1.9/GetDebug.CGI"
 
   console.log(url);
   let responseClone;
   let resp_obj = {}
   let request_name = request.address.replace('.cgi', '')
       request_name = request_name.replace('set_', '')
+
+  let request_params = []
+
+  if (data.length != 0) {
+    request_params = request.data.split(';')
+    console.log(request_params);
+  }
+  
 
   const fetch_opts = request.fetch_opts ? request.fetch_opts : {}
 
@@ -82,6 +126,7 @@ async function fetch_data(req_obj) {
 
       resp_obj = {
         name: request_name,
+        params: params_to_obj(request_params),
         status: 'success',
         data: req_data
       }
@@ -92,6 +137,7 @@ async function fetch_data(req_obj) {
     console.error(message);
     resp_obj = {
       name: request_name,
+      params: params_to_obj(request_params),
       status: 'error',
       data: error
     }

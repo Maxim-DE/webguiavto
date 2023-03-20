@@ -66,6 +66,7 @@ function FormInput(props) {
         type="text"
         onChange={changeHandler}
         value={props.input_value}
+        placeholder={props.placeholder}
         style={props.style}
       />
     )
@@ -193,7 +194,7 @@ function FormInput(props) {
           onChange={changeHandler}
         />
         <input 
-          className='text_large_expand_input'
+            className='text_large_expand_input button_input'
           type="button" 
           value="..."
           onClick={modal_clickHandler} />
@@ -201,7 +202,7 @@ function FormInput(props) {
           className='text_large_expanded_wrap'
             style={{ 
               // display: openModal ? 'block' : 'block' ,
-              margin: openModal ? '11px 0 0 11px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 11px' : '16px 0 0 11px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'}}>
           <input
@@ -231,14 +232,14 @@ function FormInput(props) {
             onChange={changeHandler}
           />
           <input
-            className='text_large_expand_input'
+            className='text_large_expand_input button_input'
             type="button"
             value="..."
             onClick={modal_clickHandler} />
           <div
             className='text_large_expanded_wrap'
             style={{
-              margin: openModal ? '11px 0 0 11px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 18px' : '16px 0 0 11px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'
             }}>
@@ -287,24 +288,26 @@ function FormInput(props) {
     )
   } 
   else if (props.type == "slider") {
-    const value_range = props.input_value.split(',')
+    // const value_range = props.input_value.split(',')
     return (
       <div
         className="slider_container"
         id={props.id}>
-        <span>{value_range[0]}</span>
+        {/* <span>{value_range[0]}</span> */}
+        <span>{props.input_value}</span>
 
         <input
           id={props.id}
           name={props.name}
           type='range'
-          className="slider"
+          className="range_slider"
           onChange={changeHandler}
-          value={value_range[1]}
-          min={value_range[0]}
-          max={value_range[2]} />
+          onMouseUp={props.mouseupHandler}
+          value={props.input_value}
+          step={props.step}
+          min={props.min}
+          max={props.max} />
 
-        <span>{value_range[2]}</span>
       </div>
     )
     
