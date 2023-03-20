@@ -3,6 +3,7 @@ import React from 'react'
 import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 import Time_settings from './forms/time_settings'
+import File_download from './forms/file_download'
 
 export default function GeneralSettingsSection(props) {
 
@@ -39,6 +40,9 @@ export default function GeneralSettingsSection(props) {
           'null'
           : props.section_data.time_settings}
         clickHandler={updateHandler} />
+      <File_download
+        section_name="settings" />
+
     </SettingsSectionWrap>
   )
 }

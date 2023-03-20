@@ -1,6 +1,7 @@
 import React from 'react'
 import Settings_block_calib from '..'
 import FormInput from '../../form_input'
+import useGlobalStore from '../../../logic/auth_store'
 
 function MiscDownloadCalib(props) {
   const download_links = {
@@ -23,6 +24,8 @@ function MiscDownloadCalib(props) {
       return readSector_link_build('download')
     },
   })
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   const handleChange = (event) => {
     const target = event.target;
@@ -62,7 +65,7 @@ function MiscDownloadCalib(props) {
     <Settings_block_calib
       header={`загрузка файлов`}
       settings_type={`misc_download_calib`} >
-      <li
+      {/* <li
         key='full_conf_download'
         id='full_conf_download'
         className="settings_item">
@@ -79,15 +82,6 @@ function MiscDownloadCalib(props) {
             href={download_links.full_conf}>
             Скачать
           </a> 
-          {/* <FormInput
-            id={`full_conf_download_input`}
-            name={`full_conf_download`}
-            clickHandler={(e) => {
-              e.preventDefault()
-              file_download_download(download_links.full_conf)
-            }}
-            label='Скачать'
-            type="button" /> */}
         </div>
       </li>
       <li
@@ -107,15 +101,6 @@ function MiscDownloadCalib(props) {
             href={download_links.sys_log}>
             Скачать
           </a> 
-          {/* <FormInput
-            id={`sys_log_download_input`}
-            name={`sys_log_download`}
-            clickHandler={(e) => {
-              e.preventDefault()
-              file_download_download(download_links.sys_log)
-            }}
-            label='Скачать'
-            type="button" /> */}
         </div>
       </li>
       <li
@@ -138,21 +123,14 @@ function MiscDownloadCalib(props) {
             download>
             Скачать
           </a> 
-          {/* <FormInput
-            id={`all_file_download_input`}
-            name={`all_file_download`}
-            clickHandler={(e) => {
-              e.preventDefault()
-              file_download_download(download_links.all_file)
-            }}
-            label='Скачать'
-            type="button" /> */}
         </div>
-      </li>
+      </li> */}
+      {authGlobalState.auth_access.calib_extend &&
+      <>
       <li
         key='sector_download'
         id='sector_download'
-        className="settings_item group_divider">
+        className="settings_item">
         <div className='item_header'>
           <label
             htmlFor={`sector_download_input`}
@@ -208,8 +186,8 @@ function MiscDownloadCalib(props) {
         </div>
       </li>
       <li
-        key='sector_download'
-        id='sector_download'
+        key='sector_download_actions'
+        id='sector_download_actions'
         className="settings_item">
         <div className='item_header'>
         </div>
@@ -232,6 +210,9 @@ function MiscDownloadCalib(props) {
           </a> 
         </div>
       </li>
+
+      </>
+      }
     </Settings_block_calib>
   )
 }
