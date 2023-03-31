@@ -217,6 +217,22 @@ function App() {
         ...prevState,
         data: output_data
       }))
+    } else if (output_name === 'get_user_list' ||
+               output_name === 'save_user' ||
+               output_name === 'delete_user' ||
+               output_name === 'register_user') {
+                
+      setCalibState(prevState => ({
+        ...prevState,
+        data: {
+          ...prevState.data,
+          calib_misc: {
+            ...prevState.data.calib_misc,
+            user_list: output_data
+          }
+        }
+      }))
+
     } else {
       let output_data_copy
 

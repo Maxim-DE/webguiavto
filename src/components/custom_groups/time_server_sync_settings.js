@@ -11,14 +11,14 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
     time_sync_switch: false,
     time_sync_server_ip: '',
     time_sync_timezone: 0,
-    time_sync_period: ''
+    time_sync_period: 0
   }
 
   const [timeSyncState, setTimeSyncState] = React.useState({
     time_sync_switch: false,
     time_sync_server_ip: '',
     time_sync_timezone: 0,
-    time_sync_period: ''
+    time_sync_period: 0
   })
 
   React.useEffect(() => {
