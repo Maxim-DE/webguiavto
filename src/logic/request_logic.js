@@ -131,6 +131,8 @@ async function fetch_data(req_obj) {
         data: req_data
       }
       return resp_obj
+    } else {
+      throw new Error(`Invalid response code ${response.status}`)
     }
   } catch (error) {
     const message = `An error has occured: ${error}`;

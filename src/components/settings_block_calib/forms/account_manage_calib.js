@@ -15,26 +15,7 @@ export default function Account_manage_calib(props) {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   const [accountState, setAccountState] = React.useState({
-    user_list: [
-      // {
-      //   id: 'id_1',
-      //   login: 'goo',
-      //   password: 'secret',
-      //   editable: false
-      // },
-      // {
-      //   id: 'id_2',
-      //   login: 'moomom',
-      //   password: 'feist',
-      //   editable: false
-      // },
-      // {
-      //   id: 'id_adm',
-      //   login: 'admin',
-      //   password: 'petux',
-      //   editable: false
-      // }
-    ],
+    user_list: [],
     active_edit_acc: {}
   })
 

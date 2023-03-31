@@ -228,7 +228,7 @@ function App() {
           ...prevState.data,
           calib_misc: {
             ...prevState.data.calib_misc,
-            user_list: output_data
+            user_list: output_data.user_list
           }
         }
       }))
