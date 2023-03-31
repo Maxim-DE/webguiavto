@@ -220,7 +220,7 @@ export default function Account_manage_calib(props) {
 
   const doSaveAccReq = ({ id, login, password} = {}) => {
     const req_obj = {
-      address: 'save_user.cgi',
+      address: 'edit_user.cgi',
       data: `id$${id};login$${login};password$${password}`,
       notifications: {
         good: 'Изменения сохранены',
