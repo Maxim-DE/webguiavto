@@ -80,10 +80,10 @@ async function fetch_data(req_obj) {
   const request = req_obj;
   const query = request.address;
   const data = request.data ? `?${request.data}` : '';
-  const url = `http://192.168.1.9${host}/${query}${data}`;
+  const url = `http://192.168.0.114${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
-  const test_url = "http://192.168.1.9/GetDebug.CGI"
+  const test_url = "http://192.168.0.114/GetDebug.CGI"
 
   console.log(url);
   let responseClone;
@@ -121,7 +121,9 @@ async function fetch_data(req_obj) {
 
       if (Object.hasOwnProperty.call(req_data, 'Notific')) {
         const req_status = req_data.Notific.status
-        if (req_status == 'error') throw new Error(req_data.Notific.text)
+        if (req_status == 'error') {
+          throw new Error(req_data.Notific.text)
+        }
       }
 
       resp_obj = {
@@ -135,8 +137,10 @@ async function fetch_data(req_obj) {
       throw new Error(`Invalid response code ${response.status}`)
     }
   } catch (error) {
-    const message = `An error has occured: ${error}`;
+    let message = `An error has occured: ${error.message}`
+
     console.error(message);
+
     resp_obj = {
       name: request_name,
       params: params_to_obj(request_params),

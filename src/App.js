@@ -218,7 +218,7 @@ function App() {
         data: output_data
       }))
     } else if (output_name === 'get_user_list' ||
-               output_name === 'save_user' ||
+               output_name === 'edit_user' ||
                output_name === 'delete_user' ||
                output_name === 'register_user') {
                 
@@ -307,15 +307,21 @@ function App() {
 
                 case 'error':
                   fetch_error_handler(errGlobalActions, req_resp)
-                  if (req_queue_data.notifications) {
-                    if (req_queue_data.notifications.bad == 'default') {
-                      toast.error(`Ошибка (${req_resp.name})`, { autoClose: 1500 })
-                    } else if (req_queue_data.notifications.bad == 'none') {
-                      continue
-                    } else {
-                      toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
-                    }
+                  // if (Object.hasOwn(req_resp.data, 'Notific')) {
+                  //     const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
+                  //           status = req_resp.data.Notific.status
+
+                  //     toast.error(message, { autoClose: 1500 })
+                  // } else 
+                  if (req_queue_data.notifications.bad == 'default') {
+                    toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
+                  } else if (req_queue_data.notifications.bad == 'none') {
+                    continue
+                  } else {
+                    toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                   }
+                  // if (req_queue_data.notifications) {
+                  // }
 
                   break;
               
@@ -507,6 +513,7 @@ function App() {
               err_pool_actions={errGlobalActions} />
 
             {authGlobalState.auth_access.settings &&
+
               <DeviceWrap_RE100
                 updateHandler={handlePoolUpdate}
                 section_data={sectionData}

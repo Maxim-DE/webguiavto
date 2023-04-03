@@ -215,15 +215,18 @@ export default function Account_manage_calib(props) {
     console.log('acc get list')
 
     props.updateHandler(req_obj)
-    setIsLoading(true)
+    // setIsLoading(true)
   }
 
   const doSaveAccReq = ({ id, login, password} = {}) => {
+    const new_login = login.length > 0 ? login : 'NULL',
+          new_passw = password.length > 0 ? password : 'NULL'
+
     const req_obj = {
       address: 'edit_user.cgi',
-      data: `id$${id};login$${login};password$${password}`,
+      data: `id$${id};login$${new_login};password$${new_passw}`,
       notifications: {
-        good: 'Изменения сохранены',
+        good: 'default',
         bad: 'default'
       },
     }
@@ -232,7 +235,7 @@ export default function Account_manage_calib(props) {
     console.log('acc save');
 
     props.updateHandler(req_obj)
-    setIsLoading(true)
+    // setIsLoading(true)
   }
 
   const doDeleteAccReq = ({ id } = {}) => {
@@ -249,13 +252,16 @@ export default function Account_manage_calib(props) {
     console.log('acc delete');
 
     props.updateHandler(req_obj)
-    setIsLoading(true)
+    // setIsLoading(true)
   }
 
   const doRegisterAccReq = ({ login, password } = {}) => {
+    const new_login = login.length > 0 ? login : 'NULL',
+          new_passw = password.length > 0 ? password : 'NULL'
+
     const req_obj = {
       address: 'register_user.cgi',
-      data: `login$${login};password$${password}`,
+      data: `login$${new_login};password$${new_passw}`,
       notifications: {
         good: 'Зарегистрировано',
         bad: 'default'
@@ -266,7 +272,7 @@ export default function Account_manage_calib(props) {
     console.log('acc register');
 
     props.updateHandler(req_obj)
-    setIsLoading(true)
+    // setIsLoading(true)
   }
 
   return (
@@ -339,6 +345,7 @@ export default function Account_manage_calib(props) {
                    type="text"
                    className={!(user.editable && user.login != 'admin') ? 'transparent' : ''}
                    onChange={changeHandler}
+                   maxLength = '20'
                    value={user.editable ?
                      accountState.active_edit_acc.login :
                      user.login
@@ -353,6 +360,7 @@ export default function Account_manage_calib(props) {
                    type={!user.editable ? 'password' : 'text'}
                    className={!user.editable ? 'transparent' : ''}
                    onChange={changeHandler}
+                   maxLength = '10'
                    value={user.editable ?
                      accountState.active_edit_acc.password :
                      user.password
@@ -373,6 +381,7 @@ export default function Account_manage_calib(props) {
                    }}
                    label='Сохранить'
                    type="button" />
+                {user.login != 'admin' && 
                  <FormInput
                    clickHandler={(e) => {
                      setAccEditDelete({
@@ -383,6 +392,7 @@ export default function Account_manage_calib(props) {
                    }}
                    label='Удалить'
                    type="button" />
+                }
                  <FormInput
                    clickHandler={(e) => {
                      setAccEditCancel({
@@ -423,6 +433,7 @@ export default function Account_manage_calib(props) {
                      type="text"
                      className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
                      onChange={changeHandler}
+                     maxLength = '20'
                      value={accountState.active_edit_acc.editable ?
                        accountState.active_edit_acc.login :
                        accountState.active_edit_acc.login
@@ -437,6 +448,7 @@ export default function Account_manage_calib(props) {
                      type={!accountState.active_edit_acc.editable ? 'password' : 'text'}
                      className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
                      onChange={changeHandler}
+                     maxLength = '10'
                      value={accountState.active_edit_acc.editable ?
                        accountState.active_edit_acc.password :
                        accountState.active_edit_acc.password
