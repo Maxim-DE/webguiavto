@@ -24,6 +24,8 @@ import CalibSection from './components/calib_section';
 
 import CalibLogButton from './components/calib_log_button';
 
+import { device_name_table, device_power_table } from './components/status_section';
+
 import DeviceWrap_ST250 from './components/device_assets/st_250';
 import DeviceWrap_RE100 from './components/device_assets/re_100';
 
@@ -526,28 +528,44 @@ function App() {
 
             {authGlobalState.auth_access.settings &&
 
-              <DeviceWrap_RE100
+              <DeviceWrap_switch
+                device_type={sectionData.info ? sectionData.info.info_general.type : [0, 0]}
                 updateHandler={handlePoolUpdate}
                 section_data={sectionData}
                 calib_data={calibState.data}
                 adc_data={statusData.calib_adc} />
             }
-            
-            {/* {!!statusData.calib_available &&
-             authGlobalState.auth_access.calib &&
-             
-              <CalibSection section_name="calibration"
-                            section_header="калибровка"
-                            section_data={calibState.data}
-                            updateHandler={handlePoolUpdate}
-                            adc_data={statusData.calib_adc} />
-
-            } */}
           </main>
         </div>
       </div>
     </>
   );
 }
+
+function DeviceWrap_switch({device_type, ...props}) {
+  const device_name = device_name_table[device_type[0]],
+        device_power = device_power_table[device_type[1]],
+        device_type_str = `${device_name}_${device_power}`
+
+  if (device_type_str === 'st_250' ||
+      device_type_str === 'st_100') {
+    return (
+      <DeviceWrap_ST250
+        updateHandler={props.updateHandler}
+        section_data={props.section_data}
+        calib_data={props.calib_data}
+        adc_data={props.adc_data} />
+    )    
+  } else {
+    return (
+      <DeviceWrap_RE100
+        updateHandler={props.updateHandler}
+        section_data={props.section_data}
+        calib_data={props.calib_data}
+        adc_data={props.adc_data} />
+    )
+  }
+}
+
 
 export default App;

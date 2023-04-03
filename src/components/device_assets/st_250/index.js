@@ -14,15 +14,15 @@ export default function DeviceWrap_ST250(props) {
     <>
       <GeneralSettingsSection
         updateHandler={updateHandler}
-        section_data={props.sectionData.settings === null ? 'null' : props.sectionData.settings} 
+        section_data={props.section_data.settings === null ? 'null' : props.section_data.settings} 
         />
       <NetworkSettingsSection
         updateHandler={updateHandler}
-        section_data={props.sectionData.network === null ? 'null' : props.sectionData.network} 
+        section_data={props.section_data.network === null ? 'null' : props.section_data.network} 
         />
       <InfoSection
         updateHandler={updateHandler}
-        section_data={props.sectionData.info === null ? 'null' : props.sectionData.info} 
+        section_data={props.section_data.info === null ? 'null' : props.section_data.info} 
         />
     </>
     
