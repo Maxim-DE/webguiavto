@@ -79,7 +79,6 @@ function StatusSection(props) {
         good: 'none',
         bad: 'default'
       },
-      
     }
 
     props.updateHandler(request_obj)

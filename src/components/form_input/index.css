@@ -198,6 +198,11 @@ input[type="text"]::placeholder {
   color: #868D9C;
 }
 
+input.transparent {
+  background-color: transparent;
+  border: none;
+}
+
 /* TEXT_RANGE STYLES */
 .text_range_container {
   display: flex;
