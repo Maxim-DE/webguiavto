@@ -2,6 +2,7 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import Syslog_calib from './syslog_calib';
+import Account_manage_calib from './account_manage_calib';
 import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
 
@@ -10,6 +11,7 @@ import useGlobalStore from '../../../logic/auth_store';
 function MiscCalibSettings(props) {
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: [],
+    user_list: [],
     amp_supply: false
   })
 
@@ -105,6 +107,9 @@ function MiscCalibSettings(props) {
         <Syslog_calib
         updateHandler={props.clickHandler}
         logData={miscCalibState.sys_log} />
+        <Account_manage_calib
+        updateHandler={props.clickHandler}
+        userData={miscCalibState.user_list} />
         <li
           key='delete_userlogs_calib'
           id='delete_user_logs_calib'

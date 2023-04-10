@@ -24,6 +24,8 @@ import CalibSection from './components/calib_section';
 
 import CalibLogButton from './components/calib_log_button';
 
+import { device_name_table, device_power_table } from './components/status_section';
+
 import DeviceWrap_ST250 from './components/device_assets/st_250';
 import DeviceWrap_RE100 from './components/device_assets/re_100';
 
@@ -210,13 +212,35 @@ function App() {
 
     } else if (output_name === 'calib_passw') {
       authGlobalActions.set_is_auth(true)
+      authGlobalActions.set_user_id(output_params.login)
       authGlobalActions.set_auth_level(3)
 
+    } else if (output_name === 'logout') {
+      authGlobalActions.set_is_auth(false)
+      authGlobalActions.set_user_id('')
+      authGlobalActions.set_auth_level(0)
+      
     } else if (/^calib_.*/g.test(output_name)) {
       setCalibState(prevState => ({
         ...prevState,
         data: output_data
       }))
+    } else if (output_name === 'get_user_list' ||
+               output_name === 'edit_user' ||
+               output_name === 'delete_user' ||
+               output_name === 'register_user') {
+                
+      setCalibState(prevState => ({
+        ...prevState,
+        data: {
+          ...prevState.data,
+          calib_misc: {
+            ...prevState.data.calib_misc,
+            user_list: output_data.user_list
+          }
+        }
+      }))
+
     } else {
       let output_data_copy
 
@@ -276,7 +300,7 @@ function App() {
     
                         case 'error':
                           toast.error(message, { autoClose: 1500 })
-                          continue;
+                          break;
     
                         default:
                           break;
@@ -285,21 +309,29 @@ function App() {
                     } else {
                       toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
                     }
-                  } 
+                  } else if (req_queue_data.notifications.good != 'none') {
+                    toast.success(req_queue_data.notifications.good, { autoClose: 1500 })
+                  }
                   
                   break;
 
                 case 'error':
                   fetch_error_handler(errGlobalActions, req_resp)
-                  if (req_queue_data.notifications) {
-                    if (req_queue_data.notifications.bad == 'default') {
-                      toast.error(`Ошибка (${req_resp.name})`, { autoClose: 1500 })
-                    } else if (req_queue_data.notifications.bad == 'none') {
-                      continue
-                    } else {
-                      toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
-                    }
+                  // if (Object.hasOwn(req_resp.data, 'Notific')) {
+                  //     const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
+                  //           status = req_resp.data.Notific.status
+
+                  //     toast.error(message, { autoClose: 1500 })
+                  // } else 
+                  if (req_queue_data.notifications.bad == 'default') {
+                    toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
+                  } else if (req_queue_data.notifications.bad == 'none') {
+                    continue
+                  } else {
+                    toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                   }
+                  // if (req_queue_data.notifications) {
+                  // }
 
                   break;
               
@@ -317,7 +349,11 @@ function App() {
               if (Object.keys(req_resp.data).length == 1 &&
                   Object.hasOwn(req_resp.data, 'Notific')) {
 
-                if (!req_queue_data.save_data) continue
+                if (!req_queue_data.save_data) {
+                  req_data = {}
+                  outputData_assignment(request_name, req_data, request_params)
+                  continue
+                }
 
                 let state_copy = {},
                     save_data = req_queue_data.save_data,
@@ -491,28 +527,45 @@ function App() {
               err_pool_actions={errGlobalActions} />
 
             {authGlobalState.auth_access.settings &&
-              <DeviceWrap_ST250
+
+              <DeviceWrap_switch
+                device_type={sectionData.info ? sectionData.info.info_general.type : [0, 0]}
                 updateHandler={handlePoolUpdate}
                 section_data={sectionData}
                 calib_data={calibState.data}
                 adc_data={statusData.calib_adc} />
             }
-            
-            {/* {!!statusData.calib_available &&
-             authGlobalState.auth_access.calib &&
-             
-              <CalibSection section_name="calibration"
-                            section_header="калибровка"
-                            section_data={calibState.data}
-                            updateHandler={handlePoolUpdate}
-                            adc_data={statusData.calib_adc} />
-
-            } */}
           </main>
         </div>
       </div>
     </>
   );
 }
+
+function DeviceWrap_switch({device_type, ...props}) {
+  const device_name = device_name_table[device_type[0]],
+        device_power = device_power_table[device_type[1]],
+        device_type_str = `${device_name}_${device_power}`
+
+  if (device_type_str === 'st_250' ||
+      device_type_str === 'st_100') {
+    return (
+      <DeviceWrap_ST250
+        updateHandler={props.updateHandler}
+        section_data={props.section_data}
+        calib_data={props.calib_data}
+        adc_data={props.adc_data} />
+    )    
+  } else {
+    return (
+      <DeviceWrap_RE100
+        updateHandler={props.updateHandler}
+        section_data={props.section_data}
+        calib_data={props.calib_data}
+        adc_data={props.adc_data} />
+    )
+  }
+}
+
 
 export default App;

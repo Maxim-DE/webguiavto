@@ -102,3 +102,56 @@
 .hex_upload_upload_message {
   text-align: center;
 }
+
+/* ACCOUNT MANAGER */
+.acc_manage_modal {
+  width: 753px;
+  max-height: 850px;
+}
+
+.acc_header {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+
+  height: 35px;
+  margin: 8px 15px 0 0;
+
+}
+
+.acc_header > span {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 17px;
+
+  font-variant: small-caps;
+
+  color: #C2C2C2;
+  margin-left: 4px;
+  flex: 0 0 205px
+}
+
+.acc_item {
+  height: 45px;
+
+  display:flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+
+  /* border-top: 1px #DFDFDF solid; */
+  border-radius: 12px;
+}
+
+.acc_login,
+.acc_password,
+.acc_actions {
+  display: flex;
+  flex: 0 0 210px
+}
+
+.acc_actions {
+  column-gap: 15px;
+}

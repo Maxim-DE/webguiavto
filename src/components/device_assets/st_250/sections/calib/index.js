@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import useGlobalStore from '../../../../../logic/auth_store';
 
-// import GeneralCalibSettings from '../../../../settings_block_calib/forms/general_calib';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import CurrentThresholdCalibSettings from '../../../../settings_block_calib/forms/current_threshold_calib';
 import VoltageCalibSettings from '../../../../settings_block_calib/forms/voltage_calib';
@@ -24,7 +22,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 
 import LoadingSpan from '../../../../loading_span';
 
-function CalibSection(props) {
+export default function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
     isLoading: false
   });
@@ -51,7 +49,7 @@ function CalibSection(props) {
   }, [])
 
   const handleClick = block_data => {
-
+    
     props.updateHandler(block_data);
     // setSectionState({
     //   isLoading: true
@@ -110,7 +108,7 @@ function CalibSection(props) {
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_misc : ''}
           clickHandler={handleClick} />
-        <MiscDownloadCalib />
+        {/* <MiscDownloadCalib /> */}
         {authGlobalState.auth_access.calib_extend &&
           <>
             <SerialNumVersionCalibSettings
@@ -131,5 +129,3 @@ function CalibSection(props) {
     </section>
   )
 }
-
-export default CalibSection

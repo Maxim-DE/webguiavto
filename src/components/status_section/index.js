@@ -11,6 +11,25 @@ import FormInput from '../form_input';
 
 import './index.css'
 
+export const device_power_table = {
+        0: '10',
+        1: '50',
+        2: '100',
+        3: '250',
+        4: '300',
+        5: '500',
+        6: '1000',
+        7: '2000',
+        8: '5000',
+      },
+
+      device_name_table = {
+        0: 'urc',
+        1: 'ust',
+        2: 'st',
+        3: 'bc'
+      }
+
 function StatusSection(props) {
 
   const timerRef = React.useRef();
@@ -30,30 +49,11 @@ function StatusSection(props) {
     if (!Array.isArray(props.device_type)) {
       return
     }
-
-    const device_power_table = {
-            0: '_10',
-            1: '_50',
-            2: '_100',
-            3: '_250',
-            4: '_300',
-            5: '_500',
-            6: '_1000',
-            7: '_2000',
-            8: '_5000',
-          },
-
-          device_name_table = {
-            0: 'urc',
-            1: 'ust',
-            2: 'st',
-            3: 'bc'
-          }
     
     const device_name = device_name_table[props.device_type[0]],
           device_power = device_power_table[props.device_type[1]]
           
-    let svg_req_str = `${device_name}${device_power}.svg.gz`
+    let svg_req_str = `${device_name}_${device_power}.svg.gz`
 
     // switch (props.device_type) {
     //   case 'СТ-100':
@@ -79,7 +79,6 @@ function StatusSection(props) {
         good: 'none',
         bad: 'default'
       },
-      
     }
 
     props.updateHandler(request_obj)
@@ -124,8 +123,8 @@ function StatusSection(props) {
     }
 
     timerRef.current = setInterval(() => {
-      console.log(typeof timerRef.current);
       props.updateHandler(status_request_obj)
+      console.log(typeof timerRef.current);
     }, 1000)
   }
 

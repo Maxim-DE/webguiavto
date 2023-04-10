@@ -7,7 +7,6 @@ import NetworkSettingsSection from './sections/network'
 import InfoSection from './sections/info'
 import CalibSection from './sections/calib'
 
-
 export default function DeviceWrap_ST250(props) {
   
   const updateHandler = (data_block) => {
