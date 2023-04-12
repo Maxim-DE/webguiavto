@@ -205,6 +205,7 @@ function FanCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='fan_temp_threshold_on_calib'
         id='fan_temp_threshold_on'

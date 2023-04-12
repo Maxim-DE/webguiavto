@@ -109,6 +109,8 @@ input[type='checkbox'].switch:checked:before {
   column-gap: 5px;
 }
 
+
+
 /* BUTTON & SELECT STYLES */
 
 .button_input, 
@@ -136,8 +138,10 @@ select {
 }
 
 .button_input,
-.save_form_button {
-  transition: background-color 0.6s, transform 0.1s;
+.save_form_button,
+input[type="text"],
+select {
+  transition: background-color 0.4s, transform 0.1s, color 0.4s;
 }
 
 .button_input svg {
@@ -308,6 +312,29 @@ select::-ms-expand {
 .double_select {
   justify-content: space-between;
   max-width: 170px;
+}
+
+/* DISABLED STYLE */
+
+input.disabled_input,
+select.disabled_input {
+  background: #d9d9d9;
+  cursor: not-allowed;
+  color: #868D9C
+}
+
+.button_input.disabled_input {
+  color: #868D9C
+}
+
+.button_input:hover.disabled_input {
+  background: #d9d9d9;
+
+}
+
+.button_input:active.disabled_input {
+  /* transform: translateY(1px); */
+  transform: none;
 }
 
 /* SLIDER STYLES */

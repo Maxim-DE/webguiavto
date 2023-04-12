@@ -128,6 +128,7 @@ function TempThresholdCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='temp_address_calib'
         id='temp_address_calib'

@@ -119,6 +119,7 @@ function PowerCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='output_power_calib'
         id='output_power_calib'
@@ -154,7 +155,7 @@ function PowerCalibSettings(props) {
             label='Сохранить'
             type="button" />
         </div>
-      </li>      
+      </li>    
       <li
         key='refected_power_calib'
         id='refected_power_calib'
@@ -198,6 +199,7 @@ function PowerCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='сoupling_coeff_calib'
         id='сoupling_coeff_calib'
