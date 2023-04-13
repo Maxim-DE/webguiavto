@@ -213,7 +213,7 @@ function App() {
     } else if (output_name === 'calib_passw') {
       authGlobalActions.set_is_auth(true)
       authGlobalActions.set_user_id(output_params.login)
-      authGlobalActions.set_auth_level(3)
+      authGlobalActions.set_auth_level(output_data.auth_info.auth_level)
 
     } else if (output_name === 'logout') {
       authGlobalActions.set_is_auth(false)
@@ -418,6 +418,11 @@ function App() {
       const auth_info = sectionData.info.auth_info
       console.log(auth_info);
       authGlobalActions.set_auth_level(auth_info.auth_level)
+
+      if (auth_info.auth_level > 0) {
+        authGlobalActions.set_is_auth(true)
+        authGlobalActions.set_user_id(auth_info.auth_id)
+      }
     }
   }, [sectionData.info])
 
