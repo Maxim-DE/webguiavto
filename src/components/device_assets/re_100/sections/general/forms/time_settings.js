@@ -116,8 +116,8 @@ export default function Time_settings(props) {
       </li>
       <Time_server_sync_settings
         parent_state={timeSettingsState}
-        state_handler={state_handler} />
-
+        state_handler={state_handler}
+        clickHandler={props.clickHandler} />
     </SettingsBlockWrap>
   )
 }

@@ -5,7 +5,7 @@ import FormInput from '../../../../../form_input'
 
 export default function File_download(props) {
   const download_links = {
-    full_conf: 'ReadFile.hex?confing_dev$1;confing_user$1',
+    user_conf: 'ReadFile.hex?confing_user$1',
     sys_log: 'ReadFile.hex?syslog$1',
     all_file: 'ReadFile.hex'
   }
@@ -22,13 +22,13 @@ export default function File_download(props) {
           <label
             htmlFor={`device_conf_download_input`}
             className="settings_itemLabel">
-            Полная конфигурация
+            Пользовательский журнал
           </label>
         </div>
         <div className='item_input'>
           <a
             className='button_input download_link'
-            href={download_links.full_conf}>
+            href={download_links.user_conf}>
             Скачать
           </a>
           {/* <FormInput

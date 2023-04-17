@@ -3,7 +3,7 @@ import React from 'react';
 import useGlobalStore from '../../../../../logic/auth_store';
 
 import GeneralCalibSettings_ST from '../../../../settings_block_calib/forms/general_calib_st';
-import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
+import CurrentCalibSettings_ST from '../../../../settings_block_calib/forms/current_calib_st';
 import CurrentThresholdCalibSettings_ST from '../../../../settings_block_calib/forms/current_threshold_calib_st';
 import VoltageCalibSettings from '../../../../settings_block_calib/forms/voltage_calib';
 import PowerCalibSettings from '../../../../settings_block_calib/forms/wattage_primary_calib';
@@ -67,19 +67,21 @@ export default function CalibSection(props) {
         </h2>
       </div>
       <div className="section_content">
-        <GeneralCalibSettings_ST
-          adc_data={props.adc_data != null ?
-            props.adc_data.general_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_general : ''}
-          clickHandler={handleClick} />
+        {authGlobalState.auth_access.calib_extend &&
+          <GeneralCalibSettings_ST
+            adc_data={props.adc_data != null ?
+              props.adc_data.general_calib : ''}
+            calib_data={Object.keys(props.section_data).length != 0 ?
+              props.section_data.calib_general : ''}
+            clickHandler={handleClick} />
+        }
         <VoltageCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.voltage_calib : ''}
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_voltage : ''}
           clickHandler={handleClick} />
-        <CurrentCalibSettings
+        <CurrentCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.current_calib : ''}
           calib_data={Object.keys(props.section_data).length != 0 ?

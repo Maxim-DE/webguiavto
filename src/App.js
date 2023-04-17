@@ -471,7 +471,7 @@ function App() {
       })) 
     } else if (requestPool.state == 'blocked') {
       
-      if (requestData.address == "status") {
+      if (requestData.address == "status.cgi") {
         return
       }
 
