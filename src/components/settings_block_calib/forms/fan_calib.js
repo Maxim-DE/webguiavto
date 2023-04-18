@@ -123,7 +123,7 @@ function FanCalibSettings(props) {
           // value = target.type != 'text' ? fanCalibState[name] : fanCalibState[name] * 10
     
     if (Array.isArray(props.calib_data[name])) {
-      value = fanCalibState[name] * 10
+      value = fanCalibState[name]
       let state_obj = { [name]: value }
       state_to_save = calib_state_conversion(state_obj, props.calib_data)
     } else {
@@ -134,7 +134,11 @@ function FanCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_fan.cgi',
-      data: `${name}$${value}`,
+      data: `${name}$${value * 10}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
       save_data: {
         calib_fan: state_to_save
       }

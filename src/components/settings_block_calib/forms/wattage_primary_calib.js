@@ -57,7 +57,7 @@ function PowerCalibSettings(props) {
         good: 'default',
         bad: 'default'
       },
-      save: {
+      save_data: {
         calib_power: converted_state
       }
     }

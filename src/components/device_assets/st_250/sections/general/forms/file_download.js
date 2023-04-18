@@ -7,7 +7,7 @@ export default function File_download(props) {
   const download_links = {
     user_conf: 'ReadFile.hex?confing_user$1',
     sys_log: 'ReadFile.hex?syslog$1',
-    all_file: 'ReadFile.hex'
+    all_file: 'ReadFile.hex?userlog$1;syslog$1'
   }
 
   return (
@@ -78,7 +78,7 @@ export default function File_download(props) {
           <label
             htmlFor={`all_file_download_input`}
             className="settings_itemLabel">
-            Все файлы в одном
+            Все журналы в одном
           </label>
         </div>
         <div className='item_input'>

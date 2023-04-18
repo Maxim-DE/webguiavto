@@ -49,7 +49,7 @@ function WattageAdditionalCalibSettings_ST(props) {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = wattageAdditionalCalibState[name],
-          multipier = props.calib_data ? props.calib_data[name][1] : 10
+          multipier = props.calib_data?.[name] ? props.calib_data[name][1] : 10
 
     let state_obj = { [name]: value },
         converted_state = calib_state_conversion(state_obj, props.calib_data)

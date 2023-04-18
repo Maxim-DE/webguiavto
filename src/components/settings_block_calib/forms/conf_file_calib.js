@@ -11,6 +11,25 @@ import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
 
+const conf_file_links = {
+  factory_reset: {
+    address: 'calib_conf_file.cgi',
+    data: 'factory_reset$1'
+  },
+  conf_file_download: {
+    address: 'calib_conf_file.cgi',
+    data: 'conf_file_download$1'
+  },
+  create_new_conf: {
+    address: 'super_admin_conf_file.cgi',
+    data: 'create_new_conf$1'
+  },
+  set_settings_as_factory: {
+    address: 'super_admin_conf_file.cgi',
+    data: 'set_settings_as_factory$1'
+  }
+}
+
 export default function ConfFileCalib(props) {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
 
@@ -92,11 +111,12 @@ export default function ConfFileCalib(props) {
   const handleClick_save = (event) => {
     const target = event.target,
       name = target.name.replace('_calib', ''),
-      value = 1
+      address = conf_file_links[name].address,
+      data = conf_file_links[name].data
 
     const request_obj = {
-      address: 'calib_conf_file.cgi',
-      data: `${name}$${value}`,
+      address: address,
+      data: data,
       notifications: {
         good: 'default',
         bad: 'default'
