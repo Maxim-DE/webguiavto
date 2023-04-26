@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import useGlobalStore from '../../../logic/auth_store';
+
 import cloneDeep from 'lodash/cloneDeep';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
@@ -13,6 +15,8 @@ function WattageAdditionalCalibSettings_ST(props) {
     ballast_1_avaliable: 0,
     ballast_1: ''
   })
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (Object.keys(props.calib_data).length != 0) {
@@ -51,8 +55,15 @@ function WattageAdditionalCalibSettings_ST(props) {
           value = wattageAdditionalCalibState[name],
           multipier = props.calib_data?.[name] ? props.calib_data[name][1] : 10
 
-    let state_obj = { [name]: value },
-        converted_state = calib_state_conversion(state_obj, props.calib_data)
+    // let state_obj = { [name]: value },
+    //     converted_state = calib_state_conversion(state_obj, props.calib_data)
+
+    const converted_state = {
+      [name]: [
+        value * 10,
+        10
+      ]
+    }
 
     const request_obj = {
       address: 'calib_input_power.cgi',
@@ -150,6 +161,7 @@ function WattageAdditionalCalibSettings_ST(props) {
         id='ballast_1_calib'
         className="settings_item calib">
         <div className='item_header'>
+          {authGlobalState.auth_access.calib_extend &&
           <FormInput
             id={`ballast_1_avaliable_calib_input`}
             name={`ballast_1_avaliable_calib`}
@@ -159,6 +171,7 @@ function WattageAdditionalCalibSettings_ST(props) {
             }}
             input_value={wattageAdditionalCalibState.ballast_1_avaliable}
             type="checkbox" />
+          }
           <label
             htmlFor={`ballast_1_calib_input`}
             className="settings_itemLabel">

@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import useGlobalStore from '../../../logic/auth_store';
+
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
@@ -18,13 +20,16 @@ function CurrentCalibSettings_ST(props) {
     I4: ''
   })
 
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
+
   React.useEffect(() => {
     if (Object.keys(props.calib_data).length != 0) {
+      console.log(props.calib_data);
       let calib_state_copy = cloneDeep(amperageCalibState)
 
       for (const key in props.calib_data) {
-        const divident = props.calib_data[key].value[0],
-              divider = props.calib_data[key].value[1] == 0 ? 1 : props.calib_data[key].value[1],
+        const divident = props.calib_data[key]?.value[0],
+              divider = props.calib_data[key]?.value[1] == 0 ? 1 : props.calib_data[key].value[1],
               digits = Math.log10(divider)
         calib_state_copy[key] = (divident / divider).toFixed(digits)
 
@@ -51,12 +56,36 @@ function CurrentCalibSettings_ST(props) {
   
   const handleClick_save = (event) => {
     const target = event.target,
-    name = target.name.replace('_calib', ''),
-    value = amperageCalibState[name]
+          name = target.name.replace('_calib', ''),
+          value = amperageCalibState[name]
     
+    if (props.calib_data === undefined ||
+        props.calib_data === '') {
+      return
+    }
     
-    let state_obj = { [name]: value },
-        converted_state = calib_state_conversion(state_obj, props.calib_data)
+    const divider = props.calib_data[name].value[1] ? props.calib_data[name].value[1] : 1
+
+    let coverted_state = {
+      [name]: {
+        value: [],
+        availability: 0
+      }
+    }
+
+    coverted_state[name].value[0] = value * divider
+    coverted_state[name].value[1] = divider
+    
+    if (amperageCalibState[`${name}_available`]) {
+      coverted_state[name].availability = amperageCalibState[`${name}_available`]
+    }
+
+    // let state_obj = { [name]: value },
+    //     converted_state = calib_state_conversion(state_obj, props.calib_data)
+
+    // state_obj[name] = {}
+
+    // state_obj[name].value = converted_state[name]
 
     const request_obj = {
       address: 'calib_current.cgi',
@@ -69,13 +98,55 @@ function CurrentCalibSettings_ST(props) {
 
       save_data: {
         calib_current: {
-          current_value: converted_state
+          current_value: coverted_state
         }
       }
     }
 
     props.clickHandler(request_obj);
     
+  }
+
+  const handleAvaliablility_save = (event) => {
+    const target = event.target,
+
+          target_name = target.name.replace('_calib', ''),
+          target_value = Number(target.checked),
+
+          current_name = target_name.replace('_available', ''),
+          current_value = amperageCalibState[current_name]
+
+    const divider = props.calib_data[current_name].value[1] ? props.calib_data[current_name].value[1] : 1
+
+    let converted_state = {
+      [current_name]: {
+        value: [],
+        availability: 0
+      }
+    }
+
+    converted_state[current_name].value[0] = current_value * divider
+    converted_state[current_name].value[1] = divider
+    converted_state[current_name].availability = target_value
+
+
+    const request_obj = {
+      address: 'calib_current.cgi',
+      data: `${target_name}$${target_value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_current: {
+          threshold: converted_state
+        }
+      }
+    }
+
+    props.clickHandler(request_obj);
+
   }
 
   const handleClick_calib_zeros = (event) => {
@@ -88,11 +159,19 @@ function CurrentCalibSettings_ST(props) {
     if (/all/gi.test(name)) {
       request_obj = {
         address: 'calib_current_zeros.cgi',
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        },
         data: `Ix$${value}`
       }
     } else {
       request_obj = {
         address: 'calib_current_zeros.cgi',
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        },
         data: `${name}$${value}`
       }
     }
@@ -196,20 +275,23 @@ function CurrentCalibSettings_ST(props) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider" />
       <li
         key='I3_calib'
         id='I3_calib'
         className="settings_item calib">
         <div className='item_header'>
+          {authGlobalState.auth_access.calib_extend &&
           <FormInput
             id={`I3_available_calib_input`}
             name={`I3_available_calib`}
             changeHandler={(e) => {
               handleChange(e);
-              // handleAvaliablility_save(e)
+              handleAvaliablility_save(e)
             }}
             input_value={amperageCalibState.I3_available}
             type="checkbox" />
+          }
           <label
             htmlFor={`I3_calib_input`}
             className="settings_itemLabel">
@@ -256,15 +338,17 @@ function CurrentCalibSettings_ST(props) {
         id='I4_calib'
         className="settings_item calib">
         <div className='item_header'>
+          {authGlobalState.auth_access.calib_extend &&
           <FormInput
             id={`I4_available_calib_input`}
             name={`I4_available_calib`}
             changeHandler={(e) => {
               handleChange(e);
-              // handleAvaliablility_save(e)
+              handleAvaliablility_save(e)
             }}
             input_value={amperageCalibState.I4_available}
             type="checkbox" />
+          }
           <label
             htmlFor={`I4_calib_input`}
             className="settings_itemLabel">

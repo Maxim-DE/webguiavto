@@ -66,6 +66,7 @@ function FormInput(props) {
         type="text"
         onChange={changeHandler}
         value={props.input_value}
+        disabled={props.disabled}
         placeholder={props.placeholder}
         style={props.style}
       />
@@ -90,6 +91,7 @@ function FormInput(props) {
         type="checkbox"
         checked={!!(props.input_value)}
         onChange={changeHandler}
+        disabled={props.disabled}
       />
     )
   } else if (props.type == "switch") {
@@ -262,6 +264,7 @@ function FormInput(props) {
         id={props.id}
         name={props.name}
         onChange={changeHandler}
+        disabled={props.disabled}
         value={props.input_value}
       >
       {props.variants &&
@@ -303,6 +306,7 @@ function FormInput(props) {
           className="range_slider"
           onChange={changeHandler}
           onMouseUp={props.mouseupHandler}
+          disabled={props.disabled}
           value={props.input_value}
           step={props.step}
           min={props.min}
@@ -317,6 +321,7 @@ function FormInput(props) {
         id={props.id}
         name={props.name}
         className={`button_input ${props.class}`}
+        disabled={props.disabled}
         type="button"
         value={props.label}
         style={props.style}

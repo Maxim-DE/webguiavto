@@ -171,6 +171,7 @@ function SerialNumVersionCalibSettings(props) {
             type="switch" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='device_serial_num_calib'
         id='device_serial_num_calib'

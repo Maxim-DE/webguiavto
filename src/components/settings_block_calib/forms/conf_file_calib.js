@@ -17,8 +17,8 @@ const conf_file_links = {
     data: 'factory_reset$1'
   },
   conf_file_download: {
-    address: 'calib_conf_file.cgi',
-    data: 'conf_file_download$1'
+    address: 'ReadFile.hex',
+    data: 'confing_dev$1;confing_user$1'
   },
   create_new_conf: {
     address: 'super_admin_conf_file.cgi',
@@ -229,18 +229,18 @@ export default function ConfFileCalib(props) {
           </label>
         </div>
         <div className='item_input'>
-          <FormInput
+          {/* <FormInput
             id={`conf_file_download_input`}
             name={`conf_file_download`}
             clickHandler={handleClick_save}
             label='Скачать'
-            type="button" />
-          {/* <FormInput
-            id={`conf_file_upload_input`}
-            name={`conf_file_upload`}
-            clickHandler={handleClick_save}
-            label='Загрузить'
             type="button" /> */}
+          <a
+            className='button_input download_link'
+            name={`conf_file_download`}
+            href={`${conf_file_links.conf_file_download.address}?${conf_file_links.conf_file_download.data}`}>
+            Скачать
+          </a>
           <input
             id="hex_upload_zone"
             name='file'

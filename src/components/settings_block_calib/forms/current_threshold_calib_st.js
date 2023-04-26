@@ -3,6 +3,8 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import useGlobalStore from '../../../logic/auth_store';
+
 import { calib_double_array_conversion } from '../../../logic/calib_state_conversion';
 
 function CurrentThresholdCalibSettings_ST(props) {
@@ -15,6 +17,8 @@ function CurrentThresholdCalibSettings_ST(props) {
     I4_threshold_available: 0,
     I4_threshold_input: ''
   })
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (Object.keys(props.calib_data).length != 0) {
@@ -43,8 +47,8 @@ function CurrentThresholdCalibSettings_ST(props) {
 
         calib_state_copy[`${key}_threshold_input`] = value_array
 
-        if(Object.hasOwn(props.calib_data[key], 'available')) {
-          calib_state_copy[`${key}_threshold_available`] = props.calib_data[key].available
+        if(Object.hasOwn(props.calib_data[key], 'availability')) {
+          calib_state_copy[`${key}_threshold_available`] = props.calib_data[key].availability
         }
       }
 
@@ -250,6 +254,7 @@ function CurrentThresholdCalibSettings_ST(props) {
       id='I3_threshold'
       className="settings_item calib">
       <div className='item_header'>
+        {authGlobalState.auth_access.calib_extend &&
         <FormInput
             id={`I3_threshold_available_calib_input`}
             name={`I3_threshold_available_calib`}
@@ -259,6 +264,7 @@ function CurrentThresholdCalibSettings_ST(props) {
             }}
             input_value={thresholdCalibState.I3_threshold_available}
             type="checkbox" />
+        }
         <label
           htmlFor={`I3_threshold_input`}
           className="settings_itemLabel">
@@ -312,6 +318,7 @@ function CurrentThresholdCalibSettings_ST(props) {
       id='I4_threshold'
       className="settings_item calib">
       <div className='item_header'>
+        {authGlobalState.auth_access.calib_extend &&
         <FormInput
             id={`I4_threshold_available_calib_input`}
             name={`I4_threshold_available_calib`}
@@ -321,6 +328,7 @@ function CurrentThresholdCalibSettings_ST(props) {
             }}
             input_value={thresholdCalibState.I4_threshold_available}
             type="checkbox" />
+        }
         <label
           htmlFor={`I4_threshold_input`}
           className="settings_itemLabel">

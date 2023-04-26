@@ -44,7 +44,7 @@ function MiscDownloadCalib(props) {
   }
 
   const readSector_link_build = (mode) => {
-    let link = `http://192.168.1.4/ReadSector.bin?sector$${readSectorState.init_sector};num$${readSectorState.sector_num}`
+    let link = `/ReadSector.bin?sector$${readSectorState.init_sector};num$${readSectorState.sector_num}`
 
     switch (mode) {
       case 'read':

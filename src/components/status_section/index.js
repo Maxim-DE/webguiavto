@@ -9,6 +9,8 @@ import Status_graphs from "../graph_blocks"
 import ModalCalib from '../calib_modal'
 import FormInput from '../form_input';
 
+import useGlobalStore from '../../logic/auth_store';
+
 import './index.css'
 
 export const device_power_table = {
@@ -31,8 +33,12 @@ export const device_power_table = {
       }
 
 function StatusSection(props) {
+  
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   const timerRef = React.useRef();
+
+  const guest_mode_class = !authGlobalState.auth_access.settings ? 'guest_wrap' : ''
 
   const handleUpdate = request => {
     props.updateHandler(request);
@@ -156,17 +162,19 @@ function StatusSection(props) {
           graph_svg={props.graph_svg.img}
           updateHandler={handleUpdate}
           data={props.graph_data}/>
-        <div className='status_settings_wrap'>
+        <div className={`status_settings_wrap ${guest_mode_class}`}>
           <Status_logs 
             settings_type="logs" 
             header="журнал" 
             data={props.logs_data}
             full_data={props.full_logs_data}
             updateHandler={handleUpdate}/>
+          {authGlobalState.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
             settings_data={props.status_data && props.settings_data} 
           />
+          }
         </div>
       </div>
     </section>

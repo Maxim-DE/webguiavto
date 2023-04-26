@@ -78,7 +78,7 @@ export default function File_download(props) {
           <label
             htmlFor={`all_file_download_input`}
             className="settings_itemLabel">
-            Все журналы в одном
+            Оба журнала вместе
           </label>
         </div>
         <div className='item_input'>

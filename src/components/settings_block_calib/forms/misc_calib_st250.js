@@ -106,9 +106,6 @@ function MiscCalibSettings_ST250(props) {
           <Syslog_calib
             updateHandler={props.clickHandler}
             logData={miscCalibState.sys_log} />
-          <Account_manage_calib
-            updateHandler={props.clickHandler}
-            userData={miscCalibState.user_list} />
           <li
             key='delete_userlogs_calib'
             id='delete_user_logs_calib'
@@ -131,6 +128,9 @@ function MiscCalibSettings_ST250(props) {
           </li>
         </>
       }
+      <Account_manage_calib
+        updateHandler={props.clickHandler}
+        userData={miscCalibState.user_list} />
       {/* <li
         key='res_conf_manage'
         id='res_conf_manage'

@@ -8,6 +8,7 @@ import './components/notifications/index.css'
 
 import merge from 'lodash/merge'
 import cloneDeep from 'lodash/cloneDeep';
+import { filter_obj } from './logic/utilites'
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -210,17 +211,23 @@ function App() {
         data: output_data
       }))
 
-    } else if (output_name === 'calib_passw') {
-      authGlobalActions.set_is_auth(true)
-      authGlobalActions.set_user_id(output_params.login)
-      authGlobalActions.set_auth_level(output_data.auth_info.auth_level)
-
     } else if (output_name === 'logout') {
       authGlobalActions.set_is_auth(false)
       authGlobalActions.set_user_id('')
       authGlobalActions.set_auth_level(0)
       
-    } else if (/^calib_.*/g.test(output_name)) {
+    } else if (/^calib_.*/gi.test(output_name)) {
+      if (output_name.includes('_zero')) return
+
+      if (Object.keys(output_data).length == 0) return
+
+      if (output_name === 'calib_passw') {
+        authGlobalActions.set_is_auth(true)
+        authGlobalActions.set_user_id(output_params.login)
+        authGlobalActions.set_auth_level(output_data.auth_info.auth_level)
+        return
+      }
+
       setCalibState(prevState => ({
         ...prevState,
         data: output_data
@@ -241,7 +248,10 @@ function App() {
         }
       }))
 
-    } else {
+    } else if (output_name === 'settings' ||
+               output_name === 'network' ||
+               output_name === 'rds' ||
+               output_name === 'info') {
       let output_data_copy
 
       switch (output_name) {
@@ -265,6 +275,8 @@ function App() {
           [output_name]: output_data_copy,
         }
       })
+    } else {
+      return
     }
   }
 
@@ -342,55 +354,93 @@ function App() {
 
 
             if (resp_status == 'success') {
-              let request_name = req_resp.name,
+              const request_name = req_resp.name,
                   request_params = req_resp.params,
-                  req_data
+                  remote_data = typeof req_resp.data === 'object' ? 
+                  filter_obj(req_resp.data, (key, value) => !key.includes('Notific')) :
+                  req_resp.data,
+                  local_data = req_queue_data.save_data ? req_queue_data.save_data : {}
 
-              if (Object.keys(req_resp.data).length == 1 &&
-                  Object.hasOwn(req_resp.data, 'Notific')) {
+              let req_data,
+                  state_copy = {},
+                  new_state
 
-                if (!req_queue_data.save_data) {
-                  req_data = {}
-                  outputData_assignment(request_name, req_data, request_params)
-                  continue
+              if ((Object.keys(remote_data).length > 0) ||
+                  (Object.keys(local_data).length > 0)) {
+
+                if (Object.keys(remote_data).length > 0) {
+                  req_data = remote_data
+                } else if (Object.keys(local_data).length > 0) {
+                  req_data = req_queue_data.save_data
                 }
-
-                let state_copy = {},
-                    save_data = req_queue_data.save_data,
-                    new_state
-
+                
                 switch (request_name) {
+                  case 'status':
+                    state_copy = JSON.parse(JSON.stringify(statusData))
+                    break;
                   case 'settings':
                     state_copy = JSON.parse(JSON.stringify(sectionData.settings))
                     break;
-
+  
                   case 'network':
                     state_copy = JSON.parse(JSON.stringify(sectionData.network))
                     break;
-
+  
                   case 'rds':
                     state_copy = JSON.parse(JSON.stringify(sectionData.rds))
                     break;
 
+                  case 'info' :
+                    state_copy = JSON.parse(JSON.stringify(sectionData.info))
+                    break;
+
+                  //УДАЛИТЬ И ИСПРАВИТЬ!!
+                  case 'calib_passw':
+                    outputData_assignment(request_name, req_data, request_params)
+                    continue;
+  
                   case request_name.match(/^calib_.*/)?.input:
                     state_copy = JSON.parse(JSON.stringify(calibState.data))
                     break;
-
+  
                   default:
-                    break;
+                    outputData_assignment(request_name, req_data, request_params)
+                    continue;
                 }
-
-                new_state = merge(state_copy, save_data)
-
-                req_data = new_state
-
-                    
               } else {
-                req_data = req_resp.data  
+                req_data = {}
               }
               
+              new_state = merge(state_copy, req_data)
 
-              outputData_assignment(request_name, req_data, request_params);
+              outputData_assignment(request_name, new_state, request_params);
+              // if (Object.keys(req_resp.data).length == 1 &&
+              //     Object.hasOwn(req_resp.data, 'Notific')) {
+
+              //   if (!req_queue_data.save_data) {
+              //     req_data = {}
+              //     outputData_assignment(request_name, req_data, request_params)
+              //     continue
+              //   }
+
+                // let 
+                //     save_data = req_queue_data.save_data,
+                //     new_state
+
+
+              //   new_state = 
+
+              //   req_data = new_state
+
+                    
+              // } else if (Object.keys(req_resp.data).length > 1 &&
+              //            Object.hasOwn(req_resp.data, 'Notific')) {
+                
+              // } else {
+                // req_data = req_resp.data  
+              // }
+              
+
             }
           }
 
@@ -503,10 +553,10 @@ function App() {
             updateHandler={navRefUpdate}
             calibaAvailable={statusData.calib_available} />
           <div className='nav_fillblock'></div>
-          <PeripheralMenu
+          {/* <PeripheralMenu
             updateHandler={handlePoolUpdate}
             structure={peripheralData.structure}
-            data={statusData} />
+            data={statusData} /> */}
         </nav>
         <div className='main_wrap'>
           <header>
