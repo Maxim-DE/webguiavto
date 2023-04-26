@@ -55,7 +55,7 @@ input[type='checkbox'].switch:checked:before {
     --border: #2F323A;
     --border-hover: #275EFE;
     --background: #fff;
-    --disabled: #F6F8FF;
+    --disabled: #cdcfd6;
     --disabled-inner: #E1E6F9;
 
     --focus: 2px rgba(39, 94, 254, .25);
@@ -101,6 +101,26 @@ input[type='checkbox'].switch:checked:before {
 
   input[type='checkbox']:not(.switch):checked::after {
     --active-color: #2F323A;
+  }
+
+  input[type='checkbox'].disabled_input:not(.switch) {
+    --bc: var(--disabled);
+    cursor: not-allowed;
+  }
+  
+  input[type='checkbox'].disabled_input:not(.switch)::after {
+    cursor: not-allowed;
+  }
+  
+  input[type='checkbox'].disabled_input:not(.switch):checked {
+    --b: var(--disabled);
+    --bc: var(--disabled);
+    cursor: not-allowed;
+  }
+  
+  input[type='checkbox'].disabled_input:not(.switch):checked::after {
+    --active-color: #7e8495;
+    cursor: not-allowed;
   }
 }
 

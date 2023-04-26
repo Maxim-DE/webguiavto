@@ -23,6 +23,8 @@ import ConsoleOutputCalibSettings from '../../../../settings_block_calib/forms/c
 import SerialNumVersionCalibSettings from '../../../../settings_block_calib/forms/serialnum_version_calib';
 
 import LoadingSpan from '../../../../loading_span';
+import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
+import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
 
 export default function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
@@ -81,7 +83,7 @@ export default function CalibSection(props) {
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_voltage : ''}
           clickHandler={handleClick} />
-        <CurrentCalibSettings_ST
+        <CurrentCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.current_calib : ''}
           calib_data={Object.keys(props.section_data).length != 0 ?
@@ -120,6 +122,11 @@ export default function CalibSection(props) {
           clickHandler={handleClick} />
         <ConfFileCalib
           clickHandler={handleClick} />
+        {/* <ChannelEnablerSettings 
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_channels.channel_list : ''}
+          clickHandler={handleClick}
+           /> */}
         {/* <MiscDownloadCalib /> */}
         {authGlobalState.auth_access.calib_extend &&
           <>
@@ -135,6 +142,7 @@ export default function CalibSection(props) {
               calib_data={Object.keys(props.section_data).length != 0 ?
                 props.section_data.calib_console_output : ''}
               clickHandler={handleClick} />
+            <MiscDownloadCalib />
           </>
         }
       </div>

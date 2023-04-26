@@ -4,6 +4,7 @@ import Settings_block_calib from '..';
 import Syslog_calib from './syslog_calib';
 import Account_manage_calib from './account_manage_calib';
 import Hex_upload from './hex_upload';
+import ChannelEnablerSettings from './channel_enabler_calib';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
@@ -126,11 +127,19 @@ function MiscCalibSettings_ST250(props) {
                 type="button" />
             </div>
           </li>
+          <li className="group_divider"></li>
+          <ChannelEnablerSettings
+            clickHandler={props.clickHandler}
+            calib_data={Object.keys(props.calib_data).length != 0 ?
+              props.calib_data.calib_channels.channel_list : ''}
+            editing_allowed={true}/>
         </>
       }
+      <li className="group_divider"></li>
       <Account_manage_calib
         updateHandler={props.clickHandler}
         userData={miscCalibState.user_list} />
+      <li className="group_divider"></li>
       {/* <li
         key='res_conf_manage'
         id='res_conf_manage'
