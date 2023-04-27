@@ -14,6 +14,7 @@ import WattageAdditionalCalibSettings_ST from '../../../../settings_block_calib/
 import FanCalibSettings from '../../../../settings_block_calib/forms/fan_calib';
 import TempThresholdCalibSettings from '../../../../settings_block_calib/forms/temp_thrashold';
 // import EmulationCalibSettings from '../../../../settings_block_calib/forms/emulation_calib';
+import Firmware_calib from '../../../../settings_block_calib/forms/firmware_calib';
 import MiscCalibSettings from '../../../../settings_block_calib/forms/misc_calib';
 import MiscCalibSettings_ST250 from '../../../../settings_block_calib/forms/misc_calib_st250';
 import MiscDownloadCalib from '../../../../settings_block_calib/forms/misc_download_calib';
@@ -119,6 +120,10 @@ export default function CalibSection(props) {
         <MiscCalibSettings_ST250
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_misc : ''}
+          clickHandler={handleClick} />
+        <Firmware_calib
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_firmware : ''}
           clickHandler={handleClick} />
         <ConfFileCalib
           clickHandler={handleClick} />

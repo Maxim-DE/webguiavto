@@ -107,26 +107,7 @@ function MiscCalibSettings_ST250(props) {
           <Syslog_calib
             updateHandler={props.clickHandler}
             logData={miscCalibState.sys_log} />
-          <li
-            key='delete_userlogs_calib'
-            id='delete_user_logs_calib'
-            className="settings_item">
-            <div className='item_header'>
-              <label
-                htmlFor={`delete_user_logs_calib_input`}
-                className="settings_itemLabel">
-                Удалить пользовательский журнал
-              </label>
-            </div>
-            <div className='item_input'>
-              <FormInput
-                id={`delete_user_logs_calib_save`}
-                name={`delete_user_logs_calib`}
-                clickHandler={handleClick_save}
-                label='Удалить'
-                type="button" />
-            </div>
-          </li>
+          
           <li className="group_divider"></li>
           <ChannelEnablerSettings
             clickHandler={props.clickHandler}
@@ -139,7 +120,7 @@ function MiscCalibSettings_ST250(props) {
       <Account_manage_calib
         updateHandler={props.clickHandler}
         userData={miscCalibState.user_list} />
-      <li className="group_divider"></li>
+      {/* <li className="group_divider"></li> */}
       {/* <li
         key='res_conf_manage'
         id='res_conf_manage'
@@ -192,8 +173,8 @@ function MiscCalibSettings_ST250(props) {
             type="button" />
         </div>
       </li> */}
-      <Hex_upload
-        updateHandler={props.clickHandler} />
+      {/* <Hex_upload
+        updateHandler={props.clickHandler} /> */}
     </Settings_block_calib>
   )
 }
