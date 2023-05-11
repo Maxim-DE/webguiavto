@@ -11,7 +11,7 @@ import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
 
-const conf_file_links = {
+export const conf_file_links = {
   factory_reset: {
     address: 'calib_conf_file.cgi',
     data: 'factory_reset$1'

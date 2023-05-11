@@ -35,19 +35,34 @@ function Hex_upload(props) {
   
       hex_dropzone_instance.current.on('uploadprogress', (file, progress, bytesSent) => {
         let progress_rounded = progress.toFixed()
-        console.log(progress_rounded);
         
         setUploadProgress({
           progress: progress_rounded,
         })
       })
   
-      hex_dropzone_instance.current.on('success', file => {
+      hex_dropzone_instance.current.on('success', (file, message) => {
         setIsUploading(false)
         setUploadProgress({
           progress: 0,
         })
-        toast.success(`Успешно загружено`, { autoClose: 1500 })
+
+        if (Object.keys(message).length > 0 &&
+            Object.hasOwn(message, 'Notific')) {
+          toast.success(`${message.Notific.text}`, { autoClose: 1500 })
+        } else {
+          toast.success(`Успешно загружено`, { autoClose: 1500 })
+        }
+
+        const request_obj = {
+          address: 'calib_get_info_firmware.cgi',
+          notifications: {
+            good: 'default',
+            bad: 'default'
+          }
+        }
+
+        props.updateHandler(request_obj)
       })
   
       hex_dropzone_instance.current.on('error', (file, message) => {
@@ -57,7 +72,23 @@ function Hex_upload(props) {
         setUploadProgress({
           progress: 0,
         })
-        toast.error(`Ошибка загрузки`, { autoClose: 1500 })
+
+        if (Object.keys(message).length > 0 &&
+            Object.hasOwn(message, 'Notific')) {
+          toast.error(`${message.Notific.text}`, { autoClose: 1500 })
+        } else {
+          toast.error(`Ошибка загрузки`, { autoClose: 1500 })
+        }
+
+        const request_obj = {
+          address: 'calib_get_info_firmware.cgi',
+          notifications: {
+            good: 'default',
+            bad: 'default'
+          }
+        }
+
+        props.updateHandler(request_obj)
       })
   
       console.warn('dropzone created successfully');
@@ -116,6 +147,31 @@ function Hex_upload(props) {
           value='Открыть файл' />
       </div>
     </li>
+    {/* <li
+      key='test_block_calib'
+      className="settings_item">
+      <div className='item_header'>
+        <label
+          className="settings_itemLabel">
+          Queue block
+        </label>
+      </div>
+      <div className='item_input'>
+        <input
+          className={`button_input`}
+          type="button"
+          onClick={(e) => {
+            const request_obj = {
+              action: 'block_queue'
+            }
+
+            props.updateHandler(request_obj)
+
+            
+          }}
+          value='block' />
+      </div>
+    </li> */}
     {isUploadModalOpen &&
       <ModalCalib
         header='загрузка hex-прошивки'

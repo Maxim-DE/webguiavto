@@ -22,6 +22,18 @@ function Firmware_calib(props) {
 
     props.clickHandler(request_obj)
   }
+
+  const handleClick_info_refresh = (event) => {
+    const request_obj = {
+      address: 'calib_get_info_firmware.cgi',
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    props.clickHandler(request_obj)
+  }
   
   return (
     <Settings_block_calib 
@@ -98,10 +110,32 @@ function Firmware_calib(props) {
         </div>
       </li>
       }
+      <li className="group_divider"></li>
       <Hex_upload
         updateHandler={props.clickHandler} />
+
+      {/* TEST TEST TEST */}
+      <li
+        key='firmware_refresh_calib'
+        id='firmware_refresh_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`firmware_refresh_calib_input`}
+            className="settings_itemLabel">
+            Обновление инф. о прошивке
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`firmware_refresh_calib_input`}
+            name={`firmware_refresh_calib`}
+            clickHandler={handleClick_info_refresh}
+            label='Обновить'
+            type="button" />
+        </div>
+      </li>
     </Settings_block_calib>
-    
   )
 }
 

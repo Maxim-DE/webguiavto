@@ -9,13 +9,15 @@ export const type_device_toStr = (output_data_copy) => {
           6: '-1000',
           7: '-2000',
           8: '-5000',
+          250: ''
         },
 
         device_name_table = {
           0: 'УРЦ',
           1: 'УСТ',
           2: 'СТ',
-          3: 'БЛОК УПРАВЛЕНИЯ'
+          3: 'БЛОК УПРАВЛЕНИЯ',
+          250: 'unknown'
         }
 
   let device_type_str = ''
@@ -33,8 +35,6 @@ export const type_device_toStr = (output_data_copy) => {
   }
 
   output_data_copy.info_general.Type_Device = device_type_str
-
-  console.log(output_data_copy);
 
   return output_data_copy
 }

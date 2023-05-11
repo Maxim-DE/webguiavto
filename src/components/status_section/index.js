@@ -23,13 +23,15 @@ export const device_power_table = {
         6: '1000',
         7: '2000',
         8: '5000',
+        250: '0'
       },
 
       device_name_table = {
         0: 'urc',
         1: 'ust',
         2: 'st',
-        3: 'bc'
+        3: 'bc',
+        250: 'unknown'
       }
 
 function StatusSection(props) {
@@ -104,7 +106,6 @@ function StatusSection(props) {
   }, [props.device_type])
 
   React.useEffect(() => {
-    console.log(props.err_count, typeof timerRef.current);
     
     if (props.err_count > 10) {
       clearInterval(timerRef.current)
@@ -116,7 +117,35 @@ function StatusSection(props) {
     }
   }, [props.err_count])
 
+  React.useEffect(() => {
+    switch (props.pool_state) {
+      case 'active':
+        // if (typeof timerRef.current != 'number') {
+        // }
+        handleConnectionEstablish()
+
+        break;
+
+      case 'blocked':
+        clearInterval(timerRef.current)
+        break;
+    
+      default:
+        break;
+    }
+    console.log('pool changed');
+  }, [props.pool_state])
+
   const handleConnectionEstablish = () => {
+    timerRef.current = setInterval(handleConnectionRequest.bind(props), 1000)
+  }
+
+  const handleConnectionRetry = () => {
+    props.err_pool_actions.err_erase('status')
+    handleConnectionEstablish()
+  }
+
+  function handleConnectionRequest() {
     let status_request_obj = {
       address: 'status.cgi',
       fetch_opts: {
@@ -128,16 +157,14 @@ function StatusSection(props) {
       },
     }
 
-    timerRef.current = setInterval(() => {
+    if (props.pool_state === 'active') {
       props.updateHandler(status_request_obj)
-      console.log(typeof timerRef.current);
-    }, 1000)
+    } else {
+      console.log('LOCKED');
+    }
   }
 
-  const handleConnectionRetry = () => {
-    props.err_pool_actions.err_erase('status')
-    handleConnectionEstablish()
-  }
+
 
   return (
     <>

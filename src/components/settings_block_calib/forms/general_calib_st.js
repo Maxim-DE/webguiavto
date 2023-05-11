@@ -3,12 +3,16 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import useGlobalStore from '../../../logic/auth_store';
+
 function GeneralCalibSettings_ST(props) {
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     def_module: 0,
     fan_start_alarm: 0,
   })
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (!props.calib_data) {
@@ -81,9 +85,23 @@ function GeneralCalibSettings_ST(props) {
 
   }
 
+  const handleReboot = () => {
+    const request_obj = {
+      address: 'reboot_device.cgi',
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <Settings_block_calib header={`общее`}
-      settings_type={`general_calib`}>
+    settings_type={`general_calib`}>
+      {authGlobalState.auth_access.calib_extend &&
+      <>
       <li
         key='def_module_calib'
         id='def_module_calib'
@@ -122,6 +140,29 @@ function GeneralCalibSettings_ST(props) {
             changeHandler={handleChange_save}
             input_value={!!generalCalibState.fan_start_alarm}
             type="switch" />
+        </div>
+      </li>
+      <li className="group_divider"></li>
+      </>
+      }
+      <li
+        key='reboot_device_calib'
+        id='reboot_device_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`reboot_device_calib_input`}
+            className="settings_itemLabel">
+            Перезагрузка устройства
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`reboot_device_calib_input`}
+            name={`reboot_device_calib`}
+            clickHandler={handleReboot}
+            label='Перезагрузить'
+            type="button" />
         </div>
       </li>
     </Settings_block_calib>

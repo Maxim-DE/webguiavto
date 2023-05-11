@@ -275,6 +275,13 @@ function App() {
           [output_name]: output_data_copy,
         }
       })
+    } else if (output_name === 'reboot_device') {
+      setRequestPool(prevState => ({
+        ...prevState,
+        state: 'blocked'
+      }))
+
+      location.reload()
     } else {
       return
     }
@@ -459,6 +466,12 @@ function App() {
   }, [requestPool.pool])
 
   React.useEffect(() => {
+
+    console.log(requestPool.state);
+
+  }, [requestPool.state])
+
+  React.useEffect(() => {
     if (sectionData.info) {
       if (!Object.hasOwn(sectionData.info, 'auth_info')) {
         authGlobalActions.set_auth_level(0)
@@ -519,19 +532,24 @@ function App() {
         ...prevState,
         pool: prevState.pool.concat(requestData),
       })) 
-    } else if (requestPool.state == 'blocked') {
+    } 
+    else if (requestPool.state == 'blocked') {
       
-      if (requestData.address == "status.cgi") {
-        return
-      }
+      // if (requestData.address == "status.cgi") {
+      //   return
+      // }
 
-      showInfoMessage(`Дождитесь завершения предыдуших запросов`, { autoClose: 1500 })
+      // showInfoMessage(`Дождитесь завершения предыдуших запросов`, { autoClose: 1500 })
+
+      console.log('its blocked');
     } 
   }
 
   const navRefUpdate = (nav_link_name) => {
     nav_ref.current = document.getElementById(`${nav_link_name}_section`)
-    nav_ref.current.scrollIntoView({ block: "center", behavior: "smooth" })
+    if (nav_ref.current != null) {
+      nav_ref.current.scrollIntoView({ block: "center", behavior: "smooth" })
+    }
   }
 
 
@@ -567,22 +585,21 @@ function App() {
               isAuthComplete = {authGlobalState.is_auth}/>
           </header>
           <main>
-            <StatusSection
-              section_name="status"
-              section_header="Статус"
-              updateHandler={handlePoolUpdate}
-              status_data={statusData.status_info}
-              graph_data={statusData.status_graph}
-              graph_svg={statusData.status_svg}
-              logs_data={statusData.status_logs}
-              full_logs_data={statusData.status_full_logs}
-              settings_data={statusData.status_settings}
-              device_type={sectionData.info ? sectionData.info.info_general.type : ''}
-              err_count={errGlobalState.status_err_count}
-              err_pool_actions={errGlobalActions} />
+              <StatusSection
+                section_name="status"
+                section_header="Статус"
+                updateHandler={handlePoolUpdate}
+                status_data={statusData.status_info}
+                graph_data={statusData.status_graph}
+                graph_svg={statusData.status_svg}
+                logs_data={statusData.status_logs}
+                full_logs_data={statusData.status_full_logs}
+                settings_data={statusData.status_settings}
+                device_type={sectionData.info ? sectionData.info.info_general.type : ''}
+                err_count={errGlobalState.status_err_count}
+                err_pool_actions={errGlobalActions} /> 
 
             {authGlobalState.auth_access.settings &&
-
               <DeviceWrap_switch
                 device_type={sectionData.info ? sectionData.info.info_general.type : [0, 0]}
                 updateHandler={handlePoolUpdate}

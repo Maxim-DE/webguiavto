@@ -70,14 +70,12 @@ export default function CalibSection(props) {
         </h2>
       </div>
       <div className="section_content">
-        {authGlobalState.auth_access.calib_extend &&
-          <GeneralCalibSettings_ST
-            adc_data={props.adc_data != null ?
-              props.adc_data.general_calib : ''}
-            calib_data={Object.keys(props.section_data).length != 0 ?
-              props.section_data.calib_general : ''}
-            clickHandler={handleClick} />
-        }
+        <GeneralCalibSettings_ST
+          adc_data={props.adc_data != null ?
+            props.adc_data.general_calib : ''}
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_general : ''}
+          clickHandler={handleClick} />
         <VoltageCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.voltage_calib : ''}

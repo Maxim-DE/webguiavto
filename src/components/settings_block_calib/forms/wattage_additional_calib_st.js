@@ -110,7 +110,11 @@ function WattageAdditionalCalibSettings_ST(props) {
       value = 1
 
     let request_obj = {
-      address: 'calib_input_power_zero.cgi',
+      address: `calib_${name}_zero.cgi`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
     }
 
     props.clickHandler(request_obj);
@@ -177,6 +181,14 @@ function WattageAdditionalCalibSettings_ST(props) {
             className="settings_itemLabel">
             Балласт 1, X.XX кВт
           </label>
+          {!!wattageAdditionalCalibState.ballast_1_avaliable &&
+            <FormInput
+              id={`ballast_1_zeros_calib_input`}
+              name={`ballast_1_zeros_calib`}
+              label='Калибровка нуля'
+              clickHandler={handleClick_calib_zeros}
+              type="button" />
+          }
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>

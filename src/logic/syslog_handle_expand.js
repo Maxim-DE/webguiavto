@@ -17,8 +17,6 @@ export const set_logs_id = (log_data) => {
     log_item[6] = log_unique_id
   }
 
-  console.debug(log_data)
-
   return log_data
 }
 
