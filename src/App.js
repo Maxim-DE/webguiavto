@@ -24,11 +24,13 @@ import StatusSection from "./components/status_section"
 import CalibSection from './components/calib_section';
 
 import CalibLogButton from './components/calib_log_button';
+import { NoConf_placeholder } from './components/device_assets/unknown_device/sections/no_conf';
 
 import { device_name_table, device_power_table } from './components/status_section';
 
 import DeviceWrap_ST250 from './components/device_assets/st_250';
 import DeviceWrap_RE100 from './components/device_assets/re_100';
+import DeviceWrap_unknown from './components/device_assets/unknown_device';
 
 import useGlobalStore from './logic/auth_store';
 import useGlobalErrPool from './logic/err_store';
@@ -585,6 +587,7 @@ function App() {
               isAuthComplete = {authGlobalState.is_auth}/>
           </header>
           <main>
+            {sectionData.info && sectionData.info.info_general.type[0] != 250 &&
               <StatusSection
                 section_name="status"
                 section_header="Статус"
@@ -596,8 +599,14 @@ function App() {
                 full_logs_data={statusData.status_full_logs}
                 settings_data={statusData.status_settings}
                 device_type={sectionData.info ? sectionData.info.info_general.type : ''}
+                pool_state = {requestPool.state}
                 err_count={errGlobalState.status_err_count}
                 err_pool_actions={errGlobalActions} /> 
+            }
+
+            {sectionData.info && sectionData.info.info_general.type[0] == 250 &&
+              <NoConf_placeholder />
+            }
 
             {authGlobalState.auth_access.settings &&
               <DeviceWrap_switch
@@ -628,6 +637,11 @@ function DeviceWrap_switch({device_type, ...props}) {
         calib_data={props.calib_data}
         adc_data={props.adc_data} />
     )    
+  } else if (device_type_str === 'unknown_0') {
+    return (
+      <DeviceWrap_unknown
+        updateHandler={props.updateHandler} />
+    )
   } else {
     return (
       <DeviceWrap_RE100
