@@ -12,6 +12,7 @@ import cloneDeep from 'lodash/cloneDeep';
 function CurrentCalibSettings_ST(props) {
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
+    psu_enable: 0,
     I1: '',
     I2: '',
     I3_available: 0,
@@ -28,14 +29,20 @@ function CurrentCalibSettings_ST(props) {
       let calib_state_copy = cloneDeep(amperageCalibState)
 
       for (const key in props.calib_data) {
-        const divident = props.calib_data[key]?.value[0],
-              divider = props.calib_data[key]?.value[1] == 0 ? 1 : props.calib_data[key].value[1],
-              digits = Math.log10(divider)
-        calib_state_copy[key] = (divident / divider).toFixed(digits)
+        if (typeof props.calib_data[key] === 'object') {
+          const divident = props.calib_data[key]?.value[0],
+                divider = props.calib_data[key]?.value[1] == 0 ? 1 : props.calib_data[key].value[1],
+                digits = Math.log10(divider)
+          calib_state_copy[key] = (divident / divider).toFixed(digits)
 
-        if(Object.hasOwn(props.calib_data[key], 'availability')) {
-          calib_state_copy[`${key}_available`] = props.calib_data[key].availability
+          if(Object.hasOwn(props.calib_data[key], 'availability')) {
+            calib_state_copy[`${key}_available`] = props.calib_data[key].availability
+          }
+
+        } else {
+          calib_state_copy[key] = props.calib_data[key]
         }
+
       }
       
       setAmperageCalibState(calib_state_copy)
@@ -140,7 +147,7 @@ function CurrentCalibSettings_ST(props) {
 
       save_data: {
         calib_current: {
-          threshold: converted_state
+          current_value: converted_state
         }
       }
     }
@@ -181,10 +188,58 @@ function CurrentCalibSettings_ST(props) {
 
   }
 
+  const handleChange_save = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? Number(target.checked) : target.value;
+    const name = target.name.replace('_calib', '');
+
+    const request_obj = {
+      address: 'calib_current.cgi',
+      data: `${name}$${value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_current: {
+          current_value: {
+            [name]: value
+          }
+        }
+      }
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <Settings_block_calib header={`калибровка токов`}
                           settings_type={`current_calib`}
                           section_name={props.section_name}>
+      <li
+        key='psu_enable_calib'
+        id='psu_enable_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`psu_enable_calib_input`}
+            className="settings_itemLabel">
+            Выкл/вкл блок питания
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`psu_enable_calib_input`}
+            name={`psu_enable_calib`}
+            changeHandler={(e) => {
+              handleChange(e)
+              handleChange_save(e)
+            }}
+            input_value={!!amperageCalibState.psu_enable}
+            type="switch" />
+        </div>
+      </li>
       <li
         key='I_zeros_calib'
         id='I_zeros_calib'

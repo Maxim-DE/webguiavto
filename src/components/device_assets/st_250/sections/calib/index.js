@@ -82,7 +82,7 @@ export default function CalibSection(props) {
           calib_data={Object.keys(props.section_data).length != 0 ?
             props.section_data.calib_voltage : ''}
           clickHandler={handleClick} />
-        <CurrentCalibSettings
+        <CurrentCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.current_calib : ''}
           calib_data={Object.keys(props.section_data).length != 0 ?

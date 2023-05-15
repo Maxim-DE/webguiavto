@@ -8,6 +8,7 @@ import useGlobalStore from '../../../logic/auth_store';
 function GeneralCalibSettings_ST(props) {
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
+    amp_enable: 0,
     def_module: 0,
     fan_start_alarm: 0,
   })
@@ -102,6 +103,26 @@ function GeneralCalibSettings_ST(props) {
     settings_type={`general_calib`}>
       {authGlobalState.auth_access.calib_extend &&
       <>
+      <li
+        key='amp_enable_calib'
+        id='amp_enable_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`amp_enable_calib_input`}
+            className="settings_itemLabel">
+            Выкл/вкл усилитель
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`amp_enable_calib_input`}
+            name={`amp_enable_calib`}
+            changeHandler={handleChange_save}
+            input_value={!!generalCalibState.amp_enable}
+            type="switch" />
+        </div>
+      </li>
       <li
         key='def_module_calib'
         id='def_module_calib'
