@@ -14,7 +14,6 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 
 import LoadingSpan from '../../../../loading_span';
 
-
 export default function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
     isLoading: false
@@ -108,6 +107,7 @@ export default function CalibSection(props) {
               props.section_data.calib_serialNum : ''}
             clickHandler={handleClick} />
         }
-    </SettingsSectionWrap>
+      </div>
+    </section>
   )
 }
