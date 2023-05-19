@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import useGlobalStore from '../../logic/auth_store';
+import useSectionStore from '../../logic/sectionsRefs_store';
+import { useInView } from '../../logic/useInView_hook';
 
 import './index.css'
 
@@ -16,6 +18,21 @@ const links_items = [
 function Links_list(props) {
   const [active, SetActive] = React.useState('');
   const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const [sectionState, sectionActions] = useSectionStore()
+
+  React.useEffect(() => {
+    let active_link 
+    for (const key in sectionState.intersection_pool) {
+      if (sectionState.intersection_pool[key].isInView) {
+        const section_name = key.replace('_section', '')
+        SetActive(
+          links_items.findIndex(item => {
+            return item.id === section_name
+          }));
+        return
+      }
+    }
+  }, [sectionState.intersection_pool])
 
   function handleClick(event) {
     event.stopPropagation()

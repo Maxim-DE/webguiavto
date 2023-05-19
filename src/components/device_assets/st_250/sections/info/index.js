@@ -19,6 +19,7 @@ export default function InfoSection(props) {
 
       },
     }
+    
     props.updateHandler(request_obj);
 
     // setSectionState({

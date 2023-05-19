@@ -31,6 +31,8 @@ import DeviceWrap_RE100 from './components/device_assets/re_100';
 
 import useGlobalStore from './logic/auth_store';
 import useGlobalErrPool from './logic/err_store';
+import useSectionStore from './logic/sectionsRefs_store';
+import { useInView } from './logic/useInView_hook';
 import { fetch_error_handler } from './logic/fetch_error_handler';
 
 const status_settings_item = [
@@ -59,7 +61,7 @@ function App() {
   })
   
   const [authGlobalState, authGlobalActions] = useGlobalStore()
-
+  
   const [statusData, setStatusData] = React.useState({
     status_info: null,
     status_graph: null,
@@ -80,19 +82,19 @@ function App() {
     rds: null,
     info: null,
   })
-
+  
   const [peripheralData, setPeripheralData] = React.useState({
     structure: [],
   })
-
-
+  
+  
   const [calibState, setCalibState] = React.useState({
     isOpen: false,
     data: {},
   })
 
   const nav_ref = React.useRef()
-
+  
   const outputData_assignment = (output_name, output_data, output_params) => {
 
     if (output_name === 'peripheral_structure') {
@@ -426,6 +428,8 @@ function App() {
     }
   }, [sectionData.info])
 
+
+
   React.useEffect(() => {
 
     let request_obj = {
@@ -469,13 +473,9 @@ function App() {
         ...prevState,
         pool: prevState.pool.concat(requestData),
       })) 
-    } else if (requestPool.state == 'blocked') {
-      
-      if (requestData.address == "status") {
-        return
-      }
-
-      showInfoMessage(`Дождитесь завершения предыдуших запросов`, { autoClose: 1500 })
+    } 
+    else if (requestPool.state == 'blocked') {
+      console.log('its blocked');
     } 
   }
 
@@ -552,6 +552,14 @@ function DeviceWrap_switch({device_type, ...props}) {
         device_power = device_power_table[device_type[1]],
         device_type_str = `${device_name}_${device_power}`
 
+  const [sectionState, sectionActions] = useSectionStore()
+
+  const observed_elements = useInView(sectionState.section_pool)
+
+  React.useEffect(() => {
+    sectionActions.refresh_intersection_pool(observed_elements)
+  }, [observed_elements])
+
   if (device_type_str === 'st_250' ||
       device_type_str === 'st_100') {
     return (
@@ -561,7 +569,12 @@ function DeviceWrap_switch({device_type, ...props}) {
         calib_data={props.calib_data}
         adc_data={props.adc_data} />
     )    
-  } else {
+  } else if (device_type_str === 'unknown_0') {
+    return (
+      <DeviceWrap_unknown
+        updateHandler={props.updateHandler} />
+    )
+  } else if (device_type_str === 're_100') {
     return (
       <DeviceWrap_RE100
         updateHandler={props.updateHandler}
@@ -569,6 +582,8 @@ function DeviceWrap_switch({device_type, ...props}) {
         calib_data={props.calib_data}
         adc_data={props.adc_data} />
     )
+  } else {
+    return
   }
 }
 
