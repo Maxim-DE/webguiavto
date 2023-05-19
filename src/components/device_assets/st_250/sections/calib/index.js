@@ -2,6 +2,8 @@ import React from 'react';
 
 import useGlobalStore from '../../../../../logic/auth_store';
 
+import SettingsSectionWrap from '../../../../settings_section_wrap';
+
 import GeneralCalibSettings_ST from '../../../../settings_block_calib/forms/general_calib_st';
 import CurrentCalibSettings_ST from '../../../../settings_block_calib/forms/current_calib_st';
 import CurrentThresholdCalibSettings_ST from '../../../../settings_block_calib/forms/current_threshold_calib_st';
@@ -26,6 +28,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
+
 
 export default function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
@@ -62,14 +65,9 @@ export default function CalibSection(props) {
   }
 
   return (
-    <section id={`${props.section_name}_section`}>
-      <div className="section_header">
-        <h2>
-          {props.section_header}
-          <LoadingSpan loading={sectionState.isLoading} />
-        </h2>
-      </div>
-      <div className="section_content">
+    <SettingsSectionWrap 
+      section_name={`${props.section_name}`}
+      section_header="калибровка">
         <GeneralCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.general_calib : ''}
@@ -148,7 +146,6 @@ export default function CalibSection(props) {
             <MiscDownloadCalib />
           </>
         }
-      </div>
-    </section>
+    </SettingsSectionWrap>
   )
 }

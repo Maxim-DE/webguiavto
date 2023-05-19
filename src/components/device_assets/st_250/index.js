@@ -23,11 +23,11 @@ export default function DeviceWrap_ST250(props) {
         />
       <NetworkSettingsSection
         updateHandler={updateHandler}
-        section_data={props.section_data.network === null ? 'null' : props.section_data.network} 
+        section_data={props.section_data.network === null ? 'null' : props.section_data.network}
         />
       <InfoSection
         updateHandler={updateHandler}
-        section_data={props.section_data.info === null ? 'null' : props.section_data.info} 
+        section_data={props.section_data.info === null ? 'null' : props.section_data.info}
         />
       {authGlobalState.auth_access.calib &&
         <CalibSection
