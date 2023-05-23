@@ -11,6 +11,7 @@ function GeneralCalibSettings_ST(props) {
     amp_enable: 0,
     def_module: 0,
     fan_start_alarm: 0,
+    tftp: 0
   })
 
   const [authGlobalState, authGlobalActions] = useGlobalStore()
@@ -166,6 +167,26 @@ function GeneralCalibSettings_ST(props) {
       <li className="group_divider"></li>
       </>
       }
+      <li
+        key='tftp_calib'
+        id='tftp_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`tftp_calib_input`}
+            className="settings_itemLabel">
+            Выкл/вкл службу TFTP (порт 69)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`tftp_calib_input`}
+            name={`tftp_calib`}
+            changeHandler={handleChange_save}
+            input_value={!!generalCalibState.tftp}
+            type="switch" />
+        </div>
+      </li>
       <li
         key='reboot_device_calib'
         id='reboot_device_calib'
