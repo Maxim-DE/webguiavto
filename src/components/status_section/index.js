@@ -65,26 +65,26 @@ function StatusSection(props) {
     if (!Array.isArray(props.device_type)) {
       return
     }
-    
+
     if (props.graph_svg.img.length === 0) {
       let svg_req_str = `${device_type}.svg.gz`
-
-    let request_obj = {
-      address: 'static/media/status_graph/' + svg_req_str,
-      type: 'text',
-      notifications: {
-        good: 'none',
-        bad: 'default'
-      },
-    }
-
-    props.updateHandler(request_obj)
+  
+      let request_obj = {
+        address: 'static/media/status_graph/' + svg_req_str,
+        type: 'text',
+        notifications: {
+          good: 'none',
+          bad: 'default'
+        },
+      }
+  
+      props.updateHandler(request_obj)
     }
 
     if (typeof timerRef.current != 'number') {
       handleConnectionRequest()
     }
-    
+
     let full_log_req_obj = {
       address: 'GetLogErrorFull.cgi',
       data: 'userlog$1'
@@ -114,7 +114,7 @@ function StatusSection(props) {
     switch (props.pool_state) {
       case 'active':
         if (typeof timerRef.current != 'number') {
-        handleConnectionEstablish()
+          handleConnectionEstablish()
         }
 
         break;
@@ -192,6 +192,7 @@ function StatusSection(props) {
       <div className="section_status">
         <Status_graphs
           settings_type="graphs"
+          device_type={device_type}
           graph_svg={props.graph_svg.img}
           updateHandler={handleUpdate}
           data={props.graph_data}/>
