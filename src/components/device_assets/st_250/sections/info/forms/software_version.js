@@ -7,6 +7,7 @@ export default function Software_version(props) {
 
   const [sofrwareVersionState, setSofrwareVersionState] = React.useState({
     os_version: 'N/A',
+    bootloader_version: 'N/A',
   })
 
   React.useEffect(() => {
@@ -42,6 +43,24 @@ export default function Software_version(props) {
           <FormInput
             id={`os_version`}
             input_value={sofrwareVersionState.os_version}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='bootloader_version'
+        id='bootloader_version'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`bootloader_version_input`}
+            className="settings_itemLabel">
+            Версия загрузчика
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`bootloader_version`}
+            input_value={sofrwareVersionState.bootloader_version}
             type="text_sample" />
         </div>
       </li>
