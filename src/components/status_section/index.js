@@ -44,6 +44,10 @@ function StatusSection(props) {
 
   const guest_mode_class = !authGlobalState.auth_access.settings ? 'guest_wrap' : ''
 
+  const device_name = device_name_table[props.device_type[0]],
+        device_power = device_power_table[props.device_type[1]],
+        device_type = `${device_name}_${device_power}`
+
   const handleUpdate = request => {
     props.updateHandler(request);
   }
@@ -62,27 +66,8 @@ function StatusSection(props) {
       return
     }
     
-    const device_name = device_name_table[props.device_type[0]],
-          device_power = device_power_table[props.device_type[1]]
-          
-    let svg_req_str = `${device_name}_${device_power}.svg.gz`
-
-    // switch (props.device_type) {
-    //   case 'СТ-100':
-    //     svg_req_str = 'st_100.svg.gz'
-    //     break;
-
-    //   case 'СТ-250':
-    //     svg_req_str = 'st_250.svg.gz'
-    //     break;
-
-    //   case '':
-    //     return;
-    
-    //   default:
-    //     break;
-    // }
-
+    if (props.graph_svg.img.length === 0) {
+      let svg_req_str = `${device_type}.svg.gz`
 
     let request_obj = {
       address: 'static/media/status_graph/' + svg_req_str,
@@ -94,7 +79,11 @@ function StatusSection(props) {
     }
 
     props.updateHandler(request_obj)
+    }
 
+    if (typeof timerRef.current != 'number') {
+      handleConnectionRequest()
+    }
     
     let full_log_req_obj = {
       address: 'GetLogErrorFull.cgi',
@@ -124,9 +113,9 @@ function StatusSection(props) {
   React.useEffect(() => {
     switch (props.pool_state) {
       case 'active':
-        // if (typeof timerRef.current != 'number') {
-        // }
+        if (typeof timerRef.current != 'number') {
         handleConnectionEstablish()
+        }
 
         break;
 
@@ -212,7 +201,7 @@ function StatusSection(props) {
             header="журнал" 
             data={props.logs_data}
             full_data={props.full_logs_data}
-            updateHandler={handleUpdate}/>
+            updateHandler={handleUpdate} />
           {authGlobalState.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}

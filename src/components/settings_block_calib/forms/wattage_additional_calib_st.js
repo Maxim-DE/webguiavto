@@ -60,8 +60,8 @@ function WattageAdditionalCalibSettings_ST(props) {
 
     const converted_state = {
       [name]: [
-        value * 10,
-        10
+        value * multipier,
+        multipier
       ]
     }
 
@@ -82,13 +82,45 @@ function WattageAdditionalCalibSettings_ST(props) {
 
   }
 
-  const handleChange_save = (event) => {
+  const handleClick_ballast = (event) => {
+        const target = event.target,
+          name = target.name.replace('_calib', ''),
+          value = wattageAdditionalCalibState[name],
+          multipier = props.calib_data?.[name] ? props.calib_data[name][1] : 10
+
+    // let state_obj = { [name]: value },
+    //     converted_state = calib_state_conversion(state_obj, props.calib_data)
+
+    const converted_state = {
+      [name]: [
+        value * multipier,
+        multipier
+      ]
+    }
+
+    const request_obj = {
+      address: 'calib_ballast.cgi',
+      data: `${name}$${value * multipier}`,
+      update_data: wattageAdditionalCalibState,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      save_data: {
+        calib_additional_power: converted_state
+      } 
+    }
+
+    props.clickHandler(request_obj);
+  }
+
+  const handleChange_ballast_save = (event) => {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = target.type === 'checkbox' ? Number(target.checked) : target.value
 
     const request_obj = {
-      address: 'calib_input_power.cgi',
+      address: 'calib_ballast.cgi',
       data: `${name}$${value}`,
       update_data: wattageAdditionalCalibState,
       notifications: {
@@ -111,6 +143,22 @@ function WattageAdditionalCalibSettings_ST(props) {
 
     let request_obj = {
       address: `calib_${name}_zero.cgi`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.clickHandler(request_obj);
+  }
+
+  const handleClick_calib_ballast_zeros = (event) => {
+    const target = event.target,
+      name = target.name.replace('_zeros_calib', ''),
+      value = 1
+
+    let request_obj = {
+      address: `calib_ballast.cgi?${name}_zero$${value}`,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -171,7 +219,7 @@ function WattageAdditionalCalibSettings_ST(props) {
             name={`ballast_1_avaliable_calib`}
             changeHandler={(e) => {
               handleChange(e);
-              handleChange_save(e)
+              handleChange_ballast_save(e)
             }}
             input_value={wattageAdditionalCalibState.ballast_1_avaliable}
             type="checkbox" />
@@ -186,7 +234,7 @@ function WattageAdditionalCalibSettings_ST(props) {
               id={`ballast_1_zeros_calib_input`}
               name={`ballast_1_zeros_calib`}
               label='Калибровка нуля'
-              clickHandler={handleClick_calib_zeros}
+              clickHandler={handleClick_calib_ballast_zeros}
               type="button" />
           }
         </div>
@@ -202,9 +250,8 @@ function WattageAdditionalCalibSettings_ST(props) {
             type="text"
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
             onChange={handleChange}
-            value={props.input_value}
+            value={wattageAdditionalCalibState.ballast_1}
             placeholder={'X.XX кВт'}
-            style={props.style}
           />
           <input
             id={`ballast_1_calib_save`}
@@ -214,7 +261,7 @@ function WattageAdditionalCalibSettings_ST(props) {
             type="button"
             value={'Сохранить'}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
-            onClick={handleClick_save} />
+            onClick={handleClick_ballast} />
         </div>
       </li>
     </Settings_block_calib>

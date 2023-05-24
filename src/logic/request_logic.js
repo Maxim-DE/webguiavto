@@ -1,3 +1,5 @@
+import fetch_err_code_logic from "./fetch_err_code_logic";
+
 function sectionData_format(state, section_name, data) {
   let data_entries = Object.entries(data);
   state[section_name] = data_entries;
@@ -134,7 +136,8 @@ async function fetch_data(req_obj) {
       }
       return resp_obj
     } else {
-      throw new Error(`Invalid response code ${response.status}`)
+      const err_message = fetch_err_code_logic(response.status)
+      throw new Error(`${err_message}`)
     }
 
   } catch (error) {

@@ -313,7 +313,7 @@ function App() {
                 case 'success':
                   if (req_queue_data.notifications.good == 'default') {
                     if (Object.hasOwn(req_resp.data, 'Notific')) {
-                      const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
+                      const message = `${req_resp.data.Notific.text}`,
                             status = req_resp.data.Notific.status
     
                       switch (status) {
@@ -330,7 +330,7 @@ function App() {
                       }
 
                     } else {
-                      toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
+                      toast.success(`Успешно`, { autoClose: 1500 })
                     }
                   } else if (req_queue_data.notifications.good != 'none') {
                     toast.success(req_queue_data.notifications.good, { autoClose: 1500 })
@@ -353,8 +353,6 @@ function App() {
                   } else {
                     toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                   }
-                  // if (req_queue_data.notifications) {
-                  // }
 
                   break;
               
@@ -404,12 +402,7 @@ function App() {
                   case 'info' :
                     state_copy = JSON.parse(JSON.stringify(sectionData.info))
                     break;
-
-                  //УДАЛИТЬ И ИСПРАВИТЬ!!
-                  case 'calib_passw':
-                    outputData_assignment(request_name, req_data, request_params)
-                    continue;
-  
+                  
                   case request_name.match(/^calib_.*/)?.input:
                     state_copy = JSON.parse(JSON.stringify(calibState.data))
                     break;
