@@ -5,6 +5,7 @@ import Settings_block_calib from '..';
 import Dropzone from 'dropzone'
 import { PulseLoader } from 'react-spinners';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
+import cloneDeep from 'lodash/cloneDeep';
 
 import ModalCalib from '../../calib_modal';
 import FormInput from '../../form_input';
@@ -21,11 +22,11 @@ export const conf_file_links = {
     data: 'confing_dev$1;confing_user$1'
   },
   create_new_conf: {
-    address: 'super_admin_conf_file.cgi',
+    address: 'calib_super_admin_conf_file.cgi',
     data: 'create_new_conf$1'
   },
   set_settings_as_factory: {
-    address: 'super_admin_conf_file.cgi',
+    address: 'calib_super_admin_conf_file.cgi',
     data: 'set_settings_as_factory$1'
   }
 }
@@ -39,8 +40,31 @@ export default function ConfFileCalib(props) {
     progress: 0
   });
 
+  const [confCalibState, setConfCalibState] = React.useState({
+    factory_reset_available: 1
+  })
+
   const hex_dropzone_ref = React.useRef(null)
   const hex_dropzone_instance = React.useRef(null)
+
+  React.useEffect(() => {
+  if (props.calib_data != undefined &&
+      Object.keys(props.calib_data).length != 0) {
+    let calib_state_copy = cloneDeep(confCalibState)
+    for (const key in props.calib_data) {
+      if (Array.isArray(props.calib_data[key])) {
+        const divident = props.calib_data[key][0],
+              divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+              digits = Math.log10(divider)
+        calib_state_copy[key] = (divident / divider).toFixed(digits)
+      } else {
+        calib_state_copy[key] = props.calib_data[key]
+      }
+    }
+    setConfCalibState(calib_state_copy)
+  }
+
+  }, [props.calib_data])
 
   React.useEffect(() => {
     if (!hex_dropzone_instance.current) {
@@ -155,15 +179,11 @@ export default function ConfFileCalib(props) {
           <FormInput
             id={`factory_reset_input`}
             name={`factory_reset`}
+            title={!confCalibState.factory_reset_available && 'Отсутсвует резерв. конфигурация'}
             clickHandler={handleClick_save}
+            disabled={!confCalibState.factory_reset_available}
             label='Восстановить'
             type="button" />
-          {/* <FormInput
-            id={`save_as_factory_input`}
-            name={`save_as_factory`}
-            clickHandler={handleChange_save}
-            label='Сохр. как завод.'
-            type="button" /> */}
         </div>
       </li>
       {authGlobalState.auth_access.calib_extend &&

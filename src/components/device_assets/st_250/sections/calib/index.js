@@ -122,6 +122,8 @@ export default function CalibSection(props) {
             props.section_data.calib_firmware : ''}
           clickHandler={handleClick} />
         <ConfFileCalib
+          calib_data={Object.keys(props.section_data).length != 0 ?
+            props.section_data.calib_configFile : ''}
           clickHandler={handleClick} />
         {/* <ChannelEnablerSettings 
           calib_data={Object.keys(props.section_data).length != 0 ?

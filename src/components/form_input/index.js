@@ -317,15 +317,17 @@ function FormInput(props) {
     
   } else if (props.type == "button") {
     return (
-      <input
+      <button
         id={props.id}
         name={props.name}
-        className={`button_input ${props.class}`}
+        title={props.title}
+        className={`button_input ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         disabled={props.disabled}
         type="button"
-        value={props.label}
         style={props.style}
-        onClick={props.clickHandler} />
+        onClick={props.clickHandler}>
+        {props.label}
+      </button>
     )
   }
 

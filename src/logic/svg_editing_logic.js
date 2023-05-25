@@ -21,14 +21,35 @@ function st_250_svg_editing(svg, data_svg) {
   for (const key in amplifier_data) {
     let amp_current_data = filter_obj(amplifier_data[key], (key, values) => key.includes('current'))
 
-    let current_2_group = svg.querySelector(`#${key}_current2_value`)
+    let current_1_group = svg.querySelector(`#${key}_current1_value`),
+        current_2_group = svg.querySelector(`#${key}_current2_value`),
+        svg_rect = svg.querySelector(`#${key} > rect`)
 
     if (current_2_group === null) continue
 
     if (Object.keys(amp_current_data).length < 2) {
       current_2_group.parentNode.style.display = 'none'
+
+      if (key === 'amplifier_2') {
+        svg.querySelector(`#${key}_current3_label`).innerHTML = 'Ток 2'
+      }
+
+      const rect_height = svg_rect.height.baseVal.value
+      if (rect_height > 134) {
+        svg_rect.setAttribute('height',rect_height - 21)
+      }
+
     } else {
       current_2_group.parentNode.style.display = ''
+
+      if (key === 'amplifier_2') {
+        svg.querySelector(`#${key}_current3_label`).innerHTML = 'Ток 3'
+      }
+
+      const rect_height = svg_rect.height.baseVal.value
+      if (rect_height < 154) {
+        svg_rect.setAttribute('height',rect_height + 22)
+      }
     }
   }
 
