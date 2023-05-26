@@ -31,7 +31,7 @@ function st_250_svg_editing(svg, data_svg) {
       current_2_group.parentNode.style.display = 'none'
 
       if (key === 'amplifier_2') {
-        svg.querySelector(`#${key}_current3_label`).innerHTML = 'Ток 2'
+        svg.querySelector(`#${key}_current1_label`).innerHTML = 'Ток 2'
       }
 
       const rect_height = svg_rect.height.baseVal.value
@@ -43,24 +43,37 @@ function st_250_svg_editing(svg, data_svg) {
       current_2_group.parentNode.style.display = ''
 
       if (key === 'amplifier_2') {
-        svg.querySelector(`#${key}_current3_label`).innerHTML = 'Ток 3'
+        svg.querySelector(`#${key}_current1_label`).innerHTML = 'Ток 3'
+        svg.querySelector(`#${key}_current2_label`).innerHTML = 'Ток 4'
       }
 
       const rect_height = svg_rect.height.baseVal.value
       if (rect_height < 154) {
-        svg_rect.setAttribute('height',rect_height + 22)
+        svg_rect.setAttribute('height',rect_height + 21)
       }
     }
   }
 
-  let ballast_group = svg.querySelector(`#output_ballast_value`)
+  let ballast_group = svg.querySelector(`#output_ballast_value`),
+      output_svg_rect = svg.querySelector(`#output > rect`)
+
 
   if (ballast_group === null) return svg
 
   if (!Object.hasOwn(output_data, 'ballast')) {
     ballast_group.parentNode.style.display = 'none'
+
+    const rect_height = Math.round(output_svg_rect.height.baseVal.value)
+    if (rect_height > 112) {
+      output_svg_rect.setAttribute('height',rect_height - 18)
+    }
   } else {
     ballast_group.parentNode.style.display = ''
+
+    const rect_height = output_svg_rect.height.baseVal.value
+    if (rect_height < 130) {
+      output_svg_rect.setAttribute('height',rect_height + 18)
+    }
   }
 
   return svg

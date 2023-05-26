@@ -122,9 +122,23 @@ async function fetch_data(req_obj) {
       }
 
       if (Object.hasOwnProperty.call(req_data, 'Notific')) {
-        const req_status = req_data.Notific.status
+        const req_status = req_data.Notific.status,
+              resp_data = filter_obj(req_data, (key, value) => key != 'Notific')
+              
         if (req_status == 'error') {
+          if (Object.keys(resp_data).length > 0) {
+            resp_obj = {
+              name: request_name,
+              params: params_to_obj(request_params),
+              status: 'error',
+              data: req_data
+            }
+
+            return resp_obj
+
+          } else {
           throw new Error(req_data.Notific.text)
+          }
         }
       }
 

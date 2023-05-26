@@ -311,7 +311,7 @@ function WattageAdditionalCalibSettings_ST(props) {
         <label
           htmlFor={`I3_threshold_input`}
           className="settings_itemLabel">
-          Порог балласта 1
+          Порог балласта 1, Вт
         </label>
       </div>
       <div className='item_input'>

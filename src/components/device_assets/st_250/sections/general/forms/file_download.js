@@ -5,7 +5,7 @@ import FormInput from '../../../../../form_input'
 
 export default function File_download(props) {
   const download_links = {
-    user_conf: 'ReadFile.hex?confing_user$1',
+    user_conf: 'ReadFile.hex?userlog$1',
     sys_log: 'ReadFile.hex?syslog$1',
     all_file: 'ReadFile.hex?userlog$1;syslog$1'
   }

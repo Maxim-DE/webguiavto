@@ -347,7 +347,14 @@ function App() {
                   //     toast.error(message, { autoClose: 1500 })
                   // } else 
                   if (req_queue_data.notifications.bad == 'default') {
+                    if (Object.hasOwn(req_resp.data, 'Notific')) {
+                        const message = `${req_resp.data.Notific.text}`,
+                              status = req_resp.data.Notific.status
+  
+                        toast.error(message, { autoClose: 1500 })
+                    } else {
                     toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
+                    }
                   } else if (req_queue_data.notifications.bad == 'none') {
                     continue
                   } else {
