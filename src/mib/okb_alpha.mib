@@ -25,7 +25,7 @@ RTRS-RDS-Param OBJECT IDENTIFIER ::= {_RTRS 3}
 ------------------------------------------------------------------
 RadioExciterV0        OBJECT IDENTIFIER ::= {okbalfa_V0 10}
 ------------------------------------------------------------------
-----------------------V11------------------------------------------
+----------------------V13------------------------------------------
 ------------------------------------------------------------------
 RadioExciter              OBJECT IDENTIFIER ::= {okbalfa 0}
 RadioExciter-Info         OBJECT IDENTIFIER ::= {RadioExciter 1}
@@ -1222,6 +1222,22 @@ DigitalExciter-I2 OBJECT-TYPE
   DESCRIPTION
           "Value/10, A"
   ::= {DigitalExciter-Param 21}
+  ----------------------------------------------------------------------
+DigitalExciter-I3 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Param 22}  
+  ----------------------------------------------------------------------
+DigitalExciter-I4 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Param 23}    
 ----------------------------------------------------------------------
 DigitalExciter-Temperature OBJECT-TYPE
   SYNTAX  INTEGER
@@ -1304,6 +1320,22 @@ DigitalExciter-status-I2 OBJECT-TYPE
   DESCRIPTION
           "Value/10, A"
   ::= {DigitalExciter-Status 21}
+  ----------------------------------------------------------------------
+DigitalExciter-status-I3 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Status 22}  
+  ----------------------------------------------------------------------
+DigitalExciter-status-I4 OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {DigitalExciter-Status 23}  
 ----------------------------------------------------------------------
 DigitalExciter-status-Temperature OBJECT-TYPE
   SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
@@ -1322,6 +1354,14 @@ DigitalExciter-power-on-off OBJECT-TYPE
   DESCRIPTION
           ""
   ::= {DigitalExciter-Setting 1}
+----------------------------------------------------------------------
+DigitalExciter-reboot OBJECT-TYPE
+  SYNTAX  INTEGER{ON(1)}
+  ACCESS  write
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot device"
+  ::= {DigitalExciter-Setting 2}
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
