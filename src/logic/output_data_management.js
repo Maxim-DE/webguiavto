@@ -13,10 +13,11 @@ export const type_device_toStr = (output_data_copy) => {
         },
 
         device_name_table = {
-          0: 'УРЦ',
-          1: 'УСТ',
+          0: 'УСТ',
+          1: 'УРЦ',
           2: 'СТ',
-          3: 'БЛОК УПРАВЛЕНИЯ',
+          3: 'РЦ',
+          4: 'БЛОК УПРАВЛЕНИЯ',
           250: 'unknown'
         }
 

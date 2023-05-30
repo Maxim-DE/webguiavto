@@ -28,10 +28,11 @@ export const device_power_table = {
       },
 
       device_name_table = {
-        0: 'urc',
-        1: 'ust',
+        0: 'ust',
+        1: 'urc',
         2: 'st',
-        3: 'bc',
+        3: 're',
+        4: 'bc',
         250: 'unknown'
       }
 
