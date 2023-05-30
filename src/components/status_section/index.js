@@ -48,6 +48,22 @@ function StatusSection(props) {
         device_power = device_power_table[props.device_type[1]],
         device_type = `${device_name}_${device_power}`
 
+  const device_status = (status_props) => {
+    switch (status_props) {
+      case 0:
+        return 'ВЫКЛ.'
+
+      case 1:
+        return 'ВКЛ.'
+
+      case 3: 
+        return 'ЗАБЛОКИРОВАНО'
+    
+      default:
+        break;
+    }
+  }
+
   const handleUpdate = request => {
     props.updateHandler(request);
   }
@@ -89,10 +105,19 @@ function StatusSection(props) {
       address: 'GetLogErrorFull.cgi',
       data: 'userlog$1'
     }    
+
+    // let status_settings_req_obj = {
+    //   address: 'get_transmitter.cgi',
+    //   notifications: {
+    //     good: 'none',
+    //     bad: 'default'
+    //   },
+    // }  
     
     clearInterval(timerRef.current)
 
     props.updateHandler(full_log_req_obj)
+    // props.updateHandler(status_settings_req_obj)
     
     handleConnectionEstablish()
 
@@ -178,11 +203,8 @@ function StatusSection(props) {
       id={`${props.section_name}_section`}
       ref={statusSectionRef} >
       <div className="section_header">
-        <h2>СТАТУС: 
-          {props.status_data && !!(props.status_data.device_status) 
-            ? ' ВКЛ.'
-            : ' ВЫКЛ.'
-          }
+        <h2>СТАТУС:&nbsp;
+          {props.status_data && device_status(props.status_data.device_status)}
         </h2>
         <span
           style={{textAlign: "right"}}>
@@ -206,7 +228,9 @@ function StatusSection(props) {
           {authGlobalState.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
+            section_name={props.section_name}
             settings_data={props.status_data && props.settings_data} 
+            status_data={props.status_data}
           />
           }
         </div>

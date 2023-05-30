@@ -221,21 +221,7 @@ export default function ChannelEnablerSettings(props) {
               </div>
               )
             })}
-          </li>
-          <li className="group_divider"></li>
-          <li
-            key='channel_list_label'
-            id='channel_list_label'
-            className="settings_item">
-            <label
-              className="settings_itemLabel">
-              Список доп. осн. каналов:
-            </label>
-          </li>
-          <li
-            key='channel_enable_calib'
-            id='channel_enable_calib'
-            className="channel_enable_item">
+            <div className="vertical_li_divider"></div>
             {freq_arr_to_render_arr(base_freqs, {arr1: additional_freqs})
               .filter(item => item.channel > 60 && item.channel < base_freqs[1]+1)
               .map(item => {

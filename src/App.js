@@ -80,6 +80,7 @@ function App() {
   })
   
   const [sectionData, setSectionData] = React.useState({
+    status_settings: null,
     settings: null,
     network: null,
     rds: null,
@@ -252,7 +253,8 @@ function App() {
         }
       }))
 
-    } else if (output_name === 'settings' ||
+    } else if (output_name === 'status_settings' ||
+               output_name === 'settings' ||
                output_name === 'network' ||
                output_name === 'rds' ||
                output_name === 'info') {
@@ -277,6 +279,13 @@ function App() {
         return {
           ...prevState,
           [output_name]: output_data_copy,
+        }
+      })
+    } else if (output_name === 'transmitter') {
+      setSectionData((prevState) => {
+        return {
+          ...prevState,
+          status_settings: output_data,
         }
       })
     } else if (output_name === 'reboot_device') {
@@ -340,12 +349,7 @@ function App() {
 
                 case 'error':
                   fetch_error_handler(errGlobalActions, req_resp)
-                  // if (Object.hasOwn(req_resp.data, 'Notific')) {
-                  //     const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
-                  //           status = req_resp.data.Notific.status
 
-                  //     toast.error(message, { autoClose: 1500 })
-                  // } else 
                   if (req_queue_data.notifications.bad == 'default') {
                     if (Object.hasOwn(req_resp.data, 'Notific')) {
                         const message = `${req_resp.data.Notific.text}`,
@@ -353,7 +357,7 @@ function App() {
   
                         toast.error(message, { autoClose: 1500 })
                     } else {
-                    toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
+                      toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
                     }
                   } else if (req_queue_data.notifications.bad == 'none') {
                     continue
@@ -369,8 +373,8 @@ function App() {
             }
 
 
-            if (resp_status == 'success') {
-              const request_name = req_resp.name,
+            
+            const request_name = req_resp.name,
                   request_params = req_resp.params,
                   remote_data = typeof req_resp.data === 'object' ? 
                   filter_obj(req_resp.data, (key, value) => !key.includes('Notific')) :
@@ -394,6 +398,11 @@ function App() {
                   case 'status':
                     state_copy = JSON.parse(JSON.stringify(statusData))
                     break;
+
+                  case 'transmitter':
+                    state_copy = JSON.parse(JSON.stringify(sectionData.status_settings))
+                    break;
+
                   case 'settings':
                     state_copy = JSON.parse(JSON.stringify(sectionData.settings))
                     break;
@@ -425,34 +434,6 @@ function App() {
               new_state = merge(state_copy, req_data)
 
               outputData_assignment(request_name, new_state, request_params);
-              // if (Object.keys(req_resp.data).length == 1 &&
-              //     Object.hasOwn(req_resp.data, 'Notific')) {
-
-              //   if (!req_queue_data.save_data) {
-              //     req_data = {}
-              //     outputData_assignment(request_name, req_data, request_params)
-              //     continue
-              //   }
-
-                // let 
-                //     save_data = req_queue_data.save_data,
-                //     new_state
-
-
-              //   new_state = 
-
-              //   req_data = new_state
-
-                    
-              // } else if (Object.keys(req_resp.data).length > 1 &&
-              //            Object.hasOwn(req_resp.data, 'Notific')) {
-                
-              // } else {
-                // req_data = req_resp.data  
-              // }
-              
-
-            }
           }
 
 
@@ -594,7 +575,7 @@ function App() {
                 graph_svg={statusData.status_svg}
                 logs_data={statusData.status_logs}
                 full_logs_data={statusData.status_full_logs}
-                settings_data={statusData.status_settings}
+                settings_data={sectionData.status_settings}
                 device_type={sectionData.info ? sectionData.info.info_general.type : ''}
                 pool_state = {requestPool.state}
                 err_count={errGlobalState.status_err_count}

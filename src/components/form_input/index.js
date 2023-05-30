@@ -63,6 +63,7 @@ function FormInput(props) {
       <input
         id={props.id}
         name={props.name}
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         type="text"
         onChange={changeHandler}
         value={props.input_value}
@@ -89,6 +90,7 @@ function FormInput(props) {
         id={props.id}
         name={`${props.name}`}
         type="checkbox"
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         checked={!!(props.input_value)}
         onChange={changeHandler}
         disabled={props.disabled}
@@ -100,9 +102,10 @@ function FormInput(props) {
         id={props.id}
         name={`${props.name}`}
         type='checkbox'
-        className='switch'
+        className={`switch ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         checked={!!(props.input_value)}
         onChange={changeHandler}
+        disabled={props.disabled}
       />
     )
   } 

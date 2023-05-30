@@ -139,7 +139,7 @@ select {
   font-family: inherit;
   font-size: inherit;
 
-  height: 24px;
+  min-height: 24px;
 
   padding: 1px 7px;
   
@@ -338,10 +338,19 @@ select::-ms-expand {
 
 input.disabled_input,
 button.disabled_input,
-select.disabled_input {
+select.disabled_input,
+input[type="checkbox"].switch.disabled_input {
   background: #d9d9d9;
   cursor: not-allowed;
   color: #868D9C
+}
+
+input[type="checkbox"].switch.disabled_input:before {
+  background: #c3c3c3;
+}
+
+input[type='checkbox'].switch.disabled_input:checked:before {
+  background: #C1CFD7;
 }
 
 .button_input.disabled_input {
