@@ -61,7 +61,10 @@ function Status_settings(props) {
         good: 'default',
         bad: 'default'
       },
-      save_data: statusSettingsState
+      save_data: {
+        ...statusSettingsState,
+        [name]: value
+      }
     }
 
     props.updateHandler(request_obj)

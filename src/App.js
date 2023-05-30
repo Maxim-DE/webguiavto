@@ -73,7 +73,6 @@ function App() {
     },
     status_logs: null,
     status_full_logs: null,
-    status_settings: null,
     calib_adc: null,
     status_peripheral: null,
     calib_available: 0
@@ -282,19 +281,18 @@ function App() {
         }
       })
     } else if (output_name === 'transmitter') {
-      setSectionData((prevState) => {
-        return {
-          ...prevState,
-          status_settings: output_data,
-        }
-      })
+      setSectionData((prevState) => ({
+        ...prevState,
+        status_settings: output_data,
+      }))
+      
     } else if (output_name === 'reboot_device') {
       setRequestPool(prevState => ({
         ...prevState,
         state: 'blocked'
       }))
 
-      location.reload()
+      window.location.reload(false)
     } else {
       return
     }

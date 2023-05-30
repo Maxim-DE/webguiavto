@@ -15,7 +15,7 @@ function FanCalibSettings(props) {
     'fan_pwm': [1, 0],
     'fan_temp_threshold_on': '',
     'fan_temp_threshold_max': '',
-    'fan_pwm_control': 1,
+    'fan_pwm_control': 0,
     'fan_pwm_value': 0
   })
 
