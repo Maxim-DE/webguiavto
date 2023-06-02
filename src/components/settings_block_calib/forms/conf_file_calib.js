@@ -8,6 +8,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 import cloneDeep from 'lodash/cloneDeep';
 
 import ModalCalib from '../../calib_modal';
+import { AlertDialogWrap } from '../../alert_dialog_wrap';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
@@ -43,6 +44,8 @@ export default function ConfFileCalib(props) {
   const [confCalibState, setConfCalibState] = React.useState({
     factory_reset_available: 1
   })
+
+  const [isNewConfAlertOpen, setIsNewConfAlertOpen] = React.useState(false)
 
   const hex_dropzone_ref = React.useRef(null)
   const hex_dropzone_instance = React.useRef(null)
@@ -201,13 +204,37 @@ export default function ConfFileCalib(props) {
           </div>
           <div className='item_input'>
             <FormInput
-              id={`create_new_conf_input`}
-              name={`create_new_conf`}
-              clickHandler={handleClick_save}
+              id={`open_new_conf_alert_input`}
+              name={`open_new_conf_alert`}
+              clickHandler={(e) => {
+                setIsNewConfAlertOpen(true)
+              }}
               label='Создать'
               type="button" />
           </div>
         </li>
+        <AlertDialogWrap
+          open={isNewConfAlertOpen}
+          onClose={(e) => {
+            setIsNewConfAlertOpen(false)
+          }}
+          title='предупреждение!'>
+          Вы точно хотите создать новый файл конфигурации? В ходе создания нового файла все парамерты будут возвращены к базовым значениям!
+          <div className="item_input">
+          <FormInput
+            id={`create_new_conf_input`}
+            name={`create_new_conf`}
+            clickHandler={handleClick_save}
+            label='Да'
+            type="button" />
+          <FormInput
+            clickHandler={(e) => {
+              setIsNewConfAlertOpen(false)
+            }}
+            label='Нет'
+            type="button" />
+          </div>
+        </AlertDialogWrap>
         <li
           key='set_settings_as_factory'
           id='set_settings_as_factory'
