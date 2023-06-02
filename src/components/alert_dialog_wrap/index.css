@@ -1,0 +1,28 @@
+.alert_modal {
+  width: 464px;
+}
+
+.hex_upload_modal .hex_upload_zone {
+  margin-top: 20px;
+  height: 312px;
+  background: #E0E7EB;
+  border-radius: 12px;
+}
+
+.alert_message_wrap {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  row-gap: 20px;
+  margin-top: 20px;
+}
+
+.hex_upload_upload_percentage {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.hex_upload_upload_message {
+  text-align: center;
+}
