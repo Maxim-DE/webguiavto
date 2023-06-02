@@ -17,7 +17,7 @@ function ModalCalib(props) {
     <>
     <div 
       className='darkBG'
-      onClick={props.user_controllable && handleClose} />
+      onClick={props.user_controllable ? handleClose : undefined} />
     <div className='centered'>
       <div className={`modal ${props.class}`}>
         <div className="modal_header">
