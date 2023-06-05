@@ -41,7 +41,7 @@ function StatusSection(props) {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
   const [sectionState, sectionActions] = useSectionStore()
 
-  const timerRef = React.useRef();
+  const timerRef = React.useRef()
 
   const guest_mode_class = !authGlobalState.auth_access.settings ? 'guest_wrap' : ''
 
@@ -139,7 +139,7 @@ function StatusSection(props) {
   React.useEffect(() => {
     switch (props.pool_state) {
       case 'active':
-        if (typeof timerRef.current != 'number') {
+        if (timerRef.current == -1) {
           handleConnectionEstablish()
         }
 
@@ -147,6 +147,7 @@ function StatusSection(props) {
 
       case 'blocked':
         clearInterval(timerRef.current)
+        timerRef.current = -1
         break;
     
       default:

@@ -8,7 +8,7 @@ import './components/notifications/index.css'
 
 import merge from 'lodash/merge'
 import cloneDeep from 'lodash/cloneDeep';
-import { filter_obj } from './logic/utilites'
+import { filter_obj, reload_page } from './logic/utilites'
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -223,6 +223,12 @@ function App() {
     } else if (/^calib_.*/gi.test(output_name)) {
       if (output_name.includes('_zero')) return
 
+      if (output_name === 'calib_conf_file') {
+        if (Object.hasOwn(output_params, 'factory_reset')) {
+          reload_page()
+        }
+      }
+
       if (Object.keys(output_data).length == 0) return
 
       if (output_name === 'calib_passw') {
@@ -292,7 +298,7 @@ function App() {
         state: 'blocked'
       }))
 
-      window.location.reload(false)
+      reload_page()
     } else {
       return
     }
@@ -635,7 +641,10 @@ function DeviceWrap_switch({device_type, ...props}) {
         adc_data={props.adc_data} />
     )
   } else {
-    return
+    return (
+      <DeviceWrap_unknown
+        updateHandler={props.updateHandler} />
+    )
   }
 }
 

@@ -8,3 +8,9 @@ export function filter_obj(obj, callback) {
 
   return Object.fromEntries(filtered)
 }
+
+export function reload_page() {
+  setTimeout(() => {
+    window.location.reload();
+  }, 2000);
+}
