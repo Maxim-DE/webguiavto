@@ -1,3 +1,6 @@
+import fetch_err_code_logic from "./fetch_err_code_logic";
+import { filter_obj } from "./utilites";
+
 function sectionData_format(state, section_name, data) {
   let data_entries = Object.entries(data);
   state[section_name] = data_entries;
@@ -80,7 +83,7 @@ async function fetch_data(req_obj) {
   const request = req_obj;
   const query = request.address;
   const data = request.data ? `?${request.data}` : '';
-  const url = `http://192.168.1.9${host}/${query}${data}`;
+  const url = `http://192.168.1.115${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
   const test_url = "http://192.168.0.114/GetDebug.CGI"
@@ -90,6 +93,7 @@ async function fetch_data(req_obj) {
   let resp_obj = {}
   let request_name = request.address.replace('.cgi', '')
       request_name = request_name.replace('set_', '')
+      request_name = request_name.replace('get_', '')
 
   let request_params = []
 
@@ -120,9 +124,23 @@ async function fetch_data(req_obj) {
       }
 
       if (Object.hasOwnProperty.call(req_data, 'Notific')) {
-        const req_status = req_data.Notific.status
+        const req_status = req_data.Notific.status,
+              resp_data = filter_obj(req_data, (key, value) => key != 'Notific')
+              
         if (req_status == 'error') {
+          if (Object.keys(resp_data).length > 0) {
+            resp_obj = {
+              name: request_name,
+              params: params_to_obj(request_params),
+              status: 'error',
+              data: req_data
+            }
+
+            return resp_obj
+
+          } else {
           throw new Error(req_data.Notific.text)
+          }
         }
       }
 
@@ -134,7 +152,8 @@ async function fetch_data(req_obj) {
       }
       return resp_obj
     } else {
-      throw new Error(`Invalid response code ${response.status}`)
+      const err_message = fetch_err_code_logic(response.status)
+      throw new Error(`${err_message}`)
     }
 
   } catch (error) {

@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { PulseLoader } from 'react-spinners';
+
 import './index.css'
+import svg_editing_logic from '../../logic/svg_editing_logic';
 
 
 export const status_colors = [
@@ -13,19 +16,24 @@ export const status_colors = [
 
 function Status_graphs(props) {
 
-  const [graphSvg, setGraphSvg] = React.useState(null)
-
   const graph_container_ref = React.useRef(null)
 
   React.useEffect(() => {
     let graph_svg_container = graph_container_ref.current
-    let graph_svg = graph_svg_container.children[0]
     let graph_data = props.data
-
+    
+    if (!graph_svg_container) {
+      return
+    }
+    
+    let graph_svg = graph_svg_container.children[0]
+    
     if (graph_svg == null ||
         graph_svg == '') {
       return
     }
+
+    const edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type)
 
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
@@ -104,7 +112,7 @@ function Status_graphs(props) {
   }, [props.data])
 
   React.useEffect(() => {
-    if (props.graph_svg == null) {
+    if (!props.graph_svg) {
       return
     } 
 
@@ -113,9 +121,24 @@ function Status_graphs(props) {
 
   }, [props.graph_svg])
 
-  return (
-    <div className="graphs" ref={graph_container_ref} />
-  )
+  if (props.graph_svg.length === 0) {
+    return (
+      <div className="hex_upload_message_wrap">
+        <PulseLoader
+          color="#bbcacf"
+          loading
+          margin={9}
+          size={13}
+          speedMultiplier={0.5}
+        />
+      </div>
+    )
+  } else {
+    return (
+      <div className="graphs" ref={graph_container_ref} />
+    )
+  }
+
 }
 
 export default Status_graphs;

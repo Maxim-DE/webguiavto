@@ -10,14 +10,14 @@ const find_log_pos = (log_data, log_id) => {
 }
 
 export const set_logs_id = (log_data) => {
+  if (!log_data) return {}
+
   for (let log = 0; log < log_data.length; log++) {
     let log_item = log_data[log],
         log_unique_id = `f${(~~(Math.random()*1e8)).toString(16)}`
     
     log_item[6] = log_unique_id
   }
-
-  console.debug(log_data)
 
   return log_data
 }

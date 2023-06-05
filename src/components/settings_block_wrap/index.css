@@ -101,6 +101,11 @@ h3 {
   border-top: 1px solid #C4C4C4;
 }
 
+.vertical_li_divider {
+  height: 2em;
+  border-right: 1px solid #C4C4C4
+}
+
 .additional_settings {
   display: none;
   background-color: #EDF1F3;
@@ -163,6 +168,7 @@ h3 {
 
 .item_input {
   display: flex;
+  align-items: center;
   column-gap: 15px;
 }
 

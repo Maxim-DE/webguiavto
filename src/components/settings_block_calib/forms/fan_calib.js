@@ -15,7 +15,7 @@ function FanCalibSettings(props) {
     'fan_pwm': [1, 0],
     'fan_temp_threshold_on': '',
     'fan_temp_threshold_max': '',
-    'fan_pwm_control': 1,
+    'fan_pwm_control': 0,
     'fan_pwm_value': 0
   })
 
@@ -123,7 +123,7 @@ function FanCalibSettings(props) {
           // value = target.type != 'text' ? fanCalibState[name] : fanCalibState[name] * 10
     
     if (Array.isArray(props.calib_data[name])) {
-      value = fanCalibState[name] * 10
+      value = fanCalibState[name]
       let state_obj = { [name]: value }
       state_to_save = calib_state_conversion(state_obj, props.calib_data)
     } else {
@@ -134,7 +134,11 @@ function FanCalibSettings(props) {
 
     const request_obj = {
       address: 'calib_fan.cgi',
-      data: `${name}$${value}`,
+      data: `${name}$${state_to_save[name]}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
       save_data: {
         calib_fan: state_to_save
       }
@@ -146,19 +150,29 @@ function FanCalibSettings(props) {
 
   const handleChange_save = (event) => {
     const target = event.target,
-          name = target.name.replace('_calib', ''),
-          value = target.type === 'checkbox' ? Number(target.checked) : fanCalibState[name] * 10
+          name = target.name.replace('_calib', '')
+          
+    let value = target.type === 'checkbox' ? Number(target.checked) : fanCalibState[name],
+        state_to_save = {}
 
-    // let state_obj = { [name]: value }
-    // converted_state = calib_state_conversion(state_obj, props.calib_data)
+    if (props.calib_data[name]) {
+      if (Array.isArray(props.calib_data[name])) {
+        value = fanCalibState[name]
+        state_to_save = { [name]: [
+          value,
+          props.calib_data[name][1]
+        ]}
+      } else {
+        value = target.type === 'checkbox' ? Number(target.checked) : fanCalibState[name]
+        state_to_save = { [name]: value }
+      }
+    }
 
     const request_obj = {
       address: 'calib_fan.cgi',
       data: `${name}$${value}`,
       save_data: {
-        calib_fan: {
-          [name]: value
-        }
+        calib_fan: state_to_save
       }
     }
 
@@ -169,7 +183,6 @@ function FanCalibSettings(props) {
     <Settings_block_calib header={`калибровка вентиляторов`}
                           settings_type={`fan_calib`}
                           save_handler={handleClick_save}>
-
 
       <li
         key='fan_pwm_calib'
@@ -205,6 +218,7 @@ function FanCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='fan_temp_threshold_on_calib'
         id='fan_temp_threshold_on'

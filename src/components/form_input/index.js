@@ -63,9 +63,11 @@ function FormInput(props) {
       <input
         id={props.id}
         name={props.name}
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         type="text"
         onChange={changeHandler}
         value={props.input_value}
+        disabled={props.disabled}
         placeholder={props.placeholder}
         style={props.style}
       />
@@ -88,8 +90,10 @@ function FormInput(props) {
         id={props.id}
         name={`${props.name}`}
         type="checkbox"
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         checked={!!(props.input_value)}
         onChange={changeHandler}
+        disabled={props.disabled}
       />
     )
   } else if (props.type == "switch") {
@@ -98,9 +102,10 @@ function FormInput(props) {
         id={props.id}
         name={`${props.name}`}
         type='checkbox'
-        className='switch'
+        className={`switch ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         checked={!!(props.input_value)}
         onChange={changeHandler}
+        disabled={props.disabled}
       />
     )
   } 
@@ -262,6 +267,7 @@ function FormInput(props) {
         id={props.id}
         name={props.name}
         onChange={changeHandler}
+        disabled={props.disabled}
         value={props.input_value}
       >
       {props.variants &&
@@ -303,6 +309,7 @@ function FormInput(props) {
           className="range_slider"
           onChange={changeHandler}
           onMouseUp={props.mouseupHandler}
+          disabled={props.disabled}
           value={props.input_value}
           step={props.step}
           min={props.min}
@@ -313,14 +320,17 @@ function FormInput(props) {
     
   } else if (props.type == "button") {
     return (
-      <input
+      <button
         id={props.id}
         name={props.name}
-        className={`button_input ${props.class}`}
+        title={props.title}
+        className={`button_input ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+        disabled={props.disabled}
         type="button"
-        value={props.label}
         style={props.style}
-        onClick={props.clickHandler} />
+        onClick={props.clickHandler}>
+        {props.label}
+      </button>
     )
   }
 

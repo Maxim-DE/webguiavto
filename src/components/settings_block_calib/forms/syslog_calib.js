@@ -148,6 +148,7 @@ function Syslog_calib(props) {
     setSysLogLinks(prevState => ({
       ...prevState,
       max_msgs: 0,
+      active_page: 1,
       log_data: [],
     }))
 

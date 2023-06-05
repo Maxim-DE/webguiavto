@@ -8,6 +8,7 @@ import './components/notifications/index.css'
 
 import merge from 'lodash/merge'
 import cloneDeep from 'lodash/cloneDeep';
+import { filter_obj, reload_page } from './logic/utilites'
 
 import { showErrorMessage, showSuccessMessage, showInfoMessage } from './components/notifications/notifications_utilites';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -23,11 +24,13 @@ import StatusSection from "./components/status_section"
 import CalibSection from './components/calib_section';
 
 import CalibLogButton from './components/calib_log_button';
+import { NoConf_placeholder } from './components/device_assets/unknown_device/sections/no_conf';
 
 import { device_name_table, device_power_table } from './components/status_section';
 
 import DeviceWrap_ST250 from './components/device_assets/st_250';
 import DeviceWrap_RE100 from './components/device_assets/re_100';
+import DeviceWrap_unknown from './components/device_assets/unknown_device';
 
 import useGlobalStore from './logic/auth_store';
 import useGlobalErrPool from './logic/err_store';
@@ -70,13 +73,13 @@ function App() {
     },
     status_logs: null,
     status_full_logs: null,
-    status_settings: null,
     calib_adc: null,
     status_peripheral: null,
     calib_available: 0
   })
   
   const [sectionData, setSectionData] = React.useState({
+    status_settings: null,
     settings: null,
     network: null,
     rds: null,
@@ -212,17 +215,29 @@ function App() {
         data: output_data
       }))
 
-    } else if (output_name === 'calib_passw') {
-      authGlobalActions.set_is_auth(true)
-      authGlobalActions.set_user_id(output_params.login)
-      authGlobalActions.set_auth_level(output_data.auth_info.auth_level)
-
     } else if (output_name === 'logout') {
       authGlobalActions.set_is_auth(false)
       authGlobalActions.set_user_id('')
       authGlobalActions.set_auth_level(0)
       
-    } else if (/^calib_.*/g.test(output_name)) {
+    } else if (/^calib_.*/gi.test(output_name)) {
+      if (output_name.includes('_zero')) return
+
+      if (output_name === 'calib_conf_file') {
+        if (Object.hasOwn(output_params, 'factory_reset')) {
+          reload_page()
+        }
+      }
+
+      if (Object.keys(output_data).length == 0) return
+
+      if (output_name === 'calib_passw') {
+        authGlobalActions.set_is_auth(true)
+        authGlobalActions.set_user_id(output_params.login)
+        authGlobalActions.set_auth_level(output_data.auth_info.auth_level)
+        return
+      }
+
       setCalibState(prevState => ({
         ...prevState,
         data: output_data
@@ -243,7 +258,11 @@ function App() {
         }
       }))
 
-    } else {
+    } else if (output_name === 'status_settings' ||
+               output_name === 'settings' ||
+               output_name === 'network' ||
+               output_name === 'rds' ||
+               output_name === 'info') {
       let output_data_copy
 
       switch (output_name) {
@@ -267,6 +286,21 @@ function App() {
           [output_name]: output_data_copy,
         }
       })
+    } else if (output_name === 'transmitter') {
+      setSectionData((prevState) => ({
+        ...prevState,
+        status_settings: output_data,
+      }))
+      
+    } else if (output_name === 'reboot_device') {
+      setRequestPool(prevState => ({
+        ...prevState,
+        state: 'blocked'
+      }))
+
+      reload_page()
+    } else {
+      return
     }
   }
 
@@ -292,7 +326,7 @@ function App() {
                 case 'success':
                   if (req_queue_data.notifications.good == 'default') {
                     if (Object.hasOwn(req_resp.data, 'Notific')) {
-                      const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
+                      const message = `${req_resp.data.Notific.text}`,
                             status = req_resp.data.Notific.status
     
                       switch (status) {
@@ -309,7 +343,7 @@ function App() {
                       }
 
                     } else {
-                      toast.success(`Успешно (${req_resp.name})`, { autoClose: 1500 })
+                      toast.success(`Успешно`, { autoClose: 1500 })
                     }
                   } else if (req_queue_data.notifications.good != 'none') {
                     toast.success(req_queue_data.notifications.good, { autoClose: 1500 })
@@ -319,21 +353,21 @@ function App() {
 
                 case 'error':
                   fetch_error_handler(errGlobalActions, req_resp)
-                  // if (Object.hasOwn(req_resp.data, 'Notific')) {
-                  //     const message = `${req_resp.data.Notific.text} (${req_resp.name})`,
-                  //           status = req_resp.data.Notific.status
 
-                  //     toast.error(message, { autoClose: 1500 })
-                  // } else 
                   if (req_queue_data.notifications.bad == 'default') {
-                    toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
+                    if (Object.hasOwn(req_resp.data, 'Notific')) {
+                        const message = `${req_resp.data.Notific.text}`,
+                              status = req_resp.data.Notific.status
+  
+                        toast.error(message, { autoClose: 1500 })
+                    } else {
+                      toast.error(`${req_resp.data.message}`, { autoClose: 1500 })
+                    }
                   } else if (req_queue_data.notifications.bad == 'none') {
                     continue
                   } else {
                     toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                   }
-                  // if (req_queue_data.notifications) {
-                  // }
 
                   break;
               
@@ -343,57 +377,67 @@ function App() {
             }
 
 
-            if (resp_status == 'success') {
-              let request_name = req_resp.name,
+            
+            const request_name = req_resp.name,
                   request_params = req_resp.params,
-                  req_data
+                  remote_data = typeof req_resp.data === 'object' ? 
+                  filter_obj(req_resp.data, (key, value) => !key.includes('Notific')) :
+                  req_resp.data,
+                  local_data = req_queue_data.save_data ? req_queue_data.save_data : {}
 
-              if (Object.keys(req_resp.data).length == 1 &&
-                  Object.hasOwn(req_resp.data, 'Notific')) {
+              let req_data,
+                  state_copy = {},
+                  new_state
 
-                if (!req_queue_data.save_data) {
-                  req_data = {}
-                  outputData_assignment(request_name, req_data, request_params)
-                  continue
+              if ((Object.keys(remote_data).length > 0) ||
+                  (Object.keys(local_data).length > 0)) {
+
+                if (Object.keys(remote_data).length > 0) {
+                  req_data = remote_data
+                } else if (Object.keys(local_data).length > 0) {
+                  req_data = req_queue_data.save_data
                 }
-
-                let state_copy = {},
-                    save_data = req_queue_data.save_data,
-                    new_state
-
+                
                 switch (request_name) {
+                  case 'status':
+                    state_copy = JSON.parse(JSON.stringify(statusData))
+                    break;
+
+                  case 'transmitter':
+                    state_copy = JSON.parse(JSON.stringify(sectionData.status_settings))
+                    break;
+
                   case 'settings':
                     state_copy = JSON.parse(JSON.stringify(sectionData.settings))
                     break;
-
+  
                   case 'network':
                     state_copy = JSON.parse(JSON.stringify(sectionData.network))
                     break;
-
+  
                   case 'rds':
                     state_copy = JSON.parse(JSON.stringify(sectionData.rds))
                     break;
 
+                  case 'info' :
+                    state_copy = JSON.parse(JSON.stringify(sectionData.info))
+                    break;
+                  
                   case request_name.match(/^calib_.*/)?.input:
                     state_copy = JSON.parse(JSON.stringify(calibState.data))
                     break;
-
+  
                   default:
-                    break;
+                    outputData_assignment(request_name, req_data, request_params)
+                    continue;
                 }
-
-                new_state = merge(state_copy, save_data)
-
-                req_data = new_state
-
-                    
               } else {
-                req_data = req_resp.data  
+                req_data = {}
               }
               
+              new_state = merge(state_copy, req_data)
 
-              outputData_assignment(request_name, req_data, request_params);
-            }
+              outputData_assignment(request_name, new_state, request_params);
           }
 
 
@@ -409,6 +453,12 @@ function App() {
       }, 200)
     }
   }, [requestPool.pool])
+
+  React.useEffect(() => {
+
+    console.log(requestPool.state);
+
+  }, [requestPool.state])
 
   React.useEffect(() => {
     if (sectionData.info) {
@@ -481,7 +531,9 @@ function App() {
 
   const navRefUpdate = (nav_link_name) => {
     nav_ref.current = document.getElementById(`${nav_link_name}_section`)
-    nav_ref.current.scrollIntoView({ block: "center", behavior: "smooth" })
+    if (nav_ref.current != null) {
+      nav_ref.current.scrollIntoView({ block: "center", behavior: "smooth" })
+    }
   }
 
 
@@ -503,10 +555,10 @@ function App() {
             updateHandler={navRefUpdate}
             calibaAvailable={statusData.calib_available} />
           <div className='nav_fillblock'></div>
-          <PeripheralMenu
+          {/* <PeripheralMenu
             updateHandler={handlePoolUpdate}
             structure={peripheralData.structure}
-            data={statusData} />
+            data={statusData} /> */}
         </nav>
         <div className='main_wrap'>
           <header>
@@ -517,22 +569,28 @@ function App() {
               isAuthComplete = {authGlobalState.is_auth}/>
           </header>
           <main>
-            <StatusSection
-              section_name="status"
-              section_header="Статус"
-              updateHandler={handlePoolUpdate}
-              status_data={statusData.status_info}
-              graph_data={statusData.status_graph}
-              graph_svg={statusData.status_svg}
-              logs_data={statusData.status_logs}
-              full_logs_data={statusData.status_full_logs}
-              settings_data={statusData.status_settings}
-              device_type={sectionData.info ? sectionData.info.info_general.type : ''}
-              err_count={errGlobalState.status_err_count}
-              err_pool_actions={errGlobalActions} />
+            {sectionData.info && sectionData.info.info_general.type[0] != 250 &&
+              <StatusSection
+                section_name="status"
+                section_header="Статус"
+                updateHandler={handlePoolUpdate}
+                status_data={statusData.status_info}
+                graph_data={statusData.status_graph}
+                graph_svg={statusData.status_svg}
+                logs_data={statusData.status_logs}
+                full_logs_data={statusData.status_full_logs}
+                settings_data={sectionData.status_settings}
+                device_type={sectionData.info ? sectionData.info.info_general.type : ''}
+                pool_state = {requestPool.state}
+                err_count={errGlobalState.status_err_count}
+                err_pool_actions={errGlobalActions} /> 
+            }
+
+            {sectionData.info && sectionData.info.info_general.type[0] == 250 &&
+              <NoConf_placeholder />
+            }
 
             {authGlobalState.auth_access.settings &&
-
               <DeviceWrap_switch
                 device_type={sectionData.info ? sectionData.info.info_general.type : [0, 0]}
                 updateHandler={handlePoolUpdate}
@@ -569,13 +627,23 @@ function DeviceWrap_switch({device_type, ...props}) {
         calib_data={props.calib_data}
         adc_data={props.adc_data} />
     )    
-  } else {
+  } else if (device_type_str === 'unknown_0') {
+    return (
+      <DeviceWrap_unknown
+        updateHandler={props.updateHandler} />
+    )
+  } else if (device_type_str === 're_100') {
     return (
       <DeviceWrap_RE100
         updateHandler={props.updateHandler}
         section_data={props.section_data}
         calib_data={props.calib_data}
         adc_data={props.adc_data} />
+    )
+  } else {
+    return (
+      <DeviceWrap_unknown
+        updateHandler={props.updateHandler} />
     )
   }
 }

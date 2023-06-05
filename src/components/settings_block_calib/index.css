@@ -8,7 +8,7 @@
 }
 
 .sys_log_modal {
-  width: 825px;
+  width: 1082px;
   max-height: none;
 }
 
@@ -154,4 +154,18 @@
 
 .acc_actions {
   column-gap: 15px;
+}
+
+/* CHANNEL CALIB */
+
+.channel_enable_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 18px;
+
+  margin: 5px 0 10px;
 }

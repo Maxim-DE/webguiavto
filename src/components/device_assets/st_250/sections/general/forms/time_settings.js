@@ -3,7 +3,10 @@ import React from 'react'
 import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
 
+import Time_server_sync_settings from '../../../../../custom_groups/time_server_sync_settings'
+
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
+import cloneDeep from 'lodash/cloneDeep'
 
 export default function Time_settings(props) {
 
@@ -25,6 +28,20 @@ export default function Time_settings(props) {
       setTimeSettingsState(settings_state_copy)
     }
   }, [props.settings_data])
+
+  React.useEffect(() => {
+    console.log(timeSettingsState);
+  }, [timeSettingsState])
+
+    const state_handler = (state) => {
+    let target_state_clone = cloneDeep(timeSettingsState)
+
+    for (const key in state) {
+      target_state_clone[key] = state[key]
+    }
+
+    setTimeSettingsState(target_state_clone)
+  }
 
   const handleChange = (event) => {
     const target = event.target;
@@ -101,6 +118,10 @@ export default function Time_settings(props) {
             type="text" />
         </div>
       </li>
+      <Time_server_sync_settings
+        parent_state={props.settings_data}
+        state_handler={state_handler}
+        clickHandler={props.clickHandler} />
     </SettingsBlockWrap>
   )
 }

@@ -184,7 +184,8 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
             id={`full_logs_button`}
             name={`full_logs_button`}
             clickHandler={(e) => {
-              if (fullLogData.length == 0) getFullLog()
+              // // if (fullLogData.length == 0) 
+              getFullLog()
               setIsOpen(true);
             }}
             class='log_refresh'

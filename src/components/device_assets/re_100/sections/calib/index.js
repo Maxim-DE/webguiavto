@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import Settings_block_calib from '../../../../settings_block_calib';
 

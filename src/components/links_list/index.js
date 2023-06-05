@@ -51,7 +51,6 @@ function Links_list(props) {
   return (
     <ul className="nav_linksList">
       {links_items.map((item, index) => {
-        console.log(links_items.length);
         if (index > 0 && index < links_items.length - 1 
           && !authGlobalState.auth_access.settings) {
           return

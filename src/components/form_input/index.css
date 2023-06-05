@@ -55,7 +55,7 @@ input[type='checkbox'].switch:checked:before {
     --border: #2F323A;
     --border-hover: #275EFE;
     --background: #fff;
-    --disabled: #F6F8FF;
+    --disabled: #cdcfd6;
     --disabled-inner: #E1E6F9;
 
     --focus: 2px rgba(39, 94, 254, .25);
@@ -102,12 +102,34 @@ input[type='checkbox'].switch:checked:before {
   input[type='checkbox']:not(.switch):checked::after {
     --active-color: #2F323A;
   }
+
+  input[type='checkbox'].disabled_input:not(.switch) {
+    --bc: var(--disabled);
+    cursor: not-allowed;
+  }
+  
+  input[type='checkbox'].disabled_input:not(.switch)::after {
+    cursor: not-allowed;
+  }
+  
+  input[type='checkbox'].disabled_input:not(.switch):checked {
+    --b: var(--disabled);
+    --bc: var(--disabled);
+    cursor: not-allowed;
+  }
+  
+  input[type='checkbox'].disabled_input:not(.switch):checked::after {
+    --active-color: #7e8495;
+    cursor: not-allowed;
+  }
 }
 
 .checkbox_wrap {
   display: flex;
   column-gap: 5px;
 }
+
+
 
 /* BUTTON & SELECT STYLES */
 
@@ -117,7 +139,7 @@ select {
   font-family: inherit;
   font-size: inherit;
 
-  height: 24px;
+  min-height: 24px;
 
   padding: 1px 7px;
   
@@ -136,8 +158,10 @@ select {
 }
 
 .button_input,
-.save_form_button {
-  transition: background-color 0.6s, transform 0.1s;
+.save_form_button,
+input[type="text"],
+select {
+  transition: background-color 0.4s, transform 0.1s, color 0.4s;
 }
 
 .button_input svg {
@@ -310,6 +334,39 @@ select::-ms-expand {
   max-width: 170px;
 }
 
+/* DISABLED STYLE */
+
+input.disabled_input,
+button.disabled_input,
+select.disabled_input,
+input[type="checkbox"].switch.disabled_input {
+  background: #d9d9d9;
+  cursor: not-allowed;
+  color: #868D9C
+}
+
+input[type="checkbox"].switch.disabled_input:before {
+  background: #c3c3c3;
+}
+
+input[type='checkbox'].switch.disabled_input:checked:before {
+  background: #C1CFD7;
+}
+
+.button_input.disabled_input {
+  color: #868D9C
+}
+
+.button_input:hover.disabled_input {
+  background: #d9d9d9;
+
+}
+
+.button_input:active.disabled_input {
+  /* transform: translateY(1px); */
+  transform: none;
+}
+
 /* SLIDER STYLES */
 .slider_container {
   display: flex;
@@ -360,4 +417,9 @@ select::-ms-expand {
   margin: 0 10px;
   width: 36px;
   font-weight: 300;
+}
+
+.button_input.download_link {
+  outline: none;
+  text-decoration: none;
 }

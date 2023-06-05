@@ -283,15 +283,15 @@ export default function Account_manage_calib(props) {
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`sys_logs_calib_input`}
+            htmlFor={`account_manage_calib_input`}
             className="settings_itemLabel">
             Управление учетными записями
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`sys_logs_calib_input`}
-            name={`sys_logs_calib`}
+            id={`account_manage_calib_input`}
+            name={`account_manage_calib`}
             clickHandler={(e) => {
               doGetAccList()
               // setIsLoading(true)

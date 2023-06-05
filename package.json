@@ -24,7 +24,7 @@
     "build": "npx gulp pre_build_preparation && npm run build:react && npm run build:archive",
     "build:debug": "react-scripts build",
     "build:react": "react-scripts build && npx gulp full_gzip_build",
-    "build:archive": "./archive.sh",
+    "build:archive": "bash archive.sh",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

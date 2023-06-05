@@ -10,8 +10,7 @@
 
 # production
 build/*
-build_arch/*
-!build/mib
+build_arch/build_arch.cpio
 
 # misc
 .DS_Store
