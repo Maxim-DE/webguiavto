@@ -119,22 +119,25 @@ function FanCalibSettings(props) {
     const target = event.target,
           name = target.name.replace('_calib', '')
 
-    let value, state_to_save
+    let value, state_to_save, save_str
           // value = target.type != 'text' ? fanCalibState[name] : fanCalibState[name] * 10
     
     if (Array.isArray(props.calib_data[name])) {
       value = fanCalibState[name]
       let state_obj = { [name]: value }
       state_to_save = calib_state_conversion(state_obj, props.calib_data)
+      save_str = `${name}$${state_to_save[name][0]}` // берем значение с конветрированного состояния
+
     } else {
       value = fanCalibState[name]
       state_to_save = { [name]: value }
+      save_str = `${name}$${state_to_save[name]}`
     }
     
 
     const request_obj = {
       address: 'calib_fan.cgi',
-      data: `${name}$${state_to_save[name]}`,
+      data: save_str,
       notifications: {
         good: 'default',
         bad: 'default'
