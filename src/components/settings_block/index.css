@@ -4,7 +4,7 @@
   height: 440px;
 
   background: #F7F7F7;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
 }
 
@@ -105,7 +105,7 @@ h3 {
   display: none;
   background-color: #EDF1F3;
   width: 473px;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
 
   margin-top: 20px;

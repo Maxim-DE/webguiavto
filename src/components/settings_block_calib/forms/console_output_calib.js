@@ -158,6 +158,7 @@ function ConsoleOutputCalibSettings(props) {
               <FormInput
                 id={`ip_address_input`}
                 name={`ip_address`}
+                class="calib_input"
                 changeHandler={handleChange}
                 input_value={consoleOutputCalibState.ip_address}
                 type="text" />
@@ -217,6 +218,7 @@ function ConsoleOutputCalibSettings(props) {
                 id={`out_port_input`}
                 name={`out_port`}
                 changeHandler={handleChange}
+                class="calib_input"
                 input_value={consoleOutputCalibState.out_port}
                 type="text" />
               <FormInput
@@ -242,6 +244,7 @@ function ConsoleOutputCalibSettings(props) {
               <FormInput
                 id={`in_port_input`}
                 name={`in_port`}
+                class="calib_input"
                 changeHandler={handleChange}
                 input_value={consoleOutputCalibState.in_port}
                 type="text" />
@@ -268,6 +271,7 @@ function ConsoleOutputCalibSettings(props) {
               <FormInput
                 id={`err_port_input`}
                 name={`err_port`}
+                class="calib_input"
                 changeHandler={handleChange}
                 input_value={consoleOutputCalibState.err_port}
                 type="text" />

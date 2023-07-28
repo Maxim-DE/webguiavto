@@ -284,6 +284,7 @@ function CurrentCalibSettings_ST(props) {
           <FormInput
             id={`I1_calib_input`}
             name={`I1_calib`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={amperageCalibState.I1}
             type="text" />
@@ -319,6 +320,7 @@ function CurrentCalibSettings_ST(props) {
           <FormInput
             id={`I2_calib_input`}
             name={`I2_calib`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={amperageCalibState.I2}
             type="text" />
@@ -368,7 +370,7 @@ function CurrentCalibSettings_ST(props) {
           <input
             id={'I3_calib_input'}
             name={'I3_calib'}
-            className={`${
+            className={`calib_input ${
               amperageCalibState.I3_available ? '' : 'disabled_input'}`}
             type="text"
             disabled={!amperageCalibState.I3_available}
@@ -425,7 +427,7 @@ function CurrentCalibSettings_ST(props) {
           <input
             id={'I4_calib_input'}
             name={'I4_calib'}
-            className={`${
+            className={`calib_input ${
               amperageCalibState.I4_available ? '' : 'disabled_input'}`}
             type="text"
             disabled={!amperageCalibState.I4_available}

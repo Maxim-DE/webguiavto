@@ -169,6 +169,8 @@ function FanCalibSettings(props) {
         value = target.type === 'checkbox' ? Number(target.checked) : fanCalibState[name]
         state_to_save = { [name]: value }
       }
+    } else {
+      state_to_save = { [name]: value }
     }
 
     const request_obj = {
@@ -237,6 +239,7 @@ function FanCalibSettings(props) {
           <FormInput
             id={`fan_temp_threshold_on_input`}
             name={`fan_temp_threshold_on`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={fanCalibState.fan_temp_threshold_on}
             type="text" />
@@ -263,6 +266,7 @@ function FanCalibSettings(props) {
           <FormInput
             id={`fan_temp_threshold_max_input`}
             name={`fan_temp_threshold_max`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={fanCalibState.fan_temp_threshold_max}
             type="text" />
