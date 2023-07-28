@@ -145,7 +145,7 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
         <label
           htmlFor={`time_sync_input`}
           className="settings_itemLabel">
-          Выкл./вкл. службу синхр. времени (NTP)
+          Служба синхр. времени (NTP)
         </label>
         <FormInput
           id={`time_sync_input`}

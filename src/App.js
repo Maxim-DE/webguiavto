@@ -246,6 +246,19 @@ function App() {
         }
       }
 
+      if (output_name === 'calib_misc') {
+        // Перезагружаем страницу после сброса настроек калибровки по умолчанию
+        if (Object.hasOwn(output_params, 'delete_user_logs')) {
+          setStatusData((prevState) => {
+          return {
+            ...prevState,
+            status_logs: null,
+            status_full_logs: null
+          }
+        })
+        }
+      }
+
       // если запрос без данных на сохранение, то пропускаем, иначе сломается хранилище
       if (Object.keys(output_data).length == 0) return
       // Обновляем данные авторизации после успешной авторизации

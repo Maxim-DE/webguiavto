@@ -105,6 +105,7 @@ export default function NetworkCalibSettings(props) {
           <FormInput
             id={`req_period_input`}
             name={`req_period`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={networkCalibState.req_period}
             type="text" />
@@ -131,6 +132,7 @@ export default function NetworkCalibSettings(props) {
           <FormInput
             id={`retry_time_value_input`}
             name={`retry_time_value`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={networkCalibState.retry_time_value}
             type="text" />
@@ -157,6 +159,7 @@ export default function NetworkCalibSettings(props) {
           <FormInput
             id={`retry_count_input`}
             name={`retry_count`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={networkCalibState.retry_count}
             type="text" />
@@ -183,6 +186,7 @@ export default function NetworkCalibSettings(props) {
           <FormInput
             id={`keep_alive_timeout_input`}
             name={`keep_alive_timeout`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={networkCalibState.keep_alive_timeout}
             type="text" />

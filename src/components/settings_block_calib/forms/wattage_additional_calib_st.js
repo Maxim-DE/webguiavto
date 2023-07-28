@@ -235,6 +235,7 @@ function WattageAdditionalCalibSettings_ST(props) {
           <FormInput
             id={`input_power_calib_input`}
             name={`input_power_calib`}
+            class="calib_input"
             changeHandler={handleChange}
             input_value={wattageAdditionalCalibState.input_power}
             type="text" />
@@ -284,7 +285,7 @@ function WattageAdditionalCalibSettings_ST(props) {
           <input
             id={'ballast_1_calib_input'}
             name={'ballast_1_calib'}
-            className={`${
+            className={`calib_input ${
               wattageAdditionalCalibState.ballast_1_avaliable ? '' : 'disabled_input'}`}
             type="text"
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}

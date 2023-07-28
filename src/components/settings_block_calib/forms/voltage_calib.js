@@ -82,6 +82,7 @@ function VoltageCalibSettings(props) {
         <FormInput
           id={`U1_calib_input`}
           name={`U1_calib`}
+          class="calib_input"
           changeHandler={handleChange}
           input_value={voltageCalibState.U1}
           type="text" />
