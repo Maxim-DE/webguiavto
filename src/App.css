@@ -22,7 +22,7 @@ main {
   justify-content: flex-start;
   min-height: calc(100vh - 90px);
 
-  background: #F1F5F2;
+  background: #edf2ef;
 }
 
 header {

@@ -4,7 +4,8 @@
   height: 440px;
 
   background: #F7F7F7;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid #c4c4c4;
   border-radius: 12px;
 }
 
