@@ -115,7 +115,7 @@ function MiscCalibSettings_ST250(props) {
               <label
                 htmlFor={`delete_user_logs_calib_input`}
                 className="settings_itemLabel">
-                Удалить пользовательский журнал
+                Очистить пользовательский журнал
               </label>
             </div>
             <div className='item_input'>
@@ -123,7 +123,7 @@ function MiscCalibSettings_ST250(props) {
                 id={`delete_user_logs_calib_save`}
                 name={`delete_user_logs_calib`}
                 clickHandler={handleClick_save}
-                label='Удалить'
+                label='Очистить'
                 type="button" />
             </div>
           </li>
@@ -135,7 +135,7 @@ function MiscCalibSettings_ST250(props) {
               <label
                 htmlFor={`delete_sys_logs_calib_input`}
                 className="settings_itemLabel">
-                Удалить системный журнал
+                Очистить системный журнал
               </label>
             </div>
             <div className='item_input'>
@@ -143,7 +143,7 @@ function MiscCalibSettings_ST250(props) {
                 id={`delete_sys_logs_calib_save`}
                 name={`delete_sys_logs_calib`}
                 clickHandler={handleClick_save}
-                label='Удалить'
+                label='Очистить'
                 type="button" />
             </div>
           </li>
