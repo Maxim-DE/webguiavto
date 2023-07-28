@@ -7,6 +7,30 @@
   /* transform: translate(-50%, -50%); */
 }
 
+.switch_container {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.switch_state_display {
+  display: inline-block;
+  padding: 0.1em 0.2em;
+  border-radius: 5px;
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.switch_state_display.turned_on {
+  background-color: #c5deab;
+}
+
+.switch_state_display.turned_off {
+  background-color: #fca59c;
+}
+
 input[type='checkbox'].switch {
   position: relative;
   width: 29px;
@@ -225,6 +249,10 @@ input[type="text"]::placeholder {
 input.transparent {
   background-color: transparent;
   border: none;
+}
+
+input[type="text"].calib_input {
+  max-width: 105px;
 }
 
 /* TEXT_RANGE STYLES */
