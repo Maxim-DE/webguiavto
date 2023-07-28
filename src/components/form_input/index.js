@@ -98,15 +98,20 @@ function FormInput(props) {
     )
   } else if (props.type == "switch") {
     return (
-      <input
-        id={props.id}
-        name={`${props.name}`}
-        type='checkbox'
-        className={`switch ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
-        checked={!!(props.input_value)}
-        onChange={changeHandler}
-        disabled={props.disabled}
-      />
+      <div className="switch_container">
+        <span className={`switch_state_display ${props.input_value ? 'turned_on' : 'turned_off'}`}>
+          {props.input_value ? 'вкл' : 'выкл'}
+        </span>
+        <input
+          id={props.id}
+          name={`${props.name}`}
+          type='checkbox'
+          className={`switch ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+          checked={!!(props.input_value)}
+          onChange={changeHandler}
+          disabled={props.disabled}
+        />
+      </div>
     )
   } 
   // else if (props.type == "text_range") {
