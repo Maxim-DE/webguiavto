@@ -15,7 +15,8 @@ const CalibLogButton = (props) => {
 
 	const [calibPassw, setCalibPassw] = React.useState({
 		login: '',
-		password: ''
+		password: '',
+		is_auth: false
 	})
 
 	const [authGlobalState, authGlobalActions] = useAuthStore()
@@ -26,12 +27,46 @@ const CalibLogButton = (props) => {
 		console.log(props.isAuthComplete);
 		if (props.isAuthComplete) {
 			setIsOpen(false)
-		} 
+			setCalibPassw(prevState => ({
+				...prevState,
+				is_auth: true
+			}))
+		} else {
+			setCalibPassw(prevState => ({
+				...prevState,
+				is_auth: false
+			}))
+		}
 	}, [props.isAuthComplete])
 
 	const clickHandler = (event) => {
+		let target = event.target,
+				target_action = target.dataset.action
+
 		event.stopPropagation();
-		setIsOpen(true)
+
+		switch (target_action) {
+			case 'login':
+				setIsOpen(true)
+				break;
+			
+			case 'logout': {
+				const request_obj = {
+					address: 'logout.cgi',
+					// data: `login$${calibPassw.login};password$${calibPassw.password}`,
+					notifications: {
+						good: 'Выход выполнен',
+						bad: 'default'
+					}
+				}
+
+				props.updateHandler(request_obj)
+				break;
+			}
+
+			default:
+				break;
+		}
 	}
 
 	const changeHandler = (event) => {
@@ -69,7 +104,9 @@ const CalibLogButton = (props) => {
 		<div 
 			className="log_button"
 			onClick={clickHandler}>
-			<span className='log_label'>Войти в калибровку</span>
+			{calibPassw.is_auth ?
+				<span className='log_label' data-action='logout'>Выйти ({authGlobalState.user_id})</span> :
+				<span className='log_label' data-action='login'>Войти в калибровку</span>}
 			{/* <img src={log_icon} alt="Войти" sizes="" /> */}
 		</div>
 		{isOpen &&

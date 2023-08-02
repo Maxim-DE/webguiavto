@@ -1,136 +1,76 @@
-import useAuthStore from "./auth_store";
-import useGlobalStore from "./global_store";
-
-import { type_device_toStr } from "./output_data_management";
-
-const [authGlobalState, authGlobalActions] = useAuthStore()
-const [allGlobalState, allGlobalActions] = useGlobalStore()
-
-const test_outputData_assignment = (output_name, output_data) => {
-  if (output_name === 'peripheral_structure') {
-    console.log(allGlobalState.peripheral_data);
-    // setPeripheralData(prevState => ({
-    //   ...prevState,
-    //   structure: output_data[`structure`],
-    // }))
-
-  } else if (/^status/.test(output_name)) {
-    let status_state_copy = allGlobalState.status_data;
-    console.log(status_state_copy);
-    for (const key in output_data) {
-      status_state_copy[key] = output_data[key];
-    }
-    // setStatusData(status_state_copy)
-
-  } else if (/media\/status_graph/gi.test(output_name)) {
-    let status_state_copy = allGlobalState.status_data;
-    let output_obj = {
-      img: output_data
-    }
-    status_state_copy.status_svg = output_obj;
-
-    console.log(status_state_copy);
-
-    // setStatusData(prevState => ({
-    //   ...prevState,
-    //   status_svg: output_obj,
-    // }))
-
-  } else if (output_name === 'GetLogErrorFull') {
-
-    let status_state_copy = allGlobalState.status_data;
-    for (const key in output_data) {
-      status_state_copy[key] = output_data[key];
-    }
-
-    // setStatusData(status_state_copy)
-
-  } else if (output_name === 'SysLog') {
-    // setCalibState(prevState => ({
-    //   ...prevState,
-    //   data: {
-    //     ...prevState.data,
-    //     calib_misc: {
-    //       ...prevState.data.calib_misc,
-    //       sys_log: output_data
-    //     }
-    //   }
-    // }))
-
-  } else if (output_name === 'calibration') {
-    // setCalibState(prevState => ({
-    //   ...prevState,
-    //   data: output_data
-    // }))
-
-  } else if (output_name === 'calib_passw') {
-    // authGlobalActions.set_is_auth(true)
-    // authGlobalActions.set_auth_level(3)
-
-  } else if (/^calib_.*/g.test(output_name)) {
-    // setCalibState(prevState => ({
-    //   ...prevState,
-    //   data: output_data
-    // }))
-  } else {
-    let output_data_copy
-
-    switch (output_name) {
-      case 'info':
-        if (Object.hasOwn(output_data.info_general, 'type')) {
-          output_data_copy = type_device_toStr(output_data)
-        } else {
-          output_data_copy = output_data
-        }
-
-        break;
-
-      default:
-        output_data_copy = output_data
-        break;
-    }
-
-    // setSectionData(prevState => ({
-    //   ...prevState,
-    //   [output_name]: output_data_copy,
-    // }))
-  }
-}
+import fetch_err_code_logic from "./fetch_err_code_logic";
+import { filter_obj } from "./utilites";
 
 function sectionData_format(state, section_name, data) {
   let data_entries = Object.entries(data);
   state[section_name] = data_entries;
 }
 
+
 function dataArray_to_string(data_array) {
   let block_data = data_array;
   let data_string = '';
 
-  for (const key in block_data) {
-    if (block_data[key].length === 0) {
-      data_string += `${key}$NULL;`
+  recursvive_obj_handle(block_data)
 
-      // setBlockData(prevState => ({
-      //   ...prevState,
-      //   [key]: ''
-      // }));
-
-      continue
+  function recursvive_obj_handle(object) {
+    for (const key in object) {
+      if (object[key].length === 0) {
+        data_string += `${key}$NULL;`
+        continue
+  
+      } else if (typeof object[key] === 'object') {
+        recursvive_obj_handle(object[key])
+      } else if (typeof object[key] === 'boolean') {
+        data_string += `${key}$${Number(object[key])};`
+      } else {
+        data_string += `${key}$${object[key]};`
+      }
     }
-
-    data_string += `${key}$${block_data[key]};`
   }
 
   return data_string
+}
+
+function params_to_obj(param_array) {
+  if (param_array.length == 0) {
+    return ''
+  }
+
+  let param_obj = {}
+
+  for (let param = 0; param < param_array.length; param++) {
+    if (param_array[param].length == 0) continue
+
+    const param_divided = param_array[param].split('$'),
+          key = param_divided[0],
+          value = param_divided[1]
+
+    param_obj[key] = value
+  }
+
+  return param_obj
 }
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetch_req(url, options, n) {
+async function fetch_req(url, options = {}, n) {
+  const {timeout = 8000} = options
+
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeout)
+
   try {
-    return await fetch(url, options);
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+    clearTimeout(id)
+    
+    return response
+
   } catch (e) {
     if (n <= 1) throw e;
     await sleep(50);
@@ -143,16 +83,25 @@ async function fetch_data(req_obj) {
   const request = req_obj;
   const query = request.address;
   const data = request.data ? `?${request.data}` : '';
-  const url = `http://192.168.1.9${host}/${query}${data}`;
+  const url = `http://192.168.1.115${host}/${query}${data}`;
   const retries_num = request.retries ? request.address : 0
 
-  const test_url = "http://192.168.1.114/GetDebug.CGI"
+  const test_url = "http://192.168.0.114/GetDebug.CGI"
 
   console.log(url);
   let responseClone;
   let resp_obj = {}
   let request_name = request.address.replace('.cgi', '')
       request_name = request_name.replace('set_', '')
+      request_name = request_name.replace('get_', '')
+
+  let request_params = []
+
+  if (data.length != 0) {
+    request_params = request.data.split(';')
+    console.log(request_params);
+  }
+  
 
   const fetch_opts = request.fetch_opts ? request.fetch_opts : {}
 
@@ -175,22 +124,46 @@ async function fetch_data(req_obj) {
       }
 
       if (Object.hasOwnProperty.call(req_data, 'Notific')) {
-        const req_status = req_data.Notific.status
-        if (req_status == 'error') throw new Error(req_data.Notific.text)
+        const req_status = req_data.Notific.status,
+              resp_data = filter_obj(req_data, (key, value) => key != 'Notific')
+              
+        if (req_status == 'error') {
+          if (Object.keys(resp_data).length > 0) {
+            resp_obj = {
+              name: request_name,
+              params: params_to_obj(request_params),
+              status: 'error',
+              data: req_data
+            }
+
+            return resp_obj
+
+          } else {
+          throw new Error(req_data.Notific.text)
+          }
+        }
       }
 
       resp_obj = {
         name: request_name,
+        params: params_to_obj(request_params),
         status: 'success',
         data: req_data
       }
       return resp_obj
+    } else {
+      const err_message = fetch_err_code_logic(response.status)
+      throw new Error(`${err_message}`)
     }
+
   } catch (error) {
-    const message = `An error has occured: ${error}`;
+    let message = `An error has occured: ${error.message}`
+
     console.error(message);
+
     resp_obj = {
       name: request_name,
+      params: params_to_obj(request_params),
       status: 'error',
       data: error
     }

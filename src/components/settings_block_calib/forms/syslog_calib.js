@@ -2,30 +2,49 @@ import React from 'react'
 
 import FormInput from '../../form_input'
 import ModalCalib from '../../calib_modal'
+
 import time_ArrToStr from '../../../logic/time_ArrToStr'
+import { set_logs_id } from '../../../logic/syslog_handle_expand'
+import { syslog_handle_expand } from '../../../logic/syslog_handle_expand'
+import { set_expand_state } from '../../../logic/syslog_handle_expand'
+import { set_expand_value_status } from '../../../logic/syslog_handle_expand'
+import { param_label_translate } from '../../../logic/syslog_handle_expand'
+
 import '../../status_logs_block/index.css'
+
+import Syslog_wrap from './syslog/syslog'
+import HttpLog_wrap from './syslog/http_log'
 
 import { BsChevronDoubleLeft, BsChevronLeft,
          BsChevronRight, BsChevronDoubleRight } from 'react-icons/bs'
 
 import '../index.css'
 
-const log_status = [
+export const log_status = [
   '',
   'log_critical',
   'log_user',
   'log_hibernation'
 ]
 
+const sys_log_types = [
+  {type: 'syslog', name: 'Cистемный'},
+  {type: 'http_log', name: 'HTTP-жур.'}
+]
+
 function Syslog_calib(props) {
 
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const [logType, setLogType] = React.useState({
+    log_type: 'syslog'
+  })
 
   const [sysLogLinks, setSysLogLinks] = React.useState({
     max_msgs: 0,
     active_page: 1,
     active_page_logs: [],
-    max_active_logs: 13,
+    max_active_logs: 24,
     max_pages: 0,
     max_links: 5,
     links: [],
@@ -34,13 +53,17 @@ function Syslog_calib(props) {
 
   const active_link_ref = React.useRef(null)
 
+  // React.useEffect(() => {
+  //   if (isOpen) handleSysLogRequest()
+  // }, [isOpen])
+
   React.useEffect(() => {
 
-    if (!Array.isArray(props.logData.SysLog)) {
+    if (!Array.isArray(props.logData)) {
       return
     }
 
-    const logData = props.logData.SysLog,
+    const logData = props.logData,
           maxMsg = logData.length
 
     setSysLogLinks(prevState => ({
@@ -56,13 +79,20 @@ function Syslog_calib(props) {
 
     const max_msgs = sysLogLinks.max_msgs,
           max_active_logs = sysLogLinks.max_active_logs,
-          max_pages = Math.ceil(max_msgs / max_active_logs),
-          active_page = sysLogLinks.log_data.length == 0 ? 0 : 1
+          max_pages = Math.ceil(max_msgs / max_active_logs)
+          
+    const processing_result = sys_log_render_processing(sysLogLinks.active_page,
+                                                        sysLogLinks.max_links,
+                                                        max_pages,
+                                                        sysLogLinks.max_active_logs,
+                                                        sysLogLinks.log_data,
+                                                        sysLogLinks.active_page_logs)
 
     setSysLogLinks(prevState => ({
       ...prevState,
-      active_page: active_page,
-      max_pages: max_pages
+      max_pages: max_pages,
+      active_page_logs: processing_result.active_page_logs,
+      links: processing_result.new_links
     }))
 
   }, [sysLogLinks.log_data])
@@ -80,106 +110,30 @@ function Syslog_calib(props) {
       return
     }
 
-    let new_links = [],
-        active_page_logs = []
-
-    if (sysLogLinks.active_page < sysLogLinks.max_links) {
-
-      for (let index = 1; index < sysLogLinks.max_links + 1; index++) {
-        const link_obj = {
-          index: index,
-          active: index == sysLogLinks.active_page ? true : false
-        }
-
-        new_links.push(link_obj)
-      }
-
-    } else if (sysLogLinks.active_page > (sysLogLinks.max_pages - sysLogLinks.max_links - 1)) {
-      let active_page_location,
-        low_links_border,
-        high_links_border
-
-      low_links_border = sysLogLinks.max_pages - sysLogLinks.max_links
-      high_links_border = sysLogLinks.max_pages
-
-      for (let index = low_links_border; index < high_links_border + 1; index++) {
-        const link_obj = {
-          index: index,
-          active: index == sysLogLinks.active_page ? true : false
-        }
-
-        new_links.push(link_obj)
-      }
-    } else {
-      let active_page_location,
-          low_links_border,
-          high_links_border
-
-      if (sysLogLinks.max_links % 2 == 0) {
-        active_page_location = (sysLogLinks.max_links / 2) + 1
-      } else {
-        active_page_location = Math.ceil(sysLogLinks.max_links / 2)
-      }
-
-      low_links_border = sysLogLinks.active_page - (active_page_location - 1)
-      high_links_border = sysLogLinks.active_page + sysLogLinks.max_links - active_page_location
-      
-      for (let index = low_links_border; index < high_links_border + 1; index++) {
-        const link_obj = {
-          index: index,
-          active: index == sysLogLinks.active_page ? true : false
-        }
-
-        new_links.push(link_obj)
-      }
-    }
-
-    let low_active_logs_border,
-        high_active_logs_border
-
-    if (sysLogLinks.active_page == 1) {
-      low_active_logs_border = 0
-      high_active_logs_border = sysLogLinks.max_active_logs
-    } else if (sysLogLinks.active_page == sysLogLinks.max_pages) {
-      low_active_logs_border = ((sysLogLinks.active_page - 1) * sysLogLinks.max_active_logs)
-      high_active_logs_border = low_active_logs_border + (sysLogLinks.max_msgs - low_active_logs_border)
-    } else {
-      low_active_logs_border = ((sysLogLinks.active_page - 1) * sysLogLinks.max_active_logs) 
-      high_active_logs_border = low_active_logs_border + sysLogLinks.max_active_logs
-    }
-
-    for (let log = low_active_logs_border; log < high_active_logs_border; log++) {
-
-      let active_log_data = sysLogLinks.log_data[log]
-      let active_log_instance = {
-        id: active_log_data[0],
-        message: active_log_data[3],
-        status: active_log_data[1],
-        time: time_ArrToStr(active_log_data[2]) 
-      }
-
-
-      active_page_logs.push(active_log_instance)
-    }
+    let processing_result = sys_log_render_processing(sysLogLinks.active_page,
+                                                      sysLogLinks.max_links,
+                                                      sysLogLinks.max_pages,
+                                                      sysLogLinks.max_active_logs,
+                                                      sysLogLinks.log_data,
+                                                      sysLogLinks.active_page_logs)
     
     setSysLogLinks(prevState => ({
       ...prevState,
-      active_page_logs: active_page_logs,
-      links: new_links
+      active_page_logs: processing_result.active_page_logs,
+      links: processing_result.new_links
     }))
     
   }, [sysLogLinks.active_page])
 
-
-
   const handleClick_open = () => {
     setIsOpen(true)
-    handleSysLogRequest()
+    // handleSysLogRequest()
   }
   
   const handleSysLogRequest = () => {
     const request_obj = {
-      address: 'SysLog.cgi',
+      address: 'GetLogErrorFull.cgi',
+      data: 'syslog$1',
       notifications: {
         good: 'default',
         bad: 'default'
@@ -194,6 +148,7 @@ function Syslog_calib(props) {
     setSysLogLinks(prevState => ({
       ...prevState,
       max_msgs: 0,
+      active_page: 1,
       log_data: [],
     }))
 
@@ -254,6 +209,72 @@ function Syslog_calib(props) {
 
   }
 
+  const handle_logType_change = async (event) => {
+    const target = event.target,
+          name = target.name
+
+    setSysLogLinks(prevState => ({
+      ...prevState,
+      max_msgs: 0,
+      log_data: [],
+    }))
+
+    // const request_obj = {
+    //   address: `GetLogErrorFull.cgi`,
+    //   data: `${name}$1`,
+    //   notifications: {
+    //     good: 'default',
+    //     bad: 'default'
+    //   }
+    // }
+
+    // props.updateHandler(request_obj)
+
+    setLogType(prevState => (
+      {
+        ...prevState,
+        log_type: name
+      }
+    ))
+  }
+
+  const handle_logExpand = (log_type, log_num, log_id, unique_id) => {
+    
+    let logs_data = sysLogLinks.active_page_logs,
+        expanded_log = logs_data.find(log => log.unique_id === unique_id)
+    
+    if (expanded_log.log_expand == null) {
+      expanded_log.log_expand = true
+    } else {
+      expanded_log.log_expand = !expanded_log.log_expand
+    }
+
+    setSysLogLinks(prevState => ({
+      ...prevState,
+      active_page_logs: logs_data
+    }))
+
+    if (expanded_log.expand_info == 'none') handle_logExpand_request(log_type, log_id, expanded_log.log_expand)
+
+  }
+
+  const handle_logExpand_request = (log_type, log_num, expand_bool) => {
+    let request_obj
+
+    if (expand_bool) {
+      request_obj = {
+        address: 'get_expanded_log.cgi',
+        data: `${log_type}$1;log_num$${log_num}`,
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        }
+      }
+    }
+
+    props.updateHandler(request_obj)
+  }
+
 
 
   return (
@@ -285,26 +306,28 @@ function Syslog_calib(props) {
         user_controllable={true}
         class='full_log_modal sys_log_modal'>
         <>
-          <div className="logs_header">
-            <span className="header_num">№</span>
-            <span className="header_message">сообщение</span>
-            <span className="header_time">дата и время</span>
-          </div>
-          <ul className="log_list">
-            {sysLogLinks.active_page_logs.map(item => (
-              <>
-                <div className='log_divider'></div>
-                <li
-                  key={item.id}
-                  id={`log_${item.id}`}
-                  className={`log_item ${log_status[item.status]}`}>
-                  <span className="log_num">{item.id}</span>
-                  <span className="log_message">{item.message}</span>
-                  <span className="log_time">{item.time}</span>
-                </li>
-              </>
+          <div className='logs_type_switch'>
+            {sys_log_types.map(item => (
+              <button 
+                className={`log_type_item button_input ${item.type == logType.log_type ? 'active_type' : ''}`}
+                type='button'
+                name={item.type}
+                onClick={handle_logType_change}
+                key={item.type}>
+                {item.name}
+              </button>
             ))}
-          </ul>
+          </div>
+          {logType.log_type == 'syslog' &&
+            <Syslog_wrap
+              logs_list={sysLogLinks.active_page_logs}
+              logs_expand={handle_logExpand}
+              updateHandler={props.updateHandler} />}
+          {logType.log_type == 'http_log' &&
+            <HttpLog_wrap
+              logs_list={sysLogLinks.active_page_logs}
+              logs_expand={handle_logExpand}
+              updateHandler={props.updateHandler} />}
           <div className="modal_footer sys_log_buttons">
             {sysLogLinks.max_pages != 0 && 
               <div className="sys_log_links">
@@ -406,4 +429,134 @@ function Syslog_calib(props) {
   )
 }
 
+const sys_log_render_processing = (active_page, max_links, max_pages, max_active_logs, log_data, active_log_state) => {
+
+  let new_links = [],
+      active_page_logs = [],
+      processing_obj = {}
+
+  if (active_page < max_links) {
+    let links_counter
+
+    if (max_links > max_pages) {
+      links_counter = max_pages
+    } else {
+      links_counter = max_links
+    }
+
+    for (let index = 1; index < links_counter + 1; index++) {
+      const link_obj = {
+        index: index,
+        active: index == active_page ? true : false
+      }
+
+      new_links.push(link_obj)
+    }
+
+  } else if (active_page > (max_pages - max_links - 1)) {
+    let active_page_location,
+      low_links_border,
+      high_links_border
+
+    low_links_border = max_pages - max_links
+    high_links_border = max_pages
+
+    for (let index = low_links_border; index < high_links_border + 1; index++) {
+      const link_obj = {
+        index: index,
+        active: index == active_page ? true : false
+      }
+
+      new_links.push(link_obj)
+    }
+  } else {
+    let active_page_location,
+      low_links_border,
+      high_links_border
+
+    if (max_links % 2 == 0) {
+      active_page_location = (max_links / 2) + 1
+    } else {
+      active_page_location = Math.ceil(max_links / 2)
+    }
+
+    low_links_border = active_page - (active_page_location - 1)
+    high_links_border = active_page + max_links - active_page_location
+
+    for (let index = low_links_border; index < high_links_border + 1; index++) {
+      const link_obj = {
+        index: index,
+        active: index == active_page ? true : false
+      }
+
+      new_links.push(link_obj)
+    }
+  }
+
+  processing_obj.new_links = new_links
+
+
+  let low_active_logs_border,
+      high_active_logs_border,
+      max_msgs = log_data.length
+
+  if (active_page == 1) {
+    low_active_logs_border = 0
+    if (log_data.length < max_active_logs) {
+      high_active_logs_border = log_data.length
+    } else {
+      high_active_logs_border = max_active_logs
+    }
+  } else if (active_page == max_pages) {
+    low_active_logs_border = ((active_page - 1) * max_active_logs)
+    high_active_logs_border = low_active_logs_border + (max_msgs - low_active_logs_border)
+  } else {
+    low_active_logs_border = ((active_page - 1) * max_active_logs)
+    high_active_logs_border = low_active_logs_border + max_active_logs
+  }
+
+  let i = 0
+
+  for (let log = low_active_logs_border; log < high_active_logs_border; log++) {
+    if (log > (log_data.length - 1)) return
+
+    let active_log_data = log_data[log]
+    let active_log_instance = {}
+
+    active_log_instance.id = active_log_data[0]
+    active_log_instance.status = active_log_data[1]
+    active_log_instance.message = active_log_data[2]
+    active_log_instance.time = time_ArrToStr(active_log_data[3], 6)
+    if (active_log_state.length != 0) {
+      let active_log_ref = active_log_state.find(log => log.unique_id === active_log_data[6])
+      console.debug(active_log_ref)
+      
+      if (active_log_ref != undefined) {
+        active_log_instance.log_expand = set_expand_state(active_log_data[4], active_log_ref.log_expand)
+        if (active_log_ref.expand_info === 'none') {
+          active_log_instance.expand_info = active_log_data[5] ? active_log_data[5] : 'none'
+        } else {
+          active_log_instance.expand_info = active_log_ref.expand_info
+        }
+      } else {
+        active_log_instance.log_expand = active_log_data[4] == 1 ? false : 'none'
+        active_log_instance.expand_info = active_log_data[5] ? active_log_data[5] : 'none'
+      }
+    } else {
+      active_log_instance.log_expand = active_log_data[4] == 1 ? false : 'none'
+      active_log_instance.expand_info = active_log_data[5] ? active_log_data[5] : 'none'
+    }
+    active_log_instance.unique_id = active_log_data[6]
+
+    active_page_logs.push(active_log_instance)
+
+    i++
+  }
+
+  processing_obj.active_page_logs = active_page_logs
+
+  return processing_obj
+}
+
 export default Syslog_calib
+

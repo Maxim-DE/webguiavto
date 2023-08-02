@@ -19,8 +19,9 @@
 .peripheral_time {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  gap: 4px 8.2%;
+  /* gap: 4px 8.2%; */
   margin: 14px 22px 0;
 }
 
@@ -34,7 +35,6 @@
 
 .time_value {
   font-weight: 600;
-  flex-grow: 1;
 }
 
 

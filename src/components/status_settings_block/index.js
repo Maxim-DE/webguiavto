@@ -15,6 +15,21 @@ function Status_settings(props) {
     channel_setting: 0
   })
 
+  const device_status = props.status_data ? props.status_data.device_status : 0,
+        device_locked = device_status === 3 ? true : false
+
+  React.useEffect(() => {
+    let status_settings_req_obj = {
+      address: 'get_transmitter.cgi',
+      notifications: {
+        good: 'none',
+        bad: 'default'
+      },
+    }  
+
+    props.updateHandler(status_settings_req_obj)
+  }, [])
+
   React.useEffect(() => {
     if (props.settings_data != undefined &&
         Object.keys(props.settings_data).length != 0) {
@@ -45,6 +60,10 @@ function Status_settings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+      save_data: {
+        ...statusSettingsState,
+        [name]: value
       }
     }
 
@@ -94,7 +113,8 @@ function Status_settings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
-      }
+      },
+      // save_data: statusSettingsState
     }
 
     props.updateHandler(request_obj)
@@ -108,7 +128,8 @@ function Status_settings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
-      }
+      },
+      // save_data: statusSettingsState
     }
 
     props.updateHandler(request_obj)
@@ -124,7 +145,8 @@ function Status_settings(props) {
       notifications: {
         good: 'default',
         bad: 'default'
-      }
+      },
+      save_data: statusSettingsState
     }
 
     props.updateHandler(request_obj)
@@ -149,6 +171,7 @@ function Status_settings(props) {
           <FormInput
             id={`supply_on_setting_input`}
             name={`supply_on_setting`}
+            disabled={device_locked}
             changeHandler={handleChange}
             input_value={statusSettingsState.supply_on_setting}
             type="switch" />
@@ -170,6 +193,8 @@ function Status_settings(props) {
             id={`channel_setting_input`}
             name={`channel_setting`}
             type="text"
+            className={`${device_locked ? 'disabled_input' : ''}`}
+            disabled={device_locked}
             onChange={handleChange_channel}
             value={statusSettingsState.channel_setting}
             maxLength="2"
@@ -179,6 +204,7 @@ function Status_settings(props) {
             id={`channel_save_input`}
             name={`channel_save`}
             label='Сохранить'
+            disabled={device_locked}
             clickHandler={channel_save_handleClick}
             type="button"
           />
@@ -212,8 +238,9 @@ function Status_settings(props) {
             type="text_buttons" /> */}
           
           <button
-            className='button_input plus_minus'
+            className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
             name='minus_value_3'
+            disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
@@ -222,8 +249,9 @@ function Status_settings(props) {
             3
           </button>
           <button
-            className='button_input plus_minus'
+            className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
             name='minus_value_1'
+            disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
@@ -232,8 +260,9 @@ function Status_settings(props) {
             1
           </button>
           <button
-            className='button_input plus_minus'
+            className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
             name='plus_value_1'
+            disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
@@ -242,8 +271,9 @@ function Status_settings(props) {
             1
           </button>
           <button
-            className='button_input plus_minus'
+            className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
             name='plus_value_3'
+            disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
@@ -269,6 +299,7 @@ function Status_settings(props) {
             id={`status_save_power_input`}
             name={`status_save_power`}
             label='Фиксировать'
+            disabled={device_locked}
             clickHandler={power_save_handleClick}
             type="button"
             />

@@ -63,9 +63,12 @@ function FormInput(props) {
       <input
         id={props.id}
         name={props.name}
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         type="text"
         onChange={changeHandler}
         value={props.input_value}
+        disabled={props.disabled}
+        placeholder={props.placeholder}
         style={props.style}
       />
     )
@@ -87,20 +90,28 @@ function FormInput(props) {
         id={props.id}
         name={`${props.name}`}
         type="checkbox"
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         checked={!!(props.input_value)}
         onChange={changeHandler}
+        disabled={props.disabled}
       />
     )
   } else if (props.type == "switch") {
     return (
-      <input
-        id={props.id}
-        name={`${props.name}`}
-        type='checkbox'
-        className='switch'
-        checked={!!(props.input_value)}
-        onChange={changeHandler}
-      />
+      <div className="switch_container">
+        <span className={`switch_state_display ${props.input_value ? 'turned_on' : 'turned_off'}`}>
+          {props.input_value ? 'вкл' : 'выкл'}
+        </span>
+        <input
+          id={props.id}
+          name={`${props.name}`}
+          type='checkbox'
+          className={`switch ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+          checked={!!(props.input_value)}
+          onChange={changeHandler}
+          disabled={props.disabled}
+        />
+      </div>
     )
   } 
   // else if (props.type == "text_range") {
@@ -193,7 +204,7 @@ function FormInput(props) {
           onChange={changeHandler}
         />
         <input 
-          className='text_large_expand_input'
+            className='text_large_expand_input button_input'
           type="button" 
           value="..."
           onClick={modal_clickHandler} />
@@ -201,7 +212,7 @@ function FormInput(props) {
           className='text_large_expanded_wrap'
             style={{ 
               // display: openModal ? 'block' : 'block' ,
-              margin: openModal ? '11px 0 0 11px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 11px' : '16px 0 0 11px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'}}>
           <input
@@ -231,14 +242,14 @@ function FormInput(props) {
             onChange={changeHandler}
           />
           <input
-            className='text_large_expand_input'
+            className='text_large_expand_input button_input'
             type="button"
             value="..."
             onClick={modal_clickHandler} />
           <div
             className='text_large_expanded_wrap'
             style={{
-              margin: openModal ? '11px 0 0 11px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 18px' : '16px 0 0 11px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'
             }}>
@@ -261,6 +272,7 @@ function FormInput(props) {
         id={props.id}
         name={props.name}
         onChange={changeHandler}
+        disabled={props.disabled}
         value={props.input_value}
       >
       {props.variants &&
@@ -287,37 +299,43 @@ function FormInput(props) {
     )
   } 
   else if (props.type == "slider") {
-    const value_range = props.input_value.split(',')
+    // const value_range = props.input_value.split(',')
     return (
       <div
         className="slider_container"
         id={props.id}>
-        <span>{value_range[0]}</span>
+        {/* <span>{value_range[0]}</span> */}
+        <span>{props.input_value}</span>
 
         <input
           id={props.id}
           name={props.name}
           type='range'
-          className="slider"
+          className="range_slider"
           onChange={changeHandler}
-          value={value_range[1]}
-          min={value_range[0]}
-          max={value_range[2]} />
+          onMouseUp={props.mouseupHandler}
+          disabled={props.disabled}
+          value={props.input_value}
+          step={props.step}
+          min={props.min}
+          max={props.max} />
 
-        <span>{value_range[2]}</span>
       </div>
     )
     
   } else if (props.type == "button") {
     return (
-      <input
+      <button
         id={props.id}
         name={props.name}
-        className={`button_input ${props.class}`}
+        title={props.title}
+        className={`button_input ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+        disabled={props.disabled}
         type="button"
-        value={props.label}
         style={props.style}
-        onClick={props.clickHandler} />
+        onClick={props.clickHandler}>
+        {props.label}
+      </button>
     )
   }
 

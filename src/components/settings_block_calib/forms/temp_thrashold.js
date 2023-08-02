@@ -3,6 +3,10 @@ import React from 'react';
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
+import useGlobalStore from '../../../logic/auth_store';
+
+import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+
 function TempThresholdCalibSettings(props) {
 
   const [tempThresholdCalibState, setTempThresholdCalibState] = React.useState({
@@ -10,6 +14,8 @@ function TempThresholdCalibSettings(props) {
     temp_threshold_off: '',
     temp_address: ''
   })
+
+  const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (Object.keys(props.calib_data).length != 0) {
@@ -57,12 +63,25 @@ function TempThresholdCalibSettings(props) {
           value = tempThresholdCalibState[name],
           multiplier =  Array.isArray(props.calib_data[name]) ? (props.calib_data[name][1]) : 1
 
+    let state_obj = {},
+        converted_state
+
+    if (Array.isArray(props.calib_data[name])) {
+      state_obj[name] = value
+      converted_state = calib_state_conversion(state_obj, props.calib_data)
+    } else {
+      converted_state = { [name]: value * multiplier }
+    }
+
     const request_obj = {
       address: 'calib_temp_threshold.cgi',
       data: `${name}$${value * multiplier}`,
       notifications: {
         good: 'default',
         bad: 'default'
+      },
+      save_data: {
+        calib_temp: converted_state
       }
     }
 
@@ -128,6 +147,9 @@ function TempThresholdCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      {authGlobalState.auth_access.calib_extend &&
+      <>
+      <li className="group_divider"></li>
       <li
         key='temp_address_calib'
         id='temp_address_calib'
@@ -155,6 +177,8 @@ function TempThresholdCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      </>
+      }
 
     </Settings_block_calib>
   )

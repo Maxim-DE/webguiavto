@@ -7,7 +7,14 @@
   gap: 35px;
 }
 
+
+
 @media (min-width: 1162px) {
+  .status_settings_wrap.guest_wrap {
+    grid-template-areas:
+      'logs logs logs';
+  }
+
   .status_settings_wrap {
     --columns: 3;
 

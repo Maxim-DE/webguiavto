@@ -2,6 +2,7 @@ import React from 'react'
 
 import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
+import ChannelEnablerSettings from '../../../../../settings_block_calib/forms/channel_enabler_calib'
 
 export default function Info_general(props) {
   const [infoGeneralState, setInfoGeneralState] = React.useState({
@@ -108,7 +109,12 @@ export default function Info_general(props) {
             type="text_sample" />
         </div>
       </li>
-
+      {props.settings_data.calib_misc &&
+        <ChannelEnablerSettings
+          calib_data={props.settings_data.calib_misc ?
+                props.settings_data.calib_misc.calib_channels.channel_list : ''}
+          editing_allowed={false} />
+      }
     </SettingsBlockWrap>
   )
 }

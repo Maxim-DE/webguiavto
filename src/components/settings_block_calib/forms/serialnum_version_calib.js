@@ -16,18 +16,20 @@ function SerialNumVersionCalibSettings(props) {
     { index: 1, value: '50' },
     { index: 2, value: '100' },
     { index: 3, value: '250' },
-    { index: 4, value: '300' },
-    { index: 5, value: '500' },
-    { index: 6, value: '1000' },
-    { index: 7, value: '2000' },
-    { index: 8, value: '5000' }
+    { index: 4, value: '250-МК'},
+    { index: 5, value: '300' },
+    { index: 6, value: '500' },
+    { index: 7, value: '1000' },
+    { index: 8, value: '2000' },
+    { index: 9, value: '5000' }
   ]
 
   const device_name_table = [
     { index: 0, value: 'УРЦ' },
     { index: 1, value: 'УСТ' },
     { index: 2, value: 'СТ' },
-    { index: 3, value: 'БЛОК УПР.' }
+    { index: 3, value: 'РЦ' },
+    { index: 4, value: 'БЛОК УПР.' }
   ]
 
   React.useEffect(() => {
@@ -171,6 +173,7 @@ function SerialNumVersionCalibSettings(props) {
             type="switch" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
         key='device_serial_num_calib'
         id='device_serial_num_calib'
@@ -230,9 +233,15 @@ function SerialNumVersionCalibSettings(props) {
             onChange={device_type_handleChange}
             value={serialNumVersionCalibState.device_type[1]}>
             <option value="" disabled selected hidden>Мощн.</option>
-            {device_power_table.map(item => (
-              <option key={item.index} value={item.index}>{item.value}</option>
-            ))}
+            {device_power_table.map(item => {
+              if (serialNumVersionCalibState.device_type[0] != 3 && item.value == '250-МК') {
+                return
+              } else {
+                return (
+                <option key={item.index} value={item.index}>{item.value}</option>
+                )
+              }
+            })}
           </select>
           <FormInput
             id={`device_type_calib_save`}

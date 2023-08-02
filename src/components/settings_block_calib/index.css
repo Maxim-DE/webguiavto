@@ -1,10 +1,23 @@
 /* SYS_LOG MODAL STYLES */
+.syslog_item {
+  height: 25px;
+  border-radius: 8px;
+
+  padding-left: 0%;
+  column-gap: 0;
+}
+
 .sys_log_modal {
-  width: 825px;
+  width: 1082px;
+  max-height: none;
+}
+
+.syslog_item .log_num {
+  margin-right: 3.5%;
 }
 
 .sys_log_modal .log_list {
-  overflow: hidden;
+  overflow: hidden scroll;
 }
 
 .sys_log_links .active_link {
@@ -20,10 +33,51 @@
   column-gap: 11px;
 }
 
+.logs_type_switch {
+  display: flex;
+  column-gap: 7px;
+  align-items: center;
+  /* justify-items: flex-start; */
+  justify-content: flex-start;
+  margin: 15px 0;
+}
+
+.log_type_item {
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.log_expand_button_wrap {
+  width: 35px;
+  text-align: center;
+}
+
+.log_expand_button {
+  border: 0;
+  background-color: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.log_expand_message {
+  margin: 15px 29px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.active_type {
+  background: #E0E7EB;
+}
+
 /* HEX UPLOAD MODAL STYLES */
 .hex_upload_modal {
   width: 464px;
 }
+
 .hex_upload_modal .hex_upload_zone {
   margin-top: 20px;
   height: 312px;
@@ -47,4 +101,71 @@
 
 .hex_upload_upload_message {
   text-align: center;
+}
+
+/* ACCOUNT MANAGER */
+.acc_manage_modal {
+  width: 753px;
+  max-height: 850px;
+}
+
+.acc_header {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+
+  height: 35px;
+  margin: 8px 15px 0 0;
+
+}
+
+.acc_header > span {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 17px;
+
+  font-variant: small-caps;
+
+  color: #C2C2C2;
+  margin-left: 4px;
+  flex: 0 0 205px
+}
+
+.acc_item {
+  height: 45px;
+
+  display:flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+
+  /* border-top: 1px #DFDFDF solid; */
+  border-radius: 12px;
+}
+
+.acc_login,
+.acc_password,
+.acc_actions {
+  display: flex;
+  flex: 0 0 210px
+}
+
+.acc_actions {
+  column-gap: 15px;
+}
+
+/* CHANNEL CALIB */
+
+.channel_enable_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 18px;
+
+  margin: 5px 0 10px;
 }
