@@ -4,8 +4,13 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
+import { reducers } from '../store_reducers';
+import { reducers as coreReducers } from '../../../core_store_reducers';
+import { useSelector } from 'react-redux';
 
 function GeneralCalibSettings_ST(props) {
+  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_general),
+        auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     amp_enable: 0,
@@ -14,24 +19,24 @@ function GeneralCalibSettings_ST(props) {
     tftp: 0
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibGeneral_store) {
       return
     } 
 
-    if (Object.keys(props.calib_data).length != 0) {
+    if (Object.keys(calibGeneral_store).length != 0 && calibGeneral_store != undefined) {
       let calib_state_copy = generalCalibState
 
-      for (const key in props.calib_data) {
-        calib_state_copy[key] = props.calib_data[key]
+      for (const key in calibGeneral_store) {
+        calib_state_copy[key] = calibGeneral_store[key]
       }
 
       setGeneralCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibGeneral_store])
 
   const handleChange_save = (event) => {
     let target = event.target;
@@ -48,6 +53,7 @@ function GeneralCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_general.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -90,6 +96,7 @@ function GeneralCalibSettings_ST(props) {
   const handleReboot = () => {
     const request_obj = {
       address: 'reboot_device.cgi',
+      reducer: coreReducers.reboot_device,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -102,7 +109,7 @@ function GeneralCalibSettings_ST(props) {
   return (
     <Settings_block_calib header={`общее`}
     settings_type={`general_calib`}>
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
       <>
       <li
         key='amp_enable_calib'

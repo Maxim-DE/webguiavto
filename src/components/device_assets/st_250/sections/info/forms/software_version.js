@@ -2,8 +2,10 @@ import React from 'react'
 
 import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
+import { useSelector } from 'react-redux'
 
 export default function Software_version(props) {
+  const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info.info_general)
 
   const [sofrwareVersionState, setSofrwareVersionState] = React.useState({
     os_version: 'N/A',
@@ -11,16 +13,16 @@ export default function Software_version(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.settings_data).length != 0) {
+    if (Object.keys(softwareVersion_store).length != 0 && softwareVersion_store != undefined) {
       let settings_state_copy = sofrwareVersionState
 
-      for (const key in props.settings_data) {
-        settings_state_copy[key] = props.settings_data[key]
+      for (const key in softwareVersion_store) {
+        settings_state_copy[key] = softwareVersion_store[key]
       }
 
       setSofrwareVersionState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [softwareVersion_store])
 
   return (
     <SettingsBlockWrap

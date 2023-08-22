@@ -4,19 +4,24 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
 
 function WattageAdditionalCalibSettings(props) {
+
+  const calibWattageAdditional_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_additional_power)
+
   const [wattageAdditionalCalibState, setWattageAdditionalCalibState] = React.useState({
     input_power: '',
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
+    if (Object.keys(calibWattageAdditional_store).length != 0 && calibWattageAdditional_store != undefined) {
       let calib_state_copy = {}
 
-      for (const key in props.calib_data) {
-        const divident = props.calib_data[key][0],
-              divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibWattageAdditional_store) {
+        const divident = calibWattageAdditional_store[key][0],
+              divider = calibWattageAdditional_store[key][1] == 0 ? 1 : calibWattageAdditional_store[key][1],
               digits = Math.log10(divider)
         calib_state_copy[key] = (divident / divider).toFixed(digits)
       }
@@ -24,7 +29,7 @@ function WattageAdditionalCalibSettings(props) {
       setWattageAdditionalCalibState(calib_state_copy)
     }
 
-  }, [props.calib_data])
+  }, [calibWattageAdditional_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -41,14 +46,15 @@ function WattageAdditionalCalibSettings(props) {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = wattageAdditionalCalibState[name],
-          multipier = props.calib_data ? props.calib_data[name][1] : 10
+          multipier = calibWattageAdditional_store ? calibWattageAdditional_store[name][1] : 10
 
     let state_obj = { [name]: value },
-        converted_state = calib_state_conversion(state_obj, props.calib_data)
+        converted_state = calib_state_conversion(state_obj, calibWattageAdditional_store)
 
     const request_obj = {
       address: 'calib_input_power.cgi',
       data: `${name}$${value * multipier}`,
+      reducer: reducers.calibration_form,
       update_data: wattageAdditionalCalibState,
       notifications: {
         good: 'default',

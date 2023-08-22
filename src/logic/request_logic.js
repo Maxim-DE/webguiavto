@@ -89,7 +89,6 @@ async function fetch_data(req_obj) {
   const test_url = "http://192.168.0.114/GetDebug.CGI"
 
   console.log(url);
-  let responseClone;
   let resp_obj = {}
   let request_name = request.address.replace('.cgi', '')
       request_name = request_name.replace('set_', '')
@@ -184,4 +183,4 @@ const async_Fetch_queue = async (queue_arr) => {
   return queue_response;
 }
 
-export { sectionData_format, async_Fetch_queue, dataArray_to_string, test_outputData_assignment }
+export { sectionData_format, async_Fetch_queue, dataArray_to_string }

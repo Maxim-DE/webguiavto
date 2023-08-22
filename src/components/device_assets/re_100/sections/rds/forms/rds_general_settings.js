@@ -7,8 +7,12 @@ import { Alt_station_manage } from '../../../../../custom_groups/alt_station_man
 
 import clone from 'lodash/clone'
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
+import { reducers } from '../../../../../../core_store_reducers'
+import { useSelector } from 'react-redux'
 
 export default function Rds_general_settings(props) {
+  const rdsGeneralSettings_store = useSelector((store) => store.globalStore.global_data.section_data.rds.rds_general_settings)
+
   const [rdsGeneralState, setRdsGeneralState] = React.useState({
     tp: false,
     ta: false,
@@ -18,16 +22,16 @@ export default function Rds_general_settings(props) {
   })
 
   React.useEffect(() => {
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (rdsGeneralSettings_store != 'null' && rdsGeneralSettings_store != undefined) {
       let settings_state_copy = rdsGeneralState
 
       for (const key in settings_state_copy) {
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = rdsGeneralSettings_store[key]
       }
 
       setRdsGeneralState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [rdsGeneralSettings_store])
 
   const state_handler = (state) => {
     let target_state_clone = clone(rdsGeneralState)
@@ -83,6 +87,7 @@ export default function Rds_general_settings(props) {
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -198,7 +203,7 @@ export default function Rds_general_settings(props) {
         parent_state={rdsGeneralState}
         state_handler={state_handler}
         update_handler={props.clickHandler}
-        parent_props={props.settings_data} />
+        parent_props={rdsGeneralSettings_store} />
     </SettingsBlockWrap>
   )
 }

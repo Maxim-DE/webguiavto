@@ -53,6 +53,8 @@ function Time_schedule_settings({parent_state, state_handler, ...rest}) {
   }, [timeShcheduleState])
 
   React.useEffect(() => {
+    if (!parent_state) return
+    
     if (!Object.hasOwn(parent_state, 'time_schedule')) return
 
     if (_.isEqual(parent_state.time_schedule, timeShcheduleState)) return

@@ -19,6 +19,7 @@ import { BsChevronDoubleLeft, BsChevronLeft,
          BsChevronRight, BsChevronDoubleRight } from 'react-icons/bs'
 
 import '../index.css'
+import { reducers } from '../store_reducers'
 
 export const log_status = [
   '',
@@ -191,6 +192,7 @@ function Syslog_calib(props) {
     const request_obj = {
       address: 'calib_misc.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.delete_sys_logs,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -265,6 +267,7 @@ function Syslog_calib(props) {
       request_obj = {
         address: 'get_expanded_log.cgi',
         data: `${log_type}$1;log_num$${log_num}`,
+        reducer: reducers.get_expanded_syslog,
         notifications: {
           good: 'default',
           bad: 'default'

@@ -23,6 +23,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 
 import LoadingSpan from '../../../../loading_span';
 import FormInput from '../../../../form_input';
+import { reducers } from '../../../../../core_store_reducers';
 
 function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
@@ -42,6 +43,7 @@ function CalibSection(props) {
   React.useEffect(() => {
     let request_obj = {
       address: `${props.section_name}.cgi`,
+      reducer: reducers.calibration_data
     }
     props.updateHandler(request_obj);
 
@@ -70,90 +72,90 @@ function CalibSection(props) {
         <GeneralCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.general_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_general : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_general : ''}
           clickHandler={handleClick} />
         <VoltageCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.voltage_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_voltage : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_voltage : ''}
           clickHandler={handleClick} />
         <CurrentCalibSettings
           adc_data={props.adc_data != null ? 
                     props.adc_data.current_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ? 
-                      props.section_data.calib_current.current_value
-                       : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ? 
+          //             props.section_data.calib_current.current_value
+                      //  : ''}
           clickHandler={handleClick}/>
         <WattageThresholdCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.power_threshold_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_wattage_threshold : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_wattage_threshold : ''}
           clickHandler={handleClick} />
         <CurrentThresholdCalibSettings
           adc_data={props.adc_data != null ?
                     props.adc_data.current_threshhold_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-                      props.section_data.calib_current.threshold : ''} 
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //             props.section_data.calib_current.threshold : ''} 
           clickHandler={handleClick} />
         <PowerCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.power_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_power : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_power : ''}
           clickHandler={handleClick} />
         <WattageAdditionalCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.power_additional_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_additional_power : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_additional_power : ''}
           clickHandler={handleClick} />
         <BallastCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.ballast_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_ballast : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_ballast : ''}
           clickHandler={handleClick} />
         <TempThresholdCalibSettings 
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_temp : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_temp : ''}
           clickHandler={handleClick}/>
         <FanCalibSettings
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_fan : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_fan : ''}
           clickHandler={handleClick} />
         <LRChannelCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.lr_channel_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_lr_channel : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_lr_channel : ''}
           clickHandler={handleClick} />
         <EmulationCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.emulation_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_emulation : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_emulation : ''}
           clickHandler={handleClick} />
         <MiscCalibSettings
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_misc : ''}
+          // calib_data={Object.keys(props.section_data).length != 0 ?
+          //   props.section_data.calib_misc : ''}
           clickHandler={handleClick} />
 
         {authGlobalState.auth_access.calib_extend && 
           <>
           <SerialNumVersionCalibSettings
-            calib_data={Object.keys(props.section_data).length != 0 ?
-              props.section_data.calib_serialNum : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            //   props.section_data.calib_serialNum : ''}
             clickHandler={handleClick} />
           <NetworkCalibSettings
-            calib_data={Object.keys(props.section_data).length != 0 ?
-              props.section_data.calib_network : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            //   props.section_data.calib_network : ''}
             clickHandler={handleClick} />
           <ConsoleOutputCalibSettings
-            calib_data={Object.keys(props.section_data).length != 0 ?
-              props.section_data.calib_console_output : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            //   props.section_data.calib_console_output : ''}
             clickHandler={handleClick} />
           </>
         }

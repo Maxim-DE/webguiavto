@@ -4,6 +4,7 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_double_array_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../store_reducers';
 
 function CurrentThresholdCalibSettings(props) {
 
@@ -79,6 +80,7 @@ function CurrentThresholdCalibSettings(props) {
     const request_obj = {
       address: 'calib_current_threshold.cgi',
       data: value,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

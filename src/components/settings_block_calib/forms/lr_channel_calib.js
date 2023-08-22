@@ -5,8 +5,12 @@ import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 import { dataArray_to_string } from '../../../logic/request_logic';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
 
 function LRChannelCalibSettings(props) {
+
+  const calibLRChannel_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_lr_channel)
 
   const [LRChannelCalibState, setLRChannelCalibState] = React.useState({
     l_channel: '',
@@ -14,17 +18,17 @@ function LRChannelCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibLRChannel_store) {
       return
     }
 
-    if (Object.keys(props.calib_data).length != 0 ||
-        props.calib_data != undefined) {
+    if (Object.keys(calibLRChannel_store).length != 0 ||
+        calibLRChannel_store != undefined) {
       let calib_state_copy = {}
 
-      for (const key in props.calib_data) {
-        const divident = props.calib_data[key][0],
-          divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibLRChannel_store) {
+        const divident = calibLRChannel_store[key][0],
+          divider = calibLRChannel_store[key][1] == 0 ? 1 : calibLRChannel_store[key][1],
           digits = Math.log10(divider)
         calib_state_copy[key] = (divident / divider).toFixed(digits)
       }
@@ -32,7 +36,7 @@ function LRChannelCalibSettings(props) {
       setLRChannelCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibLRChannel_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -52,11 +56,12 @@ function LRChannelCalibSettings(props) {
 
 
     let state_obj = { [name]: value },
-      converted_state = calib_state_conversion(state_obj, props.calib_data)
+      converted_state = calib_state_conversion(state_obj, calibLRChannel_store)
 
     const request_obj = {
       address: 'calib_lr_channel.cgi',
       data: dataArray_to_string(LRChannelCalibState),
+      reducer: reducers.calibration_form,
       update_data: LRChannelCalibState,
       notifications: {
         good: 'default',

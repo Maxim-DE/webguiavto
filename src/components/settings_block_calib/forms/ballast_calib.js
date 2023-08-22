@@ -4,25 +4,30 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
 
 function BallastCalibSettings(props) {
+
+  const calibBallast_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_ballast),
+        adcBallast_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc.ballast_calib)
 
   const [ballastCalibState, setBallastCalibState] = React.useState({
     ballast_1: '',
   })
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibBallast_store) {
       return
     } 
 
-    if (Object.keys(props.calib_data).length != 0 ||
-        props.calib_data != undefined) {
+    if (Object.keys(calibBallast_store).length != 0 ||
+        calibBallast_store != undefined) {
       let calib_state_copy = {}
 
-      for (const key in props.calib_data) {
-        const divident = props.calib_data[key][0],
-          divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibBallast_store) {
+        const divident = calibBallast_store[key][0],
+          divider = calibBallast_store[key][1] == 0 ? 1 : calibBallast_store[key][1],
           digits = Math.log10(divider)
         calib_state_copy[key] = (divident / divider).toFixed(digits)
       }
@@ -30,7 +35,7 @@ function BallastCalibSettings(props) {
       setBallastCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibBallast_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -50,11 +55,12 @@ function BallastCalibSettings(props) {
 
 
     let state_obj = { [name]: value },
-      converted_state = calib_state_conversion(state_obj, props.calib_data)
+      converted_state = calib_state_conversion(state_obj, calibBallast_store)
 
     const request_obj = {
       address: 'calib_ballast.cgi',
       data: `${name}$${value * 10}`,
+      reducer: reducers.calibration_form,
       update_data: ballastCalibState,
       notifications: {
         good: 'default',
@@ -89,7 +95,7 @@ function BallastCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data?.ballast_1}
+            АЦП: {adcBallast_store?.ballast_1}
           </span>
           <FormInput
             id={`ballast_1_calib_input`}

@@ -2,8 +2,11 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
 
 function WattageThresholdCalibSettings(props) {
+  const calibWattageThreshold_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_wattage_threshold)
 
   const [wattageThresholdCalibState, setWattageThresholdCalibState] = React.useState({
     wattage_threshold_on: '',
@@ -11,18 +14,18 @@ function WattageThresholdCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibWattageThreshold_store) {
       return
     } 
 
-    if (Object.keys(props.calib_data).length != 0 ||
-        props.calib_data != undefined) {
+    if (Object.keys(calibWattageThreshold_store).length != 0 ||
+        calibWattageThreshold_store != undefined) {
       let calib_state_copy = wattageThresholdCalibState
 
-      for (const key in props.calib_data) {
+      for (const key in calibWattageThreshold_store) {
 
-        const divident = props.calib_data[key][0],
-          divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+        const divident = calibWattageThreshold_store[key][0],
+          divider = calibWattageThreshold_store[key][1] == 0 ? 1 : calibWattageThreshold_store[key][1],
           digits = Math.log10(divider)
 
         calib_state_copy[key] = (divident / divider).toFixed(digits)
@@ -31,7 +34,7 @@ function WattageThresholdCalibSettings(props) {
       setWattageThresholdCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibWattageThreshold_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -48,11 +51,12 @@ function WattageThresholdCalibSettings(props) {
     const target = event.target,
       name = target.name.replace('_calib', ''),
       value = wattageThresholdCalibState[name],
-      multiplier = Array.isArray(props.calib_data[name]) ? (props.calib_data[name][1]) : 1
+      multiplier = Array.isArray(calibWattageThreshold_store[name]) ? (calibWattageThreshold_store[name][1]) : 1
 
     const request_obj = {
       address: 'calib_wattage_threshold.cgi',
       data: `${name}$${value * multiplier}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

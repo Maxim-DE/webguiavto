@@ -8,33 +8,44 @@ import ChannelEnablerSettings from './channel_enabler_calib';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
 
 function MiscCalibSettings_ST250(props) {
+  const calibMisc_store = useSelector((store) => {
+    if (deepKeyExists(store, 'calib_misc')) {
+      return store.globalStore.global_data.calib_state.data?.calib_misc
+    } else return {}
+  }),
+        auth_store = useSelector((store) => store.authStore.auth_data)
+
+
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: [],
     user_list: [],
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (props.calib_data == undefined) {
+    if (calibMisc_store == undefined) {
       return
     }
 
-    if (Object.keys(props.calib_data).length == 0) {
+    if (Object.keys(calibMisc_store).length == 0) {
       return
     }
 
     let calib_state_copy = miscCalibState
 
-    for (const key in props.calib_data) {
-      calib_state_copy[key] = props.calib_data[key]
+    for (const key in calibMisc_store) {
+      calib_state_copy[key] = calibMisc_store[key]
     }
 
     setMiscCalibState(calib_state_copy)
 
-  }, [props.calib_data])
+  }, [calibMisc_store])
 
   const handleChange_save = (event) => {
     const target = event.target;
@@ -82,6 +93,25 @@ function MiscCalibSettings_ST250(props) {
 
   }
 
+  const handleClick_deleteUserLogs = (event) => {
+    const target = event.target,
+          name = target.name.replace('_calib', ''),
+          value = 1
+
+    const request_obj = {
+      address: 'calib_misc.cgi',
+      data: `${name}$${value}`,
+      reducer: reducers.delete_user_logs,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    props.clickHandler(request_obj);
+
+  }
+
   async function handleClick_postReq_test() {
     let user = 'name:john;age:12';
 
@@ -102,7 +132,7 @@ function MiscCalibSettings_ST250(props) {
       settings_type={`misc_calib`}
     // save_handler={handleClick_save}
     >
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
         <>
           <Syslog_calib
             updateHandler={props.clickHandler}
@@ -122,7 +152,7 @@ function MiscCalibSettings_ST250(props) {
               <FormInput
                 id={`delete_user_logs_calib_save`}
                 name={`delete_user_logs_calib`}
-                clickHandler={handleClick_save}
+                clickHandler={handleClick_deleteUserLogs}
                 label='Удалить'
                 type="button" />
             </div>
@@ -150,8 +180,7 @@ function MiscCalibSettings_ST250(props) {
           <li className="group_divider"></li>
           <ChannelEnablerSettings
             clickHandler={props.clickHandler}
-            calib_data={Object.keys(props.calib_data).length != 0 ?
-              props.calib_data.calib_channels.channel_list : ''}
+            calib_data={calibMisc_store}
             editing_allowed={true}/>
         </>
       }

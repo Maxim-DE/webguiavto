@@ -7,6 +7,7 @@ import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
 
 import Settings_block_calib from '../settings_block_calib';
+import { reducers } from './store_reducers';
 
 function Status_settings(props) {
 
@@ -21,6 +22,7 @@ function Status_settings(props) {
   React.useEffect(() => {
     let status_settings_req_obj = {
       address: 'get_transmitter.cgi',
+      reducer: reducers.transmitter,
       notifications: {
         good: 'none',
         bad: 'default'
@@ -61,6 +63,7 @@ function Status_settings(props) {
         good: 'default',
         bad: 'default'
       },
+      reducer: reducers.transmitter,
       save_data: {
         ...statusSettingsState,
         [name]: value
@@ -110,6 +113,7 @@ function Status_settings(props) {
     const request_obj = {
       address: 'transmitter.cgi',
       data: output_string,
+      reducer: reducers.transmitter,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -125,6 +129,7 @@ function Status_settings(props) {
     const request_obj = {
       address: 'transmitter.cgi',
       data: `save_power$1`,
+      reducer: reducers.transmitter,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -142,6 +147,7 @@ function Status_settings(props) {
     const request_obj = {
       address: 'transmitter.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.transmitter,
       notifications: {
         good: 'default',
         bad: 'default'

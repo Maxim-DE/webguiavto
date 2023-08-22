@@ -4,8 +4,16 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
 
 function PowerCalibSettings(props) {
+  const calibPower_store = useSelector((store) => {
+    if (deepKeyExists(store, 'calib_power')) {
+      return store.globalStore.global_data.calib_state.data.calib_power
+    } else return ''
+  })
 
   const [powerCalibState, setPowerCalibState] = React.useState({
     dac_value: '',
@@ -15,20 +23,19 @@ function PowerCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
+    if (Object.keys(calibPower_store).length != 0) {
       let calib_state_copy = {}
 
-      for (const key in props.calib_data) {
-        const divident = props.calib_data[key][0],
-              divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibPower_store) {
+        const divident = calibPower_store[key][0],
+              divider = calibPower_store[key][1] == 0 ? 1 : calibPower_store[key][1],
               digits = Math.log10(divider)
         calib_state_copy[key] = (divident / divider).toFixed(digits)
       }
 
       setPowerCalibState(calib_state_copy)
-
     } 
-  }, [props.calib_data])
+  }, [calibPower_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -45,14 +52,15 @@ function PowerCalibSettings(props) {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = powerCalibState[name],
-          multipier = props.calib_data ? props.calib_data[name][1] : 10
+          multipier = calibPower_store ? calibPower_store[name][1] : 10
 
     let state_obj = { [name]: value },
-        converted_state = calib_state_conversion(state_obj, props.calib_data)
+        converted_state = calib_state_conversion(state_obj, calibPower_store)
 
     const request_obj = {
       address: 'calib_power.cgi',
       data: `${name}$${value * multipier}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

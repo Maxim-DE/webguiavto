@@ -12,11 +12,14 @@ import { AlertDialogWrap } from '../../alert_dialog_wrap';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
 
 export const conf_file_links = {
   factory_reset: {
     address: 'calib_conf_file.cgi',
-    data: 'factory_reset$1'
+    data: 'factory_reset$1',
+    reducer: reducers.factory_reset
   },
   conf_file_download: {
     address: 'ReadFile.hex',
@@ -33,7 +36,10 @@ export const conf_file_links = {
 }
 
 export default function ConfFileCalib(props) {
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
+
+
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   const [isUploading, setIsUploading] = React.useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = React.useState(false);
@@ -189,7 +195,7 @@ export default function ConfFileCalib(props) {
             type="button" />
         </div>
       </li>
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
         <>
         <li
           key='create_new_conf'

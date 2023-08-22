@@ -5,8 +5,11 @@ import FormInput from "../../../../../form_input"
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import { cloneDeep } from "lodash/cloneDeep"
+import { reducers } from "../../../../../../core_store_reducers";
+import { useSelector } from "react-redux";
 
 export default function Device_address_settings(props) {
+  const deviceAddress_store = useSelector((store) => store.globalStore.global_data.section_data.network.device_address)
 
   const [deviceAddressState, setDeviceAddressState] = React.useState({
     mac_default: '',
@@ -17,18 +20,18 @@ export default function Device_address_settings(props) {
   })
 
   React.useEffect(() => {
-    console.log(props.settings_data);
+    console.log(deviceAddress_store);
 
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (deviceAddress_store != 'null' && deviceAddress_store != undefined) {
       let settings_state_copy = deviceAddressState
 
       for (const key in settings_state_copy) {
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = deviceAddress_store[key]
       }
 
       setDeviceAddressState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [deviceAddress_store])
 
   const state_handler = (state) => {
     let target_state_clone = cloneDeep(deviceAddressState)
@@ -57,6 +60,7 @@ export default function Device_address_settings(props) {
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'

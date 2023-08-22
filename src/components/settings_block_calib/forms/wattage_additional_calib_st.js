@@ -9,8 +9,13 @@ import cloneDeep from 'lodash/cloneDeep';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 import { filter_obj } from '../../../logic/utilites';
+import { reducers } from '../store_reducers';
+import { useSelector } from 'react-redux';
 
 function WattageAdditionalCalibSettings_ST(props) {
+  const calibWattageAdditional_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_additional_power),
+        auth_store = useSelector((store) => store.authStore.auth_data)
+
   const [wattageAdditionalCalibState, setWattageAdditionalCalibState] = React.useState({
     input_power: '',
     ballast_1_avaliable: 0,
@@ -19,28 +24,28 @@ function WattageAdditionalCalibSettings_ST(props) {
     ballast_1_threshold_high: ''
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (props.calib_data != undefined && 
-        Object.keys(props.calib_data).length != 0) {
+    if (calibWattageAdditional_store != undefined && 
+        Object.keys(calibWattageAdditional_store).length != 0) {
       let calib_state_copy = cloneDeep(wattageAdditionalCalibState)
 
-      for (const key in props.calib_data) {
-        if (Array.isArray(props.calib_data[key])) {
-          const divident = props.calib_data[key][0],
-                divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibWattageAdditional_store) {
+        if (Array.isArray(calibWattageAdditional_store[key])) {
+          const divident = calibWattageAdditional_store[key][0],
+                divider = calibWattageAdditional_store[key][1] == 0 ? 1 : calibWattageAdditional_store[key][1],
                 digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = props.calib_data[key]
+          calib_state_copy[key] = calibWattageAdditional_store[key]
         }
       }
 
       setWattageAdditionalCalibState(calib_state_copy)
     }
 
-  }, [props.calib_data])
+  }, [calibWattageAdditional_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -57,10 +62,10 @@ function WattageAdditionalCalibSettings_ST(props) {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = wattageAdditionalCalibState[name],
-          multipier = props.calib_data?.[name] ? props.calib_data[name][1] : 10
+          multipier = calibWattageAdditional_store?.[name] ? calibWattageAdditional_store[name][1] : 10
 
     // let state_obj = { [name]: value },
-    //     converted_state = calib_state_conversion(state_obj, props.calib_data)
+    //     converted_state = calib_state_conversion(state_obj, calibWattageAdditional_store)
 
     const converted_state = {
       [name]: [
@@ -72,6 +77,7 @@ function WattageAdditionalCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_input_power.cgi',
       data: `${name}$${value * multipier}`,
+      reducer: reducers.calibration_form,
       update_data: wattageAdditionalCalibState,
       notifications: {
         good: 'default',
@@ -90,10 +96,10 @@ function WattageAdditionalCalibSettings_ST(props) {
         const target = event.target,
           name = target.name.replace('_calib', ''),
           value = wattageAdditionalCalibState[name],
-          multipier = props.calib_data?.[name] ? props.calib_data[name][1] : 10
+          multipier = calibWattageAdditional_store?.[name] ? calibWattageAdditional_store[name][1] : 10
 
     // let state_obj = { [name]: value },
-    //     converted_state = calib_state_conversion(state_obj, props.calib_data)
+    //     converted_state = calib_state_conversion(state_obj, calibWattageAdditional_store)
 
     const converted_state = {
       [name]: [
@@ -105,6 +111,7 @@ function WattageAdditionalCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_ballast.cgi',
       data: `${name}$${value * multipier}`,
+      reducer: reducers.calibration_form,
       update_data: wattageAdditionalCalibState,
       notifications: {
         good: 'default',
@@ -126,6 +133,7 @@ function WattageAdditionalCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_ballast.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       update_data: wattageAdditionalCalibState,
       notifications: {
         good: 'default',
@@ -149,7 +157,7 @@ function WattageAdditionalCalibSettings_ST(props) {
         save_obj = {}
 
     for (const key in threshold_data) {
-      const multipier = props.calib_data?.[key] ? props.calib_data[key][1] : 10,
+      const multipier = calibWattageAdditional_store?.[key] ? calibWattageAdditional_store[key][1] : 10,
             value = wattageAdditionalCalibState[key] * multipier
 
       data_string += `${key}$${value};`
@@ -162,6 +170,7 @@ function WattageAdditionalCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_ballast.cgi',
       data: data_string,
+      reducer: reducers.calibration_form,
       update_data: wattageAdditionalCalibState,
       notifications: {
         good: 'default',
@@ -253,7 +262,7 @@ function WattageAdditionalCalibSettings_ST(props) {
         id='ballast_1_calib'
         className="settings_item calib">
         <div className='item_header'>
-          {authGlobalState.auth_access.calib_extend &&
+          {auth_store.auth_access.calib_extend &&
           <FormInput
             id={`ballast_1_avaliable_calib_input`}
             name={`ballast_1_avaliable_calib`}

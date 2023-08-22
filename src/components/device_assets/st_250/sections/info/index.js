@@ -5,12 +5,14 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 // import Time_settings from './forms/time_settings'
 import Info_general from './forms/info_general';
 import Software_version from './forms/software_version';
+import { reducers } from '../../../../../core_store_reducers';
 
 export default function InfoSection(props) {
 
   React.useEffect(() => {
     let request_obj = {
       address: `info.cgi`,
+      reducer: reducers.section_data,
       notifications: {
         good: 'none',
         bad: () => {
@@ -38,15 +40,15 @@ export default function InfoSection(props) {
       section_header="данные об устройстве">
       <Info_general
         section_name="info"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.info_general}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.info_general}
         clickHandler={updateHandler} />
       <Software_version
         section_name="info"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.software_version}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.software_version}
         clickHandler={updateHandler} />
     </SettingsSectionWrap>
   )

@@ -13,6 +13,11 @@ import useGlobalStore from '../../logic/auth_store';
 import useSectionStore from '../../logic/sectionsRefs_store';
 
 import './index.css'
+import { reducers } from './store_reducers';
+import { reducers as statusLogs_reducers } from '../status_logs_block/store_reducers';
+import { useDispatch, useSelector } from 'react-redux';
+import { device_status } from '../../logic/utilites';
+import { err_erase } from '../../store/errPool_store_slice';
 
 export const device_power_table = {
         0: '10',
@@ -41,29 +46,25 @@ function StatusSection(props) {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
   const [sectionState, sectionActions] = useSectionStore()
 
+  const status_store = useSelector((store) => store.globalStore.global_data.status_data),
+        section_store = useSelector((store) => store.globalStore.global_data.section_data),
+        errPool_store = useSelector((store) => store.errPoolStore.err_pool),
+        auth_store = useSelector((store) => store.authStore.auth_data),
+        dispatch = useDispatch()
+
   const timerRef = React.useRef()
 
-  const guest_mode_class = !authGlobalState.auth_access.settings ? 'guest_wrap' : ''
+  const guest_mode_class = !auth_store.auth_access.settings ? 'guest_wrap' : ''
 
-  const device_name = device_name_table[props.device_type[0]],
-        device_power = device_power_table[props.device_type[1]],
+  const device_type_arr = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.type : '',
+        device_name = device_name_table[device_type_arr[0]],
+        device_power = device_power_table[device_type_arr[1]],
         device_type = `${device_name}_${device_power}`
 
-  const device_status = (status_props) => {
-    switch (status_props) {
-      case 0:
-        return 'ВЫКЛ.'
 
-      case 1:
-        return 'ВКЛ.'
+  const device_status_output = Object.keys(status_store).length > 0 && device_status(status_store.status_info.device_status),
+        device_time_output = Object.keys(status_store).length > 0 && status_store.status_info.time
 
-      case 3: 
-        return 'ЗАБЛОКИРОВАНО'
-    
-      default:
-        break;
-    }
-  }
 
   const handleUpdate = request => {
     props.updateHandler(request);
@@ -79,16 +80,17 @@ function StatusSection(props) {
 
   React.useEffect(() => {
 
-    if (!Array.isArray(props.device_type)) {
+    if (!Array.isArray(device_type_arr)) {
       return
     }
 
-    if (props.graph_svg.img.length === 0) {
+    if (status_store.status_svg.img.length === 0) {
       let svg_req_str = `${device_type}.svg.gz`
   
       let request_obj = {
         address: 'static/media/status_graph/' + svg_req_str,
         type: 'text',
+        reducer: reducers.get_status_graph,
         notifications: {
           good: 'none',
           bad: 'default'
@@ -104,7 +106,8 @@ function StatusSection(props) {
 
     let full_log_req_obj = {
       address: 'GetLogErrorFull.cgi',
-      data: 'userlog$1'
+      data: 'userlog$1',
+      reducer: statusLogs_reducers.userlog_data
     }    
 
     // let status_settings_req_obj = {
@@ -122,19 +125,19 @@ function StatusSection(props) {
     
     handleConnectionEstablish()
 
-  }, [props.device_type])
+  }, [device_type_arr])
 
   React.useEffect(() => {
     
-    if (props.err_count > 10) {
+    if (errPool_store.status_err_count > 10) {
       clearInterval(timerRef.current)
-    } else if (props.err_count == 0 &&
+    } else if (errPool_store.status_err_count == 0 &&
                typeof timerRef.current != 'number' &&
-               Array.isArray(props.device_type)) {
+               Array.isArray(device_type_arr)) {
 
       handleConnectionEstablish()
     }
-  }, [props.err_count])
+  }, [errPool_store.status_err_count])
 
   React.useEffect(() => {
     switch (props.pool_state) {
@@ -174,7 +177,7 @@ function StatusSection(props) {
   }
 
   const handleConnectionRetry = () => {
-    props.err_pool_actions.err_erase('status')
+    dispatch(err_erase('status'))
     handleConnectionEstablish()
   }
 
@@ -184,6 +187,7 @@ function StatusSection(props) {
       fetch_opts: {
         timeout: 1000
       },
+      reducer: reducers.status_section,
       notifications: {
         good: 'none',
         bad: 'none'
@@ -206,41 +210,40 @@ function StatusSection(props) {
       ref={statusSectionRef} >
       <div className="section_header">
         <h2>СТАТУС:&nbsp;
-          {props.status_data && device_status(props.status_data.device_status)}
+          {device_status_output}
         </h2>
         <span
           style={{textAlign: "right"}}>
-          {props.status_data && props.status_data.time}
+          {device_time_output}
         </span>
       </div>
       <div className="section_status">
         <Status_graphs
           settings_type="graphs"
           device_type={device_type}
-          graph_svg={props.graph_svg.img}
+          graph_svg={status_store.status_svg.img}
           updateHandler={handleUpdate}
-          data={props.graph_data}/>
+          data={status_store.status_graph}/>
         <div className={`status_settings_wrap ${guest_mode_class}`}>
           <Status_logs 
             settings_type="logs" 
             header="журнал" 
-            data={props.logs_data}
-            full_data={props.full_logs_data}
+            data={status_store.status_logs}
+            full_data={status_store.status_full_logs}
             updateHandler={handleUpdate} />
-          {authGlobalState.auth_access.settings &&
+          {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
             section_name={props.section_name}
-            settings_data={props.status_data && props.settings_data} 
-            status_data={props.status_data}
+            settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data} 
+            status_data={status_store}
           />
           }
         </div>
       </div>
     </section>
-    {props.err_count > 10 &&
+    {errPool_store.status_err_count > 10 &&
     <DisconnectPlaceholder
-      err_pool_actions={props.err_pool_actions}
       connection_retry_handler={handleConnectionRetry} />
     }
     </>

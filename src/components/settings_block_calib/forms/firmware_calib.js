@@ -3,6 +3,7 @@ import React from 'react';
 import Settings_block_calib from '..';
 import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
+import { reducers } from '../store_reducers';
 
 function Firmware_calib(props) {
 
@@ -26,6 +27,7 @@ function Firmware_calib(props) {
   const handleClick_info_refresh = (event) => {
     const request_obj = {
       address: 'calib_get_info_firmware.cgi',
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
