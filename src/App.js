@@ -510,6 +510,7 @@ function App() {
       // Если информации о правах доступа нет, то устанавливаем уровень доступа 0(низший)
       if (!Object.hasOwn(sectionData.info, 'auth_info')) {
         authGlobalActions.set_auth_level(0)
+        authGlobalActions.set_is_auth(false)
         return
       } 
 
@@ -521,6 +522,9 @@ function App() {
       if (auth_info.auth_level > 0) {
         authGlobalActions.set_is_auth(true)
         authGlobalActions.set_user_id(auth_info.auth_id)
+      } else {
+        authGlobalActions.set_is_auth(false)
+        authGlobalActions.set_user_id('')
       }
     }
   }, [sectionData.info])
@@ -606,6 +610,7 @@ function App() {
             {/* <img src={logo} className="app_logo" /> */}
             ОКБ АЛЬФА
             </a>
+            {/* <span className='version_info_span'>Версия: {sectionData.info?.software_version?.os_version}</span> */}
           </div>
           {/* Компонент с ссылками на разделы */}
           <Links_list 
@@ -613,16 +618,17 @@ function App() {
             calibaAvailable={statusData.calib_available} />
           <div className='nav_fillblock'></div>
           {/* Компонент с боковым нижним меню */}
-          {/* <PeripheralMenu
+          <PeripheralMenu
             updateHandler={handlePoolUpdate}
             structure={peripheralData.structure}
-            data={statusData} /> */}
+            data={statusData}
+            software_version={sectionData.info?.software_version?.os_version} />
         </nav>
         <div className='main_wrap'>
           <header>
 
             <h1>{sectionData.info ? `${sectionData.info.info_general.Type_Device} №${sectionData.info.info_general.serial_number}` :
-                                    '...'}</h1>
+              '...'}</h1>
             <CalibLogButton 
               updateHandler = {handlePoolUpdate}
               isAuthComplete = {authGlobalState.is_auth}/>

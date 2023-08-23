@@ -84,7 +84,7 @@ nav {
   height: 89px;
   padding: 0 6.7%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -103,4 +103,12 @@ nav {
 
   text-align: center;
   letter-spacing: 0.02em;
+}
+
+.nav_header .version_info_span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+
+  color: #FFFFFF;
 }
