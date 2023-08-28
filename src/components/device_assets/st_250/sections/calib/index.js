@@ -28,6 +28,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
+import MasterSlave_calib from '../../../../settings_block_calib/forms/masterSlave_calib';
 
 
 
@@ -69,6 +70,8 @@ export default function CalibSection(props) {
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
       section_header="калибровка">
+        <MasterSlave_calib
+          clickHandler={handleClick} />
         <GeneralCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.general_calib : ''}

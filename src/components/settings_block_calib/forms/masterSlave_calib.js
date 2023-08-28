@@ -1,0 +1,841 @@
+import React from 'react'
+import Settings_block_calib from '..'
+import FormInput from '../../form_input';
+import ModalCalib from '../../calib_modal';
+import { PulseLoader } from 'react-spinners';
+import { cloneDeep } from 'lodash';
+import { MdNetworkCheck } from 'react-icons/md';
+
+export default function MasterSlave_calib(props) {
+  const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({
+    master_connection_speed: '',
+    master_req_period: '',
+    master_timeout: '',
+    device_list: {
+      saved_list: [
+        {id: '12', type: 0, address: '254', editable: false}
+      ],
+      active_edit_device: {
+
+      }
+    }
+  })
+
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name.replace('_calib', '')
+
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+  const handleClick_save = (event) => {
+    const target = event.target,
+      name = target.name.replace('_calib', ''),
+      value = masterSlaveCalibState[name]
+
+    const request_obj = {
+      address: 'calib_masterSlave.cgi',
+      data: `${name}$${value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_masterSlave: masterSlaveCalibState
+      }
+    }
+
+    props.clickHandler(request_obj);
+
+  }
+
+  const changeHandler = (event) => {
+    if (Object.keys(masterSlaveCalibState.device_list.active_edit_device).length === 0) return
+
+    const target = event.target,
+      name = target.name,
+      value = target.type === 'checkbox' ? target.checked : target.value
+
+    const change_params = name.split('_'),
+      // id = change_params[0],
+      change_type = change_params[0]
+
+    switch (change_type) {
+      case 'available':
+        setMasterSlaveCalibState(prevState => ({
+          ...prevState,
+          device_list: {
+            ...prevState.device_list,
+            active_edit_device: {
+              ...prevState.device_list.active_edit_device,
+              available: value
+            }
+          }
+        }))
+        break;
+
+      case 'type':
+        setMasterSlaveCalibState(prevState => ({
+          ...prevState,
+          device_list: {
+            ...prevState.device_list,
+            active_edit_device: {
+              ...prevState.device_list.active_edit_device,
+              type: value
+            }
+          }
+        }))
+        break;
+
+      case 'address':
+        setMasterSlaveCalibState(prevState => ({
+          ...prevState,
+          device_list: {
+            ...prevState.device_list,
+            active_edit_device: {
+              ...prevState.device_list.active_edit_device,
+              address: value
+            }
+          }
+        }))
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  const toggleEditableDevice = ({ id, index, boolean } = {}) => {
+
+    let device_list_clone = cloneDeep(masterSlaveCalibState.device_list.saved_list)
+
+    if (device_list_clone[index] === undefined) {
+      return
+    }
+
+    device_list_clone.forEach((device) => {
+      device.editable = false
+    })
+
+    device_list_clone[index].editable = boolean
+
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      device_list: {
+        ...prevState.device_list,
+        saved_list: device_list_clone
+      }
+    }))
+  }
+
+  const createDeviceInBuffer = () => {
+    const acc_template = {
+      id: 'none',
+      available: true,
+      type: '0',
+      address: '',
+      editable: true
+    }
+
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      device_list: {
+        ...prevState.device_list,
+        active_edit_device: acc_template
+      }
+    }))
+  }
+
+  const copyDeviceToBuffer = ({ id, index, boolean } = {}) => {
+    let device_to_edit = masterSlaveCalibState.device_list.saved_list[index]
+
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      device_list: {
+        ...prevState.device_list,
+        active_edit_device: device_to_edit
+      }
+    }))
+  }
+
+  const copyBuffertoList = ({ id, index, boolean } = {}) => {
+    let index_to_copy = masterSlaveCalibState.device_list.saved_list.findIndex(device => device.id === id),
+        device_to_copy = masterSlaveCalibState.device_list.active_edit_device
+
+    if (index_to_copy === -1) {
+      doRegisterAccReq({
+        type: device_to_copy.type,
+        address: device_to_copy.address
+      })
+    } else {
+      doSaveAccReq({
+        id: device_to_copy.id,
+        type: device_to_copy.type,
+        address: device_to_copy.address
+      })
+    }
+
+    // setAccountState(prevState => ({
+    //   ...prevState,
+    //   user_list: list_to_copy
+    // }))
+  }
+
+  const cleanBuffer = () => {
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      device_list: {
+        ...prevState.device_list,
+        active_edit_device: {}
+      }
+    }))
+  }
+
+  const deleteEditingAcc = ({ id, index_to_delete, boolean } = {}) => {
+    let filtered_list = masterSlaveCalibState.device_list.saved_list.filter(function (user, index) {
+      return index_to_delete != index
+    })
+
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      device_list: {
+        ...prevState.device_list,
+        saved_list: filtered_list
+      }
+    }))
+  }
+
+  const setAccEditOn = ({ id, index, boolean } = {}) => {
+    toggleEditableDevice({
+      index: index,
+      boolean: true
+    });
+
+    copyDeviceToBuffer({
+      index: index,
+      boolean: true
+    });
+  }
+
+  const setAccEditSave = ({ id, index, boolean } = {}) => {
+    copyBuffertoList({
+      id: id
+    })
+
+    toggleEditableDevice({
+      index: index,
+      boolean: false
+    })
+
+    cleanBuffer()
+
+  }
+
+  const setAccEditDelete = ({ id, index, boolean } = {}) => {
+    toggleEditableDevice({
+      index: index,
+      boolean: false
+    })
+
+    cleanBuffer()
+
+    // deleteEditingAcc({
+    //   index_to_delete: index
+    // })
+    doDeleteAccReq({
+      id: id
+    })
+  }
+
+  const setAccEditCancel = ({ id, index, boolean } = {}) => {
+    cleanBuffer()
+
+    toggleEditableDevice({
+      index: index,
+      boolean: false
+    })
+  }
+
+  const doGetAccList = () => {
+    const req_obj = {
+      address: 'get_device_list.cgi',
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+    console.log('acc get list')
+
+    props.updateHandler(req_obj)
+    // setIsLoading(true)
+  }
+
+  const doSaveAccReq = ({ id, type, address } = {}) => {
+    const new_type = type,
+          new_address = address.length > 0 ? address : 'NULL'
+
+    const req_obj = {
+      address: 'edit_device.cgi',
+      data: `id$${id};type$${new_type};address$${new_address}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    props.updateHandler(req_obj)
+    // setIsLoading(true)
+  }
+
+  const doDeleteAccReq = ({ id } = {}) => {
+    const req_obj = {
+      address: 'delete_device.cgi',
+      data: `id$${id}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    props.updateHandler(req_obj)
+    // setIsLoading(true)
+  }
+
+  const doRegisterAccReq = ({ type, address } = {}) => {
+    const new_type = type,
+          new_address = address.length > 0 ? address : 'NULL'
+
+    const req_obj = {
+      address: 'register_device.cgi',
+      data: `type$${new_type};address$${new_address}`,
+      notifications: {
+        good: 'Зарегистрировано',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    props.updateHandler(req_obj)
+    // setIsLoading(true)
+  }
+
+  const doCheckDeviceConnection = ({ id }) => {
+    const req_obj = {
+      address: 'check_device.cgi',
+      data: `id$${id}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    props.updateHandler(req_obj)
+  }
+
+  return (
+    <Settings_block_calib
+      header={`параметры master`}
+      settings_type={`general_calib`} >
+      <li
+        key='master_connection_speed_calib'
+        id='master_connection_speed_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`master_connection_speed_input`}
+            className="settings_itemLabel">
+            Скорость передачи
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`master_connection_speed_input`}
+            name={`master_connection_speed`}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={masterSlaveCalibState.master_connection_speed}
+            type="select"
+            variants={[
+              '9600',
+              '19200',
+              '38400',
+              '57600',
+              '115200'
+            ]}/>
+          <FormInput
+            id={`master_connection_speed_save`}
+            name={`master_connection_speed`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='master_req_period_calib'
+        id='master_req_period_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`master_req_period_input`}
+            className="settings_itemLabel">
+            Период запросов
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`master_req_period_input`}
+            name={`master_req_period`}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={masterSlaveCalibState.master_req_period}
+            type="text" />
+          <FormInput
+            id={`master_req_period_save`}
+            name={`master_req_period`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='master_timeout_calib'
+        id='master_timeout_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`master_timeout_input`}
+            className="settings_itemLabel">
+            Таймаут
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`master_timeout_input`}
+            name={`master_timeout`}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={masterSlaveCalibState.master_timeout}
+            type="text" />
+          <FormInput
+            id={`master_timeout_save`}
+            name={`master_timeout`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='sys_logs_calib'
+        id='sys_logs_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`account_manage_calib_input`}
+            className="settings_itemLabel">
+            Управление списком slave-устройств
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`account_manage_calib_input`}
+            name={`account_manage_calib`}
+            clickHandler={(e) => {
+              // doGetAccList()
+              // setIsLoading(true)
+              setIsOpen(true);
+            }}
+            label='Открыть'
+            type="button" />
+        </div>
+      </li>
+      {isOpen &&
+        <ModalCalib
+          header='управление списком устройств'
+          setIsOpen={(e) => {
+            setIsOpen(false)
+          }}
+          user_controllable={true}
+          class='acc_manage_modal'>
+          {isLoading ?
+            <>
+              <div className='hex_upload_message_wrap'>
+                <PulseLoader
+                  color="#bbcacf"
+                  loading
+                  margin={9}
+                  size={13}
+                  speedMultiplier={0.5}
+                />
+                <span className='hex_upload_upload_message'>
+                  Идет получение списка устройств...
+                </span>
+              </div>
+            </> :
+            <>
+              <div className="list_header acc_header">
+                <span className="acc_header_num">тип</span>
+                <span className="acc_header_message">адрес</span>
+              </div>
+              <ul className="user_log log_list">
+                {masterSlaveCalibState.device_list.saved_list.map((device, index) => (
+                  <>
+                    <div className='log_divider'></div>
+                    {/* <Slave_device_instance
+                      id={device.id}
+                      availbility={device.active}
+                      type={device.type}
+                      address={device.address}
+                      editable={device.editable} /> */}
+                    <li
+                      key={device.id}
+                      id={`user_${device.id}`}
+                      className={`acc_item`}>
+                      <div className="acc_login">
+                        <FormInput
+                          type='select'
+                          disabled={!device.editable}
+                          name='type'
+                          input_value={device.editable ?
+                            masterSlaveCalibState.device_list.active_edit_device.type :
+                            device.type
+                          }
+                          changeHandler={changeHandler}
+                          variants={[
+                            'УРЦ-100/300',
+                            'УРЦ-500',
+                            'УРЦ-1000',
+                            'УРЦ-2000',
+                            'УСТ-050/100',
+                            'УСТ-250',
+                            'УСТ-500',
+                            'РЦ-ХХХ',
+                            'СТ-100',
+                            'СТ-250',
+                          ]}
+                        />
+                      </div>
+                      <div className='acc_password'>
+                        <input
+                          id={`${device.id}_address_input`}
+                          name={`address`}
+                          type="text"
+                          className={!(device.editable && device.login != 'admin') ? 'transparent' : ''}
+                          onChange={changeHandler}
+                          maxLength='3'
+                          value={device.editable ?
+                            masterSlaveCalibState.device_list.active_edit_device.address :
+                            device.address
+                          }
+                          disabled={!(device.editable && device.login != 'admin')}
+                        />
+                      </div>
+                      <div className="acc_actions">
+                        {device.editable ?
+                          <>
+                            <FormInput
+                              clickHandler={(e) => {
+                                setAccEditSave({
+                                  id: device.id,
+                                  index: index,
+                                  boolean: false
+                                })
+                              }}
+                              label='Сохранить'
+                              type="button" />
+                            {device.login != 'admin' &&
+                              <FormInput
+                                clickHandler={(e) => {
+                                  setAccEditDelete({
+                                    id: device.id,
+                                    index: index,
+                                    boolean: false
+                                  })
+                                }}
+                                label='Удалить'
+                                type="button" />
+                            }
+                            <FormInput
+                              clickHandler={(e) => {
+                                setAccEditCancel({
+                                  index: index,
+                                  boolean: false
+                                })
+                              }}
+                              label='Отмена'
+                              type="button" />
+                          </> :
+                          <>
+                            <FormInput
+                              id={`sys_logs_calib_input`}
+                              name={`sys_logs_calib`}
+                              clickHandler={(e) => {
+                                setAccEditOn({
+                                  index: index,
+                                  boolean: true
+                                })
+                              }}
+                              label='Редактировать'
+                              type="button" />
+                            <FormInput
+                              id={`sys_logs_calib_input`}
+                              name={`sys_logs_calib`}
+                              title='Проверить связь'
+                              clickHandler={(e) => {
+                                doCheckDeviceConnection({
+                                  id: device.id
+                                })
+                              }}
+                              label={<MdNetworkCheck style={{ margin: "3px 0px 0" }} />}
+                              type="button" />
+                          </>
+                        }
+                      </div>
+                    </li>
+                  </>
+                ))}
+                {masterSlaveCalibState.device_list.active_edit_device?.id === 'none' &&
+                  <>
+                    <div className='log_divider'></div>
+                    <li
+                      key={masterSlaveCalibState.device_list.active_edit_device.id}
+                      id={`user_${masterSlaveCalibState.device_list.active_edit_device.id}`}
+                      className={`acc_item`}>
+                      <div className='acc_login'>
+                        <FormInput
+                          type='select'
+                          disabled={!masterSlaveCalibState.device_list.active_edit_device.editable}
+                        input_value={masterSlaveCalibState.device_list.active_edit_device.editable ?
+                          masterSlaveCalibState.device_list.active_edit_device.login :
+                          masterSlaveCalibState.device_list.active_edit_device.login
+                          }
+                          variants={[
+                            'УРЦ-100/300',
+                            'УРЦ-500',
+                            'УРЦ-1000',
+                            'УРЦ-2000',
+                            'УСТ-050/100',
+                            'УСТ-250',
+                            'УСТ-500',
+                            'РЦ-ХХХ',
+                            'СТ-100',
+                            'СТ-250',
+                          ]}
+                        />
+                        {/* <input
+                          id={`${masterSlaveCalibState.device_list.active_edit_device.id}_login_input`}
+                          name={`login`}
+                          type="text"
+                          className={!masterSlaveCalibState.device_list.active_edit_device.editable ? 'transparent' : ''}
+                          // onChange={changeHandler}
+                          maxLength='20'
+                          value={masterSlaveCalibState.device_list.active_edit_device.editable ?
+                            masterSlaveCalibState.device_list.active_edit_acc.login :
+                            masterSlaveCalibState.device_list.active_edit_acc.login
+                          }
+                          disabled={!masterSlaveCalibState.active_edit_acc.editable}
+                        /> */}
+                      </div>
+                      <div className="acc_password">
+                        <input
+                          id={`${masterSlaveCalibState.device_list.active_edit_device.id}_address_input`}
+                          name={`address`}
+                          type="text"
+                          className={!masterSlaveCalibState.device_list.active_edit_device.editable ? 'transparent' : ''}
+                          onChange={changeHandler}
+                          maxLength='20'
+                          value={masterSlaveCalibState.device_list.active_edit_device.editable ?
+                            masterSlaveCalibState.device_list.active_edit_device.address :
+                            masterSlaveCalibState.device_list.active_edit_device.address
+                          }
+                          disabled={!masterSlaveCalibState.device_list.active_edit_device.editable}
+                        />
+                      </div>
+                      <div className="acc_actions">
+                        {masterSlaveCalibState.device_list.active_edit_device.editable ?
+                          <>
+                            <FormInput
+                              clickHandler={(e) => {
+                                setAccEditSave({
+                                  id: masterSlaveCalibState.device_list.active_edit_device.id,
+                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
+                                  boolean: false
+                                })
+                              }}
+                              label='Сохранить'
+                              type="button" />
+                            <FormInput
+                              clickHandler={(e) => {
+                                setAccEditCancel({
+                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
+                                  boolean: false
+                                })
+                              }}
+                              label='Отмена'
+                              type="button" />
+                          </> :
+                          <>
+                            <FormInput
+                              id={`sys_logs_calib_input`}
+                              name={`sys_logs_calib`}
+                              clickHandler={(e) => {
+                                setAccEditOn({
+                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
+                                  boolean: true
+                                })
+                              }}
+                              label='Редактировать'
+                              type="button" />
+                            <FormInput
+                              id={`sys_logs_calib_input`}
+                              name={`sys_logs_calib`}
+                              clickHandler={(e) => {
+                                setAccEditOn({
+                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
+                                  boolean: true
+                                })
+                              }}
+                              label='Проверить связь'
+                              type="button" />
+                          </>
+
+                        }
+                      </div>
+                    </li>
+                  </>
+                }
+              </ul>
+              {masterSlaveCalibState.device_list.saved_list.length < 6 &&
+                <FormInput
+                  id={`calib_password_save`}
+                  name={`calib_password`}
+                  clickHandler={(e) => {
+                    createDeviceInBuffer()
+                  }}
+                  class='log_refresh'
+                  label='Добавить нов. устройство'
+                  type="button"
+                />
+              }
+            </>
+          }
+        </ModalCalib>
+      }
+    </Settings_block_calib>
+  )
+}
+
+
+
+function Slave_device_instance({id, availbility, type, address, editable, edit_actions, ...rest}) {
+  return (
+    <li
+      key={id}
+      id={`device_${id}`}
+      className={`acc_item`}>
+      <div className="device_available">
+        <FormInput
+          id={`device_${id}_available`}
+          type='checkbox'
+          input_value={availbility}
+          disabled={!editable} />
+      </div>
+      <div className='acc_login'>
+        <FormInput
+          type='select'
+          disabled={!editable}
+          input_value='0'
+          variants={[
+            'УРЦ-100/300',
+            'УРЦ-500',
+            'УРЦ-1000',
+            'УРЦ-2000',
+            'УСТ-050/100',
+            'УСТ-250',
+            'УСТ-500',
+            'РЦ-ХХХ',
+            'СТ-100',
+            'СТ-250',
+          ]}
+        />
+      </div>
+      <div className="acc_password">
+        <input
+          id={`${id}_address_input`}
+          name={`password`}
+          type={!editable ? 'password' : 'text'}
+          className={!editable ? 'transparent' : ''}
+          // onChange={changeHandler}
+          maxLength='10'
+          value={0}
+          disabled={!editable}
+        />
+      </div>
+      <div className="acc_actions">
+        {editable ?
+          <>
+            <FormInput
+              clickHandler={(e) => {
+                // setAccEditSave({
+                //   id: device.id,
+                //   index: index,
+                //   boolean: false
+                // })
+              }}
+              label='Сохранить'
+              type="button" />
+            {type != 'admin' &&
+              <FormInput
+                clickHandler={(e) => {
+                  // setAccEditDelete({
+                  //   id: device.id,
+                  //   index: index,
+                  //   boolean: false
+                  // })
+                }}
+                label='Удалить'
+                type="button" />
+            }
+            <FormInput
+              clickHandler={(e) => {
+                // setAccEditCancel({
+                //   index: index,
+                //   boolean: false
+                // })
+              }}
+              label='Отмена'
+              type="button" />
+          </> :
+          <FormInput
+            id={`sys_logs_calib_input`}
+            name={`sys_logs_calib`}
+            clickHandler={(e) => {
+              // setAccEditOn({
+              //   index: index,
+              //   boolean: true
+              // })
+            }}
+            label='Редактировать'
+            type="button" />
+        }
+      </div>
+    </li>
+  )
+}
+
