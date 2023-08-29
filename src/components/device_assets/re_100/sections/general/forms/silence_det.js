@@ -7,7 +7,7 @@ import Silence_det_settings from "../../../../../custom_groups/silence_det_setti
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import clone from "lodash/clone"
-import { reducers } from "../../../../../../core_store_reducers"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers"
 import { useSelector } from "react-redux"
 
 export default function Silence_det_form(props) {

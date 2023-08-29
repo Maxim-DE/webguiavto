@@ -7,7 +7,7 @@ import Time_server_sync_settings from "../../../../../custom_groups/time_server_
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import { cloneDeep } from "lodash"
-import { reducers } from "../../../../../../core_store_reducers"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers"
 import { useSelector } from "react-redux"
 
 export default function Time_settings(props) {

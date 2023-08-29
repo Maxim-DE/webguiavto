@@ -4,11 +4,11 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function CurrentCalibSettings(props) {
-  const calibCurrent_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_current.current_value)
+  const calibCurrent_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_current?.current_value)
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
     I1: '',
@@ -18,7 +18,9 @@ function CurrentCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(calibCurrent_store).length != 0 && calibCurrent_store != undefined) {
+    if (!calibCurrent_store) return
+
+    if (Object.keys(calibCurrent_store).length != 0) {
       let calib_state_copy = {}
 
       for (const key in calibCurrent_store) {

@@ -1,5 +1,5 @@
-import { store } from "../../store/store";
-import { refreshGlobalStore } from "../../store/global_store_slice";
+import { store } from "../store";
+import { refreshGlobalStore } from "../global_store_slice";
 
 import { reload_page } from "../../logic/utilites";
 import { syslog_handle_expand } from "../../logic/syslog_handle_expand";

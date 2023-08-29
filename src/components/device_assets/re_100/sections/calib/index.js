@@ -23,7 +23,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 
 import LoadingSpan from '../../../../loading_span';
 import FormInput from '../../../../form_input';
-import { reducers } from '../../../../../core_store_reducers';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({

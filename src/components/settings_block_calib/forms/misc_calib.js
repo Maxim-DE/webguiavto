@@ -7,12 +7,12 @@ import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
 
 import useAuthStore from '../../../logic/auth_store';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function MiscCalibSettings(props) {
 
-  const calibMisc_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_misc)
+  const calibMisc_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_misc)
 
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: [],

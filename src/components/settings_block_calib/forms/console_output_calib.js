@@ -8,11 +8,11 @@ import cloneDeep from 'lodash/cloneDeep';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import useGlobalStore from '../../../logic/auth_store';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function ConsoleOutputCalibSettings(props) {
-  const calibConsoleOutput_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_console_output)
+  const calibConsoleOutput_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_console_output)
 
   const [consoleOutputCalibState, setConsoleOutputCalibState] = React.useState({
     console_output_switch: 1,

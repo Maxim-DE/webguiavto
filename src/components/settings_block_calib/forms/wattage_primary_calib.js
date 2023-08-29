@@ -4,7 +4,7 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 
@@ -13,7 +13,12 @@ function PowerCalibSettings(props) {
     if (deepKeyExists(store, 'calib_power')) {
       return store.globalStore.global_data.calib_state.data.calib_power
     } else return ''
-  })
+  }),
+    adcPower_store = useSelector((store) => {
+      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.power_calib
+      } else return ''
+    })
 
   const [powerCalibState, setPowerCalibState] = React.useState({
     dac_value: '',
@@ -23,6 +28,8 @@ function PowerCalibSettings(props) {
   })
 
   React.useEffect(() => {
+    if (!calibPower_store) return
+
     if (Object.keys(calibPower_store).length != 0) {
       let calib_state_copy = {}
 
@@ -102,12 +109,12 @@ function PowerCalibSettings(props) {
         <div className='item_input'>
           <span className='item_adc_value'>
             АЦП<sub>АРУ</sub>: {
-              props.adc_data ? props.adc_data.dac_value[0] : ''
+              adcPower_store ? adcPower_store.dac_value[0] : ''
             }
           </span>
           <span className='item_adc_value'>
             ЦАП<sub>АРУ</sub>: {
-              props.adc_data ? props.adc_data.dac_value[1] : ''
+              adcPower_store ? adcPower_store.dac_value[1] : ''
             }
           </span>
           <input
@@ -147,7 +154,7 @@ function PowerCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.output_power}
+            АЦП: {adcPower_store.output_power}
           </span>
           <FormInput
             id={`output_power_calib_input`}
@@ -173,7 +180,7 @@ function PowerCalibSettings(props) {
             htmlFor={`refected_power_calib_input`}
             className="settings_itemLabel"
             style={{fontWeight: '400'}}>
-            АЦП <sub>отр. мощ.</sub>: {props.adc_data.refected_power}
+            АЦП <sub>отр. мощ.</sub>: {adcPower_store.refected_power}
           </label>
         </div>
       </li>
@@ -190,7 +197,7 @@ function PowerCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            ЦАП: {props.adc_data.output_power_threshold}
+            ЦАП: {adcPower_store.output_power_threshold}
           </span>
           <FormInput
             id={`output_power_threshold_calib_input`}
@@ -221,7 +228,7 @@ function PowerCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value' title='АЦП(отр) -x%*АЦП(вых)'>
-            АЦП<sub>отр. после комп.</sub>: {props.adc_data.coupling_coeff}
+            АЦП<sub>отр. после комп.</sub>: {adcPower_store.coupling_coeff}
           </span>
           <FormInput
             id={`сoupling_coeff_calib_input`}

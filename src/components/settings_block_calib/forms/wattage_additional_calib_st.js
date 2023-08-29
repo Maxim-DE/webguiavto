@@ -8,12 +8,21 @@ import useGlobalStore from '../../../logic/auth_store';
 import cloneDeep from 'lodash/cloneDeep';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { filter_obj } from '../../../logic/utilites';
-import { reducers } from '../store_reducers';
+import { deepKeyExists, filter_obj } from '../../../logic/utilites';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function WattageAdditionalCalibSettings_ST(props) {
-  const calibWattageAdditional_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_additional_power),
+  const calibWattageAdditional_store = useSelector((store) => {
+    if (deepKeyExists(store, 'calib_additional_power')) {
+      return store.globalStore.global_data.calib_state.data?.calib_additional_power
+    } else return ''
+  }),
+    adcVoltage_store = useSelector((store) => {
+      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_additional_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.power_additional_calib
+      } else return ''
+    }),
         auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [wattageAdditionalCalibState, setWattageAdditionalCalibState] = React.useState({
@@ -23,6 +32,8 @@ function WattageAdditionalCalibSettings_ST(props) {
     ballast_1_threshold_low: '',
     ballast_1_threshold_high: ''
   })
+
+  // store.globalStore.global_data.calib_state.data.calib_additional_power
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
 
@@ -239,7 +250,7 @@ function WattageAdditionalCalibSettings_ST(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.input_power}
+            АЦП: {adcVoltage_store.input_power}
           </span>
           <FormInput
             id={`input_power_calib_input`}
@@ -289,7 +300,7 @@ function WattageAdditionalCalibSettings_ST(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data?.ballast_1}
+            АЦП: {adcVoltage_store?.ballast_1}
           </span>
           <input
             id={'ballast_1_calib_input'}
@@ -326,7 +337,7 @@ function WattageAdditionalCalibSettings_ST(props) {
       </div>
       <div className='item_input'>
         <span className='item_adc_value'>
-          АЦП: {props.adc_data.ballast_1_threshold}
+          АЦП: {adcVoltage_store.ballast_1_threshold}
         </span>
         <div
           className="text_range_container"

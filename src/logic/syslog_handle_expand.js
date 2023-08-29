@@ -1,5 +1,5 @@
 import { status_colors } from '../components/graph_blocks';
-import { reducers } from '../components/settings_block_calib/store_reducers';
+import { reducers } from '../store/reducers/calib_forms_reducers';
 import { LabelReplaceText } from '../components/status_logs_block';
 
 const find_log_pos = (log_data, log_id) => {

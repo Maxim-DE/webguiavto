@@ -6,7 +6,7 @@ import Time_settings from './forms/time_settings';
 import Time_schedule_form from './forms/time_schedule';
 import Silence_det_form from './forms/silence_det';
 import Misc_settings from './forms/misc_settings';
-import { reducers } from '../../../../../core_store_reducers';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 export default function GeneralSettingsSection(props) {
 

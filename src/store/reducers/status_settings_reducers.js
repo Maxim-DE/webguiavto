@@ -1,5 +1,5 @@
-import { store } from "../../store/store";
-import { refreshGlobalStore } from "../../store/global_store_slice";
+import { store } from "../store";
+import { refreshGlobalStore } from "../global_store_slice";
 
 export const reducers = {
 

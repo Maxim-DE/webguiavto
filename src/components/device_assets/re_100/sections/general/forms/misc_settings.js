@@ -7,7 +7,7 @@ import Conf_manage_settings from "../../../../../custom_groups/conf_manage_setti
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import cloneDeep from "lodash/cloneDeep"
-import { reducers } from "../../../../../../core_store_reducers";
+import { reducers } from "../../../../../../store/reducers/core_store_reducers";
 import { useSelector } from "react-redux";
 
 export default function Misc_settings(props) {

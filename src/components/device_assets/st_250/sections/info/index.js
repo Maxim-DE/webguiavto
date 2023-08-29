@@ -5,7 +5,7 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 // import Time_settings from './forms/time_settings'
 import Info_general from './forms/info_general';
 import Software_version from './forms/software_version';
-import { reducers } from '../../../../../core_store_reducers';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 export default function InfoSection(props) {
 

@@ -7,7 +7,7 @@ import { Alt_station_manage } from '../../../../../custom_groups/alt_station_man
 
 import clone from 'lodash/clone'
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
-import { reducers } from '../../../../../../core_store_reducers'
+import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
 
 export default function Rds_general_settings(props) {

@@ -1,6 +1,6 @@
-import { store } from "../../store/store"
-import { refreshGlobalStore } from "../../store/global_store_slice"
-import { err_erase } from "../../store/errPool_store_slice"
+import { store } from "../store"
+import { refreshGlobalStore } from "../global_store_slice"
+import { err_erase } from "../errPool_store_slice"
 
 export const reducers = {
   status_section: ({request_resp}) => {   

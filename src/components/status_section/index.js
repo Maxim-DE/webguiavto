@@ -13,8 +13,8 @@ import useGlobalStore from '../../logic/auth_store';
 import useSectionStore from '../../logic/sectionsRefs_store';
 
 import './index.css'
-import { reducers } from './store_reducers';
-import { reducers as statusLogs_reducers } from '../status_logs_block/store_reducers';
+import { reducers } from '../../store/reducers/status_section_reducers';
+import { reducers as statusLogs_reducers } from '../../store/reducers/status_logs_reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';

@@ -12,7 +12,7 @@ import { AlertDialogWrap } from '../../alert_dialog_wrap';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 export const conf_file_links = {

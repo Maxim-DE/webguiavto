@@ -6,7 +6,7 @@ import { Log_expand_info } from '../../../status_logs_block';
 
 import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
-import { reducers } from '../../store_reducers';
+import { reducers } from '../../../../store/reducers/calib_forms_reducers';
 
 export default function HttpLog_wrap(props) {
   const [isLoading, setIsLoading] = React.useState(false)

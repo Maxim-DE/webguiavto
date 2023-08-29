@@ -4,26 +4,28 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 
 function VoltageCalibSettings(props) {
   const calibVoltage_store = useSelector((store) => {
       if (deepKeyExists(store, 'calib_voltage')) {
-        return store.globalStore.global_data.calib_state.data?.calib_current?.calib_voltage
+        return store.globalStore.global_data.calib_state.data?.calib_voltage
       } else return ''
     }),
-        adcVoltage_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc.voltage_calib)
-
-  // (store) => store.globalStore.global_data.calib_state.data.calib_general
+    adcVoltage_store = useSelector((store) => {
+      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'voltage_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
+      } else return ''
+    })
 
   const [voltageCalibState, setVoltageCalibState] = React.useState({
     U1: ''
   })
 
   React.useEffect(() => {
-    if (Object.keys(calibVoltage_store).length != 0 && calibVoltage_store != undefined) {
+    if (calibVoltage_store != undefined && Object.keys(calibVoltage_store).length != 0) {
       let calib_state_copy = {}
 
       for (const key in calibVoltage_store) {

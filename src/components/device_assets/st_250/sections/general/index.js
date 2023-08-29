@@ -4,7 +4,7 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 import Time_settings from './forms/time_settings'
 import File_download from './forms/file_download'
-import { reducers } from '../../../../../core_store_reducers'
+import { reducers } from '../../../../../store/reducers/core_store_reducers'
 
 export default function GeneralSettingsSection(props) {
 

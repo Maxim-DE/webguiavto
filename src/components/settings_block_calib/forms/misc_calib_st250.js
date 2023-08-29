@@ -8,7 +8,7 @@ import ChannelEnablerSettings from './channel_enabler_calib';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 

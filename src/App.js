@@ -30,7 +30,7 @@ import { useInView } from './logic/useInView_hook';
 import { fetch_error_handler } from './logic/fetch_error_handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { reqReducers_wrap } from './store/req_reducers_wrap';
-import { reducers } from './core_store_reducers';
+import { reducers } from './store/reducers/core_store_reducers';
 
 let debounceTimer;
 
@@ -128,10 +128,10 @@ function App() {
                     toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                   }
 
-                  break;
+                  continue
 
                 default:
-                  break;
+                  continue
               }
             }
 
@@ -274,8 +274,7 @@ function App() {
           </div>
           {/* Компонент с ссылками на разделы */}
           <Links_list 
-            updateHandler={navRefUpdate}
-            calibaAvailable={status_section_data.calib_available} />
+            updateHandler={navRefUpdate} />
           <div className='nav_fillblock'></div>
           {/* Компонент с боковым нижним меню */}
           {/* <PeripheralMenu

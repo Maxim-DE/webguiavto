@@ -7,7 +7,7 @@ import Time_schedule_settings from "../../../../../custom_groups/time_schedule_s
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import clone from "lodash/clone"
-import { reducers } from "../../../../../../core_store_reducers"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers"
 import { useSelector } from "react-redux"
 
 export default function Time_schedule_form(props) {

@@ -28,7 +28,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
-import { reducers } from '../../../../../core_store_reducers';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 
 

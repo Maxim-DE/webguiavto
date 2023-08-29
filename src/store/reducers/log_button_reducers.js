@@ -1,5 +1,5 @@
-import { store } from "../../store/store";
-import { setIsAuth, setUserId, setAuthLevel } from "../../store/auth_store_slice";
+import { store } from "../store";
+import { setIsAuth, setUserId, setAuthLevel } from "../auth_store_slice";
 
 export const reducers = {
 

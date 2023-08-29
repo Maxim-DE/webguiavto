@@ -6,7 +6,7 @@ import FormInput from '../../form_input';
 import ModalCalib from '../../calib_modal';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 const base_freqs = [21, 80],
       additional_freqs = [[6, 12]],

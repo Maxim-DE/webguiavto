@@ -7,7 +7,7 @@ import ModalCalib from '../../calib_modal'
 
 import useGlobalStore from '../../../logic/auth_store';
 import { PulseLoader } from 'react-spinners';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 export default function Account_manage_calib(props) {
   const [isOpen, setIsOpen] = React.useState(false);

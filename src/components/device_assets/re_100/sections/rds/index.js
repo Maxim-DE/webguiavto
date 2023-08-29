@@ -3,7 +3,7 @@ import React from 'react'
 import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 import Rds_general_settings from './forms/rds_general_settings'
-import { reducers } from '../../../../../core_store_reducers'
+import { reducers } from '../../../../../store/reducers/core_store_reducers'
 
 export default function RdsSettingsSection(props) {
 

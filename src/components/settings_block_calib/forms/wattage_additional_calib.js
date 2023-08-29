@@ -4,19 +4,21 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function WattageAdditionalCalibSettings(props) {
 
-  const calibWattageAdditional_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_additional_power)
+  const calibWattageAdditional_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_additional_power)
 
   const [wattageAdditionalCalibState, setWattageAdditionalCalibState] = React.useState({
     input_power: '',
   })
 
   React.useEffect(() => {
-    if (Object.keys(calibWattageAdditional_store).length != 0 && calibWattageAdditional_store != undefined) {
+    if (calibWattageAdditional_store == undefined) return
+
+    if (Object.keys(calibWattageAdditional_store).length != 0) {
       let calib_state_copy = {}
 
       for (const key in calibWattageAdditional_store) {

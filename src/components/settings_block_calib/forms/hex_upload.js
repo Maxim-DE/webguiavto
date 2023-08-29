@@ -5,7 +5,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import FormInput from '../../form_input';
 import ModalCalib from '../../calib_modal';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 function Hex_upload(props) {
   const [isUploading, setIsUploading] = React.useState(false);

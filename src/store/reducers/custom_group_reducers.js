@@ -1,7 +1,7 @@
-import { store } from "../../store/store";
-import { refreshGlobalStore } from "../../store/global_store_slice";
+import { store } from "../store";
+import { refreshGlobalStore } from "../global_store_slice";
 
-import { add_info_to_conf } from "./conf_manage_settings";
+import { add_info_to_conf } from "../../components/custom_groups/conf_manage_settings";
 
 // обработка информации о конфигурации
 export const reducers = {

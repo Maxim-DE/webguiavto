@@ -8,14 +8,14 @@ import cloneDeep from 'lodash/cloneDeep';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import useGlobalStore from '../../../logic/auth_store';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 
 function FanCalibSettings(props) {
   const calibFan_store = useSelector((store) => {
     if (deepKeyExists(store, 'calib_fan')) {
-      return store.globalStore.global_data.calib_state.data.calib_fan
+      return store.globalStore.global_data.calib_state.data?.calib_fan
     } else return ''
   }),
         auth_store = useSelector((store) => store.authStore.auth_data)
@@ -32,6 +32,8 @@ function FanCalibSettings(props) {
   // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
+    if (!calibFan_store) return
+
     if (Object.keys(calibFan_store).length != 0) {
       let calib_state_copy = cloneDeep(fanCalibState)
 

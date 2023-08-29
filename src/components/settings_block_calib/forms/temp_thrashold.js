@@ -6,14 +6,14 @@ import FormInput from '../../form_input';
 import useGlobalStore from '../../../logic/auth_store';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 
 function TempThresholdCalibSettings(props) {
-  const calibCurrent_store = useSelector((store) => {
+  const calibTemp_store = useSelector((store) => {
     if (deepKeyExists(store, 'calib_temp')) {
-      return store.globalStore.global_data.calib_state.data.calib_temp
+      return store.globalStore.global_data.calib_state.data?.calib_temp
     } else return ''
   }),
         auth_store = useSelector((store) => store.authStore.auth_data)
@@ -27,18 +27,20 @@ function TempThresholdCalibSettings(props) {
   // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (Object.keys(calibCurrent_store).length != 0) {
+    if (!calibTemp_store) return
+
+    if (Object.keys(calibTemp_store).length != 0) {
       let calib_state_copy = tempThresholdCalibState
 
-      for (const key in calibCurrent_store) {
+      for (const key in calibTemp_store) {
 
         if (key == 'temp_address') {
-          calib_state_copy[key] = calibCurrent_store[key]
+          calib_state_copy[key] = calibTemp_store[key]
           continue;
         }
         
-        const divident = calibCurrent_store[key][0],
-              divider = calibCurrent_store[key][1] == 0 ? 1 : calibCurrent_store[key][1],
+        const divident = calibTemp_store[key][0],
+              divider = calibTemp_store[key][1] == 0 ? 1 : calibTemp_store[key][1],
               digits = Math.log10(divider)
 
         // if (divider == 1) {
@@ -53,7 +55,7 @@ function TempThresholdCalibSettings(props) {
       setTempThresholdCalibState(calib_state_copy)
 
     }
-  }, [calibCurrent_store])
+  }, [calibTemp_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -70,14 +72,14 @@ function TempThresholdCalibSettings(props) {
     const target = event.target,
           name = target.name.replace('_calib', ''),
           value = tempThresholdCalibState[name],
-          multiplier =  Array.isArray(calibCurrent_store[name]) ? (calibCurrent_store[name][1]) : 1
+          multiplier =  Array.isArray(calibTemp_store[name]) ? (calibTemp_store[name][1]) : 1
 
     let state_obj = {},
         converted_state
 
-    if (Array.isArray(calibCurrent_store[name])) {
+    if (Array.isArray(calibTemp_store[name])) {
       state_obj[name] = value
-      converted_state = calib_state_conversion(state_obj, calibCurrent_store)
+      converted_state = calib_state_conversion(state_obj, calibTemp_store)
     } else {
       converted_state = { [name]: value * multiplier }
     }

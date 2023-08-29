@@ -9,7 +9,7 @@ import { dec2hexString } from '../../logic/utilites'
 import FormInput from '../form_input'
 import ModalCalib from '../calib_modal';
 import _ from 'lodash'
-import { reducers } from './store_reducers'
+import { reducers } from '../../store/reducers/custom_group_reducers'
 
 function Conf_manage_settings({parent_state, state_handler, ...rest}) {
 

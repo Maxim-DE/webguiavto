@@ -5,12 +5,12 @@ import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 import { dataArray_to_string } from '../../../logic/request_logic';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function LRChannelCalibSettings(props) {
 
-  const calibLRChannel_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_lr_channel)
+  const calibLRChannel_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_lr_channel)
 
   const [LRChannelCalibState, setLRChannelCalibState] = React.useState({
     l_channel: '',

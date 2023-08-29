@@ -2,11 +2,11 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function SerialNumVersionCalibSettings(props) {
-  const calibSerialNumVersion_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_serialNum)
+  const calibSerialNumVersion_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_serialNum)
 
   const [serialNumVersionCalibState, setSerialNumVersionCalibState] = React.useState({
     calib_defence: 1,
@@ -36,7 +36,9 @@ function SerialNumVersionCalibSettings(props) {
   ]
 
   React.useEffect(() => {
-    if (Object.keys(calibSerialNumVersion_store).length != 0 && calibSerialNumVersion_store != undefined) {
+    if (calibSerialNumVersion_store != undefined) return
+
+    if (Object.keys(calibSerialNumVersion_store).length != 0) {
       let calib_state_copy = serialNumVersionCalibState
 
       for (const key in calibSerialNumVersion_store) {

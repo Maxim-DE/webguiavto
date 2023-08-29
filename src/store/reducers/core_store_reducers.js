@@ -1,9 +1,9 @@
-import { refreshGlobalStore } from "./store/global_store_slice";
-import { store } from "./store/store";
+import { refreshGlobalStore } from "../global_store_slice";
+import { store } from "../store";
 
-import { type_device_toStr } from "./logic/output_data_management";
-import { reload_page } from "./logic/utilites";
-import { setAuthLevel, setIsAuth, setUserId } from "./store/auth_store_slice";
+import { type_device_toStr } from "../../logic/output_data_management";
+import { reload_page } from "../../logic/utilites";
+import { setAuthLevel, setIsAuth, setUserId } from "../auth_store_slice";
 import { toast } from "react-toastify";
 
 export const reducers = {

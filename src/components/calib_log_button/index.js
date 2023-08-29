@@ -10,7 +10,7 @@ import ModalCalib from '../calib_modal';
 import FormInput from '../form_input';
 
 import useAuthStore from '../../logic/auth_store';
-import { reducers } from './store_reducers';
+import { reducers } from '../../store/reducers/log_button_reducers';
 import { useSelector } from 'react-redux';
 
 const CalibLogButton = (props) => {

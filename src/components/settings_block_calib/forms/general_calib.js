@@ -2,12 +2,12 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function GeneralCalibSettings(props) {
 
-  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_general)
+  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general)
         // adcGeneral_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc.general_calib)
 
   const [generalCalibState, setGeneralCalibState] = React.useState({

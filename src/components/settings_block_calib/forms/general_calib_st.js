@@ -4,12 +4,12 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
-import { reducers } from '../store_reducers';
-import { reducers as coreReducers } from '../../../core_store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { reducers as coreReducers } from '../../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
 
 function GeneralCalibSettings_ST(props) {
-  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_general),
+  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
         auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
@@ -26,7 +26,7 @@ function GeneralCalibSettings_ST(props) {
       return
     } 
 
-    if (Object.keys(calibGeneral_store).length != 0 && calibGeneral_store != undefined) {
+    if (Object.keys(calibGeneral_store).length != 0 || calibGeneral_store != undefined) {
       let calib_state_copy = generalCalibState
 
       for (const key in calibGeneral_store) {

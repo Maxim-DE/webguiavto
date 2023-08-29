@@ -11,7 +11,7 @@ import { PulseLoader } from 'react-spinners';
 
 import { status_colors } from '../graph_blocks';
 import './index.css'
-import { reducers } from './store_reducers';
+import { reducers } from '../../store/reducers/status_logs_reducers';
 
 const log_items = [
   {id: '0', message: "Питание передатчика", time: "2022-03-17 13:16:28"},

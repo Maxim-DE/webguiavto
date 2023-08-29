@@ -6,7 +6,7 @@ import FormInput from '../../form_input';
 import useGlobalStore from '../../../logic/auth_store';
 
 import { calib_double_array_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 
@@ -16,6 +16,11 @@ function CurrentThresholdCalibSettings_ST(props) {
       return store.globalStore.global_data.calib_state.data?.calib_current?.threshold
     } else return ''
   }),
+        adcCurrentThreshold_store = useSelector((store) => {
+          if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'current_threshhold_calib')) {
+            return store.globalStore.global_data.status_data.calib_adc?.current_threshhold_calib
+          } else return ''
+        }),
         auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [thresholdCalibState, setThresholdCalibState] = React.useState({
@@ -30,7 +35,9 @@ function CurrentThresholdCalibSettings_ST(props) {
   // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (Object.keys(calibCurrentThreshold_store).length != 0 && calibCurrentThreshold_store != undefined) {
+    if (!calibCurrentThreshold_store) return
+
+    if (Object.keys(calibCurrentThreshold_store).length != 0) {
       let calib_state_copy = {}
 
       for (const key in calibCurrentThreshold_store) {
@@ -184,7 +191,7 @@ function CurrentThresholdCalibSettings_ST(props) {
       </div>
       <div className='item_input'>
         <span className='item_adc_value'>
-          АЦП: {props.adc_data.I1}
+          АЦП: {adcCurrentThreshold_store.I1}
         </span>
         <div
           className="text_range_container"
@@ -228,7 +235,7 @@ function CurrentThresholdCalibSettings_ST(props) {
       </div>
       <div className='item_input'>
         <span className='item_adc_value'>
-          АЦП: {props.adc_data.I2}
+          АЦП: {adcCurrentThreshold_store.I2}
         </span>
         <div
           className="text_range_container"
@@ -284,7 +291,7 @@ function CurrentThresholdCalibSettings_ST(props) {
       </div>
       <div className='item_input'>
         <span className='item_adc_value'>
-          АЦП: {props.adc_data.I3}
+          АЦП: {adcCurrentThreshold_store.I3}
         </span>
         <div
           className="text_range_container"
@@ -348,7 +355,7 @@ function CurrentThresholdCalibSettings_ST(props) {
       </div>
       <div className='item_input'>
         <span className='item_adc_value'>
-          АЦП: {props.adc_data.I4}
+          АЦП: {adcCurrentThreshold_store.I4}
         </span>
         <div
           className="text_range_container"

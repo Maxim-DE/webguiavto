@@ -6,7 +6,7 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 import Device_address from './forms/device_address';
 import Remote_control from './forms/remote_control';
 import Snmp_agent from './forms/snmp_agent';
-import { reducers } from '../../../../../core_store_reducers';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 export default function NetworkSettingsSection(props) {
   

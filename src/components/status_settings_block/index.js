@@ -7,7 +7,7 @@ import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
 
 import Settings_block_calib from '../settings_block_calib';
-import { reducers } from './store_reducers';
+import { reducers } from '../../store/reducers/status_settings_reducers';
 
 function Status_settings(props) {
 

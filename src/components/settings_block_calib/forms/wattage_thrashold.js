@@ -2,7 +2,7 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function WattageThresholdCalibSettings(props) {

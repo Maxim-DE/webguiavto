@@ -2,12 +2,12 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 function EmulationCalibSettings(props) {
 
-  const calibEmulation_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_emulation)
+  const calibEmulation_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_emulation)
 
   const [emulationCalibState, setEmulationCalibState] = React.useState({
     param_emulation_switch: 0,

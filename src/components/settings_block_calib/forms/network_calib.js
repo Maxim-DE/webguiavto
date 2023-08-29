@@ -6,11 +6,11 @@ import FormInput from '../../form_input';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 export default function NetworkCalibSettings(props) {
-  const calibNetwork_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_network)
+  const calibNetwork_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_network)
 
   const [networkCalibState, setNetworkCalibState] = React.useState({
     req_period: '',

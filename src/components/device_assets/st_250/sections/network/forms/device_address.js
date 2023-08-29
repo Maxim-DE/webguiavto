@@ -4,7 +4,7 @@ import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
-import { reducers } from '../../../../../../core_store_reducers'
+import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
 
 export default function Device_address(props) {

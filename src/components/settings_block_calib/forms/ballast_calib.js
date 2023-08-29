@@ -4,13 +4,18 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../store_reducers';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
 
 function BallastCalibSettings(props) {
 
-  const calibBallast_store = useSelector((store) => store.globalStore.global_data.calib_state.data.calib_ballast),
-        adcBallast_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc.ballast_calib)
+  const calibBallast_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_ballast),
+        adcBallast_store = useSelector((store) => {
+          if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'ballast_calib')) {
+            return store.globalStore.global_data.status_data.calib_adc?.ballast_calib
+          } else return ''
+        })
 
   const [ballastCalibState, setBallastCalibState] = React.useState({
     ballast_1: '',

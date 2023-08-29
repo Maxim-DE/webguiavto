@@ -19,7 +19,7 @@ import { BsChevronDoubleLeft, BsChevronLeft,
          BsChevronRight, BsChevronDoubleRight } from 'react-icons/bs'
 
 import '../index.css'
-import { reducers } from '../store_reducers'
+import { reducers } from '../../../store/reducers/calib_forms_reducers'
 
 export const log_status = [
   '',
