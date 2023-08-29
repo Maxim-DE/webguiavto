@@ -26,14 +26,14 @@ function PeripheralMenu(props) {
     props.updateHandler(request_obj)
   }, [])
 
-  React.useEffect(() => {
-    if (props.structure.length > 0) {
-      setPeripheralData(prevState => ({
-        ...prevState,
-        structure: props.structure
-      }))
-    }
-  }, [props.structure])
+  // React.useEffect(() => {
+  //   if (props.structure.length > 0) {
+  //     setPeripheralData(prevState => ({
+  //       ...prevState,
+  //       structure: props.structure
+  //     }))
+  //   }
+  // }, [props.structure])
 
   React.useEffect(() => {
     if (props.data.status_info == null) {
