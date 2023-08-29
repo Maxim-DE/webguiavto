@@ -1,4 +1,5 @@
 import { status_colors } from '../components/graph_blocks';
+import { reducers } from '../store/reducers/calib_forms_reducers';
 import { LabelReplaceText } from '../components/status_logs_block';
 
 const find_log_pos = (log_data, log_id) => {
@@ -44,6 +45,7 @@ export const handle_logExpand_request = (update_handler, log_type, log_num, expa
     request_obj = {
       address: 'get_expanded_log.cgi',
       data: `${log_type}$1;log_num$${log_num}`,
+      reducer: reducers.get_expanded_syslog,
       notifications: {
         good: 'default',
         bad: 'default'

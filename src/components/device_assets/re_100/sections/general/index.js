@@ -6,6 +6,7 @@ import Time_settings from './forms/time_settings';
 import Time_schedule_form from './forms/time_schedule';
 import Silence_det_form from './forms/silence_det';
 import Misc_settings from './forms/misc_settings';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 export default function GeneralSettingsSection(props) {
 
@@ -16,6 +17,7 @@ export default function GeneralSettingsSection(props) {
   React.useEffect(() => {
     let request_obj = {
       address: `settings.cgi`,
+      reducer: reducers.section_data,
       notifications: {
         good: 'none',
         bad: () => {
@@ -38,27 +40,27 @@ export default function GeneralSettingsSection(props) {
       section_header="общие настройки">
       <Time_settings
         section_name="settings"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.time_settings}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.time_settings}
         clickHandler={updateHandler} />
       <Time_schedule_form
         section_name="settings"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.time_schedule}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.time_schedule}
         clickHandler={updateHandler} />
       <Silence_det_form
         section_name="settings"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.silence_det}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.silence_det}
         clickHandler={updateHandler} />
       <Misc_settings
         section_name="settings"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.misc_settings}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.misc_settings}
         clickHandler={updateHandler} />
     </SettingsSectionWrap>
   )

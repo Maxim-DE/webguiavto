@@ -2,8 +2,11 @@ import React from 'react'
 
 import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
+import { useSelector } from 'react-redux'
 
 export default function Info_general(props) {
+  const infoGeneral_store = useSelector((store) => store.globalStore.global_data.section_data.info.info_general)
+
   const [infoGeneralState, setInfoGeneralState] = React.useState({
     serial_number: 'N/A',
     plate_number: 'N/A',
@@ -12,23 +15,23 @@ export default function Info_general(props) {
   })
 
   React.useEffect(() => {
-    console.log(props.settings_data);
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    console.log(infoGeneral_store);
+    if (infoGeneral_store != 'null' && infoGeneral_store != undefined) {
       let settings_state_copy = infoGeneralState
 
-      for (const key in props.settings_data) {
+      for (const key in infoGeneral_store) {
         
-        if (props.settings_data[key].length === 0) {
+        if (infoGeneral_store[key].length === 0) {
           settings_state_copy[key] = 'N/A'
           continue
         }
 
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = infoGeneral_store[key]
       }
 
       setInfoGeneralState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [infoGeneral_store])
 
   return (
     <SettingsBlockWrap

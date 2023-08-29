@@ -6,35 +6,40 @@ import Account_manage_calib from './account_manage_calib';
 import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
 
-import useGlobalStore from '../../../logic/auth_store';
+import useAuthStore from '../../../logic/auth_store';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function MiscCalibSettings(props) {
+
+  const calibMisc_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_misc)
+
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: [],
     user_list: [],
     amp_supply: false
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const [authGlobalState, authGlobalActions] = useAuthStore()
 
   React.useEffect(() => {
-    if (props.calib_data == undefined) {
+    if (calibMisc_store == undefined) {
       return
     }
 
-    if (Object.keys(props.calib_data).length == 0) {
+    if (Object.keys(calibMisc_store).length == 0) {
       return
     }
 
     let calib_state_copy = miscCalibState
 
-    for (const key in props.calib_data) {
-      calib_state_copy[key] = props.calib_data[key]
+    for (const key in calibMisc_store) {
+      calib_state_copy[key] = calibMisc_store[key]
     }
 
     setMiscCalibState(calib_state_copy)
 
-  }, [props.calib_data])
+  }, [calibMisc_store])
 
   const handleChange_save = (event) => {
     const target = event.target;
@@ -72,6 +77,25 @@ function MiscCalibSettings(props) {
     const request_obj = {
       address: 'calib_misc.cgi',
       data: `${name}$${value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    props.clickHandler(request_obj);
+
+  }
+
+    const handleClick_deleteUserLogs = (event) => {
+    const target = event.target,
+          name = target.name.replace('_calib', ''),
+          value = 1
+
+    const request_obj = {
+      address: 'calib_misc.cgi',
+      data: `${name}$${value}`,
+      reducer: reducers.delete_user_logs,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -125,7 +149,7 @@ function MiscCalibSettings(props) {
             <FormInput
               id={`delete_user_logs_calib_save`}
               name={`delete_user_logs_calib`}
-              clickHandler={handleClick_save}
+              clickHandler={handleClick_deleteUserLogs}
               label='Удалить'
               type="button" />
           </div>

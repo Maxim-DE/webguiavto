@@ -7,8 +7,11 @@ import Time_server_sync_settings from "../../../../../custom_groups/time_server_
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import { cloneDeep } from "lodash"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers"
+import { useSelector } from "react-redux"
 
 export default function Time_settings(props) {
+  const timeSettings_store = useSelector((store) => store.globalStore.global_data.section_data.settings.time_settings)
 
   const [timeSettingsState, setTimeSettingsState] = React.useState({
     date: '',
@@ -16,18 +19,18 @@ export default function Time_settings(props) {
   })
 
   React.useEffect(() => {
-    console.log(props.settings_data);
+    console.log(timeSettings_store);
 
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (timeSettings_store != 'null' && timeSettings_store != undefined) {
       let settings_state_copy = timeSettingsState
 
       for (const key in settings_state_copy) {
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = timeSettings_store[key]
       }
 
       setTimeSettingsState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [timeSettings_store])
 
   const state_handler = (state) => {
     let target_state_clone = cloneDeep(timeSettingsState)
@@ -56,6 +59,7 @@ export default function Time_settings(props) {
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'

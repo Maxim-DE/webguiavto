@@ -8,8 +8,24 @@ import useGlobalStore from '../../../logic/auth_store';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
+import { toast } from 'react-toastify';
 
 function CurrentCalibSettings_ST(props) {
+  const calibCurrent_store = useSelector((store) => {
+    if (deepKeyExists(store, 'current_value')) {
+      return store.globalStore.global_data.calib_state.data?.calib_current?.current_value
+    } else return ''
+  }),
+    adcCurrent_store = useSelector((store) => {
+      if (deepKeyExists(store, 'voltage_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
+      } else return ''
+    }),
+        auth_store = useSelector((store) => store.authStore.auth_data)
+
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
     psu_enable: 0,
@@ -21,26 +37,26 @@ function CurrentCalibSettings_ST(props) {
     I4: ''
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
-
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
-      console.log(props.calib_data);
+    if (!calibCurrent_store) return
+
+    if (Object.keys(calibCurrent_store).length != 0) {
+      console.log(calibCurrent_store);
       let calib_state_copy = cloneDeep(amperageCalibState)
 
-      for (const key in props.calib_data) {
-        if (typeof props.calib_data[key] === 'object') {
-          const divident = props.calib_data[key]?.value[0],
-                divider = props.calib_data[key]?.value[1] == 0 ? 1 : props.calib_data[key].value[1],
+      for (const key in calibCurrent_store) {
+        if (typeof calibCurrent_store[key] === 'object') {
+          const divident = calibCurrent_store[key]?.value[0],
+                divider = calibCurrent_store[key]?.value[1] == 0 ? 1 : calibCurrent_store[key].value[1],
                 digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
 
-          if(Object.hasOwn(props.calib_data[key], 'availability')) {
-            calib_state_copy[`${key}_available`] = props.calib_data[key].availability
+          if(Object.hasOwn(calibCurrent_store[key], 'availability')) {
+            calib_state_copy[`${key}_available`] = calibCurrent_store[key].availability
           }
 
         } else {
-          calib_state_copy[key] = props.calib_data[key]
+          calib_state_copy[key] = calibCurrent_store[key]
         }
 
       }
@@ -48,7 +64,7 @@ function CurrentCalibSettings_ST(props) {
       setAmperageCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibCurrent_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -66,12 +82,12 @@ function CurrentCalibSettings_ST(props) {
           name = target.name.replace('_calib', ''),
           value = amperageCalibState[name]
     
-    if (props.calib_data === undefined ||
-        props.calib_data === '') {
+    if (calibCurrent_store === undefined ||
+        calibCurrent_store === '') {
       return
     }
     
-    const divider = props.calib_data[name].value[1] ? props.calib_data[name].value[1] : 1
+    const divider = calibCurrent_store[name].value[1] ? calibCurrent_store[name].value[1] : 1
 
     let coverted_state = {
       [name]: {
@@ -88,7 +104,7 @@ function CurrentCalibSettings_ST(props) {
     }
 
     // let state_obj = { [name]: value },
-    //     converted_state = calib_state_conversion(state_obj, props.calib_data)
+    //     converted_state = calib_state_conversion(state_obj, calibCurrent_store)
 
     // state_obj[name] = {}
 
@@ -97,6 +113,11 @@ function CurrentCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_current.cgi',
       data: `${name}$${value*10}`,
+      // reducer: reducers.calibration_form,
+      reducer: ({ request_name, request_resp, request_params }) => {
+        toast.success('насрал' + name)
+        reducers.calibration_form({ request_resp })
+      },
       update_data: amperageCalibState,
       notifications: {
         good: 'default',
@@ -123,7 +144,7 @@ function CurrentCalibSettings_ST(props) {
           current_name = target_name.replace('_available', ''),
           current_value = amperageCalibState[current_name]
 
-    const divider = props.calib_data[current_name].value[1] ? props.calib_data[current_name].value[1] : 1
+    const divider = calibCurrent_store[current_name].value[1] ? calibCurrent_store[current_name].value[1] : 1
 
     let converted_state = {
       [current_name]: {
@@ -140,11 +161,14 @@ function CurrentCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_current.cgi',
       data: `${target_name}$${target_value}`,
+      reducer: ({ request_name, request_resp, request_params }) => {
+        toast.success('насрал' + target_name)
+        reducers.calibration_form({ request_name, request_resp, request_params })
+      },
       notifications: {
         good: 'default',
         bad: 'default'
       },
-
       save_data: {
         calib_current: {
           current_value: converted_state
@@ -196,6 +220,7 @@ function CurrentCalibSettings_ST(props) {
     const request_obj = {
       address: 'calib_current.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -279,7 +304,7 @@ function CurrentCalibSettings_ST(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I1}
+            АЦП: {adcCurrent_store.I1}
           </span>
           <FormInput
             id={`I1_calib_input`}
@@ -315,7 +340,7 @@ function CurrentCalibSettings_ST(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I2}
+            АЦП: {adcCurrent_store.I2}
           </span>
           <FormInput
             id={`I2_calib_input`}
@@ -338,7 +363,7 @@ function CurrentCalibSettings_ST(props) {
         id='I3_calib'
         className="settings_item calib">
         <div className='item_header'>
-          {authGlobalState.auth_access.calib_extend &&
+          {auth_store.auth_access.calib_extend &&
           <FormInput
             id={`I3_available_calib_input`}
             name={`I3_available_calib`}
@@ -365,7 +390,7 @@ function CurrentCalibSettings_ST(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I3}
+            АЦП: {adcCurrent_store.I3}
           </span>
           <input
             id={'I3_calib_input'}
@@ -395,7 +420,7 @@ function CurrentCalibSettings_ST(props) {
         id='I4_calib'
         className="settings_item calib">
         <div className='item_header'>
-          {authGlobalState.auth_access.calib_extend &&
+          {auth_store.auth_access.calib_extend &&
           <FormInput
             id={`I4_available_calib_input`}
             name={`I4_available_calib`}
@@ -422,7 +447,7 @@ function CurrentCalibSettings_ST(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I4}
+            АЦП: {adcCurrent_store.I4}
           </span>
           <input
             id={'I4_calib_input'}

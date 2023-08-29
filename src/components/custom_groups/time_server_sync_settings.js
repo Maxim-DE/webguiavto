@@ -81,6 +81,8 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
   React.useEffect(() => {
     console.log(parent_state)
     console.log(timeSyncState);
+    if (!parent_state) return
+    
     if (!Object.hasOwn(parent_state, 'time_sync')) return
 
     if (isEqual(parent_state.time_sync, timeSyncState)) return

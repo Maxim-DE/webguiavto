@@ -14,3 +14,44 @@ export function reload_page() {
     window.location.reload();
   }, 2000);
 }
+
+export function device_status (status_props) {
+  switch (status_props) {
+    case 0:
+      return 'ВЫКЛ.'
+    case 1:
+      return 'ВКЛ.'
+    case 3: 
+      return 'ЗАБЛОКИРОВАНО'
+  
+    default:
+      return '...'
+  }
+}
+
+export function deepKeyExists(obj, key) {
+  if (!obj || (typeof obj !== "object" && !Array.isArray(obj))) {
+    return false;
+  }
+  else if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    return true;
+  }
+  else if (Array.isArray(obj)) {
+    for (let i = 0; i < obj.length; i++) {
+      const result = deepKeyExists(obj[i], key);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  else {
+    for (const k in obj) {
+      const result = deepKeyExists(obj[k], key);
+      if (result) {
+        return result;
+      }
+    }
+  }
+
+  return false;
+}

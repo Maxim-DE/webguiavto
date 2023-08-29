@@ -2,8 +2,12 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function EmulationCalibSettings(props) {
+
+  const calibEmulation_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_emulation)
 
   const [emulationCalibState, setEmulationCalibState] = React.useState({
     param_emulation_switch: 0,
@@ -30,22 +34,22 @@ function EmulationCalibSettings(props) {
   ]
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibEmulation_store) {
       return
     } 
 
-    if (Object.keys(props.calib_data).length != 0 ||
-        props.calib_data != undefined) {
+    if (Object.keys(calibEmulation_store).length != 0 ||
+        calibEmulation_store != undefined) {
       let calib_state_copy = emulationCalibState
 
-      for (const key in props.calib_data) {
-        calib_state_copy[key] = props.calib_data[key]
+      for (const key in calibEmulation_store) {
+        calib_state_copy[key] = calibEmulation_store[key]
       }
 
       setEmulationCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibEmulation_store])
 
   const device_type_handleChange = (event) => {
     const target = event.target;
@@ -114,6 +118,7 @@ function EmulationCalibSettings(props) {
     const request_obj = {
       address: 'calib_emulation.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
