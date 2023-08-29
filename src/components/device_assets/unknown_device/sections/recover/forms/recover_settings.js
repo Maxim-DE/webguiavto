@@ -6,9 +6,11 @@ import FormInput from '../../../../../form_input'
 import useGlobalStore from '../../../../../../logic/auth_store'
 
 import { conf_file_links } from '../../../../../settings_block_calib/forms/conf_file_calib'
+import { useSelector } from 'react-redux'
 
 export default function Recover_settings(props) {
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   const handleClick_save = (event) => {
     const target = event.target,
@@ -52,7 +54,7 @@ export default function Recover_settings(props) {
             type="button" />
         </div>
       </li>
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
         <li
           key='create_new_conf'
           id='create_new_conf'

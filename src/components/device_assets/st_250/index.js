@@ -6,35 +6,36 @@ import GeneralSettingsSection from './sections/general'
 import NetworkSettingsSection from './sections/network'
 import InfoSection from './sections/info'
 import CalibSection from './sections/calib'
+import { useSelector } from 'react-redux'
 
 export default function DeviceWrap_ST250(props) {
   
   const updateHandler = (data_block) => {
     props.updateHandler(data_block)
   }
-
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
+  // const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   return (
     <>
       <GeneralSettingsSection
         updateHandler={updateHandler}
-        section_data={props.section_data.settings === null ? 'null' : props.section_data.settings} 
+        // section_data={props.section_data.settings === null ? 'null' : props.section_data.settings} 
         />
       <NetworkSettingsSection
         updateHandler={updateHandler}
-        section_data={props.section_data.network === null ? 'null' : props.section_data.network}
+        // section_data={props.section_data.network === null ? 'null' : props.section_data.network}
         />
       <InfoSection
         updateHandler={updateHandler}
-        section_data={props.section_data.info === null ? 'null' : props.section_data.info}
+        // section_data={props.section_data.info === null ? 'null' : props.section_data.info}
         />
-      {authGlobalState.auth_access.calib &&
+      {auth_store.auth_access.calib &&
         <CalibSection
           section_name="calibration"
           section_header="калибровка"
           updateHandler={updateHandler}
-          section_data={props.calib_data === null ? 'null' : props.calib_data}
+          // section_data={props.calib_data === null ? 'null' : props.calib_data}
           adc_data={props.adc_data} />
       }
     </>

@@ -6,6 +6,7 @@ import FormInput from '../../form_input';
 import ModalCalib from '../../calib_modal';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 const base_freqs = [21, 80],
       additional_freqs = [[6, 12]],
@@ -69,6 +70,7 @@ export default function ChannelEnablerSettings(props) {
     const request_obj = {
       address: 'calib_channel_enable.cgi',
       data: `channels$${name};allow$${value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -82,6 +84,7 @@ export default function ChannelEnablerSettings(props) {
   const handleClick_clrAll = (event) => {
     const request_obj = {
       address: 'calib_clr_all_channels.cgi',
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -94,6 +97,7 @@ export default function ChannelEnablerSettings(props) {
   const handleClick_setAll = (event) => {
     const request_obj = {
       address: 'calib_set_all_channels.cgi',
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -106,6 +110,7 @@ export default function ChannelEnablerSettings(props) {
   const handleClick_saveChannels = (event) => {
     const request_obj = {
       address: 'calib_save_channels.cgi',
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

@@ -1,4 +1,4 @@
-export const type_device_toStr = (output_data_copy) => {
+export const type_device_toStr = (typeDevice_arr) => {
   const device_power_table = {
           0: '-10',
           1: '-50',
@@ -24,18 +24,16 @@ export const type_device_toStr = (output_data_copy) => {
   let device_type_str = ''
 
   try {
-    device_type_str += device_name_table[output_data_copy.info_general.type[0]]
+    device_type_str += device_name_table[typeDevice_arr[0]]
   } catch (error) {
     device_type_str = ''
   }
 
   try {
-    device_type_str += device_power_table[output_data_copy.info_general.type[1]]
+    device_type_str += device_power_table[typeDevice_arr[1]]
   } catch (error) {
     device_type_str += ''
   }
 
-  output_data_copy.info_general.Type_Device = device_type_str
-
-  return output_data_copy
+  return device_type_str
 }

@@ -11,6 +11,7 @@ import { PulseLoader } from 'react-spinners';
 
 import { status_colors } from '../graph_blocks';
 import './index.css'
+import { reducers } from '../../store/reducers/status_logs_reducers';
 
 const log_items = [
   {id: '0', message: "Питание передатчика", time: "2022-03-17 13:16:28"},
@@ -108,6 +109,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
     const request_obj = {
       address: 'GetLogErrorFull.cgi',
       data: 'userlog$1',
+      reducer: reducers.userlog_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -140,6 +142,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
       request_obj = {
         address: 'get_expanded_log.cgi',
         data: `${log_type}$1;log_num$${log_num}`,
+        reducer: reducers.get_expanded_userlog,
         notifications: {
           good: 'default',
           bad: 'default'

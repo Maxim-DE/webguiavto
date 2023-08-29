@@ -28,6 +28,8 @@ export const Alt_station_manage = ({ parent_state, state_handler, ...rest }) => 
   }, [])
 
   React.useEffect(() => {
+    if (!parent_state) return
+    
     if (!Object.hasOwn(parent_state, 'alt_stations')) return
 
     if (_.isEqual(parent_state.alt_stations, altStationState)) return

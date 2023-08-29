@@ -6,6 +6,7 @@ import { Log_expand_info } from '../../../status_logs_block';
 
 import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
+import { reducers } from '../../../../store/reducers/calib_forms_reducers';
 
 export default function Syslog_wrap(props) {
   const [isLoading, setIsLoading] = React.useState(false)
@@ -14,6 +15,7 @@ export default function Syslog_wrap(props) {
     const request_obj = {
       address: 'GetLogErrorFull.cgi',
       data: 'syslog$1',
+      reducer: reducers.syslog_data,
       notifications: {
         good: 'default',
         bad: 'default'

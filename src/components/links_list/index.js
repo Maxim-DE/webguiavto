@@ -6,6 +6,7 @@ import useSectionStore from '../../logic/sectionsRefs_store';
 import { useInView } from '../../logic/useInView_hook';
 
 import './index.css'
+import { useSelector } from 'react-redux';
 
 const links_items = [
   {id: 'status', name: "Статус"},
@@ -17,7 +18,7 @@ const links_items = [
 
 function Links_list(props) {
   const [active, SetActive] = React.useState('');
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
   const [sectionState, sectionActions] = useSectionStore()
 
   React.useEffect(() => {
@@ -52,10 +53,10 @@ function Links_list(props) {
     <ul className="nav_linksList">
       {links_items.map((item, index) => {
         if (index > 0 && index < links_items.length - 1 
-          && !authGlobalState.auth_access.settings) {
+          && !auth_store.auth_access.settings) {
           return
         } else if (index == links_items.length - 1
-                   && !authGlobalState.auth_access.calib) {
+                   && !auth_store.auth_access.calib) {
           return
         } else {
           return (

@@ -7,24 +7,27 @@ import Silence_det_settings from "../../../../../custom_groups/silence_det_setti
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import clone from "lodash/clone"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers"
+import { useSelector } from "react-redux"
 
 export default function Silence_det_form(props) {
+  const silenceDet_store = useSelector((store) => store.globalStore.global_data.section_data.settings.silence_det)
 
   const [silenceDetState, setSilenceDetState] = React.useState({})
 
   React.useEffect(() => {
-    console.log(props.settings_data);
+    console.log(silenceDet_store);
 
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (silenceDet_store != 'null' && silenceDet_store != undefined) {
       let settings_state_copy = silenceDetState
 
       for (const key in settings_state_copy) {
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = silenceDet_store[key]
       }
 
       setSilenceDetState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [silenceDet_store])
 
   const state_handler = (state) => {
     let target_state_clone = clone(silenceDetState)
@@ -53,6 +56,7 @@ export default function Silence_det_form(props) {
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'
