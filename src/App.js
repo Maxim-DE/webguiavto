@@ -31,6 +31,7 @@ import { fetch_error_handler } from './logic/fetch_error_handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { reqReducers_wrap } from './store/req_reducers_wrap';
 import { reducers } from './store/reducers/core_store_reducers';
+import PeripheralMenu from './components/peripheral_menu';
 
 let debounceTimer;
 
@@ -280,9 +281,8 @@ function App() {
           {/* Компонент с боковым нижним меню */}
           <PeripheralMenu
             updateHandler={handlePoolUpdate}
-            structure={peripheralData.structure}
-            data={statusData}
-            software_version={sectionData.info?.software_version?.os_version} />
+            data={status_section_data}
+            software_version={info_section_data?.software_version?.os_version} />
         </nav>
         <div className='main_wrap'>
           <header>
