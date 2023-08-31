@@ -37,7 +37,7 @@ function SerialNumVersionCalibSettings(props) {
   ]
 
   React.useEffect(() => {
-    if (calibSerialNumVersion_store != undefined) return
+    if (calibSerialNumVersion_store == undefined) return
 
     if (Object.keys(calibSerialNumVersion_store).length != 0) {
       let calib_state_copy = serialNumVersionCalibState
