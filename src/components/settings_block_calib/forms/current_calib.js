@@ -4,8 +4,11 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function CurrentCalibSettings(props) {
+  const calibCurrent_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_current?.current_value)
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
     I1: '',
@@ -15,12 +18,14 @@ function CurrentCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
+    if (!calibCurrent_store) return
+
+    if (Object.keys(calibCurrent_store).length != 0) {
       let calib_state_copy = {}
 
-      for (const key in props.calib_data) {
-        const divident = props.calib_data[key][0],
-              divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibCurrent_store) {
+        const divident = calibCurrent_store[key][0],
+              divider = calibCurrent_store[key][1] == 0 ? 1 : calibCurrent_store[key][1],
               digits = Math.log10(divider)
         calib_state_copy[key] = (divident / divider).toFixed(digits)
       }
@@ -28,7 +33,7 @@ function CurrentCalibSettings(props) {
       setAmperageCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibCurrent_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -51,11 +56,12 @@ function CurrentCalibSettings(props) {
     
     
     let state_obj = { [name]: value },
-        converted_state = calib_state_conversion(state_obj, props.calib_data)
+        converted_state = calib_state_conversion(state_obj, calibCurrent_store)
 
     const request_obj = {
       address: 'calib_current.cgi',
       data: `${name}$${value*10}`,
+      reducer: reducers.calibration_form,
       update_data: amperageCalibState,
       notifications: {
         good: 'default',

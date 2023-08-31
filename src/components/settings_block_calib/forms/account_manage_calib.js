@@ -7,6 +7,7 @@ import ModalCalib from '../../calib_modal'
 
 import useGlobalStore from '../../../logic/auth_store';
 import { PulseLoader } from 'react-spinners';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 export default function Account_manage_calib(props) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -205,6 +206,7 @@ export default function Account_manage_calib(props) {
   const doGetAccList = () => {
     const req_obj = {
       address: 'get_user_list.cgi',
+      reducer: reducers.user_list_handling,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -225,6 +227,7 @@ export default function Account_manage_calib(props) {
     const req_obj = {
       address: 'edit_user.cgi',
       data: `id$${id};login$${new_login};password$${new_passw}`,
+      reducer: reducers.user_list_handling,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -242,6 +245,7 @@ export default function Account_manage_calib(props) {
     const req_obj = {
       address: 'delete_user.cgi',
       data: `id$${id}`,
+      reducer: reducers.user_list_handling,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -262,6 +266,7 @@ export default function Account_manage_calib(props) {
     const req_obj = {
       address: 'register_user.cgi',
       data: `login$${new_login};password$${new_passw}`,
+      reducer: reducers.user_list_handling,
       notifications: {
         good: 'Зарегистрировано',
         bad: 'default'

@@ -3,8 +3,11 @@ import React from 'react';
 import Settings_block_calib from '..';
 import Hex_upload from './hex_upload';
 import FormInput from '../../form_input';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function Firmware_calib(props) {
+  const calibFirmware_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_firmware)
 
   const handleClick_crc_check = (event) => {
     const target = event.target,
@@ -26,6 +29,7 @@ function Firmware_calib(props) {
   const handleClick_info_refresh = (event) => {
     const request_obj = {
       address: 'calib_get_info_firmware.cgi',
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -47,9 +51,9 @@ function Firmware_calib(props) {
           <label
             className="settings_itemLabel">
             Тек. версия прошивки: {
-              props.calib_data != undefined &&
-              Object.keys(props.calib_data).length > 0 ?
-              props.calib_data.application.info.version :
+              calibFirmware_store != undefined &&
+              Object.keys(calibFirmware_store).length > 0 ?
+              calibFirmware_store.application.info.version :
               'отсутствует'
             }
           </label>
@@ -67,11 +71,11 @@ function Firmware_calib(props) {
         <div className='item_input'>
         </div>
       </li>
-      {props.calib_data != undefined &&
-       Object.keys(props.calib_data).length > 1 ? 
-       Object.keys(props.calib_data).filter(item => item != "application").map((item, index) => {
+      {calibFirmware_store != undefined &&
+       Object.keys(calibFirmware_store).length > 1 ? 
+       Object.keys(calibFirmware_store).filter(item => item != "application").map((item, index) => {
 
-        const firmware_data = props.calib_data[item]
+        const firmware_data = calibFirmware_store[item]
 
         if (firmware_data.info.version.length != 0) return (
           <li

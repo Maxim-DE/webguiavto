@@ -9,9 +9,13 @@ import ModalCalib from '../calib_modal';
 
 import FormInput from '../form_input';
 
-import useGlobalStore from '../../logic/auth_store';
+import useAuthStore from '../../logic/auth_store';
+import { reducers } from '../../store/reducers/log_button_reducers';
+import { useSelector } from 'react-redux';
 
 const CalibLogButton = (props) => {
+
+	const auth_store = useSelector((store) => store.authStore.auth_data)
 
 	const [calibPassw, setCalibPassw] = React.useState({
 		login: '',
@@ -19,13 +23,13 @@ const CalibLogButton = (props) => {
 		is_auth: false
 	})
 
-	const [authGlobalState, authGlobalActions] = useGlobalStore()
+	const [authGlobalState, authGlobalActions] = useAuthStore()
 
 	const [isOpen, setIsOpen] = React.useState(false);
 
 	React.useEffect(() => {
-		console.log(props.isAuthComplete);
-		if (props.isAuthComplete) {
+		console.log(auth_store.is_auth);
+		if (auth_store.is_auth) {
 			setIsOpen(false)
 			setCalibPassw(prevState => ({
 				...prevState,
@@ -37,7 +41,7 @@ const CalibLogButton = (props) => {
 				is_auth: false
 			}))
 		}
-	}, [props.isAuthComplete])
+	}, [auth_store.is_auth])
 
 	const clickHandler = (event) => {
 		let target = event.target,
@@ -54,6 +58,7 @@ const CalibLogButton = (props) => {
 				const request_obj = {
 					address: 'logout.cgi',
 					// data: `login$${calibPassw.login};password$${calibPassw.password}`,
+					reducer: reducers.logout,
 					notifications: {
 						good: 'Выход выполнен',
 						bad: 'default'
@@ -85,6 +90,7 @@ const CalibLogButton = (props) => {
 		const request_obj = {
       address: 'calib_passw.cgi',
       data: `login$${calibPassw.login};password$${calibPassw.password}`,
+			reducer: reducers.calib_passw,
 			notifications: {
 				good: 'default',
 				bad: 'default'

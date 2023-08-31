@@ -8,8 +8,18 @@ import cloneDeep from 'lodash/cloneDeep';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import useGlobalStore from '../../../logic/auth_store';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
 
 function FanCalibSettings(props) {
+  const calibFan_store = useSelector((store) => {
+    if (deepKeyExists(store, 'calib_fan')) {
+      return store.globalStore.global_data.calib_state.data?.calib_fan
+    } else return ''
+  }),
+        auth_store = useSelector((store) => store.authStore.auth_data)
+      // (store) => store.globalStore.global_data.calib_state.data.calib_fan
 
   const [fanCalibState, setFanCalibState] = React.useState({
     'fan_pwm': [1, 0],
@@ -19,17 +29,19 @@ function FanCalibSettings(props) {
     'fan_pwm_value': 0
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
+    if (!calibFan_store) return
+
+    if (Object.keys(calibFan_store).length != 0) {
       let calib_state_copy = cloneDeep(fanCalibState)
 
-      for (const key in props.calib_data) {
+      for (const key in calibFan_store) {
         if (key == 'fan_pwm') {
           let state_array = []
 
-          if (props.calib_data[key] == 0) {
+          if (calibFan_store[key] == 0) {
             state_array = [1, 0]
           } else {
             state_array = [0, 1]
@@ -37,20 +49,20 @@ function FanCalibSettings(props) {
 
           calib_state_copy[key] = state_array
           
-        } else if (Array.isArray(props.calib_data[key])) {
-          const divident = props.calib_data[key][0],
-                divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+        } else if (Array.isArray(calibFan_store[key])) {
+          const divident = calibFan_store[key][0],
+                divider = calibFan_store[key][1] == 0 ? 1 : calibFan_store[key][1],
                 digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = props.calib_data[key]
+          calib_state_copy[key] = calibFan_store[key]
         }
       }
 
       setFanCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibFan_store])
 
   const fan_pwm_handleChange = (event) => {
     const target = event.target;
@@ -88,6 +100,7 @@ function FanCalibSettings(props) {
     const request_obj = {
       address: 'calib_fan.cgi',
       data: data_string,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -122,10 +135,10 @@ function FanCalibSettings(props) {
     let value, state_to_save, save_str
           // value = target.type != 'text' ? fanCalibState[name] : fanCalibState[name] * 10
     
-    if (Array.isArray(props.calib_data[name])) {
+    if (Array.isArray(calibFan_store[name])) {
       value = fanCalibState[name]
       let state_obj = { [name]: value }
-      state_to_save = calib_state_conversion(state_obj, props.calib_data)
+      state_to_save = calib_state_conversion(state_obj, calibFan_store)
       save_str = `${name}$${state_to_save[name][0]}` // берем значение с конветрированного состояния
 
     } else {
@@ -138,6 +151,7 @@ function FanCalibSettings(props) {
     const request_obj = {
       address: 'calib_fan.cgi',
       data: save_str,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -158,12 +172,12 @@ function FanCalibSettings(props) {
     let value = target.type === 'checkbox' ? Number(target.checked) : fanCalibState[name],
         state_to_save = {}
 
-    if (props.calib_data[name]) {
-      if (Array.isArray(props.calib_data[name])) {
+    if (calibFan_store[name]) {
+      if (Array.isArray(calibFan_store[name])) {
         value = fanCalibState[name]
         state_to_save = { [name]: [
           value,
-          props.calib_data[name][1]
+          calibFan_store[name][1]
         ]}
       } else {
         value = target.type === 'checkbox' ? Number(target.checked) : fanCalibState[name]
@@ -176,6 +190,7 @@ function FanCalibSettings(props) {
     const request_obj = {
       address: 'calib_fan.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       save_data: {
         calib_fan: state_to_save
       }
@@ -278,7 +293,7 @@ function FanCalibSettings(props) {
             type="button" />
         </div>
       </li>
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
        <>
         <li
           key='fan_pwm_control'

@@ -9,6 +9,7 @@ import { dec2hexString } from '../../logic/utilites'
 import FormInput from '../form_input'
 import ModalCalib from '../calib_modal';
 import _ from 'lodash'
+import { reducers } from '../../store/reducers/custom_group_reducers'
 
 function Conf_manage_settings({parent_state, state_handler, ...rest}) {
 
@@ -35,6 +36,8 @@ function Conf_manage_settings({parent_state, state_handler, ...rest}) {
   }, [])
 
   React.useEffect(() => {
+    if (!parent_state) return
+
     if (!Object.hasOwn(parent_state, 'conf_manage')) return
 
     if (_.isEqual(parent_state.conf_manage, confManageState)) return
@@ -97,6 +100,7 @@ function Conf_manage_settings({parent_state, state_handler, ...rest}) {
     const request_obj = {
       address: 'get_conf_info.cgi',
       data: `name$${conf_name}`,
+      reducer: reducers.get_conf_info,
       notifications: {
         good: 'default',
         bad: 'default'

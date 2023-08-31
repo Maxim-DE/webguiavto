@@ -8,7 +8,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 
 import './index.css'
-import { icons } from 'react-icons';
+import { useSelector } from 'react-redux';
 
 // массив со всеми элементами навбара
 const links_items = [
@@ -28,8 +28,7 @@ const calib_links_items = [
 
 function Links_list(props) {
   const [active, SetActive] = React.useState('');
-  const [calibOpen, setCalibOpen] = React.useState(false);
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
   const [sectionState, sectionActions] = useSectionStore()
 
   const location = useLocation();
@@ -58,11 +57,11 @@ function Links_list(props) {
   }, [sectionState.intersection_pool])
 
   React.useEffect(() => {
-    if (active < '4') {
-      setCalibOpen(false)
-    } else {
-      setCalibOpen(true)
-    }
+    // if (active < '4') {
+    //   setCalibOpen(false)
+    // } else {
+    //   setCalibOpen(true)
+    // }
   }, [active]);
 
   function handleClick(event) {
@@ -88,10 +87,10 @@ function Links_list(props) {
       <ul className="nav_linksList">
         {links_items.map((item, index) => {
           if (index > 0 && index < links_items.length - 1 
-            && !authGlobalState.auth_access.settings) {
+            && !auth_store.auth_access.settings) {
             return
           } else if (index == links_items.length - 1
-                     && !authGlobalState.auth_access.calib) {
+                     && !auth_store.auth_access.calib) {
             return
           } else {
             return (
@@ -135,7 +134,7 @@ function Links_list(props) {
 
 // Отдельный вариант списка навигации для калибровки, по реализации тоже самое, что и список выше, только он выступает в качестве потомка основного списка, поэтому в него передаются функции и значения из родительского компонента
 function CalibNavList({updateHandler, setParentActive}) {
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
   const [active, setActive] = React.useState(0);
   const navigate = useNavigate();
 
@@ -184,7 +183,7 @@ function CalibNavList({updateHandler, setParentActive}) {
         >Вернуться к остальным настройкам</div>
       </li>
         {calib_links_items.map((item, index) => {
-          if (item.id == 'developer' && !authGlobalState.auth_access.calib_extend) {
+          if (item.id == 'developer' && !auth_store.auth_access.calib_extend) {
             return
           } else {
             return (

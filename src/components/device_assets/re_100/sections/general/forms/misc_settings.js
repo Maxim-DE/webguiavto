@@ -7,28 +7,31 @@ import Conf_manage_settings from "../../../../../custom_groups/conf_manage_setti
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import cloneDeep from "lodash/cloneDeep"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers";
+import { useSelector } from "react-redux";
 
 export default function Misc_settings(props) {
+  const miscSettings_store = useSelector((store) => store.globalStore.global_data.section_data.settings.misc_settings)
 
   const [miscSettingsState, setMiscSettingsState] = React.useState({
     request_period: ''
   })
 
   React.useEffect(() => {
-    console.log(props.settings_data);
+    console.log(miscSettings_store);
 
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (miscSettings_store != 'null' && miscSettings_store != undefined) {
       let settings_state_copy = miscSettingsState
 
       for (const key in settings_state_copy) {
-        if (props.settings_data[key] == undefined) continue
+        if (miscSettings_store[key] == undefined) continue
 
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = miscSettings_store[key]
       }
 
       setMiscSettingsState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [miscSettings_store])
 
   const state_handler = (state) => {
     let target_state_clone = cloneDeep(miscSettingsState)
@@ -57,6 +60,7 @@ export default function Misc_settings(props) {
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'

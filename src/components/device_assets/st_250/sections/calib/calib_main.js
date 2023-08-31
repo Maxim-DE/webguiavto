@@ -11,6 +11,7 @@ import FanCalibSettings from '../../../../settings_block_calib/forms/fan_calib';
 import TempThresholdCalibSettings from '../../../../settings_block_calib/forms/temp_thrashold';
 
 import useGlobalStore from '../../../../../logic/auth_store';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 
 export const CalibMain = (props) => {
@@ -18,7 +19,8 @@ export const CalibMain = (props) => {
 
   React.useEffect(() => {
     let request_obj = {
-      address: `${props.section_name}.cgi`,
+      address: `calibration.cgi`,
+      reducer: reducers.calibration_data,
     }
     props.updateHandler(request_obj);
   }, [])
@@ -32,49 +34,20 @@ export const CalibMain = (props) => {
       section_name={`${props.section_name}`}
       section_header="калибровка">
       <GeneralCalibSettings_ST
-        adc_data={props.adc_data != null ?
-          props.adc_data.general_calib : ''}
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_general : ''}
         clickHandler={handleClick} />
       <VoltageCalibSettings
-        adc_data={props.adc_data != null ?
-          props.adc_data.voltage_calib : ''}
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_voltage : ''}
         clickHandler={handleClick} />
       <CurrentCalibSettings_ST
-        adc_data={props.adc_data != null ?
-          props.adc_data.current_calib : ''}
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_current.current_value
-          : ''}
         clickHandler={handleClick} />
       <CurrentThresholdCalibSettings_ST
-        adc_data={props.adc_data != null ?
-          props.adc_data.current_threshhold_calib : ''}
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_current.threshold : ''}
         clickHandler={handleClick} />
       <PowerCalibSettings
-        adc_data={props.adc_data != null ?
-          props.adc_data.power_calib : ''}
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_power : ''}
         clickHandler={handleClick} />
       <WattageAdditionalCalibSettings_ST
-        adc_data={props.adc_data != null ?
-          props.adc_data.power_additional_calib : ''}
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_additional_power : ''}
         clickHandler={handleClick} />
       <TempThresholdCalibSettings
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_temp : ''}
         clickHandler={handleClick} />
       <FanCalibSettings
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_fan : ''}
         clickHandler={handleClick} />
     </SettingsSectionWrap>
   )

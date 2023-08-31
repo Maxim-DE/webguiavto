@@ -2,8 +2,13 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function GeneralCalibSettings(props) {
+
+  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general)
+        // adcGeneral_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc.general_calib)
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     def_module: 0,
@@ -14,21 +19,21 @@ function GeneralCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibGeneral_store) {
       return
     } 
 
-    if (Object.keys(props.calib_data).length != 0) {
+    if (Object.keys(calibGeneral_store).length != 0 && calibGeneral_store != undefined) {
       let calib_state_copy = generalCalibState
 
-      for (const key in props.calib_data) {
-        calib_state_copy[key] = props.calib_data[key]
+      for (const key in calibGeneral_store) {
+        calib_state_copy[key] = calibGeneral_store[key]
       }
 
       setGeneralCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibGeneral_store])
 
   const handleChange_save = (event) => {
     let target = event.target;
@@ -45,6 +50,7 @@ function GeneralCalibSettings(props) {
     const request_obj = {
       address: 'calib_general.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

@@ -4,8 +4,21 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_double_array_conversion } from '../../../logic/calib_state_conversion';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
 
 function CurrentThresholdCalibSettings(props) {
+  const calibCurrentThreshold_store = useSelector((store) => {
+    if (deepKeyExists(store, 'threshold')) {
+      return store.globalStore.global_data.calib_state.data?.calib_current?.threshold
+    } else return ''
+  }),
+    adcCurrentThreshold_store = useSelector((store) => {
+      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'current_threshhold_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.current_threshhold_calib
+      } else return ''
+    })
 
   const [thresholdCalibState, setThresholdCalibState] = React.useState({
     I1_threshold_input: '',
@@ -15,10 +28,12 @@ function CurrentThresholdCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
+    if (!calibCurrentThreshold_store) return
+
+    if (Object.keys(calibCurrentThreshold_store).length != 0) {
       let calib_state_copy = {}
 
-      for (const key in props.calib_data) {
+      for (const key in calibCurrentThreshold_store) {
         let value_array = [],
             divident,
             divider,
@@ -27,14 +42,14 @@ function CurrentThresholdCalibSettings(props) {
         let low_value,
             high_value
         
-        divident = props.calib_data[key].low[0]
-        divider = props.calib_data[key].low[1] == 0 ? 1 : props.calib_data[key].low[1]
+        divident = calibCurrentThreshold_store[key].low[0]
+        divider = calibCurrentThreshold_store[key].low[1] == 0 ? 1 : calibCurrentThreshold_store[key].low[1]
         digits = Math.log10(divider)
         low_value = (divident / divider).toFixed(digits)
         value_array.push(low_value)
 
-        divident = props.calib_data[key].high[0]
-        divider = props.calib_data[key].high[1] == 0 ? 1 : props.calib_data[key].high[1]
+        divident = calibCurrentThreshold_store[key].high[0]
+        divider = calibCurrentThreshold_store[key].high[1] == 0 ? 1 : calibCurrentThreshold_store[key].high[1]
         digits = Math.log10(divider)
         high_value = (divident / divider).toFixed(digits)
         value_array.push(high_value)
@@ -45,7 +60,7 @@ function CurrentThresholdCalibSettings(props) {
       setThresholdCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibCurrentThreshold_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -67,11 +82,11 @@ function CurrentThresholdCalibSettings(props) {
     const name = `${target.name}`
     const calib_data_name = name.replace('_threshold', '')
     const state_value = thresholdCalibState[id]
-    const multipier_low = props.calib_data ? props.calib_data[calib_data_name].low[1] : 10
-    const multipier_high = props.calib_data ? props.calib_data[calib_data_name].high[1] : 10
+    const multipier_low = calibCurrentThreshold_store ? calibCurrentThreshold_store[calib_data_name].low[1] : 10
+    const multipier_high = calibCurrentThreshold_store ? calibCurrentThreshold_store[calib_data_name].high[1] : 10
 
     let state_obj = { [calib_data_name]: state_value },
-        converted_state = calib_double_array_conversion(state_obj, props.calib_data)
+        converted_state = calib_double_array_conversion(state_obj, calibCurrentThreshold_store)
 
 
     const value = `${name}_low$${state_value[0] * multipier_low};${name}_high$${state_value[1] * multipier_high};`
@@ -79,6 +94,7 @@ function CurrentThresholdCalibSettings(props) {
     const request_obj = {
       address: 'calib_current_threshold.cgi',
       data: value,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

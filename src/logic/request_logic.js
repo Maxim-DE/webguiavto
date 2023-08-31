@@ -89,7 +89,6 @@ async function fetch_data(req_obj) {
   const test_url = "http://192.168.0.114/GetDebug.CGI"
 
   console.log(url);
-  let responseClone;
   let resp_obj = {}
   let request_name = request.address.replace('.cgi', '')
       request_name = request_name.replace('set_', '')

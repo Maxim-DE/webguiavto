@@ -7,14 +7,16 @@ import ConfFileCalib from '../../../../settings_block_calib/forms/conf_file_cali
 import SerialNumVersionCalibSettings from '../../../../settings_block_calib/forms/serialnum_version_calib';
 
 import useGlobalStore from '../../../../../logic/auth_store';
+import { useSelector } from 'react-redux';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 export const MiscCalib = (props) => {
-
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
 
   React.useEffect(() => {
     let request_obj = {
-      address: `${props.section_name}.cgi`,
+      address: `calibration.cgi`,
+      reducer: reducers.calibration_data,
     }
     props.updateHandler(request_obj);
   }, [])
@@ -28,16 +30,10 @@ export const MiscCalib = (props) => {
       section_name={`${props.section_name}`}
       section_header="другое">
       <MiscCalibSettings_ST250
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_misc : ''}
         clickHandler={handleClick} />
       <Firmware_calib
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_firmware : ''}
         clickHandler={handleClick} />
       <ConfFileCalib
-        calib_data={Object.keys(props.section_data).length != 0 ?
-          props.section_data.calib_configFile : ''}
         clickHandler={handleClick} />
       {/* <ChannelEnablerSettings 
         calib_data={Object.keys(props.section_data).length != 0 ?
@@ -45,11 +41,9 @@ export const MiscCalib = (props) => {
         clickHandler={handleClick}
         /> */}
       {/* <MiscDownloadCalib /> */}
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
         <>
           <SerialNumVersionCalibSettings
-            calib_data={Object.keys(props.section_data).length != 0 ?
-              props.section_data.calib_serialNum : ''}
             clickHandler={handleClick} />
         </>
       }
