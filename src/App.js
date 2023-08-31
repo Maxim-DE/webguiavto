@@ -282,7 +282,7 @@ function App() {
           <PeripheralMenu
             updateHandler={handlePoolUpdate}
             data={status_section_data}
-            software_version={info_section_data.software_version?.os_version} />
+            software_version={info_section_data?.software_version?.os_version} />
         </nav>
         <div className='main_wrap'>
           <header>
