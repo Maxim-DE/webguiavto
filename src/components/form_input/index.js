@@ -271,6 +271,7 @@ function FormInput(props) {
       <select
         id={props.id}
         name={props.name}
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         onChange={changeHandler}
         disabled={props.disabled}
         value={props.input_value}

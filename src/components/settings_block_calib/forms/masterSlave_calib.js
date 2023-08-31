@@ -5,9 +5,14 @@ import ModalCalib from '../../calib_modal';
 import { PulseLoader } from 'react-spinners';
 import { cloneDeep } from 'lodash';
 import { MdNetworkCheck } from 'react-icons/md';
+import { useSelector } from 'react-redux';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 export default function MasterSlave_calib(props) {
-  const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({
+  const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_masterSlave)
+
+  const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({ 
+    master_form_availiable: 1,
     master_connection_speed: '',
     master_req_period: '',
     master_timeout: '',
@@ -23,6 +28,23 @@ export default function MasterSlave_calib(props) {
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!calibMasterSlave_store) {
+      return
+    }
+
+    if (Object.keys(calibMasterSlave_store).length != 0 || calibMasterSlave_store != undefined) {
+      let calib_state_copy = masterSlaveCalibState
+
+      for (const key in calibMasterSlave_store) {
+        calib_state_copy[key] = calibMasterSlave_store[key]
+      }
+
+      setMasterSlaveCalibState(calib_state_copy)
+
+    }
+  }, [calibMasterSlave_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -43,6 +65,7 @@ export default function MasterSlave_calib(props) {
     const request_obj = {
       address: 'calib_masterSlave.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -53,7 +76,7 @@ export default function MasterSlave_calib(props) {
       }
     }
 
-    props.clickHandler(request_obj);
+    props.updateHandler(request_obj);
 
   }
 
@@ -111,6 +134,32 @@ export default function MasterSlave_calib(props) {
       default:
         break;
     }
+  }
+
+  const handleFormDisable = (event) => {
+    const target = event.target,
+          value = target.type === 'checkbox' ? target.checked : target.value
+
+    setMasterSlaveCalibState(prevState => ({
+      ...prevState,
+      master_form_availiable: value
+    }))
+
+    const req_obj = {
+      address: 'calib_masterSlave.cgi',
+      data: `master_form_availiable$${value}`,
+      reducer: reducers.calibration_form,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_masterSlave: masterSlaveCalibState
+      }
+    }
+
+    props.updateHandler(req_obj)
   }
 
   const toggleEditableDevice = ({ id, index, boolean } = {}) => {
@@ -264,7 +313,7 @@ export default function MasterSlave_calib(props) {
     })
   }
 
-  const doGetAccList = () => {
+  const doGetDeviceList = () => {
     const req_obj = {
       address: 'get_device_list.cgi',
       notifications: {
@@ -352,6 +401,8 @@ export default function MasterSlave_calib(props) {
   return (
     <Settings_block_calib
       header={`параметры master`}
+      disabled={!masterSlaveCalibState.master_form_availiable}
+      disableHandler={handleFormDisable}
       settings_type={`general_calib`} >
       <li
         key='master_connection_speed_calib'
@@ -369,6 +420,7 @@ export default function MasterSlave_calib(props) {
             id={`master_connection_speed_input`}
             name={`master_connection_speed`}
             class="calib_input"
+            disabled={!masterSlaveCalibState.master_form_availiable}
             changeHandler={handleChange}
             input_value={masterSlaveCalibState.master_connection_speed}
             type="select"
@@ -382,6 +434,7 @@ export default function MasterSlave_calib(props) {
           <FormInput
             id={`master_connection_speed_save`}
             name={`master_connection_speed`}
+            disabled={!masterSlaveCalibState.master_form_availiable}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
@@ -402,6 +455,7 @@ export default function MasterSlave_calib(props) {
           <FormInput
             id={`master_req_period_input`}
             name={`master_req_period`}
+            disabled={!masterSlaveCalibState.master_form_availiable}
             class="calib_input"
             changeHandler={handleChange}
             input_value={masterSlaveCalibState.master_req_period}
@@ -409,6 +463,7 @@ export default function MasterSlave_calib(props) {
           <FormInput
             id={`master_req_period_save`}
             name={`master_req_period`}
+            disabled={!masterSlaveCalibState.master_form_availiable}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
@@ -430,12 +485,14 @@ export default function MasterSlave_calib(props) {
             id={`master_timeout_input`}
             name={`master_timeout`}
             class="calib_input"
+            disabled={!masterSlaveCalibState.master_form_availiable}
             changeHandler={handleChange}
             input_value={masterSlaveCalibState.master_timeout}
             type="text" />
           <FormInput
             id={`master_timeout_save`}
             name={`master_timeout`}
+            disabled={!masterSlaveCalibState.master_form_availiable}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
@@ -456,8 +513,9 @@ export default function MasterSlave_calib(props) {
           <FormInput
             id={`account_manage_calib_input`}
             name={`account_manage_calib`}
+            disabled={!masterSlaveCalibState.master_form_availiable}
             clickHandler={(e) => {
-              // doGetAccList()
+              doGetDeviceList()
               // setIsLoading(true)
               setIsOpen(true);
             }}

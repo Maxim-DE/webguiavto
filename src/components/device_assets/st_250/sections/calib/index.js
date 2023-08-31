@@ -29,6 +29,7 @@ import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
 import MasterSlave_calib from '../../../../settings_block_calib/forms/masterSlave_calib';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 
 
@@ -72,7 +73,7 @@ export default function CalibSection(props) {
       section_name={`${props.section_name}`}
       section_header="калибровка">
         <MasterSlave_calib
-          clickHandler={handleClick} />
+          updateHandler={handleClick} />
         <GeneralCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.general_calib : ''}
