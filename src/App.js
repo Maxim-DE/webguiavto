@@ -252,7 +252,7 @@ function App() {
     // Обновляем ссылку на раздел в навигации и прокручиваем к ней страницу
     nav_ref.current = document.getElementById(`${nav_link_name}_section`)
     if (nav_ref.current != null) {
-      nav_ref.current.scrollIntoView({ block: "center", behavior: "smooth" })
+      nav_ref.current.scrollIntoView({ block: "start", behavior: "smooth" })
     }
   }
 
@@ -333,12 +333,12 @@ function DeviceWrap_switch({device_type, ...props}) {
   const [sectionState, sectionActions] = useSectionStore()
 
   // Используем хук useInView для отслеживания видимых элементов
-  const observed_elements = useInView(sectionState.section_pool)
+  // const observed_elements = useInView(sectionState.section_pool)
 
   // Обновляем пул секций(разделов) в хранилище состояний при изменении отслеживаемых элементов
-  React.useEffect(() => {
-    sectionActions.refresh_intersection_pool(observed_elements)
-  }, [observed_elements])
+  // React.useEffect(() => {
+  //   sectionActions.refresh_intersection_pool(observed_elements)
+  // }, [observed_elements])
 
   // Определяем тип устройства и возвращаем соответствующий компонент
   if (device_type_str === 'st_250' ||
