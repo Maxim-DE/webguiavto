@@ -120,5 +120,26 @@ export const reducers = {
     }
 
     store.dispatch(refreshGlobalStore(obj_to_refresh))
-  }
+  },
+
+  // Оработка запросов, связанных с редактированием списка slave-устройств
+  device_list_handling: ({ request_resp }) => {
+    if (!Object.hasOwn(request_resp, 'device_list')) return
+
+    const obj_to_refresh = {
+      global_data: {
+        calib_state: {
+          data: {
+            calib_masterSlave: {
+              device_list: {
+                saved_list: request_resp.user_list
+              }
+            }
+          }
+        }
+      }
+    }
+
+    store.dispatch(refreshGlobalStore(obj_to_refresh))
+  },
 }
