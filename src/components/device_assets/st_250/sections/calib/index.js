@@ -24,11 +24,9 @@ import ConfFileCalib from '../../../../settings_block_calib/forms/conf_file_cali
 import NetworkCalibSettings from '../../../../settings_block_calib/forms/network_calib';
 import ConsoleOutputCalibSettings from '../../../../settings_block_calib/forms/console_output_calib';
 import SerialNumVersionCalibSettings from '../../../../settings_block_calib/forms/serialnum_version_calib';
-
 import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
-import MasterSlave_calib from '../../../../settings_block_calib/forms/masterSlave_calib';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
 
@@ -72,8 +70,6 @@ export default function CalibSection(props) {
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
       section_header="калибровка">
-        <MasterSlave_calib
-          updateHandler={handleClick} />
         <GeneralCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.general_calib : ''}
@@ -92,7 +88,7 @@ export default function CalibSection(props) {
             // calib_data={Object.keys(props.section_data).length != 0 ?
             // props.section_data.calib_current.current_value
             // : ''}
-          clickHandler={handleClick} />
+           clickHandler={handleClick} />
         <CurrentThresholdCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.current_threshhold_calib : ''}
