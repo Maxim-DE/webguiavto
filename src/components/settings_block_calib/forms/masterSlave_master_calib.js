@@ -8,7 +8,7 @@ import { MdNetworkCheck } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
-export default function MasterSlave_calib(props) {
+export default function Modbus_master_calib(props) {
   const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_masterSlave)
 
   const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({ 
@@ -63,7 +63,7 @@ export default function MasterSlave_calib(props) {
       value = masterSlaveCalibState[name]
 
     const request_obj = {
-      address: 'calib_masterSlave.cgi',
+      address: 'calib_modbus_master.cgi',
       data: `${name}$${value}`,
       reducer: reducers.calibration_data,
       notifications: {
@@ -146,7 +146,7 @@ export default function MasterSlave_calib(props) {
     }))
 
     const req_obj = {
-      address: 'calib_masterSlave.cgi',
+      address: 'calib_modbus_master.cgi',
       data: `master_form_availiable$${value}`,
       reducer: reducers.calibration_form,
       notifications: {
@@ -315,7 +315,7 @@ export default function MasterSlave_calib(props) {
 
   const doGetDeviceList = () => {
     const req_obj = {
-      address: 'get_device_list.cgi',
+      address: 'modbus_get_device_list.cgi',
       notifications: {
         good: 'default',
         bad: 'default'
@@ -334,7 +334,7 @@ export default function MasterSlave_calib(props) {
           new_address = address.length > 0 ? address : 'NULL'
 
     const req_obj = {
-      address: 'edit_device.cgi',
+      address: 'modbus_edit_device.cgi',
       data: `id$${id};type$${new_type};address$${new_address}`,
       notifications: {
         good: 'default',
@@ -350,7 +350,7 @@ export default function MasterSlave_calib(props) {
 
   const doDeleteAccReq = ({ id } = {}) => {
     const req_obj = {
-      address: 'delete_device.cgi',
+      address: 'modbus_delete_device.cgi',
       data: `id$${id}`,
       notifications: {
         good: 'default',
@@ -369,7 +369,7 @@ export default function MasterSlave_calib(props) {
           new_address = address.length > 0 ? address : 'NULL'
 
     const req_obj = {
-      address: 'register_device.cgi',
+      address: 'modbus_register_device.cgi',
       data: `type$${new_type};address$${new_address}`,
       notifications: {
         good: 'Зарегистрировано',
@@ -403,7 +403,7 @@ export default function MasterSlave_calib(props) {
       header={`параметры master`}
       disabled={!masterSlaveCalibState.master_form_availiable}
       disableHandler={handleFormDisable}
-      settings_type={`general_calib`} >
+      settings_type={`genera_modbus_slave_calib`} >
       <li
         key='master_connection_speed_calib'
         id='master_connection_speed_calib'
