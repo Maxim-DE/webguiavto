@@ -234,8 +234,9 @@ function StatusSection(props) {
           {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
+            device_type={device_type}
             section_name={props.section_name}
-            settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data} 
+            settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data}
             status_data={status_store}
           />
           }

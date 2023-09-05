@@ -18,6 +18,7 @@ function BallastCalibSettings(props) {
         })
 
   const [ballastCalibState, setBallastCalibState] = React.useState({
+    ballast_form_available: 1,
     ballast_1: '',
   })
 
@@ -83,8 +84,37 @@ function BallastCalibSettings(props) {
 
   }
 
+  const handleFormDisable = (event) => {
+    const target = event.target,
+      value = target.type === 'checkbox' ? target.checked : target.value
+
+    setBallastCalibState(prevState => ({
+      ...prevState,
+      ballast_form_available: value
+    }))
+
+    const req_obj = {
+      address: 'calib_ballast.cgi',
+      data: `ballast_form_availiable$${value}`,
+      reducer: reducers.calibration_form,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_ballast: ballastCalibState
+      }
+    }
+
+    props.clickHandler(req_obj)
+  }
+
   return (
-    <Settings_block_calib header={`калибровка балласта`}
+    <Settings_block_calib 
+      header={`калибровка балласта`}
+      disabled={!ballastCalibState.ballast_form_available}
+      disableHandler={handleFormDisable}
       settings_type={`ballast_calib`}
       section_name={props.section_name}>
       <li
@@ -105,12 +135,14 @@ function BallastCalibSettings(props) {
           <FormInput
             id={`ballast_1_calib_input`}
             name={`ballast_1_calib`}
+            disabled={!ballastCalibState.ballast_form_available}
             changeHandler={handleChange}
             input_value={ballastCalibState.ballast_1}
             type="text" />
           <FormInput
             id={`ballast_1_calib_save`}
             name={`ballast_1_calib`}
+            disabled={!ballastCalibState.ballast_form_available}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />

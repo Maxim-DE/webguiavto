@@ -20,8 +20,8 @@ function CurrentCalibSettings_ST(props) {
     } else return ''
   }),
     adcCurrent_store = useSelector((store) => {
-      if (deepKeyExists(store, 'voltage_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
+      if (deepKeyExists(store, 'current_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.current_calib
       } else return ''
     }),
         auth_store = useSelector((store) => store.authStore.auth_data)
@@ -162,7 +162,6 @@ function CurrentCalibSettings_ST(props) {
       address: 'calib_current.cgi',
       data: `${target_name}$${target_value}`,
       reducer: ({ request_name, request_resp, request_params }) => {
-        toast.success('насрал' + target_name)
         reducers.calibration_form({ request_name, request_resp, request_params })
       },
       notifications: {
