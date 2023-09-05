@@ -118,13 +118,6 @@ export default function Info_general(props) {
             type="text_sample" />
         </div>
       </li>
-      {infoGeneral_store.calib_misc &&
-       deviceName_string != 'reamped' &&
-        <ChannelEnablerSettings
-          calib_data={infoGeneral_store ?
-                      infoGeneral_store.calib_misc.calib_channels.channel_list : ''}
-          editing_allowed={false} />
-      }
     </SettingsBlockWrap>
   )
 }

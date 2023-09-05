@@ -9,6 +9,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import useGlobalStore from '../../../../../logic/auth_store';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
+import Modbus_slave_calib from '../../../../settings_block_calib/forms/masterSlave_slave_calib';
 
 export const MiscCalib = (props) => {
   const auth_store = useSelector((store) => store.authStore.auth_data)
@@ -31,6 +32,14 @@ export const MiscCalib = (props) => {
       section_header="другое">
       <MiscCalibSettings_ST250
         clickHandler={handleClick} />
+      {auth_store.auth_access.calib_extend &&
+        <>
+          <SerialNumVersionCalibSettings
+            clickHandler={handleClick} />
+        </>
+      }
+      <Modbus_slave_calib
+        clickHandler={handleClick} />
       <Firmware_calib
         clickHandler={handleClick} />
       <ConfFileCalib
@@ -41,12 +50,6 @@ export const MiscCalib = (props) => {
         clickHandler={handleClick}
         /> */}
       {/* <MiscDownloadCalib /> */}
-      {auth_store.auth_access.calib_extend &&
-        <>
-          <SerialNumVersionCalibSettings
-            clickHandler={handleClick} />
-        </>
-      }
     </SettingsSectionWrap>
   )
 }

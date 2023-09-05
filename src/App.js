@@ -345,7 +345,7 @@ function DeviceWrap_switch({device_type, ...props}) {
   if (device_type_str === 'st_250' ||
       device_type_str === 'st_100') {
     return (
-      <DeviceWrap_REAmp
+      <DeviceWrap_ST250
         updateHandler={props.updateHandler}
         // section_data={props.section_data}
         // calib_data={props.calib_data}
