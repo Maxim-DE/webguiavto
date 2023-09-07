@@ -60,7 +60,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
       log_obj.id = data[log][0];
       log_obj.status = data[log][1];
       log_obj.message = data[log][2];
-      log_obj.time = time_ArrToStr(data[log][3]);
+      log_obj.time = Array.isArray(data[log][3]) ? time_ArrToStr(data[log][3]) : data[log][3];
       if (fullLogData.length != 0 && fullLogData[log]) {
         log_obj.log_expand = set_expand_state(data[log][4], fullLogData[log].log_expand)
         if (fullLogData[log].expand_info === 'none') {

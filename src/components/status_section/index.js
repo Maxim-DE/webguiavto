@@ -104,11 +104,11 @@ function StatusSection(props) {
       handleConnectionRequest()
     }
 
-    let full_log_req_obj = {
-      address: 'GetLogErrorFull.cgi',
-      data: 'userlog$1',
-      reducer: statusLogs_reducers.userlog_data
-    }    
+    // let full_log_req_obj = {
+    //   address: 'GetLogErrorFull.cgi',
+    //   data: 'userlog$1',
+    //   reducer: statusLogs_reducers.userlog_data
+    // }    
 
     // let status_settings_req_obj = {
     //   address: 'get_transmitter.cgi',
@@ -120,7 +120,7 @@ function StatusSection(props) {
     
     clearInterval(timerRef.current)
 
-    props.updateHandler(full_log_req_obj)
+    // props.updateHandler(full_log_req_obj)
     // props.updateHandler(status_settings_req_obj)
     
     handleConnectionEstablish()
