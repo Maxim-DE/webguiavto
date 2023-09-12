@@ -42,7 +42,7 @@ export default function Snmp_agent(props) {
     const req_data_str = dataArray_to_string(snmpAgentState)
 
     const request_obj = {
-      address: `set_${props.section_name}.cgi`,
+      address: `SetSnmp.cgi`,
       data: req_data_str,
       reducer: reducers.section_data,
       notifications: {

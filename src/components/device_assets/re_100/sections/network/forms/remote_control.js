@@ -44,7 +44,7 @@ export default function Remote_control(props) {
     const req_data_str = dataArray_to_string(remoteControlState)
 
     const request_obj = {
-      address: `set_${props.section_name}.cgi`,
+      address: `firewall.cgi`,
       data: req_data_str,
       reducer: reducers.section_data,
       notifications: {
