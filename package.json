@@ -18,16 +18,19 @@
     "react-spinners": "^0.13.6",
     "react-spring": "^9.5.5",
     "react-toastify": "^9.0.8",
+    "shelljs": "^0.8.5",
     "toasted-notes": "^3.2.0",
     "use-global-hook": "^0.3.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npx gulp pre_build_preparation && npm run build:react && npm run build:archive",
+    "build": "npx gulp pre_build_preparation && npm run build:react && npm run build:archive && node ./update_build.mjs",
     "build:debug": "react-scripts build",
     "build:react": "react-scripts build && npx gulp full_gzip_build",
     "build:archive": "bash archive.sh",
+    "incr_patch_version": "node ./update_version.mjs",
+    "incr_minor_version": "node ./update_minor_version.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
