@@ -10,7 +10,7 @@
 
 # production
 build/*
-build_arch/build_arch.cpio
+build_arch/
 
 # misc
 .DS_Store
