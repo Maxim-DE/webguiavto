@@ -94,22 +94,6 @@ function SerialNumVersionCalibSettings(props) {
     props.clickHandler(request_obj);
   }
 
-  const device_conf_create = () => {
-    const conf_type_value = serialNumVersionCalibState.device_conf_type
-
-    const request_obj = {
-      address: 'calib_super_admin_conf_file.cgi',
-      data: `create_type_conf$${conf_type_value}`,
-      // reducer: reducers.calibration_form,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    props.clickHandler(request_obj);
-  }
-
   const handleChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -273,45 +257,6 @@ function SerialNumVersionCalibSettings(props) {
             name={`device_type_calib`}
             clickHandler={device_type_save}
             label='Сохранить'
-            type="button" />
-        </div>
-      </li>
-      <li
-        key='device_type_calib'
-        id='device_type_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`device_series_calib_input`}
-            className="settings_itemLabel">
-            Новая конфигурация
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`device_conf_type_calib`}
-            name={`device_conf_type_calib`}
-            type='select'
-            input_value={serialNumVersionCalibState.device_conf_type}
-            title='Тип устройства'
-            variants={[
-              'УРЦ-100/300',
-              'УРЦ-500',
-              'УРЦ-1000',
-              'УРЦ-2000',
-              'УСТ-050/100',
-              'УСТ-250',
-              'УСТ-500',
-              'РЦ-ХХХ',
-              'СТ-100',
-              'СТ-250',
-            ]}
-            changeHandler={handleChange} />
-          <FormInput
-            id={`device_conf_type_calib_save`}
-            name={`device_conf_type_calib`}
-            clickHandler={device_conf_create}
-            label='Создать с выбр. типом'
             type="button" />
         </div>
       </li>
