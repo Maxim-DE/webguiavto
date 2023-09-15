@@ -27,8 +27,18 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+Also it icreases build number by 1 in `version_build.json`
+
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run build:wo_build_incr`
+Тоже самое, что и `npm run build`, только без увеличения номера сборки.
+
+### `update_version_tag`
+Записывает текщую версию, указанную в файле `version_build.json`, как тег к последнему коммиту текущей ветки
+
+### `incr_minor_version`
+Увеличивает релизную(минорную) версию на 1 (1.x), при этом сбрасывая номер билда, и создавая тег с новой версией в последнем коммите текущей ветки
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
