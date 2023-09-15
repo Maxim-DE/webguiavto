@@ -33,12 +33,12 @@ shell.echo(`The last tag for ${releaseNum}: ${lastReleaseTag || '-'}`);
 
 // ПОЛУЧЕНИЕ НОВОЙ ВЕРСИИ
 
-let patchVersion = 1;
-if (lastReleaseTag) {
-  // если для данного релиза уже были теги, получить версию последнего патча и увеличить
-  const lastReleaseVersion = lastReleaseTag.split('-')[0]; // получаем 'x.y.z' из 'x.y.z-postfix'
-  patchVersion = +lastReleaseVersion.split('.').pop() + 1; // получаем патч версию z из x.y.z и увеличиваем на 1
-}
+let patchVersion = version_json.build;
+// if (lastReleaseTag) {
+//   // если для данного релиза уже были теги, получить версию последнего патча и увеличить
+//   const lastReleaseVersion = lastReleaseTag.split('-')[0]; // получаем 'x.y.z' из 'x.y.z-postfix'
+//   patchVersion = +lastReleaseVersion.split('.').pop() + 1; // получаем патч версию z из x.y.z и увеличиваем на 1
+// }
 
 const newVersionTag = `${releaseNum}.${patchVersion}${tagPostfix}`;
 

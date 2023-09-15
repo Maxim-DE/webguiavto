@@ -35,11 +35,19 @@ const releasedTags = shell
   .filter(Boolean);
 
 const lastReleaseTag = releasedTags.length > 0 ? releasedTags[0] : '';
-
 shell.echo(`The last tag for ${releaseNum}: ${lastReleaseTag || '-'}`);
 
-shell.cd('./build_arch/')
-shell.mv('build_arch.cpio', `build_arch_${lastReleaseTag}_b${version_json.build}.cpio`)
+const active_brach = shell.exec(`git branch --show-current`)
+shell.echo(`Current branch for ${releaseNum}: ${active_brach || '-'}`);
+
+console.log(active_brach != "developer\n");
+
+const version_str = `${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" && ('-' + active_brach)}`
+
+shell.cd('./build/')
+shell.exec(`echo "${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" ? ('-' + active_brach) : ''}" > version.txt`);
+
+// shell.mv('build_arch.cpio', `build_arch_${lastReleaseTag}_b${version_json.build}.cpio`)
 
 // ПОЛУЧЕНИЕ НОВОЙ ВЕРСИИ
 
