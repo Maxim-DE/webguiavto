@@ -54,7 +54,65 @@ export default function Syslog_wrap(props) {
   } else {
     return (
       <>
-      <div className="logs_header">
+        <div className="log_table_wrap">
+          <table className="log_list_table">
+            <thead className="logs_header">
+              <tr>
+                <td className='log_expand_button_wrap'></td>
+                <td>№</td>
+                <td>сообщение</td>
+                <td>дата и время</td>
+              </tr>
+            </thead>
+            <tbody className="user_log log_list">
+              {props.logs_list.map((item, index) => (
+                <>
+                <tr
+                  key={item.id}
+                  id={`log_${item.id}`}
+                  className={`log_item ${log_status[item.status]} syslog_item`}>
+                  <td className='log_expand_button_wrap'>
+                    {item.log_expand !== 'none' &&
+                      <button
+                        className='log_expand_button'
+                        type='button'
+                        onClick={(e) => {
+                          props.logs_expand('syslog', index, item.id, item.unique_id)
+                        }}>
+                        {item.log_expand ? <TbMinus /> :
+                          <TbPlus />
+                        }
+                      </button>
+                    }
+                  </td>
+                  <td className='log_num'>{item.id}</td>
+                  <td className='log_message'>{item.message}</td>
+                  <td className='log_time'>{item.time}</td>
+                </tr>
+                {item.log_expand === true &&
+                  //  item.log_expand_data !== 'none' &&
+                  <tr
+                    className='log_expand_message'>
+                    {item.expand_info !== 'none' ?
+                      <Log_expand_info
+                        expand_obj={item.expand_info} /> :
+                      <PulseLoader
+                        color="#bbcacf"
+                        loading
+                        margin={9}
+                        size={13}
+                        speedMultiplier={0.5}
+                      />
+                    }
+                  </tr>
+                }
+                </>
+              ))}
+            </tbody>
+          </table>
+
+        </div>
+      {/* <div className="logs_header">
         <span className="header_num">№</span>
         <span className="header_message">сообщение</span>
         <span className="header_time">дата и время</span>
@@ -84,7 +142,7 @@ export default function Syslog_wrap(props) {
               </div>
               <span className="log_num">{item.id}</span>
               <span className="log_message">{item.message}</span>
-              <span className="log_time">{item.time}</span>
+              <span className="log_time sys_log">{item.time}</span>
             </li>
             {item.log_expand === true && 
             //  item.log_expand_data !== 'none' &&
@@ -106,7 +164,7 @@ export default function Syslog_wrap(props) {
             }
           </>
         ))}
-      </ul>
+      </ul> */}
       </>
     )
   }

@@ -30,7 +30,7 @@ export const log_status = [
 
 const sys_log_types = [
   {type: 'syslog', name: 'Cистемный'},
-  {type: 'http_log', name: 'HTTP-жур.'}
+  // {type: 'http_log', name: 'HTTP-жур.'}
 ]
 
 function Syslog_calib(props) {
