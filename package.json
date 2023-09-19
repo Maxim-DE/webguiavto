@@ -25,11 +25,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npx gulp pre_build_preparation && npm run build:react && npm run build:archive && node ./update_build.mjs",
+    "build": "npx gulp pre_build_preparation && npm run build:react && node ./update_build.mjs && npm run build:archive && npx gulp revert_git",
+    "build:wo_build_incr": "npx gulp pre_build_preparation && npm run build:react && node ./insert_version_txt.mjs && npm run build:archive && npx gulp revert_git",
     "build:debug": "react-scripts build",
     "build:react": "react-scripts build && npx gulp full_gzip_build",
     "build:archive": "bash archive.sh",
-    "incr_patch_version": "node ./update_version.mjs",
+    "update_version_tag": "node ./update_version_tag.mjs",
     "incr_minor_version": "node ./update_minor_version.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
