@@ -60,8 +60,9 @@ export default function Syslog_wrap(props) {
               <tr>
                 <td className='log_expand_button_wrap'></td>
                 <td>№</td>
-                <td>сообщение</td>
+                <td>user</td>
                 <td>дата и время</td>
+                <td>сообщение</td>
               </tr>
             </thead>
             <tbody className="user_log log_list">
@@ -86,8 +87,9 @@ export default function Syslog_wrap(props) {
                     }
                   </td>
                   <td className='log_num'>{item.id}</td>
-                  <td className='log_message'>{item.message}</td>
+                  <td>{item.user}</td>
                   <td className='log_time'>{item.time}</td>
+                  <td className='log_message'>{item.message}</td>
                 </tr>
                 {item.log_expand === true &&
                   //  item.log_expand_data !== 'none' &&

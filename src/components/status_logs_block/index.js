@@ -73,6 +73,9 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
         log_obj.log_expand = data[log][4] == 1 ? false : 'none';
         log_obj.expand_info = data[log][5] ? data[log][5] : 'none';
       }
+
+      log_obj.user = data[log][6] ? data[log][6] : '';
+
       logs_array.push(log_obj);
     }
     return logs_array;
@@ -172,8 +175,9 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
             <thead className="logs_header">
               <tr>
                 <td>№</td>
-                <td>сообщение</td>
+                <td>user</td>
                 <td>дата и время</td>
+                <td>сообщение</td>
               </tr>
             </thead>
             <tbody className="log_list">
@@ -183,8 +187,9 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
                   id={`log_${item.id}`}
                   className={`log_item ${log_status[item.status]}`}>
                   <td className='log_num'>{item.id}</td>
-                  <td className='log_message'>{item.message}</td>
+                  <td>{item.user}</td>
                   <td className='log_time'>{item.time}</td>
+                  <td className='log_message'>{item.message}</td>
                 </tr>
               ))}
             </tbody>
@@ -212,13 +217,14 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
           class='full_log_modal'>
              <>
              <div className="log_table_wrap">
-              <table className="log_list_table">
+              <table className="log_list_table" autoFocus>
                 <thead className="logs_header">
                   <tr>
                     <td className='log_expand_button_wrap'></td>
                     <td>№</td>
-                    <td>сообщение</td>
+                    <td>user</td>
                     <td>дата и время</td>
+                    <td>сообщение</td>
                   </tr>
                 </thead>
                 <tbody className="user_log log_list">
@@ -243,8 +249,9 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
                         }
                       </td>
                       <td className='log_num'>{item.id}</td>
-                      <td className='log_message'>{item.message}</td>
+                      <td className=''>{item.user}</td>
                       <td className='log_time'>{item.time}</td>
+                      <td className='log_message'>{item.message}</td>
                     </tr>
                     {item.log_expand === true &&
                         //  item.log_expand_data !== 'none' &&
