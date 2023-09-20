@@ -8,10 +8,14 @@ import { useSelector } from 'react-redux';
 function SerialNumVersionCalibSettings(props) {
   const calibSerialNumVersion_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_serialNum)
 
+  const info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info),
+        device_arr = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.device_type_list : [],
+        device_type = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.type : 0
+
   const [serialNumVersionCalibState, setSerialNumVersionCalibState] = React.useState({
     calib_defence: 1,
     device_serial_num: '',
-    device_type: [1, 1],
+    device_type: device_type,
     device_conf_type: 0
   })
   
@@ -222,7 +226,7 @@ function SerialNumVersionCalibSettings(props) {
           </label>
         </div>
         <div className='item_input'>
-          <select
+          {/* <select
             id={`device_series_calib_input`}
             name={`device_series_calib`}
             style={{ width: 'auto' }}
@@ -251,11 +255,19 @@ function SerialNumVersionCalibSettings(props) {
                 )
               }
             })}
-          </select>
+          </select> */}
+          <FormInput
+            id={`device_type_calib`}
+            name={`device_type_calib`}
+            type='select'
+            input_value={serialNumVersionCalibState.device_type}
+            title='Тип устройства'
+            variants={device_arr}
+            changeHandler={handleChange} />
           <FormInput
             id={`device_type_calib_save`}
             name={`device_type_calib`}
-            clickHandler={device_type_save}
+            clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
         </div>

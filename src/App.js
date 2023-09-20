@@ -46,7 +46,9 @@ function App() {
         auth_store = useSelector((store) => store.authStore.auth_data)
 
   // строка имени устройства
-  const deviceName_string = Object.keys(info_section_data).length > 0 ? `${info_section_data.info_general.Type_Device} №${info_section_data.info_general.serial_number}` : '...'
+  const device_arr = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.device_type_list : [],
+        device_type = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.type : 0,
+        deviceName_string = Object.keys(info_section_data).length > 0 ? `${device_arr[device_type]} №${info_section_data.info_general.serial_number}` : '...'
 
   // очередь запросов
   const [requestPool, setRequestPool] = React.useState({
@@ -310,7 +312,8 @@ function App() {
             {/* Обертка для разных типов устройств */}
             {auth_store.auth_access.settings &&
               <DeviceWrap_switch
-                device_type={Object.keys(info_section_data).length > 0 ? info_section_data.info_general.type : [0, 0]}
+                device_type={device_type}
+                device_type_name={device_arr[device_type]}
                 updateHandler={handlePoolUpdate}
                 // section_data={sectionData}
                 // calib_data={calibState.data}
@@ -323,12 +326,10 @@ function App() {
   );
 }
 
-function DeviceWrap_switch({device_type, ...props}) {
+function DeviceWrap_switch({ device_type, device_type_name, ...props }) {
 
   // Получаем тип устройства из таблицы имен и мощностей устройств
-  const device_name = device_name_table[device_type[0]],
-        device_power = device_power_table[device_type[1]],
-        device_type_str = `${device_name}_${device_power}`
+  const device_type_str = `${device_type_name}`
 
   // Получаем состояние и действия для хранения ссылок на секции(разделы)
   const [sectionState, sectionActions] = useSectionStore()
@@ -342,8 +343,7 @@ function DeviceWrap_switch({device_type, ...props}) {
   // }, [observed_elements])
 
   // Определяем тип устройства и возвращаем соответствующий компонент
-  if (device_type_str === 'st_250' ||
-      device_type_str === 'st_100') {
+  if (device_type_str.includes('СТ')) {
     return (
       <DeviceWrap_ST250
         updateHandler={props.updateHandler}
@@ -351,12 +351,12 @@ function DeviceWrap_switch({device_type, ...props}) {
         // calib_data={props.calib_data}
         adc_data={props.adc_data} />
     )    
-  } else if (device_type_str === 'unknown_0') {
+  } else if (device_type === 255) {
     return (
       <DeviceWrap_unknown
         updateHandler={props.updateHandler} />
     )
-  } else if (device_type_str === 're_100') {
+  } else if (device_type_str.includes('РЦ')) {
     return (
       <DeviceWrap_RE100
         updateHandler={props.updateHandler}
@@ -364,8 +364,8 @@ function DeviceWrap_switch({device_type, ...props}) {
         // calib_data={props.calib_data}
         adc_data={props.adc_data} />
     )
-  } else if (device_type_str.includes('urc') ||
-             device_type_str.includes('ust')) {
+  } else if (device_type_str.includes('УРЦ') ||
+             device_type_str.includes('УСТ')) {
     return (
       <DeviceWrap_REAmp
         updateHandler={props.updateHandler}
