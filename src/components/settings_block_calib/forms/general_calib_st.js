@@ -182,7 +182,7 @@ function GeneralCalibSettings_ST(props) {
           <label
             htmlFor={`tftp_calib_input`}
             className="settings_itemLabel">
-            Выкл/вкл службу TFTP (порт 69)
+            Загрузчик (TFTP порт 69)
           </label>
         </div>
         <div className='item_input'>

@@ -1,12 +1,16 @@
 import React from 'react'
 
 import useGlobalStore from '../../../logic/auth_store'
+import { useSelector } from 'react-redux'
 
 import GeneralSettingsSection from './sections/general'
 import NetworkSettingsSection from './sections/network'
 import InfoSection from './sections/info'
 import CalibSection from './sections/calib'
-import { useSelector } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+import { CalibMain } from './sections/calib/calib_main'
+import { MiscCalib } from './sections/calib/misc'
+import { DeveloperCalib } from './sections/calib/developer'
 
 export default function DeviceWrap_ST250(props) {
   
@@ -14,30 +18,68 @@ export default function DeviceWrap_ST250(props) {
     props.updateHandler(data_block)
   }
   const auth_store = useSelector((store) => store.authStore.auth_data)
-  // const [authGlobalState, authGlobalActions] = useGlobalStore()
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   return (
     <>
-      <GeneralSettingsSection
-        updateHandler={updateHandler}
-        // section_data={props.section_data.settings === null ? 'null' : props.section_data.settings} 
-        />
-      <NetworkSettingsSection
-        updateHandler={updateHandler}
-        // section_data={props.section_data.network === null ? 'null' : props.section_data.network}
-        />
-      <InfoSection
-        updateHandler={updateHandler}
-        // section_data={props.section_data.info === null ? 'null' : props.section_data.info}
-        />
-      {auth_store.auth_access.calib &&
-        <CalibSection
-          section_name="calibration"
-          section_header="калибровка"
+    <Routes>
+      <Route path='*' element={
+        <GeneralSettingsSection
           updateHandler={updateHandler}
-          // section_data={props.calib_data === null ? 'null' : props.calib_data}
-          adc_data={props.adc_data} />
+          />
+      } />
+      <Route path='network' element={
+        <NetworkSettingsSection
+          updateHandler={updateHandler}
+          />
+      } />
+      <Route path='info' element={
+        <InfoSection
+          updateHandler={updateHandler}
+          />
+      } />
+      {/* {auth_store.auth_access.calib &&
+        <Route path='calibration' element={
+          <CalibSection
+            section_name="calibration"
+            section_header="калибровка"
+            updateHandler={updateHandler}
+            section_data={props.calib_data === null ? 'null' : props.calib_data}
+            adc_data={props.adc_data} />
+        } />
+      } */}
+      {auth_store.auth_access.calib &&
+        <Route path='calibration'>
+          <Route path='main' element={
+            <CalibMain
+              section_name="calibration_main"
+              section_header="калибровка"
+              updateHandler={updateHandler}
+              // section_data={props.calib_data === null ? 'null' : props.calib_data}
+              // adc_data={props.adc_data} 
+              />
+          } />
+          <Route path='misc' element={
+            <MiscCalib
+              section_name="misc"
+              section_header="калибровка"
+              updateHandler={updateHandler}
+              // section_data={props.calib_data === null ? 'null' : props.calib_data}
+              // adc_data={props.adc_data} 
+              />
+          } />
+          <Route path='developer' element={
+            <DeveloperCalib
+              section_name="developer"
+              section_header="калибровка"
+              updateHandler={updateHandler}
+              // section_data={props.calib_data === null ? 'null' : props.calib_data}
+              // adc_data={props.adc_data} 
+              />
+          } />
+        </Route>
       }
+    </Routes>
     </>
     
   )

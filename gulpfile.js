@@ -5,6 +5,7 @@ const replace = require('gulp-replace');
 const gulpClean = require('gulp-clean');
 const svgo = require('gulp-svgmin')
 const stripDebug = require('gulp-strip-debug')
+var exec = require('child_process').exec
 
 
 let gzip_file_array = [
@@ -90,6 +91,19 @@ function delete_logs() {
   .pipe(dest('build/static/js/'))
 }
 
+function revert_git(cb) {
+  exec('git checkout src/logic/request_logic.js', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+   exec('git checkout public/index.html', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+}
+
 
 exports.build_gzip = build_gzip;
 exports.delete_raw_files = delete_raw_files;
@@ -99,6 +113,7 @@ exports.add_gz_to_filename = add_gz_to_filename;
 exports.copy_mib_file = copy_mib_file;
 exports.graph_svg_min = graph_svg_min;
 exports.delete_logs = delete_logs
+exports.revert_git = revert_git;
 
 exports.pre_build_preparation = series(delete_http, delete_defer_load_comment)
 exports.full_gzip_build = series(delete_http, copy_mib_file, build_gzip, delete_raw_files, add_gz_to_filename)

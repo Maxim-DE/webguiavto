@@ -162,7 +162,6 @@ function CurrentCalibSettings_ST(props) {
       address: 'calib_current.cgi',
       data: `${target_name}$${target_value}`,
       reducer: ({ request_name, request_resp, request_params }) => {
-        toast.success('насрал' + target_name)
         reducers.calibration_form({ request_name, request_resp, request_params })
       },
       notifications: {

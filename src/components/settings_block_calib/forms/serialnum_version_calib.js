@@ -11,7 +11,8 @@ function SerialNumVersionCalibSettings(props) {
   const [serialNumVersionCalibState, setSerialNumVersionCalibState] = React.useState({
     calib_defence: 1,
     device_serial_num: '',
-    device_type: [1, 1]
+    device_type: [1, 1],
+    device_conf_type: 0
   })
   
   const device_power_table = [
@@ -36,7 +37,7 @@ function SerialNumVersionCalibSettings(props) {
   ]
 
   React.useEffect(() => {
-    if (calibSerialNumVersion_store != undefined) return
+    if (calibSerialNumVersion_store == undefined) return
 
     if (Object.keys(calibSerialNumVersion_store).length != 0) {
       let calib_state_copy = serialNumVersionCalibState
