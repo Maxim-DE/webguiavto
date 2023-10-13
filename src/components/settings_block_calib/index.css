@@ -105,7 +105,7 @@
 
 /* ACCOUNT MANAGER */
 .acc_manage_modal {
-  width: 753px;
+  width: 780px;
   max-height: 850px;
 }
 
@@ -136,10 +136,10 @@
 .acc_item {
   height: 45px;
 
-  display:flex;
-  flex-direction: row;
+  /* display:flex; */
+  /* flex-direction: row; */
   /* justify-content: space-between; */
-  align-items: center;
+  /* align-items: center; */
 
   /* border-top: 1px #DFDFDF solid; */
   border-radius: 12px;
@@ -148,12 +148,22 @@
 .acc_login,
 .acc_password,
 .acc_actions {
-  display: flex;
-  flex: 0 0 210px
 }
 
 .acc_actions {
-  column-gap: 15px;
+  display: flex;
+  height: inherit;
+  flex-direction: row;
+  /* align-content: center; */
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
+
+.acc_list_actions_wrap {
+  display: flex;
+  justify-content: end;
+  column-gap: 10px;
 }
 
 /* CHANNEL CALIB */

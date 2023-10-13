@@ -67,7 +67,7 @@ export default function Modbus_slave_calib(props) {
       }
     }
 
-    props.updateHandler(request_obj);
+    props.clickHandler(request_obj);
 
   }
 
@@ -94,14 +94,14 @@ export default function Modbus_slave_calib(props) {
       }
     }
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
   }
 
   return (
     <Settings_block_calib
-      header={`параметры slave`}
-      disabled={!masterSlaveCalibState.slave_form_availiable}
-      disableHandler={handleFormDisable}
+      header={`modbus - slave`}
+      // disabled={!masterSlaveCalibState.slave_form_availiable}
+      // disableHandler={handleFormDisable}
       settings_type={`genera_modbus_slave_calib`} >
       <li
         key='slave_address_calib'
@@ -116,13 +116,14 @@ export default function Modbus_slave_calib(props) {
         </div>
         <div className='item_input'>
           <FormInput
-            id={`slave_address_input`}
-            name={`slave_address`}
+            id={`slave_address_calib_input`}
+            name={`slave_address_calib`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
             class="calib_input"
             changeHandler={handleChange}
-            input_value={masterSlaveCalibState.slave_connection_speed}
-            type="text" />
+            input_value={masterSlaveCalibState.slave_address}
+            type="select"
+            variants={[...Array(10).keys()].map(i => i + 1)} />
           <FormInput
             id={`slave_address_save`}
             name={`slave_address`}
@@ -162,35 +163,6 @@ export default function Modbus_slave_calib(props) {
           <FormInput
             id={`slave_connection_speed_save`}
             name={`slave_connection_speed`}
-            disabled={!masterSlaveCalibState.slave_form_availiable}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li>
-      <li
-        key='slave_timeout_calib'
-        id='slave_timeout_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`slave_timeout_input`}
-            className="settings_itemLabel">
-            Таймаут
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`slave_timeout_input`}
-            name={`slave_timeout`}
-            class="calib_input"
-            disabled={!masterSlaveCalibState.slave_form_availiable}
-            changeHandler={handleChange}
-            input_value={masterSlaveCalibState.slave_timeout}
-            type="text" />
-          <FormInput
-            id={`slave_timeout_save`}
-            name={`slave_timeout`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
             clickHandler={handleClick_save}
             label='Сохранить'

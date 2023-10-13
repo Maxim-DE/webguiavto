@@ -11,14 +11,14 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 export default function Modbus_master_calib(props) {
   const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_masterSlave)
 
-  const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({ 
+  const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({
     master_form_availiable: 1,
     master_connection_speed: '',
     master_req_period: '',
     master_timeout: '',
     device_list: {
       saved_list: [
-        {id: '12', type: 0, address: '254', editable: false}
+        { id: '12', type: 'УРЦ-100/300', order_number: 1, firm_ver: 'DigitalExciter_v1.5.14', protocol_ver: '3', address: '254', editable: false }
       ],
       active_edit_device: {
 
@@ -138,7 +138,7 @@ export default function Modbus_master_calib(props) {
 
   const handleFormDisable = (event) => {
     const target = event.target,
-          value = target.type === 'checkbox' ? target.checked : target.value
+      value = target.type === 'checkbox' ? target.checked : target.value
 
     setMasterSlaveCalibState(prevState => ({
       ...prevState,
@@ -217,7 +217,7 @@ export default function Modbus_master_calib(props) {
 
   const copyBuffertoList = ({ id, index, boolean } = {}) => {
     let index_to_copy = masterSlaveCalibState.device_list.saved_list.findIndex(device => device.id === id),
-        device_to_copy = masterSlaveCalibState.device_list.active_edit_device
+      device_to_copy = masterSlaveCalibState.device_list.active_edit_device
 
     if (index_to_copy === -1) {
       doRegisterAccReq({
@@ -331,7 +331,7 @@ export default function Modbus_master_calib(props) {
 
   const doSaveAccReq = ({ id, type, address } = {}) => {
     const new_type = type,
-          new_address = address.length > 0 ? address : 'NULL'
+      new_address = address.length > 0 ? address : 'NULL'
 
     const req_obj = {
       address: 'modbus_edit_device.cgi',
@@ -366,7 +366,7 @@ export default function Modbus_master_calib(props) {
 
   const doRegisterAccReq = ({ type, address } = {}) => {
     const new_type = type,
-          new_address = address.length > 0 ? address : 'NULL'
+      new_address = address.length > 0 ? address : 'NULL'
 
     const req_obj = {
       address: 'modbus_register_device.cgi',
@@ -400,7 +400,7 @@ export default function Modbus_master_calib(props) {
 
   return (
     <Settings_block_calib
-      header={`параметры master`}
+      header={`modbus - master`}
       disabled={!masterSlaveCalibState.master_form_availiable}
       disableHandler={handleFormDisable}
       settings_type={`genera_modbus_slave_calib`} >
@@ -430,7 +430,7 @@ export default function Modbus_master_calib(props) {
               '38400',
               '57600',
               '115200'
-            ]}/>
+            ]} />
           <FormInput
             id={`master_connection_speed_save`}
             name={`master_connection_speed`}
@@ -515,9 +515,9 @@ export default function Modbus_master_calib(props) {
             name={`account_manage_calib`}
             disabled={!masterSlaveCalibState.master_form_availiable}
             clickHandler={(e) => {
+              setIsOpen(true);
               doGetDeviceList()
               // setIsLoading(true)
-              setIsOpen(true);
             }}
             label='Открыть'
             type="button" />
@@ -547,26 +547,26 @@ export default function Modbus_master_calib(props) {
               </div>
             </> :
             <>
-              <div className="list_header acc_header">
-                <span className="acc_header_num">тип</span>
-                <span className="acc_header_message">адрес</span>
-              </div>
-              <ul className="user_log log_list">
-                {masterSlaveCalibState.device_list.saved_list.map((device, index) => (
-                  <>
-                    <div className='log_divider'></div>
-                    {/* <Slave_device_instance
-                      id={device.id}
-                      availbility={device.active}
-                      type={device.type}
-                      address={device.address}
-                      editable={device.editable} /> */}
-                    <li
+              <table className="log_list_table">
+                <thead className="logs_header">
+                  <tr>
+                    <td>тип</td>
+                    <td>адрес</td>
+                    <td>№</td>
+                    <td>ver. прошивки</td>
+                    <td>ver. протокола</td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody className="user_log log_list">
+                  {masterSlaveCalibState.device_list.saved_list.map((device, index) => (
+                    <tr
                       key={device.id}
                       id={`user_${device.id}`}
                       className={`acc_item`}>
-                      <div className="acc_login">
-                        <FormInput
+                      <td className='acc_login'>
+                        {device.type}
+                        {/* <FormInput
                           type='select'
                           disabled={!device.editable}
                           name='type'
@@ -587,210 +587,55 @@ export default function Modbus_master_calib(props) {
                             'СТ-100',
                             'СТ-250',
                           ]}
-                        />
-                      </div>
-                      <div className='acc_password'>
-                        <input
-                          id={`${device.id}_address_input`}
-                          name={`address`}
-                          type="text"
-                          className={!(device.editable && device.login != 'admin') ? 'transparent' : ''}
-                          onChange={changeHandler}
-                          maxLength='3'
-                          value={device.editable ?
-                            masterSlaveCalibState.device_list.active_edit_device.address :
-                            device.address
-                          }
-                          disabled={!(device.editable && device.login != 'admin')}
-                        />
-                      </div>
-                      <div className="acc_actions">
-                        {device.editable ?
-                          <>
-                            <FormInput
-                              clickHandler={(e) => {
-                                setAccEditSave({
-                                  id: device.id,
-                                  index: index,
-                                  boolean: false
-                                })
-                              }}
-                              label='Сохранить'
-                              type="button" />
-                            {device.login != 'admin' &&
-                              <FormInput
-                                clickHandler={(e) => {
-                                  setAccEditDelete({
-                                    id: device.id,
-                                    index: index,
-                                    boolean: false
-                                  })
-                                }}
-                                label='Удалить'
-                                type="button" />
-                            }
-                            <FormInput
-                              clickHandler={(e) => {
-                                setAccEditCancel({
-                                  index: index,
-                                  boolean: false
-                                })
-                              }}
-                              label='Отмена'
-                              type="button" />
-                          </> :
-                          <>
-                            <FormInput
-                              id={`sys_logs_calib_input`}
-                              name={`sys_logs_calib`}
-                              clickHandler={(e) => {
-                                setAccEditOn({
-                                  index: index,
-                                  boolean: true
-                                })
-                              }}
-                              label='Редактировать'
-                              type="button" />
-                            <FormInput
-                              id={`sys_logs_calib_input`}
-                              name={`sys_logs_calib`}
-                              title='Проверить связь'
-                              clickHandler={(e) => {
-                                doCheckDeviceConnection({
-                                  id: device.id
-                                })
-                              }}
-                              label={<MdNetworkCheck style={{ margin: "3px 0px 0" }} />}
-                              type="button" />
-                          </>
-                        }
-                      </div>
-                    </li>
-                  </>
-                ))}
-                {masterSlaveCalibState.device_list.active_edit_device?.id === 'none' &&
-                  <>
-                    <div className='log_divider'></div>
-                    <li
-                      key={masterSlaveCalibState.device_list.active_edit_device.id}
-                      id={`user_${masterSlaveCalibState.device_list.active_edit_device.id}`}
-                      className={`acc_item`}>
-                      <div className='acc_login'>
-                        <FormInput
-                          type='select'
-                          disabled={!masterSlaveCalibState.device_list.active_edit_device.editable}
-                        input_value={masterSlaveCalibState.device_list.active_edit_device.editable ?
-                          masterSlaveCalibState.device_list.active_edit_device.login :
-                          masterSlaveCalibState.device_list.active_edit_device.login
-                          }
-                          variants={[
-                            'УРЦ-100/300',
-                            'УРЦ-500',
-                            'УРЦ-1000',
-                            'УРЦ-2000',
-                            'УСТ-050/100',
-                            'УСТ-250',
-                            'УСТ-500',
-                            'РЦ-ХХХ',
-                            'СТ-100',
-                            'СТ-250',
-                          ]}
-                        />
-                        {/* <input
-                          id={`${masterSlaveCalibState.device_list.active_edit_device.id}_login_input`}
-                          name={`login`}
-                          type="text"
-                          className={!masterSlaveCalibState.device_list.active_edit_device.editable ? 'transparent' : ''}
-                          // onChange={changeHandler}
-                          maxLength='20'
-                          value={masterSlaveCalibState.device_list.active_edit_device.editable ?
-                            masterSlaveCalibState.device_list.active_edit_acc.login :
-                            masterSlaveCalibState.device_list.active_edit_acc.login
-                          }
-                          disabled={!masterSlaveCalibState.active_edit_acc.editable}
                         /> */}
-                      </div>
-                      <div className="acc_password">
-                        <input
-                          id={`${masterSlaveCalibState.device_list.active_edit_device.id}_address_input`}
-                          name={`address`}
-                          type="text"
-                          className={!masterSlaveCalibState.device_list.active_edit_device.editable ? 'transparent' : ''}
-                          onChange={changeHandler}
-                          maxLength='20'
-                          value={masterSlaveCalibState.device_list.active_edit_device.editable ?
-                            masterSlaveCalibState.device_list.active_edit_device.address :
-                            masterSlaveCalibState.device_list.active_edit_device.address
-                          }
-                          disabled={!masterSlaveCalibState.device_list.active_edit_device.editable}
-                        />
-                      </div>
-                      <div className="acc_actions">
-                        {masterSlaveCalibState.device_list.active_edit_device.editable ?
-                          <>
-                            <FormInput
-                              clickHandler={(e) => {
-                                setAccEditSave({
-                                  id: masterSlaveCalibState.device_list.active_edit_device.id,
-                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
-                                  boolean: false
-                                })
-                              }}
-                              label='Сохранить'
-                              type="button" />
-                            <FormInput
-                              clickHandler={(e) => {
-                                setAccEditCancel({
-                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
-                                  boolean: false
-                                })
-                              }}
-                              label='Отмена'
-                              type="button" />
-                          </> :
-                          <>
-                            <FormInput
-                              id={`sys_logs_calib_input`}
-                              name={`sys_logs_calib`}
-                              clickHandler={(e) => {
-                                setAccEditOn({
-                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
-                                  boolean: true
-                                })
-                              }}
-                              label='Редактировать'
-                              type="button" />
-                            <FormInput
-                              id={`sys_logs_calib_input`}
-                              name={`sys_logs_calib`}
-                              clickHandler={(e) => {
-                                setAccEditOn({
-                                  index: masterSlaveCalibState.device_list.saved_list.length + 1,
-                                  boolean: true
-                                })
-                              }}
-                              label='Проверить связь'
-                              type="button" />
-                          </>
-
-                        }
-                      </div>
-                    </li>
-                  </>
-                }
-              </ul>
-              {masterSlaveCalibState.device_list.saved_list.length < 6 &&
+                      </td>
+                      <td className='acc_password'>
+                        {device.address}
+                      </td>
+                      <td>{device?.order_number}</td>
+                      <td>{device.firm_ver}</td>
+                      <td>{device.protocol_ver}</td>
+                      <td className="acc_actions">
+                        <FormInput
+                          id={`sys_logs_calib_input`}
+                          name={`sys_logs_calib`}
+                          title='Проверить связь'
+                          clickHandler={(e) => {
+                            doCheckDeviceConnection({
+                              id: device.id
+                            })
+                          }}
+                          label={<MdNetworkCheck style={{ margin: "3px 0px 0" }} />}
+                          type="button" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="acc_list_actions_wrap">
                 <FormInput
                   id={`calib_password_save`}
                   name={`calib_password`}
                   clickHandler={(e) => {
-                    createDeviceInBuffer()
+                    doGetDeviceList()
                   }}
                   class='log_refresh'
-                  label='Добавить нов. устройство'
+                  label='Обновить список устройств'
                   type="button"
                 />
-              }
+                {/* {masterSlaveCalibState.device_list.saved_list.length < 6 &&
+                  <FormInput
+                    id={`calib_password_save`}
+                    name={`calib_password`}
+                    clickHandler={(e) => {
+                      createDeviceInBuffer()
+                    }}
+                    class='log_refresh'
+                    label='Добавить нов. устройство'
+                    type="button"
+                  />
+                } */}
+              </div>
             </>
           }
         </ModalCalib>
@@ -800,100 +645,4 @@ export default function Modbus_master_calib(props) {
 }
 
 
-
-function Slave_device_instance({id, availbility, type, address, editable, edit_actions, ...rest}) {
-  return (
-    <li
-      key={id}
-      id={`device_${id}`}
-      className={`acc_item`}>
-      <div className="device_available">
-        <FormInput
-          id={`device_${id}_available`}
-          type='checkbox'
-          input_value={availbility}
-          disabled={!editable} />
-      </div>
-      <div className='acc_login'>
-        <FormInput
-          type='select'
-          disabled={!editable}
-          input_value='0'
-          variants={[
-            'УРЦ-100/300',
-            'УРЦ-500',
-            'УРЦ-1000',
-            'УРЦ-2000',
-            'УСТ-050/100',
-            'УСТ-250',
-            'УСТ-500',
-            'РЦ-ХХХ',
-            'СТ-100',
-            'СТ-250',
-          ]}
-        />
-      </div>
-      <div className="acc_password">
-        <input
-          id={`${id}_address_input`}
-          name={`password`}
-          type={!editable ? 'password' : 'text'}
-          className={!editable ? 'transparent' : ''}
-          // onChange={changeHandler}
-          maxLength='10'
-          value={0}
-          disabled={!editable}
-        />
-      </div>
-      <div className="acc_actions">
-        {editable ?
-          <>
-            <FormInput
-              clickHandler={(e) => {
-                // setAccEditSave({
-                //   id: device.id,
-                //   index: index,
-                //   boolean: false
-                // })
-              }}
-              label='Сохранить'
-              type="button" />
-            {type != 'admin' &&
-              <FormInput
-                clickHandler={(e) => {
-                  // setAccEditDelete({
-                  //   id: device.id,
-                  //   index: index,
-                  //   boolean: false
-                  // })
-                }}
-                label='Удалить'
-                type="button" />
-            }
-            <FormInput
-              clickHandler={(e) => {
-                // setAccEditCancel({
-                //   index: index,
-                //   boolean: false
-                // })
-              }}
-              label='Отмена'
-              type="button" />
-          </> :
-          <FormInput
-            id={`sys_logs_calib_input`}
-            name={`sys_logs_calib`}
-            clickHandler={(e) => {
-              // setAccEditOn({
-              //   index: index,
-              //   boolean: true
-              // })
-            }}
-            label='Редактировать'
-            type="button" />
-        }
-      </div>
-    </li>
-  )
-}
 
