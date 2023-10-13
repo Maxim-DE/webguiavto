@@ -20,8 +20,8 @@ function CurrentCalibSettings_ST(props) {
     } else return ''
   }),
     adcCurrent_store = useSelector((store) => {
-      if (deepKeyExists(store, 'voltage_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
+      if (deepKeyExists(store, 'current_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.current_calib
       } else return ''
     }),
         auth_store = useSelector((store) => store.authStore.auth_data)

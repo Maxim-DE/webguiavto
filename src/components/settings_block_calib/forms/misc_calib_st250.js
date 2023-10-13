@@ -18,7 +18,12 @@ function MiscCalibSettings_ST250(props) {
       return store.globalStore.global_data.calib_state.data?.calib_misc
     } else return {}
   }),
-        auth_store = useSelector((store) => store.authStore.auth_data)
+        auth_store = useSelector((store) => store.authStore.auth_data),
+        deviceName_string = useSelector((store) => {
+          if (deepKeyExists(store.globalStore.global_data, 'Type_Device')) {
+            return `${store.globalStore.global_data.section_data.info.info_general.Type_Device} №${store.globalStore.global_data.section_data.info.info_general.serial_number}`
+          } 
+        })
 
 
   const [miscCalibState, setMiscCalibState] = React.useState({
@@ -177,11 +182,15 @@ function MiscCalibSettings_ST250(props) {
                 type="button" />
             </div>
           </li>
-          <li className="group_divider"></li>
-          <ChannelEnablerSettings
-            clickHandler={props.clickHandler}
-            calib_data={calibMisc_store}
-            editing_allowed={true}/>
+          {deviceName_string != 'reamped' &&
+          <>
+            <li className="group_divider"></li>
+            <ChannelEnablerSettings
+              clickHandler={props.clickHandler}
+              calib_data={calibMisc_store}
+              editing_allowed={true}/>
+          </>
+          }
         </>
       }
       <li className="group_divider"></li>

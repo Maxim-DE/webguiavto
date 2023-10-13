@@ -6,9 +6,15 @@ import FormInput from '../../form_input';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
+import { deepKeyExists } from '../../../logic/utilites';
 
 function CurrentCalibSettings(props) {
-  const calibCurrent_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_current?.current_value)
+  const calibCurrent_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_current?.current_value),
+        adcCurrent_store = useSelector((store) => {
+          if (deepKeyExists(store, 'current_calib')) {
+            return store.globalStore.global_data.status_data.calib_adc?.current_calib
+          } else return ''
+        })
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
     I1: '',
@@ -146,7 +152,7 @@ function CurrentCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I1}
+            АЦП: {adcCurrent_store.I1}
           </span>
           <FormInput
             id={`I1_calib_input`}
@@ -181,7 +187,7 @@ function CurrentCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I2}
+            АЦП: {adcCurrent_store.I2}
           </span>
           <FormInput
             id={`I2_calib_input`}
@@ -216,7 +222,7 @@ function CurrentCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I3}
+            АЦП: {adcCurrent_store.I3}
           </span>
           <FormInput
             id={`I3_calib_input`}
@@ -251,7 +257,7 @@ function CurrentCalibSettings(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {props.adc_data.I4}
+            АЦП: {adcCurrent_store.I4}
           </span>
           <FormInput
             id={`I4_calib_input`}
