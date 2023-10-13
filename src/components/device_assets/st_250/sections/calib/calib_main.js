@@ -13,7 +13,6 @@ import TempThresholdCalibSettings from '../../../../settings_block_calib/forms/t
 import useGlobalStore from '../../../../../logic/auth_store';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 
-
 export const CalibMain = (props) => {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
 
