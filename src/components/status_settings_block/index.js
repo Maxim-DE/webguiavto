@@ -183,8 +183,8 @@ function Status_settings(props) {
             type="switch" />
         </div>
       </li>
-      {(!props.device_type.includes('urc') ||
-       !props.device_type.includes('ust')) &&
+      {props.device_type > 3 ||
+       props.device_type > 3 &&
         <>
         <li
           key='channel_setting'

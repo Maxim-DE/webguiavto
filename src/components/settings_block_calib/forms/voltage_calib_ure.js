@@ -155,7 +155,7 @@ function VoltageCalibSettings_URE(props) {
             type="button" />
         </div>
       </li>
-      <li
+      {/* <li
         key='U2_calib'
         id='U2_calib'
         className="settings_item calib">
@@ -196,7 +196,7 @@ function VoltageCalibSettings_URE(props) {
             label='Сохранить'
             type="button" />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }
