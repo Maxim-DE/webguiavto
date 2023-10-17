@@ -33,8 +33,8 @@ function insert_version_to_txt() {
   
   const version_str = `${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" ? ('-' + active_brach) : ''}`
   
-  shell.cd('./build/')
-  shell.exec(`echo ${version_str} > version.txt`);
+  // shell.cd('./build/')
+  shell.exec(`echo "${version_str}" > ./build/version.txt`);
 }
 
 if (!shell.which('git')) {
