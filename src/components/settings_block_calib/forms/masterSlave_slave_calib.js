@@ -16,6 +16,7 @@ export default function Modbus_slave_calib(props) {
     slave_address: '',
     slave_connection_speed: '',
     slave_timeout: '',
+    slave_order_num: ''
   })
 
   const [isLoading, setIsLoading] = React.useState(false)
@@ -127,6 +128,36 @@ export default function Modbus_slave_calib(props) {
           <FormInput
             id={`slave_address_save`}
             name={`slave_address`}
+            disabled={!masterSlaveCalibState.slave_form_availiable}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='slave_order_num_calib'
+        id='slave_order_num_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`slave_order_num_input`}
+            className="settings_itemLabel">
+            Номер блока
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`slave_order_num_calib_input`}
+            name={`slave_order_num_calib`}
+            disabled={!masterSlaveCalibState.slave_form_availiable}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={masterSlaveCalibState.slave_order_num}
+            type="select"
+            variants={[...Array(4).keys()].map(i => i + 1)} />
+          <FormInput
+            id={`slave_order_num_save`}
+            name={`slave_order_num`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
             clickHandler={handleClick_save}
             label='Сохранить'
