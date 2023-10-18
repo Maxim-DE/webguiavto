@@ -18,12 +18,18 @@ function VoltageCalibSettings_URE(props) {
       if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'voltage_calib')) {
         return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
       } else return ''
+    }),
+    adcPower_store = useSelector((store) => {
+      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.power_calib
+      } else return ''
     })
 
   const [voltageCalibState, setVoltageCalibState] = React.useState({
     U1: '',
     U2: '',
-    U2_available: 0
+    U2_available: 0,
+    dac_value: ''
   })
 
   React.useEffect(() => {
@@ -150,6 +156,46 @@ function VoltageCalibSettings_URE(props) {
           <FormInput
             id={`U1_calib_save`}
             name={`U1_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li className="group_divider"></li>
+      <li
+        key='dac_value_calib'
+        id='dac_value_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`dac_value_calib_input`}
+            className="settings_itemLabel">
+            Значение ЦАП
+          </label>
+        </div>
+        <div className='item_input'>
+          <span className='item_adc_value'>
+            АЦП<sub>АРУ</sub>: {
+              adcPower_store ? adcPower_store.dac_value[0] : ''
+            }
+          </span>
+          <span className='item_adc_value'>
+            ЦАП<sub>АРУ</sub>: {
+              adcPower_store ? adcPower_store.dac_value[1] : ''
+            }
+          </span>
+          <input
+            type="text"
+            id={`dac_value_calib_input`}
+            name={`dac_value_calib`}
+            className="text_range"
+            style={{ margin: '0', maxWidth: '54px' }}
+            value={voltageCalibState.dac_value}
+            onChange={handleChange}
+          />
+          <FormInput
+            id={`dac_value_calib_save`}
+            name={`dac_value_calib`}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />

@@ -14,6 +14,7 @@ import BallastCalibSettings from '../../../../settings_block_calib/forms/ballast
 import VoltageCalibSettings_URE from '../../../../settings_block_calib/forms/voltage_calib_ure';
 import CurrentCalibSettings_AMP from '../../../../settings_block_calib/forms/current_calib_amp';
 import CurrentThresholdCalibSettings_AMP from '../../../../settings_block_calib/forms/current_threshold_calib_amp';
+import PowerCalibSettings_AMP from '../../../../settings_block_calib/forms/wattage_primary_calib_amp';
 
 
 export const CalibMain = (props) => {
@@ -41,11 +42,11 @@ export const CalibMain = (props) => {
         clickHandler={handleClick} />
       <CurrentCalibSettings_AMP
         clickHandler={handleClick} />
-      <BallastCalibSettings
-        clickHandler={handleClick} />
+      {/* <BallastCalibSettings
+        clickHandler={handleClick} /> */}
       <CurrentThresholdCalibSettings_AMP
         clickHandler={handleClick} />
-      <PowerCalibSettings
+      <PowerCalibSettings_AMP
         clickHandler={handleClick} />
       <WattageAdditionalCalibSettings_ST
         clickHandler={handleClick} />
