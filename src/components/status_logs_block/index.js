@@ -73,6 +73,9 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
         log_obj.log_expand = data[log][4] == 1 ? false : 'none';
         log_obj.expand_info = data[log][5] ? data[log][5] : 'none';
       }
+
+      log_obj.user = data[log][6] ? data[log][6] : '';
+
       logs_array.push(log_obj);
     }
     return logs_array;
@@ -161,28 +164,36 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
         <div className="settings_block_header">
           <h3>{rest.header}</h3>
         </div>
-        <div className="logs_header">
+        {/* <div className="logs_header">
           <span className="header_num">№</span>
           <span className="header_message">сообщение</span>
           <span className="header_time">дата и время</span>
-        </div>
+        </div> */}
         {data != null ? 
           <>
-          <ul className="log_list">
-            {logData.map(item => (
-              <>
-              <div className='log_divider'></div>
-              <li
-                key={item.id}
-                id={`log_${item.id}`}
-                className={`log_item ${log_status[item.status]}`}>
-                <span className="log_num">{item.id}</span>
-                <span className="log_message">{item.message}</span>
-                <span className="log_time">{item.time}</span>
-              </li>
-              </>
-            ))}
-          </ul>
+          <table className="log_list_table">
+            <thead className="logs_header">
+              <tr>
+                <td>№</td>
+                <td>user</td>
+                <td>дата и время</td>
+                <td>сообщение</td>
+              </tr>
+            </thead>
+            <tbody className="log_list">
+              {logData.map(item => (
+                <tr
+                  key={item.id}
+                  id={`log_${item.id}`}
+                  className={`log_item ${log_status[item.status]}`}>
+                  <td className='log_num'>{item.id}</td>
+                  <td>{item.user}</td>
+                  <td className='log_time'>{item.time}</td>
+                  <td className='log_message'>{item.message}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <FormInput
             id={`full_logs_button`}
             name={`full_logs_button`}
@@ -205,7 +216,67 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
           user_controllable={true}
           class='full_log_modal'>
              <>
-              <div className="logs_header">
+             <div className="log_table_wrap">
+              <table className="log_list_table" autoFocus>
+                <thead className="logs_header">
+                  <tr>
+                    <td className='log_expand_button_wrap'></td>
+                    <td>№</td>
+                    <td>user</td>
+                    <td>дата и время</td>
+                    <td>сообщение</td>
+                  </tr>
+                </thead>
+                <tbody className="user_log log_list">
+                  {fullLogData.map((item, index) => (
+                    <>
+                    <tr
+                      key={item.id}
+                      id={`log_${item.id}`}
+                      className={`log_item ${log_status[item.status]}`}>
+                      <td className='log_expand_button_wrap'>
+                        {item.log_expand !== 'none' &&
+                          <button
+                            className='log_expand_button'
+                            type='button'
+                            onClick={(e) => {
+                              handle_logExpand('userlog', index, item.id)
+                            }}>
+                            {item.log_expand ? <TbMinus /> :
+                              <TbPlus />
+                            }
+                          </button>
+                        }
+                      </td>
+                      <td className='log_num'>{item.id}</td>
+                      <td className=''>{item.user}</td>
+                      <td className='log_time'>{item.time}</td>
+                      <td className='log_message'>{item.message}</td>
+                    </tr>
+                    {item.log_expand === true &&
+                        //  item.log_expand_data !== 'none' &&
+                        <tr
+                          className='log_expand_message'>
+                          {item.expand_info !== 'none' ?
+
+                            <Log_expand_info
+                              expand_obj={item.expand_info} /> :
+                            <PulseLoader
+                              color="#bbcacf"
+                              loading
+                              margin={9}
+                              size={13}
+                              speedMultiplier={0.5}
+                            />
+                          }
+                        </tr>
+                    }
+                    </>
+                  ))}
+                </tbody>
+              </table>
+             </div>
+              {/* <div className="logs_header">
                 <span className="header_num">№</span>
                 <span className="header_message">сообщение</span>
                 <span className="header_time">дата и время</span>
@@ -256,7 +327,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
                   }
                   </>
                 ))}
-              </ul>
+              </ul> */}
               <FormInput
                 id={`calib_password_save`}
                 name={`calib_password`}

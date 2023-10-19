@@ -2,8 +2,6 @@ import React from 'react'
 import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 import GeneralCalibSettings_ST from '../../../../settings_block_calib/forms/general_calib_st';
-import CurrentCalibSettings_ST from '../../../../settings_block_calib/forms/current_calib_st';
-import CurrentThresholdCalibSettings_ST from '../../../../settings_block_calib/forms/current_threshold_calib_st';
 import VoltageCalibSettings from '../../../../settings_block_calib/forms/voltage_calib';
 import PowerCalibSettings from '../../../../settings_block_calib/forms/wattage_primary_calib';
 import WattageAdditionalCalibSettings_ST from '../../../../settings_block_calib/forms/wattage_additional_calib_st';
@@ -12,6 +10,12 @@ import TempThresholdCalibSettings from '../../../../settings_block_calib/forms/t
 
 import useGlobalStore from '../../../../../logic/auth_store';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
+import BallastCalibSettings from '../../../../settings_block_calib/forms/ballast_calib';
+import VoltageCalibSettings_URE from '../../../../settings_block_calib/forms/voltage_calib_ure';
+import CurrentCalibSettings_AMP from '../../../../settings_block_calib/forms/current_calib_amp';
+import CurrentThresholdCalibSettings_AMP from '../../../../settings_block_calib/forms/current_threshold_calib_amp';
+import PowerCalibSettings_AMP from '../../../../settings_block_calib/forms/wattage_primary_calib_amp';
+
 
 export const CalibMain = (props) => {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
@@ -34,13 +38,15 @@ export const CalibMain = (props) => {
       section_header="калибровка">
       <GeneralCalibSettings_ST
         clickHandler={handleClick} />
-      <VoltageCalibSettings
+      <VoltageCalibSettings_URE
         clickHandler={handleClick} />
-      <CurrentCalibSettings_ST
+      <CurrentCalibSettings_AMP
         clickHandler={handleClick} />
-      <CurrentThresholdCalibSettings_ST
+      {/* <BallastCalibSettings
+        clickHandler={handleClick} /> */}
+      <CurrentThresholdCalibSettings_AMP
         clickHandler={handleClick} />
-      <PowerCalibSettings
+      <PowerCalibSettings_AMP
         clickHandler={handleClick} />
       <WattageAdditionalCalibSettings_ST
         clickHandler={handleClick} />

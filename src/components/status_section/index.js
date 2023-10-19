@@ -19,27 +19,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';
 
-export const device_power_table = {
-        0: '10',
-        1: '50',
-        2: '100',
-        3: '250',
-        4: '300',
-        5: '500',
-        6: '1000',
-        7: '2000',
-        8: '5000',
-        250: '0'
-      },
-
-      device_name_table = {
-        0: 'ust',
-        1: 'urc',
-        2: 'st',
-        3: 're',
-        4: 'bc',
-        250: 'unknown'
-      }
+export const device_model_table = {
+  'УРЦ-1000': 're_amp_1000',
+  'УРЦ-2000': 're_amp_2000',
+  'УСТ-250': 'st_amp_250',
+  'УСТ-500': 'st_amp_500'
+}
 
 function StatusSection(props) {
   
@@ -56,10 +41,9 @@ function StatusSection(props) {
 
   const guest_mode_class = !auth_store.auth_access.settings ? 'guest_wrap' : ''
 
-  const device_type_arr = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.type : '',
-        device_name = device_name_table[device_type_arr[0]],
-        device_power = device_power_table[device_type_arr[1]],
-        device_type = `${device_name}_${device_power}`
+  const device_type_arr = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.device_type_list : '',
+        device_type = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.model : 0,
+        device_type_str = device_type_arr[device_type]
 
 
   const device_status_output = Object.keys(status_store).length > 0 && device_status(status_store.status_info.device_status),
@@ -85,7 +69,7 @@ function StatusSection(props) {
     }
 
     if (status_store.status_svg.img.length === 0) {
-      let svg_req_str = `${device_type}.svg.gz`
+      let svg_req_str = `${device_model_table[device_type_str]}.svg.gz`
   
       let request_obj = {
         address: 'static/media/status_graph/' + svg_req_str,
@@ -234,8 +218,9 @@ function StatusSection(props) {
           {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
+            device_type={device_type}
             section_name={props.section_name}
-            settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data} 
+            settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data}
             status_data={status_store}
           />
           }

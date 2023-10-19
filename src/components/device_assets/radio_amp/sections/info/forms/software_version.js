@@ -5,7 +5,7 @@ import FormInput from '../../../../../form_input'
 import { useSelector } from 'react-redux'
 
 export default function Software_version(props) {
-  const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info.info_general)
+  const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info?.software_version)
 
   const [sofrwareVersionState, setSofrwareVersionState] = React.useState({
     os_version: 'N/A',
@@ -14,7 +14,9 @@ export default function Software_version(props) {
   })
 
   React.useEffect(() => {
-    if (Object.keys(softwareVersion_store).length != 0 && softwareVersion_store != undefined) {
+    if (softwareVersion_store == undefined) return
+
+    if (Object.keys(softwareVersion_store).length != 0) {
       let settings_state_copy = sofrwareVersionState
 
       for (const key in softwareVersion_store) {

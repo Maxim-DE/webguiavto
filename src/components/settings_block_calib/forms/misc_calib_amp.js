@@ -12,7 +12,7 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 
-function MiscCalibSettings_ST250(props) {
+function MiscCalibSettings_AMP(props) {
   const calibMisc_store = useSelector((store) => {
     if (deepKeyExists(store, 'calib_misc')) {
       return store.globalStore.global_data.calib_state.data?.calib_misc
@@ -182,7 +182,7 @@ function MiscCalibSettings_ST250(props) {
                 type="button" />
             </div>
           </li>
-          {deviceName_string != 'reamped' &&
+          {/* {deviceName_string != 'reamped' &&
           <>
             <li className="group_divider"></li>
             <ChannelEnablerSettings
@@ -190,10 +190,10 @@ function MiscCalibSettings_ST250(props) {
               calib_data={calibMisc_store}
               editing_allowed={true}/>
           </>
-          }
+          } */}
         </>
       }
-      <li className="group_divider"></li>
+      {/* <li className="group_divider"></li> */}
       <Account_manage_calib
         updateHandler={props.clickHandler}
         userData={miscCalibState.user_list} />
@@ -256,4 +256,4 @@ function MiscCalibSettings_ST250(props) {
   )
 }
 
-export default MiscCalibSettings_ST250
+export default MiscCalibSettings_AMP

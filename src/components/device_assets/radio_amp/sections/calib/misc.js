@@ -10,6 +10,7 @@ import useGlobalStore from '../../../../../logic/auth_store';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 import Modbus_slave_calib from '../../../../settings_block_calib/forms/masterSlave_slave_calib';
+import MiscCalibSettings_AMP from '../../../../settings_block_calib/forms/misc_calib_amp';
 
 export const MiscCalib = (props) => {
   const auth_store = useSelector((store) => store.authStore.auth_data)
@@ -30,13 +31,19 @@ export const MiscCalib = (props) => {
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
       section_header="другое">
-      <MiscCalibSettings_ST250
+      <MiscCalibSettings_AMP
+        clickHandler={handleClick} />
+      {auth_store.auth_access.calib_extend &&
+        <>
+          <SerialNumVersionCalibSettings
+            clickHandler={handleClick} />
+        </>
+      }
+      <Modbus_slave_calib
         clickHandler={handleClick} />
       <Firmware_calib
         clickHandler={handleClick} />
       <ConfFileCalib
-        clickHandler={handleClick} />
-      <Modbus_slave_calib
         clickHandler={handleClick} />
       {/* <ChannelEnablerSettings 
         calib_data={Object.keys(props.section_data).length != 0 ?
@@ -44,12 +51,6 @@ export const MiscCalib = (props) => {
         clickHandler={handleClick}
         /> */}
       {/* <MiscDownloadCalib /> */}
-      {auth_store.auth_access.calib_extend &&
-        <>
-          <SerialNumVersionCalibSettings
-            clickHandler={handleClick} />
-        </>
-      }
     </SettingsSectionWrap>
   )
 }

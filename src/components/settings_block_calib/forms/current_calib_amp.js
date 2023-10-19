@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 import { toast } from 'react-toastify';
 
-function CurrentCalibSettings_ST(props) {
+function CurrentCalibSettings_AMP(props) {
   const calibCurrent_store = useSelector((store) => {
     if (deepKeyExists(store, 'current_value')) {
       return store.globalStore.global_data.calib_state.data?.calib_current?.current_value
@@ -24,8 +24,10 @@ function CurrentCalibSettings_ST(props) {
         return store.globalStore.global_data.status_data.calib_adc?.current_calib
       } else return ''
     }),
-        auth_store = useSelector((store) => store.authStore.auth_data)
+    info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info),
+    auth_store = useSelector((store) => store.authStore.auth_data)
 
+  const device_type = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.model : 0
 
   const [amperageCalibState, setAmperageCalibState] = React.useState({
     psu_enable: 0,
@@ -34,7 +36,8 @@ function CurrentCalibSettings_ST(props) {
     I3_available: 0,
     I3: '',
     I4_available: 0,
-    I4: ''
+    I4: '',
+    current_num: 0
   })
 
   React.useEffect(() => {
@@ -65,6 +68,38 @@ function CurrentCalibSettings_ST(props) {
 
     }
   }, [calibCurrent_store])
+
+  React.useEffect(() => {
+    let current_num = 0
+
+    switch (device_type) {
+      case 0:
+        current_num = 1
+        break;
+
+      case 1:
+        current_num = 3
+        break;
+
+      case 2:
+        current_num = 2
+        break;
+
+      case 3:
+        current_num = 4
+        break;
+    
+      default:
+        current_num = 0
+        break;
+    }
+
+    setAmperageCalibState(prevState => ({
+      ...prevState,
+      current_num: current_num
+    }))
+
+  }, [device_type])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -237,6 +272,50 @@ function CurrentCalibSettings_ST(props) {
     props.clickHandler(request_obj);
   }
 
+  let current_rows = []
+
+  for (let i = 1; i < amperageCalibState.current_num + 1; i++) {
+    current_rows.push(
+      <li
+        key={`I${i}_calib`}
+        id={`I${i}_calib`}
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`I${i}_calib_input`}
+            className="settings_itemLabel">
+            Калибровка I{i}
+          </label>
+          <FormInput
+            id={`I${i}_zeros_calib_input`}
+            name={`I${i}_zeros_calib`}
+            label='Калибровка нуля'
+            clickHandler={handleClick_calib_zeros}
+            type="button" />
+        </div>
+        <div className='item_input'>
+          <span className='item_adc_value'>
+            АЦП: {adcCurrent_store[`I${i}`]}
+          </span>
+          <FormInput
+            id={`I${i}_calib_input`}
+            name={`I${i}_calib`}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={amperageCalibState[`I${i}`]}
+            type="text" />
+          <FormInput
+            id={`I${i}_calib_save`}
+            name={`I${i}_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+    )
+    console.log("row_created");
+  }
+
   return (
     <Settings_block_calib header={`калибровка токов`}
                           settings_type={`current_calib`}
@@ -284,42 +363,43 @@ function CurrentCalibSettings_ST(props) {
             type="button" />
         </div>
       </li>
-      <li
-        key='I1_calib'
-        id='I1_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`I1_calib_input`}
-            className="settings_itemLabel">
-            Калибровка I1
-          </label>
-          <FormInput
-            id={`I1_zeros_calib_input`}
-            name={`I1_zeros_calib`}
-            label='Калибровка нуля'
-            clickHandler={handleClick_calib_zeros}
-            type="button" />
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            АЦП: {adcCurrent_store.I1}
-          </span>
-          <FormInput
-            id={`I1_calib_input`}
-            name={`I1_calib`}
-            class="calib_input"
-            changeHandler={handleChange}
-            input_value={amperageCalibState.I1}
-            type="text" />
-          <FormInput
-            id={`I1_calib_save`}
-            name={`I1_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li>
+      {current_rows}
+        {/* <li
+          key='I1_calib'
+          id='I1_calib'
+          className="settings_item calib">
+          <div className='item_header'>
+            <label
+              htmlFor={`I1_calib_input`}
+              className="settings_itemLabel">
+              Калибровка I1
+            </label>
+            <FormInput
+              id={`I1_zeros_calib_input`}
+              name={`I1_zeros_calib`}
+              label='Калибровка нуля'
+              clickHandler={handleClick_calib_zeros}
+              type="button" />
+          </div>
+          <div className='item_input'>
+            <span className='item_adc_value'>
+              АЦП: {adcCurrent_store.I1}
+            </span>
+            <FormInput
+              id={`I1_calib_input`}
+              name={`I1_calib`}
+              class="calib_input"
+              changeHandler={handleChange}
+              input_value={amperageCalibState.I1}
+              type="text" />
+            <FormInput
+              id={`I1_calib_save`}
+              name={`I1_calib`}
+              clickHandler={handleClick_save}
+              label='Сохранить'
+              type="button" />
+          </div>
+        </li>
       <li
         key='I2_calib'
         id='I2_calib'
@@ -470,9 +550,9 @@ function CurrentCalibSettings_ST(props) {
             disabled={!amperageCalibState.I4_available}
             onClick={handleClick_save} />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }
 
-export default CurrentCalibSettings_ST;
+export default CurrentCalibSettings_AMP;
