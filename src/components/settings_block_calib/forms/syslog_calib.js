@@ -529,7 +529,7 @@ const sys_log_render_processing = (active_page, max_links, max_pages, max_active
     active_log_instance.id = active_log_data[0]
     active_log_instance.status = active_log_data[1]
     active_log_instance.message = active_log_data[2]
-    active_log_instance.time = time_ArrToStr(active_log_data[3], 6)
+    active_log_instance.time = active_log_data[3]
     if (active_log_state.length != 0) {
       let active_log_ref = active_log_state.find(log => log.unique_id === active_log_data[6])
       console.debug(active_log_ref)
@@ -550,6 +550,7 @@ const sys_log_render_processing = (active_page, max_links, max_pages, max_active
       active_log_instance.expand_info = active_log_data[5] ? active_log_data[5] : 'none'
     }
     active_log_instance.unique_id = active_log_data[6]
+    active_log_instance.user = active_log_data[7] ? active_log_data[7] : '';
 
     active_page_logs.push(active_log_instance)
 
