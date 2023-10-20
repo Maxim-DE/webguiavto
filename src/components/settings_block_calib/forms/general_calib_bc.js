@@ -8,12 +8,11 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { reducers as coreReducers } from '../../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
 
-function GeneralCalibSettings_ST(props) {
+function GeneralCalibSettings_BC(props) {
   const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
         auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
-    amp_enable: 0,
     def_module: 0,
     fan_start_alarm: 0,
     tftp: 0
@@ -112,26 +111,6 @@ function GeneralCalibSettings_ST(props) {
       {auth_store.auth_access.calib_extend &&
       <>
       <li
-        key='amp_enable_calib'
-        id='amp_enable_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`amp_enable_calib_input`}
-            className="settings_itemLabel">
-            Выкл/вкл усилитель
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`amp_enable_calib_input`}
-            name={`amp_enable_calib`}
-            changeHandler={handleChange_save}
-            input_value={!!generalCalibState.amp_enable}
-            type="switch" />
-        </div>
-      </li>
-      <li
         key='def_module_calib'
         id='def_module_calib'
         className="settings_item">
@@ -218,4 +197,4 @@ function GeneralCalibSettings_ST(props) {
   )
 }
 
-export default GeneralCalibSettings_ST
+export default GeneralCalibSettings_BC

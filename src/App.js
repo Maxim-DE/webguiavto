@@ -33,6 +33,7 @@ import { reqReducers_wrap } from './store/req_reducers_wrap';
 import { reducers } from './store/reducers/core_store_reducers';
 import PeripheralMenu from './components/peripheral_menu';
 import DeviceWrap_REAmp from './components/device_assets/radio_amp';
+import DeviceWrap_BlockControl from './components/device_assets/block_control';
 
 let debounceTimer;
 
@@ -343,49 +344,64 @@ function DeviceWrap_switch({ device_type, device_type_name, ...props }) {
   // }, [observed_elements])
 
   // Определяем тип устройства и возвращаем соответствующий компонент
-  switch (device_type) {
-    case  0:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-    
-    case 1:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-
-    case 2:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-
-    case 3:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-    
-    default:
-      return (
-        <DeviceWrap_unknown
-          updateHandler={props.updateHandler} />
-      )
+  if (device_type !== 255) {
+    return (
+      <DeviceWrap_BlockControl
+        updateHandler={props.updateHandler}
+        // section_data={props.section_data}
+        // calib_data={props.calib_data}
+        adc_data={props.adc_data} />
+    )
+  } else {
+    return (
+      <DeviceWrap_unknown
+        updateHandler={props.updateHandler} />
+    )
   }
+  
+  // switch (device_type) {
+  //   case  0:
+  //     return (
+  //       <DeviceWrap_BlockControl
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+    
+  //   case 1:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+
+  //   case 2:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+
+  //   case 3:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+    
+  //   default:
+  //     return (
+  //       <DeviceWrap_unknown
+  //         updateHandler={props.updateHandler} />
+  //     )
+  // }
 
   
   // if (device_type_str.includes('СТ')) {
