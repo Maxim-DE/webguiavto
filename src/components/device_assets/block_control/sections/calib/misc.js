@@ -33,14 +33,14 @@ export const MiscCalib = (props) => {
       section_header="другое">
       <MiscCalibSettings_AMP
         clickHandler={handleClick} />
+      <Modbus_master_calib
+        clickHandler={handleClick} />
       {auth_store.auth_access.calib_extend &&
         <>
           <SerialNumVersionCalibSettings
             clickHandler={handleClick} />
         </>
       }
-      <Modbus_master_calib
-        clickHandler={handleClick} />
       <Firmware_calib
         clickHandler={handleClick} />
       <ConfFileCalib

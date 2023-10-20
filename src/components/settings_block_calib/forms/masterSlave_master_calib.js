@@ -76,8 +76,7 @@ export default function Modbus_master_calib(props) {
       }
     }
 
-    props.updateHandler(request_obj);
-
+    props.clickHandler(request_obj);
   }
 
   const changeHandler = (event) => {
@@ -159,7 +158,7 @@ export default function Modbus_master_calib(props) {
       }
     }
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
   }
 
   const toggleEditableDevice = ({ id, index, boolean } = {}) => {
@@ -325,7 +324,7 @@ export default function Modbus_master_calib(props) {
     console.log(req_obj)
     console.log('acc get list')
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
     // setIsLoading(true)
   }
 
@@ -344,7 +343,7 @@ export default function Modbus_master_calib(props) {
 
     console.log(req_obj)
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
     // setIsLoading(true)
   }
 
@@ -360,7 +359,7 @@ export default function Modbus_master_calib(props) {
 
     console.log(req_obj)
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
     // setIsLoading(true)
   }
 
@@ -379,7 +378,7 @@ export default function Modbus_master_calib(props) {
 
     console.log(req_obj)
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
     // setIsLoading(true)
   }
 
@@ -395,7 +394,7 @@ export default function Modbus_master_calib(props) {
 
     console.log(req_obj)
 
-    props.updateHandler(req_obj)
+    props.clickHandler(req_obj)
   }
 
   return (

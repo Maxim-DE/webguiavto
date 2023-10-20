@@ -47,9 +47,15 @@ function App() {
         auth_store = useSelector((store) => store.authStore.auth_data)
 
   // строка имени устройства
-  const device_arr = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.device_type_list : [],
-        device_type = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.model : 0,
-        deviceName_string = Object.keys(info_section_data).length > 0 ? `${device_arr[device_type]} №${info_section_data.info_general.serial_number}` : '...'
+  let device_arr = [],
+      device_type = 0,
+      deviceName_string = ''
+      
+  if (info_section_data.info_general) {
+    device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
+    device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0
+    deviceName_string = Object.keys(info_section_data).length > 0 ? `${device_arr[device_type]} №${info_section_data.info_general.serial_number}` : '...'
+  }
 
   // очередь запросов
   const [requestPool, setRequestPool] = React.useState({

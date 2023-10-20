@@ -41,9 +41,19 @@ function StatusSection(props) {
 
   const guest_mode_class = !auth_store.auth_access.settings ? 'guest_wrap' : ''
 
-  const device_type_arr = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.device_type_list : '',
-        device_type = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.model : 0,
-        device_type_str = device_type_arr[device_type]
+  let device_type_arr = [],
+      device_type = 0,
+      device_type_str = ''
+
+  if (section_store.info.info_general) {
+    device_type_arr = section_store.info.info_general.device_type_list ? section_store.info.info_general.device_type_list : [],
+    device_type = section_store.info.info_general.model ? section_store.info.info_general?.model : 0
+    device_type_str = device_type_arr[device_type]
+  }
+
+  // const device_type_arr = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.device_type_list : '',
+  //       device_type = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.model : 0,
+  //       device_type_str = device_type_arr[device_type]
 
 
   const device_status_output = Object.keys(status_store).length > 0 && device_status(status_store.status_info.device_status),
@@ -69,10 +79,12 @@ function StatusSection(props) {
     }
 
     if (status_store.status_svg.img.length === 0) {
+      if (device_type_arr.length === 0 || device_type === 255) return
+
       let svg_req_str = `${device_model_table[device_type_str]}.svg.gz`
   
       let request_obj = {
-        address: 'static/media/status_graph/' + svg_req_str,
+        address: 'get_status_image.cgi',
         type: 'text',
         reducer: reducers.get_status_graph,
         notifications: {
