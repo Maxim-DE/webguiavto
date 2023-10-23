@@ -296,7 +296,7 @@ function App() {
               isAuthComplete = {auth_store.is_auth}/>
           </header>
           <main>
-            {Object.keys(info_section_data).length > 0 && info_section_data.info_general.model != 250 &&
+            {Object.keys(info_section_data).length > 0 && info_section_data.info_general.model != 255 &&
               <StatusSection
                 section_name="status"
                 section_header="Статус"
@@ -305,8 +305,12 @@ function App() {
                  /> 
             }
             {/* Сообщение об отсутсвии конфигурации */}
-            {Object.keys(info_section_data).length > 0 && info_section_data.info_general.model == 250 &&
+            {Object.keys(info_section_data).length > 0 && info_section_data.info_general.model == 255 &&
+              <>
               <NoConf_placeholder />
+              <DeviceWrap_unknown
+                updateHandler={handlePoolUpdate} />
+              </>
             }
             
             {/* Обертка для разных типов устройств */}
@@ -318,7 +322,7 @@ function App() {
                 // section_data={sectionData}
                 // calib_data={calibState.data}
                 adc_data={status_section_data.calib_adc} />
-            }
+              }
           </main>
         </div>
       </div>
@@ -336,56 +340,59 @@ function DeviceWrap_switch({ device_type, device_type_name, ...props }) {
 
   // Используем хук useInView для отслеживания видимых элементов
   // const observed_elements = useInView(sectionState.section_pool)
-
+  
   // Обновляем пул секций(разделов) в хранилище состояний при изменении отслеживаемых элементов
   // React.useEffect(() => {
-  //   sectionActions.refresh_intersection_pool(observed_elements)
-  // }, [observed_elements])
-
-  // Определяем тип устройства и возвращаем соответствующий компонент
-  switch (device_type) {
-    case  0:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
+    //   sectionActions.refresh_intersection_pool(observed_elements)
+    // }, [observed_elements])
     
-    case 1:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-
-    case 2:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-
-    case 3:
-      return (
-        <DeviceWrap_REAmp
-          updateHandler={props.updateHandler}
-          // section_data={props.section_data}
-          // calib_data={props.calib_data}
-          adc_data={props.adc_data} />
-      )
-    
-    default:
+    // Определяем тип устройства и возвращаем соответствующий компонент
+    if (device_type === 255) {
       return (
         <DeviceWrap_unknown
           updateHandler={props.updateHandler} />
       )
+    } else {
+      return (
+        <DeviceWrap_REAmp
+          updateHandler={props.updateHandler}
+          // section_data={props.section_data}
+          // calib_data={props.calib_data}
+          adc_data={props.adc_data} />
+      )
   }
+  // switch (device_type) {
+  //   case  0:
+    
+  //   case 1:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+
+  //   case 2:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+
+  //   case 3:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+    
+  //   default:
+  // }
 
   
   // if (device_type_str.includes('СТ')) {
