@@ -9,8 +9,30 @@ import { conf_file_links } from '../../../../../settings_block_calib/forms/conf_
 import { useSelector } from 'react-redux'
 
 export default function Recover_settings(props) {
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_store = useSelector((store) => store.authStore.auth_data),
+        info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info)
   // const [auth_store, authGlobalActions] = useGlobalStore()
+  const [recoveryState, setRecoveryState] = React.useState({
+    device_conf_type: 0
+  })
+
+  // строка имени устройства
+  let device_arr = []
+
+  if (info_section_data.info_general) {
+    device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : []
+  }
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name.replace('_calib', '');
+
+    setRecoveryState(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
 
   const handleClick_save = (event) => {
     const target = event.target,
@@ -68,10 +90,18 @@ export default function Recover_settings(props) {
           </div>
           <div className='item_input'>
             <FormInput
-              id={`create_new_conf_input`}
-              name={`create_new_conf`}
+              id={`device_conf_type_calib`}
+              name={`device_conf_type_calib`}
+              type='select'
+              input_value={recoveryState.device_conf_type}
+              title='Тип устройства'
+              variants={device_arr}
+              changeHandler={handleChange} />
+            <FormInput
+              id={`device_conf_type_calib_save`}
+              name={`device_conf_type_calib`}
               clickHandler={handleClick_save}
-              label='Создать'
+              label='Создать с выбр. типом'
               type="button" />
           </div>
         </li>
