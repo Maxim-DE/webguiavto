@@ -36,7 +36,8 @@ export const conf_file_links = {
 }
 
 export default function ConfFileCalib(props) {
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_store = useSelector((store) => store.authStore.auth_data),
+        info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info)
 
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -56,6 +57,15 @@ export default function ConfFileCalib(props) {
 
   const hex_dropzone_ref = React.useRef(null)
   const hex_dropzone_instance = React.useRef(null)
+
+  // строка имени устройства
+  let device_arr = [],
+      device_type = 0
+
+  if (info_section_data.info_general) {
+    device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
+    device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0
+  }
 
   React.useEffect(() => {
   if (props.calib_data != undefined &&
@@ -243,18 +253,7 @@ export default function ConfFileCalib(props) {
               type='select'
               input_value={confCalibState.device_conf_type}
               title='Тип устройства'
-              variants={[
-                'УРЦ-100/300',
-                'УРЦ-500',
-                'УРЦ-1000',
-                'УРЦ-2000',
-                'УСТ-050/100',
-                'УСТ-250',
-                'УСТ-500',
-                'РЦ-ХХХ',
-                'СТ-100',
-                'СТ-250',
-              ]}
+              variants={device_arr}
               changeHandler={handleChange} />
             <FormInput
               id={`device_conf_type_calib_save`}
