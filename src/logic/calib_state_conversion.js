@@ -24,9 +24,15 @@ export const calib_state_conversion = (state, props) => {
     let output_arr = []
     
     state_format.value = state[key] ? state[key] : ''
-    state_format.divider = props[key][1] ? props[key][1] : ''
-    state_format.digit_round = props[key][2] ? props[key][2] : ''
-    state_format.postfix = props[key][3] ? props[key][3] : ''
+    if (props[key]) {
+      state_format.divider = props[key][1] ? props[key][1] : ''
+      state_format.digit_round = props[key][2] ? props[key][2] : ''
+      state_format.postfix = props[key][3] ? props[key][3] : ''
+    } else {
+      state_format.divider = 1
+      state_format.digit_round = 0
+      state_format.postfix = ''
+    }
 
     if (state_format.divider != '' &&
         state_format.divider != undefined) {
