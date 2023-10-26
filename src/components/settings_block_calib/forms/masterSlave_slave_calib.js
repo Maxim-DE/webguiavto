@@ -21,9 +21,9 @@ export default function Modbus_slave_calib(props) {
 
   const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({ 
     slave_form_availiable: 1,
-    slave_address: '',
+    slave_address: 0,
     slave_baudrate: 0,
-    slave_order_num: ''
+    slave_order_num: 0
   })
 
   const [isLoading, setIsLoading] = React.useState(false)
@@ -58,15 +58,8 @@ export default function Modbus_slave_calib(props) {
 
   const handleClick_save = (event) => {
     const target = event.target,
-          name = target.name.replace('_calib', '')
-
-    let value
-
-    if (name === 'slave_baudrate') {
-      value = baudrate_arr[masterSlaveCalibState[name]]
-    } else {
-      value = masterSlaveCalibState[name]
-    }
+          name = target.name.replace('_calib', ''),
+          value = masterSlaveCalibState[name]
 
     const request_obj = {
       address: 'calib_modbus_slave.cgi',
@@ -78,7 +71,7 @@ export default function Modbus_slave_calib(props) {
       },
 
       save_data: {
-        calib_masterSlave: masterSlaveCalibState
+        calib_modbus: masterSlaveCalibState
       }
     }
 
@@ -86,30 +79,50 @@ export default function Modbus_slave_calib(props) {
 
   }
 
-  const handleFormDisable = (event) => {
+  const handleClick_saveBaud = (event) => {
     const target = event.target,
-          value = target.type === 'checkbox' ? target.checked : target.value
+          name = target.name.replace('_calib', ''),
+          value = baudrate_arr[masterSlaveCalibState[name]]
 
-    setMasterSlaveCalibState(prevState => ({
-      ...prevState,
-      master_form_availiable: value
-    }))
-
-    const req_obj = {
+    const request_obj = {
       address: 'calib_modbus_slave.cgi',
-      data: `slave_form_availiable$${value}`,
-      reducer: reducers.calibration_form,
+      data: `${name}$${value}`,
+      reducer: reducers.calibration_data,
       notifications: {
         good: 'default',
         bad: 'default'
       },
 
       save_data: {
-        calib_masterSlave: masterSlaveCalibState
+        calib_modbus: masterSlaveCalibState
       }
     }
 
-    props.clickHandler(req_obj)
+    props.clickHandler(request_obj);
+
+  }
+
+  const handleClick_saveSelectArrs = (event) => {
+    const target = event.target,
+          name = target.name.replace('_calib', ''),
+          value = Number(masterSlaveCalibState[name]) + 1
+
+    const request_obj = {
+      address: 'calib_modbus_slave.cgi',
+      data: `${name}$${value}`,
+      reducer: reducers.calibration_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_modbus: masterSlaveCalibState
+      }
+    }
+
+    props.clickHandler(request_obj);
+
   }
 
   return (
@@ -143,7 +156,7 @@ export default function Modbus_slave_calib(props) {
             id={`slave_address_save`}
             name={`slave_address`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
-            clickHandler={handleClick_save}
+            clickHandler={handleClick_saveSelectArrs}
             label='Сохранить'
             type="button" />
         </div>
@@ -173,7 +186,7 @@ export default function Modbus_slave_calib(props) {
             id={`slave_order_num_save`}
             name={`slave_order_num`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
-            clickHandler={handleClick_save}
+            clickHandler={handleClick_saveSelectArrs}
             label='Сохранить'
             type="button" />
         </div>
@@ -203,7 +216,7 @@ export default function Modbus_slave_calib(props) {
             id={`slave_baudrate_save`}
             name={`slave_baudrate`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
-            clickHandler={handleClick_save}
+            clickHandler={handleClick_saveBaud}
             label='Сохранить'
             type="button" />
         </div>

@@ -68,15 +68,8 @@ export default function Modbus_master_calib(props) {
 
   const handleClick_save = (event) => {
     const target = event.target,
-          name = target.name.replace('_calib', '')
-
-    let value
-
-    if (name === 'master_baudrate') {
-      value = baudrate_arr[masterSlaveCalibState[name]]
-    } else {
-      value = masterSlaveCalibState[name]
-    }
+          name = target.name.replace('_calib', ''),
+          value = masterSlaveCalibState[name]
 
     const request_obj = {
       address: 'calib_modbus_master.cgi',
@@ -88,11 +81,34 @@ export default function Modbus_master_calib(props) {
       },
 
       save_data: {
-        calib_masterSlave: masterSlaveCalibState
+        calib_modbus: masterSlaveCalibState
       }
     }
 
     props.updateHandler(request_obj);
+
+  }
+
+  const handleClick_saveBaud = (event) => {
+    const target = event.target,
+      name = target.name.replace('_calib', ''),
+      value = baudrate_arr[masterSlaveCalibState[name]]
+
+    const request_obj = {
+      address: 'calib_modbus_master.cgi',
+      data: `${name}$${value}`,
+      reducer: reducers.calibration_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_modbus: masterSlaveCalibState
+      }
+    }
+
+    props.clickHandler(request_obj);
 
   }
 
@@ -171,7 +187,7 @@ export default function Modbus_master_calib(props) {
       },
 
       save_data: {
-        calib_masterSlave: masterSlaveCalibState
+        calib_modbus: masterSlaveCalibState
       }
     }
 
@@ -445,7 +461,7 @@ export default function Modbus_master_calib(props) {
             id={`master_baudrate_save`}
             name={`master_baudrate`}
             disabled={!masterSlaveCalibState.master_form_availiable}
-            clickHandler={handleClick_save}
+            clickHandler={handleClick_saveBaud}
             label='Сохранить'
             type="button" />
         </div>
