@@ -150,7 +150,6 @@ function CurrentCalibSettings_AMP(props) {
       data: `${name}$${value*10}`,
       // reducer: reducers.calibration_form,
       reducer: ({ request_name, request_resp, request_params }) => {
-        toast.success('насрал' + name)
         reducers.calibration_form({ request_resp })
       },
       update_data: amperageCalibState,
@@ -313,7 +312,6 @@ function CurrentCalibSettings_AMP(props) {
         </div>
       </li>
     )
-    console.log("row_created");
   }
 
   return (
