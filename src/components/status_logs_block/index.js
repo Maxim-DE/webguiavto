@@ -182,9 +182,10 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
               </tr>
             </thead>
             <tbody className="log_list">
-              {logData.map(item => (
+              {logData.map((item) => { 
+                return (
                 <tr
-                  key={item.id}
+                  key={item.time}
                   id={`log_${item.id}`}
                   className={`log_item ${log_status[item.status]}`}>
                   <td className='log_num'>{item.id}</td>
@@ -192,7 +193,8 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
                   <td className='log_time'>{item.time}</td>
                   <td className='log_message'>{item.message}</td>
                 </tr>
-              ))}
+                )
+              })}
             </tbody>
           </table>
           <FormInput
