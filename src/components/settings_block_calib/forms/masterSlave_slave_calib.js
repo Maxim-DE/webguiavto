@@ -17,7 +17,7 @@ const baudrate_arr = [
 ]
 
 export default function Modbus_slave_calib(props) {
-  const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_masterSlave)
+  const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_modbus)
 
   const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({ 
     slave_form_availiable: 1,
@@ -179,12 +179,12 @@ export default function Modbus_slave_calib(props) {
         </div>
       </li>
       <li
-        key='master_connection_speed_calib'
-        id='master_connection_speed_calib'
+        key='slave_baudrate_calib'
+        id='slave_baudrate_calib'
         className="settings_item calib">
         <div className='item_header'>
           <label
-            htmlFor={`slave_connection_speed_input`}
+            htmlFor={`slave_baudrate_input`}
             className="settings_itemLabel">
             Скорость передачи
           </label>
