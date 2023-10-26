@@ -8,14 +8,21 @@ import { MdNetworkCheck } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
+const baudrate_arr = [
+  '9600',
+  '19200',
+  '38400',
+  '57600',
+  '115200'
+]
+
 export default function Modbus_slave_calib(props) {
   const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_masterSlave)
 
   const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({ 
     slave_form_availiable: 1,
     slave_address: '',
-    slave_connection_speed: '',
-    slave_timeout: '',
+    slave_baudrate: 0,
     slave_order_num: ''
   })
 
@@ -51,8 +58,15 @@ export default function Modbus_slave_calib(props) {
 
   const handleClick_save = (event) => {
     const target = event.target,
-      name = target.name.replace('_calib', ''),
+          name = target.name.replace('_calib', '')
+
+    let value
+
+    if (name === 'slave_baudrate') {
+      value = baudrate_arr[masterSlaveCalibState[name]]
+    } else {
       value = masterSlaveCalibState[name]
+    }
 
     const request_obj = {
       address: 'calib_modbus_slave.cgi',
@@ -177,23 +191,17 @@ export default function Modbus_slave_calib(props) {
         </div>
         <div className='item_input'>
           <FormInput
-            id={`slave_connection_speed_input`}
-            name={`slave_connection_speed`}
+            id={`slave_baudrate_input`}
+            name={`slave_baudrate`}
             class="calib_input"
             disabled={!masterSlaveCalibState.slave_form_availiable}
             changeHandler={handleChange}
-            input_value={masterSlaveCalibState.slave_connection_speed}
+            input_value={masterSlaveCalibState.slave_baudrate}
             type="select"
-            variants={[
-              '9600',
-              '19200',
-              '38400',
-              '57600',
-              '115200'
-            ]}/>
+            variants={baudrate_arr}/>
           <FormInput
-            id={`slave_connection_speed_save`}
-            name={`slave_connection_speed`}
+            id={`slave_baudrate_save`}
+            name={`slave_baudrate`}
             disabled={!masterSlaveCalibState.slave_form_availiable}
             clickHandler={handleClick_save}
             label='Сохранить'
