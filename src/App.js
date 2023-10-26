@@ -279,7 +279,8 @@ function App() {
           </div>
           {/* Компонент с ссылками на разделы */}
           <Links_list 
-            updateHandler={navRefUpdate} />
+            updateHandler={navRefUpdate}
+            device_type={device_type} />
           <div className='nav_fillblock'></div>
           {/* Компонент с боковым нижним меню */}
           <PeripheralMenu
