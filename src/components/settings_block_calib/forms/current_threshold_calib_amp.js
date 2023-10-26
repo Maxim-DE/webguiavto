@@ -42,7 +42,7 @@ function CurrentThresholdCalibSettings_AMP(props) {
     if (!calibCurrentThreshold_store) return
 
     if (Object.keys(calibCurrentThreshold_store).length != 0) {
-      let calib_state_copy = {}
+      let calib_state_copy = thresholdCalibState
 
       for (const key in calibCurrentThreshold_store) {
         let value_array = [],
