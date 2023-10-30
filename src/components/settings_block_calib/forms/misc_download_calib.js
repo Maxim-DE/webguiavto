@@ -2,6 +2,7 @@ import React from 'react'
 import Settings_block_calib from '..'
 import FormInput from '../../form_input'
 import useGlobalStore from '../../../logic/auth_store'
+import { useSelector } from 'react-redux'
 
 function MiscDownloadCalib(props) {
   const download_links = {
@@ -25,7 +26,7 @@ function MiscDownloadCalib(props) {
     },
   })
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
 
   const handleChange = (event) => {
     const target = event.target;
@@ -125,7 +126,7 @@ function MiscDownloadCalib(props) {
           </a> 
         </div>
       </li> */}
-      {authGlobalState.auth_access.calib_extend &&
+      {auth_store.auth_access.calib_extend &&
       <>
       <li
         key='sector_download'

@@ -28,6 +28,8 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';
+import { reducers } from '../../../../../store/reducers/core_store_reducers';
+
 
 
 export default function CalibSection(props) {
@@ -48,6 +50,7 @@ export default function CalibSection(props) {
   React.useEffect(() => {
     let request_obj = {
       address: `${props.section_name}.cgi`,
+      reducer: reducers.calibration_data
     }
     props.updateHandler(request_obj);
 
@@ -71,79 +74,79 @@ export default function CalibSection(props) {
         <GeneralCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.general_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_general : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            // props.section_data.calib_general : ''}
           clickHandler={handleClick} />
         <VoltageCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.voltage_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_voltage : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            // props.section_data.calib_voltage : ''}
           clickHandler={handleClick} />
         <CurrentCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.current_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_current.current_value
-            : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            // props.section_data.calib_current.current_value
+            // : ''}
           clickHandler={handleClick} />
         <CurrentThresholdCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.current_threshhold_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_current.threshold : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            // props.section_data.calib_current.threshold : ''}
           clickHandler={handleClick} />
         <PowerCalibSettings
           adc_data={props.adc_data != null ?
             props.adc_data.power_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_power : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            // props.section_data.calib_power : ''}
           clickHandler={handleClick} />
         <WattageAdditionalCalibSettings_ST
           adc_data={props.adc_data != null ?
             props.adc_data.power_additional_calib : ''}
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_additional_power : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            // props.section_data.calib_additional_power : ''}
           clickHandler={handleClick} />
         <TempThresholdCalibSettings
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_temp : ''}
+        // calib_data={Object.keys(props.section_data).length != 0 ?
+        //     props.section_data.calib_temp : ''}
           clickHandler={handleClick} />
         <FanCalibSettings
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_fan : ''}
+        // calib_data={Object.keys(props.section_data).length != 0 ?
+        //     props.section_data.calib_fan : ''}
           clickHandler={handleClick} />
         <MiscCalibSettings_ST250
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_misc : ''}
+        // calib_data={Object.keys(props.section_data).length != 0 ?
+        //     props.section_data.calib_misc : ''}
           clickHandler={handleClick} />
         <Firmware_calib
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_firmware : ''}
+        // calib_data={Object.keys(props.section_data).length != 0 ?
+        //     props.section_data.calib_firmware : ''}
           clickHandler={handleClick} />
         <ConfFileCalib
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_configFile : ''}
+        // calib_data={Object.keys(props.section_data).length != 0 ?
+        //     props.section_data.calib_configFile : ''}
           clickHandler={handleClick} />
         {/* <ChannelEnablerSettings 
-          calib_data={Object.keys(props.section_data).length != 0 ?
-            props.section_data.calib_channels.channel_list : ''}
+        // calib_data={Object.keys(props.section_data).length != 0 ?
+        //     props.section_data.calib_channels.channel_list : ''}
           clickHandler={handleClick}
            /> */}
         {/* <MiscDownloadCalib /> */}
         {authGlobalState.auth_access.calib_extend &&
           <>
             <SerialNumVersionCalibSettings
-              calib_data={Object.keys(props.section_data).length != 0 ?
-                props.section_data.calib_serialNum : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            //     props.section_data.calib_serialNum : ''}
               clickHandler={handleClick} />
             <NetworkCalibSettings
-              calib_data={Object.keys(props.section_data).length != 0 ?
-                props.section_data.calib_network : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            //     props.section_data.calib_network : ''}
               clickHandler={handleClick} />
             <ConsoleOutputCalibSettings
-              calib_data={Object.keys(props.section_data).length != 0 ?
-                props.section_data.calib_console_output : ''}
+            // calib_data={Object.keys(props.section_data).length != 0 ?
+            //     props.section_data.calib_console_output : ''}
               clickHandler={handleClick} />
             <MiscDownloadCalib />
           </>

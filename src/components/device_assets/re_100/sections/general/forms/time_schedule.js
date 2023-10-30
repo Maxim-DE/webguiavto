@@ -7,23 +7,27 @@ import Time_schedule_settings from "../../../../../custom_groups/time_schedule_s
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import clone from "lodash/clone"
+import { reducers } from "../../../../../../store/reducers/core_store_reducers"
+import { useSelector } from "react-redux"
 
 export default function Time_schedule_form(props) {
+  const timeSChedule_store = useSelector((store) => store.globalStore.global_data.section_data.settings.time_schedule)
+  
   const [timeScheduleState, setTimeScheduleState] = React.useState({})
 
   React.useEffect(() => {
-    console.log(props.settings_data);
+    console.log(timeSChedule_store);
 
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (timeSChedule_store != 'null' && timeSChedule_store != undefined) {
       let settings_state_copy = timeScheduleState
 
       for (const key in settings_state_copy) {
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = timeSChedule_store[key]
       }
 
       setTimeScheduleState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [timeSChedule_store])
 
   const state_handler = (state) => {
     let target_state_clone = clone(timeScheduleState)
@@ -52,6 +56,7 @@ export default function Time_schedule_form(props) {
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'

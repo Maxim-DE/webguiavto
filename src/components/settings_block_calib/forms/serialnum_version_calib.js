@@ -2,13 +2,17 @@ import React from 'react';
 
 import Settings_block_calib from '..';
 import FormInput from '../../form_input';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function SerialNumVersionCalibSettings(props) {
+  const calibSerialNumVersion_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_serialNum)
 
   const [serialNumVersionCalibState, setSerialNumVersionCalibState] = React.useState({
     calib_defence: 1,
     device_serial_num: '',
-    device_type: [1, 1]
+    device_type: [1, 1],
+    device_conf_type: 0
   })
   
   const device_power_table = [
@@ -33,17 +37,19 @@ function SerialNumVersionCalibSettings(props) {
   ]
 
   React.useEffect(() => {
-    if (Object.keys(props.calib_data).length != 0) {
+    if (calibSerialNumVersion_store == undefined) return
+
+    if (Object.keys(calibSerialNumVersion_store).length != 0) {
       let calib_state_copy = serialNumVersionCalibState
 
-      for (const key in props.calib_data) {
-        calib_state_copy[key] = props.calib_data[key]
+      for (const key in calibSerialNumVersion_store) {
+        calib_state_copy[key] = calibSerialNumVersion_store[key]
       }
 
       setSerialNumVersionCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibSerialNumVersion_store])
 
   const device_type_handleChange = (event) => {
     const target = event.target;
@@ -73,6 +79,7 @@ function SerialNumVersionCalibSettings(props) {
     const request_obj = {
       address: 'calib_serialNum_vesrion.cgi',
       data: `${series_str};${pwr_str}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -111,6 +118,7 @@ function SerialNumVersionCalibSettings(props) {
     const request_obj = {
       address: 'calib_serialNum_vesrion.cgi',
       data: `${name}$${+ value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -134,6 +142,7 @@ function SerialNumVersionCalibSettings(props) {
     const request_obj = {
       address: 'calib_serialNum_vesrion.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
         bad: 'default'

@@ -94,10 +94,11 @@ function Status_graphs(props) {
           new_value = new_value + postfix
 
           if (status != 0) {
-            graph_block_value_span.attributes["font-weight"].value = "500";
+            graph_block_value_span.style.fontWeight = "500";
             graph_block_value_span.style.fill = status_colors[status];
           } else {
-            graph_block_value_span.attributes["font-weight"].value = "300";
+            graph_block_value_span.style.fontWeight = "300";
+            // graph_block_value_span.attributes["font-weight"].value = "300";
             graph_block_value_span.style.fill = '#202020';
           }
           

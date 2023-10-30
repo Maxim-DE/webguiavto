@@ -26,14 +26,14 @@ function PeripheralMenu(props) {
     props.updateHandler(request_obj)
   }, [])
 
-  React.useEffect(() => {
-    if (props.structure.length > 0) {
-      setPeripheralData(prevState => ({
-        ...prevState,
-        structure: props.structure
-      }))
-    }
-  }, [props.structure])
+  // React.useEffect(() => {
+  //   if (props.structure.length > 0) {
+  //     setPeripheralData(prevState => ({
+  //       ...prevState,
+  //       structure: props.structure
+  //     }))
+  //   }
+  // }, [props.structure])
 
   React.useEffect(() => {
     if (props.data.status_info == null) {
@@ -81,7 +81,11 @@ function PeripheralMenu(props) {
         <span className='time_label'>Тек. время:</span>
         <span className="time_value">{peripheralData.time}</span>
       </div>
-      <div className="linear_indicatiors">
+      <div className="peripheral_time">
+        <span className='time_label'>Версия ПО:</span>
+        <span className="time_value">{props.software_version ? props.software_version : '...'}</span>
+      </div>
+      {/* <div className="linear_indicatiors">
         {peripheralData.structure.length > 0 &&
          peripheralData.structure.map(item => {
           return (
@@ -94,7 +98,7 @@ function PeripheralMenu(props) {
               label={translation_dict[item.name]} />
           )
         })}
-      </div>
+      </div> */}
     </div>
   )
 }

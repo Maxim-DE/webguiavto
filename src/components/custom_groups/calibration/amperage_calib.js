@@ -19,7 +19,7 @@ export const amperage_calib = {
         <FormInput
           id={`I1_calib_input`}
           name={`I1_calib`}
-          value={block_state[I1_calib]}
+          value={block_state['I1_calib']}
           type="text"
           changeHandler={form_handler} />
       </li>
@@ -50,7 +50,7 @@ export const amperage_calib = {
         <FormInput
           id={`I2_calib_input`}
           name={`I2_calib`}
-          value={block_state[I2_calib]}
+          value={block_state['I2_calib']}
           type="text"
           changeHandler={form_handler} />
       </li>
@@ -81,7 +81,7 @@ export const amperage_calib = {
         <FormInput
           id={`I3_calib_input`}
           name={`I3_calib`}
-          value={block_state[I3_calib]}
+          value={block_state['I3_calib']}
           type="text"
           changeHandler={form_handler} />
       </li>

@@ -1,4 +1,5 @@
 import { status_colors } from '../components/graph_blocks';
+import { reducers } from '../store/reducers/calib_forms_reducers';
 import { LabelReplaceText } from '../components/status_logs_block';
 
 const find_log_pos = (log_data, log_id) => {
@@ -16,7 +17,7 @@ export const set_logs_id = (log_data) => {
     let log_item = log_data[log],
         log_unique_id = `f${(~~(Math.random()*1e8)).toString(16)}`
     
-    log_item[6] = log_unique_id
+    log_item[log_item.length + 1] = log_unique_id
   }
 
   return log_data
@@ -28,8 +29,8 @@ export const syslog_handle_expand = (expand_info, log_data, log_id) => {
       log_pos = find_log_pos(log_data, log_id),
       log_info = expand_info.log || expand_info.extend_info || expand_info
 
-  if (!log_to_expand[5]) {
-    log_to_expand[5] = log_info
+  if (!log_to_expand[6]) {
+    log_to_expand[6] = log_info
   }
   
   log_data[log_pos] = log_to_expand
@@ -44,6 +45,7 @@ export const handle_logExpand_request = (update_handler, log_type, log_num, expa
     request_obj = {
       address: 'get_expanded_log.cgi',
       data: `${log_type}$1;log_num$${log_num}`,
+      reducer: reducers.get_expanded_syslog,
       notifications: {
         good: 'default',
         bad: 'default'

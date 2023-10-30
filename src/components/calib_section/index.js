@@ -5,7 +5,7 @@ import useFetch from '../hooks'
 
 import Settings_block_calib from '../settings_block_calib'
 
-import useGlobalStore from '../../logic/auth_store';
+import useAuthStore from '../../logic/auth_store';
 
 import CurrentCalibSettings from '../settings_block_calib/forms/current_calib';
 import CurrentThresholdCalibSettings from '../settings_block_calib/forms/current_threshold_calib';
@@ -28,7 +28,7 @@ function CalibSection(props) {
     isLoading: false
   });
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const [authGlobalState, authGlobalActions] = useAuthStore()
 
   React.useEffect(() => {
     if (props.section_data) {

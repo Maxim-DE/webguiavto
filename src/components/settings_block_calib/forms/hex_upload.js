@@ -5,6 +5,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 import FormInput from '../../form_input';
 import ModalCalib from '../../calib_modal';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
 function Hex_upload(props) {
   const [isUploading, setIsUploading] = React.useState(false);
@@ -56,6 +57,7 @@ function Hex_upload(props) {
 
         const request_obj = {
           address: 'calib_get_info_firmware.cgi',
+          reducer: reducers.calibration_form,
           notifications: {
             good: 'default',
             bad: 'default'

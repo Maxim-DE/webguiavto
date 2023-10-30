@@ -60,6 +60,6 @@ const actions = {
   }
 }
 
-const useGlobalStore = globalHook(initial_store, actions)
+const useAuthStore = globalHook(initial_store, actions)
 
-export default useGlobalStore
+export default useAuthStore

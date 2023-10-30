@@ -40,6 +40,8 @@ function Silence_det_settings({ parent_state, state_handler, ...rest }) {
   }, [silenceDetState])
 
   React.useEffect(() => {
+    if (!parent_state) return
+    
     if (!Object.hasOwn(parent_state, 'silence_det')) return
 
     if (_.isEqual(parent_state.silence_det, silenceDetState)) return

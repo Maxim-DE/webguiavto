@@ -8,8 +8,11 @@ import cloneDeep from 'lodash/cloneDeep';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import useGlobalStore from '../../../logic/auth_store';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 function ConsoleOutputCalibSettings(props) {
+  const calibConsoleOutput_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_console_output)
 
   const [consoleOutputCalibState, setConsoleOutputCalibState] = React.useState({
     console_output_switch: 1,
@@ -23,28 +26,28 @@ function ConsoleOutputCalibSettings(props) {
   const [authGlobalState, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibConsoleOutput_store) {
       return
     } 
 
-    if (Object.keys(props.calib_data).length != 0) {
+    if (Object.keys(calibConsoleOutput_store).length != 0) {
       let calib_state_copy = cloneDeep(consoleOutputCalibState)
 
-      for (const key in props.calib_data) {
-        if (Array.isArray(props.calib_data[key])) {
-          const divident = props.calib_data[key][0],
-            divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibConsoleOutput_store) {
+        if (Array.isArray(calibConsoleOutput_store[key])) {
+          const divident = calibConsoleOutput_store[key][0],
+            divider = calibConsoleOutput_store[key][1] == 0 ? 1 : calibConsoleOutput_store[key][1],
             digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = props.calib_data[key]
+          calib_state_copy[key] = calibConsoleOutput_store[key]
         }
       }
 
       setConsoleOutputCalibState(calib_state_copy)
 
     }
-  }, [props.calib_data])
+  }, [calibConsoleOutput_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -64,10 +67,10 @@ function ConsoleOutputCalibSettings(props) {
 
     let value, state_to_save
 
-    if (Array.isArray(props.calib_data[name])) {
+    if (Array.isArray(calibConsoleOutput_store[name])) {
       value = consoleOutputCalibState[name] * 10
       let state_obj = { [name]: value }
-      state_to_save = calib_state_conversion(state_obj, props.calib_data)
+      state_to_save = calib_state_conversion(state_obj, calibConsoleOutput_store)
     } else {
       value = consoleOutputCalibState[name]
       state_to_save = { [name]: value }
@@ -77,6 +80,7 @@ function ConsoleOutputCalibSettings(props) {
     const request_obj = {
       address: 'calib_console_output.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       save_data: {
         calib_console_output: state_to_save
       }
@@ -92,10 +96,10 @@ function ConsoleOutputCalibSettings(props) {
 
     let value, state_to_save
       
-    if (Array.isArray(props.calib_data[name])) {
+    if (Array.isArray(calibConsoleOutput_store[name])) {
       value = consoleOutputCalibState[name] * 10
       let state_obj = { [name]: value }
-      state_to_save = calib_state_conversion(state_obj, props.calib_data)
+      state_to_save = calib_state_conversion(state_obj, calibConsoleOutput_store)
     } else {
       value = target.type === 'checkbox' ? target.checked : consoleOutputCalibState[name] * 10
       state_to_save = { [name]: value }
@@ -104,6 +108,7 @@ function ConsoleOutputCalibSettings(props) {
     const request_obj = {
       address: 'calib_fan.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       save_data: {
         calib_console_output: {
           [name]: value

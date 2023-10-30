@@ -4,6 +4,7 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 import Time_settings from './forms/time_settings'
 import File_download from './forms/file_download'
+import { reducers } from '../../../../../store/reducers/core_store_reducers'
 
 export default function GeneralSettingsSection(props) {
 
@@ -14,6 +15,7 @@ export default function GeneralSettingsSection(props) {
   React.useEffect(() => {
     let request_obj = {
       address: `settings.cgi`,
+      reducer: reducers.section_data,
       notifications: {
         good: 'none',
         bad: () => {
@@ -36,9 +38,9 @@ export default function GeneralSettingsSection(props) {
       section_header="общие настройки">
       <Time_settings 
         section_name="settings"
-        settings_data={props.section_data === 'null' ?
-          'null'
-          : props.section_data.time_settings}
+        // settings_data={props.section_data === 'null' ?
+        //   'null'
+        //   : props.section_data.time_settings}
         clickHandler={updateHandler} />
       <File_download
         section_name="settings" />

@@ -4,24 +4,28 @@ import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
 
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
+import { reducers } from '../../../../../../store/reducers/core_store_reducers'
+import { useSelector } from 'react-redux'
 
 export default function Snmp_agent(props) {
+  const snmpAgent_store = useSelector((store) => store.globalStore.global_data.section_data.network.snmp_agent)
+
   const [snmpAgentState, setSnmpAgentState] = React.useState({
     community_read: '',
     community_write: '',
   })
 
   React.useEffect(() => {
-    if (props.settings_data != 'null' && props.settings_data != undefined) {
+    if (snmpAgent_store != 'null' && snmpAgent_store != undefined) {
       let settings_state_copy = snmpAgentState
 
       for (const key in settings_state_copy) {
-        settings_state_copy[key] = props.settings_data[key]
+        settings_state_copy[key] = snmpAgent_store[key]
       }
 
       setSnmpAgentState(settings_state_copy)
     }
-  }, [props.settings_data])
+  }, [snmpAgent_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -38,8 +42,9 @@ export default function Snmp_agent(props) {
     const req_data_str = dataArray_to_string(snmpAgentState)
 
     const request_obj = {
-      address: `set_${props.section_name}.cgi`,
+      address: `SetSnmp.cgi`,
       data: req_data_str,
+      reducer: reducers.section_data,
       notifications: {
         good: 'default',
         bad: 'default'

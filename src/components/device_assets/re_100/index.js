@@ -19,26 +19,26 @@ export default function DeviceWrap_RE100(props) {
     <>
       <GeneralSettingsSection
         updateHandler={updateHandler}
-        section_data={props.section_data.settings === null ? 'null' : props.section_data.settings}
+        // section_data={props.section_data.settings === null ? 'null' : props.section_data.settings}
       />
       <RdsSettingsSection
         updateHandler={updateHandler}
-        section_data={props.section_data.rds === null ? 'null' : props.section_data.rds}
+        // section_data={props.section_data.rds === null ? 'null' : props.section_data.rds}
       />
       <NetworkSettingsSection
         updateHandler={updateHandler}
-        section_data={props.section_data.network === null ? 'null' : props.section_data.network}
+        // section_data={props.section_data.network === null ? 'null' : props.section_data.network}
       />
       <InfoSection
         updateHandler={updateHandler}
-        section_data={props.section_data.info === null ? 'null' : props.section_data.info}
+        // section_data={props.section_data.info === null ? 'null' : props.section_data.info}
       />
       {authGlobalState.auth_access.calib &&
         <CalibSection
           section_name="calibration"
           section_header="калибровка"
           updateHandler={updateHandler}
-          section_data={props.calib_data === null ? 'null' : props.calib_data}
+          // section_data={props.calib_data === null ? 'null' : props.calib_data}
           adc_data={props.adc_data} />
       }
     </>

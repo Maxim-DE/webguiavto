@@ -6,8 +6,11 @@ import FormInput from '../../form_input';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
+import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
 
 export default function NetworkCalibSettings(props) {
+  const calibNetwork_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_network)
 
   const [networkCalibState, setNetworkCalibState] = React.useState({
     req_period: '',
@@ -17,28 +20,28 @@ export default function NetworkCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (!props.calib_data) {
+    if (!calibNetwork_store) {
       return
     }
 
-    if (Object.keys(props.calib_data).length != 0) {
+    if (Object.keys(calibNetwork_store).length != 0) {
       let calib_state_copy = cloneDeep(networkCalibState)
 
-      for (const key in props.calib_data) {
-        if (Array.isArray(props.calib_data[key])) {
-          const divident = props.calib_data[key][0],
-            divider = props.calib_data[key][1] == 0 ? 1 : props.calib_data[key][1],
+      for (const key in calibNetwork_store) {
+        if (Array.isArray(calibNetwork_store[key])) {
+          const divident = calibNetwork_store[key][0],
+            divider = calibNetwork_store[key][1] == 0 ? 1 : calibNetwork_store[key][1],
             digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = props.calib_data[key]
+          calib_state_copy[key] = calibNetwork_store[key]
         }
       }
 
       setNetworkCalibState(calib_state_copy)
-
     }
-  }, [props.calib_data])
+
+  }, [calibNetwork_store])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -57,10 +60,10 @@ export default function NetworkCalibSettings(props) {
 
     let value, state_to_save
 
-    if (Array.isArray(props.calib_data[name])) {
+    if (Array.isArray(calibNetwork_store[name])) {
       value = networkCalibState[name] * 10
       let state_obj = { [name]: value }
-      state_to_save = calib_state_conversion(state_obj, props.calib_data)
+      state_to_save = calib_state_conversion(state_obj, calibNetwork_store)
     } else {
       value = networkCalibState[name]
       state_to_save = { [name]: value }
@@ -69,6 +72,7 @@ export default function NetworkCalibSettings(props) {
     const request_obj = {
       address: 'calib_network.cgi',
       data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
       update_data: networkCalibState,
       notifications: {
         good: 'default',

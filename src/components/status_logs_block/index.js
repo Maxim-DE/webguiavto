@@ -11,6 +11,7 @@ import { PulseLoader } from 'react-spinners';
 
 import { status_colors } from '../graph_blocks';
 import './index.css'
+import { reducers } from '../../store/reducers/status_logs_reducers';
 
 const log_items = [
   {id: '0', message: "Питание передатчика", time: "2022-03-17 13:16:28"},
@@ -58,19 +59,20 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
       let log_obj = {};
       log_obj.id = data[log][0];
       log_obj.status = data[log][1];
-      log_obj.message = data[log][2];
-      log_obj.time = time_ArrToStr(data[log][3]);
+      log_obj.user = data[log][2];
+      log_obj.message = data[log][3];
+      log_obj.time = Array.isArray(data[log][4]) ? time_ArrToStr(data[log][4]) : data[log][4];
       if (fullLogData.length != 0 && fullLogData[log]) {
-        log_obj.log_expand = set_expand_state(data[log][4], fullLogData[log].log_expand)
+        log_obj.log_expand = set_expand_state(data[log][5], fullLogData[log].log_expand)
         if (fullLogData[log].expand_info === 'none') {
-          log_obj.expand_info = data[log][5] ? data[log][5] : 'none';
+          log_obj.expand_info = data[log][6] ? data[log][6] : 'none';
         } else {
           log_obj.expand_info = fullLogData[log].expand_info
         }
 
       } else {
-        log_obj.log_expand = data[log][4] == 1 ? false : 'none';
-        log_obj.expand_info = data[log][5] ? data[log][5] : 'none';
+        log_obj.log_expand = data[log][5] == 1 ? false : 'none';
+        log_obj.expand_info = data[log][6] ? data[log][6] : 'none';
       }
       logs_array.push(log_obj);
     }
@@ -108,6 +110,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
     const request_obj = {
       address: 'GetLogErrorFull.cgi',
       data: 'userlog$1',
+      reducer: reducers.userlog_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -140,6 +143,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
       request_obj = {
         address: 'get_expanded_log.cgi',
         data: `${log_type}$1;log_num$${log_num}`,
+        reducer: reducers.get_expanded_userlog,
         notifications: {
           good: 'default',
           bad: 'default'
