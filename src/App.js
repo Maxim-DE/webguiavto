@@ -356,13 +356,13 @@ function DeviceWrap_switch({device_type, ...props}) {
         updateHandler={props.updateHandler} />
     )
   } else if (device_type_str === 're_100') {
-    return (
-      <DeviceWrap_BlockControl
-        updateHandler={props.updateHandler}
-        // section_data={props.section_data}
-        // calib_data={props.calib_data}
-        adc_data={props.adc_data} />
-    )
+    // return (
+    //   <DeviceWrap_BlockControl
+    //     updateHandler={props.updateHandler}
+    //     // section_data={props.section_data}
+    //     // calib_data={props.calib_data}
+    //     adc_data={props.adc_data} />
+    // )
   } else {
     return (
       <DeviceWrap_unknown
