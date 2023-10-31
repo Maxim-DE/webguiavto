@@ -11,6 +11,7 @@ import FormInput from '../form_input';
 
 import useAuthStore from '../../logic/auth_store';
 import { reducers } from '../../store/reducers/log_button_reducers';
+import { reducers as core_reducers } from '../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
 
 const CalibLogButton = (props) => {
@@ -90,7 +91,23 @@ const CalibLogButton = (props) => {
 		const request_obj = {
       address: 'calib_passw.cgi',
       data: `login$${calibPassw.login};password$${calibPassw.password}`,
-			reducer: reducers.calib_passw,
+			reducer: ({ request_name, request_resp, request_params }) => {
+        reducers.calib_passw({ request_name, request_resp, request_params })
+
+				const request_obj = {
+					address: `info.cgi`,
+					reducer: core_reducers.section_data,
+					notifications: {
+						good: 'none',
+						bad: () => {
+							return `Ошибка, обновите страницу (info)`
+						}
+					},
+				}
+
+				props.updateHandler(request_obj);
+				
+      },
 			notifications: {
 				good: 'default',
 				bad: 'default'
@@ -98,11 +115,6 @@ const CalibLogButton = (props) => {
     }
 
 		props.updateHandler(request_obj)
-
-		// setCalibPassw({
-		// 	login: '',
-		// 	password: ''
-		// })
 	}
 
 	return (
