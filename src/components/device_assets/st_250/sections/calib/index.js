@@ -24,7 +24,6 @@ import ConfFileCalib from '../../../../settings_block_calib/forms/conf_file_cali
 import NetworkCalibSettings from '../../../../settings_block_calib/forms/network_calib';
 import ConsoleOutputCalibSettings from '../../../../settings_block_calib/forms/console_output_calib';
 import SerialNumVersionCalibSettings from '../../../../settings_block_calib/forms/serialnum_version_calib';
-
 import LoadingSpan from '../../../../loading_span';
 import CurrentCalibSettings from '../../../../settings_block_calib/forms/current_calib';
 import ChannelEnablerSettings from '../../../../settings_block_calib/forms/channel_enabler_calib';

@@ -252,10 +252,18 @@ function SerialNumVersionCalibSettings(props) {
               }
             })}
           </select>
+          {/* <FormInput
+            id={`device_type_calib`}
+            name={`device_type_calib`}
+            type='select'
+            input_value={serialNumVersionCalibState.device_type}
+            title='Тип устройства'
+            variants={device_arr}
+            changeHandler={handleChange} /> */}
           <FormInput
             id={`device_type_calib_save`}
             name={`device_type_calib`}
-            clickHandler={device_type_save}
+            clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
         </div>

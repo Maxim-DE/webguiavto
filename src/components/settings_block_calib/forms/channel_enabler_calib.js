@@ -36,9 +36,9 @@ export default function ChannelEnablerSettings(props) {
         props.calib_data != undefined) {
       let calib_state_copy = {}
         
-        for (let i = 0; i < props.calib_data.length; i++) {
-          calib_state_copy[`channel_${props.calib_data[i].channel}`] = props.calib_data[i].access
-        }
+      for (let i = 0; i < Object.keys(props.calib_data).length; i++) {
+        calib_state_copy[`channel_${props.calib_data[i].channel}`] = props.calib_data[i].access
+      }
 
       setChannelEnablerState(prevState => ({
         ...prevState,

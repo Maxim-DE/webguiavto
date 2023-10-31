@@ -20,8 +20,10 @@
 }
 
 .modal {
+    display: flex;
+    flex-direction: column;
     width: 473px;
-    background: white;
+    background: #F7F7F7;
     max-height: 631px;
     overflow-y: auto;
     z-index: 10;
@@ -75,12 +77,13 @@
 .closeBtn {
     cursor: pointer;
     font-weight: 500;
-    padding: 22px 22px 0;
-    border-radius: 12px;
+    margin: 22px 22px 0;
+    border-radius: 8px;
     border: none;
     font-size: 24px;
     color: #2c3e50;
-    background: white;
+    background: #F7F7F7;
+    /* background: white; */
     transition: all 0.25s ease;
     position: absolute;
     right: 0;
@@ -89,8 +92,11 @@
 }
 
 .closeBtn:hover {
-    /* box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-    transform: translate(-4px, 4px); */
+    background: #cdd9df;
+}
+
+.closeBtn:active {
+    transform: scale(96%);
 }
 
 .deleteBtn {

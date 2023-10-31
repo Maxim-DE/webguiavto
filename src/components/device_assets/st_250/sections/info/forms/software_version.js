@@ -5,11 +5,12 @@ import FormInput from '../../../../../form_input'
 import { useSelector } from 'react-redux'
 
 export default function Software_version(props) {
-  const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info.info_general)
+  const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info?.software_version)
 
   const [sofrwareVersionState, setSofrwareVersionState] = React.useState({
     os_version: 'N/A',
     bootloader_version: 'N/A',
+    web_version: 'N/A',
   })
 
   React.useEffect(() => {
@@ -66,7 +67,24 @@ export default function Software_version(props) {
             type="text_sample" />
         </div>
       </li>
-
+      <li
+        key='web_version'
+        id='web_version'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`web_version_input`}
+            className="settings_itemLabel">
+            Версия Web
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`web_version`}
+            input_value={sofrwareVersionState.web_version}
+            type="text_sample" />
+        </div>
+      </li>
     </SettingsBlockWrap>
   )
 }

@@ -120,5 +120,56 @@ export const reducers = {
     }
 
     store.dispatch(refreshGlobalStore(obj_to_refresh))
-  }
+  },
+
+  // Оработка запросов, связанных с получением списка slave-устройств
+  device_list_handling: ({ request_resp }) => {
+    if (!Object.hasOwn(request_resp, 'device_list')) return
+
+    const obj_to_refresh = {
+      global_data: {
+        calib_state: {
+          data: {
+            calib_masterSlave: {
+              device_list: {
+                saved_list: request_resp.user_list
+              }
+            }
+          }
+        }
+      }
+    }
+
+    store.dispatch(refreshGlobalStore(obj_to_refresh))
+  },
+
+  device_info_handling: ({ request_resp, request_params }) => {
+    if (!Object.hasOwn(request_resp, 'device_info')) return
+
+    let store_tree = store.getState()
+
+    let device_list = store_tree.global_data.calib_state.data.calib_masterSlave.device_list.saved_list
+
+    if (device_list !== undefined) {
+      const device_index = device_list.findIndex((element) => element.address === request_params.address)
+  
+      device_list[device_index].device_info = request_resp.device_info
+    }
+
+    const obj_to_refresh = {
+      global_data: {
+        calib_state: {
+          data: {
+            calib_masterSlave: {
+              device_list: {
+                saved_list: device_list
+              }
+            }
+          }
+        }
+      }
+    }
+
+    store.dispatch(refreshGlobalStore(obj_to_refresh))
+  },
 }

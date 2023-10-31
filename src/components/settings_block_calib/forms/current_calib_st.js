@@ -20,8 +20,8 @@ function CurrentCalibSettings_ST(props) {
     } else return ''
   }),
     adcCurrent_store = useSelector((store) => {
-      if (deepKeyExists(store, 'voltage_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
+      if (deepKeyExists(store, 'current_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.current_calib
       } else return ''
     }),
         auth_store = useSelector((store) => store.authStore.auth_data)
@@ -115,7 +115,6 @@ function CurrentCalibSettings_ST(props) {
       data: `${name}$${value*10}`,
       // reducer: reducers.calibration_form,
       reducer: ({ request_name, request_resp, request_params }) => {
-        toast.success('насрал' + name)
         reducers.calibration_form({ request_resp })
       },
       update_data: amperageCalibState,
@@ -193,7 +192,14 @@ function CurrentCalibSettings_ST(props) {
           good: 'default',
           bad: 'default'
         },
-        data: `Ix$${value}`
+        data: `Ix$${value}`,
+        reducer: ({ request_name, request_resp, request_params }) => {
+          const psu_resp = request_resp.psu
+          setAmperageCalibState(prevState => ({
+            ...prevState,
+            psu_enable: Number(psu_resp.psu_enable)
+          }))
+        },
       }
     } else {
       request_obj = {
@@ -202,7 +208,14 @@ function CurrentCalibSettings_ST(props) {
           good: 'default',
           bad: 'default'
         },
-        data: `${name}$${value}`
+        data: `${name}$${value}`,
+        reducer: ({ request_name, request_resp, request_params }) => {
+          const psu_resp = request_resp.psu
+          setAmperageCalibState(prevState => ({
+            ...prevState,
+            psu_enable: Number(psu_resp.psu_enable)
+          }))
+        },
       }
     }
     
@@ -237,6 +250,23 @@ function CurrentCalibSettings_ST(props) {
     props.clickHandler(request_obj);
   }
 
+  const handleSave_psu = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? Number(target.checked) : target.value;
+    const name = target.name.replace('_calib', '');
+
+    const request_obj = {
+      address: 'calib_current.cgi',
+      data: `${name}$${value}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <Settings_block_calib header={`калибровка токов`}
                           settings_type={`current_calib`}
@@ -258,7 +288,7 @@ function CurrentCalibSettings_ST(props) {
             name={`psu_enable_calib`}
             changeHandler={(e) => {
               handleChange(e)
-              handleChange_save(e)
+              handleSave_psu(e)
             }}
             input_value={!!amperageCalibState.psu_enable}
             type="switch" />

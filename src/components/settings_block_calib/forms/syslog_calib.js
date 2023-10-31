@@ -30,7 +30,7 @@ export const log_status = [
 
 const sys_log_types = [
   {type: 'syslog', name: 'Cистемный'},
-  {type: 'http_log', name: 'HTTP-жур.'}
+  // {type: 'http_log', name: 'HTTP-жур.'}
 ]
 
 function Syslog_calib(props) {
@@ -547,8 +547,8 @@ const sys_log_render_processing = (active_page, max_links, max_pages, max_active
         active_log_instance.expand_info = active_log_data[6] ? active_log_data[6] : 'none'
       }
     } else {
-      active_log_instance.log_expand = active_log_data[4] == 1 ? false : 'none'
-      active_log_instance.expand_info = active_log_data[5] ? active_log_data[5] : 'none'
+      active_log_instance.log_expand = active_log_data[5] == 1 ? false : 'none'
+      active_log_instance.expand_info = active_log_data[6] ? active_log_data[6] : 'none'
     }
     active_log_instance.unique_id = active_log_data[active_log_data.length + 1]
 

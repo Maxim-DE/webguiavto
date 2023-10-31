@@ -24,6 +24,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import LoadingSpan from '../../../../loading_span';
 import FormInput from '../../../../form_input';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
+import Modbus_slave_calib from '../../../../settings_block_calib/forms/masterSlave_slave_calib';
 
 function CalibSection(props) {
   const [sectionState, setSectionState] = React.useState({
@@ -141,6 +142,8 @@ function CalibSection(props) {
         <MiscCalibSettings
           // calib_data={Object.keys(props.section_data).length != 0 ?
           //   props.section_data.calib_misc : ''}
+          clickHandler={handleClick} />
+        <Modbus_slave_calib
           clickHandler={handleClick} />
 
         {authGlobalState.auth_access.calib_extend && 

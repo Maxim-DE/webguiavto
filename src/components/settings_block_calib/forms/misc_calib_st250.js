@@ -180,7 +180,7 @@ function MiscCalibSettings_ST250(props) {
           <li className="group_divider"></li>
           <ChannelEnablerSettings
             clickHandler={props.clickHandler}
-            calib_data={calibMisc_store}
+            calib_data={calibMisc_store?.calib_channels.channel_list}
             editing_allowed={true}/>
         </>
       }

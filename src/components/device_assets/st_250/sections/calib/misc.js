@@ -9,6 +9,7 @@ import SerialNumVersionCalibSettings from '../../../../settings_block_calib/form
 import useGlobalStore from '../../../../../logic/auth_store';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
+import Modbus_slave_calib from '../../../../settings_block_calib/forms/masterSlave_slave_calib';
 
 export const MiscCalib = (props) => {
   const auth_store = useSelector((store) => store.authStore.auth_data)
@@ -34,6 +35,8 @@ export const MiscCalib = (props) => {
       <Firmware_calib
         clickHandler={handleClick} />
       <ConfFileCalib
+        clickHandler={handleClick} />
+      <Modbus_slave_calib
         clickHandler={handleClick} />
       {/* <ChannelEnablerSettings 
         calib_data={Object.keys(props.section_data).length != 0 ?

@@ -357,7 +357,7 @@ function DeviceWrap_switch({device_type, ...props}) {
     )
   } else if (device_type_str === 're_100') {
     return (
-      <DeviceWrap_RE100
+      <DeviceWrap_BlockControl
         updateHandler={props.updateHandler}
         // section_data={props.section_data}
         // calib_data={props.calib_data}
@@ -369,6 +369,89 @@ function DeviceWrap_switch({device_type, ...props}) {
         updateHandler={props.updateHandler} />
     )
   }
+  
+  // switch (device_type) {
+  //   case  0:
+  //     return (
+  //       <DeviceWrap_BlockControl
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+    
+  //   case 1:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+
+  //   case 2:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+
+  //   case 3:
+  //     return (
+  //       <DeviceWrap_REAmp
+  //         updateHandler={props.updateHandler}
+  //         // section_data={props.section_data}
+  //         // calib_data={props.calib_data}
+  //         adc_data={props.adc_data} />
+  //     )
+    
+  //   default:
+  //     return (
+  //       <DeviceWrap_unknown
+  //         updateHandler={props.updateHandler} />
+  //     )
+  // }
+
+  
+  // if (device_type_str.includes('СТ')) {
+  //   return (
+  //     <DeviceWrap_ST250
+  //       updateHandler={props.updateHandler}
+  //       // section_data={props.section_data}
+  //       // calib_data={props.calib_data}
+  //       adc_data={props.adc_data} />
+  //   )    
+  // } else if (device_type === 255) {
+  //   return (
+  //     <DeviceWrap_unknown
+  //       updateHandler={props.updateHandler} />
+  //   )
+  // } else if (device_type_str.includes('РЦ')) {
+  //   return (
+  //     <DeviceWrap_RE100
+  //       updateHandler={props.updateHandler}
+  //       // section_data={props.section_data}
+  //       // calib_data={props.calib_data}
+  //       adc_data={props.adc_data} />
+  //   )
+  // } else if (device_type_str.includes('УРЦ') ||
+  //            device_type_str.includes('УСТ')) {
+  //   return (
+  //     <DeviceWrap_REAmp
+  //       updateHandler={props.updateHandler}
+  //       // section_data={props.section_data}
+  //       // calib_data={props.calib_data}
+  //       adc_data={props.adc_data} />
+  //   )
+  // }
+  // else {
+  //   return (
+  //     <DeviceWrap_unknown
+  //       updateHandler={props.updateHandler} />
+  //   )
+  // }
 }
 
 

@@ -36,7 +36,8 @@ export const conf_file_links = {
 }
 
 export default function ConfFileCalib(props) {
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_store = useSelector((store) => store.authStore.auth_data),
+        info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info)
 
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -48,14 +49,22 @@ export default function ConfFileCalib(props) {
   });
 
   const [confCalibState, setConfCalibState] = React.useState({
-    factory_reset_available: 1,
-    device_conf_type: 0
+    factory_reset_available: 1
   })
 
   const [isNewConfAlertOpen, setIsNewConfAlertOpen] = React.useState(false)
 
   const hex_dropzone_ref = React.useRef(null)
   const hex_dropzone_instance = React.useRef(null)
+
+  // строка имени устройства
+  let device_arr = [],
+      device_type = 0
+
+  if (info_section_data.info_general) {
+    device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
+    device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0
+  }
 
   React.useEffect(() => {
   if (props.calib_data != undefined &&
@@ -142,16 +151,16 @@ export default function ConfFileCalib(props) {
     props.clickHandler(request_obj)
   }, [isUploading])
 
-  const handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name.replace('_calib', '');
+  // const handleChange = (event) => {
+  //   const target = event.target;
+  //   const value = target.value;
+  //   const name = target.name.replace('_calib', '');
 
-    setConfCalibState(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
+  //   setConfCalibState(prevState => ({
+  //     ...prevState,
+  //     [name]: value
+  //   }))
+  // }
 
   const handleClick_save = (event) => {
     const target = event.target,
@@ -180,21 +189,21 @@ export default function ConfFileCalib(props) {
     }
   }
 
-  const device_conf_create = () => {
-    const conf_type_value = confCalibState.device_conf_type
+  // const device_conf_create = () => {
+  //   const conf_type_value = confCalibState.device_conf_type
 
-    const request_obj = {
-      address: 'calib_super_admin_conf_file.cgi',
-      data: `create_type_conf$${conf_type_value}`,
-      // reducer: reducers.calibration_form,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
+  //   const request_obj = {
+  //     address: 'calib_super_admin_conf_file.cgi',
+  //     data: `create_type_conf$${conf_type_value}`,
+  //     // reducer: reducers.calibration_form,
+  //     notifications: {
+  //       good: 'default',
+  //       bad: 'default'
+  //     },
+  //   }
 
-    props.clickHandler(request_obj);
-  }
+  //   props.clickHandler(request_obj);
+  // }
 
   return (
     <Settings_block_calib header={`файл конфигурации`}
@@ -228,16 +237,16 @@ export default function ConfFileCalib(props) {
         <li
           key='create_new_conf'
           id='create_new_conf'
-          className="settings_item calib">
+          className="settings_item">
           <div className='item_header'>
             <label
               htmlFor={`tcreate_new_conf_input`}
               className="settings_itemLabel">
-              Создать новый файл
+              Создать новый файл конфигурации
             </label>
           </div>
           <div className='item_input'>
-            <FormInput
+            {/* <FormInput
               id={`device_conf_type_calib`}
               name={`device_conf_type_calib`}
               type='select'
@@ -255,14 +264,14 @@ export default function ConfFileCalib(props) {
                 'СТ-100',
                 'СТ-250',
               ]}
-              changeHandler={handleChange} />
+              changeHandler={handleChange} /> */}
             <FormInput
               id={`device_conf_type_calib_save`}
               name={`device_conf_type_calib`}
               clickHandler={(e) => {
                 setIsNewConfAlertOpen(true)
               }}
-              label='Создать с выбр. типом'
+              label='Создать'
               type="button" />
           </div>
         </li>
@@ -277,7 +286,7 @@ export default function ConfFileCalib(props) {
           <FormInput
             id={`create_new_conf_input`}
             name={`create_new_conf`}
-            clickHandler={device_conf_create}
+            clickHandler={handleClick_save}
             label='Да'
             type="button" />
           <FormInput
