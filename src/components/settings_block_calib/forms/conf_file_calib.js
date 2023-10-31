@@ -22,7 +22,7 @@ export const conf_file_links = {
     reducer: reducers.factory_reset
   },
   conf_file_download: {
-    address: 'ReadFile.hex',
+    address: 'ReadFileConfing.bson',
     data: 'confing_dev$1;confing_user$1'
   },
   create_new_conf: {
@@ -53,14 +53,14 @@ export default function ConfFileCalib(props) {
   })
 
   const [isNewConfAlertOpen, setIsNewConfAlertOpen] = React.useState(false)
-
+  
   const hex_dropzone_ref = React.useRef(null)
   const hex_dropzone_instance = React.useRef(null)
-
+  
   // строка имени устройства
   let device_arr = [],
-      device_type = 0
-
+  device_type = 0
+  
   if (info_section_data.info_general) {
     device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
     device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0
@@ -69,6 +69,7 @@ export default function ConfFileCalib(props) {
   React.useEffect(() => {
   if (props.calib_data != undefined &&
       Object.keys(props.calib_data).length != 0) {
+
     let calib_state_copy = cloneDeep(confCalibState)
     for (const key in props.calib_data) {
       if (Array.isArray(props.calib_data[key])) {
@@ -80,7 +81,9 @@ export default function ConfFileCalib(props) {
         calib_state_copy[key] = props.calib_data[key]
       }
     }
+    
     setConfCalibState(calib_state_copy)
+
   }
 
   }, [props.calib_data])
@@ -286,12 +289,16 @@ export default function ConfFileCalib(props) {
           <FormInput
             id={`create_new_conf_input`}
             name={`create_new_conf`}
-            clickHandler={handleClick_save}
+            clickHandler={(e) => {
+              handleClick_save(e)
+              setIsNewConfAlertOpen(false)
+            }}
             label='Да'
             type="button" />
           <FormInput
             clickHandler={(e) => {
               setIsNewConfAlertOpen(false)
+              
             }}
             label='Нет'
             type="button" />
@@ -347,14 +354,15 @@ export default function ConfFileCalib(props) {
           <a
             className='button_input download_link'
             name={`conf_file_download`}
-            href={`${conf_file_links.conf_file_download.address}?${conf_file_links.conf_file_download.data}`}>
+            href={`${conf_file_links.conf_file_download.address}`}>
             Скачать
           </a>
           <input
             id="hex_upload_zone"
             name='file'
             ref={hex_dropzone_ref}
-            className={`button_input`}
+            className={`button_input disabled_input`}
+            disabled={true}
             type="button"
             value='Загрузить' />
         </div>
