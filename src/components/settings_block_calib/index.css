@@ -160,6 +160,10 @@
   column-gap: 10px;
 }
 
+.acc_manage td.acc_actions {
+  min-width: 335px;
+}
+
 .acc_list_actions_wrap {
   display: flex;
   justify-content: end;
@@ -176,7 +180,6 @@
   right: 1.3em;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
-
 
 .modbus_master li {
   display: flex;
