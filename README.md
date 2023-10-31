@@ -3,6 +3,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+Перед тем, как делать билд на новом устройстве, необходимо установить все зависимости проекта:
+
+### `npm install --legacy-peer-deps`
 
 In the project directory, you can run:
 
