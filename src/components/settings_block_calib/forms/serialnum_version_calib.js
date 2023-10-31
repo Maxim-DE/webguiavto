@@ -56,7 +56,7 @@ function SerialNumVersionCalibSettings(props) {
     const name = target.name.replace('_calib', '');
     const value = target.value
 
-    let state_array = serialNumVersionCalibState.device_type
+    let state_array = [...serialNumVersionCalibState.device_type]
 
     if (/series/gi.test(name)) {
       state_array[0] = Number(value)
