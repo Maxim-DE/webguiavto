@@ -75,8 +75,6 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
         log_obj.expand_info = data[log][6] ? data[log][6] : 'none';
       }
 
-      log_obj.user = data[log][6] ? data[log][6] : '';
-
       logs_array.push(log_obj);
     }
     return logs_array;
