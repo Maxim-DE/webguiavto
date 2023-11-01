@@ -68,11 +68,11 @@ function VoltageCalibSettings_URE(props) {
       value = voltageCalibState[name]
 
     let state_obj = { [name]: value },
-      converted_state = calib_state_conversion(state_obj, calibVoltage_store)
+        converted_state = calib_state_conversion(state_obj, calibVoltage_store)
 
     const request_obj = {
       address: 'calib_voltage.cgi',
-      data: `${name}$${value * 10}`,
+      data: `${name}$${converted_state[name][0]}`,
       reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
