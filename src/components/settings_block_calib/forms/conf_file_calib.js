@@ -25,6 +25,10 @@ export const conf_file_links = {
     address: 'ReadFileConfing.bson',
     data: 'confing_dev$1;confing_user$1'
   },
+  conf_user_file_download: {
+    address: 'ReadUserConfing.bson',
+    data: 'confing_user$1'
+  },
   create_new_conf: {
     address: 'calib_super_admin_conf_file.cgi',
     data: 'create_new_conf$1'
@@ -342,12 +346,66 @@ export default function ConfFileCalib(props) {
             clickHandler={handleClick_save}
             label='Скачать'
             type="button" /> */}
-          <a
+          {/* <a
             className='button_input download_link'
             name={`conf_file_download`}
             href={`${conf_file_links.conf_file_download.address}`}>
             Скачать
           </a>
+          <input
+            id="hex_upload_zone"
+            name='file'
+            ref={hex_dropzone_ref}
+            className={`button_input disabled_input`}
+            disabled={true}
+            type="button"
+            value='Загрузить' /> */}
+        </div>
+      </li>
+      <li
+        key='conf_file_manage'
+        id='conf_file_manage'
+        className="settings_item nested_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`conf_file_manage_input`}
+            className="settings_itemLabel">
+            Скачать с устр.
+          </label>
+        </div>
+        <div className='item_input'>
+          {/* <FormInput
+            id={`conf_file_download_input`}
+            name={`conf_file_download`}
+            clickHandler={handleClick_save}
+            label='Скачать'
+            type="button" /> */}
+          <a
+            className='button_input download_link'
+            name={`conf_file_download`}
+            href={`${conf_file_links.conf_file_download.address}`}>
+            Системный
+          </a>
+          <a
+            className='button_input download_link'
+            name={`conf_user_file_download`}
+            href={`${conf_file_links.conf_user_file_download.address}`}>
+            Польз.
+          </a>
+        </div>
+      </li>
+      <li
+        key='conf_file_manage'
+        id='conf_file_manage'
+        className="settings_item nested_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`conf_file_manage_input`}
+            className="settings_itemLabel">
+            Загрузить на устр.
+          </label>
+        </div>
+        <div className='item_input'>
           <input
             id="hex_upload_zone"
             name='file'
