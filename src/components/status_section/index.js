@@ -205,6 +205,7 @@ function StatusSection(props) {
         <Status_graphs
           settings_type="graphs"
           device_type={device_type}
+          device_type_str={device_type_str}
           graph_svg={status_store.status_svg.img}
           updateHandler={handleUpdate}
           data={status_store.status_graph}/>
