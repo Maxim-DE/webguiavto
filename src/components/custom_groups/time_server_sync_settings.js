@@ -159,7 +159,7 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
             resetHandler(e);
             }} />
       </li>
-      {timeSyncState.time_sync_switch == true &&
+      {Boolean(timeSyncState.time_sync_switch) == true &&
         <>
           <li
             key='ntp_server'
