@@ -72,15 +72,6 @@ export default function ConfFileCalib(props) {
     device_conf_type: device_type
   })
 
-  // строка имени устройства
-  let device_arr = [],
-      device_type = 0
-
-  if (info_section_data.info_general) {
-    device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
-    device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0
-  }
-
   React.useEffect(() => {
   if (props.calib_data != undefined &&
       Object.keys(props.calib_data).length != 0) {
