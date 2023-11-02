@@ -52,6 +52,22 @@ export default function Recover_settings(props) {
     props.clickHandler(request_obj);
   }
 
+  const device_conf_create = () => {
+    const conf_type_value = recoveryState.device_conf_type
+
+    const request_obj = {
+      address: 'calib_super_admin_conf_file.cgi',
+      data: `create_type_conf$${conf_type_value}`,
+      // reducer: reducers.calibration_form,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <SettingsBlockWrap header={'восстановление'}
                        settings_type={'recover_settings'}
@@ -98,10 +114,10 @@ export default function Recover_settings(props) {
               variants={device_arr}
               changeHandler={handleChange} />
             <FormInput
-              id={`device_conf_type_calib_save`}
-              name={`device_conf_type_calib`}
-              clickHandler={handleClick_save}
-              label='Создать с выбр. типом'
+              id={`create_new_conf_calib_save`}
+              name={`create_new_conf_calib`}
+              clickHandler={device_conf_create}
+              label='Создать'
               type="button" />
           </div>
         </li>
