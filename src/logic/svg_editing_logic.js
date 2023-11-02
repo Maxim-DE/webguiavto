@@ -4,6 +4,9 @@ export default function svg_editing_logic(svg, data_svg, device_type) {
   switch (device_type) {
     case 'st_250':
       return st_250_svg_editing(svg, data_svg)
+
+    case 'УРЦ-2000':
+      return re_amp_svg_editing(svg, data_svg)
   
     default:
       return svg
@@ -74,6 +77,23 @@ function st_250_svg_editing(svg, data_svg) {
     if (rect_height < 130) {
       output_svg_rect.setAttribute('height',rect_height + 18)
     }
+  }
+
+  return svg
+}
+
+function re_amp_svg_editing(svg, data_svg) {
+  const output_data = data_svg?.output,
+        output_svg = svg.querySelector(`#output_swr_value`)
+
+  try {
+    if (output_data.swr[0] == 0 && output_svg != undefined) {
+      output_svg.children[0].innerHTML = '--'
+      output_svg.children[0].style.fill = '#202020';
+      output_svg.children[0].style.fontWeight = "300";
+    }
+  } catch (error) {
+    console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
   }
 
   return svg

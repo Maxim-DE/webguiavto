@@ -33,7 +33,7 @@ function Status_graphs(props) {
       return
     }
 
-    const edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type)
+    let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str)
 
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
@@ -108,8 +108,13 @@ function Status_graphs(props) {
         }
 
         graph_block_value_span.innerHTML = new_value
+
+
       }
     }
+
+    edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str)
+    
   }, [props.data])
 
   React.useEffect(() => {

@@ -42,10 +42,16 @@ shell.echo(`Current branch for ${releaseNum}: ${active_brach || '-'}`);
 
 console.log(active_brach != "developer\n");
 
-const version_str = `${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" && ('-' + active_brach)}`
+const version_str = `${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" ? ('-' + active_brach) : ''}`
+
+shell.echo("version_str=" + version_str);
 
 shell.cd('./build/')
-shell.exec(`echo "${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" ? ('-' + active_brach) : ''}" > version.txt`);
+
+fs.writeFile('version.txt', version_str, (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');
+}); 
 
 // shell.mv('build_arch.cpio', `build_arch_${lastReleaseTag}_b${version_json.build}.cpio`)
 

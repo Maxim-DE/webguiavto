@@ -7,6 +7,10 @@
   column-gap: 0;
 }
 
+.syslog_item td.log_time {
+  min-width: 230px;
+}
+
 .sys_log_modal {
   width: 1082px;
   max-height: none;

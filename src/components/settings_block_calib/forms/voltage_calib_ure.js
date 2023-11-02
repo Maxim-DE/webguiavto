@@ -68,11 +68,11 @@ function VoltageCalibSettings_URE(props) {
       value = voltageCalibState[name]
 
     let state_obj = { [name]: value },
-      converted_state = calib_state_conversion(state_obj, calibVoltage_store)
+        converted_state = calib_state_conversion(state_obj, calibVoltage_store)
 
     const request_obj = {
       address: 'calib_voltage.cgi',
-      data: `${name}$${value * 10}`,
+      data: `${name}$${converted_state[name][0]}`,
       reducer: reducers.calibration_form,
       notifications: {
         good: 'default',
@@ -174,15 +174,13 @@ function VoltageCalibSettings_URE(props) {
           </label>
         </div>
         <div className='item_input'>
-          <span className='item_adc_value'>
+          {/* <span className='item_adc_value'>
             АЦП<sub>АРУ</sub>: {
               adcPower_store ? adcPower_store.dac_value[0] : ''
             }
-          </span>
+          </span> */}
           <span className='item_adc_value'>
-            ЦАП<sub>АРУ</sub>: {
-              adcPower_store ? adcPower_store.dac_value[1] : ''
-            }
+            ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
           </span>
           <input
             type="text"
@@ -190,14 +188,14 @@ function VoltageCalibSettings_URE(props) {
             name={`dac_value_calib`}
             className="text_range"
             style={{ margin: '0', maxWidth: '54px' }}
-            value={voltageCalibState.dac_value}
+            value={Number(voltageCalibState.dac_value)}
             onChange={handleChange}
           />
           <FormInput
             id={`dac_value_calib_save`}
             name={`dac_value_calib`}
             clickHandler={handleClick_save}
-            label='Сохранить'
+            label='Установить'
             type="button" />
         </div>
       </li>

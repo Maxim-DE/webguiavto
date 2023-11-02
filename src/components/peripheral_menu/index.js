@@ -18,13 +18,13 @@ function PeripheralMenu(props) {
     time: '2001-01-01 00:00:00'
   })
 
-  React.useEffect(() => {
-    let request_obj = {
-      address: 'peripheral_structure.cgi',
-    }
+  // React.useEffect(() => {
+  //   let request_obj = {
+  //     address: 'peripheral_structure.cgi',
+  //   }
 
-    props.updateHandler(request_obj)
-  }, [])
+  //   props.updateHandler(request_obj)
+  // }, [])
 
   // React.useEffect(() => {
   //   if (props.structure.length > 0) {
