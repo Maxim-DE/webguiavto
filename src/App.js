@@ -355,10 +355,10 @@ function DeviceWrap_switch({ device_type, device_type_name, ...props }) {
     
     // Определяем тип устройства и возвращаем соответствующий компонент
     if (device_type === 255) {
-      return (
-        <DeviceWrap_unknown
-          updateHandler={props.updateHandler} />
-      )
+      // return (
+      //   <DeviceWrap_unknown
+      //     updateHandler={props.updateHandler} />
+      // )
     } else {
       return (
         <DeviceWrap_BlockControl
