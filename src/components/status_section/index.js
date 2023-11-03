@@ -209,14 +209,15 @@ function StatusSection(props) {
           graph_svg={status_store.status_svg.img}
           updateHandler={handleUpdate}
           data={status_store.status_graph}/>
-        <div className={`status_settings_wrap ${guest_mode_class}`}>
+        <div className={`status_settings_wrap guest_wrap`}>
           <Status_logs 
             settings_type="logs" 
             header="журнал" 
             data={status_store.status_logs}
             full_data={status_store.status_full_logs}
             updateHandler={handleUpdate} />
-          {auth_store.auth_access.settings &&
+          
+         {/* {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
             device_type={device_type}
@@ -224,7 +225,7 @@ function StatusSection(props) {
             settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data}
             status_data={status_store}
           />
-          }
+          } */}
         </div>
       </div>
     </section>
