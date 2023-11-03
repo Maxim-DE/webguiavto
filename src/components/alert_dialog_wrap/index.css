@@ -9,6 +9,10 @@
   border-radius: 12px;
 }
 
+.alert_modal .modal_header {
+  justify-content: center;
+}
+
 .alert_message_wrap {
   display: flex;
   align-items: center;

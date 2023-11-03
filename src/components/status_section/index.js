@@ -6,7 +6,6 @@ import Settings_block from '../settings_block'
 import Status_logs from "../status_logs_block"
 import Status_graphs from "../graph_blocks"
 
-import ModalCalib from '../calib_modal'
 import FormInput from '../form_input';
 
 import useGlobalStore from '../../logic/auth_store';
@@ -18,6 +17,7 @@ import { reducers as statusLogs_reducers } from '../../store/reducers/status_log
 import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';
+import { AlertDialogWrap } from '../alert_dialog_wrap';
 
 export const device_model_table = {
   'УРЦ-1000': 're_amp_1000',
@@ -252,28 +252,26 @@ function DisconnectPlaceholder({connection_retry_handler, ...rest}) {
   return (
     <>
     {isPlaceholderOpen &&
-    <ModalCalib
-      header='соединение потеряно'
-      setIsOpen={(e) => {
+    <AlertDialogWrap
+      open={isPlaceholderOpen}
+      title='соединение потеряно'
+      onClose={(e) => {
         setIsPlaceholderOpen(false)
       }}
-      user_controllable={false}
-      class='full_log_modal hex_upload_modal'>
-      <div className='hex_upload_message_wrap'>
-        <span className='hex_upload_upload_message'>
-          Произошла ошибка соединения. Чтобы продолжить, необходимо повторить попытку соединения
-        </span>
-        <FormInput
-          id={`retry_status_connection_input`}
-          name={`retry_status_connection`}
-          clickHandler={(e) => {
-            connection_retry_handler()
-            setIsPlaceholderOpen(false)
-          }}
-          label='Повторить попытку'
-          type="button" />
-      </div>
-    </ModalCalib>
+      >
+      <span className='hex_upload_upload_message'>
+        Произошла ошибка соединения. Чтобы продолжить, необходимо повторить попытку соединения.
+      </span>
+      <FormInput
+        id={`retry_status_connection_input`}
+        name={`retry_status_connection`}
+        clickHandler={(e) => {
+          connection_retry_handler()
+          setIsPlaceholderOpen(false)
+        }}
+        label='Повторить попытку'
+        type="button" />
+    </AlertDialogWrap>
     }
     </>
   )
