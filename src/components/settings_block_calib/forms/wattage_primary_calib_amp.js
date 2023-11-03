@@ -84,8 +84,12 @@ function PowerCalibSettings_AMP(props) {
   const handleClick_calib_zeros = (event) => {
 
     const request_obj = {
-        address: 'calib_output_power_zeros.cgi',
-      }
+      address: 'calib_output_power_zeros.cgi',
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
 
     props.clickHandler(request_obj);
 
