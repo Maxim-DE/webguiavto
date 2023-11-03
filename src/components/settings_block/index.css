@@ -168,7 +168,8 @@ h3 {
 
 .calib .item_input {
   display: flex;
-  column-gap: 15px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .calib .item_header {

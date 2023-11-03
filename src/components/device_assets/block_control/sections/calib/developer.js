@@ -8,6 +8,7 @@ import MiscDownloadCalib from '../../../../settings_block_calib/forms/misc_downl
 import NetworkCalibSettings from '../../../../settings_block_calib/forms/network_calib';
 import ConsoleOutputCalibSettings from '../../../../settings_block_calib/forms/console_output_calib';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
+import Slave_control_calib from '../../../../settings_block_calib/forms/slave_control_calib';
 
 export const DeveloperCalib = (props) => {
 
@@ -27,6 +28,8 @@ export const DeveloperCalib = (props) => {
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
       section_header="для разработчиков">
+      <Slave_control_calib
+        clickHandler={handleClick} />
       <NetworkCalibSettings
         clickHandler={handleClick} />
       <ConsoleOutputCalibSettings
