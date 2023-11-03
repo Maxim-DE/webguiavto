@@ -35,12 +35,12 @@ export default function Account_manage_calib(props) {
     if (Object.keys(accountState.active_edit_acc).length === 0) return
 
     const target = event.target,
-          name = target.name,
-          value = target.type === 'checkbox' ? target.checked : target.value
+      name = target.name,
+      value = target.type === 'checkbox' ? target.checked : target.value
 
     const change_params = name.split('_'),
-          // id = change_params[0],
-          change_type = change_params[0]
+      // id = change_params[0],
+      change_type = change_params[0]
 
     switch (change_type) {
       case 'login':
@@ -53,7 +53,7 @@ export default function Account_manage_calib(props) {
         }))
         break;
 
-      case 'password': 
+      case 'password':
         setAccountState(prevState => ({
           ...prevState,
           active_edit_acc: {
@@ -62,14 +62,14 @@ export default function Account_manage_calib(props) {
           }
         }))
         break;
-    
+
       default:
         break;
     }
   }
 
-  const toggleEditableAccount = ({id, index, boolean} = {}) => {
-    
+  const toggleEditableAccount = ({ id, index, boolean } = {}) => {
+
     let user_list_clone = cloneDeep(accountState.user_list)
 
     if (user_list_clone[index] === undefined) {
@@ -102,7 +102,7 @@ export default function Account_manage_calib(props) {
     }))
   }
 
-  const copyAccToBuffer = ({id, index, boolean} = {}) => {
+  const copyAccToBuffer = ({ id, index, boolean } = {}) => {
     let acc_to_edit = accountState.user_list[index]
 
     setAccountState(prevState => ({
@@ -113,9 +113,9 @@ export default function Account_manage_calib(props) {
 
   const copyBuffertoList = ({ id, index, boolean } = {}) => {
     let index_to_copy = accountState.user_list.findIndex(user => user.id === id),
-        acc_to_copy = accountState.active_edit_acc
+      acc_to_copy = accountState.active_edit_acc
 
-    if(index_to_copy === -1) {
+    if (index_to_copy === -1) {
       doRegisterAccReq({
         login: acc_to_copy.login,
         password: acc_to_copy.password
@@ -141,7 +141,7 @@ export default function Account_manage_calib(props) {
     }))
   }
 
-  const deleteEditingAcc = ({id, index_to_delete, boolean} = {}) => {
+  const deleteEditingAcc = ({ id, index_to_delete, boolean } = {}) => {
     let filtered_list = accountState.user_list.filter(function (user, index) {
       return index_to_delete != index
     })
@@ -152,7 +152,7 @@ export default function Account_manage_calib(props) {
     }))
   }
 
-  const setAccEditOn = ({id, index, boolean} = {}) => {
+  const setAccEditOn = ({ id, index, boolean } = {}) => {
     toggleEditableAccount({
       index: index,
       boolean: true
@@ -220,9 +220,9 @@ export default function Account_manage_calib(props) {
     // setIsLoading(true)
   }
 
-  const doSaveAccReq = ({ id, login, password} = {}) => {
+  const doSaveAccReq = ({ id, login, password } = {}) => {
     const new_login = login.length > 0 ? login : 'NULL',
-          new_passw = password.length > 0 ? password : 'NULL'
+      new_passw = password.length > 0 ? password : 'NULL'
 
     const req_obj = {
       address: 'edit_user.cgi',
@@ -261,7 +261,7 @@ export default function Account_manage_calib(props) {
 
   const doRegisterAccReq = ({ login, password } = {}) => {
     const new_login = login.length > 0 ? login : 'NULL',
-          new_passw = password.length > 0 ? password : 'NULL'
+      new_passw = password.length > 0 ? password : 'NULL'
 
     const req_obj = {
       address: 'register_user.cgi',
@@ -314,206 +314,211 @@ export default function Account_manage_calib(props) {
           }}
           user_controllable={true}
           class='acc_manage_modal'>
-          {isLoading ? 
-           <>
-           <div className='hex_upload_message_wrap'>
-            <PulseLoader
-              color="#bbcacf"
-              loading
-              margin={9}
-              size={13}
-              speedMultiplier={0.5}
-            />
-            <span className='hex_upload_upload_message'>
-              Идет получение списка пользователей...
-            </span>
-           </div>
-           </> :
-           <>
-           <div className="acc_header">
-             <span className="acc_header_num">логин</span>
-             <span className="acc_header_message">пароль</span>
-             <span className="acc_header_time"></span>
-           </div>
-           <ul className="user_log log_list">
-             {accountState.user_list.map((user, index) =>(
-             <>
-             <div className='log_divider'></div>
-             <li
-               key={user.id}
-               id={`user_${user.id}`}
-               className={`acc_item`}>
-               <div className='acc_login'>
-                 <input
-                   id={`${user.id}_login_input`}
-                   name={`login`}
-                   type="text"
-                   className={!(user.editable && user.login != 'admin') ? 'transparent' : ''}
-                   onChange={changeHandler}
-                   maxLength = '20'
-                   value={user.editable ?
-                     accountState.active_edit_acc.login :
-                     user.login
-                   }
-                   disabled={!(user.editable && user.login != 'admin')}
-                 />
-               </div>
-               <div className="acc_password">
-                 <input
-                   id={`${user.id}_password_input`}
-                   name={`password`}
-                   type={!user.editable ? 'password' : 'text'}
-                   className={!user.editable ? 'transparent' : ''}
-                   onChange={changeHandler}
-                   maxLength = '10'
-                   value={user.editable ?
-                     accountState.active_edit_acc.password :
-                     user.password
-                   }
-                   disabled={!user.editable}
-                 />
-               </div>
-               <div className="acc_actions">
-               {user.editable ?
-                 <>
-                 <FormInput
-                   clickHandler={(e) => {
-                     setAccEditSave({
-                       id: user.id,
-                       index: index,
-                       boolean: false
-                     })
-                   }}
-                   label='Сохранить'
-                   type="button" />
-                {user.login != 'admin' && 
-                 <FormInput
-                   clickHandler={(e) => {
-                     setAccEditDelete({
-                       id: user.id,
-                       index: index,
-                       boolean: false
-                     })
-                   }}
-                   label='Удалить'
-                   type="button" />
+          {isLoading ?
+            <>
+              <div className='hex_upload_message_wrap'>
+                <PulseLoader
+                  color="#bbcacf"
+                  loading
+                  margin={9}
+                  size={13}
+                  speedMultiplier={0.5}
+                />
+                <span className='hex_upload_upload_message'>
+                  Идет получение списка пользователей...
+                </span>
+              </div>
+            </> :
+            <>
+              <table className="log_list_table acc_manage">
+                <thead className="logs_header">
+                  <tr>
+                    <td>логин</td>
+                    <td>пароль</td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody className="user_log log_list">
+                  {accountState.user_list.map((user, index) => {
+                    return (
+                      <tr
+                        key={user.id}
+                        id={`user_${user.id}`}
+                        className={`acc_item`}>
+                        <td className='acc_login'>
+                          <input
+                            id={`${user.id}_login_input`}
+                            name={`login`}
+                            type="text"
+                            className={!(user.editable && user.login != 'admin') ? 'transparent' : ''}
+                            onChange={changeHandler}
+                            maxLength='20'
+                            value={user.editable ?
+                              accountState.active_edit_acc.login :
+                              user.login
+                            }
+                            disabled={!(user.editable && user.login != 'admin')}
+                          />
+                        </td>
+                        <td className='acc_password'>
+                          <input
+                            id={`${user.id}_password_input`}
+                            name={`password`}
+                            type={!user.editable ? 'password' : 'text'}
+                            className={!user.editable ? 'transparent' : ''}
+                            onChange={changeHandler}
+                            maxLength='10'
+                            value={user.editable ?
+                              accountState.active_edit_acc.password :
+                              user.password
+                            }
+                            disabled={!user.editable}
+                          />
+                        </td>
+                        <td className="acc_actions">
+                          {user.editable ?
+                            <>
+                              <FormInput
+                                clickHandler={(e) => {
+                                  setAccEditSave({
+                                    id: user.id,
+                                    index: index,
+                                    boolean: false
+                                  })
+                                }}
+                                label='Сохранить'
+                                type="button" />
+                              {user.login != 'admin' &&
+                                <FormInput
+                                  clickHandler={(e) => {
+                                    setAccEditDelete({
+                                      id: user.id,
+                                      index: index,
+                                      boolean: false
+                                    })
+                                  }}
+                                  label='Удалить'
+                                  type="button" />
+                              }
+                              <FormInput
+                                clickHandler={(e) => {
+                                  setAccEditCancel({
+                                    index: index,
+                                    boolean: false
+                                  })
+                                }}
+                                label='Отмена'
+                                type="button" />
+                            </> :
+                            <FormInput
+                              id={`sys_logs_calib_input`}
+                              name={`sys_logs_calib`}
+                              clickHandler={(e) => {
+                                setAccEditOn({
+                                  index: index,
+                                  boolean: true
+                                })
+                              }}
+                              label='Редактировать'
+                              type="button" />
+                          }
+                        </td>
+                      </tr>
+                    )
+                  })}
+                  {accountState.active_edit_acc?.id === 'none' &&
+                    <>
+                      <div className='log_divider'></div>
+                      <tr
+                        key={accountState.active_edit_acc.id}
+                        id={`user_${accountState.active_edit_acc.id}`}
+                        className={`acc_item`}>
+                        <td className='acc_login'>
+                          <input
+                            id={`${accountState.active_edit_acc.id}_login_input`}
+                            name={`login`}
+                            type="text"
+                            className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
+                            onChange={changeHandler}
+                            maxLength='20'
+                            value={accountState.active_edit_acc.editable ?
+                              accountState.active_edit_acc.login :
+                              accountState.active_edit_acc.login
+                            }
+                            disabled={!accountState.active_edit_acc.editable}
+                          />
+                        </td>
+                        <td className="acc_password">
+                          <input
+                            id={`${accountState.active_edit_acc.id}_password_input`}
+                            name={`password`}
+                            type={!accountState.active_edit_acc.editable ? 'password' : 'text'}
+                            className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
+                            onChange={changeHandler}
+                            maxLength='10'
+                            value={accountState.active_edit_acc.editable ?
+                              accountState.active_edit_acc.password :
+                              accountState.active_edit_acc.password
+                            }
+                            disabled={!accountState.active_edit_acc.editable}
+                          />
+                        </td>
+                        <td className="acc_actions">
+                          {accountState.active_edit_acc.editable ?
+                            <>
+                              <FormInput
+                                clickHandler={(e) => {
+                                  setAccEditSave({
+                                    id: accountState.active_edit_acc.id,
+                                    index: accountState.user_list.length + 1,
+                                    boolean: false
+                                  })
+                                }}
+                                label='Сохранить'
+                                type="button" />
+                              <FormInput
+                                clickHandler={(e) => {
+                                  setAccEditCancel({
+                                    index: accountState.user_list.length + 1,
+                                    boolean: false
+                                  })
+                                }}
+                                label='Отмена'
+                                type="button" />
+                            </> :
+                            <FormInput
+                              id={`sys_logs_calib_input`}
+                              name={`sys_logs_calib`}
+                              clickHandler={(e) => {
+                                setAccEditOn({
+                                  index: accountState.user_list.length + 1,
+                                  boolean: true
+                                })
+                              }}
+                              label='Редактировать'
+                              type="button" />
+                          }
+                        </td>
+                      </tr>
+                    </>
+                  }
+                </tbody>
+              </table>
+              <div className="acc_list_actions_wrap">
+                {accountState.user_list.length < 6 &&
+                  <FormInput
+                    id={`calib_password_save`}
+                    name={`calib_password`}
+                    clickHandler={(e) => {
+                      createAccInBuffer()
+                    }}
+                    class='log_refresh'
+                    label='Добавить нов. пользователя'
+                    type="button"
+                  />
                 }
-                 <FormInput
-                   clickHandler={(e) => {
-                     setAccEditCancel({
-                       index: index,
-                       boolean: false
-                     })
-                   }}
-                   label='Отмена'
-                   type="button" />
-                 </> :
-                 <FormInput
-                   id={`sys_logs_calib_input`}
-                   name={`sys_logs_calib`}
-                   clickHandler={(e) => {
-                     setAccEditOn({
-                       index: index,
-                       boolean: true
-                     })
-                   }}
-                   label='Редактировать'
-                   type="button" />
-               }
-               </div>
-             </li>
-             </>
-             ))}
-             {accountState.active_edit_acc?.id === 'none' &&
-             <>
-               <div className='log_divider'></div>
-               <li
-                 key={accountState.active_edit_acc.id}
-                 id={`user_${accountState.active_edit_acc.id}`}
-                 className={`acc_item`}>
-                 <div className='acc_login'>
-                   <input
-                     id={`${accountState.active_edit_acc.id}_login_input`}
-                     name={`login`}
-                     type="text"
-                     className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
-                     onChange={changeHandler}
-                     maxLength = '20'
-                     value={accountState.active_edit_acc.editable ?
-                       accountState.active_edit_acc.login :
-                       accountState.active_edit_acc.login
-                     }
-                     disabled={!accountState.active_edit_acc.editable}
-                   />
-                 </div>
-                 <div className="acc_password">
-                   <input
-                     id={`${accountState.active_edit_acc.id}_password_input`}
-                     name={`password`}
-                     type={!accountState.active_edit_acc.editable ? 'password' : 'text'}
-                     className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
-                     onChange={changeHandler}
-                     maxLength = '10'
-                     value={accountState.active_edit_acc.editable ?
-                       accountState.active_edit_acc.password :
-                       accountState.active_edit_acc.password
-                     }
-                     disabled={!accountState.active_edit_acc.editable}
-                   />
-                 </div>
-                 <div className="acc_actions">
-                   {accountState.active_edit_acc.editable ?
-                     <>
-                       <FormInput
-                         clickHandler={(e) => {
-                           setAccEditSave({
-                             id: accountState.active_edit_acc.id,
-                             index: accountState.user_list.length + 1,
-                             boolean: false
-                           })
-                         }}
-                         label='Сохранить'
-                         type="button" />
-                       <FormInput
-                         clickHandler={(e) => {
-                           setAccEditCancel({
-                             index: accountState.user_list.length + 1,
-                             boolean: false
-                           })
-                         }}
-                         label='Отмена'
-                         type="button" />
-                     </> :
-                     <FormInput
-                       id={`sys_logs_calib_input`}
-                       name={`sys_logs_calib`}
-                       clickHandler={(e) => {
-                         setAccEditOn({
-                           index: accountState.user_list.length + 1,
-                           boolean: true
-                         })
-                       }}
-                       label='Редактировать'
-                       type="button" />
-                   }
-                 </div>
-               </li>
-             </>
-             }
-           </ul>
-           {accountState.user_list.length < 6 &&
-           <FormInput
-             id={`calib_password_save`}
-             name={`calib_password`}
-             clickHandler={(e) => {
-               createAccInBuffer()
-             }}
-             class='log_refresh'
-             label='Добавить нов. пользователя'
-             type="button"
-           />
-           }
-           </>
+              </div>
+            </>
           }
         </ModalCalib>
       }
