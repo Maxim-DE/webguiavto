@@ -183,7 +183,7 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
               {logData.map((item) => { 
                 return (
                 <tr
-                  key={item.time}
+                  key={item.id}
                   id={`log_${item.id}`}
                   className={`log_item ${log_status[item.status]}`}>
                   <td className='log_num'>{item.id}</td>
