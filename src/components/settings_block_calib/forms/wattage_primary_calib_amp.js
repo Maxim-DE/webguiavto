@@ -95,50 +95,24 @@ function PowerCalibSettings_AMP(props) {
 
   }
 
+  const handleClick_powerThresholdStep = () => {
+    const request_obj = {
+      address: 'calib_power.cgi',
+      data: `output_power_threshold_step$1`,
+      reducer: reducers.calibration_form,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <Settings_block_calib header={`калибровка мощности`}
                           settings_type={`power_calib`}
                           save_handler={handleClick_save}>
-      {/* <li
-        key='dac_value_calib'
-        id='dac_value_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`dac_value_calib_input`}
-            className="settings_itemLabel">
-            Значение ЦАП
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            АЦП<sub>АРУ</sub>: {
-              adcPower_store ? adcPower_store.dac_value[0] : ''
-            }
-          </span>
-          <span className='item_adc_value'>
-            ЦАП<sub>АРУ</sub>: {
-              adcPower_store ? adcPower_store.dac_value[1] : ''
-            }
-          </span>
-          <input
-            type="text"
-            id={`dac_value_calib_input`}
-            name={`dac_value_calib`}
-            className="text_range"
-            style={{margin: '0', maxWidth: '54px'}}
-            value={powerCalibState.dac_value}
-            onChange={handleChange}
-          />
-          <FormInput
-            id={`dac_value_calib_save`}
-            name={`dac_value_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li>
-      <li className="group_divider"></li> */}
       <li
         key='output_power_calib'
         id='output_power_calib'
@@ -188,6 +162,27 @@ function PowerCalibSettings_AMP(props) {
           </label>
         </div>
       </li>
+      <li className="group_divider"></li>
+      <li
+        key='output_power_threshold_step_calib'
+        id='output_power_threshold_step_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`output_power_threshold_step_calib_input`}
+            className="settings_itemLabel">
+            Ограничение P<sub>вых</sub> по шагам
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`output_power_threshold_step_calib_save`}
+            name={`output_power_threshold_step_calib`}
+            clickHandler={handleClick_powerThresholdStep}
+            label='Установить'
+            type="button" />
+        </div>
+      </li>
       <li
         key='output_power_threshold_calib'
         id='output_power_threshold_calib'
@@ -196,7 +191,7 @@ function PowerCalibSettings_AMP(props) {
           <label
             htmlFor={`output_power_threshold_calib_input`}
             className="settings_itemLabel">
-            Ограничение P<sub>вых</sub> по ЦАП
+            Ограничение P<sub>вых</sub> по мощности
           </label>
         </div>
         <div className='item_input'>
