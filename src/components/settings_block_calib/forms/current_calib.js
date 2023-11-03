@@ -95,12 +95,20 @@ function CurrentCalibSettings(props) {
     if (/all/gi.test(name)) {
       request_obj = {
         address: 'calib_current_zeros.cgi',
-        data: `Ix$${value}`
+        data: `Ix$${value}`,
+        notifications: {
+          good: 'none',
+          bad: 'default'
+        },
       }
     } else {
       request_obj = {
         address: 'calib_current_zeros.cgi',
-        data: `${name}$${value}`
+        data: `${name}$${value}`,
+        notifications: {
+          good: 'none',
+          bad: 'default'
+        },
       }
     }
     
