@@ -164,10 +164,45 @@
   column-gap: 10px;
 }
 
+.acc_manage td.acc_actions {
+  min-width: 335px;
+}
+
 .acc_list_actions_wrap {
   display: flex;
   justify-content: end;
   column-gap: 10px;
+}
+
+.modbus_master .device_adiitional_info {
+  position: absolute;
+  width: auto;
+  padding: 15px;
+  background-color: #F7F7F7;
+  border: 1px solid #c4c4c4;
+  border-radius: 12px;
+  right: 1.3em;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.modbus_master li {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 17px;
+}
+
+.modbus_master li.actions_item {
+  justify-content: flex-end;
+  column-gap: 10px;
+  margin: 15px 0 0 0;
+}
+
+.modbus_master li.actions_item button:nth-child(2) {
+  flex-grow: 1;
+}
+
+.modbus_master .device_adiitional_info .info_item:not(:first-child):not(:last-child) {
+  margin: 5px 0;
 }
 
 /* CHANNEL CALIB */
