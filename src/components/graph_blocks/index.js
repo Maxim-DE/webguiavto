@@ -23,6 +23,7 @@ function Status_graphs(props) {
     let graph_data = props.data
     
     if (!graph_svg_container) {
+      console.error("Can't find svg ref container!")
       return
     }
     
@@ -30,6 +31,8 @@ function Status_graphs(props) {
     
     if (graph_svg == null ||
         graph_svg == '') {
+      console.error("Can't find svg image in container!")
+      
       return
     }
 
@@ -40,6 +43,7 @@ function Status_graphs(props) {
       let graph_block_data = graph_data[key]
 
       if (graph_block === null) {
+        console.error("Can't find svg device block with key: " + key)
         continue;
       }
 
@@ -47,6 +51,11 @@ function Status_graphs(props) {
         
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
+
+          if (!device_icon) {
+            console.error("Can't find device icon with key: " + key)
+            continue;
+          }
 
           device_icon.style.fill = status_colors[graph_block_data[item]]
           
@@ -57,17 +66,18 @@ function Status_graphs(props) {
         let graph_block_value_span = null
 
         if (graph_block_value_span_id == undefined) {
+          console.error("Can't get value span id with key: " + key)
           continue
         }
 
         try {
           graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
         } catch (error) {
+          console.error("Can't get value span with key: " + key)
           continue
         }
 
-        
-        
+
         let new_value
 
         if (Array.isArray(graph_block_data[item])) {
