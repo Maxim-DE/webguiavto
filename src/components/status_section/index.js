@@ -2,7 +2,6 @@ import React from 'react';
 // import ReactDOM from 'react_dom';
 
 import Status_settings from "../status_settings_block"
-import Settings_block from '../settings_block'
 import Status_logs from "../status_logs_block"
 import Status_graphs from "../graph_blocks"
 
@@ -13,7 +12,7 @@ import useSectionStore from '../../logic/sectionsRefs_store';
 
 import './index.css'
 import { reducers } from '../../store/reducers/status_section_reducers';
-import { reducers as statusLogs_reducers } from '../../store/reducers/status_logs_reducers';
+import { reducers as core_reducers } from '../../store/reducers/core_store_reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';
@@ -174,6 +173,18 @@ function StatusSection(props) {
 
   const handleConnectionRetry = () => {
     dispatch(err_erase('status'))
+
+    let request_obj = {
+      address: `info.cgi`,
+      reducer: core_reducers.section_data,
+      notifications: {
+        good: 'none',
+        bad: 'none'
+      },
+    }
+
+    props.updateHandler(request_obj);
+
     handleConnectionEstablish()
   }
 
