@@ -3,8 +3,9 @@ import Settings_block_calib from '..'
 import FormInput from '../../form_input';
 import ModalCalib from '../../calib_modal';
 import { PulseLoader } from 'react-spinners';
-import { cloneDeep } from 'lodash';
 import { MdNetworkCheck } from 'react-icons/md';
+import { IoMdInformationCircleOutline, IoMdClose } from 'react-icons/io';
+import { HiOutlineRefresh } from 'react-icons/hi'
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 
@@ -27,7 +28,22 @@ export default function Modbus_master_calib(props) {
     master_timeout: '',
     device_list: {
       saved_list: [
-        { id: '12', type: 'УРЦ-100/300', order_number: 1, firm_ver: 'DigitalExciter_v1.5.14', protocol_ver: '3', address: '254', editable: false }
+        { 
+          id: '12', 
+          type: 'УРЦ-100/300', 
+          order_number: 1, 
+          firm_ver: 'DigitalExciter_v1.5.14', 
+          protocol_ver: '3', 
+          address: '254', 
+          device_info: {
+            CountBusRequests: 65534,
+            ErrorCountSlaveCrc16: 0,
+            CountRequests: 61320,
+            ErrorCountSlaveNoResponse: 61244,
+            ErrorCountSlaveNAK: 0,
+            IsSumRequestsValid: "false"
+          } 
+        }
       ],
       active_edit_device: {
 
@@ -85,7 +101,8 @@ export default function Modbus_master_calib(props) {
       }
     }
 
-    props.clickHandler(request_obj);
+    props.updateHandler(request_obj);
+
   }
 
   const handleClick_saveBaud = (event) => {
@@ -108,63 +125,6 @@ export default function Modbus_master_calib(props) {
     }
 
     props.clickHandler(request_obj);
-
-  }
-
-  const changeHandler = (event) => {
-    if (Object.keys(masterSlaveCalibState.device_list.active_edit_device).length === 0) return
-
-    const target = event.target,
-      name = target.name,
-      value = target.type === 'checkbox' ? target.checked : target.value
-
-    const change_params = name.split('_'),
-      // id = change_params[0],
-      change_type = change_params[0]
-
-    switch (change_type) {
-      case 'available':
-        setMasterSlaveCalibState(prevState => ({
-          ...prevState,
-          device_list: {
-            ...prevState.device_list,
-            active_edit_device: {
-              ...prevState.device_list.active_edit_device,
-              available: value
-            }
-          }
-        }))
-        break;
-
-      case 'type':
-        setMasterSlaveCalibState(prevState => ({
-          ...prevState,
-          device_list: {
-            ...prevState.device_list,
-            active_edit_device: {
-              ...prevState.device_list.active_edit_device,
-              type: value
-            }
-          }
-        }))
-        break;
-
-      case 'address':
-        setMasterSlaveCalibState(prevState => ({
-          ...prevState,
-          device_list: {
-            ...prevState.device_list,
-            active_edit_device: {
-              ...prevState.device_list.active_edit_device,
-              address: value
-            }
-          }
-        }))
-        break;
-
-      default:
-        break;
-    }
   }
 
   const handleFormDisable = (event) => {
@@ -193,157 +153,6 @@ export default function Modbus_master_calib(props) {
     props.clickHandler(req_obj)
   }
 
-  const toggleEditableDevice = ({ id, index, boolean } = {}) => {
-
-    let device_list_clone = cloneDeep(masterSlaveCalibState.device_list.saved_list)
-
-    if (device_list_clone[index] === undefined) {
-      return
-    }
-
-    device_list_clone.forEach((device) => {
-      device.editable = false
-    })
-
-    device_list_clone[index].editable = boolean
-
-    setMasterSlaveCalibState(prevState => ({
-      ...prevState,
-      device_list: {
-        ...prevState.device_list,
-        saved_list: device_list_clone
-      }
-    }))
-  }
-
-  const createDeviceInBuffer = () => {
-    const acc_template = {
-      id: 'none',
-      available: true,
-      type: '0',
-      address: '',
-      editable: true
-    }
-
-    setMasterSlaveCalibState(prevState => ({
-      ...prevState,
-      device_list: {
-        ...prevState.device_list,
-        active_edit_device: acc_template
-      }
-    }))
-  }
-
-  const copyDeviceToBuffer = ({ id, index, boolean } = {}) => {
-    let device_to_edit = masterSlaveCalibState.device_list.saved_list[index]
-
-    setMasterSlaveCalibState(prevState => ({
-      ...prevState,
-      device_list: {
-        ...prevState.device_list,
-        active_edit_device: device_to_edit
-      }
-    }))
-  }
-
-  const copyBuffertoList = ({ id, index, boolean } = {}) => {
-    let index_to_copy = masterSlaveCalibState.device_list.saved_list.findIndex(device => device.id === id),
-      device_to_copy = masterSlaveCalibState.device_list.active_edit_device
-
-    if (index_to_copy === -1) {
-      doRegisterAccReq({
-        type: device_to_copy.type,
-        address: device_to_copy.address
-      })
-    } else {
-      doSaveAccReq({
-        id: device_to_copy.id,
-        type: device_to_copy.type,
-        address: device_to_copy.address
-      })
-    }
-
-    // setAccountState(prevState => ({
-    //   ...prevState,
-    //   user_list: list_to_copy
-    // }))
-  }
-
-  const cleanBuffer = () => {
-    setMasterSlaveCalibState(prevState => ({
-      ...prevState,
-      device_list: {
-        ...prevState.device_list,
-        active_edit_device: {}
-      }
-    }))
-  }
-
-  const deleteEditingAcc = ({ id, index_to_delete, boolean } = {}) => {
-    let filtered_list = masterSlaveCalibState.device_list.saved_list.filter(function (user, index) {
-      return index_to_delete != index
-    })
-
-    setMasterSlaveCalibState(prevState => ({
-      ...prevState,
-      device_list: {
-        ...prevState.device_list,
-        saved_list: filtered_list
-      }
-    }))
-  }
-
-  const setAccEditOn = ({ id, index, boolean } = {}) => {
-    toggleEditableDevice({
-      index: index,
-      boolean: true
-    });
-
-    copyDeviceToBuffer({
-      index: index,
-      boolean: true
-    });
-  }
-
-  const setAccEditSave = ({ id, index, boolean } = {}) => {
-    copyBuffertoList({
-      id: id
-    })
-
-    toggleEditableDevice({
-      index: index,
-      boolean: false
-    })
-
-    cleanBuffer()
-
-  }
-
-  const setAccEditDelete = ({ id, index, boolean } = {}) => {
-    toggleEditableDevice({
-      index: index,
-      boolean: false
-    })
-
-    cleanBuffer()
-
-    // deleteEditingAcc({
-    //   index_to_delete: index
-    // })
-    doDeleteAccReq({
-      id: id
-    })
-  }
-
-  const setAccEditCancel = ({ id, index, boolean } = {}) => {
-    cleanBuffer()
-
-    toggleEditableDevice({
-      index: index,
-      boolean: false
-    })
-  }
-
   const doGetDeviceList = () => {
     const req_obj = {
       address: 'modbus_get_device_list.cgi',
@@ -352,79 +161,6 @@ export default function Modbus_master_calib(props) {
         bad: 'default'
       },
     }
-
-    console.log(req_obj)
-    console.log('acc get list')
-
-    props.clickHandler(req_obj)
-    // setIsLoading(true)
-  }
-
-  const doSaveAccReq = ({ id, type, address } = {}) => {
-    const new_type = type,
-      new_address = address.length > 0 ? address : 'NULL'
-
-    const req_obj = {
-      address: 'modbus_edit_device.cgi',
-      data: `id$${id};type$${new_type};address$${new_address}`,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    console.log(req_obj)
-
-    props.clickHandler(req_obj)
-    // setIsLoading(true)
-  }
-
-  const doDeleteAccReq = ({ id } = {}) => {
-    const req_obj = {
-      address: 'modbus_delete_device.cgi',
-      data: `id$${id}`,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    console.log(req_obj)
-
-    props.clickHandler(req_obj)
-    // setIsLoading(true)
-  }
-
-  const doRegisterAccReq = ({ type, address } = {}) => {
-    const new_type = type,
-      new_address = address.length > 0 ? address : 'NULL'
-
-    const req_obj = {
-      address: 'modbus_register_device.cgi',
-      data: `type$${new_type};address$${new_address}`,
-      notifications: {
-        good: 'Зарегистрировано',
-        bad: 'default'
-      },
-    }
-
-    console.log(req_obj)
-
-    props.clickHandler(req_obj)
-    // setIsLoading(true)
-  }
-
-  const doCheckDeviceConnection = ({ id }) => {
-    const req_obj = {
-      address: 'check_device.cgi',
-      data: `id$${id}`,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    console.log(req_obj)
 
     props.clickHandler(req_obj)
   }
@@ -572,7 +308,7 @@ export default function Modbus_master_calib(props) {
               </div>
             </> :
             <>
-              <table className="log_list_table">
+              <table className="log_list_table modbus_master">
                 <thead className="logs_header">
                   <tr>
                     <td>тип</td>
@@ -585,55 +321,9 @@ export default function Modbus_master_calib(props) {
                 </thead>
                 <tbody className="user_log log_list">
                   {masterSlaveCalibState.device_list.saved_list.map((device, index) => (
-                    <tr
-                      key={device.id}
-                      id={`user_${device.id}`}
-                      className={`acc_item`}>
-                      <td className='acc_login'>
-                        {device.type}
-                        {/* <FormInput
-                          type='select'
-                          disabled={!device.editable}
-                          name='type'
-                          input_value={device.editable ?
-                            masterSlaveCalibState.device_list.active_edit_device.type :
-                            device.type
-                          }
-                          changeHandler={changeHandler}
-                          variants={[
-                            'УРЦ-100/300',
-                            'УРЦ-500',
-                            'УРЦ-1000',
-                            'УРЦ-2000',
-                            'УСТ-050/100',
-                            'УСТ-250',
-                            'УСТ-500',
-                            'РЦ-ХХХ',
-                            'СТ-100',
-                            'СТ-250',
-                          ]}
-                        /> */}
-                      </td>
-                      <td className='acc_password'>
-                        {device.address}
-                      </td>
-                      <td>{device?.order_number}</td>
-                      <td>{device.firm_ver}</td>
-                      <td>{device.protocol_ver}</td>
-                      <td className="acc_actions">
-                        <FormInput
-                          id={`sys_logs_calib_input`}
-                          name={`sys_logs_calib`}
-                          title='Проверить связь'
-                          clickHandler={(e) => {
-                            doCheckDeviceConnection({
-                              id: device.id
-                            })
-                          }}
-                          label={<MdNetworkCheck style={{ margin: "3px 0px 0" }} />}
-                          type="button" />
-                      </td>
-                    </tr>
+                    <Slave_instance
+                      device_info_obj={device}
+                      clickHandler={props.clickHandler} />
                   ))}
                 </tbody>
               </table>
@@ -648,18 +338,6 @@ export default function Modbus_master_calib(props) {
                   label='Обновить список устройств'
                   type="button"
                 />
-                {/* {masterSlaveCalibState.device_list.saved_list.length < 6 &&
-                  <FormInput
-                    id={`calib_password_save`}
-                    name={`calib_password`}
-                    clickHandler={(e) => {
-                      createDeviceInBuffer()
-                    }}
-                    class='log_refresh'
-                    label='Добавить нов. устройство'
-                    type="button"
-                  />
-                } */}
               </div>
             </>
           }
@@ -671,3 +349,149 @@ export default function Modbus_master_calib(props) {
 
 
 
+const Slave_instance = ({device_info_obj, ...rest}) => {
+
+  const [isExpanded, setIsExpanded] = React.useState(false)
+
+  const doCheckDeviceConnection = ({ id }) => {
+    const req_obj = {
+      address: 'check_device.cgi',
+      data: `id$${id}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    rest.clickHandler(req_obj)
+  }
+
+  const doCheckDeviceInfo = ({ address }) => {
+    const req_obj = {
+      address: 'Diagnostic.cgi',
+      data: `address$${address}`,
+      reducer: reducers.device_info_handling,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    rest.clickHandler(req_obj)
+  }
+
+  const doResetDeviceInfo = ({ address }) => {
+    const req_obj = {
+      address: 'ResetDiagnostic.cgi',
+      data: `address$${address}`,
+      reducer: reducers.device_info_handling,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    console.log(req_obj)
+
+    rest.clickHandler(req_obj)
+  }
+
+  return (
+    <>
+    <tr
+      key={device_info_obj.id}
+      id={`user_${device_info_obj.id}`}
+      className={`acc_item`}>
+      <td className='acc_login'>
+        {device_info_obj.type}
+      </td>
+      <td className='acc_password'>
+        {device_info_obj.address}
+      </td>
+      <td>{device_info_obj?.order_number}</td>
+      <td>{device_info_obj.firm_ver}</td>
+      <td>{device_info_obj.protocol_ver}</td>
+      <td className="acc_actions">
+        <FormInput
+          id={`sys_logs_calib_input`}
+          name={`sys_logs_calib`}
+          title='Проверить связь'
+          clickHandler={(e) => {
+            doCheckDeviceConnection({
+              id: device_info_obj.id
+            })
+          }}
+          label={
+            <MdNetworkCheck style={{ margin: "3px 0px 0" }} />
+          }
+          type="button" />
+        <FormInput
+          id={`sys_logs_calib_input`}
+          name={`sys_logs_calib`}
+          title='Проверить связь'
+          clickHandler={(e) => {
+            if (!isExpanded) {
+              doCheckDeviceInfo({
+                address: device_info_obj.address
+              })
+            }
+
+            setIsExpanded(!isExpanded)
+          }}
+          label={isExpanded ?
+            <IoMdClose style={{ margin: "3px 0px 0" }} /> :
+            <IoMdInformationCircleOutline style={{ margin: "3px 0px 0" }} />
+          }
+          type="button" />
+      </td>
+    </tr>
+    {isExpanded &&
+      <div className="device_adiitional_info">
+        {device_info_obj.device_info !== undefined &&
+         Object.keys(device_info_obj.device_info).length !== 0 &&
+        <ul>
+            {Object.entries(device_info_obj.device_info).map((info_item) => (
+              <li className='info_item'>
+                <span className="info_label">{info_item[0]}</span>
+                <span className="info_value">{info_item[1]}</span>
+              </li>
+            ))}
+          <li className='actions_item'> 
+            <FormInput
+              id={`refresh_modbus_device_info_input`}
+              name={`refresh_modbus_device_info`}
+              clickHandler={(e) => {
+                doCheckDeviceInfo({
+                  address: device_info_obj.address
+                })
+              }}
+              label={<HiOutlineRefresh style={{ margin: "3px 0px 0" }} />}
+              title={`Обновить`}
+              type="button" />
+            <FormInput
+              id={`reset_modbus_device_info_input`}
+              name={`reset_modbus_device_info`}
+              clickHandler={(e) => {
+                doResetDeviceInfo({
+                  address: device_info_obj.address
+                })
+              }}
+              label='Сбросить все счетчики'
+              type="button" />
+          </li>
+        </ul>
+        }
+        {(device_info_obj.device_info == undefined ||
+         Object.keys(device_info_obj.device_info).length == 0) &&
+         <span>Данные об устройстве отсутсвуют.</span>
+        }
+      </div>
+    }
+    </>
+    
+  )
+}
