@@ -363,12 +363,12 @@ export default function ConfFileCalib(props) {
         </div>
       </li>
       <li
-        key='conf_file_manage'
-        id='conf_file_manage'
+        key='conf_file_download_device'
+        id='conf_file_download_device'
         className="settings_item nested_item">
         <div className='item_header'>
           <label
-            htmlFor={`conf_file_manage_input`}
+            htmlFor={`conf_file_download_device_input`}
             className="settings_itemLabel">
             Скачать с устр.
           </label>
@@ -395,12 +395,12 @@ export default function ConfFileCalib(props) {
         </div>
       </li>
       <li
-        key='conf_file_manage'
-        id='conf_file_manage'
+        key='conf_file_upload'
+        id='conf_file_upload'
         className="settings_item nested_item">
         <div className='item_header'>
           <label
-            htmlFor={`conf_file_manage_input`}
+            htmlFor={`conf_file_upload_input`}
             className="settings_itemLabel">
             Загрузить на устр.
           </label>
