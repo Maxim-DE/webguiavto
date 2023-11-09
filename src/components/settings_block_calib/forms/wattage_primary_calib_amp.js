@@ -14,18 +14,21 @@ function PowerCalibSettings_AMP(props) {
       return store.globalStore.global_data.calib_state.data.calib_power
     } else return ''
   }),
-    adcPower_store = useSelector((store) => {
-      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.power_calib
-      } else return ''
-    })
-
+  info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info),
+  adcPower_store = useSelector((store) => {
+  if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
+    return store.globalStore.global_data.status_data.calib_adc?.power_calib
+    } else return ''
+  })
+  
   const [powerCalibState, setPowerCalibState] = React.useState({
     dac_value: '',
     output_power: '',
     output_power_threshold: '',
     coupling_coeff: ''
   })
+    
+  const device_type = info_section_data?.info_general?.model !== undefined ? info_section_data.info_general.model : 0
 
   React.useEffect(() => {
     if (!calibPower_store) return
@@ -162,57 +165,61 @@ function PowerCalibSettings_AMP(props) {
           </label>
         </div>
       </li>
-      <li className="group_divider"></li>
-      <li
-        key='output_power_threshold_step_calib'
-        id='output_power_threshold_step_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`output_power_threshold_step_calib_input`}
-            className="settings_itemLabel">
-            Ограничение P<sub>вых</sub> по шагам
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`output_power_threshold_step_calib_save`}
-            name={`output_power_threshold_step_calib`}
-            clickHandler={handleClick_powerThresholdStep}
-            label='Установить'
-            type="button" />
-        </div>
-      </li>
-      <li
-        key='output_power_threshold_calib'
-        id='output_power_threshold_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`output_power_threshold_calib_input`}
-            className="settings_itemLabel">
-            Ограничение P<sub>вых</sub> по мощности
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            ЦАП: {adcPower_store.output_power_threshold}
-          </span>
-          <FormInput
-            id={`output_power_threshold_calib_input`}
-            name={`output_power_threshold_calib`}
-            changeHandler={handleChange}
-            input_value={powerCalibState.output_power_threshold}
-            style={{ margin: '0', maxWidth: '57px' }}
-            type="text" />
-          <FormInput
-            id={`output_power_threshold_calib_save`}
-            name={`output_power_threshold_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li>
+      {device_type < 3 &&
+      <>
+        <li className="group_divider"></li>
+        <li
+          key='output_power_threshold_step_calib'
+          id='output_power_threshold_step_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`output_power_threshold_step_calib_input`}
+              className="settings_itemLabel">
+              Ограничение P<sub>вых</sub> по шагам
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`output_power_threshold_step_calib_save`}
+              name={`output_power_threshold_step_calib`}
+              clickHandler={handleClick_powerThresholdStep}
+              label='Установить'
+              type="button" />
+          </div>
+        </li>
+        <li
+          key='output_power_threshold_calib'
+          id='output_power_threshold_calib'
+          className="settings_item calib">
+          <div className='item_header'>
+            <label
+              htmlFor={`output_power_threshold_calib_input`}
+              className="settings_itemLabel">
+              Ограничение P<sub>вых</sub> по мощности
+            </label>
+          </div>
+          <div className='item_input'>
+            <span className='item_adc_value'>
+              ЦАП: {adcPower_store.output_power_threshold}
+            </span>
+            <FormInput
+              id={`output_power_threshold_calib_input`}
+              name={`output_power_threshold_calib`}
+              changeHandler={handleChange}
+              input_value={powerCalibState.output_power_threshold}
+              style={{ margin: '0', maxWidth: '57px' }}
+              type="text" />
+            <FormInput
+              id={`output_power_threshold_calib_save`}
+              name={`output_power_threshold_calib`}
+              clickHandler={handleClick_save}
+              label='Сохранить'
+              type="button" />
+          </div>
+        </li>
+      </>
+      }
       <li className="group_divider"></li>
       <li
         key='сoupling_coeff_calib'

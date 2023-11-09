@@ -14,23 +14,26 @@ function VoltageCalibSettings_URE(props) {
       return store.globalStore.global_data.calib_state.data?.calib_voltage
     } else return ''
   }),
-    adcVoltage_store = useSelector((store) => {
-      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'voltage_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
-      } else return ''
-    }),
-    adcPower_store = useSelector((store) => {
-      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.power_calib
-      } else return ''
-    })
-
+  info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info),
+  adcVoltage_store = useSelector((store) => {
+    if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'voltage_calib')) {
+      return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
+    } else return ''
+  }),
+  adcPower_store = useSelector((store) => {
+    if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
+      return store.globalStore.global_data.status_data.calib_adc?.power_calib
+    } else return ''
+  })
+  
   const [voltageCalibState, setVoltageCalibState] = React.useState({
     U1: '',
     U2: '',
     U2_available: 0,
     dac_value: ''
   })
+  
+  const device_type = info_section_data?.info_general?.model !== undefined ? info_section_data.info_general.model : 0
 
   React.useEffect(() => {
     if (calibVoltage_store != undefined && Object.keys(calibVoltage_store).length != 0) {
@@ -161,44 +164,48 @@ function VoltageCalibSettings_URE(props) {
             type="button" />
         </div>
       </li>
-      <li className="group_divider"></li>
-      <li
-        key='dac_value_calib'
-        id='dac_value_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`dac_value_calib_input`}
-            className="settings_itemLabel">
-            Значение ЦАП
-          </label>
-        </div>
-        <div className='item_input'>
-          {/* <span className='item_adc_value'>
-            АЦП<sub>АРУ</sub>: {
-              adcPower_store ? adcPower_store.dac_value[0] : ''
-            }
-          </span> */}
-          <span className='item_adc_value'>
-            ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
-          </span>
-          <input
-            type="text"
-            id={`dac_value_calib_input`}
-            name={`dac_value_calib`}
-            className="text_range"
-            style={{ margin: '0', maxWidth: '54px' }}
-            value={Number(voltageCalibState.dac_value)}
-            onChange={handleChange}
-          />
-          <FormInput
-            id={`dac_value_calib_save`}
-            name={`dac_value_calib`}
-            clickHandler={handleClick_save}
-            label='Установить'
-            type="button" />
-        </div>
-      </li>
+      {device_type < 3 &&
+      <>
+        <li className="group_divider"></li>
+        <li
+          key='dac_value_calib'
+          id='dac_value_calib'
+          className="settings_item calib">
+          <div className='item_header'>
+            <label
+              htmlFor={`dac_value_calib_input`}
+              className="settings_itemLabel">
+              Значение ЦАП
+            </label>
+          </div>
+          <div className='item_input'>
+            {/* <span className='item_adc_value'>
+              АЦП<sub>АРУ</sub>: {
+                adcPower_store ? adcPower_store.dac_value[0] : ''
+              }
+            </span> */}
+            <span className='item_adc_value'>
+              ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
+            </span>
+            <input
+              type="text"
+              id={`dac_value_calib_input`}
+              name={`dac_value_calib`}
+              className="text_range"
+              style={{ margin: '0', maxWidth: '54px' }}
+              value={Number(voltageCalibState.dac_value)}
+              onChange={handleChange}
+            />
+            <FormInput
+              id={`dac_value_calib_save`}
+              name={`dac_value_calib`}
+              clickHandler={handleClick_save}
+              label='Установить'
+              type="button" />
+          </div>
+        </li>
+      </>
+      }
       {/* <li
         key='U2_calib'
         id='U2_calib'
