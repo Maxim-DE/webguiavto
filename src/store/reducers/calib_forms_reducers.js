@@ -130,9 +130,9 @@ export const reducers = {
       global_data: {
         calib_state: {
           data: {
-            calib_masterSlave: {
+            calib_modbus: {
               device_list: {
-                saved_list: request_resp.user_list
+                saved_list: request_resp.device_list
               }
             }
           }

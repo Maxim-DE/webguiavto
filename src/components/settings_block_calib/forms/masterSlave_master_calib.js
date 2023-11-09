@@ -8,6 +8,7 @@ import { IoMdInformationCircleOutline, IoMdClose } from 'react-icons/io';
 import { HiOutlineRefresh } from 'react-icons/hi'
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { reducers as core_reducers } from '../../../store/reducers/core_store_reducers';
 
 const baudrate_arr = [
   '9600',
@@ -22,28 +23,12 @@ export default function Modbus_master_calib(props) {
   const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_modbus)
 
   const [masterSlaveCalibState, setMasterSlaveCalibState] = React.useState({
-    master_form_availiable: 1,
+    master_form_available: 1,
     master_baudrate: 0,
     master_req_period: '',
     master_timeout: '',
     device_list: {
       saved_list: [
-        { 
-          id: '12', 
-          type: 'УРЦ-100/300', 
-          order_number: 1, 
-          firm_ver: 'DigitalExciter_v1.5.14', 
-          protocol_ver: '3', 
-          address: '254', 
-          device_info: {
-            CountBusRequests: 65534,
-            ErrorCountSlaveCrc16: 0,
-            CountRequests: 61320,
-            ErrorCountSlaveNoResponse: 61244,
-            ErrorCountSlaveNAK: 0,
-            IsSumRequestsValid: "false"
-          } 
-        }
       ],
       active_edit_device: {
 
@@ -90,7 +75,7 @@ export default function Modbus_master_calib(props) {
     const request_obj = {
       address: 'calib_modbus_master.cgi',
       data: `${name}$${value}`,
-      reducer: reducers.calibration_data,
+      reducer: core_reducers.calibration_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -101,7 +86,7 @@ export default function Modbus_master_calib(props) {
       }
     }
 
-    props.updateHandler(request_obj);
+    props.clickHandler(request_obj);
 
   }
 
@@ -113,7 +98,7 @@ export default function Modbus_master_calib(props) {
     const request_obj = {
       address: 'calib_modbus_master.cgi',
       data: `${name}$${value}`,
-      reducer: reducers.calibration_data,
+      reducer: core_reducers.calibration_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -156,6 +141,19 @@ export default function Modbus_master_calib(props) {
   const doGetDeviceList = () => {
     const req_obj = {
       address: 'modbus_get_device_list.cgi',
+      reducer: reducers.device_list_handling,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.clickHandler(req_obj)
+  }
+  const initiateDeviceList = () => {
+    const req_obj = {
+      address: 'modbus_find_device_instances.cgi',
+      reducer: reducers.device_list_handling,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -168,7 +166,7 @@ export default function Modbus_master_calib(props) {
   return (
     <Settings_block_calib
       header={`modbus - master`}
-      disabled={!masterSlaveCalibState.master_form_availiable}
+      disabled={!masterSlaveCalibState.master_form_available}
       disableHandler={handleFormDisable}
       settings_type={`genera_modbus_slave_calib`} >
       <li
@@ -187,7 +185,7 @@ export default function Modbus_master_calib(props) {
             id={`master_baudrate_input`}
             name={`master_baudrate`}
             class="calib_input"
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             changeHandler={handleChange}
             input_value={masterSlaveCalibState.master_baudrate}
             type="select"
@@ -195,7 +193,7 @@ export default function Modbus_master_calib(props) {
           <FormInput
             id={`master_baudrate_save`}
             name={`master_baudrate`}
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             clickHandler={handleClick_saveBaud}
             label='Сохранить'
             type="button" />
@@ -216,7 +214,7 @@ export default function Modbus_master_calib(props) {
           <FormInput
             id={`master_req_period_input`}
             name={`master_req_period`}
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             class="calib_input"
             changeHandler={handleChange}
             input_value={masterSlaveCalibState.master_req_period}
@@ -224,7 +222,7 @@ export default function Modbus_master_calib(props) {
           <FormInput
             id={`master_req_period_save`}
             name={`master_req_period`}
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
@@ -246,14 +244,14 @@ export default function Modbus_master_calib(props) {
             id={`master_timeout_input`}
             name={`master_timeout`}
             class="calib_input"
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             changeHandler={handleChange}
             input_value={masterSlaveCalibState.master_timeout}
             type="text" />
           <FormInput
             id={`master_timeout_save`}
             name={`master_timeout`}
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
@@ -274,7 +272,7 @@ export default function Modbus_master_calib(props) {
           <FormInput
             id={`account_manage_calib_input`}
             name={`account_manage_calib`}
-            disabled={!masterSlaveCalibState.master_form_availiable}
+            disabled={!masterSlaveCalibState.master_form_available}
             clickHandler={(e) => {
               setIsOpen(true);
               doGetDeviceList()
@@ -328,6 +326,16 @@ export default function Modbus_master_calib(props) {
                 </tbody>
               </table>
               <div className="acc_list_actions_wrap">
+                <FormInput
+                  id={`calib_password_save`}
+                  name={`calib_password`}
+                  clickHandler={(e) => {
+                    initiateDeviceList()
+                  }}
+                  class='log_refresh'
+                  label='Поиск новых устройств'
+                  type="button"
+                />
                 <FormInput
                   id={`calib_password_save`}
                   name={`calib_password`}
