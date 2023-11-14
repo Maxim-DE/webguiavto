@@ -34,6 +34,7 @@ import { reducers } from './store/reducers/core_store_reducers';
 import PeripheralMenu from './components/peripheral_menu';
 import DeviceWrap_REAmp from './components/device_assets/radio_amp';
 import DeviceWrap_BlockControl from './components/device_assets/block_control';
+import DeviceWrap_AVR1000 from './components/device_assets/avr_1000';
 
 let debounceTimer;
 
@@ -362,7 +363,7 @@ function DeviceWrap_switch({ device_type, device_type_name, ...props }) {
       // )
     } else {
       return (
-        <DeviceWrap_BlockControl
+        <DeviceWrap_AVR1000
           updateHandler={props.updateHandler}
           // section_data={props.section_data}
           // calib_data={props.calib_data}
