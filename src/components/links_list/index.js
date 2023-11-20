@@ -14,7 +14,9 @@ import { useSelector } from 'react-redux';
 const links_items = [
   {id: 'status', name: "Статус"},
   {id: 'settings', name: "Общие настройки"},
+  {id: 'rds', name: "RDS настройки"},
   {id: 'network', name: "Сетевые настройки"},
+  {id: 'avr', name: "Управление устройствами"},
   {id: 'info', name: "Данные об устройстве"},
   {id: 'calibration_main', name: "Калибровка"}
 ] 
@@ -81,7 +83,7 @@ function Links_list(props) {
 
   }
 
-  if (active < '4') {
+  if (active < links_items.length - 1) {
     return (
       <>
       <ul className="nav_linksList">

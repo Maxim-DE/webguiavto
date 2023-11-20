@@ -9,13 +9,13 @@ import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 import { cloneDeep } from 'lodash';
 
-function PowerCalibSettings_AVR(props) {
-  const calibPower_store = useSelector((store) => {
-    if (deepKeyExists(store, 'calib_power')) {
-      return store.globalStore.global_data.calib_state.data.calib_power
-    } else return ''
-  }),
-    adcPower_store = useSelector((store) => {
+function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
+  // const calib_state = useSelector((store) => {
+  //   if (deepKeyExists(store, 'calib_power')) {
+  //     return store.globalStore.global_data.calib_state.data.calib_power
+  //   } else return ''
+  // }),
+  const adcPower_store = useSelector((store) => {
       if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
         return store.globalStore.global_data.status_data.calib_adc?.power_calib
       } else return ''
@@ -33,28 +33,28 @@ function PowerCalibSettings_AVR(props) {
   })
 
   React.useEffect(() => {
-    if (!calibPower_store) return
+    if (!calib_state) return
 
-    if (Object.keys(calibPower_store).length != 0) {
+    if (Object.keys(calib_state).length != 0) {
       let calib_state_copy = cloneDeep(powerCalibState)
 
-      for (const key in calibPower_store) {
-        if (calibPower_store[key] == undefined) continue
+      for (const key in calib_state) {
+        if (calib_state[key] == undefined) continue
 
-        if (Array.isArray(calibPower_store[key])) {
-          const divident = calibPower_store[key][0],
-                divider = calibPower_store[key][1] == 0 ? 1 : calibPower_store[key][1],
+        if (Array.isArray(calib_state[key])) {
+          const divident = calib_state[key][0],
+                divider = calib_state[key][1] == 0 ? 1 : calib_state[key][1],
                 digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = calibPower_store[key]
+          calib_state_copy[key] = calib_state[key]
         }
 
       }
 
       setPowerCalibState(calib_state_copy)
     } 
-  }, [calibPower_store])
+  }, [calib_state])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -73,11 +73,11 @@ function PowerCalibSettings_AVR(props) {
 
     let value, state_to_save
 
-    if (calibPower_store != undefined && calibPower_store[name] != undefined) {
-      if (Array.isArray(calibPower_store[name])) {
+    if (calib_state != undefined && calib_state[name] != undefined) {
+      if (Array.isArray(calib_state[name])) {
         value = powerCalibState[name] * 10
         let state_obj = { [name]: value }
-        state_to_save = calib_state_conversion(state_obj, calibPower_store)
+        state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
         value = powerCalibState[name]
         state_to_save = { [name]: value }
@@ -100,7 +100,7 @@ function PowerCalibSettings_AVR(props) {
       }
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
 
   }
 
@@ -114,7 +114,7 @@ function PowerCalibSettings_AVR(props) {
       },
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
 
   }
 
@@ -129,7 +129,7 @@ function PowerCalibSettings_AVR(props) {
       },
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
   }
 
   return (

@@ -9,8 +9,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
-export default function SignalThresholdSettings(props) {
-  const calibSignalThreshold_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
+export default function SignalThresholdSettings({ calib_state, clickHandler, ...props }) {
+  // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
 
   const [signalThresholdCalibState, setSignalThresholdCalibState] = React.useState({
     signal_type_reserved: 0,
@@ -26,28 +26,28 @@ export default function SignalThresholdSettings(props) {
   })
 
   React.useEffect(() => {
-    if (!calibSignalThreshold_store) {
+    if (!calib_state) {
       return
     }
 
-    if (Object.keys(calibSignalThreshold_store).length != 0) {
+    if (Object.keys(calib_state).length != 0) {
       let calib_state_copy = cloneDeep(signalThresholdCalibState)
 
-      for (const key in calibSignalThreshold_store) {
-        if (Array.isArray(calibSignalThreshold_store[key])) {
-          const divident = calibSignalThreshold_store[key][0],
-            divider = calibSignalThreshold_store[key][1] == 0 ? 1 : calibSignalThreshold_store[key][1],
+      for (const key in calib_state) {
+        if (Array.isArray(calib_state[key])) {
+          const divident = calib_state[key][0],
+            divider = calib_state[key][1] == 0 ? 1 : calib_state[key][1],
             digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = calibSignalThreshold_store[key]
+          calib_state_copy[key] = calib_state[key]
         }
       }
 
       setSignalThresholdCalibState(calib_state_copy)
     }
 
-  }, [calibSignalThreshold_store])
+  }, [calib_state])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -66,11 +66,11 @@ export default function SignalThresholdSettings(props) {
 
     let value, state_to_save
 
-    if (calibSignalThreshold_store != undefined && calibSignalThreshold_store[name] != undefined) {
-      if (Array.isArray(calibSignalThreshold_store[name])) {
+    if (calib_state != undefined && calib_state[name] != undefined) {
+      if (Array.isArray(calib_state[name])) {
         value = signalThresholdCalibState[name] * 10
         let state_obj = { [name]: value }
-        state_to_save = calib_state_conversion(state_obj, calibSignalThreshold_store)
+        state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
         value = signalThresholdCalibState[name]
         state_to_save = { [name]: value }
@@ -95,7 +95,7 @@ export default function SignalThresholdSettings(props) {
       }
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
 
   }
 

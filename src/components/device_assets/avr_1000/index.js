@@ -11,6 +11,8 @@ import { Route, Routes } from 'react-router-dom'
 import { CalibMain } from './sections/calib/calib_main'
 import { MiscCalib } from './sections/calib/misc'
 import { DeveloperCalib } from './sections/calib/developer'
+import RdsSettingsSection from './sections/rds'
+import { AvrControl } from './sections/avr_control'
 
 export default function DeviceWrap_AVR1000(props) {
   
@@ -27,10 +29,22 @@ export default function DeviceWrap_AVR1000(props) {
           updateHandler={updateHandler}
           />
       } />
+      <Route path='rds' element={
+        <RdsSettingsSection
+          updateHandler={updateHandler}
+          />
+      } />
       <Route path='network' element={
         <NetworkSettingsSection
           updateHandler={updateHandler}
           />
+      } />
+      <Route path='avr' element={
+        <AvrControl
+          section_name="avr"
+          section_header="управление устройствами"
+          updateHandler={updateHandler}
+        />
       } />
       <Route path='info' element={
         <InfoSection

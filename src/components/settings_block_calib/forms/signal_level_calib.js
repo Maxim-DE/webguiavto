@@ -9,8 +9,8 @@ import cloneDeep from 'lodash/cloneDeep';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
-export default function SignalCalibSettings(props) {
-  const calibSignal_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
+export default function SignalCalibSettings({ calib_state, clickHandler, ...props }) {
+  // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
 
   const [signalCalibState, setSignalCalibState] = React.useState({
     signal_type: 0,
@@ -20,28 +20,28 @@ export default function SignalCalibSettings(props) {
   })
 
   React.useEffect(() => {
-    if (!calibSignal_store) {
+    if (!calib_state) {
       return
     }
 
-    if (Object.keys(calibSignal_store).length != 0) {
+    if (Object.keys(calib_state).length != 0) {
       let calib_state_copy = cloneDeep(signalCalibState)
 
-      for (const key in calibSignal_store) {
-        if (Array.isArray(calibSignal_store[key])) {
-          const divident = calibSignal_store[key][0],
-            divider = calibSignal_store[key][1] == 0 ? 1 : calibSignal_store[key][1],
+      for (const key in calib_state) {
+        if (Array.isArray(calib_state[key])) {
+          const divident = calib_state[key][0],
+            divider = calib_state[key][1] == 0 ? 1 : calib_state[key][1],
             digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
         } else {
-          calib_state_copy[key] = calibSignal_store[key]
+          calib_state_copy[key] = calib_state[key]
         }
       }
 
       setSignalCalibState(calib_state_copy)
     }
 
-  }, [calibSignal_store])
+  }, [calib_state])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -60,11 +60,11 @@ export default function SignalCalibSettings(props) {
 
     let value, state_to_save
 
-    if (calibSignal_store != undefined && calibSignal_store[name] != undefined) {
-      if (Array.isArray(calibSignal_store[name])) {
+    if (calib_state != undefined && calib_state[name] != undefined) {
+      if (Array.isArray(calib_state[name])) {
         value = signalCalibState[name] * 10
         let state_obj = { [name]: value }
-        state_to_save = calib_state_conversion(state_obj, calibSignal_store)
+        state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
         value = signalCalibState[name]
         state_to_save = { [name]: value }
@@ -89,7 +89,7 @@ export default function SignalCalibSettings(props) {
       }
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
 
   }
 
@@ -103,7 +103,7 @@ export default function SignalCalibSettings(props) {
       },
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
 
   }
 
@@ -161,5 +161,4 @@ export default function SignalCalibSettings(props) {
 
     </Settings_block_calib>
   )
-
 }

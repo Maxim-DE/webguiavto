@@ -8,9 +8,9 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { reducers as coreReducers } from '../../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
 
-function GeneralCalibSettings_AVR(props) {
-  const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
-        auth_store = useSelector((store) => store.authStore.auth_data)
+function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
+  // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
+  const auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     def_module: 0,
@@ -21,21 +21,21 @@ function GeneralCalibSettings_AVR(props) {
   // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
-    if (!calibGeneral_store) {
+    if (!calib_state) {
       return
     } 
 
-    if (Object.keys(calibGeneral_store).length != 0 || calibGeneral_store != undefined) {
+    if (Object.keys(calib_state).length != 0 || calib_state != undefined) {
       let calib_state_copy = generalCalibState
 
-      for (const key in calibGeneral_store) {
-        calib_state_copy[key] = calibGeneral_store[key]
+      for (const key in calib_state) {
+        calib_state_copy[key] = calib_state[key]
       }
 
       setGeneralCalibState(calib_state_copy)
 
     }
-  }, [calibGeneral_store])
+  }, [calib_state])
 
   const handleChange_save = (event) => {
     let target = event.target;
@@ -65,7 +65,7 @@ function GeneralCalibSettings_AVR(props) {
       }
     }
   
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
   }
 
   const handleClick_save = (event) => {
@@ -88,7 +88,7 @@ function GeneralCalibSettings_AVR(props) {
       }
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
 
   }
 
@@ -102,11 +102,11 @@ function GeneralCalibSettings_AVR(props) {
       },
     }
 
-    props.clickHandler(request_obj);
+    clickHandler(request_obj);
   }
 
   return (
-    <Settings_block_calib header={`общее`}
+    <Settings_block_calib header={`прочее`}
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>
