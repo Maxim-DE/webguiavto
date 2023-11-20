@@ -56,3 +56,14 @@ export function deepKeyExists(obj, key) {
   return false;
 }
 
+export function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+export const roundDigits = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0))
+

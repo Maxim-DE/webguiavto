@@ -219,7 +219,8 @@ select {
 
 /* TEXT STYLES */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
   max-width: 160px;
   height: 24px;
 
@@ -282,8 +283,8 @@ input[type="text"].text_range {
   align-items: center;
 }
 
-.text_buttons_container > input[type="text"] {
-  max-width: 60px;
+.text_buttons_container > input[type="number"] {
+  max-width: 70px;
   margin: 0 5px;
 }
 

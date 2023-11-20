@@ -52,6 +52,9 @@ function SettingsSectionWrap(props) {
           {/* <LoadingSpan loading={sectionState.isLoading} /> */}
         </h2>
       </div>
+      <div className="section_subheader">
+        {props.section_subheader}
+      </div>
       <div className="section_content">
         {props.children}
       </div>
