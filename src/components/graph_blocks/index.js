@@ -82,7 +82,7 @@ function Status_graphs(props) {
 
         if (Array.isArray(graph_block_data[item])) {
           let input_value = graph_block_data[item][0],
-              divider = graph_block_data[item][1],
+              divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
               status = graph_block_data[item][2],
               postfix = graph_block_data[item][3] ? 
                         ' ' + graph_block_data[item][3] :
