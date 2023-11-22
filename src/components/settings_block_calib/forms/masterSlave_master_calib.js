@@ -318,11 +318,16 @@ export default function Modbus_master_calib(props) {
                   </tr>
                 </thead>
                 <tbody className="user_log log_list">
-                  {masterSlaveCalibState.device_list.saved_list.map((device, index) => (
+                  {Array.isArray(masterSlaveCalibState.device_list.saved_list) ? 
+                    masterSlaveCalibState.device_list.saved_list.map((device, index) => (
                     <Slave_instance
                       device_info_obj={device}
                       clickHandler={props.clickHandler} />
-                  ))}
+                  )) :
+                    <tr className='td_warning_item'>
+                      <td colSpan={5}>Устройства отсутсвуют.</td>
+                    </tr>
+                  }
                 </tbody>
               </table>
               <div className="acc_list_actions_wrap">

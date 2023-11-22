@@ -126,13 +126,24 @@ export const reducers = {
   device_list_handling: ({ request_resp }) => {
     if (!Object.hasOwn(request_resp, 'device_list')) return
 
+    let resp_device_list
+
+    if (request_resp.device_list === 'none') {
+      resp_device_list = "none"
+    } else if (Array.isArray(request_resp.device_list)) {
+      resp_device_list = request_resp.device_list
+    } else {
+      resp_device_list = []
+    }
+
+
     const obj_to_refresh = {
       global_data: {
         calib_state: {
           data: {
             calib_modbus: {
               device_list: {
-                saved_list: request_resp.device_list
+                saved_list: resp_device_list
               }
             }
           }

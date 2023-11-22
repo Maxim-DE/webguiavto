@@ -91,14 +91,16 @@ function Status_graphs(props) {
               fract = (input_value / divider) % 1,
               round_index
 
-          if (fract < 0.1 &&
-              fract > 0) {
-            round_index = 2
-          } else if (fract == 0) {
-            round_index = 0
-          } else {
-            round_index = 1
-          }
+          round_index = Math.log10(divider)
+
+          // if (fract < 0.1 &&
+          //     fract > 0) {
+          //   round_index = 2
+          // } else if (fract == 0) {
+          //   round_index = 0
+          // } else {
+          //   round_index = 1
+          // }
 
           new_value = (input_value / divider).toFixed(round_index)
           new_value = new_value + postfix

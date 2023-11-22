@@ -174,6 +174,15 @@
   column-gap: 10px;
 }
 
+
+.td_warning_item {
+  height: 100px;
+}
+
+.td_warning_item td {
+  text-align: center;
+}
+
 .modbus_master .device_adiitional_info {
   position: absolute;
   width: auto;
@@ -184,7 +193,6 @@
   right: 1.3em;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
-
 
 .modbus_master li {
   display: flex;
