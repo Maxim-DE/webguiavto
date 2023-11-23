@@ -137,21 +137,29 @@ export const reducers = {
     }
 
 
+    // const obj_to_refresh = {
+    //   global_data: {
+    //     calib_state: {
+    //       data: {
+    //         calib_modbus: {
+    //           device_list: {
+    //             saved_list: resp_device_list
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+
     const obj_to_refresh = {
-      global_data: {
-        calib_state: {
-          data: {
-            calib_modbus: {
-              device_list: {
-                saved_list: resp_device_list
-              }
-            }
-          }
+      calib_modbus: {
+        device_list: {
+          saved_list: resp_device_list
         }
       }
     }
 
-    store.dispatch(refreshGlobalStore(obj_to_refresh))
+    store.global_data.calib_state.data = obj_to_refresh
   },
 
   device_info_handling: ({ request_resp, request_params }) => {
@@ -159,7 +167,7 @@ export const reducers = {
 
     let store_tree = store.getState()
 
-    let device_list = store_tree.global_data.calib_state.data.calib_masterSlave.device_list.saved_list
+    let device_list = store_tree.global_data.calib_state.data.calib_modbus.device_list.saved_list
 
     if (device_list !== undefined) {
       const device_index = device_list.findIndex((element) => element.address === request_params.address)
@@ -171,7 +179,7 @@ export const reducers = {
       global_data: {
         calib_state: {
           data: {
-            calib_masterSlave: {
+            calib_modbus: {
               device_list: {
                 saved_list: device_list
               }
