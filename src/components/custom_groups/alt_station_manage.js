@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import clone from 'lodash/clone';
 
 import FormInput from '../form_input';
@@ -7,7 +7,7 @@ import { TbMinus, TbPlus } from 'react-icons/tb';
 import cloneDeep from 'lodash/cloneDeep';
 import _ from 'lodash';
 
-export const Alt_station_manage = ({ parent_state, state_handler, ...rest }) => {
+export const Alt_station_manage = ({ parent_state, state_handler, save_handler, ...rest }) => {
 
   const max_stations = 25
 
@@ -57,6 +57,20 @@ export const Alt_station_manage = ({ parent_state, state_handler, ...rest }) => 
       [name]: value
     }))
   }
+
+  const saveHandler = useCallback((event) => {
+    const target = event.target,
+      name = target.name,
+      value = target.type === 'checkbox' ? target.checked : altStationState[name]
+
+    const state_clone = {
+      alt_stations: clone(altStationState)
+    }
+
+    state_clone[name] = value
+
+    if (save_handler) save_handler(event, state_clone)
+  }, [save_handler])
 
   const alt_stations_handle = (action) => {
     switch (action) {
@@ -157,7 +171,10 @@ export const Alt_station_manage = ({ parent_state, state_handler, ...rest }) => 
           id='alt_station_switch_input'
           name='alt_station_switch'
           type='switch'
-          changeHandler={changeHandler}
+          changeHandler={(e) => {
+            changeHandler(e)
+            if (save_handler) saveHandler(e)
+          }}
           input_value={altStationState.alt_station_switch}
         />
       </li>

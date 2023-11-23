@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SettingsSectionWrap from '../../../../settings_section_wrap'
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/wattage_primary_calib_avr';
@@ -24,7 +24,8 @@ export const AvrControl = (props) => {
       device_num={deviceState}
       deviceNum_handler={setDeviceState} />
 
-  const rds_enable = device_store?.slave_general?.rds_enable
+  // const rds_enable = device_store?.slave_general?.rds_enable
+  const [rdsEnable, setRdsEnable] = useState(false)
 
   React.useEffect(() => {
     let request_obj = {
@@ -35,6 +36,8 @@ export const AvrControl = (props) => {
   }, [])
 
   const handleClick = block_data => {
+    block_data.data = `avr_device$${deviceState};` + block_data.data
+    console.log(block_data);
     props.updateHandler(block_data);
   }
 
@@ -47,11 +50,12 @@ export const AvrControl = (props) => {
       section_subheader={device_switch}>
       <SlaveGeneralCalib_AVR
         calib_state={device_store?.slave_general}
-        clickHandler={handleClick} />
+        clickHandler={handleClick}
+        rdsHandler={setRdsEnable} />
       <SlaveAddGeneralCalib_AVR
         calib_state={device_store?.slave_add_general}
         clickHandler={handleClick} />
-      {rds_enable == 1 &&
+      {rdsEnable == 1 &&
         <Slave_Rds_general_
           section_name="rds_settings"
           clickHandler={handleClick} />

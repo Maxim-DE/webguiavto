@@ -41,6 +41,10 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
 
   }, [calib_state])
 
+  React.useEffect(() => {
+    props.rdsHandler(generalCalibState.rds_enable)
+  }, [generalCalibState.rds_enable])
+
   const handleChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -64,11 +68,11 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
         let state_obj = { [name]: value }
         state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
-        value = generalCalibState[name]
+        value = target.type === 'checkbox' ? Number(target.checked) : generalCalibState[name]; 
         state_to_save = { [name]: value }
       }
     } else {
-      value = generalCalibState[name]
+      value = target.type === 'checkbox' ? Number(target.checked) : generalCalibState[name]; 
       state_to_save = { [name]: value }
     }
 
@@ -197,7 +201,10 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
           <FormInput
             id={`rds_enable_calib_input`}
             name={`rds_enable_calib`}
-            changeHandler={handleChange}
+            changeHandler={(e) => {
+              handleChange(e)
+              handleClick_save(e)
+            }}
             input_value={generalCalibState.rds_enable}
             type="switch" />
         </div>

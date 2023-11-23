@@ -10,6 +10,7 @@ import { dataArray_to_string } from '../../../logic/request_logic'
 import { reducers } from '../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
 import Settings_block_calib from '..'
+import { cloneDeep, merge } from 'lodash'
 
 export default function Slave_Rds_general_({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.section_data.rds.rds_general_settings)
@@ -82,8 +83,20 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
     }))
   }
 
-  const handleClick_save = (event) => {
-    const req_data_str = dataArray_to_string(rdsGeneralState)
+  const handleClick_save = (event, payload) => {
+    const target = event.target,
+          name = target.name,
+          value = target.type === 'checkbox' ? Number(target.checked) : rdsGeneralState[name]
+
+    let state_clone = cloneDeep(rdsGeneralState)
+
+    if (payload) {
+      state_clone = merge(state_clone, payload)
+    } else {
+      state_clone[name] = value
+    }
+
+    const req_data_str = dataArray_to_string(state_clone)
 
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
@@ -228,6 +241,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
         parent_state={rdsGeneralState}
         state_handler={state_handler}
         update_handler={props.clickHandler}
+        save_handler={handleClick_save}
         parent_props={calib_state} />
     </Settings_block_calib>
   )
