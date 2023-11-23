@@ -13,13 +13,13 @@ export const reducers = {
     switch (request_name) {
       case 'info':
         // Преобразуем тип устройства в строковый формат для отображения в интерфейсе (при наличии в ответе)
-        if (Object.hasOwn(request_resp.info_general, 'type')) {
+        if (Object.prototype.hasOwnProperty.call(request_resp.info_general, 'type')) {
           request_resp.info_general.Type_Device = type_device_toStr(request_resp.info_general.type)
         }
 
         // Проверяем наличие информации в разделе
         // Если информации о правах доступа нет, то устанавливаем уровень доступа 0(низший)
-        if (!Object.hasOwn(request_resp, 'auth_info')) {
+        if (!Object.prototype.hasOwnProperty.call(request_resp, 'auth_info')) {
           store.dispatch(setAuthLevel(0))
           store.dispatch(setUserId('guest'))
           store.dispatch(setIsAuth(false))

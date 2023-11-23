@@ -44,7 +44,7 @@ function VoltageCalibSettings_URE(props) {
               divider = calibVoltage_store[key][1] == 0 ? 1 : calibVoltage_store[key][1]
         calib_state_copy[key] = (divident / divider).toFixed(1)
 
-        if (Object.hasOwn(voltageCalibState[key], 'availability')) {
+        if (Object.prototype.hasOwnProperty.call(voltageCalibState[key], 'availability')) {
           calib_state_copy[`${key}_available`] = voltageCalibState[key].availability
         }
       }
