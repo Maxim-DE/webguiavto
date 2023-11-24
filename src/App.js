@@ -108,6 +108,10 @@ function App() {
                           toast.error(message, { autoClose: 1500 })
                           break;
 
+                        case 'warning':
+                          toast.warning(message, { autoClose: 1500 })
+                          break;
+
                         default:
                           break;
                       }
