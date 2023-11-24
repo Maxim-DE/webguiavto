@@ -5,7 +5,13 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 35px;
+  width: 100%;
+  height: auto;
+}
 
+.graphs > svg { 
+  width: 100%;
+  height: auto;
 }
 
 .graph_container {
