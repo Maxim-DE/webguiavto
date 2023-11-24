@@ -37,7 +37,7 @@ export const reducers = {
 
   
   factory_reset: ({request_params}) => {
-    if (Object.hasOwn(request_params, 'factory_reset')) {
+    if (Object.prototype.hasOwnProperty.call(request_params, 'factory_reset')) {
       reload_page()
     }
   },
@@ -81,7 +81,7 @@ export const reducers = {
 
     let log_id = 0
 
-    if (Object.hasOwn(request_params, 'log_num')) {
+    if (Object.prototype.hasOwnProperty.call(request_params, 'log_num')) {
       log_id = request_params.log_num
     }
 
@@ -124,7 +124,7 @@ export const reducers = {
 
   // Оработка запросов, связанных с получением списка slave-устройств
   device_list_handling: ({ request_resp }) => {
-    if (!Object.hasOwn(request_resp, 'device_list')) return
+    if (!Object.prototype.hasOwnProperty.call(request_resp, 'device_list')) return
 
     const obj_to_refresh = {
       global_data: {
