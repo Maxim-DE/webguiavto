@@ -49,7 +49,7 @@ function Hex_upload(props) {
         })
 
         if (Object.keys(message).length > 0 &&
-            Object.hasOwn(message, 'Notific')) {
+          Object.prototype.hasOwnProperty.call(message, 'Notific')) {
           toast.success(`${message.Notific.text}`, { autoClose: 1500 })
         } else {
           toast.success(`Успешно загружено`, { autoClose: 1500 })
@@ -76,7 +76,7 @@ function Hex_upload(props) {
         })
 
         if (Object.keys(message).length > 0 &&
-            Object.hasOwn(message, 'Notific')) {
+          Object.prototype.hasOwnProperty.call(message, 'Notific')) {
           toast.error(`${message.Notific.text}`, { autoClose: 1500 })
         } else {
           toast.error(`Ошибка загрузки`, { autoClose: 1500 })

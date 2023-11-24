@@ -67,7 +67,7 @@ function CurrentThresholdCalibSettings_AMP(props) {
 
         calib_state_copy[`${key}_threshold_input`] = value_array
 
-        if(Object.hasOwn(calibCurrentThreshold_store[key], 'availability')) {
+        if (Object.prototype.hasOwnProperty.call(calibCurrentThreshold_store[key], 'availability')) {
           calib_state_copy[`${key}_threshold_available`] = calibCurrentThreshold_store[key].availability
         }
       }

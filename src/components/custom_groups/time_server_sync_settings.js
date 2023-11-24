@@ -83,7 +83,7 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
     console.log(timeSyncState);
     if (!parent_state) return
     
-    if (!Object.hasOwn(parent_state, 'time_sync')) return
+    if (!Object.prototype.hasOwnProperty.call(parent_state, 'time_sync')) return
 
     if (isEqual(parent_state.time_sync, timeSyncState)) return
 
@@ -125,7 +125,7 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
     if (!event.target.checked) {
       let state_to_restore,
           reset_state
-      if (!Object.hasOwn(parent_state, 'time_sync')) {
+      if (!Object.prototype.hasOwnProperty.call(parent_state, 'time_sync')) {
         state_to_restore = filter_obj(base_state, (key, value) => !key.includes('switch'))
         setTimeSyncState(base_state)
       } else {

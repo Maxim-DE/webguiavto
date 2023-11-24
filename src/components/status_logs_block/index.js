@@ -433,7 +433,7 @@ function set_expand_value_status(status) {
 }
 
 function param_label_translate(label) {
-  if (Object.hasOwn(LabelReplaceText, label)) {
+  if (Object.prototype.hasOwnProperty.call(LabelReplaceText, label)) {
     return LabelReplaceText[label]
   } else {
     return label

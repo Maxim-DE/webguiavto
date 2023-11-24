@@ -38,7 +38,7 @@ function Conf_manage_settings({parent_state, state_handler, ...rest}) {
   React.useEffect(() => {
     if (!parent_state) return
 
-    if (!Object.hasOwn(parent_state, 'conf_manage')) return
+    if (!Object.prototype.hasOwnProperty.call(parent_state, 'conf_manage')) return
 
     if (_.isEqual(parent_state.conf_manage, confManageState)) return
 

@@ -51,7 +51,7 @@ function CurrentCalibSettings_ST(props) {
                 digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
 
-          if(Object.hasOwn(calibCurrent_store[key], 'availability')) {
+          if (Object.prototype.hasOwnProperty.call(calibCurrent_store[key], 'availability')) {
             calib_state_copy[`${key}_available`] = calibCurrent_store[key].availability
           }
 

@@ -85,7 +85,7 @@ function App() {
               switch (resp_status) {
                 case 'success':
                   if (req_queue_data.notifications.good == 'default') {
-                    if (Object.hasOwn(req_resp.data, 'Notific')) {
+                    if (Object.prototype.hasOwnProperty.call(req_resp.data, 'Notific')) {
                       const message = `${req_resp.data.Notific.text}`,
                         status = req_resp.data.Notific.status
 
@@ -115,7 +115,7 @@ function App() {
                   fetch_error_handler(req_resp)
 
                   if (req_queue_data.notifications.bad == 'default') {
-                    if (Object.hasOwn(req_resp.data, 'Notific')) {
+                    if (Object.prototype.hasOwnProperty.call(req_resp.data, 'Notific')) {
                       const message = `${req_resp.data.Notific.text}`,
                         status = req_resp.data.Notific.status
 

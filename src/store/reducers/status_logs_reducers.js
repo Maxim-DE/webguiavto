@@ -22,7 +22,7 @@ export const reducers = {
 
     let log_id = 0
 
-    if (Object.hasOwn(request_params, 'log_num')) {
+    if (Object.prototype.hasOwnProperty.call(request_params, 'log_num')) {
       log_id = request_params.log_num
     }
 

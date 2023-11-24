@@ -60,7 +60,7 @@ function st_250_svg_editing(svg, data_svg) {
 
   if (ballast_group === null) return svg
 
-  if (!Object.hasOwn(output_data, 'ballast')) {
+  if (!Object.prototype.hasOwnProperty.call(output_data, 'ballast')) {
     ballast_group.parentNode.style.display = 'none'
 
     const rect_height = Math.round(output_svg_rect.height.baseVal.value)
