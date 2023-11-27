@@ -278,11 +278,13 @@ function FormInput(props) {
       >
       {props.variants &&
         props.variants.map((item, index) => {
-          return (
-            <option 
-              key={index}
-              value={index}>{item}</option>
-          )
+          if (typeof item != 'undefined') {
+            return (
+              <option 
+                key={index}
+                value={index}>{item}</option>
+            ) 
+          }
         })
       }
         {/* <option value='1'>4564</option>
