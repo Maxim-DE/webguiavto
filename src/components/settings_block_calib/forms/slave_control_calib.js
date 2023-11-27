@@ -77,7 +77,8 @@ export default function Slave_control_calib({ clickHandler, ...rest }) {
                 'Питание',
                 'Мощность',
                 'Sleep',
-                'Modbus'
+                'Modbus',
+                slave_device.type == 'exiter' ? 'Управление' : undefined
               ]} />
             {slaveControlState[`${slave_device.type}_${slave_device.order_num}_action`] == 0 &&
               <>
@@ -172,6 +173,43 @@ export default function Slave_control_calib({ clickHandler, ...rest }) {
               >
                 S
               </button>
+              </>
+            }
+            {slaveControlState[`${slave_device.type}_${slave_device.order_num}_action`] == 4 &&
+              <>
+                <button
+                  id={`control_reset_${slave_device.type}_${slave_device.order_num}_calib_input`}
+                  name={`control_reset_${slave_device.type}_${slave_device.order_num}`}
+                  className={`button_input plus_minus`}
+                  type='button'
+                  onClick={(e) => {
+                    handleClick_action(e)
+                  }}
+                >
+                  Reset
+                </button>
+                <button
+                  id={`control_pause_${slave_device.type}_${slave_device.order_num}_calib_input`}
+                  name={`control_pause_${slave_device.type}_${slave_device.order_num}`}
+                  className={`button_input plus_minus`}
+                  type='button'
+                  onClick={(e) => {
+                    handleClick_action(e)
+                  }}
+                >
+                  Pause
+                </button>
+                <button
+                  id={`control_start_${slave_device.type}_${slave_device.order_num}_calib_input`}
+                  name={`control_start_${slave_device.type}_${slave_device.order_num}`}
+                  className={`button_input plus_minus`}
+                  type='button'
+                  onClick={(e) => {
+                    handleClick_action(e)
+                  }}
+                >
+                  Start
+                </button>
               </>
             }
           </div>
