@@ -6,7 +6,7 @@ import FormInput from '../../form_input';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
-import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { reducers } from '../../../store/reducers/avr_control_reducers';
 
 export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ...props }) {
 
@@ -79,7 +79,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
     const request_obj = {
       address: 'calib_signal.cgi',
       data: `${name}$${value}`,
-      reducer: reducers.calibration_form,
+      reducer: reducers.save_avr_device_data,
       update_data: generalCalibState,
       notifications: {
         good: 'default',

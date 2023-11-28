@@ -4,10 +4,10 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
 import { cloneDeep } from 'lodash';
+import { reducers } from '../../../store/reducers/avr_control_reducers';
 
 function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => {
@@ -90,7 +90,7 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     const request_obj = {
       address: 'calib_power.cgi',
       data: `${name}$${value}`,
-      reducer: reducers.calibration_form,
+      reducer: reducers.save_avr_device_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -116,20 +116,6 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
 
     clickHandler(request_obj);
 
-  }
-
-  const handleClick_powerThresholdStep = () => {
-    const request_obj = {
-      address: 'calib_power.cgi',
-      data: `output_power_threshold_step$1`,
-      reducer: reducers.calibration_form,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    clickHandler(request_obj);
   }
 
   return (
@@ -232,8 +218,7 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
             input_value={powerCalibState.threshold_type}
             title='Тип порога'
             variants={[
-              'По абс. отр. мощн.',
-              'По КСВ',
+              'По абс. отр. мощн.'
             ]}
             changeHandler={handleChange} />
           <FormInput

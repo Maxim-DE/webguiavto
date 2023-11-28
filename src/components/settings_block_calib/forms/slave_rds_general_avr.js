@@ -7,10 +7,10 @@ import { Alt_station_manage } from '../../custom_groups/alt_station_manage'
 
 import clone from 'lodash/clone'
 import { dataArray_to_string } from '../../../logic/request_logic'
-import { reducers } from '../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
 import Settings_block_calib from '..'
 import { cloneDeep, merge } from 'lodash'
+import { reducers } from '../../../store/reducers/avr_control_reducers'
 
 export default function Slave_Rds_general_({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.section_data.rds.rds_general_settings)
@@ -101,7 +101,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
       data: req_data_str,
-      reducer: reducers.section_data,
+      reducer: reducers.save_avr_device_data,
       notifications: {
         good: 'default',
         bad: 'default'

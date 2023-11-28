@@ -4,9 +4,9 @@ import Settings_block_calib from '..';
 import FormInput from '../../form_input';
 
 import useGlobalStore from '../../../logic/auth_store';
-import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { reducers as coreReducers } from '../../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
+import { reducers } from '../../../store/reducers/avr_control_reducers';
 
 function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
@@ -52,7 +52,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     const request_obj = {
       address: 'calib_general.cgi',
       data: `${name}$${value}`,
-      reducer: reducers.calibration_form,
+      reducer: reducers.save_avr_device_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -106,7 +106,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   }
 
   return (
-    <Settings_block_calib header={`прочее`}
+    <Settings_block_calib header={`дополнительное`}
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>

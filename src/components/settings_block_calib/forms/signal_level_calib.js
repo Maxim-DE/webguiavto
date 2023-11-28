@@ -6,8 +6,8 @@ import FormInput from '../../form_input';
 import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
-import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
+import { reducers } from '../../../store/reducers/avr_control_reducers';
 
 export default function SignalCalibSettings({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
@@ -77,7 +77,7 @@ export default function SignalCalibSettings({ calib_state, clickHandler, ...prop
     const request_obj = {
       address: 'calib_signal.cgi',
       data: `${name}$${value}`,
-      reducer: reducers.calibration_form,
+      reducer: reducers.save_avr_device_data,
       update_data: signalCalibState,
       notifications: {
         good: 'default',
