@@ -4,6 +4,7 @@ import { refreshGlobalStore } from "../global_store_slice";
 import { reload_page } from "../../logic/utilites";
 import { syslog_handle_expand } from "../../logic/syslog_handle_expand";
 import { set_logs_id } from "../../logic/syslog_handle_expand";
+import { cloneDeep, merge, mergeWith } from "lodash";
 
 export const reducers = {
   // Обновление данных калибровки при обычном запросе с форм калибровки
@@ -136,41 +137,32 @@ export const reducers = {
       resp_device_list = []
     }
 
-
-    // const obj_to_refresh = {
-    //   global_data: {
-    //     calib_state: {
-    //       data: {
-    //         calib_modbus: {
-    //           device_list: {
-    //             saved_list: resp_device_list
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
     const obj_to_refresh = {
-      calib_modbus: {
-        device_list: {
-          saved_list: resp_device_list
+      global_data: {
+        calib_state: {
+          data: {
+            calib_modbus: {
+              device_list: {
+                saved_list: resp_device_list
+              }
+            }
+          }
         }
       }
     }
 
-    store.global_data.calib_state.data = obj_to_refresh
+    store.dispatch(refreshGlobalStore(obj_to_refresh))
   },
 
   device_info_handling: ({ request_resp, request_params }) => {
     if (!Object.hasOwn(request_resp, 'device_info')) return
 
-    let store_tree = store.getState()
+    let store_tree = cloneDeep(store.getState())
 
-    let device_list = store_tree.global_data.calib_state.data.calib_modbus.device_list.saved_list
+    let device_list = store_tree.globalStore.global_data.calib_state.data.calib_modbus.device_list.saved_list
 
     if (device_list !== undefined) {
-      const device_index = device_list.findIndex((element) => element.address === request_params.address)
+      const device_index = device_list.findIndex((element) => element.address == request_params.address)
   
       device_list[device_index].device_info = request_resp.device_info
     }
@@ -188,6 +180,8 @@ export const reducers = {
         }
       }
     }
+
+    
 
     store.dispatch(refreshGlobalStore(obj_to_refresh))
   },
