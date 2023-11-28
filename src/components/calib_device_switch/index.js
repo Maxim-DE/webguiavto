@@ -5,7 +5,7 @@ import { getRandomColor } from '../../logic/utilites'
 const device_amount = 3
 const indicator_colors_arr = [...Array(device_amount).keys()].map(i => getRandomColor())
 
-function CalibDeviceSwitch({device_num, deviceNum_handler, ...props}) {
+function CalibDeviceSwitch({ device_num, deviceNum_handler, deviceReq_handler, clickHandler, ...props}) {
   const amount_arr = [...Array(device_amount).keys()].map(i => i + 1)
 
   const handle_deviceChange = (event) => {
