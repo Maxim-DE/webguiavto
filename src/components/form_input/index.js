@@ -10,12 +10,32 @@ import { TbMinus } from 'react-icons/tb'
 
 import h_and_min_input from '../custom_inputs/silence_det_border_time'
 import silence_det_channel_modes_input from '../custom_inputs/silence_det_channel_modes'
+import { roundDigits } from '../../logic/utilites';
+import { toast } from 'react-toastify';
 
-function FormInput(props) {
+function FormInput(
+  {
+    // id, 
+    // name, 
+    // type, 
+    // className,
+    // input_value,
+    // style,
+    // disabled,
+    // placeholder,
+    // changeHandler,
+    // stateHandler,
+    // variants,
+    // step,
+    // max,
+    // min,
+    ...props
+  }
+) {
 
   const [openModal, setOpenModal] = React.useState(false);
 
-  const changeHandler = (event) => {
+  const handleChange = (event) => {
     props.changeHandler(event)
   }
 
@@ -24,19 +44,47 @@ function FormInput(props) {
 
     const target = event.currentTarget,
           name = target.name
+
+    let letters_regex = /[A-Za-z]+/g;
           
     let target_data = name.split('_'),
         action = target_data[0],
-        action_value = parseInt(target_data[2])
+        action_value = target_data[2] != undefined ? Number(target_data[2]) : 1,
+        round_digits = roundDigits(action_value)
     
     console.log(target_data);
 
-    let output_value = props.input_value != undefined ? parseInt(props.input_value) : 0
+    if (typeof props.input_value == 'string') {
+      if (props.input_value.match(letters_regex) ||
+          props.input_value.match(/,/)) {
+        toast.error('Неправильный тип данных для изменения', { autoClose: 1500 })
+
+        const corrected_value = Number(props.input_value.replace(letters_regex, '').replace(/,/, '.'))
+
+        props.statusHandler(prevState => ({
+          ...prevState,
+          [props.name]: corrected_value
+        }))
+
+        return
+      }
+    }
+
+    let output_value = props.input_value != undefined ? Number(props.input_value) : 0
 
     if (/minus/g.test(action)) {
-      output_value = output_value - action_value
+      output_value = (output_value - action_value).toFixed(round_digits)
     } else if (/plus/g.test(action)) {
-      output_value = output_value + action_value
+      output_value = (output_value + action_value).toFixed(round_digits)
+    }
+
+    if (props.max ||  props.min) {
+      if (output_value > Number(props.max)) {
+        output_value = Number(props.max)
+      } else if (output_value < Number(props.min)) {
+        output_value = Number(props.min)
+      }
+      
     }
 
     props.statusHandler(prevState => ({
@@ -65,7 +113,7 @@ function FormInput(props) {
         name={props.name}
         className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         type="text"
-        onChange={changeHandler}
+        onChange={handleChange}
         value={props.input_value}
         disabled={props.disabled}
         placeholder={props.placeholder}
@@ -78,7 +126,7 @@ function FormInput(props) {
         id={props.id}
         name={props.name}
         type="password"
-        onChange={changeHandler}
+        onChange={handleChange}
         value={props.input_value}
         style={props.style}
       />
@@ -92,7 +140,7 @@ function FormInput(props) {
         type="checkbox"
         className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
         checked={!!(props.input_value)}
-        onChange={changeHandler}
+        onChange={handleChange}
         disabled={props.disabled}
       />
     )
@@ -108,7 +156,7 @@ function FormInput(props) {
           type='checkbox'
           className={`switch ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
           checked={!!(props.input_value)}
-          onChange={changeHandler}
+          onChange={handleChange}
           disabled={props.disabled}
         />
       </div>
@@ -126,7 +174,7 @@ function FormInput(props) {
       //   <input
       //     type="text"
       //     className="text_range"
-      //     onChange={changeHandler}
+      //     onChange={handleChange}
       //     data-range="0"
       //     value={value_range[0]}
       //   />
@@ -135,7 +183,7 @@ function FormInput(props) {
       //     type="text"
       //     className="text_range"
       //     data-range="1"
-      //     onChange={changeHandler}
+      //     onChange={handleChange}
       //     value={value_range[1]}
       //   />
       // </div>
@@ -156,7 +204,7 @@ function FormInput(props) {
         </button> */}
         <button 
           className='button_input plus_minus'
-          name='minus_value_1'
+          name={`minus_value_${props.step}`}
           onClick={(e) => {
             plusMinusHandler(e, props.name)
           }}>
@@ -165,13 +213,16 @@ function FormInput(props) {
         <input
           id={props.id}
           name={props.name}
-          type="text"
-          onChange={changeHandler}
+          type="number"
+          onChange={handleChange}
           value={props.input_value}
+          step={props.step}
+          max={props.max}
+          min={props.min}
         />
         <button 
           className='button_input plus_minus'
-          name='plus_value_1'
+          name={`plus_value_${props.step}`}
           onClick={(e) => {
             plusMinusHandler(e, props.name)
           }}>
@@ -201,7 +252,7 @@ function FormInput(props) {
           type="text"
           className='text_large_not_expanded'
           value={props.input_value}
-          onChange={changeHandler}
+          onChange={handleChange}
         />
         <input 
             className='text_large_expand_input button_input'
@@ -221,7 +272,7 @@ function FormInput(props) {
             type="text"
             className='text_large_expanded'
             value={props.input_value}
-            onChange={changeHandler}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -239,7 +290,7 @@ function FormInput(props) {
             type="text"
             className='text_large_not_expanded split'
             value={props.input_value}
-            onChange={changeHandler}
+            onChange={handleChange}
           />
           <input
             className='text_large_expand_input button_input'
@@ -259,7 +310,7 @@ function FormInput(props) {
               type="text"
               className='text_large_expanded split'
               value={props.input_value}
-              onChange={changeHandler}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -272,7 +323,7 @@ function FormInput(props) {
         id={props.id}
         name={props.name}
         className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
-        onChange={changeHandler}
+        onChange={handleChange}
         disabled={props.disabled}
         value={props.input_value}
       >
@@ -315,7 +366,7 @@ function FormInput(props) {
           name={props.name}
           type='range'
           className="range_slider"
-          onChange={changeHandler}
+          onChange={handleChange}
           onMouseUp={props.mouseupHandler}
           disabled={props.disabled}
           value={props.input_value}
@@ -343,7 +394,7 @@ function FormInput(props) {
   }
 
   else if (props.type == "custom") {
-    return custom_inputs[props.id](changeHandler, props.input_value, props.id)
+    return custom_inputs[props.id](handleChange, props.input_value, props.id)
   }
 }
 
