@@ -3,17 +3,18 @@ import React from 'react';
 import './index.css'
 import FormInput from '../form_input';
 
-import { BiPlus, BiPlusCircle, BiMinus, BiMinusCircle } from "react-icons/bi";
-
-
 import Settings_block_calib from '../settings_block_calib';
 import { reducers } from '../../store/reducers/status_settings_reducers';
+import { cloneDeep } from 'lodash';
+import { TbMinus, TbPlus } from 'react-icons/tb';
 
 function Status_settings(props) {
 
   const [statusSettingsState, setStatusSettingsState] = React.useState({
     supply_on_setting: 0,
     channel_setting: 0,
+    ModeOneChannel: 0,
+    freq_setting: 0
   })
 
   const device_status = props.status_data ? props.status_data.device_status : 0,
@@ -64,6 +65,10 @@ function Status_settings(props) {
         bad: 'default'
       },
       reducer: reducers.transmitter,
+      error_handler:() => {
+        const state_clone = cloneDeep(statusSettingsState)
+        setStatusSettingsState(state_clone)
+      },
       save_data: {
         ...statusSettingsState,
         [name]: value
@@ -102,13 +107,14 @@ function Status_settings(props) {
     const target = event.currentTarget,
       name = target.name
 
-    // let target_data = name.split('_'),
-    //   action = target_data[0],
-    //   action_value = parseInt(target_data[2])
+    let target_data = name.split('_'),
+      action = target_data[0],
+      action_value = parseInt(target_data[2])
 
     // console.log(target_data);
 
-    let output_string = `power_${name}$0`
+    let output_string = `power_${action}$${action_value}`
+
 
     const request_obj = {
       address: 'transmitter.cgi',
@@ -183,45 +189,51 @@ function Status_settings(props) {
             type="switch" />
         </div>
       </li>
-      <li
-        key='channel_setting'
-        id='channel_setting'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`channel_setting_input`}
-            className="settings_itemLabel">
-            Изменение канала
-          </label>
-        </div>
-        <div className='item_input'>
-          <input
-            id={`channel_setting_input`}
-            name={`channel_setting`}
-            type="text"
-            className={`${device_locked ? 'disabled_input' : ''}`}
-            disabled={device_locked}
-            onChange={handleChange_channel}
-            value={statusSettingsState.channel_setting}
-            maxLength="2"
-            style={{ maxWidth: '35px', marginRight: '10px'}}
-          />
-          <FormInput
-            id={`channel_save_input`}
-            name={`channel_save`}
-            label='Сохранить'
-            disabled={device_locked}
-            clickHandler={channel_save_handleClick}
-            type="button"
-          />
-          {/* <FormInput
-            id={`channel_setting_input`}
-            name={`channel_setting`}
-            changeHandler={handleChange}
-            input_value={statusSettingsState.channel_setting}
-            type="text" /> */}
-        </div>
-      </li>
+      {statusSettingsState.ModeOneChannel == 1 &&
+        <>
+        <li
+          key='channel_setting'
+          id='channel_setting'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`channel_setting_input`}
+              className="settings_itemLabel">
+              Изменение канала
+            </label>
+          </div>
+          <div className='item_input'>
+            <input
+              id={`channel_setting_input`}
+              name={`channel_setting`}
+              type="number"
+              className={`${device_locked ? 'disabled_input' : ''}`}
+              disabled={device_locked}
+              onChange={handleChange_channel}
+              value={statusSettingsState.channel_setting}
+              min={6}
+              max={80}
+              maxLength="2"
+              style={{ maxWidth: '55px', marginRight: '10px'}}
+            />
+            <FormInput
+              id={`channel_save_input`}
+              name={`channel_save`}
+              label='Сохранить'
+              disabled={device_locked}
+              clickHandler={channel_save_handleClick}
+              type="button"
+            />
+            {/* <FormInput
+              id={`channel_setting_input`}
+              name={`channel_setting`}
+              changeHandler={handleChange}
+              input_value={statusSettingsState.channel_setting}
+              type="text" /> */}
+          </div>
+        </li>
+        </>
+      }
       <li className="group_divider"></li>
       <li
         key='power_setting'
@@ -245,43 +257,47 @@ function Status_settings(props) {
           
           <button
             className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
-            name='minus_big_step'
+            name='minus_value_3'
             disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
             >
-            <BiMinusCircle />
+            <TbMinus />
+            3
           </button>
           <button
             className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
-            name='minus_small_step'
+            name='minus_value_1'
             disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
             >
-            <BiMinus />
+            <TbMinus />
+            1
           </button>
           <button
             className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
-            name='plus_small_step'
+            name='plus_value_1'
             disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
             >
-            <BiPlus />
+            <TbPlus />
+            1
           </button>
           <button
             className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
-            name='plus_big_step'
+            name='plus_value_3'
             disabled={device_locked}
             onClick={(e) => {
               plusMinusHandler(e)
             }}
             >
-            <BiPlusCircle />
+            <TbPlus />
+            3
           </button>
         </div>
       </li>
