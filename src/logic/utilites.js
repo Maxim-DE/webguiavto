@@ -55,3 +55,7 @@ export function deepKeyExists(obj, key) {
 
   return false;
 }
+
+
+export const roundDigits = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0))
+
