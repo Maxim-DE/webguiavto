@@ -1,7 +1,6 @@
 import React from 'react'
 import SettingsSectionWrap from '../../../../settings_section_wrap'
 
-import FanCalibSettings from '../../../../settings_block_calib/forms/fan_calib';
 import TempThresholdCalibSettings from '../../../../settings_block_calib/forms/temp_thrashold';
 
 import useGlobalStore from '../../../../../logic/auth_store';
@@ -9,6 +8,7 @@ import { reducers } from '../../../../../store/reducers/core_store_reducers';
 import PowerCalibSettings_AMP from '../../../../settings_block_calib/forms/wattage_primary_calib_amp';
 import GeneralCalibSettings_BC from '../../../../settings_block_calib/forms/general_calib_bc';
 import WattageAdditionalCalibSettings_BC from '../../../../settings_block_calib/forms/wattage_additional_calib_bc';
+import FanCalibSettings_BC from '../../../../settings_block_calib/forms/fan_calib_bc';
 
 
 export const CalibMain = (props) => {
@@ -40,7 +40,7 @@ export const CalibMain = (props) => {
         clickHandler={handleClick} />
       <TempThresholdCalibSettings
         clickHandler={handleClick} />
-      <FanCalibSettings
+      <FanCalibSettings_BC
         clickHandler={handleClick} />
     </SettingsSectionWrap>
   )
