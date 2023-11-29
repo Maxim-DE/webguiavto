@@ -8,12 +8,14 @@ import { BiPlus, BiPlusCircle, BiMinus, BiMinusCircle } from "react-icons/bi";
 
 import Settings_block_calib from '../settings_block_calib';
 import { reducers } from '../../store/reducers/status_settings_reducers';
+import { cloneDeep } from 'lodash';
 
 function Status_settings(props) {
 
   const [statusSettingsState, setStatusSettingsState] = React.useState({
     supply_on_setting: 0,
     channel_setting: 0,
+    ModeOneChannel: 0,
     freq_setting: 0
   })
 
@@ -65,6 +67,10 @@ function Status_settings(props) {
         bad: 'default'
       },
       reducer: reducers.transmitter,
+      error_handler:() => {
+        const state_clone = cloneDeep(statusSettingsState)
+        setStatusSettingsState(state_clone)
+      },
       save_data: {
         ...statusSettingsState,
         [name]: value
@@ -229,6 +235,7 @@ function Status_settings(props) {
         </>
       }
       {props.device_type == 1 &&
+       statusSettingsState.ModeOneChannel == 1 &&
         <>
         <li
           key='channel_setting'
@@ -245,13 +252,15 @@ function Status_settings(props) {
             <input
               id={`channel_setting_input`}
               name={`channel_setting`}
-              type="text"
+              type="number"
               className={`${device_locked ? 'disabled_input' : ''}`}
               disabled={device_locked}
               onChange={handleChange_channel}
               value={statusSettingsState.channel_setting}
+              min={6}
+              max={80}
               maxLength="2"
-              style={{ maxWidth: '35px', marginRight: '10px'}}
+              style={{ maxWidth: '55px', marginRight: '10px'}}
             />
             <FormInput
               id={`channel_save_input`}

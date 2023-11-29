@@ -143,6 +143,10 @@ function App() {
                     toast.error(req_queue_data.notifications.bad, { autoClose: 1500 })
                   }
 
+                  if (req_queue_data.error_handler) {
+                    req_queue_data.error_handler()
+                  }
+
                   continue
 
                 default:
