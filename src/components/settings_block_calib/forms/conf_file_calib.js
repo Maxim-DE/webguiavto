@@ -363,8 +363,8 @@ export default function ConfFileCalib(props) {
         </div>
       </li>
       <li
-        key='conf_file_manage'
-        id='conf_file_manage'
+        key='conf_file_manage_download'
+        id='conf_file_manage_download'
         className="settings_item nested_item">
         <div className='item_header'>
           <label
@@ -395,8 +395,8 @@ export default function ConfFileCalib(props) {
         </div>
       </li>
       <li
-        key='conf_file_manage'
-        id='conf_file_manage'
+        key='conf_file_manage_upload'
+        id='conf_file_manage_upload'
         className="settings_item nested_item">
         <div className='item_header'>
           <label
