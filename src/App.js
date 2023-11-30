@@ -294,6 +294,7 @@ function App() {
           {/* Компонент с ссылками на разделы */}
           <Links_list 
             updateHandler={navRefUpdate}
+            requestHandler={handlePoolUpdate}
             device_type={device_type} />
           <div className='nav_fillblock'></div>
           {/* Компонент с боковым нижним меню */}

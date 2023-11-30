@@ -9,6 +9,8 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 
 import './index.css'
 import { useSelector } from 'react-redux';
+import { IoMdRefresh } from 'react-icons/io';
+import { reducers } from '../../store/reducers/core_store_reducers';
 
 // массив со всеми элементами навбара
 const links_items = [
@@ -81,9 +83,27 @@ function Links_list(props) {
 
   }
 
+  const handleRefresh = (event) => {
+    const target = event.target;
+    const name = target.name.replace('refresh_section_', '');
+
+    let request_obj = {
+      address: `${name}.cgi`,
+      reducer: reducers.section_data,
+      notifications: {
+        good: 'none',
+        bad: 'default'
+
+      },
+    }
+
+    props.requestHandler(request_obj);
+  }
+
   if (active < '4') {
     return (
       <>
+      
       <ul className="nav_linksList">
         {links_items.map((item, index) => {
           if (index > 0 && index < links_items.length - 1 && 
@@ -106,9 +126,24 @@ function Links_list(props) {
               className="nav_linkLabel"
               onClick={(e) => {console.log('nav span');}}
               >{item.name}</div>
-              <FaAngleRight
-                color='#6D8EA0'
-                size='25px' />
+
+              <button 
+                className='refresh_section_button button_input' type="button"
+                title='Обновить данные раздела'
+                name={`refresh_section_${item.id}`}
+                disabled={index != active}
+                onClick={handleRefresh}>
+                <IoMdRefresh
+                    color='#6D8EA0'
+                    size='25px' />
+              </button>
+
+              <div className="frontIcon_wrap">
+                <FaAngleRight
+                  style={{ margin: "4px 0 0 0" }}
+                  color='#6D8EA0'
+                  size='25px' />
+              </div>
             </li>
             )
           }
@@ -118,14 +153,14 @@ function Links_list(props) {
       </>
     )
   } else {
-    return <CalibNavList updateHandler={props.updateHandler} setParentActive={SetActive}/>
+    return <CalibNavList updateHandler={props.updateHandler} refreshHandler={handleRefresh}  setParentActive={SetActive}/>
   }
 }
 
 
 
 // Отдельный вариант списка навигации для калибровки, по реализации тоже самое, что и список выше, только он выступает в качестве потомка основного списка, поэтому в него передаются функции и значения из родительского компонента
-function CalibNavList({updateHandler, setParentActive}) {
+function CalibNavList({updateHandler, refreshHandler, setParentActive}) {
   const auth_store = useSelector((store) => store.authStore.auth_data)
   const [active, setActive] = React.useState(0);
   const navigate = useNavigate();
@@ -190,9 +225,23 @@ function CalibNavList({updateHandler, setParentActive}) {
               className="nav_linkLabel"
               onClick={(e) => {console.log('nav span');}}
               >{item.name}</div>
-              <FaAngleRight
-                color='#6D8EA0'
-                size='25px' />
+
+                <button
+                  className='refresh_section_button button_input' type="button"
+                  name={`refresh_section_calibration`}
+                  title='Обновить данные раздела'
+                  onClick={refreshHandler}>
+                  <IoMdRefresh
+                    color='#6D8EA0'
+                    size='25px' />
+                </button>
+
+              <div className="frontIcon_wrap">
+                <FaAngleRight
+                  style={{ margin: "4px 0 0 0" }}
+                  color='#6D8EA0'
+                  size='25px' />
+              </div>
             </li>
             )
           }

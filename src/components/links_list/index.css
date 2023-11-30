@@ -47,6 +47,44 @@ ul {
   min-width: 45px;
 }
 
+.nav_linksList .frontIcon_wrap {
+  margin-left: auto;
+  margin-right: 18px;
+}
+
+.nav_linksList .refresh_section_button {
+  background-color: transparent;
+  display: inline-flex;
+
+  align-items: center;
+
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.nav_linksList .refresh_section_button:disabled {
+  opacity: 0;
+  pointer-events: none;
+  cursor: auto;
+}
+
+.nav_linksList .refresh_section_button svg {
+  margin-left: 0;
+  transition: filter 0.4s;
+}
+
+.nav_linksList li.active .refresh_section_button {
+  opacity: 1;
+}
+
+.nav_linksList .refresh_section_button:hover {
+  background-color: transparent;
+}
+
+.nav_linksList .refresh_section_button:hover svg {
+  filter: brightness(150%);
+}
+
 .backIcon_wrap svg {
   display: block;
   margin-left: auto;
