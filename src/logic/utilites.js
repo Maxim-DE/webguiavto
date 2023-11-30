@@ -21,8 +21,14 @@ export function device_status (status_props) {
       return 'ВЫКЛ.'
     case 1:
       return 'ВКЛ.'
-    case 3: 
+    case 2: 
       return 'ЗАБЛОКИРОВАНО'
+    case 3:  
+      return 'СОН'
+    case 4:
+      return 'ЗАПУСК'
+    case 5:
+      return 'ПЕРЕХОД В СОН'
   
     default:
       return '...'
