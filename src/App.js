@@ -55,7 +55,8 @@ function App() {
     delayed_pool: []
   })
 
-  const nav_ref = React.useRef()
+  const nav_ref = React.useRef(),
+        header_ref = React.useRef()
   
   React.useEffect(() => {
     // Очищаем таймер задержки и проверяем, есть ли запросы в очереди
@@ -251,13 +252,26 @@ function App() {
       console.log('its blocked');
     } 
   }
-
+  
   const navRefUpdate = (nav_link_name) => {
     // Обновляем ссылку на раздел в навигации и прокручиваем к ней страницу
+    
     nav_ref.current = document.getElementById(`${nav_link_name}_section`)
-    if (nav_ref.current != null) {
-      nav_ref.current.scrollIntoView({ block: "start", behavior: "smooth" })
+
+    if (nav_ref.current == null) {
+      nav_ref.current = document.getElementById(`sections_group_wrap`)
     }
+
+    const scrollTarget = nav_ref.current;
+  
+    const topOffset = header_ref.current != undefined ? header_ref.current.offsetHeight + scrollTarget.offsetLeft : 0;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+  
+    window.scrollBy({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
   }
 
 
@@ -289,7 +303,7 @@ function App() {
             software_version={info_section_data?.software_version?.os_version} />
         </nav>
         <div className='main_wrap'>
-          <header>
+          <header ref={header_ref}>
 
             <h1>{deviceName_string}</h1>
             <CalibLogButton 
@@ -309,8 +323,7 @@ function App() {
             {Object.keys(info_section_data).length > 0 && info_section_data.info_general.type[0] == 250 &&
               <NoConf_placeholder />
             }
-            
-            {/* Обертка для разных типов устройств */}
+            <div id='sections_group_wrap' className="sections_group_wrap">
             {auth_store.auth_access.settings &&
               <DeviceWrap_switch
                 device_type={Object.keys(info_section_data).length > 0 ? info_section_data.info_general.type : [0, 0]}
@@ -319,6 +332,7 @@ function App() {
                 // calib_data={calibState.data}
                 adc_data={status_section_data.calib_adc} />
             }
+            </div>
           </main>
         </div>
       </div>
