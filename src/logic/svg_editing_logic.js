@@ -1,11 +1,16 @@
 import { filter_obj } from "./utilites"
 
 export default function svg_editing_logic(svg, data_svg, device_type) {
-  switch (device_type) {
-    case 'st_250':
+  switch (true) {
+    case device_type == 'st_250':
       return st_250_svg_editing(svg, data_svg)
 
-    case 'УРЦ-2000':
+    case (device_type == "УРЦ-2000" || 
+          device_type == "УСТ-500"):
+      return re_amp_svg_editing(svg, data_svg)
+
+    case (device_type == 'CТ-1000' || 
+          device_type == 'РЦ-4000'):
       return re_amp_svg_editing(svg, data_svg)
   
     default:
