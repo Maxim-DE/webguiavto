@@ -153,7 +153,7 @@ function CalibNavList({updateHandler, setParentActive}) {
     setActive(active_link_num);
 
     navigate(`calibration/${active_link_name}`, {replace: false})
-    updateHandler(active_link_name)
+    updateHandler(`calibration_${active_link_name}`)
   }
 
   return (
