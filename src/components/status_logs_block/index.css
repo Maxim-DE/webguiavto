@@ -108,6 +108,10 @@ th:last-child {
   color: #202020;
 }
 
+.log_item .log_time {
+  width: 250px
+}
+
 .additional {
   background-color: transparent;
   font-size: 15px;
