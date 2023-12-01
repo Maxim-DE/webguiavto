@@ -25,7 +25,8 @@ function PowerCalibSettings_AMP(props) {
     dac_value: '',
     output_power: '',
     output_power_threshold: '',
-    coupling_coeff: ''
+    coupling_coeff: '',
+    diss_power_threshold: ''
   })
     
   const device_type = info_section_data?.info_general?.model !== undefined ? info_section_data.info_general.model : 0
@@ -251,7 +252,35 @@ function PowerCalibSettings_AMP(props) {
             type="button" />
         </div>
       </li>
-      
+      <li className="group_divider"></li>
+      <li
+        key='diss_power_threshold_calib'
+        id='diss_power_threshold_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`diss_power_threshold_calib_input`}
+            className="settings_itemLabel">
+            Макс. рассеиваемая мощность
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`diss_power_threshold_calib_input`}
+            name={`diss_power_threshold_calib`}
+            changeHandler={handleChange}
+            input_value={powerCalibState.diss_power_threshold}
+            style={{ margin: '0', maxWidth: '57px' }}
+            placeholder='Вт'
+            type="text" />
+          <FormInput
+            id={`diss_power_threshold_calib_save`}
+            name={`diss_power_threshold_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
     </Settings_block_calib>
   )
 }
