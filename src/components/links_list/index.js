@@ -86,10 +86,11 @@ function Links_list(props) {
   const handleRefresh = (event) => {
     const target = event.target;
     const name = target.name.replace('refresh_section_', '');
+    const reducer = name.includes('calibration') ? reducers.calibration_data : reducers.section_data
 
     let request_obj = {
       address: `${name}.cgi`,
-      reducer: reducers.section_data,
+      reducer: reducer,
       notifications: {
         good: 'none',
         bad: 'default'
