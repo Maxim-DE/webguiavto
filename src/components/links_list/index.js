@@ -128,7 +128,8 @@ function Links_list(props) {
               onClick={(e) => {console.log('nav span');}}
               >{item.name}</div>
 
-              <button 
+              {/* ПОХЖЕ НУЖНО ВЕРНУТЬ И ПЕРЕДЕЛАТЬ */}
+              {/* <button 
                 className='refresh_section_button button_input' type="button"
                 title='Обновить данные раздела'
                 name={`refresh_section_${item.id}`}
@@ -137,7 +138,7 @@ function Links_list(props) {
                 <IoMdRefresh
                     color='#6D8EA0'
                     size='25px' />
-              </button>
+              </button> */}
 
               <div className="frontIcon_wrap">
                 <FaAngleRight
@@ -227,7 +228,8 @@ function CalibNavList({updateHandler, refreshHandler, setParentActive}) {
               onClick={(e) => {console.log('nav span');}}
               >{item.name}</div>
 
-                <button
+                {/* ПОХЖЕ НУЖНО ВЕРНУТЬ И ПЕРЕДЕЛАТЬ */}
+                {/* <button
                   className='refresh_section_button button_input' type="button"
                   name={`refresh_section_calibration`}
                   title='Обновить данные раздела'
@@ -235,7 +237,7 @@ function CalibNavList({updateHandler, refreshHandler, setParentActive}) {
                   <IoMdRefresh
                     color='#6D8EA0'
                     size='25px' />
-                </button>
+                </button> */}
 
               <div className="frontIcon_wrap">
                 <FaAngleRight
