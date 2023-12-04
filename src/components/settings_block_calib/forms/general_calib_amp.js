@@ -8,7 +8,7 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { reducers as coreReducers } from '../../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
 
-function GeneralCalibSettings_ST(props) {
+function GeneralCalibSettings_AMP(props) {
   const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
         auth_store = useSelector((store) => store.authStore.auth_data)
 
@@ -239,4 +239,4 @@ function GeneralCalibSettings_ST(props) {
   )
 }
 
-export default GeneralCalibSettings_ST
+export default GeneralCalibSettings_AMP
