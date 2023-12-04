@@ -15,7 +15,8 @@ function GeneralCalibSettings_BC(props) {
   const [generalCalibState, setGeneralCalibState] = React.useState({
     def_module: 0,
     fan_start_alarm: 0,
-    tftp: 0
+    tftp: 0,
+    controller: 0
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -147,6 +148,26 @@ function GeneralCalibSettings_BC(props) {
             name={`fan_start_alarm_calib`}
             changeHandler={handleChange_save}
             input_value={!!generalCalibState.fan_start_alarm}
+            type="switch" />
+        </div>
+      </li>
+      <li
+        key='controller_alarm_calib'
+        id='controller_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`controller_calib_input`}
+            className="settings_itemLabel">
+            Режим регулировки
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`controller_calib_input`}
+            name={`controller_calib`}
+            changeHandler={handleChange_save}
+            input_value={!!generalCalibState.controller}
             type="switch" />
         </div>
       </li>
