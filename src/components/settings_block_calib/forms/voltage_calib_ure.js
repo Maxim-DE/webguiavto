@@ -20,6 +20,7 @@ function VoltageCalibSettings_URE(props) {
       return store.globalStore.global_data.status_data.calib_adc?.voltage_calib
     } else return ''
   }),
+  auth_store = useSelector((store) => store.authStore.auth_data),
   adcPower_store = useSelector((store) => {
     if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
       return store.globalStore.global_data.status_data.calib_adc?.power_calib
@@ -30,7 +31,9 @@ function VoltageCalibSettings_URE(props) {
     U1: '',
     U2: '',
     U2_available: 0,
-    dac_value: ''
+    dac_value: '',
+    dac_admin_value: '',
+    dac_threshold: '',
   })
   
   const device_type = info_section_data?.info_general?.model !== undefined ? info_section_data.info_general.model : 0
@@ -75,6 +78,32 @@ function VoltageCalibSettings_URE(props) {
 
     const request_obj = {
       address: 'calib_voltage.cgi',
+      data: `${name}$${converted_state[name][0]}`,
+      reducer: reducers.calibration_form,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      save_data: {
+        calib_voltage: converted_state
+      }
+    }
+
+    props.clickHandler(request_obj);
+
+  }
+
+  const handleDACAdmin_save = (event) => {
+    const target = event.target,
+      name = target.name.replace('_calib', ''),
+      value = voltageCalibState[name]
+
+    let state_obj = { [name]: value },
+        converted_state = calib_state_conversion(state_obj, calibVoltage_store)
+    // converted_state = state_obj
+
+    const request_obj = {
+      address: 'calib_dac_admin.cgi',
       data: `${name}$${converted_state[name][0]}`,
       reducer: reducers.calibration_form,
       notifications: {
@@ -167,6 +196,76 @@ function VoltageCalibSettings_URE(props) {
       {device_type < 3 &&
       <>
         <li className="group_divider"></li>
+        {auth_store.auth_access.calib_extend ?
+        <>
+            <li
+              key='dac_admin_value_calib'
+              id='dac_admin_value_calib'
+              className="settings_item calib">
+              <div className='item_header'>
+                <label
+                  htmlFor={`dac_admin_value_calib_input`}
+                  className="settings_itemLabel">
+                  Значение ЦАП (администратор)
+                </label>
+              </div>
+              <div className='item_input'>
+                {/* <span className='item_adc_value'>
+              АЦП<sub>АРУ</sub>: {
+                adcPower_store ? adcPower_store.dac_value[0] : ''
+              }
+            </span> */}
+                <span className='item_adc_value'>
+                  ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
+                </span>
+                <input
+                  type="text"
+                  id={`dac_admin_value_calib_input`}
+                  name={`dac_admin_value_calib`}
+                  className="text_range"
+                  style={{ margin: '0', maxWidth: '54px' }}
+                  value={voltageCalibState.dac_admin_value}
+                  onChange={handleChange}
+                />
+                <FormInput
+                  id={`dac_admin_value_calib_save`}
+                  name={`dac_admin_value_calib`}
+                  clickHandler={handleDACAdmin_save}
+                  label='Установить'
+                  type="button" />
+              </div>
+            </li>
+            <li
+              key='dac_threshold_calib'
+              id='dac_threshold_calib'
+              className="settings_item calib">
+              <div className='item_header'>
+                <label
+                  htmlFor={`dac_threshold_calib_input`}
+                  className="settings_itemLabel">
+                  Порог ограничения БП по ЦАП
+                </label>
+              </div>
+              <div className='item_input'>
+                <input
+                  type="text"
+                  id={`dac_threshold_calib_input`}
+                  name={`dac_threshold_calib`}
+                  className="text_range"
+                  style={{ margin: '0', maxWidth: '54px' }}
+                  value={voltageCalibState.dac_threshold}
+                  onChange={handleChange}
+                />
+                <FormInput
+                  id={`dac_threshold_calib_save`}
+                  name={`dac_threshold_calib`}
+                  clickHandler={handleDACAdmin_save}
+                  label='Установить'
+                  type="button" />
+              </div>
+            </li>
+        </> 
+         :
         <li
           key='dac_value_calib'
           id='dac_value_calib'
@@ -179,11 +278,6 @@ function VoltageCalibSettings_URE(props) {
             </label>
           </div>
           <div className='item_input'>
-            {/* <span className='item_adc_value'>
-              АЦП<sub>АРУ</sub>: {
-                adcPower_store ? adcPower_store.dac_value[0] : ''
-              }
-            </span> */}
             <span className='item_adc_value'>
               ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
             </span>
@@ -193,7 +287,7 @@ function VoltageCalibSettings_URE(props) {
               name={`dac_value_calib`}
               className="text_range"
               style={{ margin: '0', maxWidth: '54px' }}
-              value={Number(voltageCalibState.dac_value)}
+              value={voltageCalibState.dac_value}
               onChange={handleChange}
             />
             <FormInput
@@ -204,6 +298,7 @@ function VoltageCalibSettings_URE(props) {
               type="button" />
           </div>
         </li>
+        }
       </>
       }
       {/* <li

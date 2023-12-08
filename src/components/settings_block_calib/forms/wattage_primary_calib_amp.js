@@ -136,7 +136,7 @@ function PowerCalibSettings_AMP(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {adcPower_store.output_power}
+            АЦП: {adcPower_store?.output_power}
           </span>
           <FormInput
             id={`output_power_calib_input`}
@@ -162,7 +162,7 @@ function PowerCalibSettings_AMP(props) {
             htmlFor={`refected_power_calib_input`}
             className="settings_itemLabel"
             style={{fontWeight: '400'}}>
-            АЦП <sub>отр. мощ.</sub>: {adcPower_store.refected_power}
+            АЦП <sub>отр. мощ.</sub>: {adcPower_store?.refected_power}
           </label>
         </div>
       </li>
@@ -202,7 +202,7 @@ function PowerCalibSettings_AMP(props) {
           </div>
           <div className='item_input'>
             <span className='item_adc_value'>
-              ЦАП: {adcPower_store.output_power_threshold}
+              ЦАП: {adcPower_store?.output_power_threshold}
             </span>
             <FormInput
               id={`output_power_threshold_calib_input`}
@@ -235,7 +235,7 @@ function PowerCalibSettings_AMP(props) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value' title='АЦП(отр) -x%*АЦП(вых)'>
-            АЦП<sub>отр. после комп.</sub>: {adcPower_store.coupling_coeff}
+            АЦП<sub>отр. после комп.</sub>: {adcPower_store?.coupling_coeff}
           </span>
           <FormInput
             id={`сoupling_coeff_calib_input`}
