@@ -45,7 +45,7 @@ function VoltageCalibSettings_URE(props) {
       for (const key in calibVoltage_store) {
         const divident = calibVoltage_store[key][0],
               divider = calibVoltage_store[key][1] == 0 ? 1 : calibVoltage_store[key][1]
-        calib_state_copy[key] = (divident / divider).toFixed(1)
+        calib_state_copy[key] = (divident / divider).toFixed(Math.log10(divider))
 
         if (Object.prototype.hasOwnProperty.call(voltageCalibState[key], 'availability')) {
           calib_state_copy[`${key}_available`] = voltageCalibState[key].availability
@@ -224,6 +224,7 @@ function VoltageCalibSettings_URE(props) {
                   name={`dac_admin_value_calib`}
                   className="text_range"
                   style={{ margin: '0', maxWidth: '54px' }}
+                  maxLength={4}
                   value={voltageCalibState.dac_admin_value}
                   onChange={handleChange}
                 />
@@ -252,6 +253,7 @@ function VoltageCalibSettings_URE(props) {
                   id={`dac_threshold_calib_input`}
                   name={`dac_threshold_calib`}
                   className="text_range"
+                  maxLength={4}
                   style={{ margin: '0', maxWidth: '54px' }}
                   value={voltageCalibState.dac_threshold}
                   onChange={handleChange}
@@ -286,6 +288,7 @@ function VoltageCalibSettings_URE(props) {
               id={`dac_value_calib_input`}
               name={`dac_value_calib`}
               className="text_range"
+              maxLength={4}
               style={{ margin: '0', maxWidth: '54px' }}
               value={voltageCalibState.dac_value}
               onChange={handleChange}
