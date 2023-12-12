@@ -215,6 +215,7 @@ function StatusSection(props) {
       <div className="section_status">
         <Status_graphs
           settings_type="graphs"
+          auth_access={auth_store.auth_access}
           device_type={device_type}
           device_type_str={device_type_str}
           graph_svg={status_store.status_svg.img}

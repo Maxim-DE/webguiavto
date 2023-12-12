@@ -1,17 +1,17 @@
 import { filter_obj } from "./utilites"
 
-export default function svg_editing_logic(svg, data_svg, device_type, clickHandler) {
+export default function svg_editing_logic(svg, data_svg, device_type, clickHandler, auth_access) {
   switch (true) {
     case device_type == 'st_250':
       return st_250_svg_editing(svg, data_svg)
 
     case (device_type == "УРЦ-2000" || 
           device_type == "УСТ-500"):
-      return re_amp_svg_editing(svg, data_svg, clickHandler)
+      return re_amp_svg_editing(svg, data_svg, auth_access)
 
     case (device_type == "СТ-1000" || 
           device_type == "РЦ-4000"):
-      return re_amp_svg_editing(svg, data_svg)
+      return re_amp_svg_editing(svg, data_svg, auth_access)
   
     default:
       return svg
@@ -87,7 +87,7 @@ function st_250_svg_editing(svg, data_svg) {
   return svg
 }
 
-function re_amp_svg_editing(svg, data_svg, clickHandler) {
+function re_amp_svg_editing(svg, data_svg, auth_access) {
   const output_data = data_svg?.output,
         output_svg_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
@@ -104,15 +104,13 @@ function re_amp_svg_editing(svg, data_svg, clickHandler) {
   });
 
   const output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
+  output_buttons_list.forEach((button)=> {
+    if (auth_access.calib == 0) {
+      button.classList.add("disabled_svg_button");
+    } else {
+      button.classList.remove("disabled_svg_button");
 
-  const handleButtonClick = (e) => {
-    console.log("FUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK!");
-  };
-
-  output_buttons_list.forEach(button => {
-    // button.addEventListener("click", re_amp_buttons_actions[button.id.replace('button', '')])
-    button.addEventListener("click", handleButtonClick);
-    console.log(button.onclick)
+    }
   })
 
   return svg
