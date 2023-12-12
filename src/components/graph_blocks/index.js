@@ -5,6 +5,8 @@ import { PulseLoader } from 'react-spinners';
 
 import './index.css'
 import svg_editing_logic from '../../logic/svg_editing_logic';
+import { allEventListenersInNode } from '../../logic/utilites';
+import svg_eventHandler_logic from '../../logic/svg_eventHandlers_logic';
 
 
 export const status_colors = [
@@ -19,21 +21,47 @@ function Status_graphs(props) {
   const graph_container_ref = React.useRef(null)
 
   React.useEffect(() => {
-    let graph_svg_container = graph_container_ref.current
-    let graph_data = props.data
-    
+    svg_processing(graph_container_ref.current, props.data)
+  }, [props.data])
+
+
+  React.useEffect(() => {
+    if (!props.graph_svg) {
+      return
+    } 
+
+    let graph_container = graph_container_ref.current
+
+    graph_container.innerHTML = ''
+
+    let parsed_svg = new DOMParser().parseFromString(props.graph_svg, "text/xml").childNodes[0]
+
+    const edited_svg = svg_eventHandler_logic(parsed_svg, {}, props.device_type_str, props.updateHandler)
+
+    graph_container.append(edited_svg);
+
+  }, [props.graph_svg])
+
+
+  function svg_processing(svg_ref, svg_data) {
+    let graph_svg_container = svg_ref
+    let graph_data = svg_data
+
     if (!graph_svg_container) {
       return
     }
-    
-    let graph_svg = graph_svg_container.children[0]
-    
-    if (graph_svg == null ||
-        graph_svg == '') {
+
+    if (!graph_svg_container.children[0]) {
       return
     }
 
-    let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str)
+    // let graph_svg = graph_svg_container.children[0].cloneNode(true)
+    let graph_svg = graph_svg_container.children[0]
+
+    if (graph_svg == null ||
+      graph_svg == '') {
+      return
+    }
 
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
@@ -44,15 +72,15 @@ function Status_graphs(props) {
       }
 
       for (const item in graph_block_data) {
-        
+
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
 
           device_icon.style.fill = status_colors[graph_block_data[item]]
-          
+
           continue
         }
-        
+
         let graph_block_value_span_id = `#${key}_${item}_value`
         let graph_block_value_span = null
 
@@ -66,31 +94,20 @@ function Status_graphs(props) {
           continue
         }
 
-        
-        
+
+
         let new_value
 
         if (Array.isArray(graph_block_data[item])) {
           let input_value = graph_block_data[item][0],
-              divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
-              status = graph_block_data[item][2],
-              postfix = graph_block_data[item][3] ? 
-                        ' ' + graph_block_data[item][3] :
-                        ''                        ,
-
-              fract = (input_value / divider) % 1,
-              round_index
+            divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
+            status = graph_block_data[item][2],
+            postfix = graph_block_data[item][3] ?
+              ' ' + graph_block_data[item][3] :
+              '',
+            round_index
 
           round_index = Math.log10(divider)
-
-          // if (fract < 0.1 &&
-          //     fract > 0) {
-          //   round_index = 2
-          // } else if (fract == 0) {
-          //   round_index = 0
-          // } else {
-          //   round_index = 1
-          // }
 
           new_value = (input_value / divider).toFixed(round_index)
           new_value = new_value + postfix
@@ -103,31 +120,21 @@ function Status_graphs(props) {
             // graph_block_value_span.attributes["font-weight"].value = "300";
             graph_block_value_span.style.fill = '#202020';
           }
-          
+
 
         } else {
           new_value = graph_block_data[item]
         }
 
         graph_block_value_span.innerHTML = new_value
-
-
       }
     }
 
-    edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str)
-    
-  }, [props.data])
+    let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str, props.updateHandler, props.auth_access)
 
-  React.useEffect(() => {
-    if (!props.graph_svg) {
-      return
-    } 
-
-    let graph_container = graph_container_ref.current
-    graph_container.innerHTML = props.graph_svg;
-
-  }, [props.graph_svg])
+    // graph_svg_container.innerHTML = ''
+    // graph_svg_container.append(edited_svg)
+  }
 
   if (props.graph_svg.length === 0) {
     return (
