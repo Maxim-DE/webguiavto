@@ -41,6 +41,14 @@ function Status_settings(props) {
       let state_copy = statusSettingsState
 
       for (const key in props.settings_data) {
+        if (Array.isArray(props.settings_data[key])) {
+          const divident = props.settings_data[key][0],
+                divider = props.settings_data[key][1] == 0 ? 1 : props.settings_data[key][1],
+                digits = Math.log10(divider)
+          state_copy[key] = (divident / divider).toFixed(digits)
+        } else {
+          state_copy[key] = props.settings_data[key]
+        }
         state_copy[key] = props.settings_data[key]
       }
 
@@ -148,18 +156,54 @@ function Status_settings(props) {
   }
 
   const channel_save_handleClick = (event) => { //сделать позже так, разделением
-    const value = statusSettingsState.channel_setting;
-    const name = event.target.name;
+    const name = event.target.name,
+          value_type = name.replace('_save', '')
 
-    const request_obj = {
-      address: 'transmitter.cgi',
-      data: `${name}$${value}`,
-      reducer: reducers.transmitter,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-      save_data: statusSettingsState
+    let value = Number(statusSettingsState[`${value_type}_setting`]),
+        divider
+
+    if (props.settings_data[name]) {
+      if (Array.isArray(props.settings_data[name])) {
+        divider = props.settings_data[name][1]
+      } else {
+        divider = 1
+      }
+    } else {
+      divider = 1
+    }
+
+    let request_obj = {}
+
+    switch (value_type) {
+      case 'channel':
+        request_obj = {
+          address: 'transmitter.cgi',
+          data: `set_${value_type}$${value}`,
+          reducer: reducers.transmitter,
+          notifications: {
+            good: 'default',
+            bad: 'default'
+          },
+          save_data: statusSettingsState
+        }
+      
+        break
+
+      case 'freq':
+        request_obj = {
+          address: 'transmitter.cgi',
+          data: `${name}$${value * divider}`,
+          reducer: reducers.transmitter,
+          notifications: {
+            good: 'default',
+            bad: 'default'
+          },
+          save_data: {
+            [`${value_type}_setting`]: [value, divider]
+          }
+        }
+
+        break
     }
 
     props.updateHandler(request_obj)
