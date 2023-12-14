@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 import Modbus_slave_calib from '../../../../settings_block_calib/forms/masterSlave_slave_calib';
 import MiscCalibSettings_AMP from '../../../../settings_block_calib/forms/misc_calib_amp';
+import Modbus_hybrid_calib from '../../../../settings_block_calib/forms/masterSlave_hybrid_calib';
 
 export const MiscCalib = (props) => {
   const auth_store = useSelector((store) => store.authStore.auth_data)
@@ -39,7 +40,7 @@ export const MiscCalib = (props) => {
             clickHandler={handleClick} />
         </>
       }
-      <Modbus_slave_calib
+      <Modbus_hybrid_calib
         clickHandler={handleClick} />
       <Firmware_calib
         clickHandler={handleClick} />
