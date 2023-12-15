@@ -16,7 +16,7 @@ function Status_settings(props) {
     supply_on_setting: 0,
     channel_setting: 0,
     ModeOneChannel: 0,
-    freq_setting: 0
+    frequency_setting: 0
   })
 
   const device_status = props.status_data ? props.status_data.device_status : 0,
@@ -49,7 +49,6 @@ function Status_settings(props) {
         } else {
           state_copy[key] = props.settings_data[key]
         }
-        state_copy[key] = props.settings_data[key]
       }
 
       setStatusSettingsState(state_copy)
@@ -162,9 +161,9 @@ function Status_settings(props) {
     let value = Number(statusSettingsState[`${value_type}_setting`]),
         divider
 
-    if (props.settings_data[name]) {
-      if (Array.isArray(props.settings_data[name])) {
-        divider = props.settings_data[name][1]
+    if (props.settings_data[`${value_type}_setting`]) {
+      if (Array.isArray(props.settings_data[`${value_type}_setting`])) {
+        divider = props.settings_data[`${value_type}_setting`][1]
       } else {
         divider = 1
       }
@@ -189,7 +188,7 @@ function Status_settings(props) {
       
         break
 
-      case 'freq':
+      case 'frequency':
         request_obj = {
           address: 'transmitter.cgi',
           data: `${name}$${value * divider}`,
@@ -199,7 +198,7 @@ function Status_settings(props) {
             bad: 'default'
           },
           save_data: {
-            [`${value_type}_setting`]: [value, divider]
+            [`${value_type}_setting`]: [value * divider, divider]
           }
         }
 
@@ -213,7 +212,7 @@ function Status_settings(props) {
     <Settings_block_calib header={`настройки`}
       settings_type={`status_calib`}
       section_name={props.section_name}>
-      <li
+      {/* <li
         key='supply_on_setting'
         id='supply_on_setting'
         className="settings_item">
@@ -233,7 +232,7 @@ function Status_settings(props) {
             input_value={statusSettingsState.supply_on_setting}
             type="switch" />
         </div>
-      </li>
+      </li> */}
       {props.device_type == 0 &&
         <>
           <li
@@ -249,20 +248,20 @@ function Status_settings(props) {
             </div>
             <div className='item_input'>
               <input
-                id={`freq_setting_input`}
-                name={`freq_setting`}
+                id={`frequency_setting_input`}
+                name={`frequency_setting`}
                 type="text"
                 className={`${device_locked ? 'disabled_input' : ''}`}
                 disabled={device_locked}
                 onChange={handleChange_channel}
-                value={statusSettingsState.freq_setting}
+                value={statusSettingsState.frequency_setting}
                 placeholder='Гц'
                 // maxLength="2"
-                style={{ maxWidth: '60px', marginRight: '10px' }}
+                style={{ maxWidth: '72px', marginRight: '10px' }}
               />
               <FormInput
-                id={`freq_save_input`}
-                name={`freq_save`}
+                id={`frequency_save_input`}
+                name={`frequency_save`}
                 label='Сохранить'
                 disabled={device_locked}
                 clickHandler={channel_save_handleClick}
@@ -324,7 +323,7 @@ function Status_settings(props) {
         </li>
         </>
       }
-      <li className="group_divider"></li>
+      {/* <li className="group_divider"></li>
       <li
         key='power_setting'
         id='power_setting'
@@ -337,13 +336,13 @@ function Status_settings(props) {
           </label>
         </div>
         <div className='item_input'>
-          {/* <FormInput
+          <FormInput
             id={`power_setting_input`}
             name={`power_setting`}
             changeHandler={handleChange}
             input_value={statusSettingsState.power_setting}
             statusHandler={setStatusSettingsState}
-            type="text_buttons" /> */}
+            type="text_buttons" />
           
           <button
             className={`button_input plus_minus ${device_locked ? 'disabled_input' : ''}`}
@@ -386,8 +385,8 @@ function Status_settings(props) {
             <BiPlusCircle />
           </button>
         </div>
-      </li>
-      <li
+      </li> */}
+      {/* <li
         key='status_save_power_setting'
         id='status_save_power_setting'
         className="settings_item nested_item">
@@ -408,7 +407,7 @@ function Status_settings(props) {
             type="button"
             />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }
