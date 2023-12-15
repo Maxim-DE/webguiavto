@@ -230,6 +230,7 @@ function StatusSection(props) {
           device_type={device_type}
           device_type_str={device_type_str}
           graph_svg={status_store.status_svg.img}
+          auth_access={auth_store.auth_access}
           updateHandler={handleUpdate}
           data={status_store.status_graph}/>
         <div className={`status_settings_wrap ${guest_mode_class}`}>

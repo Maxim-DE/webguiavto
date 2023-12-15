@@ -1,6 +1,7 @@
+import { status_colors } from "../components/graph_blocks"
 import { filter_obj } from "./utilites"
 
-export default function svg_editing_logic(svg, data_svg, device_type) {
+export default function svg_editing_logic(svg, data_svg, device_type, clickHandler, auth_access) {
   switch (true) {
     case device_type == 'st_250':
       return st_250_svg_editing(svg, data_svg)
@@ -11,7 +12,7 @@ export default function svg_editing_logic(svg, data_svg, device_type) {
 
     case (device_type == "СТ-1000" || 
           device_type == "РЦ-4000"):
-      return re_amp_svg_editing(svg, data_svg)
+      return block_control_svg_editing(svg, data_svg, auth_access)
   
     default:
       return svg
@@ -87,7 +88,7 @@ function st_250_svg_editing(svg, data_svg) {
   return svg
 }
 
-function re_amp_svg_editing(svg, data_svg) {
+function re_amp_svg_editing(svg, data_svg, auth_access) {
   const output_data = data_svg?.output,
         output_svg_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
@@ -102,6 +103,67 @@ function re_amp_svg_editing(svg, data_svg) {
       console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
     }
   });
+
+  return svg
+}
+
+function block_control_svg_editing(svg, data_svg, auth_access) {
+  const output_data = data_svg?.output,
+    output_svg_list = svg.querySelectorAll(`text[id*="swr_value"]`)
+
+  output_svg_list.forEach(output_svg => {
+    try {
+      if (output_data.swr[2] == 3 && output_svg != undefined) {
+        output_svg.children[0].innerHTML = '--'
+        output_svg.children[0].style.fill = '#202020';
+        output_svg.children[0].style.fontWeight = "300";
+      }
+    } catch (error) {
+      console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
+    }
+  });
+
+  const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+        amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
+        amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`)
+
+  if (amp_1_buttons_list) {
+    amp_1_buttons_list.forEach((button) => {
+      if (auth_access.calib == 0) {
+        button.classList.add("disabled_svg_button");
+      } else {
+        button.classList.remove("disabled_svg_button");
+      }
+    })
+  }
+
+  if (amp_2_buttons_list) {
+    amp_2_buttons_list.forEach((button) => {
+      if (auth_access.calib == 0) {
+        button.classList.add("disabled_svg_button");
+      } else {
+        button.classList.remove("disabled_svg_button");
+      }
+    })
+  }
+
+  exiter_buttons_list.forEach((button) => {
+    if (auth_access.settings == 0) {
+      button.classList.add("disabled_svg_button");
+    } else {
+      button.classList.remove("disabled_svg_button");
+    }
+  })
+
+  const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+        exiter_status = data_svg?.exiter?.status
+
+  if (exiter_status == 1) {
+    exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[0]
+  } else {
+    exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
+  }
+
 
   return svg
 }
