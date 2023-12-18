@@ -9,7 +9,7 @@ import { deepKeyExists } from '../../../logic/utilites';
 import { cloneDeep } from 'lodash';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
 
-function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
+function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => {
   //   if (deepKeyExists(store, 'calib_power')) {
   //     return store.globalStore.global_data.calib_state.data.calib_power
@@ -22,10 +22,6 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     })
 
   const [powerCalibState, setPowerCalibState] = React.useState({
-    dac_value: '',
-    output_power: '',
-    output_power_threshold: '',
-    coupling_coeff: '',
     power_threshold_reserved_value: 0,
     threshold_type: 0,
     threshold_0_value: 0,
@@ -119,46 +115,9 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   }
 
   return (
-    <Settings_block_calib header={`калибровка мощности`}
-                          settings_type={`power_calib`}
+    <Settings_block_calib header={`установка порогов мощности`}
+                          settings_type={`power_threshold_calib`}
                           save_handler={handleClick_save}>
-      <li
-        key='output_power_calib'
-        id='output_power_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`output_power_calib_input`}
-            className="settings_itemLabel">
-            Калибровка вых. мощности
-          </label>
-          <FormInput
-            id={`output_power_zero_calib_input`}
-            name={`output_power_zero_calib`}
-            label='Калибровка нуля'
-            clickHandler={handleClick_calib_zeros}
-            type="button" />
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            АЦП: {adcPower_store?.output_power}
-          </span>
-          <FormInput
-            id={`output_power_calib_input`}
-            name={`output_power_calib`}
-            changeHandler={handleChange}
-            input_value={powerCalibState.output_power}
-            style={{ margin: '0', maxWidth: '75px' }}
-            type="text" />
-          <FormInput
-            id={`output_power_calib_save`}
-            name={`output_power_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li>    
-      {/* <li className="group_divider"></li>
       <li
         key='power_threshold_reserved_calib'
         id='power_threshold_reserved_calib'
@@ -222,41 +181,10 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
             label='Сохранить'
             type="button" />
         </div>
-      </li> */}
-      <li className="group_divider"></li>
-      <li
-        key='сoupling_coeff_calib'
-        id='сoupling_coeff_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`сoupling_coeff_calib_input`}
-            className="settings_itemLabel">
-            Коэфициент связи P<sub>отр</sub>
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value' title='АЦП(отр) -x%*АЦП(вых)'>
-            АЦП<sub>отр. после комп.</sub>: {adcPower_store?.coupling_coeff}
-          </span>
-          <FormInput
-            id={`сoupling_coeff_calib_input`}
-            name={`coupling_coeff_calib`}
-            changeHandler={handleChange}
-            input_value={powerCalibState.coupling_coeff}
-            style={{ margin: '0', maxWidth: '57px' }}
-            type="text" />
-          <FormInput
-            id={`сoupling_coeff_calib_save`}
-            name={`coupling_coeff_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
       </li>
       
     </Settings_block_calib>
   )
 }
 
-export default PowerCalibSettings_AVR
+export default PowerCalibThreshold_AVR

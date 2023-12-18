@@ -18,7 +18,7 @@ export default function Info_general(props) {
     serial_number: 'N/A',
     plate_number: 'N/A',
     plate_version: 'N/A',
-    memory_type: 'N/A'
+    commutaion_serial_number: 'N/A',
   })
 
   React.useEffect(() => {
@@ -100,21 +100,22 @@ export default function Info_general(props) {
             type="text_sample" />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
-        key='memory_type'
-        id='memory_type'
+        key='commutaion_serial_number'
+        id='commutaion_serial_number'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`memory_type_input`}
+            htmlFor={`commutaion_serial_number_input`}
             className="settings_itemLabel">
-            Тип памяти
+            Серийный номер БКА
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`memory_type`}
-            input_value={infoGeneralState.memory_type}
+            id={`commutaion_serial_number`}
+            input_value={infoGeneralState.commutaion_serial_number}
             type="text_sample" />
         </div>
       </li>

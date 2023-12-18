@@ -2,15 +2,12 @@ import React from 'react'
 import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 import Firmware_calib from '../../../../settings_block_calib/forms/firmware_calib';
-import MiscCalibSettings_ST250 from '../../../../settings_block_calib/forms/misc_calib_st250';
-import ConfFileCalib from '../../../../settings_block_calib/forms/conf_file_calib';
-import SerialNumVersionCalibSettings from '../../../../settings_block_calib/forms/serialnum_version_calib';
-
-import useGlobalStore from '../../../../../logic/auth_store';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 import MiscCalibSettings_AMP from '../../../../settings_block_calib/forms/misc_calib_amp';
-import Modbus_master_calib from '../../../../settings_block_calib/forms/masterSlave_master_calib';
+import Modbus_master_AVR_calib from '../../../../settings_block_calib/forms/masterSlave_master_calib_avr';
+import SerialNumVersionCalibSettings_AVR from '../../../../settings_block_calib/forms/serialnum_version_avr_calib';
+import ConfFileCalib_AVR from '../../../../settings_block_calib/forms/conf_file_avr_calib';
 
 export const MiscCalib = (props) => {
   const auth_store = useSelector((store) => store.authStore.auth_data)
@@ -30,20 +27,20 @@ export const MiscCalib = (props) => {
   return (
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
-      section_header="другое">
+      section_header="прочее">
       <MiscCalibSettings_AMP
         clickHandler={handleClick} />
-      <Modbus_master_calib
+      <Modbus_master_AVR_calib
         clickHandler={handleClick} />
       {auth_store.auth_access.calib_extend &&
         <>
-          <SerialNumVersionCalibSettings
+          <SerialNumVersionCalibSettings_AVR
             clickHandler={handleClick} />
         </>
       }
       <Firmware_calib
         clickHandler={handleClick} />
-      <ConfFileCalib
+      <ConfFileCalib_AVR
         clickHandler={handleClick} />
       {/* <ChannelEnablerSettings 
         calib_data={Object.keys(props.section_data).length != 0 ?

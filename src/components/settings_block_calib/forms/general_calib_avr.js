@@ -106,51 +106,10 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   }
 
   return (
-    <Settings_block_calib header={`дополнительное`}
+    <Settings_block_calib header={`общее`}
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>
-      <li
-        key='def_module_calib'
-        id='def_module_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`def_module_calib_input`}
-            className="settings_itemLabel">
-            Выкл/вкл модуль защиты
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`def_module_calib_input`}
-            name={`def_module_calib`}
-            changeHandler={handleChange_save}
-            input_value={!!generalCalibState.def_module}
-            type="switch" />
-        </div>
-      </li>
-      <li
-        key='fan_start_alarm_calib'
-        id='fan_start_alarm_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`fan_start_alarm_calib_input`}
-            className="settings_itemLabel">
-            Оповещение вент. при запуске
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`fan_start_alarm_calib_input`}
-            name={`fan_start_alarm_calib`}
-            changeHandler={handleChange_save}
-            input_value={!!generalCalibState.fan_start_alarm}
-            type="switch" />
-        </div>
-      </li>
-      <li className="group_divider"></li>
       </>
       }
       <li
@@ -176,24 +135,30 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
       <li
         key='reboot_device_calib'
         id='reboot_device_calib'
-        className="settings_item">
+        className="settings_item calib">
         <div className='item_header'>
           <label
             htmlFor={`reboot_device_calib_input`}
             className="settings_itemLabel">
-            Перезагрузка устройства
+            Перезагрузка устройств
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`reboot_device_calib_input`}
-            name={`reboot_device_calib`}
+            id={`reboot_reserved_device_calib_input`}
+            name={`reboot_reserved_deviceb`}
             clickHandler={handleReboot}
-            label='Перезагрузить'
+            label='Перезагрузить рез. ПРД'
+            type="button" />
+          <FormInput
+            id={`reboot_avr_calib_input`}
+            name={`reboot_avr_calib`}
+            clickHandler={handleReboot}
+            label='Перезагрузить АВР'
             type="button" />
         </div>
       </li>
-      <li
+      {/* <li
         key='reboot_avr_calib'
         id='reboot_avr_calib'
         className="settings_item">
@@ -212,7 +177,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
             label='Перезагрузить'
             type="button" />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }

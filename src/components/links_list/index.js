@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 const links_items = [
   {id: 'status', name: "Статус"},
   {id: 'settings', name: "Общие настройки"},
-  {id: 'rds', name: "RDS настройки"},
   {id: 'network', name: "Сетевые настройки"},
   {id: 'avr', name: "Управление устройствами"},
   {id: 'info', name: "Данные об устройстве"},
@@ -23,9 +22,9 @@ const links_items = [
 
 const calib_links_items = [
   {id: 'main', name: "Калибровка", nested: true},
+  {id: 'avr_calib', name: "Управление каналами", nested: true},
   {id: 'misc', name: "Прочее", nested: true},
-  {id: 'developer', name: "Для разработчиков", nested: true}
-  
+  {id: 'developer', name: "Для разработчиков", nested: true},
 ]
 
 function Links_list(props) {

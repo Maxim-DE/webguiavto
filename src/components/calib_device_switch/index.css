@@ -1,10 +1,16 @@
 .avr_device_switch {
   display: flex;
-  column-gap: 7px;
+  column-gap: 10px;
   align-items: center;
   /* justify-items: flex-start; */
   justify-content: flex-start;
   margin: 33px 0;
+}
+
+.avr_device_item_wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;
 }
 
 .avr_device_item {
@@ -13,7 +19,7 @@
   display: inline-flex;
   align-items: center;
   font-weight: 400;
-  padding: 7px 10px;
+  padding: 7px 7px;
   column-gap: 8px;
   margin: 2px;
 }

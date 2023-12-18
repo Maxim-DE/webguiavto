@@ -81,6 +81,12 @@ h3 {
   align-items: center;
 }
 
+.settings_item .item_header {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
 .settings_item label {
   font-weight: 300;
   font-size: 18px;

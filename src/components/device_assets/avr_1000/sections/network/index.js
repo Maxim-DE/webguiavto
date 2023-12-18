@@ -45,12 +45,12 @@ export default function NetworkSettingsSection(props) {
         //   'null'
         //   : props.section_data.device_adress}
         clickHandler={updateHandler} />
-      <Remote_control
+      {/* <Remote_control
         section_name="network"
         // settings_data={props.section_data === 'null' ?
         //   'null'
         //   : props.section_data.remote_control}
-        clickHandler={updateHandler} />
+        clickHandler={updateHandler} /> */}
       <Snmp_agent
         section_name="network"
         // settings_data={props.section_data === 'null' ?

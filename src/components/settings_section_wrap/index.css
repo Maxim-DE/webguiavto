@@ -34,6 +34,20 @@ section {
   
   grid-template-columns: repeat(var(--columns),1fr);
   gap: 35px;
+  position: relative;
+}
+
+.section_content .content_unavailiable {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+  border-radius: 11px;
 }
 
 @media (min-width: 1162px) {

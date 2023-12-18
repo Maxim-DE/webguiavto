@@ -1,3 +1,19 @@
+export const PrependZeros = function (str, len, seperator) {
+  if (typeof str === 'number' || Number(str)) {
+    str = str.toString();
+    return (len - str.length > 0) ? new Array(len + 1 - str.length).join('0') + str : str;
+  }
+  else {
+    var spl = str.split(seperator || ' ')
+    for (var i = 0; i < spl.length; i++) {
+      if (Number(spl[i]) && spl[i].length < len) {
+        spl[i] = PrependZeros(spl[i], len)
+      }
+    }
+    return spl.join(seperator || ' ');
+  }
+};
+
 export function dec2hexString(dec) {
   return '0x' + (dec + 0x10000).toString(16).substr(-4).toUpperCase();
 }
@@ -66,4 +82,17 @@ export function getRandomColor() {
 }
 
 export const roundDigits = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0))
+
+export function getTime() {
+  var currentdate = new Date();
+  var date = PrependZeros(currentdate.getDate(), 2) + "-"
+    + PrependZeros((currentdate.getMonth() + 1), 2) + "-"
+    + PrependZeros(currentdate.getFullYear(), 2)
+
+  var time = PrependZeros(currentdate.getHours(), 2) + ":"
+          + PrependZeros(currentdate.getMinutes(), 2) + ":"
+          + PrependZeros(currentdate.getSeconds(), 2);
+
+  return [date, time]
+}
 

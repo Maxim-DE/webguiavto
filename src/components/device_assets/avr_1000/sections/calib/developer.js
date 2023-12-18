@@ -28,12 +28,12 @@ export const DeveloperCalib = (props) => {
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
       section_header="для разработчиков">
-      <Slave_control_calib
+      {/* <Slave_control_calib
         clickHandler={handleClick} />
       <NetworkCalibSettings
         clickHandler={handleClick} />
       <ConsoleOutputCalibSettings
-        clickHandler={handleClick} />
+        clickHandler={handleClick} /> */}
       <MiscDownloadCalib />
     </SettingsSectionWrap>
   )

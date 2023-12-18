@@ -12,9 +12,10 @@ import SlaveGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_
 import Slave_Rds_general_ from '../../../../settings_block_calib/forms/slave_rds_general_avr';
 import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/wattage_primary_calib_avr';
 import { dataArray_to_string } from '../../../../../logic/request_logic';
+import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr';
 
 
-export const AvrControl = (props) => {
+export const AvrDevicesCalib = (props) => {
   const [deviceState, setDeviceState] = React.useState({
     active_device: 0,
     device_avaliability: {
@@ -69,9 +70,9 @@ export const AvrControl = (props) => {
       
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
-      section_header="управление устройствами"
+      section_header="управление каналами"
       section_subheader={device_switch}>
-      <SlaveGeneralCalib_AVR
+      {/* <SlaveGeneralCalib_AVR
         calib_state={device_store?.slave_general}
         clickHandler={handleClick}
         rdsHandler={setRdsEnable} />
@@ -84,7 +85,22 @@ export const AvrControl = (props) => {
           section_name="rds_settings"
           calib_state={device_store?.slave_rds}
           clickHandler={handleClick} />
-      }
+      } */}
+      {/* <GeneralCalibSettings_AVR
+        calib_state={device_store?.calib_general}
+        clickHandler={handleClick} /> */}
+      <PowerCalibSettings_AVR
+        calib_state={device_store?.calib_power}
+        clickHandler={handleClick} />
+      <SignalCalibSettings
+        calib_state={device_store?.calib_signal}
+        clickHandler={handleClick} />
+      <SignalThresholdSettings
+        calib_state={device_store?.calib_signal_threshold}
+        clickHandler={handleClick} />
+      <PowerCalibThreshold_AVR
+        calib_state={device_store?.calib_power_threshold}
+        clickHandler={handleClick} />
       {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
         <div className='content_unavailiable' >
           <div className='centered'>
@@ -96,18 +112,6 @@ export const AvrControl = (props) => {
           </div>
         </div>
       }
-      {/* <GeneralCalibSettings_AVR
-        calib_state={device_store?.calib_general}
-        clickHandler={handleClick} /> */}
-      {/* <PowerCalibSettings_AVR
-        calib_state={device_store?.calib_power}
-        clickHandler={handleClick} /> */}
-      {/* <SignalCalibSettings
-        calib_state={device_store?.calib_signal}
-        clickHandler={handleClick} />
-      <SignalThresholdSettings
-        calib_state={device_store?.calib_signal_threshold}
-        clickHandler={handleClick} /> */}
     </SettingsSectionWrap>
     </>
   )

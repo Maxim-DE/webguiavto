@@ -133,7 +133,7 @@ function MiscCalibSettings_AMP(props) {
   }
 
   return (
-    <Settings_block_calib header={`прочее`}
+    <Settings_block_calib header={`журнал и учетные записи`}
       settings_type={`misc_calib`}
     // save_handler={handleClick_save}
     >

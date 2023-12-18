@@ -11,14 +11,8 @@ import { reducers } from '../../../store/reducers/avr_control_reducers';
 export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ...props }) {
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
-    input_power: 0,
-    output_power: 45,
-    channel_coef_type: 2,
-    coef_l: 0,
-    coef_r: 0,
-    coef_mpx: 0,
-    resistance_type: 0,
-    deviation: 0
+    radio_label: '',
+    rds_enable: 0
   })
 
   React.useEffect(() => {
@@ -44,6 +38,10 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
     }
 
   }, [calib_state])
+
+  React.useEffect(() => {
+    props.rdsHandler(generalCalibState.rds_enable)
+  }, [generalCalibState.rds_enable])
 
   const handleChange = (event) => {
     const target = event.target;
@@ -96,10 +94,60 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   }
 
   return (
-    <Settings_block_calib header={`расш. настройки`}
+    <Settings_block_calib header={`дополнительно`}
       settings_type={`slave_add_general`}
       section_name={props.section_name}>
       <li
+        key='radio_label_calib'
+        id='radio_label_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`radio_label_calib_input`}
+            className="settings_itemLabel">
+            Радиостанция (подпись)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`radio_label_calib_input`}
+            name={`radio_label_calib`}
+            changeHandler={handleChange}
+            input_value={generalCalibState.radio_label}
+            style={{ margin: '0', maxWidth: '150px' }}
+            type="text" />
+          <FormInput
+            id={`radio_label_calib_save`}
+            name={`radio_label_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
+      <li
+        key='rds_enable_calib'
+        id='rds_enable_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`rds_enable_calib_input`}
+            className="settings_itemLabel">
+            Параметры RDS
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`rds_enable_calib_input`}
+            name={`rds_enable_calib`}
+            changeHandler={(e) => {
+              handleChange(e)
+              handleClick_save(e)
+            }}
+            input_value={generalCalibState.rds_enable}
+            type="switch" />
+        </div>
+      </li>
+      {/* <li
         key='input_power_calib'
         id='input_power_calib'
         className="settings_item">
@@ -122,34 +170,6 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
           <FormInput
             id={`input_power_calib_save`}
             name={`input_power_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
-        </div>
-      </li>
-      <li
-        key='output_power_calib'
-        id='output_power_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`output_power_calib_input`}
-            className="settings_itemLabel">
-            Отр. мощность
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`output_power_calib_input`}
-            name={`output_power_calib`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.output_power}
-            style={{ margin: '0', maxWidth: '75px' }}
-            placeholder='Вт'
-            type="text" />
-          <FormInput
-            id={`output_power_calib_save`}
-            name={`output_power_calib`}
             clickHandler={handleClick_save}
             label='Сохранить'
             type='button' />
@@ -380,7 +400,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             label='Сохранить'
             type='button' />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }

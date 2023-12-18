@@ -10,7 +10,24 @@ export const reducers = {
       global_data: {
         section_data: {
           avr_device_control: {
-            [`device_${request_params.avr_device}`]:request_resp,
+            device_data: {
+              [`device_${request_params.avr_device}`]: request_resp,
+            }
+          }
+        }
+      }
+    }
+
+    store.dispatch(refreshGlobalStore(obj_to_refresh))
+  },
+
+  get_avr_device_availability: ({ request_resp, request_params }) => {
+
+    let obj_to_refresh = {
+      global_data: {
+        section_data: {
+          avr_device_control: {
+            device_avaliability: request_resp?.[`device_availiability`]
           }
         }
       }

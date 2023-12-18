@@ -12,9 +12,14 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     frequency: 0,
+    input_power: 0,
     input_signal_type: 0,
-    radio_label: '',
-    rds_enable: 0
+    channel_coef_type: 2,
+    coef_l: 0,
+    coef_r: 0,
+    coef_mpx: 0,
+    resistance_type: 0,
+    deviation: 0
   })
 
   React.useEffect(() => {
@@ -127,6 +132,34 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
         </div>
       </li>
       <li
+        key='input_power_calib'
+        id='input_power_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`input_pwr_calib_input`}
+            className="settings_itemLabel">
+            Входная мощность
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`input_power_calib_input`}
+            name={`input_pwr_calib`}
+            changeHandler={handleChange}
+            input_value={generalCalibState.input_power}
+            style={{ margin: '0', maxWidth: '75px' }}
+            placeholder='Вт'
+            type="text" />
+          <FormInput
+            id={`input_power_calib_save`}
+            name={`input_power_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
+      <li
         key='input_signal_type_calib'
         id='input_signal_type_calib'
         className="settings_item">
@@ -159,7 +192,234 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' />
         </div>
       </li>
+      <li className="group_divider"></li>
       <li
+        key='channel_coef_calib'
+        id='channel_coef_calib'
+        className={`settings_item ${generalCalibState.channel_coef_type != 0 && 'calib'}`}>
+        <div className='item_header'>
+          <label
+            htmlFor={`channel_coef_type_calib_input`}
+            className="settings_itemLabel">
+            Коэффициент передачи
+          </label>
+          <FormInput
+            id={`channel_coef_type_calib_input`}
+            name={`channel_coef_type_calib`}
+            type='select'
+            input_value={generalCalibState.channel_coef_type}
+            title='Канал'
+            variants={[
+              'Stereo',
+              'L',
+              'R',
+              'КСС'
+            ]}
+            changeHandler={handleChange} />
+        </div>
+        <div className='item_input'>
+          {generalCalibState.channel_coef_type == 1 &&
+            <>
+              <FormInput
+                id={`coef_l_calib_input`}
+                name={`coef_l`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_l}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
+              <FormInput
+                id={`coef_l_calib_save`}
+                name={`coef_l_calib`}
+                clickHandler={handleClick_save}
+                label='Сохранить'
+                type="button" />
+            </>
+          }
+          {generalCalibState.channel_coef_type == 2 &&
+            <>
+              <FormInput
+                id={`coef_r_calib_input`}
+                name={`coef_r`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_r}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
+              <FormInput
+                id={`coef_r_calib_save`}
+                name={`coef_r_calib`}
+                clickHandler={handleClick_save}
+                label='Сохранить'
+                type="button" />
+            </>
+          }
+          {generalCalibState.channel_coef_type == 3 &&
+            <>
+              <FormInput
+                id={`coef_mpx_calib_input`}
+                name={`coef_mpx`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_mpx}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
+              <FormInput
+                id={`coef_mpx_calib_save`}
+                name={`coef_mpx_calib`}
+                clickHandler={handleClick_save}
+                label='Сохранить'
+                type="button" />
+            </>
+          }
+        </div>
+      </li>
+      {generalCalibState.channel_coef_type == 0 &&
+        <>
+          <li
+            key='coef_l_calib'
+            id='coef_l_calib'
+            className="settings_item nested_item">
+            <div className='item_header'>
+              <label
+                htmlFor={`coef_l_calib_input`}
+                className="settings_itemLabel">
+                Левый канал
+              </label>
+            </div>
+            <div className='item_input'>
+              <FormInput
+                id={`coef_l_calib_input`}
+                name={`coef_l`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_l}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
+              <FormInput
+                id={`coef_l_calib_save`}
+                name={`coef_l_calib`}
+                clickHandler={handleClick_save}
+                label='Сохранить'
+                type='button' />
+            </div>
+          </li>
+          <li
+            key='coef_r_calib'
+            id='coef_r_calib'
+            className="settings_item nested_item">
+            <div className='item_header'>
+              <label
+                htmlFor={`coef_r_calib_input`}
+                className="settings_itemLabel">
+                Правый канал
+              </label>
+            </div>
+            <div className='item_input'>
+              <FormInput
+                id={`coef_r_calib_input`}
+                name={`coef_r`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_r}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
+              <FormInput
+                id={`coef_r_calib_save`}
+                name={`coef_r_calib`}
+                clickHandler={handleClick_save}
+                label='Сохранить'
+                type='button' />
+            </div>
+          </li>
+        </>
+      }
+      <li className="group_divider"></li>
+      <li
+        key='resistance_type_calib'
+        id='resistance_type_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`resistance_type_calib_input`}
+            className="settings_itemLabel">
+            Вх. сопротивление (L/R)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`resistance_type_calib_input`}
+            name={`resistance_type_calib`}
+            type='select'
+            input_value={generalCalibState.resistance_type}
+            title='Тип сигнала'
+            variants={[
+              '600 Ом',
+              '10 кОм',
+            ]}
+            changeHandler={handleChange} />
+          <FormInput
+            id={`resistance_type_calib_save`}
+            name={`resistance_type_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
+      <li
+        key='deviation_calib'
+        id='deviation_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`deviation_calib_input`}
+            className="settings_itemLabel">
+            Девиация
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`deviation_calib_input`}
+            name={`deviation`}
+            changeHandler={handleChange}
+            input_value={generalCalibState.deviation}
+            style={{ margin: '0', maxWidth: '75px' }}
+            placeholder='Вт'
+            type="text_buttons"
+            statusHandler={setGeneralCalibState}
+            max={'30'}
+            min={'-30'}
+            step={1} />
+          <FormInput
+            id={`deviation_calib_save`}
+            name={`deviation_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
+      { /*<li className="group_divider"></li>
+       <li
         key='radio_label_calib'
         id='radio_label_calib'
         className="settings_item">
@@ -208,7 +468,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             input_value={generalCalibState.rds_enable}
             type="switch" />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }
