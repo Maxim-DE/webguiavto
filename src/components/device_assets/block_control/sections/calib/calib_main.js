@@ -9,6 +9,7 @@ import PowerCalibSettings_AMP from '../../../../settings_block_calib/forms/watta
 import GeneralCalibSettings_BC from '../../../../settings_block_calib/forms/general_calib_bc';
 import WattageAdditionalCalibSettings_BC from '../../../../settings_block_calib/forms/wattage_additional_calib_bc';
 import FanCalibSettings_BC from '../../../../settings_block_calib/forms/fan_calib_bc';
+import FanCalibSettings_hybrid from '../../../../settings_block_calib/forms/fan_calib_hybrid';
 
 
 export const CalibMain = (props) => {
@@ -40,7 +41,7 @@ export const CalibMain = (props) => {
         clickHandler={handleClick} />
       <TempThresholdCalibSettings
         clickHandler={handleClick} />
-      <FanCalibSettings_BC
+      <FanCalibSettings_hybrid
         clickHandler={handleClick} />
     </SettingsSectionWrap>
   )

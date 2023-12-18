@@ -183,6 +183,18 @@
   text-align: center;
 }
 
+.button_input.modbus_mode_button {
+  background-color: transparent;
+}
+
+.button_input.modbus_mode_button:hover {
+  background: #cdd9df;
+}
+
+.button_input.modbus_mode_button.mode_active {
+  background: #E0E7EB;
+}
+
 .modbus_master .device_adiitional_info {
   position: absolute;
   width: auto;
