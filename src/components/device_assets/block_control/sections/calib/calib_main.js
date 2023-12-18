@@ -10,6 +10,7 @@ import GeneralCalibSettings_BC from '../../../../settings_block_calib/forms/gene
 import WattageAdditionalCalibSettings_BC from '../../../../settings_block_calib/forms/wattage_additional_calib_bc';
 import FanCalibSettings_BC from '../../../../settings_block_calib/forms/fan_calib_bc';
 import FanCalibSettings_hybrid from '../../../../settings_block_calib/forms/fan_calib_hybrid';
+import PWRSensorCalibSettings_BC from '../../../../settings_block_calib/forms/pwr_sensor_calib_bc';
 
 
 export const CalibMain = (props) => {
@@ -38,6 +39,8 @@ export const CalibMain = (props) => {
       <PowerCalibSettings_AMP
         clickHandler={handleClick} />
       <WattageAdditionalCalibSettings_BC
+        clickHandler={handleClick} />
+      <PWRSensorCalibSettings_BC
         clickHandler={handleClick} />
       <TempThresholdCalibSettings
         clickHandler={handleClick} />
