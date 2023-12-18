@@ -266,7 +266,7 @@ function FanCalibSettings_hybrid(props) {
         </div>
       </li>
       <li className="group_divider"></li>
-      {fanCalibState.fan_calib_mode == 0 &&
+      {fanCalibState.fan_calib_mode == 1 &&
         <>
         <li
           key='fan_temp_threshold_on_calib'
@@ -324,7 +324,7 @@ function FanCalibSettings_hybrid(props) {
         </li>
         </>
       }
-      {fanCalibState.fan_calib_mode == 1 &&
+      {fanCalibState.fan_calib_mode == 0 &&
         <>
         <li
           key='fan_pwm_calib'
