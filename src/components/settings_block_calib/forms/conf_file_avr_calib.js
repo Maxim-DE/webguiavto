@@ -394,7 +394,7 @@ export default function ConfFileCalib_AVR(props) {
           </a>
         </div>
       </li>
-      <li
+      {/* <li
         key='conf_file_upload'
         id='conf_file_upload'
         className="settings_item nested_item">
@@ -415,7 +415,7 @@ export default function ConfFileCalib_AVR(props) {
             type="button"
             value='Загрузить' />
         </div>
-      </li>
+      </li> */}
     {isUploadModalOpen &&
       <ModalCalib
         header='загрузка конфигурации'

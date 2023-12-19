@@ -80,6 +80,11 @@ h3 {
   align-items: center;
 }
 
+/* .settings_item:hover .button_input[id$="save"] {
+  opacity: 1;
+  pointer-events: auto;
+} */
+
 .settings_item label {
   font-weight: 300;
   font-size: 18px;

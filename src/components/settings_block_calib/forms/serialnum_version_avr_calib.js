@@ -13,7 +13,8 @@ function SerialNumVersionCalibSettings_AVR(props) {
         device_type = Object.keys(info_section_data).length > 0 ? info_section_data.info_general.type : 0
 
   const [serialNumVersionCalibState, setSerialNumVersionCalibState] = React.useState({
-    device_serial_num: ''
+    device_serial_num: '',
+    commutaion_serial_num: '',
   })
   
   const device_power_table = [
@@ -185,6 +186,33 @@ function SerialNumVersionCalibSettings_AVR(props) {
           <FormInput
             id={`device_serial_num_calib_save`}
             name={`device_serial_num_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='commutaion_serial_num_calib'
+        id='commutaion_serial_num_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`commutaion_serial_num_calib_input`}
+            className="settings_itemLabel">
+            Серийный номер БКА
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_serial_num_calib_input`}
+            name={`commutaion_serial_num_calib`}
+            changeHandler={handleChange}
+            input_value={serialNumVersionCalibState.commutaion_serial_num}
+            style={{ margin: '0', maxWidth: '76px' }}
+            type="text" />
+          <FormInput
+            id={`device_serial_num_calib_save`}
+            name={`commutaion_serial_num_calib`}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />

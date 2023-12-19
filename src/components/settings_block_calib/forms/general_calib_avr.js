@@ -105,6 +105,19 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     clickHandler(request_obj);
   }
 
+  const handleReboot_reserved = () => {
+    const request_obj = {
+      address: 'reboot_reserved_device.cgi',
+      reducer: coreReducers.reboot_device,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    clickHandler(request_obj);
+  }
+
   return (
     <Settings_block_calib header={`общее`}
     settings_type={`general_calib`}>
@@ -147,7 +160,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
           <FormInput
             id={`reboot_reserved_device_calib_input`}
             name={`reboot_reserved_deviceb`}
-            clickHandler={handleReboot}
+            clickHandler={handleReboot_reserved}
             label='Перезагрузить рез. ПРД'
             type="button" />
           <FormInput

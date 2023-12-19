@@ -10,11 +10,6 @@ import { cloneDeep } from 'lodash';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
 
 function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
-  // const calib_state = useSelector((store) => {
-  //   if (deepKeyExists(store, 'calib_power')) {
-  //     return store.globalStore.global_data.calib_state.data.calib_power
-  //   } else return ''
-  // }),
   const adcPower_store = useSelector((store) => {
       if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
         return store.globalStore.global_data.status_data.calib_adc?.power_calib
@@ -84,7 +79,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
     }
 
     const request_obj = {
-      address: 'calib_power.cgi',
+      address: 'calib_power_treshold.cgi',
       data: `${name}$${value}`,
       reducer: reducers.save_avr_device_data,
       notifications: {
@@ -94,20 +89,6 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
       save_data: {
         calib_power: state_to_save
       }
-    }
-
-    clickHandler(request_obj);
-
-  }
-
-  const handleClick_calib_zeros = (event) => {
-
-    const request_obj = {
-      address: 'calib_output_power_zeros.cgi',
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
     }
 
     clickHandler(request_obj);

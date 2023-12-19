@@ -12,6 +12,8 @@ import Settings_block_calib from '..'
 import { cloneDeep, merge } from 'lodash'
 import { reducers } from '../../../store/reducers/avr_control_reducers'
 
+const transTypesArray = ["(none)", "News", "Affairs", "Info", "Sport", "Educate", "Drama", "Culture", "Science", "Varied", "Pop M", "Rock M", "Easy M", "Light M", "Classics", "Other M", "Weather", "Finance", "Children", "Social", "Religion", "Phone In", "Travel", "Leisure", "Jazz", "Country", "Nation M", "Oldies", "Folk M", "Document", "TEST", "Alarm!"];
+
 export default function Slave_Rds_general_({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.section_data.rds.rds_general_settings)
 
@@ -20,6 +22,8 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
     ta: false,
     pi: '',
     ps_name: '',
+    trans_genre: 0,
+    trans_type: 0,
     radio_text: ''
   })
 
@@ -27,7 +31,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
     if (calib_state != 'null' && calib_state != undefined) {
       let settings_state_copy = rdsGeneralState
 
-      for (const key in settings_state_copy) {
+      for (const key in calib_state) {
         settings_state_copy[key] = calib_state[key]
       }
 
@@ -175,8 +179,8 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
             name={`pi`}
             changeHandler={handleChange}
             input_value={rdsGeneralState.pi}
-            type="checkbox" />
-
+            style={{ margin: '0', maxWidth: '75px' }}
+            type="text" />
           <FormInput
             id={``}
             name={``}
@@ -212,6 +216,65 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
         </div>
       </li>
       <li
+        key='trans_genre_calib'
+        id='trans_genre_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`trans_genre_calib_input`}
+            className="settings_itemLabel">
+            Тип передачи
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`input_signal_type_calib_input`}
+            name={`trans_genre_calib`}
+            type='select'
+            input_value={rdsGeneralState.trans_genre}
+            title='Тип передачи'
+            variants={transTypesArray}
+            changeHandler={handleChange} />
+          <FormInput
+            id={`trans_genre_calib_save`}
+            name={`trans_genre_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
+      <li
+        key='trans_type_calib'
+        id='trans_type_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`trans_type_calib_input`}
+            className="settings_itemLabel">
+            Музыка/Речь
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`input_signal_type_calib_input`}
+            name={`trans_type_calib`}
+            type='select'
+            input_value={rdsGeneralState.trans_type}
+            title='Тип передачи'
+            variants={[
+              'Речь',
+              'Музыка'
+            ]}
+            changeHandler={handleChange} />
+          <FormInput
+            id={`trans_type_calib_save`}
+            name={`trans_type_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
+      <li
         key='radio_text_settings'
         id='radio_text_settings'
         className="settings_item calib">
@@ -237,12 +300,12 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
             type='button' />
         </div>
       </li>
-      <Alt_station_manage
+      {/* <Alt_station_manage
         parent_state={rdsGeneralState}
         state_handler={state_handler}
         update_handler={props.clickHandler}
         save_handler={handleClick_save}
-        parent_props={calib_state} />
+        parent_props={calib_state} /> */}
     </Settings_block_calib>
   )
 }
