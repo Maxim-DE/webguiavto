@@ -11,6 +11,7 @@ import useGlobalStore from '../../../logic/auth_store';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 import { deepKeyExists } from '../../../logic/utilites';
+import { ADCString } from '../util_components/adc_string';
 
 function PWRSensorCalibSettings_BC(props) {
   const calibPWRSensor_store = useSelector((store) => {
@@ -18,7 +19,12 @@ function PWRSensorCalibSettings_BC(props) {
       return store.globalStore.global_data.calib_state.data?.calib_pwr_sensor
     } else return ''
   }),
-        auth_store = useSelector((store) => store.authStore.auth_data)
+    adcPwrSensor_store = useSelector((store) => {
+      if (deepKeyExists(store, 'pwr_sensor_calib')) {
+        return store.globalStore.global_data.status_data.calib_adc?.pwr_sensor_calib
+      } else return ''
+    }),
+    auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [PWRSensorCalibState, setPWRSensorCalibState] = React.useState({
     'coeff': 0
@@ -156,15 +162,18 @@ function PWRSensorCalibSettings_BC(props) {
       <li
         key='coeff_calib'
         id='coeff_calib'
-        className="settings_item">
+        className="settings_item calib">
         <div className='item_header'>
           <label
             htmlFor={`coeff_input`}
             className="settings_itemLabel">
-            Коеффициент
+            Коэффициент
           </label>
         </div>
         <div className='item_input'>
+          <ADCString
+            label={'K'}
+            adc_value={adcPwrSensor_store?.coeff} />
           <FormInput
             id={`coeff_input`}
             name={`coeff`}
