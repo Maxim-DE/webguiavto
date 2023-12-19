@@ -236,36 +236,40 @@ function FanCalibSettings_hybrid(props) {
     <Settings_block_calib header={`калибровка вентиляторов`}
                           settings_type={`fan_calib`}
                           save_handler={handleClick_save}>
-      <li
-        key='fan_mode_calib'
-        id='fan_mode_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            className="settings_itemLabel">
-            Режим калибровки
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`pwm_mode_save`}
-            name={`fan_calib_mode_0`}
-            class={`modbus_mode_button ${fanCalibState.fan_calib_mode == 0 ? 'mode_active' : ''}`}
-            clickHandler={handleClick_saveModbusType}
-            label='ШИМ'
-            title='Выбрать режим ШИМ-а'
-            type="button" />
-          <FormInput
-            id={`reray_mode_save`}
-            name={`fan_calib_mode_1`}
-            class={`modbus_mode_button ${fanCalibState.fan_calib_mode == 1 ? 'mode_active' : ''}`}
-            clickHandler={handleClick_saveModbusType}
-            label='Реле'
-            title='Выбрать режим реле'
-            type="button" />
-        </div>
-      </li>
-      <li className="group_divider"></li>
+      {auth_store.auth_access.calib_extend && 
+        <>
+        <li
+          key='fan_mode_calib'
+          id='fan_mode_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              className="settings_itemLabel">
+              Режим калибровки
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`pwm_mode_save`}
+              name={`fan_calib_mode_0`}
+              class={`modbus_mode_button ${fanCalibState.fan_calib_mode == 0 ? 'mode_active' : ''}`}
+              clickHandler={handleClick_saveModbusType}
+              label='ШИМ'
+              title='Выбрать режим ШИМ-а'
+              type="button" />
+            <FormInput
+              id={`reray_mode_save`}
+              name={`fan_calib_mode_1`}
+              class={`modbus_mode_button ${fanCalibState.fan_calib_mode == 1 ? 'mode_active' : ''}`}
+              clickHandler={handleClick_saveModbusType}
+              label='Реле'
+              title='Выбрать режим реле'
+              type="button" />
+          </div>
+        </li>
+        <li className="group_divider"></li>
+        </>
+      }
       {fanCalibState.fan_calib_mode == 1 &&
         <>
         <li
