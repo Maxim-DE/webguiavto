@@ -17,7 +17,8 @@ const baudrate_arr = [
 ]
 
 export default function Modbus_hybrid_calib(props) {
-  const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_modbus)
+  const calibMasterSlave_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_modbus),
+        auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [modbusState, setModbusState] = React.useState({
     modbus_mode: 1, 
@@ -164,6 +165,8 @@ export default function Modbus_hybrid_calib(props) {
       // disabled={!modbusState.slave_form_availiable}
       // disableHandler={handleFormDisable}
       settings_type={`genera_modbus_slave_calib`} >
+      {auth_store.auth_access.calib_extend && 
+      <>
       <li
         key='modbus_mode_calib'
         id='modbus_mode_calib'
@@ -195,6 +198,8 @@ export default function Modbus_hybrid_calib(props) {
         </div>
       </li>
       <li className="group_divider"></li>
+      </>
+      }
       {modbusState.modbus_mode == 0 &&
         <>
         <li
