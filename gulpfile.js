@@ -38,6 +38,7 @@ function delete_raw_files() {
 function delete_http() {
   return src(['src/logic/request_logic.js'])
   .pipe(replace(/(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/gi, ''))
+  .pipe(replace(/((localhost){1}(([:]){0,1}[\0-9]{4}){0,1}\/{0,1}){1}/g, ''))
   .pipe(replace('http://', ''))
   .pipe(dest('src/logic'))
 }
