@@ -81,7 +81,9 @@ function StatusSection(props) {
       if (device_type_arr.length === 0 || device_type === 255) return
 
       let svg_req_str = `${device_model_table[device_type_str]}.svg.gz`
-  
+      
+
+      
       let request_obj = {
         address: 'get_status_image.cgi',
         type: 'text',
@@ -230,6 +232,7 @@ function StatusSection(props) {
           device_type={device_type}
           device_type_str={device_type_str}
           graph_svg={status_store.status_svg.img}
+          auth_access={auth_store.auth_access}
           updateHandler={handleUpdate}
           data={status_store.status_graph}/>
         <div className={`status_settings_wrap ${guest_mode_class}`}>

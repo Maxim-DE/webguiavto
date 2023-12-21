@@ -1,3 +1,4 @@
+import { status_colors } from "../components/graph_blocks"
 import { filter_obj } from "./utilites"
 
 export default function svg_editing_logic(svg, data_svg, device_type) {
@@ -7,6 +8,9 @@ export default function svg_editing_logic(svg, data_svg, device_type) {
 
     case 'УРЦ-2000':
       return re_amp_svg_editing(svg, data_svg)
+
+    case 'АВР-1000':
+      return avr_svg_editing(svg, data_svg)
   
     default:
       return svg
@@ -82,7 +86,7 @@ function st_250_svg_editing(svg, data_svg) {
   return svg
 }
 
-function re_amp_svg_editing(svg, data_svg) {
+function re_amp_svg_editing(svg, data_svg, auth_access) {
   const output_data = data_svg?.output,
         output_svg = svg.querySelector(`#output_swr_value`)
 
@@ -95,6 +99,96 @@ function re_amp_svg_editing(svg, data_svg) {
   } catch (error) {
     console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
   }
+
+  return svg
+}
+
+function avr_svg_editing(svg, data_svg, auth_access) {
+  const output_data = data_svg?.output,
+        swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
+
+  swr_span_list.forEach(swr_span => {
+    try {
+      if (output_data.swr[2] == 3 && swr_span != undefined) {
+        swr_span.children[0].innerHTML = '--'
+        swr_span.children[0].style.fill = '#202020';
+        swr_span.children[0].style.fontWeight = "300";
+      }
+    } catch (error) {
+      console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
+    }
+  });
+
+  // const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+  //       amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
+  //       amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`)
+
+  const pwr_buttons_list = svg.querySelectorAll(`g[id$="power_button"]`)
+
+  if (pwr_buttons_list) {
+    pwr_buttons_list.forEach(button => {
+      const device_type = button.id.replace(`_power_button`, '')
+
+      const exiter_status = data_svg?.[device_type]?.status
+
+      if (exiter_status == 1) {
+        button.querySelector('#power_btn_cover').style.fill = status_colors[0]
+      } else {
+        button.querySelector('#power_btn_cover').style.fill = status_colors[2]
+      }
+    });
+  }
+
+  const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
+
+  if (res_exiter_conf_buttons_list) {
+    const active_conf = data_svg?.exiter_0?.active_conf
+    res_exiter_conf_buttons_list.forEach(button => {
+      if (button.id.includes(`ex${active_conf}`)) {
+        button.classList.add("active_ex_conf");
+      } else {
+        button.classList.remove("active_ex_conf");
+      }
+    });
+  }
+
+  // if (amp_1_buttons_list) {
+  //   amp_1_buttons_list.forEach((button) => {
+  //     if (auth_access.calib == 0) {
+  //       button.classList.add("disabled_svg_button");
+  //     } else {
+  //       button.classList.remove("disabled_svg_button");
+  //     }
+  //   })
+  // }
+
+  // if (amp_2_buttons_list) {
+  //   amp_2_buttons_list.forEach((button) => {
+  //     if (auth_access.calib == 0) {
+  //       button.classList.add("disabled_svg_button");
+  //     } else {
+  //       button.classList.remove("disabled_svg_button");
+  //     }
+  //   })
+  // }
+
+  // exiter_buttons_list.forEach((button) => {
+  //   if (auth_access.settings == 0) {
+  //     button.classList.add("disabled_svg_button");
+  //   } else {
+  //     button.classList.remove("disabled_svg_button");
+  //   }
+  // })
+
+  // const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+  //       exiter_status = data_svg?.exiter?.status
+
+  // if (exiter_status == 1) {
+  //   exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[0]
+  // } else {
+  //   exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
+  // }
+
 
   return svg
 }

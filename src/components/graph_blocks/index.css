@@ -105,3 +105,42 @@ h4 {
   font-size: 15px;
   line-height: 18px;
 }
+
+.graphs>svg g[id$="button"] {
+  pointer-events: auto;
+}
+
+.graphs>svg g[id$="button"]:hover {
+  cursor: pointer;
+  border: 3px solid black;
+}
+
+.graphs>svg g[id$="button"]:hover rect:not([id$="click_area"]) {
+  stroke: black;
+  fill: #cdd9df;
+}
+
+.graphs>svg g[id$="button"].disabled_svg_button {
+  pointer-events: none;
+}
+
+.graphs>svg g[id$="button"].disabled_svg_button rect[id$="click_area"] {
+  fill: #e0e7ebc7;
+}
+
+.graphs>svg g[id$="button"].disabled_svg_button:hover rect:not([id$="click_area"]) {
+  stroke: none;
+  fill: #e0e7eb;
+}
+
+/* FOR AVR */
+
+.graphs>svg g[id$="button"].active_ex_conf {
+  cursor: pointer;
+  /* border: 3px solid black; */
+}
+
+.graphs>svg g[id$="button"].active_ex_conf rect:not([id$="click_area"]) {
+  /* stroke: black; */
+  fill: #cdd9df;
+}
