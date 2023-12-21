@@ -104,10 +104,12 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 }
 
 function avr_svg_editing(svg, data_svg, auth_access) {
-  const output_data = data_svg?.output,
-        swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
+  const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
   swr_span_list.forEach(swr_span => {
+    const device_type = swr_span.id.replace(`_swr_value`, ''),
+          output_data = data_svg[device_type]
+
     try {
       if (output_data.swr[2] == 3 && swr_span != undefined) {
         swr_span.children[0].innerHTML = '--'
@@ -127,14 +129,15 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
   if (pwr_buttons_list) {
     pwr_buttons_list.forEach(button => {
-      const device_type = button.id.replace(`_power_button`, '')
+      const device_type = button.id.replace(`_power_button`, ''),
+            button_cover = button.querySelector(`path[id*="btn_cover"]`)
 
       const exiter_status = data_svg?.[device_type]?.status
 
       if (exiter_status == 1) {
-        button.querySelector('#power_btn_cover').style.fill = status_colors[0]
+        button_cover.style.fill = status_colors[0]
       } else {
-        button.querySelector('#power_btn_cover').style.fill = status_colors[2]
+        button_cover.style.fill = status_colors[2]
       }
     });
   }
