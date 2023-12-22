@@ -29,9 +29,12 @@ function Status_graphs(props) {
 
   const graph_container_ref = React.useRef(null)
 
+  const active_control_mode = props.device_info?.active_control_mode,
+        current_signal_path = props.device_info?.current_signal_path
+
   React.useEffect(() => {
     svg_processing(graph_container_ref.current, props.data)
-  }, [props.data])
+  }, [props.data, active_control_mode, current_signal_path])
 
 
   React.useEffect(() => {

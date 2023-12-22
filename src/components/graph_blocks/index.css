@@ -122,6 +122,7 @@ h4 {
 
 .graphs>svg g[id$="button"].disabled_svg_button {
   pointer-events: none;
+  filter: opacity(0.5);
 }
 
 .graphs>svg g[id$="button"].disabled_svg_button rect[id$="click_area"] {
@@ -137,10 +138,12 @@ h4 {
 
 .graphs>svg g[id$="button"].active_ex_conf {
   cursor: pointer;
+  
   /* border: 3px solid black; */
 }
 
 .graphs>svg g[id$="button"].active_ex_conf rect:not([id$="click_area"]) {
   /* stroke: black; */
+  stroke: none;
   fill: #cdd9df;
 }

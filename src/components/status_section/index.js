@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';
 import { AlertDialogWrap } from '../alert_dialog_wrap';
+import AVRControlModeSwitch from '../avr_control_mode_switch';
 
 export const device_model_table = {
   'УРЦ-1000': 're_amp_1000',
@@ -226,6 +227,12 @@ function StatusSection(props) {
           {device_time_output}
         </span>
       </div>
+      <div className="control_mode_wrap">
+        
+        <AVRControlModeSwitch
+          clickHandler={handleUpdate}
+          parent_state={status_store.status_info} />
+      </div>
       <div className="section_status">
         <Status_graphs
           settings_type="graphs"
@@ -234,6 +241,7 @@ function StatusSection(props) {
           graph_svg={status_store.status_svg.img}
           auth_access={auth_store.auth_access}
           updateHandler={handleUpdate}
+          device_info={status_store.status_info}
           data={status_store.status_graph}/>
         <div className={`status_settings_wrap ${guest_mode_class}`}>
           <Status_logs 

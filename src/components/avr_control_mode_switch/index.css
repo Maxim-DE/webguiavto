@@ -1,0 +1,45 @@
+.avr_device_switch {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  /* justify-items: flex-start; */
+  justify-content: flex-start;
+  margin: 33px 0;
+}
+
+.avr_device_item_wrap {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;
+}
+
+.avr_device_item {
+  box-sizing: content-box;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 400;
+  padding: 7px 7px;
+  column-gap: 8px;
+  margin: 2px;
+}
+
+.avr_device_item:hover {
+  background-color: transparent;
+  margin: 0;
+  border: 2px solid #626879;
+}
+
+.avr_device_item.active_type {
+  background: #F7F7F7;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  border: 2px solid #626879;
+}
+
+.control_mode_label {
+  font-variant: small-caps;
+  color: #2B2927;
+  font-size: 26px;
+  font-weight: 600;
+}

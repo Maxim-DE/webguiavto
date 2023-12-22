@@ -1,4 +1,5 @@
 import { status_colors } from "../components/graph_blocks"
+import { store } from "../store/store"
 import { filter_obj } from "./utilites"
 
 export default function svg_editing_logic(svg, data_svg, device_type) {
@@ -104,6 +105,9 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 }
 
 function avr_svg_editing(svg, data_svg, auth_access) {
+  const active_control_mode = store.getState().globalStore.global_data.status_data.status_info?.active_control_mode,
+        current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
+
   const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
   swr_span_list.forEach(swr_span => {
@@ -139,6 +143,12 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       } else {
         button_cover.style.fill = status_colors[2]
       }
+
+      if (active_control_mode == 0) {
+        button.style.display = 'none'
+      } else {
+        button.style.display = ''
+      }
     });
   }
 
@@ -152,7 +162,26 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       } else {
         button.classList.remove("active_ex_conf");
       }
+
+      if (active_control_mode == 0) {
+        button.classList.add("disabled_svg_button");
+      } else {
+        button.classList.remove("disabled_svg_button");
+      }
     });
+  }
+
+  const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
+
+  if (signal_paths_list && current_signal_path) {
+    const current_path_str = current_signal_path.join('')
+    signal_paths_list.forEach(path => {
+      if (path.id.includes(current_path_str)) {
+        path.style.display = 'block'
+      } else {
+        path.style.display = 'none'
+      }
+    })
   }
 
   // if (amp_1_buttons_list) {
