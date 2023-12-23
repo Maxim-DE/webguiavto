@@ -3,7 +3,7 @@ import React from 'react'
 import SettingsBlockWrap from '../../settings_block_wrap'
 import FormInput from '../../form_input'
 
-import { Alt_station_manage } from '../../custom_groups/alt_station_manage'
+// import { Alt_station_manage } from '../../custom_groups/alt_station_manage'
 
 import clone from 'lodash/clone'
 import { dataArray_to_string } from '../../../logic/request_logic'
@@ -14,7 +14,7 @@ import { reducers } from '../../../store/reducers/avr_control_reducers'
 
 const transTypesArray = ["(none)", "News", "Affairs", "Info", "Sport", "Educate", "Drama", "Culture", "Science", "Varied", "Pop M", "Rock M", "Easy M", "Light M", "Classics", "Other M", "Weather", "Finance", "Children", "Social", "Religion", "Phone In", "Travel", "Leisure", "Jazz", "Country", "Nation M", "Oldies", "Folk M", "Document", "TEST", "Alarm!"];
 
-export default function Slave_Rds_general_({ calib_state, clickHandler, ...props }) {
+export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.section_data.rds.rds_general_settings)
 
   const [rdsGeneralState, setRdsGeneralState] = React.useState({
@@ -92,15 +92,15 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
           name = target.name,
           value = target.type === 'checkbox' ? Number(target.checked) : rdsGeneralState[name]
 
-    let state_clone = cloneDeep(rdsGeneralState)
+    // let state_clone = cloneDeep(rdsGeneralState)
 
-    if (payload) {
-      state_clone = merge(state_clone, payload)
-    } else {
-      state_clone[name] = value
-    }
+    // if (payload) {
+    //   state_clone = merge(state_clone, payload)
+    // } else {
+    //   state_clone[name] = value
+    // }
 
-    const req_data_str = dataArray_to_string(state_clone)
+    const req_data_str = dataArray_to_string(rdsGeneralState)
 
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
@@ -229,7 +229,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
         <div className='item_input'>
           <FormInput
             id={`input_signal_type_calib_input`}
-            name={`trans_genre_calib`}
+            name={`trans_genre`}
             type='select'
             input_value={rdsGeneralState.trans_genre}
             title='Тип передачи'
@@ -237,7 +237,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
             changeHandler={handleChange} />
           <FormInput
             id={`trans_genre_calib_save`}
-            name={`trans_genre_calib`}
+            name={`trans_genre`}
             clickHandler={handleClick_save}
             label='Сохранить'
             type='button' />
@@ -257,7 +257,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
         <div className='item_input'>
           <FormInput
             id={`input_signal_type_calib_input`}
-            name={`trans_type_calib`}
+            name={`trans_type`}
             type='select'
             input_value={rdsGeneralState.trans_type}
             title='Тип передачи'
@@ -268,7 +268,7 @@ export default function Slave_Rds_general_({ calib_state, clickHandler, ...props
             changeHandler={handleChange} />
           <FormInput
             id={`trans_type_calib_save`}
-            name={`trans_type_calib`}
+            name={`trans_type`}
             clickHandler={handleClick_save}
             label='Сохранить'
             type='button' />

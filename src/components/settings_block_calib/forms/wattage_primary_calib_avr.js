@@ -9,17 +9,17 @@ import { deepKeyExists } from '../../../logic/utilites';
 import { cloneDeep } from 'lodash';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
 
-function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
+function PowerCalibSettings_AVR({ calib_state, adc_store, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => {
   //   if (deepKeyExists(store, 'calib_power')) {
   //     return store.globalStore.global_data.calib_state.data.calib_power
   //   } else return ''
   // }),
-  const adcPower_store = useSelector((store) => {
-      if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.power_calib
-      } else return ''
-    })
+  // const adc_store = useSelector((store) => {
+  //     if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
+  //       return store.globalStore.global_data.status_data.calib_adc?.power_calib
+  //     } else return ''
+  //   })
 
   const [powerCalibState, setPowerCalibState] = React.useState({
     dac_value: '',
@@ -141,7 +141,7 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {adcPower_store?.output_power}
+            АЦП: {adc_store?.output_power}
           </span>
           <FormInput
             id={`output_power_calib_input`}
@@ -237,7 +237,7 @@ function PowerCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
         </div>
         <div className='item_input'>
           <span className='item_adc_value' title='АЦП(отр) -x%*АЦП(вых)'>
-            АЦП<sub>отр. после комп.</sub>: {adcPower_store?.coupling_coeff}
+            АЦП<sub>отр. после комп.</sub>: {adc_store?.coupling_coeff}
           </span>
           <FormInput
             id={`сoupling_coeff_calib_input`}

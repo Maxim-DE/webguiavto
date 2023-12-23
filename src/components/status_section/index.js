@@ -250,7 +250,7 @@ function StatusSection(props) {
             data={status_store.status_logs}
             full_data={status_store.status_full_logs}
             updateHandler={handleUpdate} />
-          {auth_store.auth_access.settings &&
+          {/* {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
             device_type={device_type}
@@ -258,7 +258,7 @@ function StatusSection(props) {
             settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.settings_data}
             status_data={status_store}
           />
-          }
+          } */}
         </div>
       </div>
     </section>

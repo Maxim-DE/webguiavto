@@ -4,14 +4,9 @@ import SettingsSectionWrap from '../../../../settings_section_wrap';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../../../store/reducers/avr_control_reducers';
 import CalibDeviceSwitch from '../../../../calib_device_switch';
-import GeneralCalibSettings_AVR from '../../../../settings_block_calib/forms/general_calib_avr';
-import SignalCalibSettings from '../../../../settings_block_calib/forms/signal_level_calib';
-import SignalThresholdSettings from '../../../../settings_block_calib/forms/signal_threshold_calib';
 import SlaveAddGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_add_general_calib_avr';
 import SlaveGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_general_calib_avr';
-import Slave_Rds_general_ from '../../../../settings_block_calib/forms/slave_rds_general_avr';
-import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/wattage_primary_calib_avr';
-import { dataArray_to_string } from '../../../../../logic/request_logic';
+import Slave_Rds_general_AVR from '../../../../settings_block_calib/forms/slave_rds_general_avr';
 
 
 export const AvrControl = (props) => {
@@ -32,6 +27,8 @@ export const AvrControl = (props) => {
 
   // const rds_enable = device_store?.slave_general?.rds_enable
   const [rdsEnable, setRdsEnable] = useState(false)
+
+  const res_ex_settings_enable = 0
 
   React.useEffect(() => {
     const request_obj = {
@@ -62,7 +59,8 @@ export const AvrControl = (props) => {
     <CalibDeviceSwitch
       parent_state={deviceState}
       state_handler={setDeviceState}
-      clickHandler={props.updateHandler} />
+      clickHandler={props.updateHandler}
+      settings_type={res_ex_settings_enable} />
 
   return (
     <>
@@ -80,7 +78,7 @@ export const AvrControl = (props) => {
         clickHandler={handleClick} 
         rdsHandler={setRdsEnable} />
       {rdsEnable == 1 &&
-        <Slave_Rds_general_
+        <Slave_Rds_general_AVR
           section_name="rds_settings"
           calib_state={device_store?.slave_rds}
           clickHandler={handleClick} />

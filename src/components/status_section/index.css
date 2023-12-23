@@ -19,7 +19,7 @@
     --columns: 3;
 
     grid-template-areas: 
-      'logs logs settings';
+      'logs logs logs';
   }
   
   .status_settings {

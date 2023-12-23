@@ -13,6 +13,7 @@ import Slave_Rds_general_ from '../../../../settings_block_calib/forms/slave_rds
 import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/wattage_primary_calib_avr';
 import { dataArray_to_string } from '../../../../../logic/request_logic';
 import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr';
+import { deepKeyExists } from '../../../../../logic/utilites';
 
 
 export const AvrDevicesCalib = (props) => {
@@ -27,12 +28,15 @@ export const AvrDevicesCalib = (props) => {
   })
 
   const section_store = useSelector((store) => store.globalStore.global_data.section_data?.avr_device_control),
+        adc_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc),
         availiability_store = section_store?.device_avaliability,
-        device_store = section_store.device_data?.[`device_${Number(deviceState.active_device) + 1}`]
+        device_store = section_store.device_data?.[`device_${Number(deviceState.active_device) + 1}`],
+        adc_device_store = adc_store?.[`device_${Number(deviceState.active_device) + 1}`]
 
 
   // const rds_enable = device_store?.slave_general?.rds_enable
   const [rdsEnable, setRdsEnable] = useState(false)
+  const res_ex_settings_enable = 1
 
   React.useEffect(() => {
     const request_obj = {
@@ -63,7 +67,8 @@ export const AvrDevicesCalib = (props) => {
     <CalibDeviceSwitch
       parent_state={deviceState}
       state_handler={setDeviceState}
-      clickHandler={props.updateHandler} />
+      clickHandler={props.updateHandler}
+      settings_type={res_ex_settings_enable} />
 
   return (
     <>
@@ -91,7 +96,8 @@ export const AvrDevicesCalib = (props) => {
         clickHandler={handleClick} /> */}
       <PowerCalibSettings_AVR
         calib_state={device_store?.calib_power}
-        clickHandler={handleClick} />
+        clickHandler={handleClick}
+        adc_store={adc_device_store?.power_calib} />
       <SignalCalibSettings
         calib_state={device_store?.calib_signal}
         clickHandler={handleClick} />

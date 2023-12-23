@@ -95,7 +95,8 @@ export default function ConfFileCalib_AVR(props) {
   }, [props.calib_data])
 
   React.useEffect(() => {
-    if (!hex_dropzone_instance.current) {
+    console.log(hex_dropzone_instance.current);
+    if (!hex_dropzone_instance.current && hex_dropzone_instance.current != null) {
       hex_dropzone_instance.current = new Dropzone(hex_dropzone_ref.current, {
         url: '/conf_file_upload',
         chunking: true,

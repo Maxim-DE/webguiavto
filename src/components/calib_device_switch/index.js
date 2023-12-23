@@ -8,7 +8,7 @@ import { reducers } from '../../store/reducers/avr_control_reducers'
 const device_amount = 3
 const indicator_colors_arr = [...Array(device_amount).keys()].map(i => getRandomColor())
 
-function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, ...props }) {
+function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, settings_type, ...props }) {
   const amount_arr = [...Array(device_amount).keys()].map(i => i + 1)
 
   const device_num = parent_state.active_device,
@@ -113,17 +113,19 @@ function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, ...props
           </>
         )
       })}
-      <div className="avr_device_item_wrap" key={3}>
-        <button
-          className={`avr_device_item button_input ${device_num == 3 ? 'active_type' : ''}`}
-          type='button'
-          name={`avr_device_${3}`}
-          onClick={handle_deviceChange}
-          >
-          {/* <div className="device_indicator" style={indicator_styles}></div> */}
-          Резерв. передатчик
-        </button>
-      </div>
+      {settings_type == 1 &&
+        <div className="avr_device_item_wrap" key={3}>
+          <button
+            className={`avr_device_item button_input ${device_num == 3 ? 'active_type' : ''}`}
+            type='button'
+            name={`avr_device_${3}`}
+            onClick={handle_deviceChange}
+            >
+            {/* <div className="device_indicator" style={indicator_styles}></div> */}
+            Резерв. передатчик
+          </button>
+        </div>
+      }
     </div>
   )
 }
