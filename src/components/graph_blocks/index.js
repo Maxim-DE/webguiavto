@@ -22,7 +22,6 @@ export const new_status_colors = {
   2: '#fe5f55', // LOCK(ERROR)
   4: '#f9c22e', // TURN_ON
   100: '#8D8D92' // DISCONNECT
-
 }
 
 function Status_graphs(props) {
@@ -123,17 +122,36 @@ function Status_graphs(props) {
 
         if (Array.isArray(graph_block_data[item])) {
           let input_value = graph_block_data[item][0],
-            divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
+            divider, 
             status = graph_block_data[item][2],
             postfix = graph_block_data[item][3] ?
               ' ' + graph_block_data[item][3] :
               '',
             round_index
 
-          round_index = Math.log10(divider)
+          if (Array.isArray(input_value)) {
+            const result_arr = input_value.map((val_instance, val_index) => {
+              const arr_val = val_instance[0] ?? 255
 
-          new_value = (input_value / divider).toFixed(round_index)
-          new_value = new_value + postfix
+              divider = val_instance[1] ?? 1
+              round_index = Math.log10(divider)
+              postfix = val_instance[2] ?? postfix
+
+              return (arr_val / divider).toFixed(round_index) + postfix
+            })
+            new_value = result_arr.join('/')
+
+          } else if (typeof input_value == 'string') {
+            new_value = input_value
+            
+
+          } else {
+            divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
+            round_index = Math.log10(divider)
+  
+            new_value = (input_value / divider).toFixed(round_index)
+            new_value = new_value + postfix
+          }
 
           if (status != 0) {
             graph_block_value_span.style.fontWeight = "500";
@@ -146,6 +164,7 @@ function Status_graphs(props) {
 
 
         } else {
+          graph_block_value_span.style.fontWeight = "300";
           new_value = graph_block_data[item]
         }
 
