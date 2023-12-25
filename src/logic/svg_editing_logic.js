@@ -173,16 +173,18 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
   const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
 
-  if (signal_paths_list && current_signal_path) {
-    const current_path_str = current_signal_path.join('')
-    signal_paths_list.forEach(path => {
-      if (path.id.includes(current_path_str)) {
-        path.style.display = 'block'
-      } else {
-        path.style.display = 'none'
-      }
-    })
+  signal_paths_list.forEach(path => {
+    path.style.display = 'none'
+  })
+
+  if (Array.isArray(current_signal_path)) {
+    current_signal_path.forEach(path => {
+      handlePathDisplay(signal_paths_list, path)      
+    });
+  } else {
+    handlePathDisplay(signal_paths_list, current_signal_path)
   }
+
 
   // if (amp_1_buttons_list) {
   //   amp_1_buttons_list.forEach((button) => {
@@ -223,4 +225,15 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
 
   return svg
+}
+
+function handlePathDisplay(signal_paths_list, current_signal_path) {
+  if (signal_paths_list && current_signal_path) {
+    const current_path_str = current_signal_path
+    signal_paths_list.forEach(path => {
+      if (path.id.includes(current_path_str)) {
+        path.style.display = 'block'
+      }
+    })
+  }
 }

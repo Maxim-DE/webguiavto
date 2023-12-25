@@ -54,7 +54,7 @@ function avr_svg_event_editing(svg, clickHandler) {
     });
   }
 
-  const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
+  const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id*="set_ex"]`)
 
   if (res_exiter_conf_buttons_list) {
     const res_handling_callback = avr_buttons_actions.set_ex_conf_handler
