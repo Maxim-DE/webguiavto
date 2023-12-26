@@ -105,14 +105,14 @@ function Status_graphs(props) {
         let graph_block_value_span = null
 
         if (graph_block_value_span_id == undefined) {
-          console.error("Can't get value span id with key: " + key)
+          console.error("Can't get value span id with item: " + item)
           continue
         }
 
         try {
           graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
         } catch (error) {
-          console.error("Can't get value span with key: " + key)
+          console.error("Can't get value span with id: " + graph_block_value_span_id)
           continue
         }
 
