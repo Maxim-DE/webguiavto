@@ -5,8 +5,8 @@ import FormInput from '../../../../../form_input'
 
 export default function File_download(props) {
   const download_links = {
-    user_conf: 'ReadFile.hex?userlog$1',
-    sys_log: 'ReadFile.hex?syslog$1',
+    user_conf: 'ReadUserLog.txt',
+    sys_log: 'ReadSysLog.txt',
     all_file: 'ReadFile.hex?userlog$1;syslog$1'
   }
 
@@ -70,7 +70,7 @@ export default function File_download(props) {
             type="button" /> */}
         </div>
       </li>
-      <li
+      {/* <li
         key='all_file_download'
         id='all_file_download'
         className="settings_item">
@@ -89,7 +89,7 @@ export default function File_download(props) {
             rel='noopener noreferrer'
             download>
             Скачать
-          </a>
+          </a> */}
           {/* <FormInput
             id={`all_file_download_input`}
             name={`all_file_download`}
@@ -99,8 +99,8 @@ export default function File_download(props) {
             }}
             label='Скачать'
             type="button" /> */}
-        </div>
-      </li>
+        {/* </div>
+      </li> */}
     </SettingsBlockWrap>
   )
 }
