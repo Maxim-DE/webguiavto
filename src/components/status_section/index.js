@@ -48,6 +48,8 @@ function StatusSection(props) {
   const device_status_output = Object.keys(status_store).length > 0 && device_status(status_store.status_info.device_status),
         device_time_output = Object.keys(status_store).length > 0 && status_store.status_info.time
 
+  const status_magic_number = Object.keys(status_store).length > 0 && status_store.status_info?.magic_number
+
 
   const handleUpdate = request => {
     props.updateHandler(request);
@@ -154,6 +156,21 @@ function StatusSection(props) {
       sectionActions.clean_section(`${props.section_name}_section`)
     }
   }, [statusSectionRef])
+
+  React.useEffect(() => {
+    dispatch(err_erase('status'))
+
+    let request_obj = {
+      address: `info.cgi`,
+      reducer: core_reducers.section_data,
+      notifications: {
+        good: 'none',
+        bad: 'none'
+      },
+    }
+
+    props.updateHandler(request_obj);
+  }, [status_magic_number])
 
   const handleConnectionEstablish = () => {
     timerRef.current = setInterval(handleConnectionRequest.bind(props), 1000)
