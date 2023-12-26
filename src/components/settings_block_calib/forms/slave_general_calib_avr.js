@@ -139,13 +139,13 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
           <label
             htmlFor={`input_pwr_calib_input`}
             className="settings_itemLabel">
-            Входная мощность
+            Выходная мощность
           </label>
         </div>
         <div className='item_input'>
           <FormInput
             id={`input_power_calib_input`}
-            name={`input_pwr_calib`}
+            name={`input_power_calib`}
             changeHandler={handleChange}
             input_value={generalCalibState.input_power}
             style={{ margin: '0', maxWidth: '75px' }}

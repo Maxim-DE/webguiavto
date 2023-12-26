@@ -66,16 +66,16 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
         let state_obj = { [name]: value }
         state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
-        value = generalCalibState[name]
+        value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
         state_to_save = { [name]: value }
       }
     } else {
-      value = generalCalibState[name]
+      value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
       state_to_save = { [name]: value }
     }
 
     const request_obj = {
-      address: 'calib_signal.cgi',
+      address: 'calib_add_general.cgi',
       data: `${name}$${value}`,
       reducer: reducers.save_avr_device_data,
       update_data: generalCalibState,
