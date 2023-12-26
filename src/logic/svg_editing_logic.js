@@ -1,6 +1,6 @@
 import { status_colors } from "../components/graph_blocks"
 import { store } from "../store/store"
-import { filter_obj } from "./utilites"
+import { filter_obj, getRandomColor } from "./utilites"
 
 export default function svg_editing_logic(svg, data_svg, device_type) {
   switch (device_type) {
@@ -177,12 +177,15 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     path.style.display = 'none'
   })
 
+  const signal_path_layer = svg.querySelector(`g[id*="layer_3"]`)
+
+
   if (Array.isArray(current_signal_path)) {
-    current_signal_path.forEach(path => {
-      handlePathDisplay(signal_paths_list, path)      
+    current_signal_path.forEach((path, index) => {
+      handlePathDisplay(signal_path_layer, path, index)
     });
   } else {
-    handlePathDisplay(signal_paths_list, current_signal_path)
+    handlePathDisplay(signal_path_layer, current_signal_path)
   }
 
 
@@ -227,13 +230,18 @@ function avr_svg_editing(svg, data_svg, auth_access) {
   return svg
 }
 
-function handlePathDisplay(signal_paths_list, current_signal_path) {
+function handlePathDisplay(signal_paths_list, current_signal_path, index) {
   if (signal_paths_list && current_signal_path) {
     const current_path_str = current_signal_path
-    signal_paths_list.forEach(path => {
-      if (path.id.includes(current_path_str)) {
-        path.style.display = 'block'
+
+    const required_path = signal_paths_list.querySelector(`g[id *= "${current_path_str}"]`)
+    required_path.style.display = 'block'
+
+      if (index && index > 0) {
+        const path_color = getRandomColor()
+        required_path.children[0].style.stroke = path_color
+        required_path.children[1].style.stroke = path_color
       }
-    })
+    // })
   }
 }
