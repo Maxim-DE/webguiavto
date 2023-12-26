@@ -393,7 +393,7 @@ function Syslog_calib(props) {
                 // class='log_refresh'
                 label='Очистить журнал'
                 type="button" />
-                <a href="http://192.168.1.114/SysLog.bin" download>
+                <a href="ReadSysLog.txt" >
                 <FormInput
                   id={`calib_password_save`}
                   name={`calib_password`}
