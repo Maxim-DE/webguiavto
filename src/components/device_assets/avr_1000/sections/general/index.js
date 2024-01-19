@@ -5,6 +5,7 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 import Time_settings from './forms/time_settings'
 import File_download from './forms/file_download'
 import { reducers } from '../../../../../store/reducers/core_store_reducers'
+import Misc_settings from './forms/misc_settings'
 
 export default function GeneralSettingsSection(props) {
 
@@ -44,6 +45,9 @@ export default function GeneralSettingsSection(props) {
         clickHandler={updateHandler} />
       <File_download
         section_name="settings" />
+      <Misc_settings
+        section_name="misc"
+        clickHandler={updateHandler} />
 
     </SettingsSectionWrap>
   )

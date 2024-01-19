@@ -156,8 +156,8 @@ export default function Modbus_master_AVR_calib(props) {
   return (
     <Settings_block_calib
       header={`modbus - master`}
-      disabled={!masterSlaveCalibState.master_form_available}
-      disableHandler={handleFormDisable}
+      // disabled={!masterSlaveCalibState.master_form_available}
+      // disableHandler={handleFormDisable}
       settings_type={`genera_modbus_slave_calib`} >
       <li
         key='master_baudrate_calib'

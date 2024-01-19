@@ -59,6 +59,7 @@ function Firmware_calib(props) {
           </label>
         </div>
       </li>
+      {/* 
       <li
         key='firmware_add_version_label'
         className="settings_item">
@@ -114,10 +115,11 @@ function Firmware_calib(props) {
         </div>
       </li>
       }
+    */}
       <li className="group_divider"></li>
       <Hex_upload
-        updateHandler={props.clickHandler} />
-
+        updateHandler={props.clickHandler} /> 
+        
       {/* TEST TEST TEST */}
       <li
         key='firmware_refresh_calib'

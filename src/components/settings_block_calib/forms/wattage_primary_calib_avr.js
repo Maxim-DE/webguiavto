@@ -75,7 +75,12 @@ function PowerCalibSettings_AVR({ calib_state, adc_store, clickHandler, ...props
 
     if (calib_state != undefined && calib_state[name] != undefined) {
       if (Array.isArray(calib_state[name])) {
-        value = powerCalibState[name] * 10
+        if (typeof calib_state[name][1] == 'number' &&
+          calib_state[name][1] > 0) {
+          value = powerCalibState[name] * calib_state[name][1]
+        } else {
+          value = powerCalibState[name]
+        }
         let state_obj = { [name]: value }
         state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {

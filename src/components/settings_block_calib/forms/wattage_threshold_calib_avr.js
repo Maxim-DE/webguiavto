@@ -66,7 +66,12 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
 
     if (calib_state != undefined && calib_state[name] != undefined) {
       if (Array.isArray(calib_state[name])) {
-        value = powerCalibState[name] * 10
+        if (typeof calib_state[name][1] == 'number' &&
+          calib_state[name][1] > 0) {
+          value = powerCalibState[name] * calib_state[name][1]
+        } else {
+          value = powerCalibState[name]
+        }
         let state_obj = { [name]: value }
         state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
@@ -87,7 +92,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
         bad: 'default'
       },
       save_data: {
-        calib_power: state_to_save
+        calib_power_threshold: state_to_save
       }
     }
 

@@ -9,7 +9,9 @@ import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import cloneDeep from 'lodash/cloneDeep'
 import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
-import { getTime } from '../../../../../../logic/utilites'
+import { differenceObjectDeep, getTime, isEmpty, objectTester } from '../../../../../../logic/utilites'
+import { diff } from 'deep-object-diff'
+import { useFormValidation } from '../../../../../../logic/validation/formValidation_hook'
 
 export default function Time_settings(props) {
 
@@ -19,6 +21,10 @@ export default function Time_settings(props) {
     date: '',
     time: ''
   })
+
+  const { isFormValid, validStatus_getter } = useFormValidation()
+
+  const state_prev_copy = React.useRef(null)
 
   React.useEffect(() => {
     console.log(timeSettings_store);
@@ -31,14 +37,12 @@ export default function Time_settings(props) {
       }
 
       setTimeSettingsState(settings_state_copy)
+
+      state_prev_copy.current = settings_state_copy
     }
   }, [timeSettings_store])
 
-  React.useEffect(() => {
-    console.log(timeSettingsState);
-  }, [timeSettingsState])
-
-    const state_handler = (state) => {
+  const state_handler = (state) => {
     let target_state_clone = cloneDeep(timeSettingsState)
 
     for (const key in state) {
@@ -60,7 +64,11 @@ export default function Time_settings(props) {
   }
 
   const handleClick_save = (event) => {
-    const req_data_str = dataArray_to_string(timeSettingsState)
+    const state_diff = event.target.type === 'checkbox' ? { [event.target.name]: timeSettingsState[event.target.name] } :
+                                                          diff(state_prev_copy.current, timeSettingsState),
+
+          req_data_str = event.target.type === 'checkbox' ? `${event.target.name}$${Number(event.target.checked)}` : 
+                                                        dataArray_to_string(state_diff)
 
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
@@ -71,7 +79,7 @@ export default function Time_settings(props) {
         bad: 'default'
       },
       save_data: {
-        time_settings: timeSettingsState
+        time_settings: state_diff
       }
     }
 
@@ -110,7 +118,8 @@ export default function Time_settings(props) {
     <SettingsBlockWrap header={'задание времени'}
                        settings_type={'time_settings'}
                        section_name={props.section_name}
-                       save_handler={handleClick_save}>
+                       save_handler={handleClick_save}
+                       disable_save={!isFormValid}>
       
       {/* <li
         key='date'
@@ -155,7 +164,8 @@ export default function Time_settings(props) {
       <Time_server_sync_settings
         parent_state={timeSettings_store}
         state_handler={state_handler}
-        clickHandler={props.clickHandler} />
+        clickHandler={props.clickHandler}
+        validation_tools={{ isFormValid, validStatus_getter }} />
     </SettingsBlockWrap>
   )
 }

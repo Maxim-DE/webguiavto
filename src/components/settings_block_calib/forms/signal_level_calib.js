@@ -8,6 +8,8 @@ import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 import cloneDeep from 'lodash/cloneDeep';
 import { useSelector } from 'react-redux';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
+import { useFormValidation } from '../../../logic/validation/formValidation_hook';
+import { maxLength, required } from '../../../logic/validation/validators';
 
 export default function SignalCalibSettings({ calib_state, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
@@ -18,6 +20,8 @@ export default function SignalCalibSettings({ calib_state, clickHandler, ...prop
     signal_1_value: 1,
     signal_2_value: 2
   })
+
+  const { isFormValid, validStatus_getter, validInputList } = useFormValidation()
 
   React.useEffect(() => {
     if (!calib_state) {
@@ -62,7 +66,12 @@ export default function SignalCalibSettings({ calib_state, clickHandler, ...prop
 
     if (calib_state != undefined && calib_state[name] != undefined) {
       if (Array.isArray(calib_state[name])) {
-        value = signalCalibState[name] * 10
+        if (typeof calib_state[name][1] == 'number' &&
+          calib_state[name][1] > 0) {
+          value = signalCalibState[name] * calib_state[name][1]
+        } else {
+          value = signalCalibState[name]
+        }
         let state_obj = { [name]: value }
         state_to_save = calib_state_conversion(state_obj, calib_state)
       } else {
@@ -96,7 +105,7 @@ export default function SignalCalibSettings({ calib_state, clickHandler, ...prop
   const handleClick_calib_zeros = (event) => {
     const request_obj = {
       address: 'calib_signal_zero.cgi',
-      data: `signal$${signalCalibState.signal_type}`,
+      // data: `signal$${signalCalibState.signal_type}`,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -142,23 +151,47 @@ export default function SignalCalibSettings({ calib_state, clickHandler, ...prop
             input_value={signalCalibState[`signal_${signalCalibState.signal_type}_value`]}
             style={{ margin: '0', maxWidth: '75px' }}
             placeholder='дБ'
+            validators={[
+              required()
+            ]}
+            formValidHandler={validStatus_getter}
             type="text" />
           <FormInput
             id={`signal_value_calib_save`}
             name={`signal_${signalCalibState.signal_type}_value_calib`}
             clickHandler={handleClick_save}
             label='Сохранить'
+            disabled={!validInputList[`signal_${signalCalibState.signal_type}_value_calib`]}
             type="button" />
-          <div className="vertical_li_divider"></div>
+          {/* <div className="vertical_li_divider"></div>
           <FormInput
             id={`signal_zero_calib_input`}
             name={`signal_${signalCalibState.signal_type}_zero_calib`}
             label='Калибровка нуля'
             clickHandler={handleClick_calib_zeros}
+            type="button" /> */}
+        </div>
+      </li>
+      <li
+        key='signal_zero_calib'
+        id='signal_zero_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`signal_zero_calib_input`}
+            className="settings_itemLabel">
+            Калибровка всех нулей каналов
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`signal_zero_calib_input`}
+            name={`signal_zero_calib`}
+            label='Калибровать'
+            clickHandler={handleClick_calib_zeros}
             type="button" />
         </div>
       </li>
-
     </Settings_block_calib>
   )
 }

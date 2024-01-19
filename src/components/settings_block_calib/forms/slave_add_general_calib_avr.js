@@ -7,6 +7,11 @@ import { calib_state_conversion } from '../../../logic/calib_state_conversion';
 
 import cloneDeep from 'lodash/cloneDeep';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
+import { diff } from 'deep-object-diff';
+import { dataArray_to_string } from '../../../logic/request_logic';
+import SettingsBlockWrap from '../../settings_block_wrap';
+import { hasCyrillicSymbols } from '../../../logic/validation/validators';
+import { useFormValidation } from '../../../logic/validation/formValidation_hook';
 
 export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ...props }) {
 
@@ -14,6 +19,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
     radio_label: '',
     rds_enable: 0
   })
+
+  const state_prev_copy = React.useRef(null)
 
   React.useEffect(() => {
     if (!calib_state) {
@@ -55,37 +62,61 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   }
 
   const handleClick_save = (event) => {
+    event.preventDefault()
+
     const target = event.target,
-      name = target.name.replace('_calib', '')
+          name = target.name.replace('_calib', '')
 
-    let value, state_to_save
+    // const target_value = target.type === 'checkbox' ? Number(target.checked) : generalCalibState[name]
 
-    if (calib_state != undefined && calib_state[name] != undefined) {
-      if (Array.isArray(calib_state[name])) {
-        value = generalCalibState[name] * 10
-        let state_obj = { [name]: value }
-        state_to_save = calib_state_conversion(state_obj, calib_state)
-      } else {
-        value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
-        state_to_save = { [name]: value }
-      }
-    } else {
-      value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
-      state_to_save = { [name]: value }
-    }
+    const state_diff = event.target.type === 'checkbox' ? { [name]: generalCalibState[name] } : 
+                                                          diff(state_prev_copy.current, generalCalibState),
+
+          req_data_str = event.target.type === 'checkbox' ? `${name}$${Number(event.target.checked)}` : 
+                                                            dataArray_to_string(state_diff, (value, key) => {
+                                                              if (calib_state != undefined && calib_state[key] != undefined) {
+                                                                if (Array.isArray(calib_state[key])) {
+                                                                  if (typeof calib_state[key][1] == 'number' &&
+                                                                    calib_state[key][1] > 0)
+                                                                    return value * calib_state[key][1]
+                                                                } else {
+                                                                  return typeof value == "boolean" ? Number(value) : value;
+                                                                }
+                                                              } else {
+                                                                return typeof value == "boolean" ? Number(value) : value;
+                                                              }
+      })
+
+    // const target = event.target,
+    //   name = target.name.replace('_calib', '')
+
+    // let value, state_to_save
+
+    // if (calib_state != undefined && calib_state[name] != undefined) {
+    //   if (Array.isArray(calib_state[name])) {
+    //     value = generalCalibState[name] * 10
+    //     let state_obj = { [name]: value }
+    //     state_to_save = calib_state_conversion(state_obj, calib_state)
+    //   } else {
+    //     value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
+    //     state_to_save = { [name]: value }
+    //   }
+    // } else {
+    //   value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
+    //   state_to_save = { [name]: value }
+    // }
 
     const request_obj = {
       address: 'calib_add_general.cgi',
-      data: `${name}$${value}`,
+      data: req_data_str,
       reducer: reducers.save_avr_device_data,
-      update_data: generalCalibState,
       notifications: {
         good: 'default',
         bad: 'default'
       },
 
       save_data: {
-        calib_signal: state_to_save
+        slave_add_general: state_diff
       }
     }
 
@@ -94,9 +125,11 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   }
 
   return (
-    <Settings_block_calib header={`дополнительно`}
+    <SettingsBlockWrap
+      header={`дополнительно`}
       settings_type={`slave_add_general`}
-      section_name={props.section_name}>
+      section_name={props.section_name}
+      save_handler={handleClick_save}>
       <li
         key='radio_label_calib'
         id='radio_label_calib'
@@ -115,30 +148,25 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             changeHandler={handleChange}
             input_value={generalCalibState.radio_label}
             style={{ margin: '0', maxWidth: '150px' }}
+            max_length={32}
             type="text" />
-          <FormInput
-            id={`radio_label_calib_save`}
-            name={`radio_label_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
         </div>
       </li>
       <li
-        key='rds_enable_calib'
-        id='rds_enable_calib'
+        key='rds_enable'
+        id='rds_enable'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`rds_enable_calib_input`}
+            htmlFor={`rds_enable_input`}
             className="settings_itemLabel">
             Параметры RDS
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`rds_enable_calib_input`}
-            name={`rds_enable_calib`}
+            id={`rds_enable_input`}
+            name={`rds_enable`}
             changeHandler={(e) => {
               handleChange(e)
               handleClick_save(e)
@@ -401,6 +429,6 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type='button' />
         </div>
       </li> */}
-    </Settings_block_calib>
+    </SettingsBlockWrap>
   )
 }

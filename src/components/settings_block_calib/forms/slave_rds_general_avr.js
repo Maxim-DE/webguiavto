@@ -11,6 +11,9 @@ import { useSelector } from 'react-redux'
 import Settings_block_calib from '..'
 import { cloneDeep, merge } from 'lodash'
 import { reducers } from '../../../store/reducers/avr_control_reducers'
+import { diff } from 'deep-object-diff'
+import { hasCyrillicSymbols, isHexNumber, isInNumRange } from '../../../logic/validation/validators'
+import { useFormValidation } from '../../../logic/validation/formValidation_hook'
 
 const transTypesArray = ["(none)", "News", "Affairs", "Info", "Sport", "Educate", "Drama", "Culture", "Science", "Varied", "Pop M", "Rock M", "Easy M", "Light M", "Classics", "Other M", "Weather", "Finance", "Children", "Social", "Religion", "Phone In", "Travel", "Leisure", "Jazz", "Country", "Nation M", "Oldies", "Folk M", "Document", "TEST", "Alarm!"];
 
@@ -27,6 +30,10 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
     radio_text: ''
   })
 
+  const {isFormValid, validStatus_getter} = useFormValidation()
+
+  const state_prev_copy = React.useRef(null)
+
   React.useEffect(() => {
     if (calib_state != 'null' && calib_state != undefined) {
       let settings_state_copy = rdsGeneralState
@@ -36,6 +43,8 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
       }
 
       setRdsGeneralState(settings_state_copy)
+
+      state_prev_copy.current = settings_state_copy
     }
   }, [calib_state])
 
@@ -59,7 +68,7 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
       let split_value = target.value,
           separator = ' ',
           limit = 8,
-          unmask_value = split_value.replace(/[^\d]/g, '')
+          unmask_value = split_value.replace(/\s/g, '')
 
       let output = [];
 
@@ -88,9 +97,24 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
   }
 
   const handleClick_save = (event, payload) => {
-    const target = event.target,
-          name = target.name,
-          value = target.type === 'checkbox' ? Number(target.checked) : rdsGeneralState[name]
+    const state_diff = diff(state_prev_copy.current, rdsGeneralState),
+          req_data_str = dataArray_to_string(state_diff, (value, key) => {
+        if (calib_state != undefined && calib_state[key] != undefined) {
+          if (Array.isArray(calib_state[key])) {
+            if (typeof calib_state[key][1] == 'number' &&
+              calib_state[key][1] > 0)
+              return value * calib_state[key][1]
+          } else {
+            return typeof value == "boolean" ? Number(value) : value;
+          }
+        } else {
+          return typeof value == "boolean" ? Number(value) : value;
+        }
+      })
+
+    // const target = event.target,
+    //       name = target.name,
+    //       value = target.type === 'checkbox' ? Number(target.checked) : rdsGeneralState[name]
 
     // let state_clone = cloneDeep(rdsGeneralState)
 
@@ -99,8 +123,6 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
     // } else {
     //   state_clone[name] = value
     // }
-
-    const req_data_str = dataArray_to_string(rdsGeneralState)
 
     const request_obj = {
       address: `set_${props.section_name}.cgi`,
@@ -111,7 +133,7 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
         bad: 'default'
       },
       save_data: {
-        remote_control: rdsGeneralState
+        slave_rds: state_diff
       }
     }
 
@@ -119,10 +141,12 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
   }
 
   return (
-    <Settings_block_calib
+    <SettingsBlockWrap 
       header={'rds - общее'}
       settings_type={'rds_general_settings'}
-      section_name={props.section_name}>
+      section_name={props.section_name}
+      save_handler={handleClick_save}
+      disable_save={!isFormValid} >
       <li
         key='tp_ta_settings'
         id='tp_ta_settings'
@@ -154,12 +178,6 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
               input_value={rdsGeneralState.ta}
               type="checkbox" />
           </span>
-          <FormInput
-            id={``}
-            name={``}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
         </div>
       </li>
       <li
@@ -180,19 +198,18 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
             changeHandler={handleChange}
             input_value={rdsGeneralState.pi}
             style={{ margin: '0', maxWidth: '75px' }}
-            type="text" />
-          <FormInput
-            id={``}
-            name={``}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
+            type="text" 
+            validators={[
+              isHexNumber(),
+              isInNumRange('0x0000', '0xFFFF')
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
         key='ps_name_settings'
         id='ps_name_settings'
-        className="settings_item calib">
+        className="settings_item">
         <div className='item_header'>
           <label
             htmlFor={`ps_name_input`}
@@ -206,13 +223,11 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
             name={`ps_name`}
             changeHandler={handleChange}
             input_value={rdsGeneralState.ps_name}
-            type="text_large_split" />
-          <FormInput
-            id={``}
-            name={``}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
+            type="text_large_split"
+            validators={[
+              hasCyrillicSymbols()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -235,12 +250,6 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
             title='Тип передачи'
             variants={transTypesArray}
             changeHandler={handleChange} />
-          <FormInput
-            id={`trans_genre_calib_save`}
-            name={`trans_genre`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
         </div>
       </li>
       <li
@@ -266,18 +275,12 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
               'Музыка'
             ]}
             changeHandler={handleChange} />
-          <FormInput
-            id={`trans_type_calib_save`}
-            name={`trans_type`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
         </div>
       </li>
       <li
         key='radio_text_settings'
         id='radio_text_settings'
-        className="settings_item calib">
+        className="settings_item">
         <div className='item_header'>
           <label
             htmlFor={`radio_text_input`}
@@ -291,13 +294,12 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
             name={`radio_text`}
             changeHandler={handleChange}
             input_value={rdsGeneralState.radio_text}
-            type="text_large" />
-          <FormInput
-            id={``}
-            name={``}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
+            max_length={64}
+            type="text_large"
+            validators={[
+              hasCyrillicSymbols()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       {/* <Alt_station_manage
@@ -306,6 +308,6 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
         update_handler={props.clickHandler}
         save_handler={handleClick_save}
         parent_props={calib_state} /> */}
-    </Settings_block_calib>
+    </SettingsBlockWrap>
   )
 }
