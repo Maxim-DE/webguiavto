@@ -177,12 +177,20 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     path.style.display = 'none'
   })
 
-  const signal_path_layer = svg.querySelector(`g[id*="layer_3"]`)
+  const signal_path_layer = svg.querySelector(`g[id*="layer_3"]`),
+        signal_path_colors = [
+          "#FE5F55",
+          "#7D83FF",
+          "#6C534E",
+          "#0A2463",
+          "#F49F0A"
+        ]
 
 
   if (Array.isArray(current_signal_path)) {
     current_signal_path.forEach((path, index) => {
       handlePathDisplay(signal_path_layer, path, index)
+      handlePathColor(signal_path_layer, path, signal_path_colors[index])
     });
   } else {
     handlePathDisplay(signal_path_layer, current_signal_path)
@@ -235,13 +243,28 @@ function handlePathDisplay(signal_paths_list, current_signal_path, index) {
     const current_path_str = current_signal_path
 
     const required_path = signal_paths_list.querySelector(`g[id *= "${current_path_str}"]`)
-    required_path.style.display = 'block'
-
-      if (index && index > 0) {
-        const path_color = getRandomColor()
-        required_path.children[0].style.stroke = path_color
-        required_path.children[1].style.stroke = path_color
-      }
+    if (required_path) {
+      required_path.style.display = 'block'
+  
+        // if (index && index > 0) {
+        //   const path_color = getRandomColor()
+        //   required_path.children[0].style.stroke = path_color
+        //   required_path.children[1].style.stroke = path_color
+        // }
+    }
     // })
+  }
+}
+
+function handlePathColor(signal_paths_list, current_signal_path, path_color) {
+  if (current_signal_path) {
+
+    const current_path_str = current_signal_path
+    const required_path = signal_paths_list.querySelector(`g[id *= "${current_path_str}"]`)
+    
+    if (required_path) {
+      required_path.children[0].style.stroke = path_color
+      required_path.children[1].style.stroke = path_color
+    }
   }
 }
