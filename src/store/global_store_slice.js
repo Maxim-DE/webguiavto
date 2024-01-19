@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { merge } from "lodash"
+import { merge, mergeWith } from "lodash"
 
 const initialState = {
   global_data: {
@@ -41,7 +41,11 @@ export const globalStoreSlice = createSlice({
   reducers: {
     refreshGlobalStore: (state, action) => {
       const data_to_merge = action.payload
-      state = merge(state, data_to_merge)
+      state = mergeWith(state, data_to_merge, (src, obj) => {
+        if (Array.isArray(obj)) {
+          return obj;
+        }
+      })
     },
   }
 })
