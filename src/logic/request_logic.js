@@ -7,7 +7,7 @@ function sectionData_format(state, section_name, data) {
 }
 
 
-function dataArray_to_string(data_array) {
+function dataArray_to_string(data_array, add_handle_callback) {
   let block_data = data_array;
   let data_string = '';
 
@@ -15,17 +15,26 @@ function dataArray_to_string(data_array) {
 
   function recursvive_obj_handle(object) {
     for (const key in object) {
-      if (object[key].length === 0) {
-        data_string += `${key}$NULL;`
-        continue
-  
-      } else if (typeof object[key] === 'object') {
+      if (typeof object[key] === 'object') {
         recursvive_obj_handle(object[key])
+      } else if (add_handle_callback) {
+        let final_result
+
+        if (typeof object[key] === 'boolean') {
+          final_result = add_handle_callback(Number(object[key]), key)
+        } else {
+          final_result = add_handle_callback(object[key], key)
+        }
+
+        data_string += `${key}$${final_result};`
       } else if (typeof object[key] === 'boolean') {
         data_string += `${key}$${Number(object[key])};`
+      } else if (object[key].length === 0) {
+        data_string += `${key}$NULL;`
+        continue
       } else {
         data_string += `${key}$${object[key]};`
-      }
+      } 
     }
   }
 
