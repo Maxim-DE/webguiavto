@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css'
@@ -7,11 +7,14 @@ import './index.css'
 import { MdOutlineExposurePlus2 } from 'react-icons/md'
 import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
+import { IoAlertOutline } from "react-icons/io5";
 
 import h_and_min_input from '../custom_inputs/silence_det_border_time'
 import silence_det_channel_modes_input from '../custom_inputs/silence_det_channel_modes'
-import { roundDigits } from '../../logic/utilites';
+import { isFocused, roundDigits } from '../../logic/utilites';
 import { toast } from 'react-toastify';
+import { validateValue } from '../../logic/validation/validate_value';
+import InputTooltip from './tooltip_component';
 
 function FormInput(
   {
@@ -29,14 +32,71 @@ function FormInput(
     // step,
     // max,
     // min,
+    // validators
     ...props
   }
 ) {
 
+  const [isDirty, setDirty] = useState(false)
+
+  const [isError, setError] = useState(null)
+
   const [openModal, setOpenModal] = React.useState(false);
 
-  const handleChange = (event) => {
+  const addInput_ref = React.useRef(null)
+
+  const handleBlur = useCallback(async () => {
+    if (props.validators && Array.isArray(props.validators)) {
+      setError(await validateValue(props.input_value, props.validators));
+    }
+
+    if (!isDirty) setDirty(true)
+
+  }, [props.input_value, props.validators]);
+
+  React.useEffect(() => {
+    let is_modal_open = openModal;
+
+    if (is_modal_open == true &&
+        addInput_ref.current != null) {
+      setTimeout(() => {
+        addInput_ref.current.focus()
+      }, 100)
+    }
+  }, [openModal])
+
+  React.useEffect(() => {
+    const hasInputValidError = !!isError
+
+    if (props.formValidHandler) {
+      props.formValidHandler({
+        id: props.name, 
+        valid_status: !hasInputValidError
+      })
+    }
+  }, [isError])
+
+  React.useEffect(() => {
+    async function performValidation() {
+      if (props.validators && Array.isArray(props.validators)) {
+        const valid_result = await validateValue(props.input_value, props.validators)
+        setError(valid_result);
+      }
+    }
+
+    performValidation()
+
+  }, [props.input_value])
+
+  const handleChange = async (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
     props.changeHandler(event)
+
+    if (props.validators && Array.isArray(props.validators)) {
+      setError(await validateValue(value, props.validators));
+    }
   }
 
   const plusMinusHandler = (event, control_input_name) => {
@@ -100,6 +160,16 @@ function FormInput(
     setOpenModal(!is_modal_open);
   }
 
+  const onBlur_addInput_handler = (event) => {
+    const is_modal_open = openModal,
+          isExpandButtonPressed = event.relatedTarget && 
+                                  event.relatedTarget.className.includes("text_large_expand_input")
+
+    if (!isExpandButtonPressed && is_modal_open) {
+      setOpenModal(false)
+    }
+  }
+
   const custom_inputs = {
     'reaction_off_input': h_and_min_input,
     'reaction_on_input': h_and_min_input,
@@ -108,28 +178,48 @@ function FormInput(
 
   if (props.type == "text") {
     return (
-      <input
-        id={props.id}
-        name={props.name}
-        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
-        type="text"
-        onChange={handleChange}
-        value={props.input_value}
-        disabled={props.disabled}
-        placeholder={props.placeholder}
-        style={props.style}
-      />
+      <div className="form_input_wrap">
+        {isError &&
+          <InputTooltip
+            id={props.id}
+            type={'error'}
+            tooltip_text={isError} />
+        }
+        <input
+          id={props.id}
+          name={props.name}
+          className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'} ${isError && 'error_input'}`}
+          type="text"
+          onChange={handleChange}
+          value={props.input_value}
+          disabled={props.disabled}
+          placeholder={props.placeholder}
+          style={props.style}
+          maxLength={props.max_length}
+          onBlur={handleBlur}
+          data-error={!!isError}
+          />
+      </div>
     )
   } else if (props.type == "password") {
     return (
-      <input
-        id={props.id}
-        name={props.name}
-        type="password"
-        onChange={handleChange}
-        value={props.input_value}
-        style={props.style}
-      />
+      <div className="form_input_wrap">
+        {isError &&
+          <InputTooltip
+            id={props.id}
+            type={'error'}
+            tooltip_text={isError} />
+        }
+        <input
+          id={props.id}
+          name={props.name}
+          className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'} ${isError && 'error_input'}`}
+          type="password"
+          onChange={handleChange}
+          value={props.input_value}
+          style={props.style}
+        />
+      </div>
     )
   }
   else if (props.type == "checkbox") {
@@ -193,6 +283,12 @@ function FormInput(
   else if (props.type == "text_buttons") {
     return (
       <div className="text_buttons_container">
+        {isError &&
+          <InputTooltip
+            id={props.id}
+            type={'error'}
+            tooltip_text={isError} />
+        }
         {/* <button 
           className='button_input plus_minus'
           name='minus_value_3'
@@ -246,13 +342,20 @@ function FormInput(
     return (
       <>
       <div className='text_large_container'>
+        {isError &&
+          <InputTooltip
+            id={props.id}
+            type={'error'}
+            tooltip_text={isError} />
+        }
         <input
           id={props.id}
           name={props.name}
           type="text"
-          className='text_large_not_expanded'
+          className={`text_large_not_expanded ${isError && 'error_input'}`}
           value={props.input_value}
           onChange={handleChange}
+          maxLength={props.max_length}
         />
         <input 
             className='text_large_expand_input button_input'
@@ -260,19 +363,23 @@ function FormInput(
           value="..."
           onClick={modal_clickHandler} />
         <div 
-          className='text_large_expanded_wrap'
-            style={{ 
-              // display: openModal ? 'block' : 'block' ,
-              margin: openModal ? '30px 0 0 11px' : '16px 0 0 11px',
-              visibility: openModal ? 'visible' : 'hidden',
-              opacity: openModal ? '1' : '0'}}>
+          className={`text_large_expanded_wrap ${isError && 'error_input'}`}
+          style={{ 
+            // display: openModal ? 'block' : 'block' ,
+            margin: openModal ? '30px 0 0 -212px' : '16px 0 0 -212px',
+            visibility: openModal ? 'visible' : 'hidden',
+            opacity: openModal ? '1' : '0'
+          }}>
           <input
             id={props.id}
             name={props.name}
             type="text"
             className='text_large_expanded'
             value={props.input_value}
+            ref={addInput_ref}
             onChange={handleChange}
+            onBlur={(e) => { onBlur_addInput_handler(e) }}
+            maxLength={props.max_length}
           />
         </div>
       </div>
@@ -284,11 +391,17 @@ function FormInput(
     return (
       <>
         <div className='text_large_container'>
+          {isError &&
+            <InputTooltip
+              id={props.id}
+              type={'error'}
+              tooltip_text={isError} />
+          }
           <input
             id={props.id}
             name={props.name}
             type="text"
-            className='text_large_not_expanded split'
+            className={`text_large_not_expanded split ${isError && 'error_input'}`}
             value={props.input_value}
             onChange={handleChange}
           />
@@ -298,9 +411,9 @@ function FormInput(
             value="..."
             onClick={modal_clickHandler} />
           <div
-            className='text_large_expanded_wrap'
+            className={`text_large_expanded_wrap ${isError && 'error_input'}`}
             style={{
-              margin: openModal ? '30px 0 0 18px' : '16px 0 0 11px',
+              margin: openModal ? '30px 0 0 -198px' : '16px 0 0 -198px',
               visibility: openModal ? 'visible' : 'hidden',
               opacity: openModal ? '1' : '0'
             }}>
@@ -308,9 +421,11 @@ function FormInput(
               id={props.id}
               name={props.name}
               type="text"
-              className='text_large_expanded split'
+              className={`text_large_expanded split ${isError && 'error_input'}`}
               value={props.input_value}
+              ref={addInput_ref}
               onChange={handleChange}
+              onBlur={(e) => { onBlur_addInput_handler(e) }}
             />
           </div>
         </div>
@@ -322,7 +437,7 @@ function FormInput(
       <select
         id={props.id}
         name={props.name}
-        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+        className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'} ${isError && 'error_input'}`}
         onChange={handleChange}
         disabled={props.disabled}
         value={props.input_value}
@@ -353,25 +468,32 @@ function FormInput(
   else if (props.type == "slider") {
     // const value_range = props.input_value.split(',')
     return (
-      <div
-        className="slider_container"
-        id={props.id}>
-        {/* <span>{value_range[0]}</span> */}
-        <span>{props.input_value}</span>
+      <div className="form_input_wrap">
+        {isError &&
+          <InputTooltip
+            id={props.id}
+            type={'error'}
+            tooltip_text={isError} />
+        }
+        <div
+          className="slider_container"
+          id={props.id}>
+          {/* <span>{value_range[0]}</span> */}
+          <span>{props.input_value}</span>
 
-        <input
-          id={props.id}
-          name={props.name}
-          type='range'
-          className="range_slider"
-          onChange={handleChange}
-          onMouseUp={props.mouseupHandler}
-          disabled={props.disabled}
-          value={props.input_value}
-          step={props.step}
-          min={props.min}
-          max={props.max} />
-
+          <input
+            id={props.id}
+            name={props.name}
+            type='range'
+            className="range_slider"
+            onChange={handleChange}
+            onMouseUp={props.mouseupHandler}
+            disabled={props.disabled}
+            value={props.input_value}
+            step={props.step}
+            min={props.min}
+            max={props.max} />
+        </div>
       </div>
     )
     

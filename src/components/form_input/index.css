@@ -1,3 +1,8 @@
+.form_input_wrap {
+  display: flex;
+  column-gap: 10px;
+}
+
 /* SWITCH STYLES */
 
 .switch {
@@ -396,7 +401,8 @@ input[type='checkbox'].switch.disabled_input:checked:before {
 
 }
 
-.button_input:active.disabled_input {
+.button_input:active.disabled_input,
+.save_form_button:active.disabled_input {
   /* transform: translateY(1px); */
   transform: none;
 }
@@ -456,4 +462,42 @@ input[type='checkbox'].switch.disabled_input:checked:before {
 .button_input.download_link {
   outline: none;
   text-decoration: none;
+}
+
+input[type="text"].error_input,
+input[type="password"].error_input,
+input[type="number"].error_input {
+  background: #F9C2BE;
+}
+
+.tooltip_wrap {
+  position: relative;
+  display: flex;
+}
+
+.tooltip_indicatior {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.tooltip_indicatior.info {
+  background-color: transparent;
+  border: 2px solid #2B2927;
+}
+
+.tooltip_indicatior.error {
+  background-color: rgb(254, 95, 85);
+  border: none;
+}
+
+.tooltip_instance.info {
+  background-color: #2B2927;
+  border: none;
 }

@@ -12,7 +12,7 @@ function Settings_block_calib({ settings_type, className = "", disabled, disable
 
     <div
       className={`settings_block ${settings_type ? settings_type : ""}`}>
-      <form className="settings_container">
+      <form className="settings_container" onSubmit={(e) => e.preventDefault()}>
         <div className="settings_block_header">
           {disabled != undefined &&
             <FormInput
