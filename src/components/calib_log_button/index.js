@@ -112,7 +112,7 @@ const CalibLogButton = (props) => {
 			onClick={clickHandler}>
 			{calibPassw.is_auth ?
 				<span className='log_label' data-action='logout'>Выйти ({auth_store?.user_id})</span> :
-				<span className='log_label' data-action='login'>Войти в калибровку</span>}
+				<span className='log_label' data-action='login'>Авторизироваться</span>}
 			{/* <img src={log_icon} alt="Войти" sizes="" /> */}
 		</div>
 		{isOpen &&
