@@ -11,8 +11,8 @@ var exec = require('child_process').exec
 let gzip_file_array = [
   'build/static/js/*.js',
   'build/static/css/*.css',
-  'build/static/media/*.svg',
-  'build/static/media/*.png',
+  // 'build/static/media/*.svg',
+  // 'build/static/media/*.png',
   'build/static/media/status_graph/*.svg'
 ];
 
