@@ -4,6 +4,7 @@ import { refreshGlobalStore } from "../global_store_slice";
 import { reload_page } from "../../logic/utilites";
 import { syslog_handle_expand } from "../../logic/syslog_handle_expand";
 import { set_logs_id } from "../../logic/syslog_handle_expand";
+import { cloneDeep, merge, mergeWith } from "lodash";
 
 export const reducers = {
   // Обновление данных калибровки при обычном запросе с форм калибровки
@@ -126,13 +127,23 @@ export const reducers = {
   device_list_handling: ({ request_resp }) => {
     if (!Object.prototype.hasOwnProperty.call(request_resp, 'device_list')) return
 
+    let resp_device_list
+
+    if (request_resp.device_list === 'none') {
+      resp_device_list = "none"
+    } else if (Array.isArray(request_resp.device_list)) {
+      resp_device_list = request_resp.device_list
+    } else {
+      resp_device_list = []
+    }
+
     const obj_to_refresh = {
       global_data: {
         calib_state: {
           data: {
             calib_modbus: {
               device_list: {
-                saved_list: request_resp.device_list
+                saved_list: resp_device_list
               }
             }
           }
@@ -146,12 +157,12 @@ export const reducers = {
   device_info_handling: ({ request_resp, request_params }) => {
     if (!Object.hasOwn(request_resp, 'device_info')) return
 
-    let store_tree = store.getState()
+    let store_tree = cloneDeep(store.getState())
 
-    let device_list = store_tree.global_data.calib_state.data.calib_masterSlave.device_list.saved_list
+    let device_list = store_tree.globalStore.global_data.calib_state.data.calib_modbus.device_list.saved_list
 
     if (device_list !== undefined) {
-      const device_index = device_list.findIndex((element) => element.address === request_params.address)
+      const device_index = device_list.findIndex((element) => element.address == request_params.address)
   
       device_list[device_index].device_info = request_resp.device_info
     }
@@ -169,6 +180,8 @@ export const reducers = {
         }
       }
     }
+
+    
 
     store.dispatch(refreshGlobalStore(obj_to_refresh))
   },
