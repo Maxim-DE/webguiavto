@@ -7,11 +7,12 @@ import CalibDeviceSwitch from '../../../../calib_device_switch';
 import SlaveAddGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_add_general_calib_avr';
 import SlaveGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_general_calib_avr';
 import Slave_Rds_general_AVR from '../../../../settings_block_calib/forms/slave_rds_general_avr';
+import { filter_obj } from '../../../../../logic/utilites';
 
 
 export const AvrControl = (props) => {
   const [deviceState, setDeviceState] = React.useState({
-    active_device: 0,
+    active_device: 1,
     device_avaliability: {
       device_0: 1,
       device_1: 1,
@@ -22,7 +23,8 @@ export const AvrControl = (props) => {
 
   const section_store = useSelector((store) => store.globalStore.global_data.section_data?.avr_device_control),
         availiability_store = section_store?.device_avaliability,
-        device_store = section_store.device_data?.[`device_${Number(deviceState.active_device) + 1}`]
+        status_device_store = filter_obj(useSelector((store) => store.globalStore.global_data.status_data.status_graph), (key, value) => key.includes('exiter')) ,
+        device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`]
 
 
   // const rds_enable = device_store?.slave_general?.rds_enable
@@ -30,18 +32,18 @@ export const AvrControl = (props) => {
 
   const res_ex_settings_enable = 0
 
-  React.useEffect(() => {
-    const request_obj = {
-      address: `get_avr_device_availiable.cgi`,
-      reducer: reducers.get_avr_device_availability,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
+  // React.useEffect(() => {
+  //   const request_obj = {
+  //     address: `get_avr_device_availiable.cgi`,
+  //     reducer: reducers.get_avr_device_availability,
+  //     notifications: {
+  //       good: 'default',
+  //       bad: 'default'
+  //     },
+  //   }
 
-    props.updateHandler(request_obj);
-  }, [])
+  //   props.updateHandler(request_obj);
+  // }, [])
 
   React.useEffect(() => {
     setDeviceState(prevState => ({
@@ -51,13 +53,14 @@ export const AvrControl = (props) => {
   }, [availiability_store])
   
   const handleClick = block_data => {
-    block_data.data = `avr_device$${Number(deviceState.active_device)+1};` + (block_data.data ? block_data.data : '')
+    block_data.data = `avr_device$${Number(deviceState.active_device)};` + (block_data.data ? block_data.data : '')
     props.updateHandler(block_data);
   }
 
   const device_switch = 
     <CalibDeviceSwitch
       parent_state={deviceState}
+      device_avaliability={status_device_store}
       state_handler={setDeviceState}
       clickHandler={props.updateHandler}
       settings_type={res_ex_settings_enable} />
@@ -83,7 +86,7 @@ export const AvrControl = (props) => {
           calib_state={device_store?.slave_rds}
           clickHandler={handleClick} />
       }
-      {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
+      {/* {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
         <div className='content_unavailiable' >
           <div className='centered'>
             <div className='modal alert_modal'>
@@ -93,7 +96,7 @@ export const AvrControl = (props) => {
             </div>
           </div>
         </div>
-      }
+      } */}
       {/* <GeneralCalibSettings_AVR
         calib_state={device_store?.calib_general}
         clickHandler={handleClick} /> */}

@@ -4,15 +4,15 @@ import { getRandomColor } from '../../logic/utilites'
 import FormInput from '../form_input'
 import { dataArray_to_string } from '../../logic/request_logic'
 import { reducers } from '../../store/reducers/avr_control_reducers'
+import { new_status_colors } from '../graph_blocks'
 
 const device_amount = 3
-const indicator_colors_arr = [...Array(device_amount).keys()].map(i => getRandomColor())
 
-function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, settings_type, ...props }) {
+function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, device_avaliability, settings_type, ...props }) {
   const amount_arr = [...Array(device_amount).keys()].map(i => i + 1)
 
   const device_num = parent_state.active_device,
-        deviceAvaliability = parent_state.device_avaliability
+        deviceAvaliability = device_avaliability
 
   React.useEffect(() => {
     create_DeviceRequest(parent_state.active_device)
@@ -44,7 +44,7 @@ function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, settings
   const create_DeviceRequest = (device_num) => {
     const request_obj = {
       address: `get_avr_device_info.cgi`,
-      data: `avr_device$${Number(device_num) + 1};`,
+      data: `avr_device$${Number(device_num)};`,
       reducer: reducers.get_avr_device_data,
       notifications: {
         good: 'default',
@@ -86,26 +86,27 @@ function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, settings
   return (
     <div className='avr_device_switch'>
       {amount_arr.map((item, index) => {
-        const indicator_styles = {
-          background: indicator_colors_arr[index]
-        }
+        const device_status = deviceAvaliability[`exiter_${item}`].status,
+              indicator_styles = {
+                background: new_status_colors[device_status]
+              }
 
         return (
           <>
           <div className="avr_device_item_wrap" key={item}>
-            <FormInput
-              id={`device_${index}_available_input`}
-              name={`device_${index}_available`}
+            {/* <FormInput
+              id={`device_${item}_available_input`}
+              name={`device_${item}_available`}
               changeHandler={handle_deviceAvailiableChange}
-              input_value={deviceAvaliability[`device_${index}`]}
-              type="checkbox" />
+              input_value={deviceAvaliability[`exiter_${item}`].status}
+              type="checkbox" /> */}
             <button
-              className={`avr_device_item button_input ${device_num == index ? 'active_type' : ''}`}
+              className={`avr_device_item button_input ${device_num == item ? 'active_type' : ''}`}
               type='button'
-              name={`avr_device_${index}`}
+              name={`avr_device_${item}`}
               onClick={handle_deviceChange}
               >
-              {/* <div className="device_indicator" style={indicator_styles}></div> */}
+              <div className="device_indicator" style={indicator_styles}></div>
               Передатчик {item}
             </button>
           </div>
@@ -114,14 +115,16 @@ function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, settings
         )
       })}
       {settings_type == 1 &&
-        <div className="avr_device_item_wrap" key={3}>
+        <div className="avr_device_item_wrap" key={0}>
           <button
-            className={`avr_device_item button_input ${device_num == 3 ? 'active_type' : ''}`}
+            className={`avr_device_item button_input ${device_num == 0 ? 'active_type' : ''}`}
             type='button'
-            name={`avr_device_${3}`}
+            name={`avr_device_${0}`}
             onClick={handle_deviceChange}
             >
-            {/* <div className="device_indicator" style={indicator_styles}></div> */}
+            <div className="device_indicator" style={{
+              background: new_status_colors[deviceAvaliability[`exiter_${0}`].status]
+            }}></div>
             Резерв. передатчик
           </button>
         </div>

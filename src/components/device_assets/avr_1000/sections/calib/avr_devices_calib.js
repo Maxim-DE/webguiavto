@@ -13,12 +13,12 @@ import Slave_Rds_general_ from '../../../../settings_block_calib/forms/slave_rds
 import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/wattage_primary_calib_avr';
 import { dataArray_to_string } from '../../../../../logic/request_logic';
 import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr';
-import { deepKeyExists } from '../../../../../logic/utilites';
+import { deepKeyExists, filter_obj } from '../../../../../logic/utilites';
 
 
 export const AvrDevicesCalib = (props) => {
   const [deviceState, setDeviceState] = React.useState({
-    active_device: 0,
+    active_device: 1,
     device_avaliability: {
       device_0: 1,
       device_1: 1,
@@ -30,26 +30,27 @@ export const AvrDevicesCalib = (props) => {
   const section_store = useSelector((store) => store.globalStore.global_data.section_data?.avr_device_control),
         adc_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc),
         availiability_store = section_store?.device_avaliability,
-        device_store = section_store.device_data?.[`device_${Number(deviceState.active_device) + 1}`],
-        adc_device_store = adc_store?.[`device_${Number(deviceState.active_device) + 1}`]
+        status_device_store = filter_obj(useSelector((store) => store.globalStore.global_data.status_data.status_graph), (key, value) => key.includes('exiter')),
+        device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`],
+        adc_device_store = adc_store?.[`device_${Number(deviceState.active_device)}`]
 
 
   // const rds_enable = device_store?.slave_general?.rds_enable
   const [rdsEnable, setRdsEnable] = useState(false)
   const res_ex_settings_enable = 1
 
-  React.useEffect(() => {
-    const request_obj = {
-      address: `get_avr_device_availiable.cgi`,
-      reducer: reducers.get_avr_device_availability,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
+  // React.useEffect(() => {
+  //   const request_obj = {
+  //     address: `get_avr_device_availiable.cgi`,
+  //     reducer: reducers.get_avr_device_availability,
+  //     notifications: {
+  //       good: 'default',
+  //       bad: 'default'
+  //     },
+  //   }
 
-    props.updateHandler(request_obj);
-  }, [])
+  //   props.updateHandler(request_obj);
+  // }, [])
 
   React.useEffect(() => {
     setDeviceState(prevState => ({
@@ -59,13 +60,14 @@ export const AvrDevicesCalib = (props) => {
   }, [availiability_store])
   
   const handleClick = block_data => {
-    block_data.data = `avr_device$${Number(deviceState.active_device)+1};` + (block_data.data ? block_data.data : '')
+    block_data.data = `avr_device$${Number(deviceState.active_device)};` + (block_data.data ? block_data.data : '')
     props.updateHandler(block_data);
   }
 
   const device_switch = 
     <CalibDeviceSwitch
       parent_state={deviceState}
+      device_avaliability={status_device_store}
       state_handler={setDeviceState}
       clickHandler={props.updateHandler}
       settings_type={res_ex_settings_enable} />
@@ -101,13 +103,17 @@ export const AvrDevicesCalib = (props) => {
       <SignalCalibSettings
         calib_state={device_store?.calib_signal}
         clickHandler={handleClick} />
-      <SignalThresholdSettings
-        calib_state={device_store?.calib_signal_threshold}
-        clickHandler={handleClick} />
-      <PowerCalibThreshold_AVR
-        calib_state={device_store?.calib_power_threshold}
-        clickHandler={handleClick} />
-      {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
+      {deviceState.active_device != 0 &&
+      <>
+        <SignalThresholdSettings
+          calib_state={device_store?.calib_signal_threshold}
+          clickHandler={handleClick} />
+        <PowerCalibThreshold_AVR
+          calib_state={device_store?.calib_power_threshold}
+          clickHandler={handleClick} />
+      </>
+      }
+      {/* {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
         <div className='content_unavailiable' >
           <div className='centered'>
             <div className='modal alert_modal'>
@@ -117,7 +123,7 @@ export const AvrDevicesCalib = (props) => {
             </div>
           </div>
         </div>
-      }
+      } */}
     </SettingsSectionWrap>
     </>
   )
