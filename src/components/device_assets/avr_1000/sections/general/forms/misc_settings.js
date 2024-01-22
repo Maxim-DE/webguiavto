@@ -16,7 +16,9 @@ export default function Misc_settings(props) {
   const miscSettings_store = useSelector((store) => store.globalStore.global_data.section_data.settings.misc_settings)
 
   const [miscSettingsState, setMiscSettingsState] = React.useState({
-    reserved_devices_num: ''
+    res_device_1: 0,
+    res_device_2: 0,
+    res_device_3: 0,
   })
 
   const { isFormValid, validStatus_getter } = useFormValidation()
@@ -49,7 +51,7 @@ export default function Misc_settings(props) {
 
   const handleChange = (event) => {
     const target = event.target;
-    const value = target.value;
+    const value = target.type === 'checkbox' ? Number(target.checked) : target.value;
     const name = target.name;
 
     setMiscSettingsState(prevState => ({
@@ -84,18 +86,47 @@ export default function Misc_settings(props) {
       save_handler={handleClick_save}
       disable_save={!isFormValid} >
       <li
-        key='reserved_devices_num'
-        id='reserved_devices_num_setting'
+        key='reserved_devices'
+        id='reserved_devices'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`reserved_devices_num_input`}
+            htmlFor={`res_device_1_input`}
             className="settings_itemLabel">
-            Кол-во ревервируемых устр-в
+            Резервируемые устр-ва
           </label>
         </div>
         <div className='item_input'>
-          <FormInput
+          <span className='checkbox_wrap'>
+            1
+            <FormInput
+              id={`res_device_1_input`}
+              name={`res_device_1`}
+              changeHandler={handleChange}
+              input_value={miscSettingsState.res_device_1}
+              type="checkbox" />
+          </span>
+
+          <span className='checkbox_wrap'>
+            2
+            <FormInput
+              id={`res_device_2_input`}
+              name={`res_device_2`}
+              changeHandler={handleChange}
+              input_value={miscSettingsState.res_device_2}
+              type="checkbox" />
+          </span>
+
+          <span className='checkbox_wrap'>
+            3
+            <FormInput
+              id={`res_device_3_input`}
+              name={`res_device_3`}
+              changeHandler={handleChange}
+              input_value={miscSettingsState.res_device_3}
+              type="checkbox" />
+          </span>
+          {/* <FormInput
             id={`reserved_devices_num_input`}
             name={`reserved_devices_num`}
             changeHandler={handleChange}
@@ -105,7 +136,7 @@ export default function Misc_settings(props) {
             ]}
             formValidHandler={validStatus_getter}
             style={{ margin: '0', maxWidth: '75px' }}
-            type="text" />
+            type="text" /> */}
         </div>
       </li>
     </SettingsBlockWrap>
