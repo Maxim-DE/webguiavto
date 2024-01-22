@@ -14,8 +14,7 @@ import SlaveAddGeneralCalib_AVR from '../../../../settings_block_calib/forms/sla
 export const CalibMain = (props) => {
   const [deviceState, setDeviceState] = React.useState(0)
 
-  const calib_store = useSelector((store) => store.globalStore.global_data.calib_state.data),
-        device_store = calib_store?.[`calib_avr`]
+  const calib_store = useSelector((store) => store.globalStore.global_data.calib_state.data)
 
   // const device_switch = 
   //   <CalibDeviceSwitch
@@ -49,7 +48,7 @@ export const CalibMain = (props) => {
         calib_state={device_store?.calib_general}
         clickHandler={handleClick} /> */}
       <GeneralCalibSettings_AVR
-        calib_state={device_store?.calib_general}
+        calib_state={calib_store?.calib_general}
         clickHandler={handleClick} />
       {/* <PowerCalibSettings_AVR
         calib_state={device_store?.calib_power}
