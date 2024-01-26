@@ -102,7 +102,8 @@ export const AvrDevicesCalib = (props) => {
         adc_store={adc_device_store?.power_calib} />
       <SignalCalibSettings
         calib_state={device_store?.calib_signal}
-        clickHandler={handleClick} />
+        clickHandler={handleClick}
+        adc_store={adc_device_store?.signal_calib} />
       {deviceState.active_device != 0 &&
       <>
         <SignalThresholdSettings
