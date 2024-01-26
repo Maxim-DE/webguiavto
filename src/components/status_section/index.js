@@ -228,10 +228,11 @@ function StatusSection(props) {
         </span>
       </div>
       <div className="control_mode_wrap">
-        
-        <AVRControlModeSwitch
-          clickHandler={handleUpdate}
-          parent_state={status_store.status_info} />
+        {auth_store.auth_access.settings &&
+          <AVRControlModeSwitch
+            clickHandler={handleUpdate}
+            parent_state={status_store.status_info} />
+        }
       </div>
       <div className="section_status">
         <Status_graphs
