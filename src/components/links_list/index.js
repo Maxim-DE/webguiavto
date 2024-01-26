@@ -17,7 +17,14 @@ const links_items = [
   {id: 'network', name: "Сетевые настройки"},
   {id: 'avr', name: "Управление устройствами"},
   {id: 'info', name: "Данные об устройстве"},
-  {id: 'calibration_main', name: "Калибровка"}
+  {
+    id: 'calibration_main', name: "Расширенные настройки", children: [
+      { id: 'main', name: "Общее", nested: true },
+      { id: 'avr_calib', name: "Управление каналами", nested: true },
+      { id: 'misc', name: "Прочее", nested: true },
+      { id: 'developer', name: "Для разработчиков", nested: true },
+    ]
+  }
 ] 
 
 const calib_links_items = [
@@ -82,72 +89,89 @@ function Links_list(props) {
 
   }
 
-  if (active < links_items.length - 1) {
-    return (
-      <>
-      <ul className="nav_linksList">
-        {links_items.map((item, index) => {
-          if (index > 0 && index < links_items.length - 1 && 
-              (!auth_store.auth_access.settings ||
-              props.device_type === 255)) {
-            return
-          } else if (index == links_items.length - 1 && 
-                     (!auth_store.auth_access.calib ||
-                     props.device_type === 255)) {
-            return
-          } else {
-            return (
-            <li
-              key={item.id}
+  return (
+    <>
+    <ul className="nav_linksList">
+      {links_items.map((item, index) => {
+        if (index > 0 && index < links_items.length - 1 && 
+            (!auth_store.auth_access.settings ||
+            props.device_type === 255)) {
+          return
+        } else if (index == links_items.length - 1 && 
+                   (!auth_store.auth_access.calib ||
+                   props.device_type === 255)) {
+          return
+        } else if (index == links_items.length - 1 &&
+                   (auth_store.auth_access.calib &&
+                   props.device_type !== 255)) {
+
+          return (
+            <CalibNavList
               id={item.id}
-              onClick={handleClick}
-              className={index === active ? 'active' : ''}>
-              <div className="backIcon_wrap"></div>
-              <div 
-              className="nav_linkLabel"
-              onClick={(e) => {console.log('nav span');}}
-              >{item.name}</div>
-              <FaAngleRight
-                color='#6D8EA0'
-                size='25px' />
-            </li>
-            )
-          }
-          })}
-      </ul>
-      <Outlet />
-      </>
-    )
-  } else {
-    return <CalibNavList updateHandler={props.updateHandler} setParentActive={SetActive}/>
-  }
+              name={item.name}
+              index={index}
+              updateHandler={props.updateHandler}
+              isParentActive={index == active}
+              setParentActive={SetActive}
+              nested_elements={item.children}
+            />
+          )
+        } else {
+          return (
+          <li
+            key={item.id}
+            id={item.id}
+            onClick={handleClick}
+            className={index === active ? 'active' : ''}>
+            <div className="backIcon_wrap"></div>
+            <div 
+            className="nav_linkLabel"
+            onClick={(e) => {console.log('nav span');}}
+            >{item.name}</div>
+            {/* <FaAngleRight
+              color='#6D8EA0'
+              size='25px' /> */}
+          </li>
+          )
+        }
+      })}
+      
+    </ul>
+    <Outlet />
+    </>
+  )
+  // if (active < links_items.length) {
+  // } else {
+  //   return 
+    // <CalibNavList 
+    //           updateHandler={props.updateHandler} 
+    //           setParentActive={SetActive}
+    //           nested_elements={}
+    //           />
+  // }
 }
 
 
 
 // Отдельный вариант списка навигации для калибровки, по реализации тоже самое, что и список выше, только он выступает в качестве потомка основного списка, поэтому в него передаются функции и значения из родительского компонента
-function CalibNavList({updateHandler, setParentActive}) {
+function CalibNavList({id, name, updateHandler, index, isParentActive, setParentActive, nested_elements}) {
   const auth_store = useSelector((store) => store.authStore.auth_data)
   const [active, setActive] = React.useState(0);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    updateHandler('calibration_main')
-  }, [])
+    if (!isParentActive) {
+      setIsExpanded(false);
+    }
+  }, [isParentActive])
 
-  // При нажатии на "Вернуться в основные настройки" просиходит смена активного пункта род. списка на основные настройки
-  const handleReturn = () => {
-    setParentActive(1)
-    navigate(`settings`, {replace: false})
-    updateHandler('status')
-  }
-
-  const handleClick = (event) => {
+  const handleNestedClick = (event) => {
     event.stopPropagation()
     console.log('nav li')
 
     const active_link_name = event.currentTarget.id,
-          active_link_num = calib_links_items.findIndex(item => {
+          active_link_num = nested_elements.findIndex(item => {
               return active_link_name === item.id
             })
 
@@ -157,25 +181,33 @@ function CalibNavList({updateHandler, setParentActive}) {
     updateHandler(`calibration_${active_link_name}`)
   }
 
+  const handleExpand = (event) => {
+    setIsExpanded(!isExpanded)
+
+    if (isExpanded == false) {
+      setActive(0)
+      navigate(`calibration/${nested_elements[0].id}`, { replace: false })
+    }
+  }
+
   return (
     <>
-    <ul className="nav_linksList">
       <li
-        key={'backItem'}
-        id={'backItem'}
-        onClick={handleReturn}
-        >
-        <div className="backIcon_wrap">
-          <FaAngleLeft
-            color='#6D8EA0'
-            size='25px' />
-        </div>
-        <div 
-        className="nav_linkLabel"
-        onClick={(e) => {console.log('nav span');}}
-        >Вернуться к остальным настройкам</div>
+        key={id}
+        id={id}
+        onClick={(e) => {
+          setParentActive(index)
+          handleExpand()
+        }}
+        className={`${isParentActive ? 'active' : ''} ${isExpanded ? 'expanded' : ''}`}>
+        <div className="backIcon_wrap"></div>
+        <div className="nav_linkLabel">{name}</div>
+        <FaAngleRight
+          color='#6D8EA0'
+          className='front_icon'
+          size='25px' />
       </li>
-        {calib_links_items.map((item, index) => {
+        {isExpanded && nested_elements.map((item, index) => {
           if (item.id == 'developer' && !auth_store.auth_access.calib_extend) {
             return
           } else {
@@ -183,24 +215,24 @@ function CalibNavList({updateHandler, setParentActive}) {
             <li
               key={item.id}
               id={item.id}
-              onClick={handleClick}
-              className={index === active ? 'active' : ''}
+              onClick={handleNestedClick}
+              className={`nested_item ${index == active ? 'active' : ''}`}
               >
               <div className="backIcon_wrap"></div>
               <div 
               className="nav_linkLabel"
               onClick={(e) => {console.log('nav span');}}
               >{item.name}</div>
-              <FaAngleRight
+              {/* <FaAngleRight
                 color='#6D8EA0'
-                size='25px' />
+                size='25px' /> */}
             </li>
             )
           }
           })}
-      </ul>
+      
       <Outlet />
-      </>
+    </>
   )
 }
 
