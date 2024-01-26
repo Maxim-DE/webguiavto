@@ -119,7 +119,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   }
 
   return (
-    <Settings_block_calib header={`общее`}
+    <Settings_block_calib header={`основ. настройки`}
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>

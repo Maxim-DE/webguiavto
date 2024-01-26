@@ -38,7 +38,7 @@ export const CalibMain = (props) => {
       
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
-      section_header="калибровка"
+      section_header="Общее"
       // section_subheader={device_switch}
       >
       {/* <SlaveGeneralCalib_AVR

@@ -181,7 +181,8 @@ function SerialNumVersionCalibSettings_AVR(props) {
             name={`device_serial_num_calib`}
             changeHandler={handleChange}
             input_value={serialNumVersionCalibState.device_serial_num}
-            style={{ margin: '0', maxWidth: '76px' }}
+            max_length={20}
+            style={{ margin: '0', maxWidth: '235px' }}
             type="text" />
           <FormInput
             id={`device_serial_num_calib_save`}
@@ -208,7 +209,8 @@ function SerialNumVersionCalibSettings_AVR(props) {
             name={`commutaion_serial_num_calib`}
             changeHandler={handleChange}
             input_value={serialNumVersionCalibState.commutaion_serial_num}
-            style={{ margin: '0', maxWidth: '76px' }}
+            max_length={20}
+            style={{ margin: '0', maxWidth: '235px' }}
             type="text" />
           <FormInput
             id={`device_serial_num_calib_save`}
