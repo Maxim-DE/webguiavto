@@ -61,8 +61,8 @@ export const isHexNumber = (
 export const isInNumRange = (minVal = 0, maxVal = 100000) => {
     return async value => {
         const dec_value = value % 1 == 0 ? parseInt(value) : parseFloat(value),
-              dec_min = value % 1 == 0 ? parseInt(minVal) : parseFloat(minVal),
-              dec_max = value % 1 == 0 ? parseInt(maxVal) : parseFloat(maxVal)
+              dec_min = minVal % 1 == 0 ? parseInt(minVal) : parseFloat(minVal),
+              dec_max = maxVal % 1 == 0 ? parseInt(maxVal) : parseFloat(maxVal)
 
         console.log(value % 1);
 
