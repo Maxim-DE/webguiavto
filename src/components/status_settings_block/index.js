@@ -158,7 +158,7 @@ function Status_settings(props) {
     const name = event.target.name,
           value_type = name.replace('_save', '')
 
-    let value = Number(statusSettingsState[`${value_type}_setting`]),
+    let value = Number(statusSettingsState[`${value_type}_setting`].replaceAll(',', '.')),
         divider
 
     if (props.settings_data[`${value_type}_setting`]) {
@@ -250,13 +250,16 @@ function Status_settings(props) {
               <input
                 id={`frequency_setting_input`}
                 name={`frequency_setting`}
-                type="text"
+                type="number"
                 className={`${device_locked ? 'disabled_input' : ''}`}
                 disabled={device_locked}
                 onChange={handleChange_channel}
                 value={statusSettingsState.frequency_setting}
                 placeholder='Гц'
                 // maxLength="2"
+                max={108}
+                min={87.5}
+                step={0.1}
                 style={{ maxWidth: '72px', marginRight: '10px' }}
               />
               <FormInput
