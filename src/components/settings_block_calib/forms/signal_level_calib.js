@@ -105,9 +105,9 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
   const handleClick_calib = (event) => {
     let data_str = ''
     if (signalCalibState.signal_type == 0) {
-      data_str = `signal$0;signal$1`
+      data_str = `signal_0_value$0;signal_1_value$0`
     } else {
-      data_str = `signal$${signalCalibState.signal_type - 1}`
+      data_str = `signal_${signalCalibState.signal_type - 1}_value$0`
     }
 
     const request_obj = {
