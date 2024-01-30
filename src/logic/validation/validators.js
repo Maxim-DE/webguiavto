@@ -77,3 +77,17 @@ export const isInNumRange = (minVal = 0, maxVal = 100000) => {
     }
 
 }
+
+export const isDate = (
+    message = `Недопустимый формат даты, допустимый - YYYY-MM-DD`
+) => {
+    const regexp = /^([0-9]{4}|[0-9]{2})[./-]([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])$/i
+    return async (value) => (regexp.test(value) ? null : message);
+};
+
+export const isTime = (
+    message = `Недопустимый формат времени`
+) => {
+    const regexp = /^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/i
+    return async (value) => (regexp.test(value) ? null : message);
+};
