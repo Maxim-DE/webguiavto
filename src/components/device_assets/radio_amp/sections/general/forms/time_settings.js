@@ -9,6 +9,7 @@ import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import cloneDeep from 'lodash/cloneDeep'
 import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
+import { useFormValidation } from '../../../../../../logic/validation/formValidation_hook'
 
 export default function Time_settings(props) {
 
@@ -18,6 +19,8 @@ export default function Time_settings(props) {
     date: '',
     time: ''
   })
+
+  const { isFormValid, validStatus_getter } = useFormValidation()
 
   React.useEffect(() => {
     console.log(timeSettings_store);
@@ -81,7 +84,8 @@ export default function Time_settings(props) {
     <SettingsBlockWrap header={'задание времени'}
                        settings_type={'time_settings'}
                        section_name={props.section_name}
-                       save_handler={handleClick_save}>
+                       save_handler={handleClick_save}
+                       disable_save={!isFormValid}>
       
       <li
         key='date'
@@ -126,7 +130,8 @@ export default function Time_settings(props) {
       <Time_server_sync_settings
         parent_state={timeSettings_store}
         state_handler={state_handler}
-        clickHandler={props.clickHandler} />
+        clickHandler={props.clickHandler}
+        validation_tools={{ isFormValid, validStatus_getter }} />
     </SettingsBlockWrap>
   )
 }

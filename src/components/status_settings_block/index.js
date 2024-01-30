@@ -8,6 +8,9 @@ import { TbMinus } from 'react-icons/tb'
 
 import Settings_block_calib from '../settings_block_calib';
 import { reducers } from '../../store/reducers/status_settings_reducers';
+import { cloneDeep } from 'lodash';
+import { useFormValidation } from '../../logic/validation/formValidation_hook';
+import { isInNumRange } from '../../logic/validation/validators';
 
 function Status_settings(props) {
 
@@ -15,6 +18,8 @@ function Status_settings(props) {
     supply_on_setting: 0,
     channel_setting: 0
   })
+
+  const { isFormValid, validStatus_getter, validInputList } = useFormValidation()
 
   const device_status = props.status_data ? props.status_data.device_status : 0,
         device_locked = device_status === 3 ? true : false
