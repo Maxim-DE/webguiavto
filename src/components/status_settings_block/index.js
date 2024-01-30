@@ -9,6 +9,8 @@ import { BiPlus, BiPlusCircle, BiMinus, BiMinusCircle } from "react-icons/bi";
 import Settings_block_calib from '../settings_block_calib';
 import { reducers } from '../../store/reducers/status_settings_reducers';
 import { cloneDeep } from 'lodash';
+import { useFormValidation } from '../../logic/validation/formValidation_hook';
+import { isInNumRange } from '../../logic/validation/validators';
 
 function Status_settings(props) {
 
@@ -18,6 +20,8 @@ function Status_settings(props) {
     ModeOneChannel: 0,
     frequency_setting: 0
   })
+
+  const { isFormValid, validStatus_getter, validInputList } = useFormValidation()
 
   const device_status = props.status_data ? props.status_data.device_status : 0,
         device_locked = device_status === 3 ? true : false
@@ -211,7 +215,7 @@ function Status_settings(props) {
   return (
     <Settings_block_calib header={`настройки`}
       settings_type={`status_calib`}
-      section_name={props.section_name}>
+      section_name={props.section_name} >
       {/* <li
         key='supply_on_setting'
         id='supply_on_setting'
@@ -247,7 +251,7 @@ function Status_settings(props) {
               </label>
             </div>
             <div className='item_input'>
-              <input
+              {/* <input
                 id={`frequency_setting_input`}
                 name={`frequency_setting`}
                 type="number"
@@ -261,15 +265,31 @@ function Status_settings(props) {
                 min={87.5}
                 step={0.1}
                 style={{ maxWidth: '72px', marginRight: '10px' }}
-              />
+              /> */}
+              <FormInput
+                id={`frequency_setting_input`}
+                name={`frequency_setting`}
+                changeHandler={handleChange_channel}
+                input_value={statusSettingsState.frequency_setting}
+                style={{ margin: '0', maxWidth: '76px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setStatusSettingsState}
+                max={108}
+                min={87.5}
+                step={0.1}
+                validators={[
+                  isInNumRange(87.5, 108)
+                ]}
+                formValidHandler={validStatus_getter}
+                 />
               <FormInput
                 id={`frequency_save_input`}
                 name={`frequency_save`}
                 label='Сохранить'
-                disabled={device_locked}
+                disabled={device_locked && !validInputList[`frequency_setting`]}
                 clickHandler={channel_save_handleClick}
-                type="button"
-              />
+                type="button" />
               {/* <FormInput
               id={`channel_setting_input`}
               name={`channel_setting`}

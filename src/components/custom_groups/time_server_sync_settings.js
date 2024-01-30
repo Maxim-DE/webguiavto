@@ -7,6 +7,7 @@ import '../form_input/index.css'
 import '../settings_block/index.css'
 
 import { filter_obj } from '../../logic/utilites'
+import { isIpAdress } from '../../logic/validation/validators'
 
 const timezone_arr = [
   'UTC -12:00',
@@ -50,7 +51,7 @@ const timezone_arr = [
   'UTC +14:00'
 ]
 
-function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
+function Time_server_sync_settings({ parent_state, state_handler,  validation_tools, ...rest }) {
   const base_state = {
     time_sync_switch: false,
     ntp_server: '',
@@ -59,6 +60,8 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
   }
 
   const [timeSyncState, setTimeSyncState] = React.useState(base_state)
+
+  const { isFormValid, validStatus_getter } = validation_tools
 
   React.useEffect(() => {
     const state_ref = clone(timeSyncState)
@@ -175,7 +178,11 @@ function Time_server_sync_settings({ parent_state, state_handler, ...rest }) {
               name={`ntp_server`}
               type="text"
               changeHandler={changeHandler}
-              input_value={timeSyncState.ntp_server} />
+              input_value={timeSyncState.ntp_server}
+              validators={[
+                isIpAdress()
+              ]}
+              formValidHandler={validStatus_getter} />
           </li>
           <li
             key='time_sync_timezone'

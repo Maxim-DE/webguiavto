@@ -6,6 +6,8 @@ import FormInput from '../../../../../form_input'
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
+import { useFormValidation } from '../../../../../../logic/validation/formValidation_hook'
+import { isIpAdress } from '../../../../../../logic/validation/validators'
 
 export default function Remote_control(props) {
   const remoteControl_store = useSelector((store) => store.globalStore.global_data.section_data.network.remote_control)
@@ -16,6 +18,8 @@ export default function Remote_control(props) {
     remote_ip_addr_3_settings: '',
     remote_ip_addr_4_settings: ''
   })
+
+  const { isFormValid, validStatus_getter } = useFormValidation()
 
   React.useEffect(() => {
     if (remoteControl_store != 'null' && remoteControl_store != undefined) {
@@ -64,7 +68,8 @@ export default function Remote_control(props) {
       header={'управление устройством'}
       settings_type={'remote_control'}
       section_name={props.section_name}
-      save_handler={handleClick_save}>
+      save_handler={handleClick_save}
+      disable_save={!isFormValid}>
       <li
         key='remote_ip_addr_1_settings'
         id='remote_ip_addr_1_settings'
@@ -82,7 +87,11 @@ export default function Remote_control(props) {
             name={`remote_ip_addr_1_settings`}
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_1_settings}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -102,7 +111,11 @@ export default function Remote_control(props) {
             name={`remote_ip_addr_2_settings`}
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_2_settings}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -122,7 +135,11 @@ export default function Remote_control(props) {
             name={`remote_ip_addr_3_settings`}
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_3_settings}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -142,7 +159,11 @@ export default function Remote_control(props) {
             name={`remote_ip_addr_4_settings`}
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_4_settings}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
     </SettingsBlockWrap>

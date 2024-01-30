@@ -9,6 +9,8 @@ import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import cloneDeep from 'lodash/cloneDeep'
 import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
+import { useFormValidation } from '../../../../../../logic/validation/formValidation_hook'
+import { isTime, isDate } from '../../../../../../logic/validation/validators'
 
 export default function Time_settings(props) {
 
@@ -18,6 +20,8 @@ export default function Time_settings(props) {
     date: '',
     time: ''
   })
+
+  const { isFormValid, validStatus_getter } = useFormValidation()
 
   React.useEffect(() => {
     console.log(timeSettings_store);
@@ -81,7 +85,8 @@ export default function Time_settings(props) {
     <SettingsBlockWrap header={'задание времени'}
                        settings_type={'time_settings'}
                        section_name={props.section_name}
-                       save_handler={handleClick_save}>
+                       save_handler={handleClick_save}
+                       disable_save={!isFormValid}>
       
       <li
         key='date'
@@ -100,7 +105,11 @@ export default function Time_settings(props) {
             name={`date`}
             changeHandler={handleChange}
             input_value={timeSettingsState.date}
-            type="text" />
+            type="text"
+            validators={[
+              isDate()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -120,13 +129,18 @@ export default function Time_settings(props) {
             name={`time`}
             changeHandler={handleChange}
             input_value={timeSettingsState.time}
-            type="text" />
+            type="text"
+            validators={[
+              isTime()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <Time_server_sync_settings
         parent_state={timeSettings_store}
         state_handler={state_handler}
-        clickHandler={props.clickHandler} />
+        clickHandler={props.clickHandler}
+        validation_tools={{ isFormValid, validStatus_getter }} />
     </SettingsBlockWrap>
   )
 }

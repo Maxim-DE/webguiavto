@@ -6,6 +6,8 @@ import FormInput from '../../../../../form_input'
 import { dataArray_to_string } from '../../../../../../logic/request_logic'
 import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
+import { useFormValidation } from '../../../../../../logic/validation/formValidation_hook'
+import { isIpAdress, isMacAdress } from '../../../../../../logic/validation/validators'
 
 export default function Device_address(props) {
   const deviceAddress_store = useSelector((store) => store.globalStore.global_data.section_data.network.device_adress)
@@ -17,6 +19,8 @@ export default function Device_address(props) {
     subnet_mask: '',
     gateway: ''
   })
+
+  const { isFormValid, validStatus_getter } = useFormValidation()
 
   React.useEffect(() => {
     console.log(deviceAddress_store);
@@ -67,8 +71,8 @@ export default function Device_address(props) {
       header={'адрес устройства'}
       settings_type={'device_adress'}
       section_name={props.section_name}
-      save_handler={handleClick_save}>
-
+      save_handler={handleClick_save}
+      disable_save={!isFormValid} >
       <li
         key='mac_deafult'
         id='mac_deafult'
@@ -86,7 +90,11 @@ export default function Device_address(props) {
             name={`mac_deafult`}
             changeHandler={handleChange}
             input_value={deviceAddressState.mac_deafult}
-            type="text" />
+            type="text"
+            validators={[
+              isMacAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -106,7 +114,11 @@ export default function Device_address(props) {
             name={`mac`}
             changeHandler={handleChange}
             input_value={deviceAddressState.mac}
-            type="text" />
+            type="text"
+            validators={[
+              isMacAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -126,7 +138,11 @@ export default function Device_address(props) {
             name={`ip`}
             changeHandler={handleChange}
             input_value={deviceAddressState.ip}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -146,7 +162,11 @@ export default function Device_address(props) {
             name={`subnet_mask`}
             changeHandler={handleChange}
             input_value={deviceAddressState.subnet_mask}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
       <li
@@ -166,7 +186,11 @@ export default function Device_address(props) {
             name={`gateway`}
             changeHandler={handleChange}
             input_value={deviceAddressState.gateway}
-            type="text" />
+            type="text"
+            validators={[
+              isIpAdress()
+            ]}
+            formValidHandler={validStatus_getter} />
         </div>
       </li>
     </SettingsBlockWrap>
