@@ -311,6 +311,7 @@ function FormInput(
           name={props.name}
           type="number"
           onChange={handleChange}
+          style={props.style}
           value={props.input_value}
           step={props.step}
           max={props.max}
