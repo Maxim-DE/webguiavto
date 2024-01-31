@@ -22,6 +22,7 @@ const links_items = [
       { id: 'main', name: "Общее", nested: true },
       { id: 'avr_calib', name: "Управление каналами", nested: true },
       { id: 'misc', name: "Прочее", nested: true },
+      { id: 'syslog', name: "Системный журнал", nested: true },
       { id: 'developer', name: "Для разработчиков", nested: true },
     ]
   }

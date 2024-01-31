@@ -14,6 +14,7 @@ import { DeveloperCalib } from './sections/calib/developer'
 import RdsSettingsSection from './sections/rds'
 import { AvrControl } from './sections/avr_control'
 import { AvrDevicesCalib } from './sections/calib/avr_devices_calib'
+import { SyslogCalib } from './sections/calib/syslog'
 
 export default function DeviceWrap_AVR1000(props) {
 
@@ -80,6 +81,15 @@ export default function DeviceWrap_AVR1000(props) {
             <Route path='misc' element={
               <MiscCalib
                 section_name="misc"
+                section_header="калибровка"
+                updateHandler={updateHandler}
+              // section_data={props.calib_data === null ? 'null' : props.calib_data}
+              // adc_data={props.adc_data} 
+              />
+            } />
+            <Route path='syslog' element={
+              <SyslogCalib
+                section_name="syslog"
                 section_header="калибровка"
                 updateHandler={updateHandler}
               // section_data={props.calib_data === null ? 'null' : props.calib_data}
