@@ -11,6 +11,7 @@ export default function Software_version(props) {
     os_version: 'N/A',
     bootloader_version: 'N/A',
     web_version: 'N/A',
+    commutaion_version: 'N/A',
   })
 
   React.useEffect(() => {
@@ -84,6 +85,24 @@ export default function Software_version(props) {
           <FormInput
             id={`web_version`}
             input_value={sofrwareVersionState.web_version}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='commutaion_version'
+        id='commutaion_version'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`commutaion_version_input`}
+            className="settings_itemLabel">
+            Версия БКА
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_version`}
+            input_value={sofrwareVersionState.commutaion_version}
             type="text_sample" />
         </div>
       </li>

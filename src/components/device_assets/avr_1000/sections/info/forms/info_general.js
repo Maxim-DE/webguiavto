@@ -19,6 +19,7 @@ export default function Info_general(props) {
     plate_number: 'N/A',
     plate_version: 'N/A',
     commutaion_serial_number: 'N/A',
+    commutaion_plate_number: 'N/A'
   })
 
   React.useEffect(() => {
@@ -116,6 +117,24 @@ export default function Info_general(props) {
           <FormInput
             id={`commutaion_serial_number`}
             input_value={infoGeneralState.commutaion_serial_number}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='commutaion_plate_number'
+        id='commutaion_plate_number'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`commutaion_plate_number_input`}
+            className="settings_itemLabel">
+            Номер платы БКА
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_plate_number`}
+            input_value={infoGeneralState.commutaion_plate_number}
             type="text_sample" />
         </div>
       </li>
