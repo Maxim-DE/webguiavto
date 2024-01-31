@@ -10,6 +10,10 @@ function SettingsSectionWrap(props) {
   const [sectionStore, sectionActions] = useSectionStore()
   
   const sectionRef = React.useRef(null)
+
+  const grid_columns = props.grid_columns ? {
+    "--columns": parseInt(props.grid_columns)
+  } : null
   // const [sectionState, setSectionState] = React.useState({
   //   isLoading: false
   // });
@@ -55,7 +59,9 @@ function SettingsSectionWrap(props) {
       <div className="section_subheader">
         {props.section_subheader}
       </div>
-      <div className="section_content">
+      <div className="section_content"
+        style={{...grid_columns}}
+      >
         {props.children}
       </div>
     </section>
