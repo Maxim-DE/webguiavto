@@ -43,11 +43,12 @@
   align-items: center;
   /* justify-items: flex-start; */
   justify-content: flex-start;
-  margin: 15px 0;
+  margin: 0 0 15px;
 }
 
 .log_table_wrap {
   overflow-y:auto;
+  flex-grow: 1;
 }
 
 .log_type_item {
