@@ -282,7 +282,7 @@ function Status_settings(props) {
                 name={`frequency_setting`}
                 changeHandler={handleChange_channel}
                 input_value={statusSettingsState.frequency_setting}
-                style={{ margin: '0', maxWidth: '76px' }}
+                style={{ margin: '0', maxWidth: '86px' }}
                 placeholder='Вт'
                 type="text_buttons"
                 statusHandler={setStatusSettingsState}
@@ -298,7 +298,7 @@ function Status_settings(props) {
                 id={`frequency_save_input`}
                 name={`frequency_save`}
                 label='Сохранить'
-                disabled={device_locked && !validInputList[`frequency_setting`]}
+                disabled={device_locked || !validInputList[`frequency_setting`]}
                 clickHandler={channel_save_handleClick}
                 type="button" />
               {/* <FormInput
