@@ -46,6 +46,10 @@
   margin: 15px 0;
 }
 
+.log_table_wrap {
+  overflow-y:auto;
+}
+
 .log_type_item {
   background-color: transparent;
   display: inline-flex;

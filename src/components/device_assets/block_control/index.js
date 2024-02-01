@@ -11,6 +11,7 @@ import { Route, Routes } from 'react-router-dom'
 import { CalibMain } from './sections/calib/calib_main'
 import { MiscCalib } from './sections/calib/misc'
 import { DeveloperCalib } from './sections/calib/developer'
+import { SyslogCalib } from './sections/calib/syslog'
 
 export default function DeviceWrap_BlockControl(props) {
   
@@ -67,6 +68,15 @@ export default function DeviceWrap_BlockControl(props) {
               // adc_data={props.adc_data} 
               />
           } />
+            <Route path='syslog' element={
+              <SyslogCalib
+                section_name="syslog"
+                section_header="калибровка"
+                updateHandler={updateHandler}
+              // section_data={props.calib_data === null ? 'null' : props.calib_data}
+              // adc_data={props.adc_data} 
+              />
+            } />
           <Route path='developer' element={
             <DeveloperCalib
               section_name="developer"

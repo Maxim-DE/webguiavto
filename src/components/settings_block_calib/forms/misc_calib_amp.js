@@ -139,9 +139,9 @@ function MiscCalibSettings_AMP(props) {
     >
       {auth_store.auth_access.calib_extend &&
         <>
-          <Syslog_calib
+          {/* <Syslog_calib
             updateHandler={props.clickHandler}
-            logData={miscCalibState.sys_log} />
+            logData={miscCalibState.sys_log} /> */}
           <li
             key='delete_userlogs_calib'
             id='delete_user_logs_calib'
