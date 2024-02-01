@@ -1,24 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-import { MdDone } from 'react-icons/md'
-import { GrPowerReset } from 'react-icons/gr'
 
-import './index.css'
-import FormInput from '../form_input'
-import Modal from '../modal';
+// import './index.css'
 
-import { blockData_structure_forming } from '../../logic/block_data_structure_forming';
-import { flat_input_data } from '../../logic/block_data_structure_forming';
-import additional_items_description from '../../logic/additional_items_description';
 
-import silence_det_block from '../custom_groups/silence_det_settings';
 
-import time_schedule_settings from '../custom_groups/time_schedule_settings';
-import { time_server_sync_settings } from '../custom_groups/time_server_sync_settings';
-import { silence_det_settings } from '../custom_groups/silence_det_settings';
-import { conf_file_upload } from '../custom_groups/conf_file_upload';
-import { mib_file_download } from '../custom_groups/mib_file_download';
 
 
 // function Settings_block({ settings_type, className = "", ...rest }) {

@@ -13,7 +13,7 @@
   height: auto;
   display: flex;
   align-items: center;
-  margin: 20px 0 5px 0;
+  margin: 0px 0 5px 0;
   column-gap: 14px;
 }
 
@@ -56,7 +56,7 @@
   width: auto;
   height: 100%;
 
-  margin: 0 30px;
+  /* margin: 0 30px; */
 }
 
 h3 {
