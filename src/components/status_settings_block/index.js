@@ -171,7 +171,7 @@ function Status_settings(props) {
     const name = event.target.name,
           value_type = name.replace('_save', '')
 
-    let value = Number(statusSettingsState[`${value_type}_setting`].replaceAll(',', '.')),
+    let value = parseFloat(statusSettingsState[`${value_type}_setting`].replaceAll(',', '.')),
         divider
 
     if (props.settings_data[`${value_type}_setting`]) {
@@ -183,6 +183,8 @@ function Status_settings(props) {
     } else {
       divider = 1
     }
+
+    console.log((statusSettingsState[`${value_type}_setting`] * 100).toFixed());
 
     let request_obj = {}
 
@@ -204,14 +206,14 @@ function Status_settings(props) {
       case 'frequency':
         request_obj = {
           address: 'transmitter.cgi',
-          data: `${name}$${value * divider}`,
+          data: `${name}$${(value * divider).toFixed()}`,
           reducer: reducers.transmitter,
           notifications: {
             good: 'default',
             bad: 'default'
           },
           save_data: {
-            [`${value_type}_setting`]: [value * divider, divider]
+            [`${value_type}_setting`]: [+(value * divider).toFixed(), divider]
           }
         }
 
