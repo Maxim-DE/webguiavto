@@ -46,7 +46,7 @@ function SyslogSection_calib(props) {
     max_msgs: 0,
     active_page: 1,
     active_page_logs: [],
-    max_active_logs: 24,
+    max_active_logs: 22,
     max_pages: 0,
     max_links: 5,
     links: [],
@@ -285,6 +285,7 @@ function SyslogSection_calib(props) {
     <SettingsBlockWrap type="blank" screen_fit={true}>
     
       <div className='logs_type_switch'>
+        Тип журнала: 
         {sys_log_types.map(item => (
           <button
             className={`log_type_item button_input ${item.type == logType.log_type ? 'active_type' : ''}`}
