@@ -22,6 +22,7 @@ const links_items = [
     id: 'calibration_main', name: "Расширенные настройки", children: [
       { id: 'main', name: "Общее", nested: true },
       { id: 'misc', name: "Прочее", nested: true },
+      { id: 'syslog', name: "Системный журнал", nested: true },
       { id: 'developer', name: "Для разработчиков", nested: true },
     ]
   }
