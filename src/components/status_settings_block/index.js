@@ -12,19 +12,28 @@ import { cloneDeep } from 'lodash';
 import { useFormValidation } from '../../logic/validation/formValidation_hook';
 import { isInNumRange } from '../../logic/validation/validators';
 
+const freq_ranges = [
+  [87.5, 108],
+  [65.9, 74.0]
+]
+
 function Status_settings(props) {
 
   const [statusSettingsState, setStatusSettingsState] = React.useState({
     supply_on_setting: 0,
     channel_setting: 0,
     ModeOneChannel: 0,
-    frequency_setting: 0
+    frequency_setting: 0,
+    frequency_range: 1
   })
 
   const { isFormValid, validStatus_getter, validInputList } = useFormValidation()
 
   const device_status = props.status_data ? props.status_data.device_status : 0,
         device_locked = device_status === 3 ? true : false
+
+  const low_freq_range = freq_ranges[statusSettingsState.frequency_range][0],
+        high_freq_range = freq_ranges[statusSettingsState.frequency_range][1]
 
   React.useEffect(() => {
     let status_settings_req_obj = {
@@ -275,11 +284,11 @@ function Status_settings(props) {
                 placeholder='Вт'
                 type="text_buttons"
                 statusHandler={setStatusSettingsState}
-                max={108}
-                min={87.5}
+                max={high_freq_range}
+                min={low_freq_range}
                 step={0.1}
                 validators={[
-                  isInNumRange(87.5, 108)
+                  isInNumRange(low_freq_range, high_freq_range)
                 ]}
                 formValidHandler={validStatus_getter}
                  />
