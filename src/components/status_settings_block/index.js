@@ -12,10 +12,13 @@ import { cloneDeep } from 'lodash';
 import { useFormValidation } from '../../logic/validation/formValidation_hook';
 import { isInNumRange } from '../../logic/validation/validators';
 
-const freq_ranges = [
-  [87.5, 108],
-  [65.9, 74.0]
-]
+const freq_ranges = {
+  0: [87.5, 108],
+  1: [65.9, 74.0],
+  2: [65.9, 108]
+}
+  
+  
 
 function Status_settings(props) {
 
@@ -32,8 +35,10 @@ function Status_settings(props) {
   const device_status = props.status_data ? props.status_data.device_status : 0,
         device_locked = device_status === 3 ? true : false
 
-  const low_freq_range = freq_ranges[statusSettingsState.frequency_range][0],
-        high_freq_range = freq_ranges[statusSettingsState.frequency_range][1]
+  console.log(statusSettingsState.frequency_range);
+
+  const low_freq_range = freq_ranges[statusSettingsState.frequency_range] ? freq_ranges[statusSettingsState.frequency_range][0] : freq_ranges[2][0],
+        high_freq_range = freq_ranges[statusSettingsState.frequency_range] ? freq_ranges[statusSettingsState.frequency_range][1] : freq_ranges[2][1]
 
   React.useEffect(() => {
     let status_settings_req_obj = {
