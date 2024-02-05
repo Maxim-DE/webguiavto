@@ -17,6 +17,7 @@
 .settings_block.blank {
   display: flex;
   flex-direction: column;
+   padding: 20px 30px;
 }
 
 .settings_block_header {
