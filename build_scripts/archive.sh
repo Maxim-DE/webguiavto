@@ -1,0 +1,3 @@
+rm build_arch/*
+mkdir build_arch
+find build -type f | cpio -o > build_arch.cpio && mv build_arch.cpio build_arch

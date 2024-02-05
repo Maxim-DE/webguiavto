@@ -3,38 +3,52 @@ import fs from 'fs'
 
 import shell from 'shelljs'
 
+function snakeToPascal(string) {
+  return string.split("/")
+    .map(snake => snake.split("_")
+      .map(substr => substr.charAt(0)
+        .toUpperCase() +
+        substr.slice(1))
+      .join(""))
+    .join("/");
+}
 
-function insert_version_to_txt() {
+const postfixArg = process.argv[2]; // переданные аргументы во время запуска скрипта начинаются со второго индекса, ссылка: https://nodejs.org/docs/latest/api/process.html#process_process_argv
+
+function insert_version_to_buildName() {
   const read_json = fs.readFileSync('version_build.json', 'utf8');
   const version_json = JSON.parse(read_json);
-  
-  shell.echo(version_json);
-  
+
   const tagPostfix = postfixArg ? `-${postfixArg}` : ''; // пример: x.y.z-dev, если нет аргумента - x.y.z
   shell.echo(`The tagPostfix is: ${tagPostfix || 'none'}`);
-  
+
   // ПОИСК ПОСЛЕДНЕГО ТЕГА ДЛЯ ТЕКУЩЕГО РЕЛИЗА
+
   const releaseNum = version_json.version; // читаем содержимое файла чтобы получить версию (x.y) текущего релиза
   shell.echo(`The releaseNum is: ${releaseNum || 'none'}`);
-  
+
   const tagsTemplateToSearch = `${releaseNum}.*${tagPostfix}`; // 'x.y.*-postfix' шаблон для поиска предыдущих тегов для текущего релиза
   const releasedTags = shell
     .exec(`git tag -l ${tagsTemplateToSearch} --sort=-v:refname`)
     .split('\n')
     .filter(Boolean);
-  
+
   const lastReleaseTag = releasedTags.length > 0 ? releasedTags[0] : '';
   shell.echo(`The last tag for ${releaseNum}: ${lastReleaseTag || '-'}`);
-  
+
   const active_brach = shell.exec(`git branch --show-current`)
   shell.echo(`Current branch for ${releaseNum}: ${active_brach || '-'}`);
-  
+
   console.log(active_brach != "developer\n");
+
+  const active_layout = active_brach != "developer\n" ? snakeToPascal(active_brach.replace("dev_", "").replace("_layout", "").replace("\n", '')) : active_brach
+
+  const version_str = `${active_layout + "-"}${releaseNum || '-'}.${version_json.build}`
+
+  shell.echo("version_str=" + version_str);
   
-  const version_str = `${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" ? ('-' + active_brach) : ''}`
-  
-  // shell.cd('./build/')
-  shell.exec(`echo "${version_str}" > ./build/version.txt`);
+  shell.cd('./build_arch/')
+  shell.mv('build_arch.cpio', `${version_str}.cpio`)
 }
 
 if (!shell.which('git')) {
@@ -42,9 +56,8 @@ if (!shell.which('git')) {
   shell.exit(1);
 }
 
-const postfixArg = process.argv[2]; // переданные аргументы во время запуска скрипта начинаются со второго индекса, ссылка: https://nodejs.org/docs/latest/api/process.html#process_process_argv
 
-insert_version_to_txt();
+insert_version_to_buildName();
 
 // shell.mv('build_arch.cpio', `build_arch_${lastReleaseTag}_b${version_json.build}.cpio`)
 
