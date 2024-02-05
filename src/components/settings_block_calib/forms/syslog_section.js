@@ -47,7 +47,7 @@ function SyslogSection_calib(props) {
     active_page: 1,
     active_page_logs: [],
     max_active_logs: 10000,
-    max_pages: 0,
+    max_pages: 1,
     max_links: 5,
     links: [],
     log_data: []
@@ -81,7 +81,7 @@ function SyslogSection_calib(props) {
 
     const max_msgs = sysLogLinks.max_msgs,
           max_active_logs = sysLogLinks.max_active_logs,
-          max_pages = Math.ceil(max_msgs / max_active_logs)
+          max_pages = sysLogLinks.max_pages == 0 ? 0 : Math.ceil(max_msgs / max_active_logs)
           
     const processing_result = sys_log_render_processing(sysLogLinks.active_page,
                                                         sysLogLinks.max_links,
