@@ -88,9 +88,9 @@ export default function Remote_control(props) {
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_1_settings}
             type="text"
-            validators={[
-              isIpAdress()
-            ]}
+            // validators={[
+            //   isIpAdress()
+            // ]}
             formValidHandler={validStatus_getter} />
         </div>
       </li>
@@ -112,9 +112,9 @@ export default function Remote_control(props) {
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_2_settings}
             type="text"
-            validators={[
-              isIpAdress()
-            ]}
+            // validators={[
+            //   isIpAdress()
+            // ]}
             formValidHandler={validStatus_getter} />
         </div>
       </li>
@@ -136,9 +136,9 @@ export default function Remote_control(props) {
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_3_settings}
             type="text"
-            validators={[
-              isIpAdress()
-            ]}
+            // validators={[
+            //   isIpAdress()
+            // ]}
             formValidHandler={validStatus_getter} />
         </div>
       </li>
@@ -160,9 +160,9 @@ export default function Remote_control(props) {
             changeHandler={handleChange}
             input_value={remoteControlState.remote_ip_addr_4_settings}
             type="text"
-            validators={[
-              isIpAdress()
-            ]}
+            // validators={[
+            //   isIpAdress()
+            // ]}
             formValidHandler={validStatus_getter} />
         </div>
       </li>
