@@ -131,7 +131,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
             type="button" />
         </div>
       </li>
-      <li
+      {/* <li
         key='signal_recovery_threshold_calib'
         id='signal_recovery_threshold_calib'
         className="settings_item calib">
@@ -167,7 +167,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
             label='Сохранить'
             type="button" />
         </div>
-      </li>
+      </li> */}
       
     </Settings_block_calib>
   )
