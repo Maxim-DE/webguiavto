@@ -8,6 +8,16 @@ if (!shell.which('git')) {
   shell.exit(1);
 }
 
+function snakeToPascal(string) {
+  return string.split("/")
+    .map(snake => snake.split("_")
+      .map(substr => substr.charAt(0)
+        .toUpperCase() +
+        substr.slice(1))
+      .join(""))
+    .join("/");
+}
+
 
 const postfixArg = process.argv[2]; // переданные аргументы во время запуска скрипта начинаются со второго индекса, ссылка: https://nodejs.org/docs/latest/api/process.html#process_process_argv
 
@@ -42,7 +52,9 @@ shell.echo(`Current branch for ${releaseNum}: ${active_brach || '-'}`);
 
 console.log(active_brach != "developer\n");
 
-const version_str = `${releaseNum || '-'}.${version_json.build}${active_brach != "developer\n" ? ('-' + active_brach) : ''}`
+const active_layout = active_brach != "developer\n" ? snakeToPascal(active_brach.replace("dev_", "").replace("_layout", "").replace("\n", '')) : active_brach
+
+const version_str = `${active_layout + "-"}${releaseNum || '-'}.${version_json.build}`
 
 shell.echo("version_str=" + version_str);
 
@@ -53,7 +65,7 @@ fs.writeFile('version.txt', version_str, (err) => {
   console.log('The file has been saved!');
 }); 
 
-// shell.mv('build_arch.cpio', `build_arch_${lastReleaseTag}_b${version_json.build}.cpio`)
+shell.mv('build_arch.cpio', `build_arch_${version_str}.cpio`)
 
 // ПОЛУЧЕНИЕ НОВОЙ ВЕРСИИ
 
