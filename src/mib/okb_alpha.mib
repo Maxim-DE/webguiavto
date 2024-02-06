@@ -112,29 +112,30 @@ DigitalExciter2-Status   OBJECT IDENTIFIER ::= {DigitalExciter2 4}
 ------------------------------------------------------------------
 ------------------------------------------------------------------
 ------------------------------------------------------------------
-ReserveControl                      OBJECT IDENTIFIER ::= {okbalfa 5}
-ReserveControl-Info                 OBJECT IDENTIFIER ::= {ReserveControl 1}
-ReserveControl-Setting              OBJECT IDENTIFIER ::= {ReserveControl 2}
-ReserveControl-Main-Transmiter1     OBJECT IDENTIFIER ::= {ReserveControl 3}
-ReserveControl-Main-Transmiter2     OBJECT IDENTIFIER ::= {ReserveControl 4}
-ReserveControl-Main-Transmiter3     OBJECT IDENTIFIER ::= {ReserveControl 5}
-ReserveControl-Reserv-Transmiter    OBJECT IDENTIFIER ::= {ReserveControl 6}
+AVR                      OBJECT IDENTIFIER ::= {okbalfa 5}
+AVR-Info                 OBJECT IDENTIFIER ::= {AVR 1}
+AVR-Param                OBJECT IDENTIFIER ::= {AVR 2}
+AVR-Setting              OBJECT IDENTIFIER ::= {AVR 3}
+AVR-Main-Transmiter1     OBJECT IDENTIFIER ::= {AVR 10}
+AVR-Main-Transmiter2     OBJECT IDENTIFIER ::= {AVR 11}
+AVR-Main-Transmiter3     OBJECT IDENTIFIER ::= {AVR 12}
+AVR-Reserv-Transmiter    OBJECT IDENTIFIER ::= {AVR 13}
 --------------------------------------------------------------------
-Transmiter1-Param     OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter1 2}
-Transmiter1-Setting   OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter1 3}
-Transmiter1-Status    OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter1 4}
+Transmiter1-Param     OBJECT IDENTIFIER ::= {AVR-Main-Transmiter1 2}
+Transmiter1-Setting   OBJECT IDENTIFIER ::= {AVR-Main-Transmiter1 3}
+Transmiter1-Status    OBJECT IDENTIFIER ::= {AVR-Main-Transmiter1 4}
 --------------------------------------------------------------------
-Transmiter2-Param     OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter2 2}
-Transmiter2-Setting   OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter2 3}
-Transmiter2-Status    OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter2 4}
+Transmiter2-Param     OBJECT IDENTIFIER ::= {AVR-Main-Transmiter2 2}
+Transmiter2-Setting   OBJECT IDENTIFIER ::= {AVR-Main-Transmiter2 3}
+Transmiter2-Status    OBJECT IDENTIFIER ::= {AVR-Main-Transmiter2 4}
 --------------------------------------------------------------------
-Transmiter3-Param     OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter3 2}
-Transmiter3-Setting   OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter3 3}
-Transmiter3-Status    OBJECT IDENTIFIER ::= {ReserveControl-Main-Transmiter3 4}
+Transmiter3-Param     OBJECT IDENTIFIER ::= {AVR-Main-Transmiter3 2}
+Transmiter3-Setting   OBJECT IDENTIFIER ::= {AVR-Main-Transmiter3 3}
+Transmiter3-Status    OBJECT IDENTIFIER ::= {AVR-Main-Transmiter3 4}
 --------------------------------------------------------------------
-TransmiterReserv-Param     OBJECT IDENTIFIER ::= {ReserveControl-Reserv-Transmiter 2}
-TransmiterReserv-Setting   OBJECT IDENTIFIER ::= {ReserveControl-Reserv-Transmiter 3}
-TransmiterReserv-Status    OBJECT IDENTIFIER ::= {ReserveControl-Reserv-Transmiter 4}
+TransmiterReserv-Param     OBJECT IDENTIFIER ::= {AVR-Reserv-Transmiter 2}
+TransmiterReserv-Setting   OBJECT IDENTIFIER ::= {AVR-Reserv-Transmiter 3}
+TransmiterReserv-Status    OBJECT IDENTIFIER ::= {AVR-Reserv-Transmiter 4}
 --------------------------------------------------------------------
 
 ------------------------------------------------------------------
@@ -270,7 +271,7 @@ RadioExciter-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {RadioExciter-Info 3}
 ----------------------------------------------------------------------
-RadioExciter-Software-bord OBJECT-TYPE
+RadioExciter-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -679,7 +680,7 @@ Amplifier-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier-Info 3}
 ----------------------------------------------------------------------
-Amplifier-Software-bord OBJECT-TYPE
+Amplifier-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -971,7 +972,7 @@ BlockControl-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {BlockControl-Info 3}
 ----------------------------------------------------------------------
-BlockControl-Software-bord OBJECT-TYPE
+BlockControl-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1245,7 +1246,7 @@ DigitalExciter-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {DigitalExciter-Info 3}
 ----------------------------------------------------------------------
-DigitalExciter-Software-bord OBJECT-TYPE
+DigitalExciter-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1538,7 +1539,7 @@ BlockControl1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {BlockControl1-Info 3}
 ----------------------------------------------------------------------
-BlockControl1-Software-bord OBJECT-TYPE
+BlockControl1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1546,7 +1547,7 @@ BlockControl1-Software-bord OBJECT-TYPE
           "PCB version"
   ::= {BlockControl1-Info 4}
   ----------------------------------------------------------------------
-BlockControl1-Software-bord-rev OBJECT-TYPE
+BlockControl1-Software-board-rev OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1729,7 +1730,7 @@ Amplifier1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier1-Info 3}
 ----------------------------------------------------------------------
-Amplifier1-Software-bord OBJECT-TYPE
+Amplifier1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1986,7 +1987,7 @@ Amplifier2-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier2-Info 3}
 ----------------------------------------------------------------------
-Amplifier2-Software-bord OBJECT-TYPE
+Amplifier2-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -2244,7 +2245,7 @@ Amplifier3-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier3-Info 3}
 ----------------------------------------------------------------------
-Amplifier3-Software-bord OBJECT-TYPE
+Amplifier3-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -2502,7 +2503,7 @@ Amplifier4-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier4-Info 3}
 ----------------------------------------------------------------------
-Amplifier4-Software-bord OBJECT-TYPE
+Amplifier4-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -2762,7 +2763,7 @@ RadioExciter1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {RadioExciter1-Info 3}
 ----------------------------------------------------------------------
-RadioExciter1-Software-bord OBJECT-TYPE
+RadioExciter1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3033,7 +3034,7 @@ RadioExciter2-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {RadioExciter2-Info 3}
 ----------------------------------------------------------------------
-RadioExciter2-Software-bord OBJECT-TYPE
+RadioExciter2-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3295,7 +3296,7 @@ DigitalExciter1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {DigitalExciter1-Info 3}
 ----------------------------------------------------------------------
-DigitalExciter1-Software-bord OBJECT-TYPE
+DigitalExciter1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3529,7 +3530,7 @@ DigitalExciter2-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {DigitalExciter2-Info 3}
 ----------------------------------------------------------------------
-DigitalExciter2-Software-bord OBJECT-TYPE
+DigitalExciter2-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3737,7 +3738,7 @@ DigitalExciter2-status-Temperature OBJECT-TYPE
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
-------------------Блок управление Усилитель 4-------------------------
+------------------Блок Автоматического Ввода Резерва------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
@@ -3746,68 +3747,114 @@ DigitalExciter2-status-Temperature OBJECT-TYPE
 ----------------------------------------------------------------------
 
 ----------------------------------------------------------------------
-ReserveControl-SerNumer OBJECT-TYPE
+AVR-SerNumer OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
   DESCRIPTION
           "Serial number of the device"
-  ::= {ReserveControl-Info 1}
+  ::= {AVR-Info 1}
 ----------------------------------------------------------------------
-ReserveControl-Software OBJECT-TYPE
+AVR-Software OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
   DESCRIPTION
           "Software application"
-  ::= {ReserveControl-Info 2}
+  ::= {AVR-Info 2}
 ----------------------------------------------------------------------
-ReserveControl-Software-BCA OBJECT-TYPE
-  SYNTAX  DisplayString
-  ACCESS  read-only
-  STATUS  mandatory
-  DESCRIPTION
-          "Software BCA"
-  ::= {ReserveControl-Info 3}  
-----------------------------------------------------------------------
-ReserveControl-Software-Boot OBJECT-TYPE
-  SYNTAX  DisplayString
-  ACCESS  read-only
-  STATUS  mandatory
-  DESCRIPTION
-          "Software bootloader"
-  ::= {ReserveControl-Info 4}
-----------------------------------------------------------------------
-ReserveControl-Software-bord OBJECT-TYPE
+AVR-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
   DESCRIPTION
           "PCB version"
-  ::= {ReserveControl-Info 5}
-
+  ::= {AVR-Info 3}
+----------------------------------------------------------------------
+AVR-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {AVR-Info 4}
+----------------------------------------------------------------------
+AVR-SerNumer-BCA OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number BCA"
+  ::= {AVR-Info 10}
+----------------------------------------------------------------------
+AVR-Software-BCA OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software version BCA"
+  ::= {AVR-Info 11}
+----------------------------------------------------------------------
+AVR-Software-board-BCA OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "PCB version BCA"
+  ::= {AVR-Info 12}
 ----------------------------------------------------------------------
 -----------------------Настройки АВР----------------------------------
 ----------------------------------------------------------------------
-ReserveControl-Operating-mode OBJECT-TYPE
-  SYNTAX  INTEGER
+AVR-Operating-mode OBJECT-TYPE
+  SYNTAX  INTEGER{Auto(0),Manual(1)}
   ACCESS  read-write
   STATUS  mandatory
   DESCRIPTION
           "0- Auto 1- Manual"
-  ::= {ReserveControl-Setting 1}
+  ::= {AVR-Setting 1}
 ----------------------------------------------------------------------
-ReserveControl-AFD OBJECT-TYPE
+AVR-AFD OBJECT-TYPE
   SYNTAX  INTEGER{OFF(0),ON(1)}
   ACCESS  read-write
   STATUS  mandatory
   DESCRIPTION
           "Antenna-feeder Device
            OFF(0),ON(1)"
-  ::= {ReserveControl-Setting 1}
+  ::= {AVR-Setting 2}
+----------------------------------------------------------------------
+----------- Включить/Выключить загрузчик-------------------------------
+----------------------------------------------------------------------
+AVR-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ACCESS_DENIED(0),ACCESS_ALLOWED(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "ACCESS_DENIED(0),ACCESS_ALLOWED(1))"
+  ::= {AVR-Setting 3}
 
 ----------------------------------------------------------------------
--------------Параметры ReserveControl комплектра 1 -------------------
+----------- Перезагрузка AVR -----------------------------------------
+----------------------------------------------------------------------
+AVR-reboot OBJECT-TYPE
+  SYNTAX  INTEGER{Reboot(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot AVR"
+  ::= {AVR-Setting 10}
+
+----------------------------------------------------------------------
+-----------------------параметры АВР----------------------------------
+----------------------------------------------------------------------
+AVR-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, Celsius degree"
+  ::= {AVR-Param 30}
+----------------------------------------------------------------------
+-------------Параметры AVR комплекта 1 -------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 Transmiter1-Name OBJECT-TYPE
@@ -3894,7 +3941,7 @@ Transmiter1-lvl_Mpx OBJECT-TYPE
 ----------------------------------------------------------------------
 ---------------------Настройки ПРД-1----------------------------------
 ----------------------------------------------------------------------
-ReserveControl-Operating-mode OBJECT-TYPE
+Transmiter1-State OBJECT-TYPE
   SYNTAX  INTEGER{OFF(0),ON(1)}
   ACCESS  read-write
   STATUS  mandatory
@@ -3903,7 +3950,7 @@ ReserveControl-Operating-mode OBJECT-TYPE
   ::= {Transmiter1-Setting 1}
 
 ----------------------------------------------------------------------
------------------------Статусы ReserveControl комплектра 1 -----------
+-----------------------Статусы AVR комплекта 1 -----------
 ----------------------------------------------------------------------
 
 Transmiter1-status-Pout OBJECT-TYPE
@@ -3929,14 +3976,6 @@ Transmiter1-status-Pref OBJECT-TYPE
   DESCRIPTION
           ""
   ::= {Transmiter1-Status 5}  
-----------------------------------------------------------------------
-Transmiter1-status-Freq OBJECT-TYPE
-  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
-  ACCESS  read-only
-  STATUS  current
-  DESCRIPTION
-          ""
-  ::= {Transmiter1-Status 6}  
 ----------------------------------------------------------------------
 Transmiter1-status-lvl_Left OBJECT-TYPE
   SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
@@ -3965,7 +4004,7 @@ Transmiter1-status-lvl_Mpx OBJECT-TYPE
 ----------------------------------------------------------------------
 
 ----------------------------------------------------------------------
--------------Параметры ReserveControl комплектра 2 -------------------
+-------------Параметры AVR комплекта 2 -------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 Transmiter2-Name OBJECT-TYPE
@@ -4052,7 +4091,7 @@ Transmiter2-lvl_Mpx OBJECT-TYPE
 ----------------------------------------------------------------------
 ---------------------Настройки ПРД-2----------------------------------
 ----------------------------------------------------------------------
-ReserveControl-Operating-mode OBJECT-TYPE
+Transmiter2-State OBJECT-TYPE
   SYNTAX  INTEGER{OFF(0),ON(1)}
   ACCESS  read-write
   STATUS  mandatory
@@ -4061,7 +4100,7 @@ ReserveControl-Operating-mode OBJECT-TYPE
   ::= {Transmiter2-Setting 1}
 
 ----------------------------------------------------------------------
------------------------Статусы ReserveControl комплектра 2 -----------
+-----------------------Статусы AVR комплекта 2 -----------
 ----------------------------------------------------------------------
 
 Transmiter2-status-Pout OBJECT-TYPE
@@ -4087,14 +4126,6 @@ Transmiter2-status-Pref OBJECT-TYPE
   DESCRIPTION
           ""
   ::= {Transmiter2-Status 5}  
-----------------------------------------------------------------------
-Transmiter2-status-Freq OBJECT-TYPE
-  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
-  ACCESS  read-only
-  STATUS  current
-  DESCRIPTION
-          ""
-  ::= {Transmiter2-Status 6}  
 ----------------------------------------------------------------------
 Transmiter2-status-lvl_Left OBJECT-TYPE
   SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
@@ -4124,7 +4155,7 @@ Transmiter2-status-lvl_Mpx OBJECT-TYPE
 
 
 ----------------------------------------------------------------------
--------------Параметры ReserveControl комплектра 3 -------------------
+-------------Параметры AVR комплекта 3 -------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 Transmiter3-Name OBJECT-TYPE
@@ -4211,7 +4242,7 @@ Transmiter3-lvl_Mpx OBJECT-TYPE
 ----------------------------------------------------------------------
 ---------------------Настройки ПРД-3----------------------------------
 ----------------------------------------------------------------------
-ReserveControl-Operating-mode OBJECT-TYPE
+Transmiter3-State OBJECT-TYPE
   SYNTAX  INTEGER{OFF(0),ON(1)}
   ACCESS  read-write
   STATUS  mandatory
@@ -4220,7 +4251,7 @@ ReserveControl-Operating-mode OBJECT-TYPE
   ::= {Transmiter3-Setting 1}
 
 ----------------------------------------------------------------------
------------------------Статусы ReserveControl комплектра 3 -----------
+-----------------------Статусы AVR комплекта 3 -----------
 ----------------------------------------------------------------------
 
 Transmiter3-status-Pout OBJECT-TYPE
@@ -4246,14 +4277,6 @@ Transmiter3-status-Pref OBJECT-TYPE
   DESCRIPTION
           ""
   ::= {Transmiter3-Status 5}  
-----------------------------------------------------------------------
-Transmiter3-status-Freq OBJECT-TYPE
-  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
-  ACCESS  read-only
-  STATUS  current
-  DESCRIPTION
-          ""
-  ::= {Transmiter3-Status 6}  
 ----------------------------------------------------------------------
 Transmiter3-status-lvl_Left OBJECT-TYPE
   SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
@@ -4285,7 +4308,7 @@ Transmiter3-status-lvl_Mpx OBJECT-TYPE
 
 
 ----------------------------------------------------------------------
------------Параметры ReserveControl  Резервного передатчика ----------
+-----------Параметры AVR  Резервного передатчика ----------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 TransmiterReserv-Name OBJECT-TYPE
@@ -4372,7 +4395,7 @@ TransmiterReserv-lvl_Mpx OBJECT-TYPE
 ----------------------------------------------------------------------
 ---------------------Настройки ПРД-резерва ---------------------------
 ----------------------------------------------------------------------
-ReserveControl-Operating-mode OBJECT-TYPE
+TransmiterReserv-State OBJECT-TYPE
   SYNTAX  INTEGER{OFF(0),ON(1)}
   ACCESS  read-write
   STATUS  mandatory
@@ -4380,16 +4403,26 @@ ReserveControl-Operating-mode OBJECT-TYPE
           "OFF(0),ON(1)"
   ::= {TransmiterReserv-Setting 1}
 ----------------------------------------------------------------------
-ReserveControl-apply-configuration OBJECT-TYPE
+AVR-apply-configuration OBJECT-TYPE
   SYNTAX  INTEGER{Transmitter1(1),Transmitter2(2),Transmitter3(3)}
-  ACCESS  write
+  ACCESS  read-write
   STATUS  mandatory
   DESCRIPTION
           "Apply configuration from 1,2,3 transmitters"
-  ::= {TransmiterReserv-Setting 1}  
-
+  ::= {TransmiterReserv-Setting 2}  
 ----------------------------------------------------------------------
-----------------Статусы ReserveControl резервного передатчика---------
+----------- Перезагрузка резервного передатчика ----------------------
+----------------------------------------------------------------------
+AVR-reboot_reserv OBJECT-TYPE
+  SYNTAX  INTEGER{ON(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot Reserv"
+  ::= {TransmiterReserv-Setting 10}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------Статусы AVR резервного передатчика---------
 ----------------------------------------------------------------------
 
 TransmiterReserv-status-Pout OBJECT-TYPE
@@ -4416,14 +4449,6 @@ TransmiterReserv-status-Pref OBJECT-TYPE
           ""
   ::= {TransmiterReserv-Status 5}  
 ----------------------------------------------------------------------
-TransmiterReserv-status-Freq OBJECT-TYPE
-  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
-  ACCESS  read-only
-  STATUS  current
-  DESCRIPTION
-          ""
-  ::= {TransmiterReserv-Status 6}  
-----------------------------------------------------------------------
 TransmiterReserv-status-lvl_Left OBJECT-TYPE
   SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
   ACCESS  read-only
@@ -4449,13 +4474,12 @@ TransmiterReserv-status-lvl_Mpx OBJECT-TYPE
           ""
   ::= {TransmiterReserv-Status 10} 
 ----------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
+Reserv-Status OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),INIT(1),SET_FREQ(2),SET_POWER(3),ERR_FREQ(4),ERR_POWER(5),ERR_CONNECT(6),ERR(7),ON(8)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 20} 
+----------------------------------------------------------------------
 END
