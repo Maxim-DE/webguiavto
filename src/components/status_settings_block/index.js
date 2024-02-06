@@ -10,7 +10,7 @@ import Settings_block_calib from '../settings_block_calib';
 import { reducers } from '../../store/reducers/status_settings_reducers';
 import { cloneDeep } from 'lodash';
 import { useFormValidation } from '../../logic/validation/formValidation_hook';
-import { isInNumRange } from '../../logic/validation/validators';
+import { isInNumRange, isNumber } from '../../logic/validation/validators';
 
 const freq_ranges = {
   0: [87.5, 108],
@@ -295,6 +295,7 @@ function Status_settings(props) {
                 min={low_freq_range}
                 step={0.1}
                 validators={[
+                  isNumber(),
                   isInNumRange(low_freq_range, high_freq_range)
                 ]}
                 formValidHandler={validStatus_getter}

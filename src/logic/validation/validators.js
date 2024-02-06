@@ -37,6 +37,13 @@ export const maxLength = (maxCharCount) => {
             : `Количество символов не должно быть больше ${maxCharCount}`
 }
 
+export const isNumber = (
+    message = 'Значение не является числом'
+) => {
+    const regexp = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/i
+    return async (value) => (regexp.test(value) ? null : message);
+};
+
 export const isIpAdress = (
     message = 'Неверный формат IP-адреса'
 ) => {
