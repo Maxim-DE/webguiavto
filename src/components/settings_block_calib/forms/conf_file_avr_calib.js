@@ -220,6 +220,8 @@ export default function ConfFileCalib_AVR(props) {
       settings_type={`conf_file_calib`}
     // save_handler={handleClick_save}
     >
+      {auth_store.auth_access.calib_extend &&
+        <>
       <li
         key='factory_reset_manage'
         id='factory_reset_manage'
@@ -242,8 +244,6 @@ export default function ConfFileCalib_AVR(props) {
             type="button" />
         </div>
       </li>
-      {auth_store.auth_access.calib_extend &&
-        <>
         <li
           key='create_new_conf'
           id='create_new_conf'
@@ -326,9 +326,9 @@ export default function ConfFileCalib_AVR(props) {
               type="button" /> */}
           </div>
         </li>
+      <li className="group_divider" />
         </>
       }
-      <li className="group_divider" />
       <li
         key='conf_file_manage'
         id='conf_file_manage'
