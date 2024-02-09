@@ -1,9 +1,12 @@
-section:not(:last-child) {
+section {
   width: 100%;
   height: auto;
 
   max-width: 1564px;
+  margin: auto;
+}
 
+section:not(:last-child) {
   margin-bottom: 35px;
 }
 
