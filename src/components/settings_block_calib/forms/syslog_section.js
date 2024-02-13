@@ -223,8 +223,9 @@ function SyslogSection_calib(props) {
     }))
 
     const request_obj = {
-      address: `GetLogErrorFull.cgi`,
-      data: `${name}$1`,
+      address: 'GetLogErrorFull.cgi',
+      data: 'syslog$1',
+      reducer: reducers.syslog_data,
       notifications: {
         good: 'default',
         bad: 'default'

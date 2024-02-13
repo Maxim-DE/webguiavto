@@ -135,6 +135,7 @@ function Syslog_calib(props) {
     const request_obj = {
       address: 'GetLogErrorFull.cgi',
       data: 'syslog$1',
+      reducer: reducers.syslog_data,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -221,16 +222,17 @@ function Syslog_calib(props) {
       log_data: [],
     }))
 
-    // const request_obj = {
-    //   address: `GetLogErrorFull.cgi`,
-    //   data: `${name}$1`,
-    //   notifications: {
-    //     good: 'default',
-    //     bad: 'default'
-    //   }
-    // }
+    const request_obj = {
+      address: 'GetLogErrorFull.cgi',
+      data: 'syslog$1',
+      reducer: reducers.syslog_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
 
-    // props.updateHandler(request_obj)
+    props.updateHandler(request_obj)
 
     setLogType(prevState => (
       {
