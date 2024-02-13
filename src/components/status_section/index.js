@@ -236,8 +236,9 @@ function StatusSection(props) {
       id={`${props.section_name}_section`}
       ref={statusSectionRef} >
       <div className="section_header">
-        <h2>СТАТУС:&nbsp;
-          {device_status_output}
+        <h2>
+          {/* СТАТУС:&nbsp;
+          {device_status_output} */}
         </h2>
         <span
           style={{textAlign: "right"}}>
