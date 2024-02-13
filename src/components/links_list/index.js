@@ -12,13 +12,13 @@ import { useSelector } from 'react-redux';
 
 // массив со всеми элементами навбара
 const links_items = [
-  {id: 'status', name: "Статус"},
-  {id: 'settings', name: "Общие настройки"},
-  {id: 'network', name: "Сетевые настройки"},
-  {id: 'avr', name: "Управление устройствами"},
-  {id: 'info', name: "Данные об устройстве"},
+  { id: 'status', name: "Статус", req_access_level: 0 },
+  { id: 'settings', name: "Общие настройки", req_access_level: 1 },
+  { id: 'network', name: "Сетевые настройки", req_access_level: 1 },
+  { id: 'avr', name: "Управление устройствами", req_access_level: 1 },
+  { id: 'info', name: "Данные об устройстве", req_access_level: 0 },
   {
-    id: 'calibration_main', name: "Расширенные настройки", children: [
+    id: 'calibration_main', name: "Расширенные настройки", req_access_level: 2, children: [
       { id: 'main', name: "Общее", nested: true },
       { id: 'avr_calib', name: "Управление каналами", nested: true },
       { id: 'misc', name: "Прочее", nested: true },
@@ -26,18 +26,18 @@ const links_items = [
       { id: 'developer', name: "Для разработчиков", nested: true },
     ]
   }
-] 
+]
 
 const calib_links_items = [
-  {id: 'main', name: "Калибровка", nested: true},
-  {id: 'avr_calib', name: "Управление каналами", nested: true},
-  {id: 'misc', name: "Прочее", nested: true},
-  {id: 'developer', name: "Для разработчиков", nested: true},
+  { id: 'main', name: "Калибровка", nested: true },
+  { id: 'avr_calib', name: "Управление каналами", nested: true },
+  { id: 'misc', name: "Прочее", nested: true },
+  { id: 'developer', name: "Для разработчиков", nested: true },
 ]
 
 function Links_list(props) {
   const [active, SetActive] = React.useState('');
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const [sectionState, sectionActions] = useSectionStore()
 
   const location = useLocation();
@@ -52,7 +52,7 @@ function Links_list(props) {
   }, [location]);
 
   React.useEffect(() => {
-    let active_link 
+    let active_link
     for (const key in sectionState.intersection_pool) {
       if (sectionState.intersection_pool[key].isInView) {
         const section_name = key.replace('_section', '')
@@ -78,13 +78,13 @@ function Links_list(props) {
     console.log('nav li')
 
     const active_link_name = event.currentTarget.id,
-          active_link_num = links_items.findIndex(item => {
-              return active_link_name === item.id
-            })
+      active_link_num = links_items.findIndex(item => {
+        return active_link_name === item.id
+      })
 
     SetActive(active_link_num);
 
-    navigate(active_link_name.replace('_', '/'), {replace: false})
+    navigate(active_link_name.replace('_', '/'), { replace: false })
 
     props.updateHandler(event.currentTarget.id)
 
@@ -92,70 +92,63 @@ function Links_list(props) {
 
   return (
     <>
-    <ul className="nav_linksList">
-      {links_items.map((item, index) => {
-        if (index > 0 && index < links_items.length - 1 && 
-            (!auth_store.auth_access.settings ||
-            props.device_type === 255)) {
-          return
-        } else if (index == links_items.length - 1 && 
-                   (!auth_store.auth_access.calib ||
-                   props.device_type === 255)) {
-          return
-        } else if (index == links_items.length - 1 &&
-                   (auth_store.auth_access.calib &&
-                   props.device_type !== 255)) {
-
-          return (
-            <CalibNavList
-              id={item.id}
-              name={item.name}
-              index={index}
-              updateHandler={props.updateHandler}
-              isParentActive={index == active}
-              setParentActive={SetActive}
-              nested_elements={item.children}
-            />
-          )
-        } else {
-          return (
-          <li
-            key={item.id}
-            id={item.id}
-            onClick={handleClick}
-            className={index === active ? 'active' : ''}>
-            <div className="backIcon_wrap"></div>
-            <div 
-            className="nav_linkLabel"
-            onClick={(e) => {console.log('nav span');}}
-            >{item.name}</div>
-            {/* <FaAngleRight
+      <ul className="nav_linksList">
+        {links_items.map((item, index) => {
+          if (props.device_type != 255) {
+            if (auth_level >= item.req_access_level) {
+              if (index == links_items.length - 1) {
+                return (
+                  <CalibNavList
+                    id={item.id}
+                    name={item.name}
+                    index={index}
+                    updateHandler={props.updateHandler}
+                    isParentActive={index == active}
+                    setParentActive={SetActive}
+                    nested_elements={item.children}
+                  />
+                )
+              } else {
+                return (
+                  <li
+                    key={item.id}
+                    id={item.id}
+                    onClick={handleClick}
+                    className={index === active ? 'active' : ''}>
+                    <div className="backIcon_wrap"></div>
+                    <div
+                      className="nav_linkLabel"
+                      onClick={(e) => { console.log('nav span'); }}
+                    >{item.name}</div>
+                    {/* <FaAngleRight
               color='#6D8EA0'
               size='25px' /> */}
-          </li>
-          )
-        }
-      })}
-      
-    </ul>
-    <Outlet />
+                  </li>
+                )
+              }
+            }
+          }
+        })}
+
+      </ul>
+      <Outlet />
     </>
   )
   // if (active < links_items.length) {
   // } else {
   //   return 
-    // <CalibNavList 
-    //           updateHandler={props.updateHandler} 
-    //           setParentActive={SetActive}
-    //           nested_elements={}
-    //           />
+  // <CalibNavList 
+  //           updateHandler={props.updateHandler} 
+  //           setParentActive={SetActive}
+  //           nested_elements={}
+  //           />
   // }
 }
 
 
 
 // Отдельный вариант списка навигации для калибровки, по реализации тоже самое, что и список выше, только он выступает в качестве потомка основного списка, поэтому в него передаются функции и значения из родительского компонента
-function CalibNavList({id, name, updateHandler, index, isParentActive, setParentActive, nested_elements}) {
+function CalibNavList({ id, name, updateHandler, index, isParentActive, setParentActive, nested_elements }) {
   const auth_store = useSelector((store) => store.authStore.auth_data)
   const [active, setActive] = React.useState(0);
   const [isExpanded, setIsExpanded] = React.useState(false);
@@ -172,13 +165,13 @@ function CalibNavList({id, name, updateHandler, index, isParentActive, setParent
     console.log('nav li')
 
     const active_link_name = event.currentTarget.id,
-          active_link_num = nested_elements.findIndex(item => {
-              return active_link_name === item.id
-            })
+      active_link_num = nested_elements.findIndex(item => {
+        return active_link_name === item.id
+      })
 
     setActive(active_link_num);
 
-    navigate(`calibration/${active_link_name}`, {replace: false})
+    navigate(`calibration/${active_link_name}`, { replace: false })
     updateHandler(`calibration_${active_link_name}`)
   }
 
@@ -208,30 +201,30 @@ function CalibNavList({id, name, updateHandler, index, isParentActive, setParent
           className='front_icon'
           size='25px' />
       </li>
-        {isExpanded && nested_elements.map((item, index) => {
-          if (item.id == 'developer' && !auth_store.auth_access.calib_extend) {
-            return
-          } else {
-            return (
+      {isExpanded && nested_elements.map((item, index) => {
+        if (item.id == 'developer' && !auth_store.auth_access.calib_extend) {
+          return
+        } else {
+          return (
             <li
               key={item.id}
               id={item.id}
               onClick={handleNestedClick}
               className={`nested_item ${index == active ? 'active' : ''}`}
-              >
+            >
               <div className="backIcon_wrap"></div>
-              <div 
-              className="nav_linkLabel"
-              onClick={(e) => {console.log('nav span');}}
+              <div
+                className="nav_linkLabel"
+                onClick={(e) => { console.log('nav span'); }}
               >{item.name}</div>
               {/* <FaAngleRight
                 color='#6D8EA0'
                 size='25px' /> */}
             </li>
-            )
-          }
-          })}
-      
+          )
+        }
+      })}
+
       <Outlet />
     </>
   )

@@ -22,94 +22,98 @@ export default function DeviceWrap_AVR1000(props) {
     props.updateHandler(data_block)
   }
   const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
+  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   return (
     <>
-      <Routes>
-        <Route path='*' element={
-          <GeneralSettingsSection
-            updateHandler={updateHandler}
-          />
-        } />
-        <Route path='network' element={
-          <NetworkSettingsSection
-            updateHandler={updateHandler}
-          />
-        } />
-        <Route path='avr' element={
-          <AvrControl
-            section_name="avr"
-            section_header="управление устройствами"
-            updateHandler={updateHandler}
-          />
-        } />
-        <Route path='info' element={
-          <InfoSection
-            updateHandler={updateHandler}
-          />
-        } />
-        {/* {auth_store.auth_access.calib &&
-        <Route path='calibration' element={
-          <CalibSection
-            section_name="calibration"
-            section_header="калибровка"
-            updateHandler={updateHandler}
-            section_data={props.calib_data === null ? 'null' : props.calib_data}
-            adc_data={props.adc_data} />
-        } />
-      } */}
-        {auth_store.auth_access.calib &&
-          <Route path='calibration'>
-            <Route path='main' element={
-              <CalibMain
-                section_name="calibration_main"
-                section_header="калибровка"
+    <Routes>
+      <Route path='*' element={
+        <>
+        <Routes>
+          <Route path='info' element={
+            <InfoSection
+              updateHandler={updateHandler}
+              />
+          } />
+          {auth_level >= 1 &&
+          <>
+            <Route path='settings' element={
+              <GeneralSettingsSection
                 updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
+                />
+            } />
+            <Route path='network' element={
+              <NetworkSettingsSection
+                updateHandler={updateHandler}
+                />
+            } />
+            <Route path='avr' element={
+              <AvrControl
+                section_name="avr"
+                section_header="управление устройствами"
+                updateHandler={updateHandler}
               />
             } />
-            <Route path='avr_calib' element={
-              <AvrDevicesCalib
-                section_name="calibration_main"
-                section_header="калибровка"
-                updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-            } />
-            <Route path='misc' element={
-              <MiscCalib
-                section_name="misc"
-                section_header="калибровка"
-                updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-            } />
-            <Route path='syslog' element={
-              <SyslogCalib
-                section_name="syslog"
-                section_header="калибровка"
-                updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-            } />
-            <Route path='developer' element={
-              <DeveloperCalib
-                section_name="developer"
-                section_header="калибровка"
-                updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-            } />
-          </Route>
-        }
-      </Routes>
-    </>
+          </>
+          }
 
+          {auth_level >= 2 &&
+            <Route path='calibration'>
+              <Route path='main' element={
+                <CalibMain
+                  section_name="calibration_main"
+                  section_header="калибровка"
+                  updateHandler={updateHandler}
+                  // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                  // adc_data={props.adc_data} 
+                  />
+              } />
+              <Route path='avr_calib' element={
+                <AvrDevicesCalib
+                  section_name="calibration_main"
+                  section_header="калибровка"
+                  updateHandler={updateHandler}
+                // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                // adc_data={props.adc_data}
+                />
+              } />
+              <Route path='misc' element={
+                <MiscCalib
+                  section_name="misc"
+                  section_header="калибровка"
+                  updateHandler={updateHandler}
+                  // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                  // adc_data={props.adc_data} 
+                  />
+              } />
+              <Route path='syslog' element={
+                <SyslogCalib
+                  section_name="syslog"
+                  section_header="калибровка"
+                  updateHandler={updateHandler}
+                // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                // adc_data={props.adc_data} 
+                />
+              } />
+              {auth_level >= 3 &&
+                <Route path='developer' element={
+                  <DeveloperCalib
+                    section_name="developer"
+                    section_header="калибровка"
+                    updateHandler={updateHandler}
+                    // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                    // adc_data={props.adc_data} 
+                    />
+                } />
+              }
+            </Route>
+          }
+        </Routes>
+        </>
+      } />
+    </Routes>
+    </>
   )
 }
 
