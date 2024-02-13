@@ -216,8 +216,12 @@ function FormInput(
           className={`${props.class != undefined && props.class} ${props.disabled && 'disabled_input'} ${isError && 'error_input'}`}
           type="password"
           onChange={handleChange}
+          disabled={props.disabled}
+          maxLength={props.max_length}
+          onBlur={handleBlur}
           value={props.input_value}
           style={props.style}
+          data-error={!!isError}
         />
       </div>
     )
