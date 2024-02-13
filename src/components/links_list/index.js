@@ -37,7 +37,7 @@ const calib_links_items = [
 ]
 
 function Links_list(props) {
-  const [active, SetActive] = React.useState('');
+  const [active, SetActive] = React.useState(0);
   const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const [sectionState, sectionActions] = useSectionStore()
 
@@ -66,14 +66,6 @@ function Links_list(props) {
     }
   }, [sectionState.intersection_pool])
 
-  React.useEffect(() => {
-    // if (active < '4') {
-    //   setCalibOpen(false)
-    // } else {
-    //   setCalibOpen(true)
-    // }
-  }, [active]);
-
   function handleClick(event) {
     event.stopPropagation()
     console.log('nav li')
@@ -98,35 +90,35 @@ function Links_list(props) {
         if (props.device_type != 255) {
           if (auth_level >= item.req_access_level) {
             if (index == links_items.length - 1) {
-          return (
-            <CalibNavList
-              id={item.id}
-              name={item.name}
-              index={index}
-              updateHandler={props.updateHandler}
-              isParentActive={index == active}
-              setParentActive={SetActive}
-              nested_elements={item.children}
-            />
-          )
-        } else {
-          return (
-          <li
-            key={item.id}
-            id={item.id}
-            onClick={handleClick}
-            className={index === active ? 'active' : ''}>
-            <div className="backIcon_wrap"></div>
-            <div 
-            className="nav_linkLabel"
+              return (
+                <CalibNavList
+                  id={item.id}
+                  name={item.name}
+                  index={index}
+                  updateHandler={props.updateHandler}
+                  isParentActive={index == active}
+                  setParentActive={SetActive}
+                  nested_elements={item.children}
+                />
+              )
+            } else {
+              return (
+                <li
+                  key={item.id}
+                  id={item.id}
+                  onClick={handleClick}
+                  className={index === active ? 'active' : ''}>
+                  <div className="backIcon_wrap"></div>
+                  <div
+                    className="nav_linkLabel"
                     onClick={(e) => { console.log('nav span'); }}
-            >{item.name}</div>
-            {/* <FaAngleRight
-              color='#6D8EA0'
-              size='25px' /> */}
-          </li>
-          )
-        }
+                  >{item.name}</div>
+                  {/* <FaAngleRight
+                color='#6D8EA0'
+                size='25px' /> */}
+                </li>
+              )
+            }
           }
         }
         // if (index > 0 && index < links_items.length - 1 && 
