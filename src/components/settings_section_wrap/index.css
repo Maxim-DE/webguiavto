@@ -3,7 +3,7 @@ section {
   height: auto;
 
   max-width: 1564px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 section:not(:last-child) {
