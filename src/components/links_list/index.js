@@ -37,7 +37,7 @@ const calib_links_items = [
 ]
 
 function Links_list(props) {
-  const [active, SetActive] = React.useState('');
+  const [active, SetActive] = React.useState(0);
   const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const [sectionState, sectionActions] = useSectionStore()
 
@@ -65,14 +65,6 @@ function Links_list(props) {
       }
     }
   }, [sectionState.intersection_pool])
-
-  React.useEffect(() => {
-    // if (active < '4') {
-    //   setCalibOpen(false)
-    // } else {
-    //   setCalibOpen(true)
-    // }
-  }, [active]);
 
   function handleClick(event) {
     event.stopPropagation()
@@ -122,8 +114,8 @@ function Links_list(props) {
                       onClick={(e) => { console.log('nav span'); }}
                     >{item.name}</div>
                     {/* <FaAngleRight
-              color='#6D8EA0'
-              size='25px' /> */}
+                color='#6D8EA0'
+                size='25px' /> */}
                   </li>
                 )
               }
