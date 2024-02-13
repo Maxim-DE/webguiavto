@@ -94,7 +94,8 @@ export default function Syslog_wrap(props) {
                 {item.log_expand === true &&
                   //  item.log_expand_data !== 'none' &&
                   <tr
-                    className='log_expand_message'>
+                    className='log_expand_message'
+                    key={item.id + 'ex'}>
                     {item.expand_info !== 'none' ?
                       <Log_expand_info
                         expand_obj={item.expand_info} /> :
