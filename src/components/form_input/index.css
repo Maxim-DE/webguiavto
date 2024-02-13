@@ -252,9 +252,12 @@ input[type="text"]::placeholder {
   color: #868D9C;
 }
 
-input.transparent {
+input[type="text"].transparent,
+input[type="password"].transparent,
+input[type="number"].transparent {
   background-color: transparent;
   border: none;
+  color: #2F323A;
 }
 
 input[type="text"].calib_input {
