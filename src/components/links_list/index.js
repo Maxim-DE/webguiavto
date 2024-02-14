@@ -19,7 +19,7 @@ const links_items = [
   { id: 'info', name: "Данные об устройстве", req_access_level: 0 },
   { id: 'userlog', name: "Польз. журнал", req_access_level: 0 },
   {
-    id: 'calibration_main', name: "Расширенные настройки", req_access_level: 2, children: [
+    id: 'calibration', name: "Расширенные настройки", req_access_level: 2, children: [
       { id: 'main', name: "Общее", nested: true },
       { id: 'avr_calib', name: "Управление каналами", nested: true },
       { id: 'misc', name: "Прочее", nested: true },
@@ -46,8 +46,10 @@ function Links_list(props) {
 
   React.useEffect(() => {
     console.log('Current location is ', location);
-    const section_name = location.pathname.replace(/\//g, '')
+    const section_name = location.pathname.split(/\//g).splice(1, 1)[0],
+          section_link_index = links_items.findIndex(link => link.id === section_name)
 
+    SetActive(section_link_index);
     props.updateHandler(section_name)
 
   }, [location]);
