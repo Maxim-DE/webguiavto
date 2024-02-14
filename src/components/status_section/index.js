@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';
 import { AlertDialogWrap } from '../alert_dialog_wrap';
+import { useLocation, useMatch } from 'react-router-dom';
 
 export const device_model_table = {
   'УРЦ-1000': 're_amp_1000',
@@ -29,6 +30,7 @@ function StatusSection(props) {
   
   const [authGlobalState, authGlobalActions] = useGlobalStore()
   const [sectionState, sectionActions] = useSectionStore()
+  const userlog_match = useMatch('/userlog');
 
   const status_store = useSelector((store) => store.globalStore.global_data.status_data),
         section_store = useSelector((store) => store.globalStore.global_data.section_data),
@@ -238,15 +240,16 @@ function StatusSection(props) {
           graph_svg={status_store.status_svg.img}
           updateHandler={handleUpdate}
           data={status_store.status_graph}/>
-        <div className={`status_settings_wrap guest_wrap`}>
-          <Status_logs 
-            settings_type="logs" 
-            header="журнал" 
-            data={status_store.status_logs}
-            full_data={status_store.status_full_logs}
-            updateHandler={handleUpdate} />
-          
-         {/* {auth_store.auth_access.settings &&
+          <div className={`status_settings_wrap guest_wrap ${guest_mode_class}`}>
+          {!userlog_match &&
+            <Status_logs 
+              settings_type="logs" 
+              header="журнал" 
+              data={status_store.status_logs}
+              full_data={status_store.status_full_logs}
+              updateHandler={handleUpdate} />
+          }
+          {/* {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
             device_type={device_type}
