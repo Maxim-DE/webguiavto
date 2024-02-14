@@ -23,7 +23,7 @@ section:not(:last-child) {
 }
 
 .section_header h2,
-.section_header span {
+.section_header .status_time_span {
   color: #2B2927;
   font-weight: 700;
   font-size: 35px;

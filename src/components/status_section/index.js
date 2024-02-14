@@ -238,27 +238,19 @@ function StatusSection(props) {
       id={`${props.section_name}_section`}
       ref={statusSectionRef} >
       <div className="section_header">
-        <h2>
-          {/* СТАТУС:&nbsp;
-          {device_status_output} */}
-        </h2>
-        <span
-          style={{textAlign: "right"}}>
-          {device_time_output}
-        </span>
-      </div>
-      <div className="control_mode_wrap">
-        {auth_store.auth_access.settings &&
-          <AVRControlModeSwitch
-            clickHandler={handleUpdate}
-            parent_state={status_store.status_info} />
-        }
+        <div className="control_mode_wrap">
+          {auth_store.auth_access.settings &&
+            <AVRControlModeSwitch
+              clickHandler={handleUpdate}
+              parent_state={status_store.status_info} />
+          }
         </div>
         {/* <h2>
           СТАТУС:&nbsp;
           {device_status_output}
         </h2> */}
         <span
+          className='status_time_span'
           style={{textAlign: "right"}}>
           {device_time_output}
         </span>
