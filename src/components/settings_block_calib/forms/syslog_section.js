@@ -21,6 +21,7 @@ import { BsChevronDoubleLeft, BsChevronLeft,
 import '../index.css'
 import { reducers } from '../../../store/reducers/calib_forms_reducers'
 import SettingsBlockWrap from '../../settings_block_wrap'
+import { useSelector } from 'react-redux'
 
 export const log_status = [
   '',
@@ -53,6 +54,7 @@ function SyslogSection_calib(props) {
     log_data: []
   });
 
+  const auth_store = useSelector((store) => store.authStore.auth_data)
   const active_link_ref = React.useRef(null)
 
   // React.useEffect(() => {
@@ -363,13 +365,15 @@ function SyslogSection_calib(props) {
           </div>
         }
         <div className='sys_log_buttons'>
-          <FormInput
-            id={`delete_sys_logs_input`}
-            name={`delete_sys_logs`}
-            clickHandler={delete_handleClick}
-            // class='log_refresh'
-            label='Очистить журнал'
-            type="button" />
+          {auth_store.auth_access.calib_extend &&
+            <FormInput
+              id={`delete_sys_logs_input`}
+              name={`delete_sys_logs`}
+              clickHandler={delete_handleClick}
+              // class='log_refresh'
+              label='Очистить журнал'
+              type="button" />
+          }
           <a href="ReadSysLog.txt" >
             <FormInput
               id={`calib_password_save`}
