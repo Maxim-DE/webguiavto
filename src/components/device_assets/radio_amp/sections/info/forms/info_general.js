@@ -12,7 +12,10 @@ export default function Info_general(props) {
           if (deepKeyExists(store.globalStore.global_data, 'Type_Device')) {
             return `${store.globalStore.global_data.section_data.info.info_general.Type_Device} №${store.globalStore.global_data.section_data.info.info_general.serial_number}`
           }
-        })
+        }),
+        status_info_store = useSelector((store) => store.globalStore.global_data.status_data.status_info)
+
+  const upTime = status_info_store?.UpTime
 
   const [infoGeneralState, setInfoGeneralState] = React.useState({
     serial_number: 'N/A',
@@ -115,6 +118,24 @@ export default function Info_general(props) {
           <FormInput
             id={`memory_type`}
             input_value={infoGeneralState.memory_type}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='uptime'
+        id='uptime'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`uptime_input`}
+            className="settings_itemLabel">
+            Прошло с момента вкл.
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`uptime`}
+            input_value={upTime}
             type="text_sample" />
         </div>
       </li>
