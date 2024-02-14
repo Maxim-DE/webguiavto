@@ -3,7 +3,7 @@
   /* flex-direction: column; */
   column-gap: 10px;
   row-gap: 15px;
-  align-items:end;
+  align-items:center;
   /* justify-items: flex-start; */
   justify-content: flex-start;
   margin: 33px 0;

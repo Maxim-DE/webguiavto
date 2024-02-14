@@ -253,6 +253,15 @@ function StatusSection(props) {
             clickHandler={handleUpdate}
             parent_state={status_store.status_info} />
         }
+        </div>
+        {/* <h2>
+          СТАТУС:&nbsp;
+          {device_status_output}
+        </h2> */}
+        <span
+          style={{textAlign: "right"}}>
+          {device_time_output}
+        </span>
       </div>
       <div className="section_status">
         <Status_graphs
