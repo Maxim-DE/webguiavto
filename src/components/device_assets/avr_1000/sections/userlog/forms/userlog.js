@@ -1,18 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import FormInput from '../form_input';
-import ModalCalib from '../calib_modal';
-import time_ArrToStr from '../../logic/time_ArrToStr';
+import FormInput from '../../../../../form_input';
+import time_ArrToStr from '../../../../../../logic/time_ArrToStr';
 
 import { TbPlus } from 'react-icons/tb';
 import { TbMinus } from 'react-icons/tb';
 import { PulseLoader } from 'react-spinners';
 
-import { status_colors } from '../graph_blocks';
-import './index.css'
-import { reducers } from '../../store/reducers/status_logs_reducers';
-import { useNavigate } from 'react-router-dom';
+import { status_colors } from '../../../../../graph_blocks';
+import '../../../../../status_logs_block/index.css'
+import { reducers } from '../../../../../../store/reducers/status_logs_reducers';
+import SettingsBlockWrap from '../../../../../settings_block_wrap';
+import { useSelector } from 'react-redux';
 
 const log_items = [
   { id: '0', message: "Питание передатчика", time: "2022-03-17 13:16:28" },
@@ -47,14 +46,11 @@ export const LabelReplaceText = {
   'Efficiency': 'КПД',
 };
 
-function Status_logs({ settings_type, data, full_data, className = "", ...rest }) {
+function Userlog_settings({ settings_type, data, full_data, className = "", ...rest }) {
 
-  const [logData, setLogData] = React.useState([])
+  const fullData_store = useSelector((store) => store.globalStore.global_data.status_data?.status_full_logs)
+
   const [fullLogData, setFullLogData] = React.useState([])
-
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const navigate = useNavigate();
 
   function logArrToObj(data) {
     let logs_array = [];
@@ -84,34 +80,35 @@ function Status_logs({ settings_type, data, full_data, className = "", ...rest }
   }
 
   React.useEffect(() => {
-    if (data != null && data.length != 0) {
-      let logs_array = logArrToObj(data);
-
-      setLogData(logs_array)
-    }
-
-  }, [data])
+    getFullLog()
+  }, [])
 
   React.useEffect(() => {
-    if (full_data != null && full_data.length != 0) {
-      let logs_array = logArrToObj(full_data);
+    if (fullData_store != null && fullData_store.length != 0) {
+      let logs_array = logArrToObj(fullData_store);
 
       setFullLogData(logs_array)
     }
 
-  }, [full_data])
-
-  const handleModalClose = (event) => {
-    setIsOpen(false)
-  }
+  }, [fullData_store])
 
   const refreshHandler = () => {
     setFullLogData([])
-    navigateFullLog()
+    getFullLog()
   }
 
-  const navigateFullLog = () => {
-    navigate('/userlog', { replace: false })
+  const getFullLog = () => {
+    const request_obj = {
+      address: 'GetLogErrorFull.cgi',
+      data: 'userlog$1',
+      reducer: reducers.userlog_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    rest.updateHandler(request_obj)
   }
 
   const handle_logExpand = (log_type, log_num, log_id) => {
@@ -124,8 +121,6 @@ function Status_logs({ settings_type, data, full_data, className = "", ...rest }
     setFullLogData(
       logs_data
     )
-
-    // console.debug(fullLogData)
 
     if (expanded_log.expand_info == 'none') handle_logExpand_request(log_type, log_id, expanded_log.log_expand)
   }
@@ -150,56 +145,80 @@ function Status_logs({ settings_type, data, full_data, className = "", ...rest }
   }
 
   return (
-    <div
-      className={`settings_block ${settings_type ? settings_type : ""}`}>
-      <div className="settings_container">
-        <div className="settings_block_header">
-          <h3>{rest.header}</h3>
-        </div>
-        {data != null ?
-          <>
-            <table className="log_list_table">
-              <thead className="logs_header">
-                <tr>
-                  <td>№</td>
-                  <td>user</td>
-                  <td>дата и время</td>
-                  <td>сообщение</td>
-                </tr>
-              </thead>
-              <tbody className="log_list">
-                {logData.map((item) => {
-                  return (
+    <>
+      <SettingsBlockWrap type="blank" screen_fit={true}>
+        <div className="log_table_wrap">
+          <table className="log_list_table" autoFocus>
+            <thead className="logs_header">
+              <tr>
+                <td className='log_expand_button_wrap'></td>
+                <td>№</td>
+                <td>user</td>
+                <td>дата и время</td>
+                <td>сообщение</td>
+              </tr>
+            </thead>
+            <tbody className="user_log log_list">
+              {fullLogData.map((item, index) => (
+                <>
+                  <tr
+                    key={item.id}
+                    id={`log_${item.id}`}
+                    className={`log_item ${log_status[item.status]}`}>
+                    <td className='log_expand_button_wrap'>
+                      {item.log_expand !== 'none' &&
+                        <button
+                          className='log_expand_button'
+                          type='button'
+                          onClick={(e) => {
+                            handle_logExpand('userlog', index, item.id)
+                          }}>
+                          {item.log_expand ? <TbMinus /> :
+                            <TbPlus />
+                          }
+                        </button>
+                      }
+                    </td>
+                    <td className='log_num'>{item.id}</td>
+                    <td className=''>{item.user}</td>
+                    <td className='log_time'>{item.time}</td>
+                    <td className='log_message'>{item.message}</td>
+                  </tr>
+                  {item.log_expand === true &&
+                    //  item.log_expand_data !== 'none' &&
                     <tr
-                      key={item.id}
-                      id={`log_${item.id}`}
-                      className={`log_item ${log_status[item.status]}`}>
-                      <td className='log_num'>{item.id}</td>
-                      <td>{item.user}</td>
-                      <td className='log_time'>{item.time}</td>
-                      <td className='log_message'>{item.message}</td>
+                      className='log_expand_message'>
+                      {item.expand_info !== 'none' ?
+
+                        <Log_expand_info
+                          expand_obj={item.expand_info} /> :
+                        <PulseLoader
+                          color="#bbcacf"
+                          loading
+                          margin={9}
+                          size={13}
+                          speedMultiplier={0.5}
+                        />
+                      }
                     </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-            <FormInput
-              id={`full_logs_button`}
-              name={`full_logs_button`}
-              clickHandler={(e) => {
-                // // if (fullLogData.length == 0) 
-                navigateFullLog()
-                // setIsOpen(true);
-              }}
-              class='log_refresh'
-              label='Открыть полный журнал'
-              type="button"
-            />
-          </>
-          : 'ЗАГРУЗКА...'
-        }
-      </div>
-    </div>
+                  }
+                </>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className='log_form_buttons'>
+          <FormInput
+            id={`calib_password_save`}
+            name={`calib_password`}
+            clickHandler={refreshHandler}
+            class='log_refresh'
+            label='Обновить журнал'
+            type="button"
+          />
+        </div>
+      </SettingsBlockWrap>
+    </>
   )
 
 }
@@ -298,4 +317,4 @@ function param_label_translate(label) {
   }
 }
 
-export default Status_logs;
+export default Userlog_settings;

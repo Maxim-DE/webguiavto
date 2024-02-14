@@ -15,6 +15,7 @@ import RdsSettingsSection from './sections/rds'
 import { AvrControl } from './sections/avr_control'
 import { AvrDevicesCalib } from './sections/calib/avr_devices_calib'
 import { SyslogCalib } from './sections/calib/syslog'
+import { UserlogSection } from './sections/userlog'
 
 export default function DeviceWrap_AVR1000(props) {
 
@@ -33,6 +34,11 @@ export default function DeviceWrap_AVR1000(props) {
         <Routes>
           <Route path='info' element={
             <InfoSection
+              updateHandler={updateHandler}
+              />
+          } />
+          <Route path='userlog' element={
+            <UserlogSection
               updateHandler={updateHandler}
               />
           } />

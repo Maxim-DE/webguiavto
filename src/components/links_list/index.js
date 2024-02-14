@@ -17,6 +17,7 @@ const links_items = [
   { id: 'network', name: "Сетевые настройки", req_access_level: 1 },
   { id: 'avr', name: "Управление устройствами", req_access_level: 1 },
   { id: 'info', name: "Данные об устройстве", req_access_level: 0 },
+  { id: 'userlog', name: "Польз. журнал", req_access_level: 0 },
   {
     id: 'calibration_main', name: "Расширенные настройки", req_access_level: 2, children: [
       { id: 'main', name: "Общее", nested: true },
