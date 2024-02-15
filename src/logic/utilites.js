@@ -109,3 +109,67 @@ export function move_svg_byOffset(element, offset_x, offset_y) {
 
 export const roundDigits = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0))
 
+export const PrependZeros = function (str, len, seperator) {
+  if (typeof str === 'number' || Number(str)) {
+    str = str.toString();
+    return (len - str.length > 0) ? new Array(len + 1 - str.length).join('0') + str : str;
+  }
+  else {
+    var spl = str.split(seperator || ' ')
+    for (var i = 0; i < spl.length; i++) {
+      if (Number(spl[i]) && spl[i].length < len) {
+        spl[i] = PrependZeros(spl[i], len)
+      }
+    }
+    return spl.join(seperator || ' ');
+  }
+};
+export function getTime() {
+  var currentdate = new Date();
+  var date = PrependZeros(currentdate.getDate(), 2) + "-"
+    + PrependZeros((currentdate.getMonth() + 1), 2) + "-"
+    + PrependZeros(currentdate.getFullYear(), 2)
+
+  var time = PrependZeros(currentdate.getHours(), 2) + ":"
+    + PrependZeros(currentdate.getMinutes(), 2) + ":"
+    + PrependZeros(currentdate.getSeconds(), 2);
+
+  return [date, time]
+}
+
+export const toMSTimeString = (seconds) => {
+  const date = new Date(seconds * 1000);
+  return [
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+  ].map(val => String(val).padStart(2, '0')).join(':').replace(/^00:/, '');
+};
+
+export const MMSStoSecs = (MMSSTimeString) => {
+  if (typeof MMSSTimeString !== 'string') {
+    if (MMSSTimeString.toString) MMSSTimeString = MMSSTimeString.toString();
+    else throw ("Invalid input");
+  }
+
+  let parts = MMSSTimeString.split(':'), 
+      n = parts.length, 
+      s = 0, 
+      i
+
+  for (i = 0; i < parts.length; i++) {
+    const part = parseInt(parts[n - 1 - i]);
+    if (i === 0) {
+      s += part;
+    } else if (i === 1) {
+      s += part * 6e1;
+    } else if (i === 2) {
+      s += part * 36e2;
+    }
+  }
+
+  return s;
+}
+
+
+
