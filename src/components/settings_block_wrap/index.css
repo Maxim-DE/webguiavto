@@ -184,6 +184,7 @@ h3 {
   column-gap: 15px;
 }
 
+.settings_item .item_header,
 .calib .item_header {
   display: flex;
   align-items: center;
