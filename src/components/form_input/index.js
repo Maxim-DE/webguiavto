@@ -86,6 +86,15 @@ function FormInput(
 
     performValidation()
 
+    const hasInputValidError = !!isError
+
+    if (props.formValidHandler) {
+      props.formValidHandler({
+        id: props.name,
+        valid_status: !hasInputValidError
+      })
+    }
+
   }, [props.input_value])
 
   const handleChange = async (event) => {
