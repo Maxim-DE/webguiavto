@@ -91,3 +91,10 @@ export const isTime = (
     const regexp = /^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/i
     return async (value) => (regexp.test(value) ? null : message);
 };
+
+export const isTimeMMSS = (
+    message = `Недопустимый формат времени, необходимо MM:SS`
+) => {
+    const regexp = /^([0-5]\d):([0-5]\d)$/i
+    return async (value) => (regexp.test(value) ? null : message);
+};
