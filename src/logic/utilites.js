@@ -139,6 +139,41 @@ export function getTime() {
   return [date, time]
 }
 
+export const toMSTimeString = (seconds) => {
+  const date = new Date(seconds * 1000);
+  return [
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+  ].map(val => String(val).padStart(2, '0')).join(':').replace(/^00:/, '');
+};
+
+export const MMSStoSecs = (MMSSTimeString) => {
+  if (typeof MMSSTimeString !== 'string') {
+    if (MMSSTimeString.toString) MMSSTimeString = MMSSTimeString.toString();
+    else throw ("Invalid input");
+  }
+
+  let parts = MMSSTimeString.split(':'), 
+      n = parts.length, 
+      s = 0, 
+      i
+
+  for (i = 0; i < parts.length; i++) {
+    const part = parseInt(parts[n - 1 - i]);
+    if (i === 0) {
+      s += part;
+    } else if (i === 1) {
+      s += part * 6e1;
+    } else if (i === 2) {
+      s += part * 36e2;
+    }
+  }
+
+  return s;
+}
+
+
 // Helper to return a value's internal object [[Class]]
 // That this returns [object Type] even for primitives
 function getClass(obj) {
