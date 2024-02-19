@@ -25,7 +25,7 @@ RTRS-RDS-Param OBJECT IDENTIFIER ::= {_RTRS 3}
 ------------------------------------------------------------------
 RadioExciterV0        OBJECT IDENTIFIER ::= {okbalfa_V0 10}
 ------------------------------------------------------------------
-----------------------V16------------------------------------------
+----------------------V19-----------------------------------------
 ------------------------------------------------------------------
 RadioExciter              OBJECT IDENTIFIER ::= {okbalfa 0}
 RadioExciter-Info         OBJECT IDENTIFIER ::= {RadioExciter 1}
@@ -109,6 +109,41 @@ DigitalExciter2          OBJECT IDENTIFIER ::= {BlockControl_v2 9}
 DigitalExciter2-Info     OBJECT IDENTIFIER ::= {DigitalExciter2 1}
 DigitalExciter2-Param    OBJECT IDENTIFIER ::= {DigitalExciter2 2}
 DigitalExciter2-Status   OBJECT IDENTIFIER ::= {DigitalExciter2 4}
+------------------------------------------------------------------
+------------------------------------------------------------------
+------------------------------------------------------------------
+AVR                      OBJECT IDENTIFIER ::= {okbalfa 5}
+AVR-Info                 OBJECT IDENTIFIER ::= {AVR 1}
+AVR-Param                OBJECT IDENTIFIER ::= {AVR 2}
+AVR-Setting              OBJECT IDENTIFIER ::= {AVR 3}
+AVR-Main-Transmiter1     OBJECT IDENTIFIER ::= {AVR 10}
+AVR-Main-Transmiter2     OBJECT IDENTIFIER ::= {AVR 11}
+AVR-Main-Transmiter3     OBJECT IDENTIFIER ::= {AVR 12}
+AVR-Reserv-Transmiter    OBJECT IDENTIFIER ::= {AVR 13}
+--------------------------------------------------------------------
+Transmiter1-Param     OBJECT IDENTIFIER ::= {AVR-Main-Transmiter1 2}
+Transmiter1-Setting   OBJECT IDENTIFIER ::= {AVR-Main-Transmiter1 3}
+Transmiter1-Status    OBJECT IDENTIFIER ::= {AVR-Main-Transmiter1 4}
+--------------------------------------------------------------------
+Transmiter2-Param     OBJECT IDENTIFIER ::= {AVR-Main-Transmiter2 2}
+Transmiter2-Setting   OBJECT IDENTIFIER ::= {AVR-Main-Transmiter2 3}
+Transmiter2-Status    OBJECT IDENTIFIER ::= {AVR-Main-Transmiter2 4}
+--------------------------------------------------------------------
+Transmiter3-Param     OBJECT IDENTIFIER ::= {AVR-Main-Transmiter3 2}
+Transmiter3-Setting   OBJECT IDENTIFIER ::= {AVR-Main-Transmiter3 3}
+Transmiter3-Status    OBJECT IDENTIFIER ::= {AVR-Main-Transmiter3 4}
+--------------------------------------------------------------------
+TransmiterReserv-Param     OBJECT IDENTIFIER ::= {AVR-Reserv-Transmiter 2}
+TransmiterReserv-Setting   OBJECT IDENTIFIER ::= {AVR-Reserv-Transmiter 3}
+TransmiterReserv-Status    OBJECT IDENTIFIER ::= {AVR-Reserv-Transmiter 4}
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+Repeater                  OBJECT IDENTIFIER ::= {okbalfa 6}
+Repeater-Info             OBJECT IDENTIFIER ::= {Repeater 1}
+Repeater-Param            OBJECT IDENTIFIER ::= {Repeater 2}
+Repeater-Setting          OBJECT IDENTIFIER ::= {Repeater 3}
+Repeater-Status           OBJECT IDENTIFIER ::= {Repeater 4}
 ------------------------------------------------------------------
 -----------------------RTRS---------------------------------------
 ------------------------------------------------------------------
@@ -242,7 +277,7 @@ RadioExciter-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {RadioExciter-Info 3}
 ----------------------------------------------------------------------
-RadioExciter-Software-bord OBJECT-TYPE
+RadioExciter-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -651,7 +686,7 @@ Amplifier-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier-Info 3}
 ----------------------------------------------------------------------
-Amplifier-Software-bord OBJECT-TYPE
+Amplifier-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -943,7 +978,7 @@ BlockControl-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {BlockControl-Info 3}
 ----------------------------------------------------------------------
-BlockControl-Software-bord OBJECT-TYPE
+BlockControl-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1217,7 +1252,7 @@ DigitalExciter-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {DigitalExciter-Info 3}
 ----------------------------------------------------------------------
-DigitalExciter-Software-bord OBJECT-TYPE
+DigitalExciter-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1510,7 +1545,7 @@ BlockControl1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {BlockControl1-Info 3}
 ----------------------------------------------------------------------
-BlockControl1-Software-bord OBJECT-TYPE
+BlockControl1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1518,7 +1553,7 @@ BlockControl1-Software-bord OBJECT-TYPE
           "PCB version"
   ::= {BlockControl1-Info 4}
   ----------------------------------------------------------------------
-BlockControl1-Software-bord-rev OBJECT-TYPE
+BlockControl1-Software-board-rev OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1615,6 +1650,26 @@ BlockControl1-Temperature OBJECT-TYPE
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
+BlockControl1-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ACCESS_DENIED(0),ACCESS_ALLOWED(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "ACCESS_DENIED(0),ACCESS_ALLOWED(1))"
+  ::= {BlockControl1-Setting 1}
+----------------------------------------------------------------------
+----------- Перезагрузка BlockControl --------------------------------
+----------------------------------------------------------------------
+BlockControl1-reboot OBJECT-TYPE
+  SYNTAX  INTEGER{Reboot(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot BlockControl1"
+  ::= {BlockControl1-Setting 2}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
 ----------------------------------------------------------------------
 BlockControl1-Status-PowerOut OBJECT-TYPE
   SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}  
@@ -1701,7 +1756,7 @@ Amplifier1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier1-Info 3}
 ----------------------------------------------------------------------
-Amplifier1-Software-bord OBJECT-TYPE
+Amplifier1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -1958,7 +2013,7 @@ Amplifier2-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier2-Info 3}
 ----------------------------------------------------------------------
-Amplifier2-Software-bord OBJECT-TYPE
+Amplifier2-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -2216,7 +2271,7 @@ Amplifier3-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier3-Info 3}
 ----------------------------------------------------------------------
-Amplifier3-Software-bord OBJECT-TYPE
+Amplifier3-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -2474,7 +2529,7 @@ Amplifier4-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {Amplifier4-Info 3}
 ----------------------------------------------------------------------
-Amplifier4-Software-bord OBJECT-TYPE
+Amplifier4-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -2734,7 +2789,7 @@ RadioExciter1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {RadioExciter1-Info 3}
 ----------------------------------------------------------------------
-RadioExciter1-Software-bord OBJECT-TYPE
+RadioExciter1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3005,7 +3060,7 @@ RadioExciter2-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {RadioExciter2-Info 3}
 ----------------------------------------------------------------------
-RadioExciter2-Software-bord OBJECT-TYPE
+RadioExciter2-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3267,7 +3322,7 @@ DigitalExciter1-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {DigitalExciter1-Info 3}
 ----------------------------------------------------------------------
-DigitalExciter1-Software-bord OBJECT-TYPE
+DigitalExciter1-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3501,7 +3556,7 @@ DigitalExciter2-Software-Boot OBJECT-TYPE
           "Software bootloader"
   ::= {DigitalExciter2-Info 3}
 ----------------------------------------------------------------------
-DigitalExciter2-Software-bord OBJECT-TYPE
+DigitalExciter2-Software-board OBJECT-TYPE
   SYNTAX  DisplayString
   ACCESS  read-only
   STATUS  mandatory
@@ -3706,5 +3761,1023 @@ DigitalExciter2-status-Temperature OBJECT-TYPE
   ::= {DigitalExciter2-Status 30}  
 
   
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+------------------Блок Автоматического Ввода Резерва------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+-----------------------Версия ПО -------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+AVR-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {AVR-Info 1}
+----------------------------------------------------------------------
+AVR-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {AVR-Info 2}
+----------------------------------------------------------------------
+AVR-Software-board OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "PCB version"
+  ::= {AVR-Info 3}
+----------------------------------------------------------------------
+AVR-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {AVR-Info 4}
+----------------------------------------------------------------------
+AVR-SerNumer-BCA OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number BCA"
+  ::= {AVR-Info 10}
+----------------------------------------------------------------------
+AVR-Software-BCA OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software version BCA"
+  ::= {AVR-Info 11}
+----------------------------------------------------------------------
+AVR-Software-board-BCA OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "PCB version BCA"
+  ::= {AVR-Info 12}
+----------------------------------------------------------------------
+-----------------------Настройки АВР----------------------------------
+----------------------------------------------------------------------
+AVR-Operating-mode OBJECT-TYPE
+  SYNTAX  INTEGER{Auto(0),Manual(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "0- Auto 1- Manual"
+  ::= {AVR-Setting 1}
+----------------------------------------------------------------------
+AVR-AFD OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "Antenna-feeder Device
+           OFF(0),ON(1)"
+  ::= {AVR-Setting 2}
+----------------------------------------------------------------------
+----------- Включить/Выключить загрузчик-------------------------------
+----------------------------------------------------------------------
+AVR-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ACCESS_DENIED(0),ACCESS_ALLOWED(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "ACCESS_DENIED(0),ACCESS_ALLOWED(1))"
+  ::= {AVR-Setting 3}
+
+----------------------------------------------------------------------
+----------- Перезагрузка AVR -----------------------------------------
+----------------------------------------------------------------------
+AVR-reboot OBJECT-TYPE
+  SYNTAX  INTEGER{Reboot(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot AVR"
+  ::= {AVR-Setting 10}
+
+----------------------------------------------------------------------
+-----------------------параметры АВР----------------------------------
+----------------------------------------------------------------------
+AVR-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, Celsius degree"
+  ::= {AVR-Param 30}
+----------------------------------------------------------------------
+-------------Параметры AVR комплекта 1 -------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Transmiter1-Name OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Param 1}
+----------------------------------------------------------------------
+Transmiter1-Exist OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "1 - Active 0 - Deactive "
+  ::= {Transmiter1-Param 2}
+----------------------------------------------------------------------
+Transmiter1-Pout OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {Transmiter1-Param 3}
+----------------------------------------------------------------------
+Transmiter1-Swr OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {Transmiter1-Param 4}
+----------------------------------------------------------------------
+Transmiter1-Pref OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Power Reflection, W"
+  ::= {Transmiter1-Param 5}
+----------------------------------------------------------------------
+Transmiter1-Freq OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100, MHz"
+  ::= {Transmiter1-Param 6}  
+----------------------------------------------------------------------
+Transmiter1-Input OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Param 7}  
+----------------------------------------------------------------------
+Transmiter1-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter1-Param 8}
+----------------------------------------------------------------------
+Transmiter1-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter1-Param 9}
+----------------------------------------------------------------------
+Transmiter1-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter1-Param 10}
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+---------------------Настройки ПРД-1----------------------------------
+----------------------------------------------------------------------
+Transmiter1-State OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {Transmiter1-Setting 1}
+
+----------------------------------------------------------------------
+-----------------------Статусы AVR комплекта 1 -----------
+----------------------------------------------------------------------
+
+Transmiter1-status-Pout OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Status 3}
+----------------------------------------------------------------------
+Transmiter1-status-Swr OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Status 4}
+----------------------------------------------------------------------
+Transmiter1-status-Pref OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Status 5}  
+----------------------------------------------------------------------
+Transmiter1-status-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Status 8} 
+----------------------------------------------------------------------
+Transmiter1-status-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Status 9} 
+
+----------------------------------------------------------------------
+Transmiter1-status-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter1-Status 10} 
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+-------------Параметры AVR комплекта 2 -------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Transmiter2-Name OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Param 1}
+----------------------------------------------------------------------
+Transmiter2-Exist OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "1 - Active 0 - Deactive "
+  ::= {Transmiter2-Param 2}
+----------------------------------------------------------------------
+Transmiter2-Pout OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {Transmiter2-Param 3}
+----------------------------------------------------------------------
+Transmiter2-Swr OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {Transmiter2-Param 4}
+----------------------------------------------------------------------
+Transmiter2-Pref OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Power Reflection, W"
+  ::= {Transmiter2-Param 5}
+----------------------------------------------------------------------
+Transmiter2-Freq OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100, MHz"
+  ::= {Transmiter2-Param 6}  
+----------------------------------------------------------------------
+Transmiter2-Input OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Param 7}  
+----------------------------------------------------------------------
+Transmiter2-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter2-Param 8}
+----------------------------------------------------------------------
+Transmiter2-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter2-Param 9}
+----------------------------------------------------------------------
+Transmiter2-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter2-Param 10}
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+---------------------Настройки ПРД-2----------------------------------
+----------------------------------------------------------------------
+Transmiter2-State OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {Transmiter2-Setting 1}
+
+----------------------------------------------------------------------
+-----------------------Статусы AVR комплекта 2 -----------
+----------------------------------------------------------------------
+
+Transmiter2-status-Pout OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Status 3}
+----------------------------------------------------------------------
+Transmiter2-status-Swr OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Status 4}
+----------------------------------------------------------------------
+Transmiter2-status-Pref OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Status 5}  
+----------------------------------------------------------------------
+Transmiter2-status-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Status 8} 
+----------------------------------------------------------------------
+Transmiter2-status-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Status 9} 
+
+----------------------------------------------------------------------
+Transmiter2-status-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter2-Status 10} 
+----------------------------------------------------------------------
+
+
+----------------------------------------------------------------------
+-------------Параметры AVR комплекта 3 -------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Transmiter3-Name OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Param 1}
+----------------------------------------------------------------------
+Transmiter3-Exist OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "1 - Active 0 - Deactive "
+  ::= {Transmiter3-Param 2}
+----------------------------------------------------------------------
+Transmiter3-Pout OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {Transmiter3-Param 3}
+----------------------------------------------------------------------
+Transmiter3-Swr OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {Transmiter3-Param 4}
+----------------------------------------------------------------------
+Transmiter3-Pref OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Power Reflection, W"
+  ::= {Transmiter3-Param 5}
+----------------------------------------------------------------------
+Transmiter3-Freq OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100, MHz"
+  ::= {Transmiter3-Param 6}  
+----------------------------------------------------------------------
+Transmiter3-Input OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Param 7}  
+----------------------------------------------------------------------
+Transmiter3-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter3-Param 8}
+----------------------------------------------------------------------
+Transmiter3-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter3-Param 9}
+----------------------------------------------------------------------
+Transmiter3-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {Transmiter3-Param 10}
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+---------------------Настройки ПРД-3----------------------------------
+----------------------------------------------------------------------
+Transmiter3-State OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {Transmiter3-Setting 1}
+
+----------------------------------------------------------------------
+-----------------------Статусы AVR комплекта 3 -----------
+----------------------------------------------------------------------
+
+Transmiter3-status-Pout OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Status 3}
+----------------------------------------------------------------------
+Transmiter3-status-Swr OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Status 4}
+----------------------------------------------------------------------
+Transmiter3-status-Pref OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Status 5}  
+----------------------------------------------------------------------
+Transmiter3-status-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Status 8} 
+----------------------------------------------------------------------
+Transmiter3-status-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Status 9} 
+
+----------------------------------------------------------------------
+Transmiter3-status-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Transmiter3-Status 10} 
+----------------------------------------------------------------------
+
+
+
+
+----------------------------------------------------------------------
+-----------Параметры AVR  Резервного передатчика ----------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+TransmiterReserv-Name OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Param 1}
+----------------------------------------------------------------------
+TransmiterReserv-Exist OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "1 - Active 0 - Deactive "
+  ::= {TransmiterReserv-Param 2}
+----------------------------------------------------------------------
+TransmiterReserv-Pout OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {TransmiterReserv-Param 3}
+----------------------------------------------------------------------
+TransmiterReserv-Swr OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {TransmiterReserv-Param 4}
+----------------------------------------------------------------------
+TransmiterReserv-Pref OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Power Reflection, W"
+  ::= {TransmiterReserv-Param 5}
+----------------------------------------------------------------------
+TransmiterReserv-Freq OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100, MHz"
+  ::= {TransmiterReserv-Param 6}  
+----------------------------------------------------------------------
+TransmiterReserv-Input OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Param 7}  
+----------------------------------------------------------------------
+TransmiterReserv-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {TransmiterReserv-Param 8}
+----------------------------------------------------------------------
+TransmiterReserv-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {TransmiterReserv-Param 9}
+----------------------------------------------------------------------
+TransmiterReserv-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, dB"
+  ::= {TransmiterReserv-Param 10}
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+---------------------Настройки ПРД-резерва ---------------------------
+----------------------------------------------------------------------
+TransmiterReserv-State OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {TransmiterReserv-Setting 1}
+----------------------------------------------------------------------
+AVR-apply-configuration OBJECT-TYPE
+  SYNTAX  INTEGER{Transmitter1(1),Transmitter2(2),Transmitter3(3)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "Apply configuration from 1,2,3 transmitters"
+  ::= {TransmiterReserv-Setting 2}  
+----------------------------------------------------------------------
+----------- Перезагрузка резервного передатчика ----------------------
+----------------------------------------------------------------------
+AVR-reboot_reserv OBJECT-TYPE
+  SYNTAX  INTEGER{ON(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot Reserv"
+  ::= {TransmiterReserv-Setting 10}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------Статусы AVR резервного передатчика---------
+----------------------------------------------------------------------
+
+TransmiterReserv-status-Pout OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 3}
+----------------------------------------------------------------------
+TransmiterReserv-status-Swr OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 4}
+----------------------------------------------------------------------
+TransmiterReserv-status-Pref OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 5}  
+----------------------------------------------------------------------
+TransmiterReserv-status-lvl_Left OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 8} 
+----------------------------------------------------------------------
+TransmiterReserv-status-lvl_Right OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 9} 
+
+----------------------------------------------------------------------
+TransmiterReserv-status-lvl_Mpx OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OK(0),STATUS_ALARM(1),STATUS_FAIL(2),STATUS_OFF(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 10} 
+----------------------------------------------------------------------
+Reserv-Status OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),INIT(1),SET_FREQ(2),SET_POWER(3),ERR_FREQ(4),ERR_POWER(5),ERR_CONNECT(6),ERR(7),ON(8)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {TransmiterReserv-Status 20} 
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------
+-----------------------Версия ПО -------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Repeater-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {Repeater-Info 1}
+----------------------------------------------------------------------
+Repeater-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {Repeater-Info 2}
+----------------------------------------------------------------------
+Repeater-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {Repeater-Info 3}
+----------------------------------------------------------------------
+Repeater-Software-board OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "PCB version"
+  ::= {Repeater-Info 4}
+----------------------------------------------------------------------
+-----------------------Param Repeater--------------------------------
+----------------------------------------------------------------------
+Repeater-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power value/10, milliwatts"
+  ::= {Repeater-Param 1}
+----------------------------------------------------------------------
+Repeater-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef value/10, milliwatts"
+  ::= {Repeater-Param 2}
+----------------------------------------------------------------------
+Repeater-SWR OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {Repeater-Param 3}
+----------------------------------------------------------------------
+Repeater-Pin OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Input power value/10, milliwatts"
+  ::= {Repeater-Param 4}
+----------------------------------------------------------------------
+Repeater-U1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, V"
+  ::= {Repeater-Param 10}
+----------------------------------------------------------------------
+Repeater-I1 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {Repeater-Param 20}
+----------------------------------------------------------------------
+Repeater-I2 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/10, A"
+  ::= {Repeater-Param 21}
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Repeater-Temperature OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Celsius degree"
+  ::= {Repeater-Param 30}
+----------------------------------------------------------------------
+Repeater-Input-channel OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "input channel number"
+  ::= {Repeater-Param 40}  
+----------------------------------------------------------------------
+Repeater-Output-channel OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "output channel number"
+  ::= {Repeater-Param 41}  
+
+----------------------------------------------------------------------
+-----------------Repeater-Setting------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+Repeater-State OBJECT-TYPE
+  SYNTAX  INTEGER{OFF(0),ON(1)}
+  ACCESS  read-write
+  STATUS  mandatory
+  DESCRIPTION
+          "OFF(0),ON(1)"
+  ::= {Repeater-Setting 10}
+----------------------------------------------------------------------
+Repeater-Access-Boot OBJECT-TYPE
+  SYNTAX  INTEGER{ACCESS_DENIED(0),ACCESS_ALLOWED(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "ACCESS_DENIED(0),ACCESS_ALLOWED(1))"
+  ::= {Repeater-Setting 20}
+----------------------------------------------------------------------
+----------- Перезагрузка Repeater ------------------------------------
+----------------------------------------------------------------------
+Repeater-Reboot OBJECT-TYPE
+  SYNTAX  INTEGER{Reboot(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Reboot Repeater"
+  ::= {Repeater-Setting 30}
+----------------------------------------------------------------------
+----------- Перезагрузка Repeater ------------------------------------
+----------------------------------------------------------------------
+Repeater-IncreasePowerBig OBJECT-TYPE
+  SYNTAX  INTEGER{Step(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Increase in output power, big step"
+  ::= {Repeater-Setting 40}
+----------------------------------------------------------------------
+Repeater-IncreasePowerSmall OBJECT-TYPE
+  SYNTAX  INTEGER{Step(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Increase in output power, small step"
+  ::= {Repeater-Setting 41}
+----------------------------------------------------------------------
+Repeater-DecreasePowerBig OBJECT-TYPE
+  SYNTAX  INTEGER{Step(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Decrease in output power, big step"
+  ::= {Repeater-Setting 42}
+----------------------------------------------------------------------
+Repeater-DecreasePowerSmall OBJECT-TYPE
+  SYNTAX  INTEGER{Step(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Decrease in output power, small step"
+  ::= {Repeater-Setting 43}      
+----------------------------------------------------------------------
+Repeater-DecreasePowerSave OBJECT-TYPE
+  SYNTAX  INTEGER{Save(1)}
+  ACCESS  write-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Save output power"
+  ::= {Repeater-Setting 50}      
+
+----------------------------------------------------------------------
+-----------------------status Repeater--------------------------------
+----------------------------------------------------------------------
+
+Repeater-status-PowerOut OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 1}
+----------------------------------------------------------------------
+Repeater-status-PowerRef OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 2}
+----------------------------------------------------------------------
+Repeater-status-SWR OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 3}  
+----------------------------------------------------------------------
+Repeater-status-Pin OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 4}  
+----------------------------------------------------------------------
+Repeater-status-U1 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 10}
+----------------------------------------------------------------------
+Repeater-status-I1 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 20}  
+----------------------------------------------------------------------
+Repeater-status-I2 OBJECT-TYPE
+    SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 21}
+----------------------------------------------------------------------
+Repeater-status-T OBJECT-TYPE
+  SYNTAX  INTEGER{TempIsNotExist(0),TempIsNorm(1),TempIsOverheat(3)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {Repeater-Status 30}
+
+
+
+
+
+----------------------------------------------------------------------
 
 END
