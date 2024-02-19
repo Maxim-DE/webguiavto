@@ -11,6 +11,7 @@ import { reducers } from '../../../../../../store/reducers/core_store_reducers'
 import { useSelector } from 'react-redux'
 import { useFormValidation } from '../../../../../../logic/validation/formValidation_hook'
 import { isTime, isDate } from '../../../../../../logic/validation/validators'
+import { getTime } from '../../../../../../logic/utilites'
 
 export default function Time_settings(props) {
 
@@ -81,6 +82,34 @@ export default function Time_settings(props) {
     props.clickHandler(request_obj);
   }
 
+  const handleTimeUpdate = () => {
+    const [date, time] = getTime()
+
+    // setTimeSettingsState(prevState => ({
+    //   ...prevState,
+    //   date: date,
+    //   time: time
+    // }))
+
+    const request_obj = {
+      address: `set_${props.section_name}.cgi`,
+      data: `date$${date};time$${time}`,
+      reducer: reducers.section_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      save_data: {
+        time_settings: {
+          date: date,
+          time: time
+        }
+      }
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <SettingsBlockWrap header={'задание времени'}
                        settings_type={'time_settings'}
@@ -88,7 +117,7 @@ export default function Time_settings(props) {
                        save_handler={handleClick_save}
                        disable_save={!isFormValid}>
       
-      <li
+      {/* <li
         key='date'
         id='date'
         className="settings_item">
@@ -134,6 +163,26 @@ export default function Time_settings(props) {
               isTime()
             ]}
             formValidHandler={validStatus_getter} />
+        </div>
+      </li> */}
+      <li
+        key='time_pc_sync'
+        id='time_pc_sync'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`time_pc_sync_input`}
+            className="settings_itemLabel">
+            Синхр. время с ПК
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`time_pc_sync_input`}
+            name={`time_pc_sync`}
+            type="button"
+            label="Синхронизировать"
+            clickHandler={handleTimeUpdate} />
         </div>
       </li>
       <Time_server_sync_settings
