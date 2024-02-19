@@ -16,7 +16,7 @@ export default function Software_version(props) {
   React.useEffect(() => {
     if (softwareVersion_store == undefined) return
 
-    if (Object.keys(softwareVersion_store).length != 0) {
+    if (softwareVersion_store != undefined && Object.keys(softwareVersion_store).length != 0) {
       let settings_state_copy = sofrwareVersionState
 
       for (const key in softwareVersion_store) {

@@ -21,7 +21,7 @@ const links_items = [
   { id: 'userlog', name: "Польз. журнал", req_access_level: 0 },
   {
     id: 'calibration', name: "Расширенные настройки", req_access_level: 2, children: [
-      { id: 'main', name: "Общее", nested: true },
+      { id: 'main', name: "Калибровка", nested: true },
       { id: 'misc', name: "Прочее", nested: true },
       { id: 'syslog', name: "Системный журнал", nested: true },
       { id: 'developer', name: "Для разработчиков", nested: true },

@@ -31,7 +31,7 @@ export const MiscCalib = (props) => {
   return (
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
-      section_header="другое">
+      section_header="прочее">
       <MiscCalibSettings_AMP
         clickHandler={handleClick} />
       {auth_store.auth_access.calib_extend &&
