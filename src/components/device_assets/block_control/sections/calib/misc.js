@@ -30,7 +30,7 @@ export const MiscCalib = (props) => {
   return (
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
-      section_header="другое">
+      section_header="прочее">
       <MiscCalibSettings_AMP
         clickHandler={handleClick} />
       <Modbus_master_calib
