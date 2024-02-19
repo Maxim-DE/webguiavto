@@ -60,7 +60,7 @@ shell.echo("version_str=" + version_str);
 
 shell.cd('./build/')
 
-fs.writeFile('version.txt', version_str, (err) => {
+fs.writeFile('version.txt', version_str + '\n', (err) => {
   if (err) throw err;
   console.log('The file has been saved!');
 }); 
