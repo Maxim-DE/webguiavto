@@ -17,14 +17,10 @@ import StatusSection from "./components/status_section";
 import CalibLogButton from './components/calib_log_button';
 import { NoConf_placeholder } from './components/device_assets/unknown_device/sections/no_conf';
 
-import { device_name_table, device_power_table } from './components/status_section';
 
-import DeviceWrap_ST250 from './components/device_assets/st_250';
-import DeviceWrap_RE100 from './components/device_assets/re_100';
 import DeviceWrap_unknown from './components/device_assets/unknown_device';
 
-import useGlobalStore from './logic/auth_store';
-import useGlobalErrPool from './logic/err_store';
+
 import useSectionStore from './logic/sectionsRefs_store';
 import { useInView } from './logic/useInView_hook';
 import { fetch_error_handler } from './logic/fetch_error_handler';
@@ -32,8 +28,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { reqReducers_wrap } from './store/req_reducers_wrap';
 import { reducers } from './store/reducers/core_store_reducers';
 import PeripheralMenu from './components/peripheral_menu';
-import DeviceWrap_REAmp from './components/device_assets/radio_amp';
+
 import DeviceWrap_BlockControl from './components/device_assets/block_control';
+import { Route, Routes } from 'react-router-dom';
 
 let debounceTimer;
 
@@ -344,7 +341,6 @@ function App() {
               </>
             }
             <div id='sections_group_wrap' className="sections_group_wrap">
-            {auth_store.auth_access.settings &&
               <DeviceWrap_switch
                 device_type={device_type}
                 device_type_name={device_arr[device_type]}
@@ -352,7 +348,8 @@ function App() {
                 // section_data={sectionData}
                 // calib_data={calibState.data}
                 adc_data={status_section_data.calib_adc} />
-              }
+            {/* {auth_store.auth_access.settings &&
+              } */}
             </div>
             {/* Обертка для разных типов устройств */}
           </main>
