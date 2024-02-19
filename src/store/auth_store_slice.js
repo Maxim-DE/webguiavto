@@ -4,6 +4,7 @@ const initialState = {
   auth_data: {
     user_id : '',
     is_auth : false,
+    auth_level: 0,
     auth_access : {
       status: true,
       settings: false,
@@ -64,6 +65,7 @@ export const authStoreSlice = createSlice({
       }
 
       store.auth_data.auth_access = auth_access
+      store.auth_data.auth_level = auth_level
     }
   }
 })

@@ -14,12 +14,12 @@ import { reducers } from '../../store/reducers/core_store_reducers';
 
 // массив со всеми элементами навбара
 const links_items = [
-  {id: 'status', name: "Статус"},
-  {id: 'settings', name: "Общие настройки"},
-  {id: 'network', name: "Сетевые настройки"},
-  {id: 'info', name: "Данные об устройстве"},
+  { id: 'status', name: "Статус", req_access_level: 0 },
+  { id: 'settings', name: "Общие настройки", req_access_level: 1 },
+  { id: 'network', name: "Сетевые настройки", req_access_level: 1 },
+  { id: 'info', name: "Данные об устройстве", req_access_level: 0 },
   {
-    id: 'calibration_main', name: "Расширенные настройки", children: [
+    id: 'calibration_main', name: "Расширенные настройки", req_access_level: 2, children: [
       { id: 'main', name: "Общее", nested: true },
       { id: 'misc', name: "Прочее", nested: true },
       { id: 'syslog', name: "Системный журнал", nested: true },
@@ -37,7 +37,7 @@ const calib_links_items = [
 
 function Links_list(props) {
   const [active, SetActive] = React.useState('');
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const [sectionState, sectionActions] = useSectionStore()
 
   const location = useLocation();
@@ -94,18 +94,9 @@ function Links_list(props) {
     <>
     <ul className="nav_linksList">
       {links_items.map((item, index) => {
-        if (index > 0 && index < links_items.length - 1 && 
-            (!auth_store.auth_access.settings ||
-            props.device_type === 255)) {
-          return
-        } else if (index == links_items.length - 1 && 
-                   (!auth_store.auth_access.calib ||
-                   props.device_type === 255)) {
-          return
-        } else if (index == links_items.length - 1 &&
-                   (auth_store.auth_access.calib &&
-                   props.device_type !== 255)) {
-
+        if (props.device_type != 255) {
+          if (auth_level >= item.req_access_level) {
+            if (index == links_items.length - 1) {
           return (
             <CalibNavList
               id={item.id}
@@ -127,7 +118,7 @@ function Links_list(props) {
             <div className="backIcon_wrap"></div>
             <div 
             className="nav_linkLabel"
-            onClick={(e) => {console.log('nav span');}}
+                    onClick={(e) => { console.log('nav span'); }}
             >{item.name}</div>
             {/* <FaAngleRight
               color='#6D8EA0'
@@ -135,6 +126,49 @@ function Links_list(props) {
           </li>
           )
         }
+          }
+        }
+        // if (index > 0 && index < links_items.length - 1 && 
+        //     (!auth_store.auth_access.settings ||
+        //     props.device_type === 255)) {
+        //   return
+        // } else if (index == links_items.length - 1 && 
+        //            (!auth_store.auth_access.calib ||
+        //            props.device_type === 255)) {
+        //   return
+        // } else if (index == links_items.length - 1 &&
+        //            (auth_store.auth_access.calib &&
+        //            props.device_type !== 255)) {
+
+        //   return (
+        //     <CalibNavList
+        //       id={item.id}
+        //       name={item.name}
+        //       index={index}
+        //       updateHandler={props.updateHandler}
+        //       isParentActive={index == active}
+        //       setParentActive={SetActive}
+        //       nested_elements={item.children}
+        //     />
+        //   )
+        // } else {
+        //   return (
+        //   <li
+        //     key={item.id}
+        //     id={item.id}
+        //     onClick={handleClick}
+        //     className={index === active ? 'active' : ''}>
+        //     <div className="backIcon_wrap"></div>
+        //     <div 
+        //     className="nav_linkLabel"
+        //     onClick={(e) => {console.log('nav span');}}
+        //     >{item.name}</div>
+        //     {/* <FaAngleRight
+        //       color='#6D8EA0'
+        //       size='25px' /> */}
+        //   </li>
+        //   )
+        // }
       })}
       
     </ul>

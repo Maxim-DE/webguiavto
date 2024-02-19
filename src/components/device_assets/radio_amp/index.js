@@ -12,6 +12,7 @@ import { CalibMain } from './sections/calib/calib_main'
 import { MiscCalib } from './sections/calib/misc'
 import { DeveloperCalib } from './sections/calib/developer'
 import { SyslogCalib } from './sections/calib/syslog'
+// import { UserlogSection } from './sections/userlog'
 
 export default function DeviceWrap_REAmp(props) {
   
@@ -19,78 +20,88 @@ export default function DeviceWrap_REAmp(props) {
     props.updateHandler(data_block)
   }
   const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
 
   return (
     <>
-    <Routes>
-      <Route path='*' element={
-        <GeneralSettingsSection
-          updateHandler={updateHandler}
-          />
-      } />
-      <Route path='network' element={
-        <NetworkSettingsSection
-          updateHandler={updateHandler}
-          />
-      } />
-      <Route path='info' element={
-        <InfoSection
-          updateHandler={updateHandler}
-          />
-      } />
-      {/* {auth_store.auth_access.calib &&
-        <Route path='calibration' element={
-          <CalibSection
-            section_name="calibration"
-            section_header="калибровка"
-            updateHandler={updateHandler}
-            section_data={props.calib_data === null ? 'null' : props.calib_data}
-            adc_data={props.adc_data} />
+      <Routes>
+        <Route path='*' element={
+          <>
+            <Routes>
+              <Route path='info' element={
+                <InfoSection
+                  updateHandler={updateHandler}
+                />
+              } />
+              {/* <Route path='userlog' element={
+                <UserlogSection
+                  updateHandler={updateHandler}
+                />
+              } /> */}
+
+              {auth_level >= 1 &&
+                <>
+                  <Route path='settings' element={
+                    <GeneralSettingsSection
+                      updateHandler={updateHandler}
+                    />
+                  } />
+                  <Route path='network' element={
+                    <NetworkSettingsSection
+                      updateHandler={updateHandler}
+                    />
+                  } />
+                </>
+              }
+
+              {auth_level >= 2 &&
+                <Route path='calibration'>
+                  <Route path='main' element={
+                    <CalibMain
+                      section_name="calibration_main"
+                      section_header="калибровка"
+                      updateHandler={updateHandler}
+                    // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                    // adc_data={props.adc_data} 
+                    />
+                  } />
+                  <Route path='misc' element={
+                    <MiscCalib
+                      section_name="misc"
+                      section_header="калибровка"
+                      updateHandler={updateHandler}
+                    // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                    // adc_data={props.adc_data} 
+                    />
+                  } />
+                  <Route path='syslog' element={
+                    <SyslogCalib
+                      section_name="syslog"
+                      section_header="калибровка"
+                      updateHandler={updateHandler}
+                    // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                    // adc_data={props.adc_data} 
+                    />
+                  } />
+                  {auth_level >= 3 &&
+                    <Route path='developer' element={
+                      <DeveloperCalib
+                        section_name="developer"
+                        section_header="калибровка"
+                        updateHandler={updateHandler}
+                      // section_data={props.calib_data === null ? 'null' : props.calib_data}
+                      // adc_data={props.adc_data} 
+                      />
+                    } />
+                  }
+                </Route>
+              }
+            </Routes>
+          </>
         } />
-      } */}
-      {auth_store.auth_access.calib &&
-        <Route path='calibration'>
-          <Route path='main' element={
-            <CalibMain
-              section_name="calibration_main"
-              section_header="калибровка"
-              updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-          } />
-          <Route path='misc' element={
-            <MiscCalib
-              section_name="misc"
-              section_header="калибровка"
-              updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-          } />
-            <Route path='syslog' element={
-              <SyslogCalib
-                section_name="syslog"
-                section_header="калибровка"
-                updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-            } />
-          <Route path='developer' element={
-            <DeveloperCalib
-              section_name="developer"
-              section_header="калибровка"
-              updateHandler={updateHandler}
-              // section_data={props.calib_data === null ? 'null' : props.calib_data}
-              // adc_data={props.adc_data} 
-              />
-          } />
-        </Route>
-      }
-    </Routes>
+      </Routes>
     </>
-    
+
   )
 }
 
