@@ -12,7 +12,7 @@ import { CalibMain } from './sections/calib/calib_main'
 import { MiscCalib } from './sections/calib/misc'
 import { DeveloperCalib } from './sections/calib/developer'
 import { SyslogCalib } from './sections/calib/syslog'
-// import { UserlogSection } from './sections/userlog'
+import { UserlogSection } from './sections/userlog'
 
 export default function DeviceWrap_BlockControl(props) {
   
@@ -33,11 +33,11 @@ export default function DeviceWrap_BlockControl(props) {
                   updateHandler={updateHandler}
                 />
               } />
-              {/* <Route path='userlog' element={
+              <Route path='userlog' element={
                 <UserlogSection
                   updateHandler={updateHandler}
                 />
-              } /> */}
+              } />
 
               {auth_level >= 1 &&
                 <>
