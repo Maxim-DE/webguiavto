@@ -12,6 +12,7 @@ import { PulseLoader } from 'react-spinners';
 import { status_colors } from '../graph_blocks';
 import './index.css'
 import { reducers } from '../../store/reducers/status_logs_reducers';
+import { useNavigate } from 'react-router-dom';
 
 const log_items = [
   {id: '0', message: "Питание передатчика", time: "2022-03-17 13:16:28"},
@@ -52,6 +53,8 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
   const [fullLogData, setFullLogData] = React.useState([])
 
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const navigate = useNavigate();
   
   function logArrToObj(data) {
     let logs_array = [];
@@ -104,21 +107,11 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
 
   const refreshHandler = () => {
     setFullLogData([])
-    getFullLog()
+    navigateFullLog()
   }
 
-  const getFullLog = () => {
-    const request_obj = {
-      address: 'GetLogErrorFull.cgi',
-      data: 'userlog$1',
-      reducer: reducers.userlog_data,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    rest.updateHandler(request_obj)
+  const navigateFullLog = () => {
+    navigate( '/userlog', { replace: false })
   }
 
   const handle_logExpand = (log_type, log_num, log_id) => {
@@ -163,45 +156,43 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
         <div className="settings_block_header">
           <h3>{rest.header}</h3>
         </div>
-        {/* <div className="logs_header">
-          <span className="header_num">№</span>
-          <span className="header_message">сообщение</span>
-          <span className="header_time">дата и время</span>
-        </div> */}
         {data != null ? 
           <>
-          <table className="log_list_table">
-            <thead className="logs_header">
-              <tr>
-                <td>№</td>
-                <td>user</td>
-                <td>дата и время</td>
-                <td>сообщение</td>
-              </tr>
-            </thead>
-            <tbody className="log_list">
-              {logData.map((item) => { 
-                return (
-                <tr
-                  key={item.id}
-                  id={`log_${item.id}`}
-                  className={`log_item ${log_status[item.status]}`}>
-                  <td className='log_num'>{item.id}</td>
-                  <td>{item.user}</td>
-                  <td className='log_time'>{item.time}</td>
-                  <td className='log_message'>{item.message}</td>
+          <div className="log_table_wrap">
+
+            <table className="log_list_table">
+              <thead className="logs_header">
+                <tr>
+                  <td>№</td>
+                  <td>user</td>
+                  <td>дата и время</td>
+                  <td>сообщение</td>
                 </tr>
-                )
-              })}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="log_list">
+                {logData.map((item) => { 
+                  return (
+                  <tr
+                    key={item.id}
+                    id={`log_${item.id}`}
+                    className={`log_item ${log_status[item.status]}`}>
+                    <td className='log_num'>{item.id}</td>
+                    <td>{item.user}</td>
+                    <td className='log_time'>{item.time}</td>
+                    <td className='log_message'>{item.message}</td>
+                  </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
           <FormInput
             id={`full_logs_button`}
             name={`full_logs_button`}
             clickHandler={(e) => {
               // // if (fullLogData.length == 0) 
-              getFullLog()
-              setIsOpen(true);
+              navigateFullLog()
+              // setIsOpen(true);
             }}
             class='log_refresh'
             label='Открыть полный журнал'
@@ -210,136 +201,6 @@ function Status_logs({settings_type, data, full_data, className = "", ...rest}) 
           </>
           : 'ЗАГРУЗКА...'
         }
-        {isOpen &&
-          <ModalCalib
-          header='полный журнал'
-          setIsOpen={handleModalClose}
-          user_controllable={true}
-          class='full_log_modal'>
-             <>
-             <div className="log_table_wrap">
-              <table className="log_list_table" autoFocus>
-                <thead className="logs_header">
-                  <tr>
-                    <td className='log_expand_button_wrap'></td>
-                    <td>№</td>
-                    <td>user</td>
-                    <td>дата и время</td>
-                    <td>сообщение</td>
-                  </tr>
-                </thead>
-                <tbody className="user_log log_list">
-                  {fullLogData.map((item, index) => (
-                    <>
-                    <tr
-                      key={item.id}
-                      id={`log_${item.id}`}
-                      className={`log_item ${log_status[item.status]}`}>
-                      <td className='log_expand_button_wrap'>
-                        {item.log_expand !== 'none' &&
-                          <button
-                            className='log_expand_button'
-                            type='button'
-                            onClick={(e) => {
-                              handle_logExpand('userlog', index, item.id)
-                            }}>
-                            {item.log_expand ? <TbMinus /> :
-                              <TbPlus />
-                            }
-                          </button>
-                        }
-                      </td>
-                      <td className='log_num'>{item.id}</td>
-                      <td className=''>{item.user}</td>
-                      <td className='log_time'>{item.time}</td>
-                      <td className='log_message'>{item.message}</td>
-                    </tr>
-                    {item.log_expand === true &&
-                        //  item.log_expand_data !== 'none' &&
-                        <tr
-                          className='log_expand_message'>
-                          {item.expand_info !== 'none' ?
-
-                            <Log_expand_info
-                              expand_obj={item.expand_info} /> :
-                            <PulseLoader
-                              color="#bbcacf"
-                              loading
-                              margin={9}
-                              size={13}
-                              speedMultiplier={0.5}
-                            />
-                          }
-                        </tr>
-                    }
-                    </>
-                  ))}
-                </tbody>
-              </table>
-             </div>
-              {/* <div className="logs_header">
-                <span className="header_num">№</span>
-                <span className="header_message">сообщение</span>
-                <span className="header_time">дата и время</span>
-              </div>
-              <ul className="user_log log_list">
-                {fullLogData.map((item, index) => (
-                  <>
-                  <div className='log_divider'></div>
-                  <li
-                    key={item.id}
-                    id={`log_${item.id}`}
-                    className={`log_item ${log_status[item.status]}`}>
-                      <div className='log_expand_button_wrap'>
-                        {item.log_expand !== 'none' &&
-                          <button
-                            className='log_expand_button'
-                            type='button'
-                            onClick={(e) => {
-                              handle_logExpand('userlog', index, item.id)
-                            }}>
-                            {item.log_expand ? <TbMinus /> :
-                                               <TbPlus />
-                            }
-                          </button>
-                        }
-                      </div>
-                    <span className="log_num">{item.id}</span>
-                    <span className="log_message">{item.message}</span>
-                    <span className="log_time">{item.time}</span>
-                  </li>
-                  {item.log_expand === true &&
-                    //  item.log_expand_data !== 'none' &&
-                    <div
-                      className='log_expand_message'>
-                      {item.expand_info !== 'none' ?
-
-                        <Log_expand_info
-                          expand_obj={item.expand_info} /> :
-                        <PulseLoader
-                          color="#bbcacf"
-                          loading
-                          margin={9}
-                          size={13}
-                          speedMultiplier={0.5}
-                        />
-                      }
-                    </div>
-                  }
-                  </>
-                ))}
-              </ul> */}
-              <FormInput
-                id={`calib_password_save`}
-                name={`calib_password`}
-                clickHandler={refreshHandler}
-                class='log_refresh'
-                label='Обновить журнал'
-                type="button"
-              />
-             </>            
-          </ModalCalib>
-         }
       </div>
     </div>
   )
