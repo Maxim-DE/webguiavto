@@ -137,9 +137,9 @@ function MiscCalibSettings_AMP(props) {
       settings_type={`misc_calib`}
     // save_handler={handleClick_save}
     >
-      <Syslog_calib
+      {/* <Syslog_calib
         updateHandler={props.clickHandler}
-        logData={miscCalibState.sys_log} />
+        logData={miscCalibState.sys_log} /> */}
       {auth_store.auth_access.calib_extend &&
         <>
           {/* <Syslog_calib
