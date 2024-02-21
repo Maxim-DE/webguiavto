@@ -62,6 +62,18 @@ function MiscDownloadCalib(props) {
     return link
   }
 
+  const handleClick_createHex = () => {
+    const request_obj = {
+      address: 'calib_create_unique_hex.cgi',
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   return (
     <Settings_block_calib
       header={`загрузка файлов`}
@@ -211,9 +223,29 @@ function MiscDownloadCalib(props) {
           </a> 
         </div>
       </li>
-
       </>
       }
+      <li className='group_divider'></li>
+      <li
+        key='create_unique_hex_calib'
+        id='create_unique_hex_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`create_unique_hex_calib_input`}
+            className="settings_itemLabel">
+            Создать уникальный код
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`create_unique_hex_calib_save`}
+            name={`create_unique_hex_calib`}
+            clickHandler={handleClick_createHex}
+            label='Создать'
+            type="button" />
+        </div>
+      </li>
     </Settings_block_calib>
   )
 }
