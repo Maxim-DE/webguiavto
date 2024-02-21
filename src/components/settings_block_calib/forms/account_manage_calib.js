@@ -90,15 +90,13 @@ export default function Account_manage_calib(props) {
 
     let user_list_clone = cloneDeep(accountState.user_list)
 
-    if (user_list_clone[index] === undefined) {
-      return
-    }
-
     user_list_clone.forEach((user) => {
       user.editable = false
     })
 
-    user_list_clone[index].editable = boolean
+    if (user_list_clone[index] !== undefined && boolean !== undefined) {
+      user_list_clone[index].editable = boolean
+    }
 
     setAccountState(prevState => ({
       ...prevState,
@@ -599,6 +597,11 @@ export default function Account_manage_calib(props) {
                     id={`calib_password_save`}
                     name={`calib_password`}
                     clickHandler={(e) => {
+                      toggleEditableAccount({
+                        index: undefined,
+                        boolean: false
+                      });
+
                       createAccInBuffer()
                     }}
                     class='log_refresh'
