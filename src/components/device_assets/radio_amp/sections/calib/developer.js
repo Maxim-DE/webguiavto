@@ -31,7 +31,8 @@ export const DeveloperCalib = (props) => {
         clickHandler={handleClick} />
       <ConsoleOutputCalibSettings
         clickHandler={handleClick} />
-      <MiscDownloadCalib />
+      <MiscDownloadCalib
+        clickHandler={handleClick} />
     </SettingsSectionWrap>
   )
 }
