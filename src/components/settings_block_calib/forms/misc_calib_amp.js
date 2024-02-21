@@ -165,7 +165,7 @@ function MiscCalibSettings_AMP(props) {
                 type="button" />
             </div>
           </li>
-          <li
+          {/* <li
             key='delete_syslogs_calib'
             id='delete_sys_logs_calib'
             className="settings_item">
@@ -184,7 +184,7 @@ function MiscCalibSettings_AMP(props) {
                 label='Удалить'
                 type="button" />
             </div>
-          </li>
+          </li> */}
           {/* {deviceName_string != 'reamped' &&
           <>
             <li className="group_divider"></li>
