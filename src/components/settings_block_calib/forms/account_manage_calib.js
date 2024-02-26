@@ -308,7 +308,7 @@ export default function Account_manage_calib(props) {
       data: `login$${new_login};password$${new_passw};auth_level$${new_auth_level}`,
       reducer: reducers.user_list_handling,
       notifications: {
-        good: 'Зарегистрировано',
+        good: 'default',
         bad: 'default'
       },
     }
