@@ -105,14 +105,14 @@
 
 /* ACCOUNT MANAGER */
 .acc_manage_modal {
-  width: 780px;
+  width: 820px;
   max-height: 850px;
 }
 
-.acc_header {
+/* .acc_header {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
 
   height: 35px;
@@ -131,6 +131,10 @@
   color: #C2C2C2;
   margin-left: 4px;
   flex: 0 0 205px
+} */
+
+.acc_manage thead td {
+  padding: 0 22px;
 }
 
 .acc_item {

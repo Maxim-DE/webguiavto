@@ -39,8 +39,8 @@ export default function Account_manage_calib(props) {
       value = target.type === 'checkbox' ? target.checked : target.value
 
     const change_params = name.split('_'),
-      // id = change_params[0],
-      change_type = change_params[0]
+      id = change_params[0],
+      change_type = change_params[1]
 
     switch (change_type) {
       case 'login':
@@ -335,7 +335,7 @@ export default function Account_manage_calib(props) {
                   <tr>
                     <td>логин</td>
                     <td>пароль</td>
-                    <td></td>
+                    <td>действия</td>
                   </tr>
                 </thead>
                 <tbody className="user_log log_list">
@@ -346,14 +346,14 @@ export default function Account_manage_calib(props) {
                         id={`user_${user.id}`}
                         className={`acc_item`}>
                         <td className='acc_login'>
-                          <input
+                          <FormInput
                             id={`${user.id}_login_input`}
-                            name={`login`}
+                            name={`${user.id}_login`}
                             type="text"
-                            className={!(user.editable && user.login != 'admin') ? 'transparent' : ''}
-                            onChange={changeHandler}
-                            maxLength='20'
-                            value={user.editable ?
+                            class={!(user.editable && user.login != 'admin') ? 'transparent' : ''}
+                            changeHandler={changeHandler}
+                            max_length='20'
+                            input_value={user.editable ?
                               accountState.active_edit_acc.login :
                               user.login
                             }
@@ -361,14 +361,14 @@ export default function Account_manage_calib(props) {
                           />
                         </td>
                         <td className='acc_password'>
-                          <input
+                          <FormInput
                             id={`${user.id}_password_input`}
-                            name={`password`}
+                            name={`${user.id}_password`}
                             type={!user.editable ? 'password' : 'text'}
-                            className={!user.editable ? 'transparent' : ''}
-                            onChange={changeHandler}
-                            maxLength='10'
-                            value={user.editable ?
+                            class={!user.editable ? 'transparent' : ''}
+                            changeHandler={changeHandler}
+                            max_length='10'
+                            input_value={user.editable ?
                               accountState.active_edit_acc.password :
                               user.password
                             }
@@ -434,14 +434,14 @@ export default function Account_manage_calib(props) {
                         id={`user_${accountState.active_edit_acc.id}`}
                         className={`acc_item`}>
                         <td className='acc_login'>
-                          <input
+                          <FormInput
                             id={`${accountState.active_edit_acc.id}_login_input`}
-                            name={`login`}
+                          name={`${accountState.active_edit_acc.id}_login`}
                             type="text"
-                            className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
-                            onChange={changeHandler}
-                            maxLength='20'
-                            value={accountState.active_edit_acc.editable ?
+                            class={!accountState.active_edit_acc.editable ? 'transparent' : ''}
+                            changeHandler={changeHandler}
+                            max_length='20'
+                            input_value={accountState.active_edit_acc.editable ?
                               accountState.active_edit_acc.login :
                               accountState.active_edit_acc.login
                             }
@@ -449,14 +449,14 @@ export default function Account_manage_calib(props) {
                           />
                         </td>
                         <td className="acc_password">
-                          <input
+                          <FormInput
                             id={`${accountState.active_edit_acc.id}_password_input`}
-                            name={`password`}
+                            name={`${accountState.active_edit_acc.id}_password`}
                             type={!accountState.active_edit_acc.editable ? 'password' : 'text'}
-                            className={!accountState.active_edit_acc.editable ? 'transparent' : ''}
-                            onChange={changeHandler}
+                            class={!accountState.active_edit_acc.editable ? 'transparent' : ''}
+                            changeHandler={changeHandler}
                             maxLength='10'
-                            value={accountState.active_edit_acc.editable ?
+                            input_value={accountState.active_edit_acc.editable ?
                               accountState.active_edit_acc.password :
                               accountState.active_edit_acc.password
                             }
