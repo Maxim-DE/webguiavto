@@ -35,8 +35,6 @@ function Status_settings(props) {
   const device_status = props.status_data ? props.status_data.device_status : 0,
         device_locked = device_status === 3 ? true : false
 
-  console.log(statusSettingsState.frequency_range);
-
   const low_freq_range = freq_ranges[statusSettingsState.frequency_range] ? freq_ranges[statusSettingsState.frequency_range][0] : freq_ranges[2][0],
         high_freq_range = freq_ranges[statusSettingsState.frequency_range] ? freq_ranges[statusSettingsState.frequency_range][1] : freq_ranges[2][1]
 
