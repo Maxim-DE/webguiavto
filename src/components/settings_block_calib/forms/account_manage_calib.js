@@ -8,12 +8,20 @@ import ModalCalib from '../../calib_modal'
 import useGlobalStore from '../../../logic/auth_store';
 import { PulseLoader } from 'react-spinners';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
+import { useSelector } from 'react-redux';
+
+const auth_levels = {
+  0: "guest",
+  1: "user",
+  2: "admin",
+  3: "super_admin"
+}
 
 export default function Account_manage_calib(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false)
 
-  const [authGlobalState, authGlobalActions] = useGlobalStore()
+  const auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [accountState, setAccountState] = React.useState({
     user_list: [],
@@ -40,7 +48,7 @@ export default function Account_manage_calib(props) {
 
     const change_params = name.split('_'),
       id = change_params[0],
-      change_type = change_params[1]
+      change_type = name.replace(/^(\d*_)|(none_)/g, '')
 
     switch (change_type) {
       case 'login':
@@ -59,6 +67,16 @@ export default function Account_manage_calib(props) {
           active_edit_acc: {
             ...prevState.active_edit_acc,
             password: value
+          }
+        }))
+        break;
+
+      case 'auth_level':
+        setAccountState(prevState => ({
+          ...prevState,
+          active_edit_acc: {
+            ...prevState.active_edit_acc,
+            auth_level: value
           }
         }))
         break;
@@ -93,6 +111,7 @@ export default function Account_manage_calib(props) {
       id: 'none',
       login: '',
       password: '',
+      auth_level: 1,
       editable: true
     }
 
@@ -103,7 +122,9 @@ export default function Account_manage_calib(props) {
   }
 
   const copyAccToBuffer = ({ id, index, boolean } = {}) => {
-    let acc_to_edit = accountState.user_list[index]
+    let acc_to_edit = cloneDeep(accountState.user_list[index])
+    
+    acc_to_edit.password = ''
 
     setAccountState(prevState => ({
       ...prevState,
@@ -113,18 +134,20 @@ export default function Account_manage_calib(props) {
 
   const copyBuffertoList = ({ id, index, boolean } = {}) => {
     let index_to_copy = accountState.user_list.findIndex(user => user.id === id),
-      acc_to_copy = accountState.active_edit_acc
+        acc_to_copy = accountState.active_edit_acc
 
     if (index_to_copy === -1) {
       doRegisterAccReq({
         login: acc_to_copy.login,
-        password: acc_to_copy.password
+        password: acc_to_copy.password,
+        auth_level: acc_to_copy.auth_level
       })
     } else {
       doSaveAccReq({
         id: acc_to_copy.id,
         login: acc_to_copy.login,
-        password: acc_to_copy.password
+        password: acc_to_copy.password,
+        auth_level: acc_to_copy.auth_level
       })
     }
 
@@ -220,13 +243,14 @@ export default function Account_manage_calib(props) {
     // setIsLoading(true)
   }
 
-  const doSaveAccReq = ({ id, login, password } = {}) => {
+  const doSaveAccReq = ({ id, login, password, auth_level } = {}) => {
     const new_login = login.length > 0 ? login : 'NULL',
-      new_passw = password.length > 0 ? password : 'NULL'
+          new_passw = password.length > 0 ? password : 'NULL',
+          new_auth_level = isNaN(Number(auth_level)) ? 'NULL' : auth_level
 
     const req_obj = {
       address: 'edit_user.cgi',
-      data: `id$${id};login$${new_login};password$${new_passw}`,
+      data: `id$${id};login$${new_login};password$${new_passw};auth_level$${new_auth_level}`,
       reducer: reducers.user_list_handling,
       notifications: {
         good: 'default',
@@ -259,13 +283,28 @@ export default function Account_manage_calib(props) {
     // setIsLoading(true)
   }
 
-  const doRegisterAccReq = ({ login, password } = {}) => {
+  const doResetAccs = ({ id } = {}) => {
+    const req_obj = {
+      address: 'reset_user_list.cgi',
+      reducer: reducers.user_list_handling,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    props.updateHandler(req_obj)
+    // setIsLoading(true)
+  }
+
+  const doRegisterAccReq = ({ login, password, auth_level } = {}) => {
     const new_login = login.length > 0 ? login : 'NULL',
-      new_passw = password.length > 0 ? password : 'NULL'
+          new_passw = password.length > 0 ? password : 'NULL',
+          new_auth_level = isNaN(Number(auth_level)) ? 'NULL' : auth_level
 
     const req_obj = {
       address: 'register_user.cgi',
-      data: `login$${new_login};password$${new_passw}`,
+      data: `login$${new_login};password$${new_passw};auth_level$${new_auth_level}`,
       reducer: reducers.user_list_handling,
       notifications: {
         good: 'default',
@@ -334,7 +373,8 @@ export default function Account_manage_calib(props) {
                 <thead className="logs_header">
                   <tr>
                     <td>логин</td>
-                    <td>пароль</td>
+                    <td>ур. доступа</td>
+                    <td></td>
                     <td>действия</td>
                   </tr>
                 </thead>
@@ -350,30 +390,49 @@ export default function Account_manage_calib(props) {
                             id={`${user.id}_login_input`}
                             name={`${user.id}_login`}
                             type="text"
-                            class={!(user.editable && user.login != 'admin') ? 'transparent' : ''}
+                            class={!(user.editable) ? 'transparent' : ''}
                             changeHandler={changeHandler}
                             max_length='20'
                             input_value={user.editable ?
                               accountState.active_edit_acc.login :
                               user.login
                             }
-                            disabled={!(user.editable && user.login != 'admin')}
+                            disabled={!(user.editable)}
                           />
                         </td>
-                        <td className='acc_password'>
+                        <td className='acc_auth_level'>
                           <FormInput
-                            id={`${user.id}_password_input`}
-                            name={`${user.id}_password`}
-                            type={!user.editable ? 'password' : 'text'}
+                            id={`${user.id}_auth_level_input`}
+                            name={`${user.id}_auth_level`}
+                            type={!user.editable ? 'text' : 'select'}
                             class={!user.editable ? 'transparent' : ''}
                             changeHandler={changeHandler}
                             max_length='10'
                             input_value={user.editable ?
-                              accountState.active_edit_acc.password :
-                              user.password
+                              accountState.active_edit_acc.auth_level :
+                              auth_levels[user.auth_level]
                             }
                             disabled={!user.editable}
+                            variants={[undefined, 'user', 'admin']}
                           />
+                        </td>
+                        <td className='acc_password'>
+                          {!!user.editable &&
+                            <FormInput
+                              id={`${user.id}_password_input`}
+                              name={`${user.id}_password`}
+                              type={!user.editable ? 'password' : 'text'}
+                              class={!user.editable ? 'transparent' : ''}
+                              changeHandler={changeHandler}
+                              max_length='10'
+                              input_value={user.editable ?
+                                accountState.active_edit_acc.password :
+                                user.password
+                              }
+                              disabled={!user.editable}
+                              placeholder='Новый пароль'
+                            />
+                          }
                         </td>
                         <td className="acc_actions">
                           {user.editable ?
@@ -388,7 +447,6 @@ export default function Account_manage_calib(props) {
                                 }}
                                 label='Сохранить'
                                 type="button" />
-                              {user.login != 'admin' &&
                                 <FormInput
                                   clickHandler={(e) => {
                                     setAccEditDelete({
@@ -399,7 +457,8 @@ export default function Account_manage_calib(props) {
                                   }}
                                   label='Удалить'
                                   type="button" />
-                              }
+                              {/* {user.login != 'admin' &&
+                              } */}
                               <FormInput
                                 clickHandler={(e) => {
                                   setAccEditCancel({
@@ -446,14 +505,31 @@ export default function Account_manage_calib(props) {
                               accountState.active_edit_acc.login
                             }
                             disabled={!accountState.active_edit_acc.editable}
+                            placeholder='Логин'
+                          />
+                        </td>
+                        <td className="acc_auth_level">
+                          <FormInput
+                            id={`${accountState.active_edit_acc.id}_auth_level_input`}
+                            name={`${accountState.active_edit_acc.id}_auth_level`}
+                            type={!(accountState.active_edit_acc.editable && auth_store.auth_access.calib) ? 'text' : 'select'}
+                            class={!(accountState.active_edit_acc.editable && auth_store.auth_access.calib) ? 'transparent' : ''}
+                            changeHandler={changeHandler}
+                            maxLength='10'
+                            input_value={accountState.active_edit_acc.editable ?
+                              accountState.active_edit_acc.auth_level :
+                              auth_levels[accountState.active_edit_acc.auth_level]
+                            }
+                            disabled={!accountState.active_edit_acc.editable}
+                            variants={[undefined, 'user', 'admin']}
                           />
                         </td>
                         <td className="acc_password">
                           <FormInput
                             id={`${accountState.active_edit_acc.id}_password_input`}
                             name={`${accountState.active_edit_acc.id}_password`}
-                            type={!accountState.active_edit_acc.editable ? 'password' : 'text'}
-                            class={!accountState.active_edit_acc.editable ? 'transparent' : ''}
+                            type={!(accountState.active_edit_acc.editable && auth_store.auth_access.calib) ? 'password' : 'text'}
+                            class={!(accountState.active_edit_acc.editable && auth_store.auth_access.calib) ? 'transparent' : ''}
                             changeHandler={changeHandler}
                             maxLength='10'
                             input_value={accountState.active_edit_acc.editable ?
@@ -461,6 +537,7 @@ export default function Account_manage_calib(props) {
                               accountState.active_edit_acc.password
                             }
                             disabled={!accountState.active_edit_acc.editable}
+                            placeholder='Новый пароль'
                           />
                         </td>
                         <td className="acc_actions">
@@ -505,6 +582,18 @@ export default function Account_manage_calib(props) {
                 </tbody>
               </table>
               <div className="acc_list_actions_wrap">
+                {auth_store.auth_access.calib_extend &&
+                  <FormInput
+                    id={`calib_user_list_reset`}
+                  name={`calib_user_list_reset`}
+                    clickHandler={(e) => {
+                      doResetAccs()
+                    }}
+                    class='log_refresh'
+                    label='Сброс учетных записей'
+                    type="button"
+                  />
+                }
                 {accountState.user_list.length < 6 &&
                   <FormInput
                     id={`calib_password_save`}

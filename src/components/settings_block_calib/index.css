@@ -105,7 +105,7 @@
 
 /* ACCOUNT MANAGER */
 .acc_manage_modal {
-  width: 820px;
+  width: 920px;
   max-height: 850px;
 }
 
@@ -151,7 +151,8 @@
 
 .acc_login,
 .acc_password,
-.acc_actions {
+.acc_actions,
+.acc_auth_level {
 }
 
 .acc_actions {
@@ -166,6 +167,10 @@
 
 .acc_manage td.acc_actions {
   min-width: 335px;
+}
+
+.acc_manage td.acc_auth_level {
+  max-width: 140px;
 }
 
 .acc_list_actions_wrap {
