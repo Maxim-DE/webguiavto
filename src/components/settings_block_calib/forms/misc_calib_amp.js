@@ -18,12 +18,12 @@ function MiscCalibSettings_AMP(props) {
       return store.globalStore.global_data.calib_state.data?.calib_misc
     } else return {}
   }),
-        auth_store = useSelector((store) => store.authStore.auth_data),
-        deviceName_string = useSelector((store) => {
-          if (deepKeyExists(store.globalStore.global_data, 'Type_Device')) {
-            return `${store.globalStore.global_data.section_data.info.info_general.Type_Device} №${store.globalStore.global_data.section_data.info.info_general.serial_number}`
-          } 
-        })
+    auth_store = useSelector((store) => store.authStore.auth_data),
+    deviceName_string = useSelector((store) => {
+      if (deepKeyExists(store.globalStore.global_data, 'Type_Device')) {
+        return `${store.globalStore.global_data.section_data.info.info_general.Type_Device} №${store.globalStore.global_data.section_data.info.info_general.serial_number}`
+      }
+    })
 
 
   const [miscCalibState, setMiscCalibState] = React.useState({
@@ -100,8 +100,8 @@ function MiscCalibSettings_AMP(props) {
 
   const handleClick_deleteUserLogs = (event) => {
     const target = event.target,
-          name = target.name.replace('_calib', ''),
-          value = 1
+      name = target.name.replace('_calib', ''),
+      value = 1
 
     const request_obj = {
       address: 'calib_misc.cgi',
@@ -153,7 +153,7 @@ function MiscCalibSettings_AMP(props) {
               <label
                 htmlFor={`delete_user_logs_calib_input`}
                 className="settings_itemLabel">
-                Удалить пользовательский журнал
+                Удалить журналы
               </label>
             </div>
             <div className='item_input'>
@@ -161,7 +161,13 @@ function MiscCalibSettings_AMP(props) {
                 id={`delete_user_logs_calib_save`}
                 name={`delete_user_logs_calib`}
                 clickHandler={handleClick_deleteUserLogs}
-                label='Удалить'
+                label='Польз.'
+                type="button" />
+              <FormInput
+                id={`delete_sys_logs_calib_save`}
+                name={`delete_sys_logs_calib`}
+                clickHandler={handleClick_save}
+                label='Системный'
                 type="button" />
             </div>
           </li>
