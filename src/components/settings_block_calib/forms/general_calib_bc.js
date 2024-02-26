@@ -16,7 +16,8 @@ function GeneralCalibSettings_BC(props) {
     def_module: 0,
     fan_start_alarm: 0,
     tftp: 0,
-    controller: 0
+    controller: 0,
+    watchdog: 0
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -174,6 +175,26 @@ function GeneralCalibSettings_BC(props) {
       <li className="group_divider"></li>
       </>
       }
+      <li
+        key='watchdog_calib'
+        id='watchdog_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`watchdog_calib_input`}
+            className="settings_itemLabel">
+            Функция Watchdog
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`watchdog_calib_input`}
+            name={`watchdog_calib`}
+            changeHandler={handleChange_save}
+            input_value={!!generalCalibState.watchdog}
+            type="switch" />
+        </div>
+      </li>
       <li
         key='tftp_calib'
         id='tftp_calib'
