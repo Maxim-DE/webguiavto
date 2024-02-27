@@ -127,14 +127,12 @@ export const roundDigits = x => ((x.toString().includes('.')) ? (x.toString().sp
 
 export function getTime() {
   var currentdate = new Date();
-  var date = 
-  PrependZeros(currentdate.getFullYear(), 2) + "-"
-  + PrependZeros((currentdate.getMonth() + 1), 2) + "-"
-  + PrependZeros(currentdate.getDate(), 2)
-
+  var date = PrependZeros(currentdate.getDate(), 2) + "-"
+    + PrependZeros((currentdate.getMonth() + 1), 2) + "-"
+    + PrependZeros(currentdate.getFullYear(), 2)
   var time = PrependZeros(currentdate.getHours(), 2) + ":"
-          + PrependZeros(currentdate.getMinutes(), 2) + ":"
-          + PrependZeros(currentdate.getSeconds(), 2);
+    + PrependZeros(currentdate.getMinutes(), 2) + ":"
+    + PrependZeros(currentdate.getSeconds(), 2);
 
   return [date, time]
 }
