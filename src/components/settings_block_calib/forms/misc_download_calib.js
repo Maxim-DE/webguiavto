@@ -17,7 +17,7 @@ function MiscDownloadCalib(props) {
 
   const [readSectorState, setReadSectorState] = React.useState({
     init_sector: 0,
-    sector_num: 0,
+    sector_num: 1,
     get build_link_read() {
       return readSector_link_build('read')
     },

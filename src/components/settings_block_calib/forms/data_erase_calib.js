@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 export default function DataEraseCalibSettings(props) {
   const [eraseSectorState, setEraseSectorState] = React.useState({
     init_sector: 0,
-    sector_num: 0,
+    sector_num: 1,
   })
 
   const style_obj = {
@@ -139,7 +139,7 @@ export default function DataEraseCalibSettings(props) {
             type="text"
             data-threshold="high"
             style={style_obj}
-            value={setEraseSectorState.sector_num}
+            value={eraseSectorState.sector_num}
             onChange={handleChange}
           />
         </div>
