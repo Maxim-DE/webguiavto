@@ -42,6 +42,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
       }
 
       setGeneralCalibState(calib_state_copy)
+
+      state_prev_copy.current = calib_state_copy
     }
 
   }, [calib_state])
@@ -64,15 +66,15 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   const handleClick_save = (event) => {
     event.preventDefault()
 
-    const target = event.target,
+    const target = event.currentTarget,
           name = target.name.replace('_calib', '')
 
     // const target_value = target.type === 'checkbox' ? Number(target.checked) : generalCalibState[name]
 
-    const state_diff = event.target.type === 'checkbox' ? { [name]: generalCalibState[name] } : 
+    const state_diff = target.type === 'checkbox' ? { [name]: generalCalibState[name] } : 
                                                           diff(state_prev_copy.current, generalCalibState),
 
-          req_data_str = event.target.type === 'checkbox' ? `${name}$${Number(event.target.checked)}` : 
+          req_data_str = target.type === 'checkbox' ? `${name}$${Number(event.target.checked)}` : 
                                                             dataArray_to_string(state_diff, (value, key) => {
                                                               if (calib_state != undefined && calib_state[key] != undefined) {
                                                                 if (Array.isArray(calib_state[key])) {
@@ -86,25 +88,6 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
                                                                 return typeof value == "boolean" ? Number(value) : value;
                                                               }
       })
-
-    // const target = event.target,
-    //   name = target.name.replace('_calib', '')
-
-    // let value, state_to_save
-
-    // if (calib_state != undefined && calib_state[name] != undefined) {
-    //   if (Array.isArray(calib_state[name])) {
-    //     value = generalCalibState[name] * 10
-    //     let state_obj = { [name]: value }
-    //     state_to_save = calib_state_conversion(state_obj, calib_state)
-    //   } else {
-    //     value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
-    //     state_to_save = { [name]: value }
-    //   }
-    // } else {
-    //   value = target.type == 'checkbox' ? Number(target.checked) : generalCalibState[name]
-    //   state_to_save = { [name]: value }
-    // }
 
     const request_obj = {
       address: 'calib_add_general.cgi',
