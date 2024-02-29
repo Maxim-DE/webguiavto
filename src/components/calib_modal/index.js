@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { IoMdClose } from 'react-icons/io';
 
@@ -12,6 +12,15 @@ function ModalCalib(props) {
   const handleClose = () => {
     props.setIsOpen()
   }
+  
+  const handleEnterDown = useCallback(
+    (event) => {
+      if (event.key === 'Enter' && props.submitHandler) {
+        props.submitHandler()
+        console.log('it pressed enter!');
+      }
+    },
+  [props.submitHandler]) 
 
   return (
     <>
@@ -19,7 +28,7 @@ function ModalCalib(props) {
       className='darkBG'
       onClick={props.user_controllable ? handleClose : undefined} />
     <div className='centered'>
-      <div className={`modal ${props.class}`}>
+      <div className={`modal ${props.class}`} tabIndex={0} onKeyUp={handleEnterDown} >
         <div className="modal_header">
           <h3>{props.header}</h3>
         </div>
