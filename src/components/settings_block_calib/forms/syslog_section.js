@@ -54,12 +54,26 @@ function SyslogSection_calib(props) {
     log_data: []
   });
 
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_store = useSelector((store) => store.authStore.auth_data),
+        info_section_data = useSelector((store) => store.globalStore.global_data.section_data.info)
+
   const active_link_ref = React.useRef(null)
 
   // React.useEffect(() => {
   //   if (isOpen) handleSysLogRequest()
   // }, [isOpen])
+
+  let device_arr = [],
+    device_type = 0,
+    device_serialNum,
+    device_model
+
+  if (info_section_data.info_general) {
+    device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
+      device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0,
+      device_serialNum = info_section_data.info_general.serial_number ? '_' + info_section_data.info_general?.serial_number : '',
+      device_model = '_' + device_arr[device_type]
+  }
 
   React.useEffect(() => {
 
@@ -374,7 +388,9 @@ function SyslogSection_calib(props) {
               label='Очистить журнал'
               type="button" />
           }
-          <a href="ReadSysLog.txt" >
+          <a 
+            href="ReadSysLog.txt"
+            download={`SysLog${device_model}${device_serialNum}.txt`} >
             <FormInput
               id={`calib_password_save`}
               name={`calib_password`}

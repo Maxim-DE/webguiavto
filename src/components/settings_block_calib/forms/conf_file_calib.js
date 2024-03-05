@@ -60,11 +60,15 @@ export default function ConfFileCalib(props) {
   
   // строка имени устройства
   let device_arr = [],
-  device_type = 0
+      device_type = 0,
+      device_serialNum,
+      device_model
   
   if (info_section_data.info_general) {
     device_arr = info_section_data.info_general.device_type_list ? info_section_data.info_general.device_type_list : [],
-    device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0
+    device_type = info_section_data.info_general.model ? info_section_data.info_general?.model : 0,
+    device_serialNum = info_section_data.info_general.serial_number ? '_' + info_section_data.info_general?.serial_number : '',
+    device_model = '_' + device_arr[device_type]
   }
 
   const [confCalibState, setConfCalibState] = React.useState({
@@ -383,13 +387,15 @@ export default function ConfFileCalib(props) {
           <a
             className='button_input download_link'
             name={`conf_file_download`}
-            href={`${conf_file_links.conf_file_download.address}`}>
+            href={`${conf_file_links.conf_file_download.address}`}
+            download={`SysConfing${device_model}${device_serialNum}.bson`}>
             Системный
           </a>
           <a
             className='button_input download_link'
             name={`conf_user_file_download`}
-            href={`${conf_file_links.conf_user_file_download.address}`}>
+            href={`${conf_file_links.conf_user_file_download.address}`}
+            download={`UserConfing${device_model}${device_serialNum}.bson`}>
             Польз.
           </a>
         </div>
