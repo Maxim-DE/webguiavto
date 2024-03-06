@@ -21,6 +21,11 @@ export const conf_file_links = {
     data: 'factory_reset$1',
     reducer: reducers.factory_reset
   },
+  user_settings_reset: {
+    address: 'calib_conf_file.cgi',
+    data: 'user_settings_reset$1',
+    reducer: reducers.factory_reset
+  },
   conf_file_download: {
     address: 'ReadFileConfing.bson',
     data: 'confing_dev$1;confing_user$1'
@@ -242,6 +247,26 @@ export default function ConfFileCalib(props) {
             clickHandler={handleClick_save}
             disabled={!confCalibState.factory_reset_available}
             label='Восстановить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='user_settings_reset'
+        id='user_settings_reset'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`test_post_req_input`}
+            className="settings_itemLabel">
+            Сброс польз. настроек
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`user_settings_reset_input`}
+            name={`user_settings_reset`}
+            clickHandler={handleClick_save}
+            label='Сбросить'
             type="button" />
         </div>
       </li>

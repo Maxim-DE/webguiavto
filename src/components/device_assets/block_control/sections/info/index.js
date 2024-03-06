@@ -6,8 +6,11 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 import Info_general from './forms/info_general';
 import Software_version from './forms/software_version';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
+import Reset_Info from './forms/reset';
+import { useSelector } from 'react-redux';
 
 export default function InfoSection(props) {
+  const auth_store = useSelector((store) => store.authStore.auth_data)
 
   React.useEffect(() => {
     let request_obj = {
@@ -50,6 +53,11 @@ export default function InfoSection(props) {
         //   'null'
         //   : props.section_data.software_version}
         clickHandler={updateHandler} />
+      {auth_store.auth_access.calib_extend &&
+        <Reset_Info
+          section_name="reset"
+          clickHandler={updateHandler} />
+      }
     </SettingsSectionWrap>
   )
 }
