@@ -29,6 +29,7 @@ function MiscCalibSettings_AMP(props) {
   const [miscCalibState, setMiscCalibState] = React.useState({
     sys_log: [],
     user_list: [],
+    auth_enable: 0
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -71,7 +72,7 @@ function MiscCalibSettings_AMP(props) {
       },
 
       save_data: {
-        calib_serialNum: {
+        calib_misc: {
           [name]: value
         }
       }
@@ -197,6 +198,26 @@ function MiscCalibSettings_AMP(props) {
               editing_allowed={true}/>
           </>
           } */}
+          <li
+            key='auth_enable_calib'
+            id='auth_enable_calib'
+            className="settings_item">
+            <div className='item_header'>
+              <label
+                htmlFor={`auth_enable_calib_input`}
+                className="settings_itemLabel">
+                Выкл/вкл авторизацию
+              </label>
+            </div>
+            <div className='item_input'>
+              <FormInput
+                id={`auth_enable_calib_input`}
+                name={`auth_enable_calib`}
+                changeHandler={handleChange_save}
+                input_value={miscCalibState.auth_enable}
+                type="switch" />
+            </div>
+          </li>
         </>
       }
       {/* <li className="group_divider"></li> */}
