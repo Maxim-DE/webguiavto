@@ -289,7 +289,7 @@ function App() {
       <div className="App">
         <nav>
           <div className="nav_header">
-            <a href="okbalfa.ru/">
+            <a href="http://okbalfa.ru/">
             {/* <img src={logo} className="app_logo" /> */}
             ОКБ АЛЬФА
             </a>
