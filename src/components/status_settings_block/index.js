@@ -176,7 +176,6 @@ function Status_settings(props) {
 
     let value = parseFloat(statusSettingsState[`${value_type}_setting`].replaceAll(',', '.')),
         divider
-
     if (props.settings_data[`${value_type}_setting`]) {
       if (Array.isArray(props.settings_data[`${value_type}_setting`])) {
         divider = props.settings_data[`${value_type}_setting`][1]

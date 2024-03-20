@@ -224,11 +224,9 @@ function App() {
 
     // Отправляем запрос информации
     handlePoolUpdate(request_obj);
-
   }, [])
 
   const handlePoolUpdate = (requestData) => {
-
     // Обрабатываем запросы на управление очередью
     if (requestData.action) {
       switch (requestData.action) {
