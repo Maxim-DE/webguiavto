@@ -125,7 +125,8 @@ function block_control_svg_editing(svg, data_svg, auth_access) {
 
   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
-        amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`)
+        amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
+        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`)
 
   if (amp_1_buttons_list) {
     amp_1_buttons_list.forEach((button) => {
@@ -164,6 +165,17 @@ function block_control_svg_editing(svg, data_svg, auth_access) {
     exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
   }
 
+  if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
+    let inner_input = input_wrap.querySelector(`input`)
+
+    if (inner_input) {
+      if (auth_access.settings == 0) {
+        inner_input.disabled = true;
+      } else {
+        inner_input.disabled = false;
+      }
+    }
+  })
 
   return svg
 }

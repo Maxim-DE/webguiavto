@@ -264,6 +264,20 @@ input[type="text"].calib_input {
   max-width: 105px;
 }
 
+input[type="text"].invisible {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+}
+
+input[type="text"].invisible:hover {
+  border: 1px solid black;
+}
+
+input[type="text"].invisible:disabled {
+  border: none;
+}
+
 /* TEXT_RANGE STYLES */
 .text_range_container {
   display: flex;
@@ -273,7 +287,6 @@ input[type="text"].calib_input {
   row-gap: 5px;
 
 }
-
 
 input[type="text"].text_range {
   max-width: 48px;

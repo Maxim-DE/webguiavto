@@ -1,5 +1,6 @@
 import { reducers } from "../store/reducers/status_settings_reducers"
-import { filter_obj } from "./utilites"
+import { SVG_inputElement } from "./svg_inputHandling_logic"
+import { filter_obj, makeSVG } from "./utilites"
 
 export default function svg_eventHandler_logic(svg, data_svg, device_type, clickHandler) {
   switch (true) {
@@ -39,9 +40,8 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-        exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`)
-
-  
+        exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`)
 
   exiter_buttons_list.forEach(button => {
     const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
@@ -59,6 +59,69 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
         })
       }
     }
+  })
+
+  if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
+    let inner_text = input_wrap.childNodes[0].firstChild
+
+    const svg_input_class = new SVG_inputElement()
+
+    const input_describe_arr = input_wrap.id.split("_"),
+          input_id = `${input_describe_arr[0]}_${input_describe_arr[1]}_${input_describe_arr[2]}_input`,
+          input_action_type = `${input_describe_arr[1]}_${input_describe_arr[2]}`
+
+    let input_params = {}
+
+    if (input_action_type.includes("freq")) {
+      input_params = {
+        label_l_offset: 94,
+        label_h_offset: 15,
+        styles: {
+          width: "60px",
+          height: "19px",
+          fontSize: "14px",
+          textAlign: "right",
+        },
+        label: "МГц"
+      }
+    } else if (input_action_type.includes("channel")) {
+      input_params = {
+        label_l_offset: 37,
+        label_h_offset: 14,
+        styles: {
+          width: "40px",
+          height: "19px",
+          fontSize: "14px",
+          textAlign: "right",
+        },
+        label: ""
+      }
+    }
+
+    var el = inner_text,
+    x = el.getAttribute('x'),
+    y = el.getAttribute('y')
+
+    let text_input = svg_input_class.createInputElement(x - input_params.label_l_offset, y - input_params.label_h_offset, "text", {
+      id: `${input_id}_text`
+    }, input_params.styles, "", input_params.label, function (input_value) {
+
+      const output_string = `set_${input_action_type}$${input_value}`
+
+      const request_obj = {
+        address: 'transmitter.cgi',
+        data: output_string,
+        reducer: reducers.transmitter,
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        }
+      }
+
+      clickHandler(request_obj)
+    })
+
+    input_wrap.append(text_input)
   })
 
   const supply_handling_callback = block_control_buttons_actions.supply_handler
@@ -193,5 +256,5 @@ const block_control_buttons_actions = {
     }
 
     clickHandler(request_obj)
-  }
+  },
 }
