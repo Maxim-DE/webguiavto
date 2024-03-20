@@ -133,3 +133,31 @@ h4 {
   stroke: none;
   fill: #e0e7eb;
 }
+
+foreignObject.svg_input {
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+}
+
+foreignObject .svg_input_wrap { 
+  display: flex;
+  flex-direction: row;
+  column-gap: 2px;
+  align-items: center;
+}
+
+foreignObject .save_input_btn {
+  width: 19px;
+  height: 19px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+}
+
+foreignObject .save_input_btn.invisible:disabled {
+  cursor: default;
+  color: transparent;
+}
+

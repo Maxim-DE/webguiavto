@@ -114,7 +114,7 @@ function Status_graphs(props) {
           continue
         }
 
-
+        const value_span_wrap = graph_block.querySelector(`g[id*=${key}_${item}_val_wrap]`)
 
         let new_value
 
@@ -147,6 +147,14 @@ function Status_graphs(props) {
         }
 
         graph_block_value_span.innerHTML = new_value
+
+        if (value_span_wrap) {
+          const value_span_input = value_span_wrap.querySelector(`input`),
+                value_label = value_span_input.dataset?.valLabel ? value_span_input.dataset.valLabel : ""
+
+
+          value_span_input.dataset.statusData = new_value.replace(" " + value_label, '')
+        }
       }
     }
 

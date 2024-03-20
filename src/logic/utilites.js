@@ -171,5 +171,11 @@ export const MMSStoSecs = (MMSSTimeString) => {
   return s;
 }
 
+export function makeSVG(tag, attrs) {
+  let el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (var k in attrs)
+    el.setAttribute(k, attrs[k]);
+  return el;
+}
 
 
