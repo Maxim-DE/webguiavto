@@ -1,6 +1,8 @@
 import React from 'react';
 // import ReactDOM from 'react_dom';
 
+import { IoMdPower } from "react-icons/io";
+
 import Status_settings from "../status_settings_block"
 import Status_logs from "../status_logs_block"
 import Status_graphs from "../graph_blocks"
@@ -12,6 +14,7 @@ import useSectionStore from '../../logic/sectionsRefs_store';
 
 import './index.css'
 import { reducers } from '../../store/reducers/status_section_reducers';
+import { reducers as calib_reducers } from '../../store/reducers/calib_forms_reducers';
 import { reducers as core_reducers } from '../../store/reducers/core_store_reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { device_status } from '../../logic/utilites';
@@ -56,7 +59,8 @@ function StatusSection(props) {
 
 
   const device_status_output = Object.keys(status_store).length > 0 && device_status(status_store.status_info.device_status),
-        device_time_output = Object.keys(status_store).length > 0 && status_store.status_info.time
+        device_time_output = Object.keys(status_store).length > 0 && status_store.status_info.time,
+    device_def_module_status = Object.keys(status_store).length > 0 && status_store?.calib_info?.def_module_status
 
   const status_magic_number = Object.keys(status_store).length > 0 && status_store.status_info?.magic_number
 
@@ -225,6 +229,36 @@ function StatusSection(props) {
     }
   }
 
+  const turn_def_module_on = () => {
+    const request_obj = {
+      address: 'calib_general.cgi',
+      data: `def_module$1`,
+      reducer: calib_reducers.calibration_form,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+
+      save_data: {
+        calib_general: {
+          def_module: 1
+        }
+      }
+    }
+
+    props.updateHandler(request_obj)
+
+    const info_request_obj = {
+      address: `info.cgi`,
+      reducer: core_reducers.section_data,
+      notifications: {
+        good: 'none',
+        bad: 'none'
+      },
+    }
+
+    props.updateHandler(info_request_obj);
+  }
 
 
   return (
@@ -233,13 +267,37 @@ function StatusSection(props) {
       id={`${props.section_name}_section`}
       ref={statusSectionRef} >
       <div className="section_header">
-        <h2>СТАТУС:&nbsp;
-          {device_status_output}
-        </h2>
+        <div className="header_info_wrap">
+          <h2>СТАТУС:&nbsp;
+            {device_status_output}
+          </h2>
+          {!device_def_module_status &&
+            <h3 className='status_info_subheader'>
+              ЗАЩИТА:&nbsp;
+              <div className="def_module_switch">
+                <span className="def_module_status">
+                  {device_def_module_status ? "ВКЛ." : "ВЫКЛ"}
+                </span>
+                <div className="vertical_li_divider"></div>
+                <button 
+                  className='def_module_switch_button' 
+                  type="button"
+                  title='Включить модуль защиты'
+                  onClick={turn_def_module_on}>
+                  <IoMdPower
+                    color='#2B2927'
+                    size={25}  />
+                </button>
+              </div>
+            </h3>
+          }
+        </div>
         <span
           style={{textAlign: "right"}}>
           {device_time_output}
         </span>
+      </div>
+      <div className="section_header">
       </div>
       <div className="section_status">
         <Status_graphs
@@ -250,14 +308,14 @@ function StatusSection(props) {
           auth_access={auth_store.auth_access}
           updateHandler={handleUpdate}
           data={status_store.status_graph}/>
-        <div className={`status_settings_wrap ${guest_mode_class}`}>
+        <div className={`status_settings_wrap guest_wrap`}>
           <Status_logs 
             settings_type="logs" 
             header="журнал" 
             data={status_store.status_logs}
             full_data={status_store.status_full_logs}
             updateHandler={handleUpdate} />
-          {auth_store.auth_access.settings &&
+          {/* {auth_store.auth_access.settings &&
           <Status_settings
             updateHandler={handleUpdate}
             device_type={device_type}
@@ -265,7 +323,7 @@ function StatusSection(props) {
             settings_data={Object.keys(status_store.status_settings).length > 0 && status_store.status_settings}
             status_data={status_store}
           />
-          }
+          } */}
         </div>
       </div>
     </section>
