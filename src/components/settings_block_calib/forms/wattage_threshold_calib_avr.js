@@ -18,6 +18,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
 
   const [powerCalibState, setPowerCalibState] = React.useState({
     power_threshold_reserved_value: 0,
+    power_timeout_reserved_value: 0,
     threshold_type: 0,
     threshold_0_value: 0,
     threshold_1_value: 1
@@ -110,7 +111,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
         className="settings_item calib">
         <div className='item_header'>
           <label
-            htmlFor={`output_power_calib_input`}
+            htmlFor={`power_threshold_reserved_calib_input`}
             className="settings_itemLabel">
             Порог для перехода на резерв
           </label>
@@ -126,6 +127,33 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
           <FormInput
             id={`power_threshold_reserved_calib_save`}
             name={`power_threshold_reserved_value_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='power_timeout_reserved_calib'
+        id='power_timeout_reserved_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`power_timeout_reserved_calib_input`}
+            className="settings_itemLabel">
+            Таймаут для перехода на резерв
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`power_timeout_reserved_calib_input`}
+            name={`power_timeout_reserved_value_calib`}
+            changeHandler={handleChange}
+            input_value={powerCalibState.power_timeout_reserved_value}
+            style={{ margin: '0', maxWidth: '75px' }}
+            type="text" />
+          <FormInput
+            id={`power_timeout_reserved_calib_save`}
+            name={`power_timeout_reserved_value_calib`}
             clickHandler={handleClick_save}
             label='Сохранить'
             type="button" />
