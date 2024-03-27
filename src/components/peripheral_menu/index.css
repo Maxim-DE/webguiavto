@@ -14,6 +14,7 @@
 
   margin: 10.4%;
   padding: 14px 22px;
+  
 }
 
 
@@ -24,6 +25,11 @@
   align-items: center;
   /* gap: 4px 8.2%; */
   /* margin: 14px 22px 0; */
+}
+
+.peripheral_info_icon {
+  margin: auto;
+  color: #90A9B6;
 }
 
 .time_label, .time_value {
@@ -57,6 +63,23 @@
   font-weight: 400;
   font-size: 15px;
   line-height: 29px;
+}
+
+/* MINIMIZED STYLES */
+
+.peripheral_container.minimized {
+  display: flex;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  height: 53px;
+  padding: 0;
+  margin: 0 18px 35px ;
+  border-radius: 7px;
+ }
+
+.peripheral_container.minimized .peripheral_time {
+  column-gap: 10px;
 }
 
 .linear_progress_percent {

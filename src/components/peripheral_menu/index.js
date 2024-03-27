@@ -1,8 +1,11 @@
 import React from 'react';
+import { BsMemory } from "react-icons/bs";
 
 import Pie from '../circle_indicator'
 
 import './index.css'
+import InputTooltip from '../form_input/tooltip_component';
+import { Tooltip } from 'react-tooltip';
 
 const translation_dict = {
   'pout': 'Вых. мощ., Вт',
@@ -76,29 +79,34 @@ function PeripheralMenu(props) {
 
 
   return (
-    <div className="peripheral_container">
-      <div className="peripheral_time">
-        <span className='time_label'>Тек. время:</span>
-        <span className="time_value">{peripheralData.time}</span>
-      </div>
-      <div className="peripheral_time">
-        <span className='time_label'>Версия ПО:</span>
-        <span className="time_value">{props.software_version ? props.software_version : '...'}</span>
-      </div>
-      {/* <div className="linear_indicatiors">
-        {peripheralData.structure.length > 0 &&
-         peripheralData.structure.map(item => {
-          return (
-            <Pie
-              key={item.name} 
-              min={item.min}
-              max={item.max}
-              status={peripheralData.data[item.name] ? peripheralData.data[item.name][1] : 0}
-              value={peripheralData.data[item.name] ? peripheralData.data[item.name][0] : 0.0} 
-              label={translation_dict[item.name]} />
-          )
-        })}
-      </div> */}
+    <div data-tooltip-id='peripheral_indicator_menu' className={`peripheral_container ${props.minimized && 'minimized'}`}>
+      {!props.minimized &&
+      <>
+        <div className="peripheral_time">
+          <span className='time_label'>Тек. время:</span>
+          <span className="time_value">{peripheralData.time}</span>
+        </div>
+        <div className="peripheral_time">
+          <span className='time_label'>Версия ПО:</span>
+          <span className="time_value">{props.software_version ? props.software_version : '...'}</span>
+        </div>
+      </>
+      }
+      {!!props.minimized &&
+      <>
+        <Tooltip id="peripheral_indicator_menu" clickable={true}>
+          <div className="peripheral_time">
+            <span className='time_label'>Тек. время:</span>
+            <span className="time_value">{peripheralData.time}</span>
+          </div>
+          <div className="peripheral_time">
+            <span className='time_label'>Версия ПО:</span>
+            <span className="time_value">{props.software_version ? props.software_version : '...'}</span>
+          </div>
+        </Tooltip>
+        <BsMemory className='peripheral_info_icon' size={25} />
+      </>
+      }
     </div>
   )
 }
