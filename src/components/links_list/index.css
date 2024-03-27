@@ -15,6 +15,8 @@ ul {
   align-items: center;
   column-gap: 5px;
 
+  padding-left: 45px;
+
   border-top: solid 1px #4E5360;
   /* border-bottom: solid 1px #4E5360; */
 }
@@ -23,6 +25,7 @@ ul {
   background: #1C1D22;
   border-top: none;
   height: 44px;
+  padding-left: 60px;
 }
 
 .nav_linksList li:hover {
@@ -69,10 +72,6 @@ li.nested_item.active {
   font-weight: 600;
 }
 
-.nav_linksList svg {
-  margin-left: .2em;
-}
-
 .nav_linksList .backIcon_wrap {
   min-width: 45px;
 }
@@ -95,7 +94,12 @@ li.nested_item.active {
   transform: rotate(90deg);
 }
 
-
+/* MINIMIZED STYLES */
+.nav_content_wrap.minimized .nav_linksList li {
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+}
 
 @keyframes in_animation {
   0% {

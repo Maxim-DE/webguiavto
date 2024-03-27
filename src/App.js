@@ -17,9 +17,7 @@ import StatusSection from "./components/status_section";
 import CalibLogButton from './components/calib_log_button';
 import { NoConf_placeholder } from './components/device_assets/unknown_device/sections/no_conf';
 
-
 import DeviceWrap_unknown from './components/device_assets/unknown_device';
-
 
 import useSectionStore from './logic/sectionsRefs_store';
 import { useInView } from './logic/useInView_hook';
@@ -30,7 +28,13 @@ import { reducers } from './store/reducers/core_store_reducers';
 import PeripheralMenu from './components/peripheral_menu';
 
 import DeviceWrap_BlockControl from './components/device_assets/block_control';
-import { Route, Routes } from 'react-router-dom';
+
+import alpha_logo from './imgs/alfa_logo.svg'
+
+import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { CgDatabase } from "react-icons/cg";
+
+import { NavInfoMenu } from './components/nav_info_menu';
 
 let debounceTimer;
 
@@ -61,6 +65,8 @@ function App() {
     error_pool: [],
     delayed_pool: []
   })
+
+  const [IsNavMinimized, setNavIsMinimized] = React.useState(0)
 
   const nav_ref = React.useRef(),
         header_ref = React.useRef()
@@ -294,23 +300,54 @@ function App() {
 
       <div className="App">
         <nav>
-          <div className="nav_header">
-            <a href="http://okbalfa.ru/" target='_blank' rel='noopener noreferrer'>
-            {/* <img src={logo} className="app_logo" /> */}
-            ОКБ АЛЬФА
-            </a>
-            {/* <span className='version_info_span'>Версия: {sectionData.info?.software_version?.os_version}</span> */}
+          <div className={`nav_content_wrap ${IsNavMinimized ? 'minimized' : ''}`}>
+            <div className="nav_header">
+              <a href="http://okbalfa.ru/" className='site_logo_link' target='_blank' rel='noopener noreferrer'>
+
+                <img src={alpha_logo} className="app_logo" />
+                {!IsNavMinimized &&
+                  <span className="app_label">
+                    ОКБ АЛЬФА
+                  </span>
+                }
+              </a>
+              {/* <span className='version_info_span'>Версия: {sectionData.info?.software_version?.os_version}</span> */}
+            </div>
+            <div className="nav_actions_wrap">
+              <div className="nav_action_misc">
+              </div>
+              <button 
+                className='nav_action_button minimize'
+                type="button"
+                title={ IsNavMinimized ?
+                  'Развернуть' :
+                  'Свернуть'
+                } 
+                onClick={(e) => {
+                  if (IsNavMinimized) {
+                    setIsNavInfo(false)
+                  }
+                  setNavIsMinimized(!IsNavMinimized)
+                }}>
+                  <FaCaretLeft color='#90A9B6' size={25} />
+              </button>
+            </div>
+            {/* Компонент с ссылками на разделы */}
+
+            <Links_list
+              updateHandler={navRefUpdate}
+              requestHandler={handlePoolUpdate}
+              device_type={device_type}
+              minimized={IsNavMinimized} />
+            <div className='nav_fillblock'></div>
+            {/* Компонент с боковым нижним меню */}
+            <PeripheralMenu
+              updateHandler={handlePoolUpdate}
+              data={status_section_data}
+              software_version={info_section_data?.software_version?.os_version}
+              minimized={IsNavMinimized} />
+
           </div>
-          {/* Компонент с ссылками на разделы */}
-          <Links_list 
-            updateHandler={navRefUpdate}
-            requestHandler={handlePoolUpdate}
-            device_type={device_type} />
-          <div className='nav_fillblock'></div>
-          {/* Компонент с боковым нижним меню */}
-          <PeripheralMenu
-            updateHandler={handlePoolUpdate}
-            data={status_section_data}
             software_version={info_section_data?.software_version?.os_version} />
         </nav>
         <div className='main_wrap'>

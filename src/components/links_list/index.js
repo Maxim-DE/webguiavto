@@ -5,26 +5,34 @@ import useGlobalStore from '../../logic/auth_store';
 import useSectionStore from '../../logic/sectionsRefs_store';
 import { useInView } from '../../logic/useInView_hook';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
+import { FaAngleLeft, FaAngleRight, FaNetworkWired, FaTools, FaCode } from "react-icons/fa"
+import { IoMdSettings } from "react-icons/io";
+import { RiFileList3Line, RiFileList3Fill } from "react-icons/ri";
+import { HiRss } from "react-icons/hi";
+import { MdOutlineInfo, MdOutlineMiscellaneousServices } from "react-icons/md";
+import { TbDeviceHeartMonitor } from "react-icons/tb";
+
 
 import './index.css'
 import { useSelector } from 'react-redux';
 import { IoMdRefresh } from 'react-icons/io';
 import { reducers } from '../../store/reducers/core_store_reducers';
+import { Tooltip } from 'react-tooltip';
 
 // массив со всеми элементами навбара
 const links_items = [
-  { id: 'status', name: "Статус", req_access_level: 0 },
-  { id: 'settings', name: "Общие настройки", req_access_level: 1 },
-  { id: 'network', name: "Сетевые настройки", req_access_level: 1 },
-  { id: 'info', name: "Данные об устройстве", req_access_level: 0 },
-  { id: 'userlog', name: "Польз. журнал", req_access_level: 0 },
+  { id: 'status', name: "Статус", icon: <HiRss size={30} />, req_access_level: 0 },
+  { id: 'settings', name: "Общие настройки", icon: <IoMdSettings size={30} />, req_access_level: 1 },
+  { id: 'network', name: "Сетевые настройки", icon: <FaNetworkWired size={30} />, req_access_level: 1 },
+  { id: 'info', name: "Данные об устройстве", 
+    icon: <MdOutlineInfo size={30} />, req_access_level: 0 },
+  { id: 'userlog', name: "Польз. журнал", icon: <RiFileList3Line size={30} />, req_access_level: 0 },
   {
     id: 'calibration', name: "Расширенные настройки", req_access_level: 2, children: [
-      { id: 'main', name: "Калибровка", nested: true },
-      { id: 'misc', name: "Прочее", nested: true },
-      { id: 'syslog', name: "Системный журнал", nested: true },
-      { id: 'developer', name: "Для разработчиков", nested: true },
+      { id: 'main', name: "Калибровка", icon: <TbDeviceHeartMonitor size={25} />, nested: true },
+      { id: 'misc', name: "Прочее", icon: <MdOutlineMiscellaneousServices size={25} />, nested: true },
+      { id: 'syslog', name: "Системный журнал", icon: <RiFileList3Fill size={25} />, nested: true },
+      { id: 'developer', name: "Для разработчиков", icon: <FaCode size={25} />, nested: true },
     ]
   }
 ] 
@@ -38,6 +46,7 @@ const calib_links_items = [
 
 function Links_list(props) {
   const [active, SetActive] = React.useState(0);
+  const [IsNavExpanded, setNavIsExpanded] = React.useState(0)
   const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const [sectionState, sectionActions] = useSectionStore()
 
@@ -101,69 +110,43 @@ function Links_list(props) {
                   isParentActive={index == active}
                   setParentActive={SetActive}
                   nested_elements={item.children}
+                  minimized={props.minimized}
                 />
               )
             } else {
               return (
+                <>
+                {!!props.minimized &&
+                  <Tooltip 
+                    id={`${item.id}_min_tooltip`} 
+                    clickable={true}
+                    place='right'
+                    delayShow={100}>
+                    {item.name}
+                  </Tooltip>
+                }
                 <li
                   key={item.id}
                   id={item.id}
                   onClick={handleClick}
-                  className={index === active ? 'active' : ''}>
-                  <div className="backIcon_wrap"></div>
+                  className={`${index === active ? 'active' : ''}`}
+                  data-tooltip-id={`${item.id}_min_tooltip`}>
+                  {/* <div className="backIcon_wrap"></div> */}
                   <div
                     className="nav_linkLabel"
                     onClick={(e) => { console.log('nav span'); }}
-                  >{item.name}</div>
-                  {/* <FaAngleRight
-                color='#6D8EA0'
-                size='25px' /> */}
+                  >
+                  {props.minimized ?
+                    item?.icon :
+                    item.name
+                  }
+                  </div>
                 </li>
+                </>
               )
             }
           }
         }
-        // if (index > 0 && index < links_items.length - 1 && 
-        //     (!auth_store.auth_access.settings ||
-        //     props.device_type === 255)) {
-        //   return
-        // } else if (index == links_items.length - 1 && 
-        //            (!auth_store.auth_access.calib ||
-        //            props.device_type === 255)) {
-        //   return
-        // } else if (index == links_items.length - 1 &&
-        //            (auth_store.auth_access.calib &&
-        //            props.device_type !== 255)) {
-
-        //   return (
-        //     <CalibNavList
-        //       id={item.id}
-        //       name={item.name}
-        //       index={index}
-        //       updateHandler={props.updateHandler}
-        //       isParentActive={index == active}
-        //       setParentActive={SetActive}
-        //       nested_elements={item.children}
-        //     />
-        //   )
-        // } else {
-        //   return (
-        //   <li
-        //     key={item.id}
-        //     id={item.id}
-        //     onClick={handleClick}
-        //     className={index === active ? 'active' : ''}>
-        //     <div className="backIcon_wrap"></div>
-        //     <div 
-        //     className="nav_linkLabel"
-        //     onClick={(e) => {console.log('nav span');}}
-        //     >{item.name}</div>
-        //     {/* <FaAngleRight
-        //       color='#6D8EA0'
-        //       size='25px' /> */}
-        //   </li>
-        //   )
-        // }
       })}
       
     </ul>
@@ -184,7 +167,7 @@ function Links_list(props) {
 
 
 // Отдельный вариант списка навигации для калибровки, по реализации тоже самое, что и список выше, только он выступает в качестве потомка основного списка, поэтому в него передаются функции и значения из родительского компонента
-function CalibNavList({id, name, updateHandler, index, isParentActive, setParentActive, nested_elements}) {
+function CalibNavList({id, name, updateHandler, index, isParentActive, setParentActive, nested_elements, minimized}) {
   const auth_store = useSelector((store) => store.authStore.auth_data)
   const [active, setActive] = React.useState(0);
   const [isExpanded, setIsExpanded] = React.useState(false);
@@ -222,41 +205,70 @@ function CalibNavList({id, name, updateHandler, index, isParentActive, setParent
 
   return (
     <>
+      {!!minimized &&
+        <Tooltip
+          id={`calibration_min_tooltip`}
+          clickable={true}
+          place='right'
+          delayShow={100}>
+          {name}
+        </Tooltip>
+      }
       <li
         key={id}
         id={id}
+        data-tooltip-id={`calibration_min_tooltip`}
         onClick={(e) => {
           setParentActive(index)
           handleExpand()
         }}
         className={`${isParentActive ? 'active' : ''} ${isExpanded ? 'expanded' : ''}`}>
-        <div className="backIcon_wrap"></div>
-        <div className="nav_linkLabel">{name}</div>
-        <FaAngleRight
-          color='#6D8EA0'
-          className='front_icon'
-          size='25px' />
+        {/* <div className="backIcon_wrap"></div> */}
+        <div className="nav_linkLabel">
+          {minimized ?
+            <FaTools size={30} /> :
+            name
+          }
+        </div>
+        {!minimized &&
+          <FaAngleRight
+            color='#6D8EA0'
+            className='front_icon'
+            size='25px' />
+        }
       </li>
         {isExpanded && nested_elements.map((item, index) => {
           if (item.id == 'developer' && !auth_store.auth_access.calib_extend) {
             return
           } else {
             return (
+            <>
+            {!!minimized &&
+              <Tooltip
+                id={`${item.id}_min_tooltip`}
+                clickable={true}
+                place='right'
+                delayShow={100}>
+                {item.name}
+              </Tooltip>
+            }
             <li
               key={item.id}
               id={item.id}
               onClick={handleNestedClick}
               className={`nested_item ${index == active ? 'active' : ''}`}
+              data-tooltip-id={`${item.id}_min_tooltip`}
               >
-              <div className="backIcon_wrap"></div>
               <div 
               className="nav_linkLabel"
-              onClick={(e) => {console.log('nav span');}}
-              >{item.name}</div>
-              {/* <FaAngleRight
-                color='#6D8EA0'
-                size='25px' /> */}
+              onClick={(e) => {console.log('nav span');}}>
+                {minimized ?
+                  item?.icon :
+                  item.name
+                }
+              </div>
             </li>
+            </>
             )
           }
           })}
