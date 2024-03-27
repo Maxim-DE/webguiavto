@@ -16,6 +16,15 @@ export const status_colors = [
   '#68CEDE', //hibernation
 ]
 
+export const new_status_colors = {
+  0: '#68CEDE', // OFF
+  1: '#ABE188', // ON
+  2: '#fe5f55', // LOCK(ERROR)
+  4: '#f9c22e', // TURN_ON
+  100: '#8D8D92' // DISCONNECT
+
+}
+
 function Status_graphs(props) {
 
   const graph_container_ref = React.useRef(null)

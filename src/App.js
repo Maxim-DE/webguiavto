@@ -33,6 +33,7 @@ import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { CgDatabase } from "react-icons/cg";
 
 import DeviceWrap_REAmp from './components/device_assets/radio_amp';
+import { NavInfoMenu } from './components/nav_info_menu';
 
 let debounceTimer;
 
@@ -59,6 +60,7 @@ function App() {
   })
 
   const [IsNavMinimized, setNavIsMinimized] = React.useState(0)
+  const [IsNavInfo, setIsNavInfo] = React.useState(0)
 
   const nav_ref = React.useRef(),
         header_ref = React.useRef()
@@ -301,6 +303,18 @@ function App() {
             </div>
             <div className="nav_actions_wrap">
               <div className="nav_action_misc">
+                <button
+                  className={`nav_action_button ${IsNavInfo && 'active'}`}
+                  type="button"
+                  title='Показать данные устройства'
+                  onClick={(e) => {
+                    if (!IsNavMinimized) {
+                      setNavIsMinimized(true);
+                    }
+                    setIsNavInfo(!IsNavInfo)
+                  }}>
+                  <CgDatabase />
+                </button>
               </div>
               <button 
                 className='nav_action_button minimize'
@@ -310,6 +324,9 @@ function App() {
                   'Свернуть'
                 } 
                 onClick={(e) => {
+                  if (IsNavMinimized) {
+                    setIsNavInfo(false)
+                  }
                   setNavIsMinimized(!IsNavMinimized)
                 }}>
                   <FaCaretLeft color='#90A9B6' size={25} />
@@ -331,6 +348,9 @@ function App() {
               minimized={IsNavMinimized} />
 
           </div>
+          {!!IsNavInfo &&
+            <NavInfoMenu info_data={status_section_data?.nav_info}/>
+          }
         </nav>
         <div className='main_wrap'>
           <header ref={header_ref}>
