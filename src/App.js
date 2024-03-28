@@ -332,9 +332,9 @@ function App() {
                   'Свернуть'
                 } 
                 onClick={(e) => {
-                  // if (IsNavMinimized) {
-                  //   setIsNavInfo(false)
-                  // }
+                  if (IsNavMinimized) {
+                    setIsNavInfo(false)
+                  }
                   setNavIsMinimized(!IsNavMinimized)
                 }}>
                   <FaCaretLeft color='#90A9B6' size={25} />
