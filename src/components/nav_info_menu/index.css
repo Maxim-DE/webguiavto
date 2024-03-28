@@ -8,6 +8,13 @@ nav .nav_info_wrap {
   row-gap: 10px; */
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+nav .nav_info_wrap::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .nav_info_wrap .nav_info_item_wrap {
