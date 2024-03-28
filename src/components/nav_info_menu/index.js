@@ -29,7 +29,7 @@ export const NavInfoMenu = ({ info_data, ...rest }) => {
   React.useEffect(() => {
     if (info_data && Object.keys(info_data).length > 0) {
       for (const key in info_data) {
-        info_rows_ref.current.push(<NavInfoRow name={key} key_info={info_data[key]} />)
+        info_rows_ref.current.push(<NavInfoRow name={key} key_info={info_data[key]} key={key} />)
       }
     }
 
@@ -79,16 +79,19 @@ const NavInfoRow = ({name, key_info, ...rest }) => {
           <ul className="info_content_list">
             {key_info.map((info_data, index) => {
               const info_instance_data = info_data,
+                    info_instance_round_index = info_instance_data?.divider ?
+                      Math.log10(info_instance_data?.divider) :
+                      0,
                     info_instance_value = info_instance_data?.divider ? 
-                      (info_instance_data.value / info_instance_data.divider) :
+                      (info_instance_data.value / info_instance_data.divider).toFixed(info_instance_round_index) :
                       info_instance_data.value,
                     info_instance_adc = info_instance_data?.adc ? 
-                      `/${info_instance_data.adc}` :
+                      `/ ${info_instance_data.adc}` :
                       '',
                     info_instance_units = info_instance_data?.units ?
-                      ` ${info_instance_data.units}` :
+                      ` ${info_instance_data.units} ` :
                       '',
-                info_instance_status_color = info_instance_data?.status && new_status_colors[info_instance_data.status] ? 
+                info_instance_status_color = info_instance_data.status != undefined && new_status_colors[info_instance_data.status] != undefined ? 
                   new_status_colors[info_instance_data.status] : 
                   "transparent"
 
