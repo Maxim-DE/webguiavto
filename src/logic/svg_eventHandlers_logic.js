@@ -41,7 +41,8 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
         exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
-        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`)
+        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+        ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`)
 
   exiter_buttons_list.forEach(button => {
     const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
@@ -156,6 +157,16 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
     supply_handling_callback(clickHandler)
   })
 
+  if (ping_input_list) ping_input_list.forEach(button => {
+    const ping_dest_device = button.id.replace('_check_amp_network_button', '')
+
+    if (!button.onclick) {
+      button.addEventListener("click", function () {
+        block_control_buttons_actions.network_ping_handler(ping_dest_device, clickHandler)
+      })
+    }
+  })
+
   return svg
 }
 
@@ -257,4 +268,17 @@ const block_control_buttons_actions = {
 
     clickHandler(request_obj)
   },
+
+  network_ping_handler: (dest_device, clickHandler) => {
+    const request_obj = {
+      address: 'status_graph_settings.cgi',
+      data: `${dest_device}$1;ping$1`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    clickHandler(request_obj)
+  }
 }

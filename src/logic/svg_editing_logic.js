@@ -126,7 +126,8 @@ function block_control_svg_editing(svg, data_svg, auth_access) {
   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`)
+        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+        ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`)
 
   if (amp_1_buttons_list) {
     amp_1_buttons_list.forEach((button) => {
@@ -176,6 +177,18 @@ function block_control_svg_editing(svg, data_svg, auth_access) {
       }
     }
   })
+
+  if (ping_input_list) {
+    ping_input_list.forEach((button) => {
+      if (auth_access.calib == 0) {
+        button.classList.add("disabled_svg_button");
+        button.classList.add("invisible");
+      } else {
+        button.classList.remove("disabled_svg_button");
+        button.classList.remove("invisible");
+      }
+    })
+  }
 
   return svg
 }
