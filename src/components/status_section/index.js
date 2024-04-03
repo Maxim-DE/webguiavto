@@ -40,6 +40,7 @@ function StatusSection(props) {
         dispatch = useDispatch()
 
   const timerRef = React.useRef()
+  const magicNumber_ref = React.useRef(undefined)
 
   const guest_mode_class = !auth_store.auth_access.settings ? 'guest_wrap' : ''
 
@@ -176,16 +177,26 @@ function StatusSection(props) {
   React.useEffect(() => {
     dispatch(err_erase('status'))
 
-    let request_obj = {
-      address: `info.cgi`,
-      reducer: core_reducers.section_data,
-      notifications: {
-        good: 'none',
-        bad: 'none'
-      },
+    if (status_magic_number != undefined && typeof magicNumber_ref.current == "number") {
+      let request_obj = {
+        address: `info.cgi`,
+        reducer: core_reducers.section_data,
+        notifications: {
+          good: 'none',
+          bad: 'none'
+        },
+      }
+  
+      props.updateHandler(request_obj);
+
+      magicNumber_ref.current = status_magic_number
+    }
+    
+    if (typeof status_magic_number == "number" && magicNumber_ref.current == undefined) {
+      magicNumber_ref.current = status_magic_number
     }
 
-    props.updateHandler(request_obj);
+
   }, [status_magic_number])
 
   const handleConnectionEstablish = () => {
