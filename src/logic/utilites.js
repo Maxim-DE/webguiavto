@@ -178,4 +178,6 @@ export function makeSVG(tag, attrs) {
   return el;
 }
 
+export const numberOfCharactersAfter = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0));
+
 

@@ -1,6 +1,6 @@
 import { reducers } from "../store/reducers/status_settings_reducers"
 import { SVG_inputElement } from "./svg_inputHandling_logic"
-import { filter_obj, makeSVG } from "./utilites"
+import { filter_obj, makeSVG, numberOfCharactersAfter } from "./utilites"
 
 export default function svg_eventHandler_logic(svg, data_svg, device_type, clickHandler) {
   switch (true) {
@@ -107,7 +107,9 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
       id: `${input_id}_text`
     }, input_params.styles, "", input_params.label, function (input_value) {
 
-      const output_string = `set_${input_action_type}$${input_value}`
+      const multiplier_power = numberOfCharactersAfter(input_value)
+
+      const output_string = `set_${input_action_type}$${input_value * Math.pow(10, multiplier_power)}`
 
       const request_obj = {
         address: 'transmitter.cgi',
