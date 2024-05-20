@@ -289,7 +289,7 @@ input[type="text"].invisible:disabled {
 }
 
 input[type="text"].text_range {
-  max-width: 48px;
+  max-width: 60px;
   margin-left: 10px;
 }
 
