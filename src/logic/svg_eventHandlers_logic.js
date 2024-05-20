@@ -42,7 +42,8 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
         exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
-        ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`)
+        ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
+        output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
 
   exiter_buttons_list.forEach(button => {
     const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
@@ -151,6 +152,17 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
     if (!button.onclick) {
       button.addEventListener("click", function () {
         voltage_handling_callback(device_type, action_type, clickHandler)
+      })
+    }
+  })
+  
+
+  output_buttons_list.forEach(button => {
+    let button_callback = re_amp_buttons_actions[button.id.replace('_button', '')]
+
+    if (!button.onclick) {
+      button.addEventListener("click", function () {
+        button_callback(clickHandler)
       })
     }
   })
