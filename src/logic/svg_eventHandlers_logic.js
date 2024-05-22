@@ -108,9 +108,10 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
       id: `${input_id}_text`
     }, input_params.styles, "", input_params.label, function (input_value) {
 
-      const multiplier_power = numberOfCharactersAfter(input_value)
+      const multiplier_power = numberOfCharactersAfter(input_value),
+            result_value = input_value * Math.pow(10, multiplier_power)
 
-      const output_string = `set_${input_action_type}$${input_value * Math.pow(10, multiplier_power)}`
+      const output_string = `set_${input_action_type}$${result_value.toFixed(0)}`
 
       const request_obj = {
         address: 'transmitter.cgi',
