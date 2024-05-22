@@ -15,6 +15,7 @@ import CurrentCalibSettings_AMP from '../../../../settings_block_calib/forms/cur
 import CurrentThresholdCalibSettings_AMP from '../../../../settings_block_calib/forms/current_threshold_calib_amp';
 import PowerCalibSettings_AMP from '../../../../settings_block_calib/forms/wattage_primary_calib_amp';
 import GeneralCalibSettings_AMP from '../../../../settings_block_calib/forms/general_calib_amp';
+import PWRSensorCalibSettings_AMP from '../../../../settings_block_calib/forms/pwr_sensor_calib_amp';
 
 
 export const CalibMain = (props) => {
@@ -49,6 +50,8 @@ export const CalibMain = (props) => {
       <PowerCalibSettings_AMP
         clickHandler={handleClick} />
       <WattageAdditionalCalibSettings_ST
+        clickHandler={handleClick} />
+      <PWRSensorCalibSettings_AMP
         clickHandler={handleClick} />
       <TempThresholdCalibSettings
         clickHandler={handleClick} />
