@@ -206,7 +206,7 @@ function VoltageCalibSettings_URE(props) {
                 <label
                   htmlFor={`dac_admin_value_calib_input`}
                   className="settings_itemLabel">
-                  Значение ЦАП (администратор)
+                  Регулировочное значение ЦАП (админ.)
                 </label>
               </div>
               <div className='item_input'>
