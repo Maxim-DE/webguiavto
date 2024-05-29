@@ -1,3 +1,5 @@
+import { recursvive_obj_handle } from "../logic/utilites"
+
 // Шаблон объекта для редюсера в Redux
 export const redux_payload_template = {
   name: '',
@@ -13,9 +15,15 @@ export function reqReducers_wrap({
   payload_obj = redux_payload_template, 
   reducer = () => {return} }) {
 
-  const request_name = payload_obj.name,
+  let request_name = payload_obj.name,
         request_resp = payload_obj.data.resp_obj,
         request_params = payload_obj.data.params
+
+  if (typeof request_resp === 'object') {
+    request_resp = recursvive_obj_handle(request_resp, (val, key) => {
+      return val = val.replace(/,/g, ".");
+    })
+  }
   
   let reducer_options = {
     request_name: request_name,

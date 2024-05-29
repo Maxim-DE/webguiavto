@@ -15,6 +15,7 @@ import { isFocused, roundDigits } from '../../logic/utilites';
 import { toast } from 'react-toastify';
 import { validateValue } from '../../logic/validation/validate_value';
 import InputTooltip from './tooltip_component';
+import { cloneDeep } from 'lodash';
 
 function FormInput(
   {
@@ -100,6 +101,10 @@ function FormInput(
   const handleChange = async (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    if(target.type == 'text') {
+      target.value = target.value.replace(/,/g, '.')
+    }
 
     props.changeHandler(event)
 
