@@ -166,13 +166,12 @@ function MiscDownloadCalib(props) {
           </label>
         </div>
         <div className='item_input'>
-          <input
+          <FormInput
             name='init_sector'
             type="text"
-            data-threshold="low"
             style={style_obj}
-            value={readSectorState.init_sector}
-            onChange={handleChange}
+            input_value={readSectorState.init_sector}
+            changeHandler={handleChange}
           />
         </div>
       </li>
@@ -188,13 +187,13 @@ function MiscDownloadCalib(props) {
           </label>
         </div>
         <div className='item_input'>
-          <input
+          <FormInput
             name='sector_num'
             type="text"
             data-threshold="high"
             style={style_obj}
-            value={readSectorState.sector_num}
-            onChange={handleChange}
+            input_value={readSectorState.sector_num}
+            changeHandler={handleChange}
           />
         </div>
       </li>

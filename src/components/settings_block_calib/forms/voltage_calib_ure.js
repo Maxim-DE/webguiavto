@@ -218,15 +218,15 @@ function VoltageCalibSettings_URE(props) {
                 <span className='item_adc_value'>
                   ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
                 </span>
-                <input
+                <FormInput
                   type="text"
                   id={`dac_admin_value_calib_input`}
                   name={`dac_admin_value_calib`}
-                  className="text_range"
+                  class="text_range"
                   style={{ margin: '0', maxWidth: '54px' }}
-                  maxLength={4}
-                  value={voltageCalibState.dac_admin_value}
-                  onChange={handleChange}
+                  max_length={4}
+                  input_value={voltageCalibState.dac_admin_value}
+                  clickHandler={handleChange}
                 />
                 <FormInput
                   id={`dac_admin_value_calib_save`}
@@ -248,15 +248,15 @@ function VoltageCalibSettings_URE(props) {
                 </label>
               </div>
               <div className='item_input'>
-                <input
+                <FormInput
                   type="text"
                   id={`dac_threshold_calib_input`}
                   name={`dac_threshold_calib`}
-                  className="text_range"
-                  maxLength={4}
+                  class="text_range"
+                  max_length={4}
                   style={{ margin: '0', maxWidth: '54px' }}
-                  value={voltageCalibState.dac_threshold}
-                  onChange={handleChange}
+                  input_value={voltageCalibState.dac_threshold}
+                  changeHandler={handleChange}
                 />
                 <FormInput
                   id={`dac_threshold_calib_save`}
@@ -283,15 +283,15 @@ function VoltageCalibSettings_URE(props) {
             <span className='item_adc_value'>
               ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
             </span>
-            <input
+            <FormInput
               type="text"
               id={`dac_value_calib_input`}
               name={`dac_value_calib`}
-              className="text_range"
-              maxLength={4}
+              class="text_range"
+              max_length={4}
               style={{ margin: '0', maxWidth: '54px' }}
-              value={voltageCalibState.dac_value}
-              onChange={handleChange}
+              input_value={voltageCalibState.dac_value}
+              changeHandler={handleChange}
             />
             <FormInput
               id={`dac_value_calib_save`}

@@ -299,7 +299,7 @@ function CurrentCalibSettings_AMP(props) {
           <FormInput
             id={`I${i}_calib_input`}
             name={`I${i}_calib`}
-            class="calib_input"
+            class="calib_input text_range"
             changeHandler={handleChange}
             input_value={amperageCalibState[`I${i}`]}
             type="text" />
