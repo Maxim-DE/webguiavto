@@ -302,26 +302,23 @@ function WattageAdditionalCalibSettings_BC(props) {
           <span className='item_adc_value'>
             АЦП: {adcVoltage_store?.ballast_1}
           </span>
-          <input
+          <FormInput
             id={'ballast_1_calib_input'}
             name={'ballast_1_calib'}
-            className={`calib_input ${
-              wattageAdditionalCalibState.ballast_1_avaliable ? '' : 'disabled_input'}`}
+            class={`calib_input`}
             type="text"
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
-            onChange={handleChange}
-            value={wattageAdditionalCalibState.ballast_1}
+            changeHandler={handleChange}
+            input_value={wattageAdditionalCalibState.ballast_1}
             placeholder={'X.XX кВт'}
           />
-          <input
+          <FormInput
             id={`ballast_1_calib_save`}
             name={`ballast_1_calib`}
-            className={`button_input ${
-              wattageAdditionalCalibState.ballast_1_avaliable ? '' : 'disabled_input'}`}
             type="button"
             value={'Сохранить'}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
-            onClick={handleClick_ballast} />
+            clickHandler={handleClick_ballast} />
         </div>
       </li>
       <li
@@ -344,37 +341,31 @@ function WattageAdditionalCalibSettings_BC(props) {
           id={`ballast_1_threshold_low_input`}
           name={`ballast_1_threshold_low`}>
           <span>от</span>
-          <input
+          <FormInput
             type="text"
-            className={`text_range ${
-              wattageAdditionalCalibState.ballast_1_avaliable ? '' : 'disabled_input'}`}
-            data-threshold="low"
+            class={`text_range`}
             name={`ballast_1_threshold_low`}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
-            value={wattageAdditionalCalibState.ballast_1_threshold_low}
-            onChange={handleChange}
+            input_value={wattageAdditionalCalibState.ballast_1_threshold_low}
+            changeHandler={handleChange}
           />
           <span>до</span>
-          <input
+          <FormInput
             type="text"
-            className={`text_range ${
-              wattageAdditionalCalibState.ballast_1_avaliable ? '' : 'disabled_input'}`}
-            data-threshold="high"
+            class={`text_range`}
             name={`ballast_1_threshold_high`}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
-            value={wattageAdditionalCalibState.ballast_1_threshold_high}
-            onChange={handleChange}
+            input_value={wattageAdditionalCalibState.ballast_1_threshold_high}
+            changeHandler={handleChange}
           />
         </div>
-        <input
+        <FormInput
           id={`ballast_1_threshold_save_calib`}
           name={`ballast_1_threshold_calib`}
-          className={`button_input ${
-              wattageAdditionalCalibState.ballast_1_avaliable ? '' : 'disabled_input'}`}
           type="button"
           value={'Сохранить'}
           disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
-          onClick={handleClick_threshold_save} />
+          clickHandler={handleClick_threshold_save} />
       </div>
     </li>
     </Settings_block_calib>

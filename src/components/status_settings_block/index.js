@@ -329,18 +329,16 @@ function Status_settings(props) {
             </label>
           </div>
           <div className='item_input'>
-            <input
+            <FormInput
               id={`channel_setting_input`}
               name={`channel_setting`}
-              type="number"
-              className={`${device_locked ? 'disabled_input' : ''}`}
+              type="text"
+              class={`${device_locked ? 'disabled_input' : ''}`}
               disabled={device_locked}
-              onChange={handleChange_channel}
-              value={statusSettingsState.channel_setting}
-              min={6}
-              max={80}
-              maxLength="2"
-              style={{ maxWidth: '55px', marginRight: '10px'}}
+              changeHandler={handleChange_channel}
+              input_value={statusSettingsState.channel_setting}
+              max_length="2"
+              style={{ maxWidth: '35px', marginRight: '10px'}}
             />
             <FormInput
               id={`channel_save_input`}

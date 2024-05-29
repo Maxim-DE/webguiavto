@@ -121,14 +121,14 @@ function PowerCalibSettings(props) {
               adcPower_store ? adcPower_store.dac_value[1] : ''
             }
           </span>
-          <input
+          <FormInput
             type="text"
             id={`dac_value_calib_input`}
             name={`dac_value_calib`}
-            className="text_range"
+            class="text_range"
             style={{margin: '0', maxWidth: '54px'}}
-            value={powerCalibState.dac_value}
-            onChange={handleChange}
+            input_value={powerCalibState.dac_value}
+            changeHandler={handleChange}
           />
           <FormInput
             id={`dac_value_calib_save`}

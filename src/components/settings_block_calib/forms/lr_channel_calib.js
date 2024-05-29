@@ -111,20 +111,18 @@ function LRChannelCalibSettings(props) {
             id={`lr_channel_input`}
             name={`lr_channel`}>
             <span>L</span>
-            <input
+            <FormInput
               type="text"
-              className="text_range"
-              data-threshold="low"
-              value={LRChannelCalibState.l_channel}
-              onChange={handleChange}
+              class="text_range"
+              input_value={LRChannelCalibState.l_channel}
+              changeHandler={handleChange}
             />
             <span>R</span>
-            <input
+            <FormInput
               type="text"
-              className="text_range"
-              data-threshold="high"
-              value={LRChannelCalibState.r_channel}
-              onChange={handleChange}
+              class="text_range"
+              input_value={LRChannelCalibState.r_channel}
+              changeHandler={handleChange}
             />
           </div>
           <FormInput

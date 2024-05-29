@@ -126,10 +126,14 @@ function CurrentThresholdCalibSettings_AMP(props) {
       return
     }
     
-    let range_input = event.target.parentElement;
+    let range_input = event.target.parentElement.parentElement;
 
     name = range_input.id;
-    value = [range_input.children[1].value, range_input.children[3].value];
+    
+    const from_value = range_input.children[1].children[0].value,
+          to_value = range_input.children[3].children[0].value
+
+    value = [from_value, to_value];
 
     setThresholdCalibState(prevState => ({
       ...prevState,
@@ -232,20 +236,18 @@ function CurrentThresholdCalibSettings_AMP(props) {
             id={`I${i}_threshold_input`}
             name={`I${i}_threshold`}>
             <span>от</span>
-            <input
+            <FormInput
               type="text"
-              className="text_range"
-              data-threshold="low"
-              value={thresholdCalibState[`I${i}_threshold_input`][0]}
-              onChange={handleChange}
+              class="text_range"
+              input_value={thresholdCalibState[`I${i}_threshold_input`][0]}
+              changeHandler={handleChange}
             />
             <span>до</span>
-            <input
+            <FormInput
               type="text"
-              className="text_range"
-              data-threshold="high"
-              value={thresholdCalibState[`I${i}_threshold_input`][1]}
-              onChange={handleChange}
+              class="text_range"
+              input_value={thresholdCalibState[`I${i}_threshold_input`][1]}
+              changeHandler={handleChange}
             />
           </div>
           <FormInput
@@ -264,221 +266,6 @@ function CurrentThresholdCalibSettings_AMP(props) {
                         settings_type={`current_calib`}
                         save_handler={handleClick_save}>
     {threshold_rows}
-    {/* <li
-      key='I1_threshold'
-      id='I1_threshold'
-      className="settings_item calib">
-      <div className='item_header'>
-        <label
-          htmlFor={`I1_threshold_input`}
-          className="settings_itemLabel">
-          Порог I1
-        </label>
-      </div>
-      <div className='item_input'>
-        <span className='item_adc_value'>
-          АЦП: {adcCurrentThreshold_store.I1}
-        </span>
-        <div
-          className="text_range_container"
-          id={`I1_threshold_input`}
-          name={`I1_threshold`}>
-          <span>от</span>
-          <input
-            type="text"
-            className="text_range"
-            data-threshold="low"
-            value={thresholdCalibState.I1_threshold_input[0]}
-            onChange={handleChange}
-          />
-          <span>до</span>
-          <input
-            type="text"
-            className="text_range"
-            data-threshold="high"
-            value={thresholdCalibState.I1_threshold_input[1]}
-            onChange={handleChange}
-          />
-        </div>
-        <FormInput
-          id={`I1_threshold_save`}
-          name={`I1_threshold`}
-          clickHandler={handleClick_save}
-          label='Сохранить'
-          type="button" />
-      </div>
-    </li>
-    <li
-      key='I2_threshold'
-      id='I2_threshold'
-      className="settings_item calib">
-      <div className='item_header'>
-        <label
-          htmlFor={`I2_threshold_input`}
-          className="settings_itemLabel">
-          Порог I2
-        </label>
-      </div>
-      <div className='item_input'>
-        <span className='item_adc_value'>
-          АЦП: {adcCurrentThreshold_store.I2}
-        </span>
-        <div
-          className="text_range_container"
-          id={`I2_threshold_input`}
-          name={`I2_threshold`}>
-          <span>от</span>
-          <input
-            type="text"
-            className="text_range"
-            data-threshold="low"
-            value={thresholdCalibState.I2_threshold_input[0]}
-            onChange={handleChange}
-          />
-          <span>до</span>
-          <input
-            type="text"
-            className="text_range"
-            data-threshold="high"
-            value={thresholdCalibState.I2_threshold_input[1]}
-            onChange={handleChange}
-          />
-        </div>
-        <FormInput
-          id={`I2_threshold_save`}
-          name={`I2_threshold`}
-          clickHandler={handleClick_save}
-          label='Сохранить'
-          type="button" />
-      </div>
-    </li>
-    <li className="group_divider" />
-    <li
-      key='I3_threshold'
-      id='I3_threshold'
-      className="settings_item calib">
-      <div className='item_header'>
-        {auth_store.auth_access.calib_extend &&
-        <FormInput
-            id={`I3_threshold_available_calib_input`}
-            name={`I3_threshold_available_calib`}
-            changeHandler={(e) => {
-              handleChange(e);
-              handleAvaliablility_save(e)
-            }}
-            input_value={thresholdCalibState.I3_threshold_available}
-            type="checkbox" />
-        }
-        <label
-          htmlFor={`I3_threshold_input`}
-          className="settings_itemLabel">
-          Порог I3
-        </label>
-      </div>
-      <div className='item_input'>
-        <span className='item_adc_value'>
-          АЦП: {adcCurrentThreshold_store.I3}
-        </span>
-        <div
-          className="text_range_container"
-          id={`I3_threshold_input`}
-          name={`I3_threshold`}>
-          <span>от</span>
-          <input
-            type="text"
-            className={`text_range ${
-              thresholdCalibState.I3_threshold_available ? '' : 'disabled_input'}`}
-            data-threshold="low"
-            disabled={!thresholdCalibState.I3_threshold_available}
-            value={thresholdCalibState.I3_threshold_input[0]}
-            placeholder={'X.X А'}
-            onChange={handleChange}
-          />
-          <span>до</span>
-          <input
-            type="text"
-            className={`text_range ${
-              thresholdCalibState.I3_threshold_available ? '' : 'disabled_input'}`}
-            data-threshold="high"
-            disabled={!thresholdCalibState.I3_threshold_available}
-            value={thresholdCalibState.I3_threshold_input[1]}
-            placeholder={'X.X А'}
-            onChange={handleChange}
-          />
-        </div>
-        <input
-          id={`I3_threshold_save`}
-          name={`I3_threshold`}
-          className={`button_input ${
-              thresholdCalibState.I3_threshold_available ? '' : 'disabled_input'}`}
-          type="button"
-          value={'Сохранить'}
-          disabled={!thresholdCalibState.I3_threshold_available}
-          onClick={handleClick_save} />
-      </div>
-    </li>
-    <li
-      key='I4_threshold'
-      id='I4_threshold'
-      className="settings_item calib">
-      <div className='item_header'>
-        {auth_store.auth_access.calib_extend &&
-        <FormInput
-            id={`I4_threshold_available_calib_input`}
-            name={`I4_threshold_available_calib`}
-            changeHandler={(e) => {
-              handleChange(e);
-              handleAvaliablility_save(e)
-            }}
-            input_value={thresholdCalibState.I4_threshold_available}
-            type="checkbox" />
-        }
-        <label
-          htmlFor={`I4_threshold_input`}
-          className="settings_itemLabel">
-          Порог I4
-        </label>
-      </div>
-      <div className='item_input'>
-        <span className='item_adc_value'>
-          АЦП: {adcCurrentThreshold_store.I4}
-        </span>
-        <div
-          className="text_range_container"
-          id={`I4_threshold_input`}
-          name={`I4_threshold`}>
-          <span>от</span>
-          <input
-            type="text"
-            className={`text_range ${
-              thresholdCalibState.I4_threshold_available ? '' : 'disabled_input'}`}
-            data-threshold="low"
-            value={thresholdCalibState.I4_threshold_input[0]}
-            disabled={!thresholdCalibState.I4_threshold_available}
-            onChange={handleChange}
-          />
-          <span>до</span>
-          <input
-            type="text"
-            className={`text_range ${
-              thresholdCalibState.I4_threshold_available ? '' : 'disabled_input'}`}
-            data-threshold="high"
-            value={thresholdCalibState.I4_threshold_input[1]}
-            disabled={!thresholdCalibState.I4_threshold_available}
-            onChange={handleChange}
-          />
-        </div>
-        <input
-          id={`I4_threshold_save`}
-          name={`I4_threshold`}
-          className={`button_input ${
-              thresholdCalibState.I4_threshold_available ? '' : 'disabled_input'}`}
-          type="button"
-          value={'Сохранить'}
-          disabled={!thresholdCalibState.I4_threshold_available}
-          onClick={handleClick_save} />
-      </div>
-    </li> */}
   </Settings_block_calib>
   )
 }
