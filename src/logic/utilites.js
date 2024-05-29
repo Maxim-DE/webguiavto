@@ -181,3 +181,23 @@ export function makeSVG(tag, attrs) {
 export const numberOfCharactersAfter = x => ((x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0));
 
 
+export function isFocused(element) {
+  return document.activeElement === element
+}
+
+export function recursvive_obj_handle(object, add_handle_callback) {
+  for (const key in object) {
+    if (typeof object[key] === 'object') {
+      recursvive_obj_handle(object[key])
+    } else if (add_handle_callback) {
+
+      if (typeof object[key] === 'boolean') {
+        object[key] = add_handle_callback(Number(object[key]), key)
+      } else {
+        object[key] = add_handle_callback(object[key], key)
+      }
+    }
+  }
+
+  return object
+}
