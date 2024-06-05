@@ -24,6 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 src/prj_start_script
 
+Cpio_last/
 src/imgs/raw/
 package-lock.json
 src/mib/okb_alfa.mib
