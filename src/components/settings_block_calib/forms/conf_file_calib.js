@@ -16,6 +16,11 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { useSelector } from 'react-redux';
 
 export const conf_file_links = {
+  backup_reset: {
+    address: 'calib_conf_file.cgi',
+    data: 'backup_reset$1',
+    reducer: reducers.factory_reset
+  },  
   factory_reset: {
     address: 'calib_conf_file.cgi',
     data: 'factory_reset$1',
@@ -36,7 +41,11 @@ export const conf_file_links = {
   set_settings_as_factory: {
     address: 'calib_super_admin_conf_file.cgi',
     data: 'set_settings_as_factory$1'
-  }
+  },
+  set_settings_as_backup: {
+    address: 'calib_conf_file.cgi',
+    data: 'set_settings_as_backup$1'
+  }  
 }
 
 export default function ConfFileCalib(props) {
@@ -224,20 +233,20 @@ export default function ConfFileCalib(props) {
     // save_handler={handleClick_save}
     >
       <li
-        key='factory_reset_manage'
-        id='factory_reset_manage'
+        key='backup_reset_manage'
+        id='backup_reset_manage'
         className="settings_item">
         <div className='item_header'>
           <label
             htmlFor={`test_post_req_input`}
             className="settings_itemLabel">
-            Восст. заводских настроек
+            Восст. из резервных настроек
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`factory_reset_input`}
-            name={`factory_reset`}
+            id={`backup_reset_input`}
+            name={`backup_reset`}
             title={!confCalibState.factory_reset_available && 'Отсутсвует резерв. конфигурация'}
             clickHandler={handleClick_save}
             disabled={!confCalibState.factory_reset_available}
@@ -245,6 +254,28 @@ export default function ConfFileCalib(props) {
             type="button" />
         </div>
       </li>
+      <li
+        key='factory_reset_manage'
+        id='factory_reset_manage'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`test_post_req_input`}
+            className="settings_itemLabel">
+            Восст. из заводских настроек
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`factory_reset_input`}
+            name={`factory_reset`}
+            title={!confCalibState.factory_reset_available && 'Отсутсвует заводская конфигурация'}
+            clickHandler={handleClick_save}
+            disabled={!confCalibState.factory_reset_available}
+            label='Восстановить'
+            type="button" />
+        </div>
+      </li>      
       {auth_store.auth_access.calib_extend &&
         <>
         <li
@@ -331,6 +362,32 @@ export default function ConfFileCalib(props) {
         </li>
         </>
       }
+        <li
+          key='set_settings_as_backup'
+          id='set_settings_as_backup'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`set_settings_as_backup_input`}
+              className="settings_itemLabel">
+              Сохранить тек. настройки в рез. область
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`set_settings_as_backup_input`}
+              name={`set_settings_as_backup`}
+              clickHandler={handleClick_save}
+              label='Сохранить'
+              type="button" />
+            {/* <FormInput
+              id={`save_as_factory_input`}
+              name={`save_as_factory`}
+              clickHandler={handleChange_save}
+              label='Сохр. как завод.'
+              type="button" /> */}
+          </div>
+        </li>      
       <li className="group_divider" />
       <li
         key='conf_file_manage'
