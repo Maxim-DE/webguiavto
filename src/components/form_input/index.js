@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 import { validateValue } from '../../logic/validation/validate_value';
 import InputTooltip from './tooltip_component';
 
-function FormInput(
+function  FormInput(
   {
     // id, 
     // name, 
@@ -44,6 +44,15 @@ function FormInput(
   const [openModal, setOpenModal] = React.useState(false);
 
   const addInput_ref = React.useRef(null)
+
+  const [isUploading, setIsUploading] = React.useState(false);
+  const [isUploadModalOpen, setIsUploadModalOpen] = React.useState(false);
+  const [uploadProgress, setUploadProgress] = React.useState({
+      progress: 0
+    });
+
+  const hex_dropzone_ref = React.useRef(null)
+  const hex_dropzone_instance = React.useRef(null)
 
   const handleBlur = useCallback(async () => {
     if (props.validators && Array.isArray(props.validators)) {
@@ -516,6 +525,31 @@ function FormInput(
         onClick={props.clickHandler}>
         {props.label}
       </button>
+    )
+  }
+
+  else if (props.type == "file_upload") {
+    return (
+      // <button
+      //   id={props.id}
+      //   name={props.id}
+      //   title={props.title}
+      //   className={`button_input ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+      //   disabled={props.disabled}
+      //   type="button"
+      //   style={props.style}
+      //   onClick={props.clickHandler}>
+      //   {props.label}
+      // </button>
+      <input
+        id={props.id}
+        name={`file_upload-${props.id}`}
+        ref={hex_dropzone_ref}
+        className={`button_input`}
+        disabled={props.disabled}
+        style={props.style}
+        type="button"
+        value={props.label} />
     )
   }
 

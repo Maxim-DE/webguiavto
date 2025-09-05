@@ -15,7 +15,9 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
   const [generalCalibState, setGeneralCalibState] = React.useState({
     def_module: 0,
     fan_start_alarm: 0,
-    tftp: 0
+    tftp: 0,
+    input_test_pic_enable: 0,
+    output_test_pic_enable: 0,
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -123,6 +125,46 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>
+        <li
+          key='input_test_pic_enable_calib'
+          id='input_test_pic_enable_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`input_test_pic_enable_calib_input`}
+              className="settings_itemLabel">
+              Блок ВХОД_ТЕСТ на картинке
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`input_test_pic_enable_calib_input`}
+              name={`input_test_pic_enable_calib`}
+              changeHandler={handleChange_save}
+              input_value={generalCalibState.input_test_pic_enable}
+              type="switch" />
+          </div>
+        </li>
+        <li
+          key='output_test_pic_enable_calib'
+          id='output_test_pic_enable_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`output_test_pic_enable_calib_input`}
+              className="settings_itemLabel">
+              Блок АФУ_0 на картинке
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`output_test_pic_enable_calib_input`}
+              name={`output_test_pic_enable_calib`}
+              changeHandler={handleChange_save}
+              input_value={generalCalibState.output_test_pic_enable}
+              type="switch" />
+          </div>
+        </li>
       </>
       }
       <li

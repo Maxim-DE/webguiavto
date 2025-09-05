@@ -21,6 +21,11 @@ export const conf_file_links = {
     data: 'factory_reset$1',
     reducer: reducers.factory_reset
   },
+  reserve_conf_reset: {
+    address: 'calib_conf_file.cgi',
+    data: 'reserve_conf_reset$1',
+    reducer: reducers.factory_reset
+  },
   conf_file_download: {
     address: 'ReadFileConfing.bson',
     data: 'confing_dev$1;confing_user$1'
@@ -32,6 +37,10 @@ export const conf_file_links = {
   create_new_conf: {
     address: 'calib_super_admin_conf_file.cgi',
     data: 'create_new_conf$1'
+  },
+  create_new_res_conf: {
+    address: 'calib_super_admin_conf_file.cgi',
+    data: 'create_new_res_conf$1'
   },
   set_settings_as_factory: {
     address: 'calib_super_admin_conf_file.cgi',
@@ -57,6 +66,9 @@ export default function ConfFileCalib_AVR(props) {
   
   const hex_dropzone_ref = React.useRef(null)
   const hex_dropzone_instance = React.useRef(null)
+
+  const hex_second_dropzone_ref = React.useRef(null)
+  const hex_second_dropzone_instance = React.useRef(null)
   
   // строка имени устройства
   let device_arr = [],
@@ -69,7 +81,9 @@ export default function ConfFileCalib_AVR(props) {
 
   const [confCalibState, setConfCalibState] = React.useState({
     factory_reset_available: 1,
-    device_conf_type: device_type
+    device_conf_type: device_type,
+    reserve_conf_create_time: '2025.08.27 21:00',
+    factory_conf_create_time: '2025.08.27 21:00'
   })
 
   React.useEffect(() => {
@@ -96,9 +110,9 @@ export default function ConfFileCalib_AVR(props) {
 
   React.useEffect(() => {
     console.log(hex_dropzone_instance.current);
-    if (!hex_dropzone_instance.current && hex_dropzone_instance.current != null) {
-      hex_dropzone_instance.current = new Dropzone(hex_dropzone_ref.current, {
-        url: '/conf_file_upload',
+    if (!hex_dropzone_instance.current) {
+      hex_dropzone_instance.current = new Dropzone(hex_second_dropzone_ref.current, {
+        url: '/user_conf_file_upload',
         chunking: true,
         chunkSize: 1024,
         parallelUploads: 1,
@@ -138,6 +152,52 @@ export default function ConfFileCalib_AVR(props) {
         toast.error(`Ошибка загрузки`, { autoClose: 1500 })
       })
   
+      console.warn('dropzone created successfully');
+    }
+
+    console.log(hex_second_dropzone_instance.current);
+    if (!hex_second_dropzone_instance.current) {
+      hex_second_dropzone_instance.current = new Dropzone(hex_dropzone_ref.current, {
+        url: '/user_conf_file_upload',
+        chunking: true,
+        chunkSize: 1024,
+        parallelUploads: 1,
+        forceChunking: true,
+        retryChunks: true,
+        retryChunksLimit: 2
+      });
+
+      hex_second_dropzone_instance.current.on('addedfile', file => {
+        setIsUploading(true)
+      })
+
+      hex_second_dropzone_instance.current.on('uploadprogress', (file, progress, bytesSent) => {
+        let progress_rounded = progress.toFixed()
+        console.log(progress_rounded);
+
+        setUploadProgress({
+          progress: progress_rounded,
+        })
+      })
+
+      hex_second_dropzone_instance.current.on('success', file => {
+        setIsUploading(false)
+        setUploadProgress({
+          progress: 0,
+        })
+        toast.success(`Успешно загружено`, { autoClose: 1500 })
+      })
+
+      hex_second_dropzone_instance.current.on('error', (file, message) => {
+        const xhr_response_obj = file.xhr
+        console.log(xhr_response_obj);
+        setIsUploading(false)
+        setUploadProgress({
+          progress: 0,
+        })
+        toast.error(`Ошибка загрузки`, { autoClose: 1500 })
+      })
+
       console.warn('dropzone created successfully');
     }
   }, [])
@@ -216,12 +276,11 @@ export default function ConfFileCalib_AVR(props) {
   }
 
   return (
-    <Settings_block_calib header={`файл конфигурации`}
+    <Settings_block_calib header={`файлы конфигурации`}
       settings_type={`conf_file_calib`}
     // save_handler={handleClick_save}
     >
-      {auth_store.auth_access.calib_extend &&
-        <>
+      
       <li
         key='factory_reset_manage'
         id='factory_reset_manage'
@@ -244,6 +303,8 @@ export default function ConfFileCalib_AVR(props) {
             type="button" />
         </div>
       </li>
+      {auth_store.auth_access.calib_extend &&
+        <>
         <li
           key='create_new_conf'
           id='create_new_conf'
@@ -252,7 +313,7 @@ export default function ConfFileCalib_AVR(props) {
             <label
               htmlFor={`tcreate_new_conf_input`}
               className="settings_itemLabel">
-              Создать новый файл
+              Создать новый пустой файл
             </label>
           </div>
           <div className='item_input'>
@@ -300,35 +361,105 @@ export default function ConfFileCalib_AVR(props) {
             type="button" />
           </div>
         </AlertDialogWrap>
+        </>
+        }
         <li
-          key='set_settings_as_factory'
-          id='set_settings_as_factory'
-          className="settings_item">
+          key='conf_res_file_handle'
+          id='conf_res_file_handle'
+          className="settings_item nested_item"
+          style={{height: "45px"}}>
           <div className='item_header'>
             <label
-              htmlFor={`set_settings_as_factory_input`}
+              htmlFor={`conf_res_file_handle_input`}
               className="settings_itemLabel">
-              Сохранить тек. настройки как дефолтные
+              Рез. файл 
+              (дата создания: <br /> {confCalibState.reserve_conf_create_time})
             </label>
           </div>
           <div className='item_input'>
             <FormInput
-              id={`set_settings_as_factory_input`}
-              name={`set_settings_as_factory`}
+              id={`conf_res_file_create_input`}
+              name={`conf_res_file_create`}
               clickHandler={handleClick_save}
-              label='Сохранить'
+              label='Создать'
               type="button" />
-            {/* <FormInput
+            {auth_store.auth_access.calib_extend &&
+              <FormInput
+                id={`conf_res_file_restore_input`}
+                name={`conf_res_file_restore`}
+                clickHandler={handleClick_save}
+                label='Восст.'
+                type="button" />
+            }
+          </div>
+        </li>
+        <li
+          key='conf_factory_file_handle'
+          id='conf_factory_file_handle'
+          className="settings_item nested_item"
+          style={{height: "45px"}}>
+          <div className='item_header'>
+            <label
+              htmlFor={`conf_factory_file_handle_input`}
+              className="settings_itemLabel">
+              Зав. файл
+              (дата создания: <br /> {confCalibState.factory_conf_create_time})
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`conf_factory_file_create_input`}
+              name={`conf_factory_file_create`}
+              clickHandler={handleClick_save}
+              label='Создать'
+              type="button" />
+            {auth_store.auth_access.calib_extend &&
+              <FormInput
+                id={`conf_factory_file_restore_input`}
+                name={`conf_factory_file_restore`}
+                clickHandler={handleClick_save}
+                label='Восст.'
+                type="button" />
+            }
+          </div>
+        </li>
+        <li className="group_divider" />
+        
+        {/* <li
+          key='set_settings_as_factory'
+          id='set_settings_as_factory'
+          className="settings_item calib">
+          <div className='item_header'>
+            <label
+              htmlFor={`set_settings_as_factory_input`}
+              className="settings_itemLabel">
+              Управление рез. файлом конф. <br />
+              (Время создания посл. конф: )
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`create_new_res_conf_input`}
+              name={`create_new_res_conf`}
+              clickHandler={handleClick_save}
+              label='Создать'
+              type="button" />
+            <FormInput
+              id={`reserve_conf_reset_input`}
+              name={`reserve_conf_reset`}
+              clickHandler={handleClick_save}
+              label='Восстановить из резерва'
+              type="button" />
+            <FormInput
               id={`save_as_factory_input`}
               name={`save_as_factory`}
               clickHandler={handleChange_save}
               label='Сохр. как завод.'
-              type="button" /> */}
+              type="button" />
           </div>
-        </li>
-      <li className="group_divider" />
-        </>
-      }
+        </li> */}
+      {/* <li className="group_divider" /> */}
+      
       <li
         key='conf_file_manage'
         id='conf_file_manage'
@@ -362,7 +493,7 @@ export default function ConfFileCalib_AVR(props) {
             type="button"
             value='Загрузить' /> */}
         </div>
-      </li>
+      </li> 
       <li
         key='conf_file_download_device'
         id='conf_file_download_device'
@@ -371,7 +502,7 @@ export default function ConfFileCalib_AVR(props) {
           <label
             htmlFor={`conf_file_download_device_input`}
             className="settings_itemLabel">
-            Скачать с устр.
+            Системный
           </label>
         </div>
         <div className='item_input'>
@@ -385,14 +516,48 @@ export default function ConfFileCalib_AVR(props) {
             className='button_input download_link'
             name={`conf_file_download`}
             href={`${conf_file_links.conf_file_download.address}`}>
-            Системный
+            Скачать
           </a>
+          <input
+            id="hex_upload_zone"
+            name='file'
+            ref={hex_dropzone_ref}
+            className={`button_input`}
+            type="button"
+            value='Загрузить' />
+        </div>
+      </li>
+      <li
+        key='conf_file_download_device'
+        id='conf_file_download_device'
+        className="settings_item nested_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`conf_file_download_device_input`}
+            className="settings_itemLabel">
+            Польз.
+          </label>
+        </div>
+        <div className='item_input'>
+          {/* <FormInput
+            id={`conf_file_download_input`}
+            name={`conf_file_download`}
+            clickHandler={handleClick_save}
+            label='Скачать'
+            type="button" /> */}
           <a
             className='button_input download_link'
             name={`conf_user_file_download`}
             href={`${conf_file_links.conf_user_file_download.address}`}>
-            Польз.
+            Скачать
           </a>
+          <input
+            id="hex_upload_zone"
+            name='file'
+            ref={hex_second_dropzone_ref}
+            className={`button_input`}
+            type="button"
+            value='Загрузить' />
         </div>
       </li>
       {/* <li

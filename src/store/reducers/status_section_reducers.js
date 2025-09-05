@@ -20,6 +20,7 @@ export const reducers = {
   },
 
   get_status_graph: ({request_resp}) => {
+    
     let obj_to_refresh = {
       global_data: {
         status_data: {

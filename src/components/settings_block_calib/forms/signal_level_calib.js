@@ -16,9 +16,10 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
 
   const [signalCalibState, setSignalCalibState] = React.useState({
     signal_type: 0,
+    signal_type_res: 0,
     signal_0_value: 0,
     signal_1_value: 1,
-    signal_2_value: 2
+    signal_2_value: 2,
   })
 
   const { isFormValid, validStatus_getter, validInputList } = useFormValidation()
@@ -123,9 +124,44 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
 
   }
 
+  const handleClick_calib_res = (event) => {
+    let data_str = ''
+    if (signalCalibState.signal_type == 0) {
+      data_str = `signal_0_value$0;signal_1_value$0`
+    } else {
+      data_str = `signal_${signalCalibState.signal_type_res - 1}_value$0`
+    }
+
+    const request_obj = {
+      address: 'calib_signal_res.cgi',
+      data: data_str,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    clickHandler(request_obj);
+
+  }
+
   const handleClick_calib_zeros = (event) => {
     const request_obj = {
       address: 'calib_signal_zero.cgi',
+      // data: `signal$${signalCalibState.signal_type}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    clickHandler(request_obj);
+
+  }
+
+  const handleClick_calib_zeros_res = (event) => {
+    const request_obj = {
+      address: 'calib_signal_zero_res.cgi',
       // data: `signal$${signalCalibState.signal_type}`,
       notifications: {
         good: 'default',
@@ -147,7 +183,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
         className="settings_item calib">
         <div className='item_header'>
           <label
-            htmlFor={`signal_type_calib_input`}
+            // htmlFor={`signal_type_calib_input`}
             className="settings_itemLabel">
             Калибровка уровня звука
           </label>
@@ -162,6 +198,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
               'L',
               'R',
               'КСС',
+              'AES'
             ]}
             changeHandler={handleChange} />
         </div>
@@ -177,67 +214,9 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
           <div className="vertical_li_divider"></div>
           </>
           }
-          {/* {signalCalibState.signal_type == 0 &&
-            <>
-              L
-              <FormInput
-                id={`signal_0_value_calib_input`}
-                name={`signal_0_value_calib`}
-                changeHandler={handleChange}
-                input_value={signalCalibState.signal_0_value}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text"
-                // statusHandler={setGeneralCalibState}
-                />
-              <FormInput
-                id={`signal_0_value_calib_save`}
-                name={`signal_0_value_calib`}
-                clickHandler={handleClick_save}
-                label='Сохр.'
-                type="button" />
-              <div className="vertical_li_divider"></div>
-              R
-              <FormInput
-                id={`signal_1_value_calib_input`}
-                name={`signal_1_value_calib`}
-                changeHandler={handleChange}
-                input_value={signalCalibState.signal_1_value}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text"
-                // statusHandler={setGeneralCalibState}
-                 />
-              <FormInput
-                id={`signal_1_value_calib_save`}
-                name={`signal_1_value_calib`}
-                clickHandler={handleClick_save}
-                label='Сохр.'
-                type="button" />
-            </>
-          } */}
-          {/* {signalCalibState.signal_type > 0 &&
-          <>
+
           <FormInput
-            id={`signal_value_calib_input`}
-            name={`signal_${signalCalibState.signal_type - 1}_value_calib`}
-            changeHandler={handleChange}
-            input_value={signalCalibState[`signal_${signalCalibState.signal_type - 1}_value`]}
-            style={{ margin: '0', maxWidth: '75px' }}
-            placeholder='дБ'
-            validators={[]}
-            formValidHandler={validStatus_getter}
-            type="text" />
-          <FormInput
-            id={`signal_value_calib_save`}
-            name={`signal_${signalCalibState.signal_type - 1}_value_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-          </>
-          } */}
-          <FormInput
-            id={`signal_zero_calib_input`}
+            id={`signal_type_level_calib_input`}
             name={`signal_${signalCalibState.signal_type}_zero_calib`}
             label='Калибровать'
             clickHandler={handleClick_calib}
@@ -250,17 +229,83 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`signal_zero_calib_input`}
+            // htmlFor={`signal_zero_all_calib_input`}
             className="settings_itemLabel">
             Калибровка всех нулей каналов
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`signal_zero_calib_input`}
+            id={`signal_zero_all_calib_input`}
             name={`signal_zero_calib`}
             label='Калибровать'
             clickHandler={handleClick_calib_zeros}
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='signal_type_level_calib'
+        id='signal_type_level_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            // htmlFor={`signal_type_calib_input`}
+            className="settings_itemLabel">
+            Калибровка уровня звука (резерв)
+          </label>
+          <FormInput
+            id={`signal_type_res_calib_input`}
+            name={`signal_type_res_calib`}
+            type='select'
+            input_value={signalCalibState.signal_type_res}
+            title='Тип устройства'
+            variants={[
+              'Stereo',
+              'L',
+              'R',
+              'КСС',
+              'AES'
+            ]}
+            changeHandler={handleChange} />
+        </div>
+        <div className='item_input'>
+          {signalCalibState.signal_type_res < 3 &&
+            <>
+              <span className='item_adc_value'>
+                АЦП<sub>L</sub>: {adc_store?.l_signal}
+              </span>
+              <span className='item_adc_value'>
+                АЦП<sub>R</sub>: {adc_store?.r_signal}
+              </span>
+              <div className="vertical_li_divider"></div>
+            </>
+          }
+
+          <FormInput
+            id={`signal_zero_res_calib_input`}
+            name={`signal_${signalCalibState.signal_type}_zero_res_calib`}
+            label='Калибровать'
+            clickHandler={handleClick_calib_res}
+            type="button" />
+        </div>
+      </li>
+      <li
+        key='signal_zero_calib'
+        id='signal_zero_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            // htmlFor={`signal_zero_all_res_calib_input`}
+            className="settings_itemLabel">
+            Калибровка всех нулей каналов (резерв)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`signal_zero_all_res_calib_input`}
+            name={`signal_zero_res_calib`}
+            label='Калибровать'
+            clickHandler={handleClick_calib_zeros_res}
             type="button" />
         </div>
       </li>

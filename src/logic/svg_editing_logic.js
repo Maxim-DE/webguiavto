@@ -196,7 +196,213 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     handlePathDisplay(signal_path_layer, current_signal_path)
   }
 
+  const primary_input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]:not(g[id*="input_0"])')
 
+  primary_input_blocks_list.forEach((block, index) => {
+    const signal_primary_group_list = block.querySelectorAll('g[id*="primary_secondary_info"] > g[id*="group"]'),
+          signal_res_group_list = block.querySelectorAll('g[id*="res_secondary_info"] > g[id*="group"]'),
+          signal_type = data_svg[`input_${index+1}`]?.input_signal_type,
+          res_signal_type = data_svg[`input_${index+1}`]?.input_res_signal_type
+
+
+          
+
+    signal_primary_group_list.forEach(group => {
+      group.style = "visibility: hidden"
+
+      switch (signal_type) {
+        case "STEREO":
+          if (group.id.includes('l_r')) {
+            group.style = "visibility: visible"
+          }
+    
+          break;
+
+        case "MPX":
+          if (group.id.includes('mpx')) {
+            group.style = "visibility: visible"
+          }
+
+        break;
+
+        case "AES":
+          if (group.id.includes('aes')) {
+            group.style = "visibility: visible"
+          }
+
+        break;
+      
+        default:
+          break;
+      }
+    })
+
+    signal_res_group_list.forEach(group => {
+      group.style = "visibility: hidden"
+
+      switch (res_signal_type) {
+        case "STEREO":
+          if (group.id.includes('l_r')) {
+            group.style = "visibility: visible"
+          }
+
+          break;
+
+        case "MPX":
+          if (group.id.includes('mpx')) {
+            group.style = "visibility: visible"
+          }
+
+          break;
+
+        case "AES":
+          if (group.id.includes('aes')) {
+            group.style = "visibility: visible"
+          }
+
+          break;
+
+        default:
+          break;
+      }
+    })
+
+    const input_switch_button = block.querySelector('g[id*="mode_switch"]')
+
+    if (active_control_mode == 0) {
+      input_switch_button.style = "visibility: hidden"
+    } else {
+      input_switch_button.style = "visibility: visible"
+    }
+
+    const switch_background = block.querySelector('path[id*="mode_switch_background"]'),
+          input_mode_device_icon = block.querySelectorAll('path[id*="device_icon"]'),
+          input_res_path = block.querySelector('path[id*="reserve_path"]'),
+          input_primary_path = block.querySelector('path[id*="primary_path"]'),
+          input_mode = data_svg[`input_${index + 1}`]?.mode
+
+    if (input_mode == "1") {
+      switch_background.style = "fill: #7ADC47"
+
+      //primary input display
+      input_mode_device_icon[1].style = "fill: #7ADC47"
+      input_mode_device_icon[0].style = "fill: #e74c3c"
+      //res input display
+      // input_mode_device_icon[0].firstElementChild.firstChild.innerHTML = 'ВЫКЛ'
+      // input_mode_device_icon[0].lastElementChild.style = "fill: #e74c3c"
+        
+      // switch_label.innerHTML = 'О'
+      input_res_path.style = "visibility: hidden"
+      input_primary_path.style = "visibility: visible"
+
+    } else if (input_mode == "2") {
+      switch_background.style = "fill: #e74c3c"
+
+      //primary input display
+      input_mode_device_icon[1].style = "fill: #e74c3c"
+      input_mode_device_icon[0].style = "fill: #7ADC47"
+      //res input display
+      // input_mode_status_display[0].firstElementChild.firstChild.innerHTML = 'ВКЛ'
+      // input_mode_status_display[0].lastElementChild.style = "fill: #7ADC47"
+      // zswitch_label.innerHTML = 'Р'
+      input_res_path.style = 'visibility: visible'
+      input_primary_path.style = "visibility: hidden"
+    } else {
+      input_res_path.style = "visibility: hidden"
+      input_primary_path.style = "visibility: hidden"
+    }
+
+  })
+
+  const test_input_block = svg.querySelector('#layer_1 > g[id*="input_0"]')
+        
+  if (test_input_block) {
+    const test_input_signal_buttons_list = svg.querySelectorAll(`#input_0_control_buttons g[id*="set"]`),
+          test_input_availability = data_svg[`input_0`]?.is_available
+
+
+    if (test_input_block) {
+      const signal_type = data_svg[`input_0`]?.input_signal_type
+
+      test_input_signal_buttons_list.forEach(button => {
+        const signal_type_regex = /set_\w+_/,
+              signal_type_index = button.id.match(signal_type_regex)[0].replace('set_', '').replace("_", "")
+
+        switch (signal_type) {
+          case "L":
+            if (button.id.includes('l')) {
+              button.classList.add("active_ex_conf");
+            } else {
+              button.classList.remove("active_ex_conf");
+            }
+
+            break;
+          
+          case "R":
+            if (button.id.includes('r')) {
+              button.classList.add("active_ex_conf");
+            } else {
+              button.classList.remove("active_ex_conf");
+            }
+
+            break;
+          
+          case "STEREO":
+            if (button.id.includes('stereo')) {
+              button.classList.add("active_ex_conf");
+            } else {
+              button.classList.remove("active_ex_conf");
+            }
+
+            break;
+
+          case "MPX":
+            if (button.id.includes('mpx')) {
+              button.classList.add("active_ex_conf");
+            } else {
+              button.classList.remove("active_ex_conf");
+            }
+
+            break;
+
+          case "AES":
+            if (button.id.includes('aes')) {
+              button.classList.add("active_ex_conf");
+            } else {
+              button.classList.remove("active_ex_conf");
+            }
+
+            break;
+
+          default:
+            break;
+        }
+
+        if (active_control_mode == 0) {
+          button.style.display = 'none'
+        } else {
+          button.style.display = ''
+        }
+      })
+    }
+
+    if (test_input_availability) {
+      test_input_block.style = "visibility: visibility"
+    } else {
+      test_input_block.style = "visibility: hidden"
+    }
+  }
+
+  const test_output_block = svg.querySelector('#layer_1 > g[id*="output_0"]'),
+        test_output_availability = data_svg[`output_0`]?.is_available
+
+  if (test_output_block) {
+    if (test_output_availability) {
+      test_output_block.style = "visibility: visibility"
+    } else {
+      test_output_block.style = "visibility: hidden"
+    }
+  }
   // if (amp_1_buttons_list) {
   //   amp_1_buttons_list.forEach((button) => {
   //     if (auth_access.calib == 0) {

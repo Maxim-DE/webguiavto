@@ -17,11 +17,15 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
     signal_0_reserved_value: 0,
     signal_1_reserved_value: 1,
     signal_2_reserved_value: 2,
+    signal_3_reserved_value: 2,
+    signal_4_reserved_value: 2,
     reserved_threshold_timeout: 1000,
     signal_type_recovery: 0,
     signal_0_recovery_value: 0,
     signal_1_recovery_value: 1,
     signal_2_recovery_value: 2,
+    signal_3_recovery_value: 2,
+    signal_4_recovery_value: 2,
     recovery_threshold_timeout: 1000,
   })
 
@@ -116,7 +120,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
           <label
             htmlFor={`signal_type_reserved_calib`}
             className="settings_itemLabel">
-            Порог переключения на резерв
+            Порог переключения на резерв, дБ
           </label>
         </div>
         <div className='item_input'>
@@ -129,7 +133,8 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
             variants={[
               'L',
               'R',
-              'КСС'
+              'КСС',
+              'AES'
             ]}
             changeHandler={handleChange} />
           <FormInput
@@ -156,7 +161,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
           <label
             htmlFor={`reserved_threshold_timeout_calib_input`}
             className="settings_itemLabel">
-            Тайм-аут перехода на резерв
+            Тайм-аут перехода на резерв, сек
           </label>
         </div>
         <div className='item_input'>
@@ -185,7 +190,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
           <label
             htmlFor={`signal_type_recovery_calib`}
             className="settings_itemLabel">
-            Порог восстановления сигнала
+            Порог восстановления сигнала, дБ
           </label>
         </div>
         <div className='item_input'>
@@ -198,7 +203,8 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
             variants={[
               'L',
               'R',
-              'КСС'
+              'КСС',
+              'AES'
             ]}
             changeHandler={handleChange} />
           <FormInput
@@ -225,7 +231,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
           <label
             htmlFor={`recovery_threshold_timeout_calib_input`}
             className="settings_itemLabel">
-            Тайм-аут на восстановление звука
+            Тайм-аут на восстановление звука, сек
           </label>
         </div>
         <div className='item_input'>

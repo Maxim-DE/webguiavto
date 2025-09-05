@@ -12,6 +12,7 @@
 .graphs > svg { 
   width: 100%;
   height: auto;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .graph_container {
@@ -106,6 +107,16 @@ h4 {
   line-height: 18px;
 }
 
+.graphs>svg g[id*="header"] text[id*="header_label"]>tspan {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.graphs>svg g[id*="secondary_info"] text[id*="value"] > tspan,
+.graphs>svg g[id*="primary_info_output"] text[id*="value"] > tspan {
+  text-anchor: end;
+}
+
 .graphs>svg g[id$="button"] {
   pointer-events: auto;
 }
@@ -146,4 +157,9 @@ h4 {
   /* stroke: black; */
   stroke: none;
   fill: #cdd9df;
+}
+
+.graphs>svg text[id*="mode_switch_label"] {
+  font-size: 15px;
+  text-anchor: middle;
 }

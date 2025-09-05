@@ -7,11 +7,14 @@ import { useSelector } from 'react-redux'
 export default function Software_version(props) {
   const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info?.software_version)
 
+  const adc_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc)
+
   const [sofrwareVersionState, setSofrwareVersionState] = React.useState({
     os_version: 'N/A',
     bootloader_version: 'N/A',
     web_version: 'N/A',
     commutaion_version: 'N/A',
+    commutaion_digital_version: 'N/A',
   })
 
   React.useEffect(() => {
@@ -96,13 +99,31 @@ export default function Software_version(props) {
           <label
             htmlFor={`commutaion_version_input`}
             className="settings_itemLabel">
-            Версия БКА
+            Версия БКА (Напр: {adc_store.commutator_info.commutator_analog_12v})
           </label>
         </div>
         <div className='item_input'>
           <FormInput
             id={`commutaion_version`}
             input_value={sofrwareVersionState.commutaion_version}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='commutaion_digital_version'
+        id='commutaion_digital_version'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`commutaion_digital_version`}
+            className="settings_itemLabel">
+            Версия БКА (цифра, напр: {adc_store.commutator_info.commutator_digital_5v})
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_digital_version`}
+            input_value={sofrwareVersionState.commutaion_digital_version}
             type="text_sample" />
         </div>
       </li>

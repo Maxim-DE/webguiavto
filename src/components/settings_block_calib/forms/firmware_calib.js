@@ -59,6 +59,38 @@ function Firmware_calib(props) {
           </label>
         </div>
       </li>
+      <li
+        key='commutator_current_ver_calib'
+        id='commutator_current_ver_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            className="settings_itemLabel">
+            Тек. версия прошивки БКА: {
+              calibFirmware_store != undefined &&
+                Object.keys(calibFirmware_store).length > 0 ?
+                calibFirmware_store.application.info.commutator_version :
+                'отсутствует'
+            }
+          </label>
+        </div>
+      </li>
+      <li
+        key='commutator_digital_current_ver_calib'
+        id='commutator_digital_current_ver_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            className="settings_itemLabel">
+            Тек. версия прошивки БКА (цифра): {
+              calibFirmware_store != undefined &&
+                Object.keys(calibFirmware_store).length > 0 ?
+                calibFirmware_store.application.info.commutator_digital_version :
+                'отсутствует'
+            }
+          </label>
+        </div>
+      </li>
       {/* 
       <li
         key='firmware_add_version_label'

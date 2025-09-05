@@ -23,6 +23,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     coef_l: 0,
     coef_r: 0,
     coef_mpx: 0,
+    coef_aes: 0,
     resistance_type: 0,
     deviation: 0,
     turn_on_timeout: 0
@@ -197,7 +198,8 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
               'Stereo',
               'L',
               'R',
-              'КСС'
+              'КСС',
+              'AES'
             ]}
             changeHandler={handleChange} />
           {/* <FormInput
@@ -285,6 +287,28 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
                 name={`coef_mpx`}
                 changeHandler={handleChange}
                 input_value={generalCalibState.coef_mpx}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
+              {/* <FormInput
+                id={`coef_mpx_calib_save`}
+                name={`coef_mpx_calib`}
+                clickHandler={handleClick_save}
+                label='Сохранить'
+                type="button" /> */}
+            </>
+          }
+          {generalCalibState.input_signal_type == 4 &&
+            <>
+              <FormInput
+                id={`coef_mpx_calib_input`}
+                name={`coef_aes`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_aes}
                 style={{ margin: '0', maxWidth: '75px' }}
                 placeholder='Вт'
                 type="text_buttons"

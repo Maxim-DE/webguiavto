@@ -15,6 +15,8 @@ function SerialNumVersionCalibSettings_AVR(props) {
   const [serialNumVersionCalibState, setSerialNumVersionCalibState] = React.useState({
     device_serial_num: '',
     commutaion_serial_num: '',
+    commutaion_digital_serial_num: '',
+    avr_model_type: 0
   })
   
   const device_power_table = [
@@ -219,37 +221,66 @@ function SerialNumVersionCalibSettings_AVR(props) {
             label='Сохранить'
             type="button" />
         </div>
+      </li><li
+        key='commutaion_serial_num_calib'
+        id='commutaion_serial_num_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`commutaion_serial_num_calib_input`}
+            className="settings_itemLabel">
+            Серийный номер БКА (цифра)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_digital_serial_num_calib_input`}
+            name={`commutaion_digital_serial_num_calib`}
+            changeHandler={handleChange}
+            input_value={serialNumVersionCalibState.commutaion_digital_serial_num}
+            max_length={20}
+            style={{ margin: '0', maxWidth: '235px' }}
+            type="text" />
+          <FormInput
+            id={`device_serial_num_calib_save`}
+            name={`commutaion_digital_serial_num_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li><li
+        key='master_baudrate_calib'
+        id='master_baudrate_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`master_baudrate_input`}
+            className="settings_itemLabel">
+            Тип устройства
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`avr_model_type_input`}
+            name={`avr_model_type`}
+            class="calib_input"
+            // disabled={!masterSlaveCalibState.master_form_available}
+            changeHandler={handleChange}
+            input_value={serialNumVersionCalibState.avr_model_type}
+            type="select"
+            variants={[
+              0,
+              1
+            ]} />
+          <FormInput
+            id={`avr_model_type_save`}
+            name={`avr_model_type`}
+            // disabled={!masterSlaveCalibState.master_form_available}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
       </li>
-          {/* <select
-            id={`device_series_calib_input`}
-            name={`device_series_calib`}
-            style={{ width: 'auto' }}
-            title='Тип'
-            onChange={device_type_handleChange}
-            value={serialNumVersionCalibState.device_type[0]}>
-              <option value="" disabled selected hidden>Тип</option>
-              {device_name_table.map(item => (
-                <option key={item.index} value={item.index}>{item.value}</option>
-              ))}      
-          </select>
-          <select
-            id={`device_power_calib_input`}
-            name={`device_power_calib`}
-            style={{width: 'auto' }}
-            title='Мощность'
-            onChange={device_type_handleChange}
-            value={serialNumVersionCalibState.device_type[1]}>
-            <option value="" disabled selected hidden>Мощн.</option>
-            {device_power_table.map(item => {
-              if (serialNumVersionCalibState.device_type[0] != 3 && item.value == '250-МК') {
-                return
-              } else {
-                return (
-                <option key={item.index} value={item.index}>{item.value}</option>
-                )
-              }
-            })}
-          </select> */}
     </Settings_block_calib>
   )
 }

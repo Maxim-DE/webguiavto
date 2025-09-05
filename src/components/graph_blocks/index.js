@@ -8,7 +8,6 @@ import svg_editing_logic from '../../logic/svg_editing_logic';
 import { allEventListenersInNode } from '../../logic/utilites';
 import svg_eventHandler_logic from '../../logic/svg_eventHandlers_logic';
 
-
 export const status_colors = [
   '#ABE188', //good
   '#f9c22e', //warning
@@ -37,11 +36,12 @@ function Status_graphs(props) {
 
 
   React.useEffect(() => {
+    
+    let graph_container = graph_container_ref.current
+    
     if (!props.graph_svg) {
       return
     } 
-
-    let graph_container = graph_container_ref.current
 
     graph_container.innerHTML = ''
 

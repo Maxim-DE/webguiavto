@@ -12,7 +12,7 @@ import { filter_obj } from '../../../../../logic/utilites';
 
 export const AvrControl = (props) => {
   const [deviceState, setDeviceState] = React.useState({
-    active_device: 1,
+    active_device: 0,
     device_avaliability: {
       device_0: 1,
       device_1: 1,
