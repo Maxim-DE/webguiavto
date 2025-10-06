@@ -125,7 +125,7 @@ function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, device_a
             <div className="device_indicator" style={{
               background: new_status_colors[deviceAvaliability[`exiter_${0}`].status]
             }}></div>
-            Резерв. передатчик
+            Рез. передатчик
           </button>
         </div>
       }

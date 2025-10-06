@@ -172,6 +172,7 @@ function avr_svg_editing(svg, data_svg, auth_access) {
   }
 
   const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
+  const input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]')
 
   signal_paths_list.forEach(path => {
     path.style.display = 'none'
@@ -191,6 +192,15 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     current_signal_path.forEach((path, index) => {
       handlePathDisplay(signal_path_layer, path, index)
       handlePathColor(signal_path_layer, path, signal_path_colors[index])
+
+      const path_input_descr = path[0],
+            required_input = input_blocks_list[path_input_descr]
+
+      const input_path_display_list = required_input.querySelectorAll('path[id*="path_display"]')
+
+      input_path_display_list.forEach(path => {
+        path.style.stroke = signal_path_colors[index]
+      })
     });
   } else {
     handlePathDisplay(signal_path_layer, current_signal_path)
@@ -204,68 +214,75 @@ function avr_svg_editing(svg, data_svg, auth_access) {
           signal_type = data_svg[`input_${index+1}`]?.input_signal_type,
           res_signal_type = data_svg[`input_${index+1}`]?.input_res_signal_type
 
-
-          
-
     signal_primary_group_list.forEach(group => {
       group.style = "visibility: hidden"
-
-      switch (signal_type) {
-        case "STEREO":
-          if (group.id.includes('l_r')) {
-            group.style = "visibility: visible"
-          }
-    
-          break;
-
-        case "MPX":
-          if (group.id.includes('mpx')) {
-            group.style = "visibility: visible"
-          }
-
-        break;
-
-        case "AES":
-          if (group.id.includes('aes')) {
-            group.style = "visibility: visible"
-          }
-
-        break;
-      
-        default:
-          break;
-      }
     })
+
+    switch (signal_type) {
+      case "L":
+        signal_primary_group_list[0].style = "visibility: visible"
+
+        break;
+
+      case "R":
+        signal_primary_group_list[1].style = "visibility: visible"
+
+          break;
+          
+      case "STEREO":
+        signal_primary_group_list[0].style = "visibility: visible"
+        signal_primary_group_list[1].style = "visibility: visible"
+  
+        break;
+
+      case "КСС":
+        signal_primary_group_list[2].style = "visibility: visible"
+
+        break;
+  
+      case "AES":
+        signal_primary_group_list[3].style = "visibility: visible"
+
+      break;
+    
+      default:
+        break;
+    }
 
     signal_res_group_list.forEach(group => {
       group.style = "visibility: hidden"
-
-      switch (res_signal_type) {
-        case "STEREO":
-          if (group.id.includes('l_r')) {
-            group.style = "visibility: visible"
-          }
-
-          break;
-
-        case "MPX":
-          if (group.id.includes('mpx')) {
-            group.style = "visibility: visible"
-          }
-
-          break;
-
-        case "AES":
-          if (group.id.includes('aes')) {
-            group.style = "visibility: visible"
-          }
-
-          break;
-
-        default:
-          break;
-      }
     })
+
+    switch (res_signal_type) {
+      case "L":
+        signal_res_group_list[0].style = "visibility: visible"
+
+        break;
+
+      case "R":
+        signal_res_group_list[1].style = "visibility: visible"
+
+        break;
+
+      case "STEREO":
+        signal_res_group_list[0].style = "visibility: visible"
+        signal_res_group_list[1].style = "visibility: visible"
+
+        break;
+
+      case "КСС":
+        signal_res_group_list[2].style = "visibility: visible"
+
+        break;
+
+      case "AES":
+        signal_res_group_list[3].style = "visibility: visible"
+
+        break;
+
+      default:
+        break;
+    }
 
     const input_switch_button = block.querySelector('g[id*="mode_switch"]')
 
@@ -292,8 +309,8 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       // input_mode_device_icon[0].lastElementChild.style = "fill: #e74c3c"
         
       // switch_label.innerHTML = 'О'
-      input_res_path.style = "visibility: hidden"
-      input_primary_path.style = "visibility: visible"
+      input_res_path.style.visibility = 'hidden'
+      input_primary_path.style.visibility = "visible"
 
     } else if (input_mode == "2") {
       switch_background.style = "fill: #e74c3c"
@@ -305,11 +322,11 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       // input_mode_status_display[0].firstElementChild.firstChild.innerHTML = 'ВКЛ'
       // input_mode_status_display[0].lastElementChild.style = "fill: #7ADC47"
       // zswitch_label.innerHTML = 'Р'
-      input_res_path.style = 'visibility: visible'
-      input_primary_path.style = "visibility: hidden"
+      input_res_path.style.visibility = 'visible'
+      input_primary_path.style.visibility = 'hidden'
     } else {
-      input_res_path.style = "visibility: hidden"
-      input_primary_path.style = "visibility: hidden"
+      input_res_path.style.visibility = "hidden"
+      input_primary_path.style.visibility = "hidden"
     }
 
   })

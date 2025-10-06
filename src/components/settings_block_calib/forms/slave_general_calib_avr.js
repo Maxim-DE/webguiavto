@@ -23,7 +23,8 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     coef_l: 0,
     coef_r: 0,
     coef_mpx: 0,
-    coef_aes: 0,
+    coef_aes_l: 0,
+    coef_aes_r: 0,
     resistance_type: 0,
     deviation: 0,
     turn_on_timeout: 0
@@ -47,6 +48,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             divider = calib_state[key][1] == 0 ? 1 : calib_state[key][1],
             digits = Math.log10(divider)
           calib_state_copy[key] = (divident / divider).toFixed(digits)
+          calib_state_copy[key].replace(',', '.')
         } else {
           calib_state_copy[key] = calib_state[key]
         }
@@ -80,8 +82,13 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             if (calib_state != undefined && calib_state[key] != undefined) {
               if (Array.isArray(calib_state[key])) {
                 if (typeof calib_state[key][1] == 'number' &&
-                    calib_state[key][1] > 0)
-                return value * calib_state[key][1]
+                    calib_state[key][1] > 0) {
+                      const converted_val = isNaN(parseFloat(value)) ?
+                                            1 :
+                                            parseFloat(value).toFixed(Math.log10(calib_state[key][1]))
+
+                      return converted_val * calib_state[key][1]
+                    }
       } else {
                 return typeof value == "boolean" ? Number(value) : value;
       }
@@ -124,7 +131,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
           <label
             htmlFor={`frequency_calib_input`}
             className="settings_itemLabel">
-            Установка нес. частоты
+            Установка нес. частоты, МГц
           </label>
         </div>
         <div className='item_input'>
@@ -155,7 +162,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
           <label
             htmlFor={`input_pwr_calib_input`}
             className="settings_itemLabel">
-            Выходная мощность
+            Выходная мощность, Вт
           </label>
         </div>
         <div className='item_input'>
@@ -213,12 +220,13 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
       <li
         key='channel_coef_calib'
         id='channel_coef_calib'
-        className={`settings_item ${generalCalibState.input_signal_type == 0 && 'calib'}`}>
+        className={`settings_item ${(generalCalibState.input_signal_type == 0 ||
+                                    generalCalibState.input_signal_type == 4) && 'calib'}`}>
         <div className='item_header'>
           <label
             htmlFor={`channel_coef_type_calib_input`}
             className="settings_itemLabel">
-            Коэффициент передачи
+            Коэффициент передачи, дБ
           </label>
           {/* <FormInput
             id={`channel_coef_type_calib_input`}
@@ -304,11 +312,12 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
           }
           {generalCalibState.input_signal_type == 4 &&
             <>
+              L
               <FormInput
-                id={`coef_mpx_calib_input`}
-                name={`coef_aes`}
+                id={`coef_aes_l_calib_input`}
+                name={`coef_aes_l`}
                 changeHandler={handleChange}
-                input_value={generalCalibState.coef_aes}
+                input_value={generalCalibState.coef_aes_l}
                 style={{ margin: '0', maxWidth: '75px' }}
                 placeholder='Вт'
                 type="text_buttons"
@@ -316,12 +325,20 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
                 max={'6'}
                 min={'-6'}
                 step={0.1} />
-              {/* <FormInput
-                id={`coef_mpx_calib_save`}
-                name={`coef_mpx_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type="button" /> */}
+              <div className="vertical_li_divider"></div>
+              R
+              <FormInput
+                id={`coef_aes_r_calib_input`}
+                name={`coef_aes_r`}
+                changeHandler={handleChange}
+                input_value={generalCalibState.coef_aes_r}
+                style={{ margin: '0', maxWidth: '75px' }}
+                placeholder='Вт'
+                type="text_buttons"
+                statusHandler={setGeneralCalibState}
+                max={'6'}
+                min={'-6'}
+                step={0.1} />
             </>
           }
           {generalCalibState.input_signal_type == 0 && 
@@ -353,84 +370,10 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
                 max={'6'}
                 min={'-6'}
                 step={0.1} />
-              {/* <FormInput
-                id={`coef_r_calib_save`}
-                name={`coef_r_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type="button" /> */}
             </>
           }
         </div>
       </li>
-      {/* {generalCalibState.input_signal_type == 0 &&
-        <>
-          <li
-            key='coef_l_calib'
-            id='coef_l_calib'
-            className="settings_item nested_item">
-            <div className='item_header'>
-              <label
-                htmlFor={`coef_l_calib_input`}
-                className="settings_itemLabel">
-                Левый канал
-              </label>
-            </div>
-            <div className='item_input'>
-              <FormInput
-                id={`coef_l_calib_input`}
-                name={`coef_l`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_l}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              <FormInput
-                id={`coef_l_calib_save`}
-                name={`coef_l_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type='button' />
-            </div>
-          </li>
-          <li
-            key='coef_r_calib'
-            id='coef_r_calib'
-            className="settings_item nested_item">
-            <div className='item_header'>
-              <label
-                htmlFor={`coef_r_calib_input`}
-                className="settings_itemLabel">
-                Правый канал
-              </label>
-            </div>
-            <div className='item_input'>
-              <FormInput
-                id={`coef_r_calib_input`}
-                name={`coef_r`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_r}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              <FormInput
-                id={`coef_r_calib_save`}
-                name={`coef_r_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type='button' />
-            </div>
-          </li>
-        </>
-      } */}
       <li className="group_divider"></li>
       <li
         key='resistance_type_calib'
@@ -503,7 +446,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
           <label
             htmlFor={`turn_on_timeout_calib_input`}
             className="settings_itemLabel">
-            Время вкл. уст-ва в сеть
+            Время вкл. уст-ва в сеть, сек
           </label>
         </div>
         <div className='item_input'>
@@ -523,57 +466,6 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' /> */}
         </div>
       </li>
-      { /*<li className="group_divider"></li>
-       <li
-        key='radio_label_calib'
-        id='radio_label_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`radio_label_calib_input`}
-            className="settings_itemLabel">
-            Радиостанция (подпись)
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`radio_label_calib_input`}
-            name={`radio_label_calib`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.radio_label}
-            style={{ margin: '0', maxWidth: '150px' }}
-            type="text" />
-          <FormInput
-            id={`radio_label_calib_save`}
-            name={`radio_label_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' />
-        </div>
-      </li>
-      <li
-        key='rds_enable_calib'
-        id='rds_enable_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`rds_enable_calib_input`}
-            className="settings_itemLabel">
-            Параметры RDS
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`rds_enable_calib_input`}
-            name={`rds_enable_calib`}
-            changeHandler={(e) => {
-              handleChange(e)
-              handleClick_save(e)
-            }}
-            input_value={generalCalibState.rds_enable}
-            type="switch" />
-        </div>
-      </li> */}
     </SettingsBlockWrap>
   )
 }

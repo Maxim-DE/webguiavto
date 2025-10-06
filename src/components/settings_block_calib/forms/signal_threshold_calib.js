@@ -133,8 +133,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
             variants={[
               'L',
               'R',
-              'КСС',
-              'AES'
+              'КСС'
             ]}
             changeHandler={handleChange} />
           <FormInput
@@ -203,8 +202,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
             variants={[
               'L',
               'R',
-              'КСС',
-              'AES'
+              'КСС'
             ]}
             changeHandler={handleChange} />
           <FormInput

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SettingsSectionWrap from '../../../../settings_section_wrap';
 
 import { useSelector } from 'react-redux';
@@ -31,13 +31,14 @@ export const AvrDevicesCalib = (props) => {
         adc_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc),
         availiability_store = section_store?.device_avaliability,
         status_device_store = filter_obj(useSelector((store) => store.globalStore.global_data.status_data.status_graph), (key, value) => key.includes('exiter')),
+        res_input_device_state = filter_obj(useSelector((store) => store.globalStore.global_data.status_data.status_graph), (key, value) => key.includes('input_0')),
         device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`],
         adc_device_store = adc_store?.[`device_${Number(deviceState.active_device)}`]
 
 
   // const rds_enable = device_store?.slave_general?.rds_enable
   const [rdsEnable, setRdsEnable] = useState(false)
-  const res_ex_settings_enable = 1
+  const res_ex_settings_enable = useRef(0)
 
   // React.useEffect(() => {
   //   const request_obj = {
@@ -52,12 +53,19 @@ export const AvrDevicesCalib = (props) => {
   //   props.updateHandler(request_obj);
   // }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDeviceState(prevState => ({
       ...prevState,
       device_avaliability: availiability_store
     }))
   }, [availiability_store])
+
+  useEffect(() => {
+    const is_res_available = res_input_device_state.input_0.is_available
+    if (is_res_available != undefined || is_res_available != null) {
+      res_ex_settings_enable.current = is_res_available
+    }
+  }, [res_input_device_state])
   
   const handleClick = block_data => {
     block_data.data = `avr_device$${Number(deviceState.active_device)};` + (block_data.data ? block_data.data : '')
@@ -70,7 +78,7 @@ export const AvrDevicesCalib = (props) => {
       device_avaliability={status_device_store}
       state_handler={setDeviceState}
       clickHandler={props.updateHandler}
-      settings_type={res_ex_settings_enable} />
+      settings_type={1} />
 
   return (
     <>
@@ -103,6 +111,8 @@ export const AvrDevicesCalib = (props) => {
       <SignalCalibSettings
         calib_state={device_store?.calib_signal}
         clickHandler={handleClick}
+        active_device={deviceState.active_device}
+        is_res_ex_available={res_ex_settings_enable.current}
         adc_store={adc_device_store?.signal_calib} />
       {deviceState.active_device != 0 &&
       <>

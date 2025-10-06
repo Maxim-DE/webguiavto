@@ -112,7 +112,7 @@ function Status_graphs(props) {
         try {
           graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
         } catch (error) {
-          console.error("Can't get value span with id: " + graph_block_value_span_id)
+          console.warn("Can't get value span with id: " + graph_block_value_span_id)
           continue
         }
 
@@ -137,9 +137,9 @@ function Status_graphs(props) {
               round_index = Math.log10(divider)
               postfix = val_instance[2] ?? postfix
 
-              return (arr_val / divider).toFixed(round_index) + postfix
+              return (arr_val / divider).toFixed(round_index) + ' ' + postfix
             })
-            new_value = result_arr.join('/')
+            new_value = result_arr.join(' / ')
 
           } else if (typeof input_value == 'string') {
             new_value = input_value

@@ -10,7 +10,8 @@ import SerialNumVersionCalibSettings_AVR from '../../../../settings_block_calib/
 import ConfFileCalib_AVR from '../../../../settings_block_calib/forms/conf_file_avr_calib';
 
 export const MiscCalib = (props) => {
-  const auth_store = useSelector((store) => store.authStore.auth_data)
+  const auth_store = useSelector((store) => store.authStore.auth_data),
+        calib_store = useSelector((store) => store.globalStore.global_data.calib_state.data)
 
   React.useEffect(() => {
     let request_obj = {
@@ -41,6 +42,7 @@ export const MiscCalib = (props) => {
       <Firmware_calib
         clickHandler={handleClick} />
       <ConfFileCalib_AVR
+        calib_state={calib_store?.calib_conf_file}
         clickHandler={handleClick} />
       {/* <ChannelEnablerSettings 
         calib_data={Object.keys(props.section_data).length != 0 ?

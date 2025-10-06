@@ -11,7 +11,7 @@ import { reducers } from '../../../store/reducers/avr_control_reducers';
 import { useFormValidation } from '../../../logic/validation/formValidation_hook';
 import { maxLength, required } from '../../../logic/validation/validators';
 
-export default function SignalCalibSettings({ calib_state, adc_store, clickHandler, ...props }) {
+export default function SignalCalibSettings({ calib_state, adc_store, active_device, is_res_ex_available, clickHandler, ...props }) {
   // const calib_state = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_signal)
 
   const [signalCalibState, setSignalCalibState] = React.useState({
@@ -126,7 +126,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
 
   const handleClick_calib_res = (event) => {
     let data_str = ''
-    if (signalCalibState.signal_type == 0) {
+    if (signalCalibState.signal_type_res == 0) {
       data_str = `signal_0_value$0;signal_1_value$0`
     } else {
       data_str = `signal_${signalCalibState.signal_type_res - 1}_value$0`
@@ -173,142 +173,181 @@ export default function SignalCalibSettings({ calib_state, adc_store, clickHandl
 
   }
 
-  return (
-    <Settings_block_calib header={`калибровка уровня звука`}
-      settings_type={`signal_level_calib`}
-      section_name={props.section_name}>
-      <li
-        key='signal_type_level_calib'
-        id='signal_type_level_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            // htmlFor={`signal_type_calib_input`}
-            className="settings_itemLabel">
-            Калибровка уровня звука
-          </label>
-          <FormInput
-            id={`signal_type_calib_input`}
-            name={`signal_type_calib`}
-            type='select'
-            input_value={signalCalibState.signal_type}
-            title='Тип устройства'
-            variants={[
-              'Stereo',
-              'L',
-              'R',
-              'КСС',
-              'AES'
-            ]}
-            changeHandler={handleChange} />
-        </div>
-        <div className='item_input'>
-          {signalCalibState.signal_type < 3 &&
-          <>
-          <span className='item_adc_value'>
-            АЦП<sub>L</sub>: {adc_store?.l_signal}
-          </span>
-          <span className='item_adc_value'>
-            АЦП<sub>R</sub>: {adc_store?.r_signal}
-          </span>
-          <div className="vertical_li_divider"></div>
-          </>
-          }
-
-          <FormInput
-            id={`signal_type_level_calib_input`}
-            name={`signal_${signalCalibState.signal_type}_zero_calib`}
-            label='Калибровать'
-            clickHandler={handleClick_calib}
-            type="button" />
-        </div>
-      </li>
-      <li
-        key='signal_zero_calib'
-        id='signal_zero_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            // htmlFor={`signal_zero_all_calib_input`}
-            className="settings_itemLabel">
-            Калибровка всех нулей каналов
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`signal_zero_all_calib_input`}
-            name={`signal_zero_calib`}
-            label='Калибровать'
-            clickHandler={handleClick_calib_zeros}
-            type="button" />
-        </div>
-      </li>
-      <li
-        key='signal_type_level_calib'
-        id='signal_type_level_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            // htmlFor={`signal_type_calib_input`}
-            className="settings_itemLabel">
-            Калибровка уровня звука (резерв)
-          </label>
-          <FormInput
-            id={`signal_type_res_calib_input`}
-            name={`signal_type_res_calib`}
-            type='select'
-            input_value={signalCalibState.signal_type_res}
-            title='Тип устройства'
-            variants={[
-              'Stereo',
-              'L',
-              'R',
-              'КСС',
-              'AES'
-            ]}
-            changeHandler={handleChange} />
-        </div>
-        <div className='item_input'>
-          {signalCalibState.signal_type_res < 3 &&
+  if (active_device == 0 && is_res_ex_available == 0) {
+    return
+  } else {
+    return (
+      <Settings_block_calib header={`калибровка уровня звука`}
+        settings_type={`signal_level_calib`}
+        section_name={props.section_name}>
+        <li
+          key='signal_type_level_calib'
+          id='signal_type_level_calib'
+          className="settings_item calib">
+          <div className='item_header'>
+            <label
+              // htmlFor={`signal_type_calib_input`}
+              className="settings_itemLabel">
+              Калибровка уровня звука
+            </label>
+            <FormInput
+              id={`signal_type_calib_input`}
+              name={`signal_type_calib`}
+              type='select'
+              input_value={signalCalibState.signal_type}
+              title='Тип устройства'
+              variants={[
+                'Stereo',
+                'L',
+                'R',
+                'КСС',
+                'AES'
+              ]}
+              changeHandler={handleChange} />
+          </div>
+          <div className='item_input'>
+            {signalCalibState.signal_type < 3 &&
             <>
-              <span className='item_adc_value'>
-                АЦП<sub>L</sub>: {adc_store?.l_signal}
-              </span>
-              <span className='item_adc_value'>
-                АЦП<sub>R</sub>: {adc_store?.r_signal}
-              </span>
-              <div className="vertical_li_divider"></div>
+            <span className='item_adc_value'>
+              АЦП<sub>L</sub>: {adc_store?.l_signal}
+            </span>
+            <span className='item_adc_value'>
+              АЦП<sub>R</sub>: {adc_store?.r_signal}
+            </span>
+            <div className="vertical_li_divider"></div>
             </>
-          }
+            }
+            {signalCalibState.signal_type == 3 &&
+              <>
+                <span className='item_adc_value'>
+                  АЦП<sub>КСС</sub>: {adc_store?.swr_signal}
+                </span>
+                <div className="vertical_li_divider"></div>
+              </>
+            }
+            {signalCalibState.signal_type == 4 &&
+              <>
+                <span className='item_adc_value'>
+                  АЦП<sub>AES</sub>: {adc_store?.aes_signal}
+                </span>
+                <div className="vertical_li_divider"></div>
+              </>
+            }
+            <FormInput
+              id={`signal_type_level_calib_input`}
+              name={`signal_${signalCalibState.signal_type}_zero_calib`}
+              label='Калибровать'
+              clickHandler={handleClick_calib}
+              type="button" />
+          </div>
+        </li>
+        <li
+          key='signal_zero_calib'
+          id='signal_zero_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              // htmlFor={`signal_zero_all_calib_input`}
+              className="settings_itemLabel">
+              Калибровка всех нулей каналов
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`signal_zero_all_calib_input`}
+              name={`signal_zero_calib`}
+              label='Калибровать'
+              clickHandler={handleClick_calib_zeros}
+              type="button" />
+          </div>
+        </li>
+        {active_device != 0 &&
+        <>
+        <li
+          key='signal_type_level_calib'
+          id='signal_type_level_calib'
+          className="settings_item calib">
+          <div className='item_header'>
+            <label
+              // htmlFor={`signal_type_calib_input`}
+              className="settings_itemLabel">
+              Калибровка уровня звука (резерв)
+            </label>
+            <FormInput
+              id={`signal_type_res_calib_input`}
+              name={`signal_type_res_calib`}
+              type='select'
+              input_value={signalCalibState.signal_type_res}
+              title='Тип устройства'
+              variants={[
+                'Stereo',
+                'L',
+                'R',
+                'КСС',
+                'AES'
+              ]}
+              changeHandler={handleChange} />
+          </div>
+          <div className='item_input'>
+            {signalCalibState.signal_type_res < 3 &&
+              <>
+                <span className='item_adc_value'>
+                  АЦП<sub>L</sub>: {adc_store?.l_res_signal}
+                </span>
+                <span className='item_adc_value'>
+                  АЦП<sub>R</sub>: {adc_store?.r_res_signal}
+                </span>
+                <div className="vertical_li_divider"></div>
+              </>
+            }
+            {signalCalibState.signal_type_res == 3 &&
+              <>
+                <span className='item_adc_value'>
+                  АЦП<sub>КСС</sub>: {adc_store?.swr_res_signal}
+                </span>
+                <div className="vertical_li_divider"></div>
+              </>
+            }
+            {signalCalibState.signal_type_res == 4 &&
+              <>
+                <span className='item_adc_value'>
+                  АЦП<sub>AES</sub>: {adc_store?.aes_res_signal}
+                </span>
+                <div className="vertical_li_divider"></div>
+              </>
+            }
+            <FormInput
+              id={`signal_zero_res_calib_input`}
+              name={`signal_${signalCalibState.signal_type}_zero_res_calib`}
+              label='Калибровать'
+              clickHandler={handleClick_calib_res}
+              type="button" />
+          </div>
+        </li>
+        <li
+          key='signal_zero_calib'
+          id='signal_zero_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              // htmlFor={`signal_zero_all_res_calib_input`}
+              className="settings_itemLabel">
+              Калибровка всех нулей каналов (резерв)
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`signal_zero_all_res_calib_input`}
+              name={`signal_zero_res_calib`}
+              label='Калибровать'
+              clickHandler={handleClick_calib_zeros_res}
+              type="button" />
+          </div>
+        </li>
+        </>
+        }
+      </Settings_block_calib>
+    )
+  }
 
-          <FormInput
-            id={`signal_zero_res_calib_input`}
-            name={`signal_${signalCalibState.signal_type}_zero_res_calib`}
-            label='Калибровать'
-            clickHandler={handleClick_calib_res}
-            type="button" />
-        </div>
-      </li>
-      <li
-        key='signal_zero_calib'
-        id='signal_zero_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            // htmlFor={`signal_zero_all_res_calib_input`}
-            className="settings_itemLabel">
-            Калибровка всех нулей каналов (резерв)
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`signal_zero_all_res_calib_input`}
-            name={`signal_zero_res_calib`}
-            label='Калибровать'
-            clickHandler={handleClick_calib_zeros_res}
-            type="button" />
-        </div>
-      </li>
-    </Settings_block_calib>
-  )
 }

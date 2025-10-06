@@ -7,7 +7,7 @@ export const required = (
 export const hasCyrillicSymbols = (
     message = 'Присутствует кириллица'
 ) => {
-    const regexp = /[А-Яа-яЁё -]/g
+    const regexp = /[А-Яа-яЁё]/g
     return async (value) => (regexp.test(value) ? message : null);
 };
 

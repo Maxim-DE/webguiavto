@@ -3,6 +3,7 @@ import React from 'react'
 import SettingsBlockWrap from '../../../../../settings_block_wrap'
 import FormInput from '../../../../../form_input'
 import { useSelector } from 'react-redux'
+import { dataArr_to_string } from '../../../../../../logic/utilites'
 
 export default function Software_version(props) {
   const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info?.software_version)
@@ -30,6 +31,18 @@ export default function Software_version(props) {
       setSofrwareVersionState(settings_state_copy)
     }
   }, [softwareVersion_store])
+
+    const commutator_adc_val_compute = (adc_data) => {
+      if (!adc_data || typeof(adc_data) != "object") return
+  
+      let compute_result = {}
+  
+      for (let key in adc_data) {
+        compute_result[key] = dataArr_to_string(adc_data[key])
+      }
+  
+      return compute_result
+    }
 
   return (
     <SettingsBlockWrap
@@ -99,7 +112,7 @@ export default function Software_version(props) {
           <label
             htmlFor={`commutaion_version_input`}
             className="settings_itemLabel">
-            Версия БКА (Напр: {adc_store.commutator_info.commutator_analog_12v})
+            Версия БКА <br></br> (Напр: {commutator_adc_val_compute(adc_store?.commutator_info)?.commutator_analog_12v})
           </label>
         </div>
         <div className='item_input'>
@@ -117,7 +130,7 @@ export default function Software_version(props) {
           <label
             htmlFor={`commutaion_digital_version`}
             className="settings_itemLabel">
-            Версия БКА (цифра, напр: {adc_store.commutator_info.commutator_digital_5v})
+            Версия БКА <br></br> (цифра, напр: {commutator_adc_val_compute(adc_store?.commutator_info)?.commutator_digital_5v})
           </label>
         </div>
         <div className='item_input'>

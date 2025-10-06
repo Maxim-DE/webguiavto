@@ -19,7 +19,9 @@ export default function Info_general(props) {
     plate_number: 'N/A',
     plate_version: 'N/A',
     commutaion_serial_number: 'N/A',
-    commutaion_plate_number: 'N/A'
+    commutaion_plate_number: 'N/A',
+    commutaion_digital_serial_number: 'N/A',
+    commutaion_digital_plate_number: 'N/A'
   })
 
   React.useEffect(() => {
@@ -110,7 +112,7 @@ export default function Info_general(props) {
           <label
             htmlFor={`commutaion_serial_number_input`}
             className="settings_itemLabel">
-            Серийный номер БКА
+            Серийный номер БКА (аналог)
           </label>
         </div>
         <div className='item_input'>
@@ -128,13 +130,47 @@ export default function Info_general(props) {
           <label
             htmlFor={`commutaion_plate_number_input`}
             className="settings_itemLabel">
-            Номер платы БКА
+            Номер платы БКА (аналог)
           </label>
         </div>
         <div className='item_input'>
           <FormInput
             id={`commutaion_plate_number`}
             input_value={infoGeneralState.commutaion_plate_number}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='commutaion_digital_serial_number'
+        id='commutaion_digital_serial_number'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            className="settings_itemLabel">
+            Серийный номер БКА (цифра)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_digital_serial_number_field`}
+            input_value={infoGeneralState.commutaion_digital_serial_number}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='commutaion_digital_plate_number'
+        id='commutaion_digital_plate_number'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            className="settings_itemLabel">
+            Номер платы БКА (цифра)
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`commutaion_digital_plate_number_field`}
+            input_value={infoGeneralState.commutaion_digital_plate_number}
             type="text_sample" />
         </div>
       </li>

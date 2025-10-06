@@ -34,13 +34,21 @@ export const conf_file_links = {
     address: 'ReadUserConfing.bson',
     data: 'confing_user$1'
   },
-  create_new_conf: {
+  create_new_factory_conf: {
     address: 'calib_super_admin_conf_file.cgi',
-    data: 'create_new_conf$1'
+    data: 'create_new_factory_conf$1'
+  },
+  restore_factory_conf: {
+    address: 'calib_super_admin_conf_file.cgi',
+    data: 'restore_factory_conf$1'
   },
   create_new_res_conf: {
     address: 'calib_super_admin_conf_file.cgi',
     data: 'create_new_res_conf$1'
+  },
+  restore_res_conf: {
+    address: 'calib_super_admin_conf_file.cgi',
+    data: 'restore_res_conf$1'
   },
   set_settings_as_factory: {
     address: 'calib_super_admin_conf_file.cgi',
@@ -378,21 +386,22 @@ export default function ConfFileCalib_AVR(props) {
           </div>
           <div className='item_input'>
             <FormInput
-              id={`conf_res_file_create_input`}
-              name={`conf_res_file_create`}
+              id={`conf_res_file_restore_input`}
+              name={`restore_res_conf`}
               clickHandler={handleClick_save}
-              label='Создать'
+              label='Восст.'
               type="button" />
             {auth_store.auth_access.calib_extend &&
               <FormInput
-                id={`conf_res_file_restore_input`}
-                name={`conf_res_file_restore`}
+                id={`conf_res_file_create_input`}
+                name={`create_new_res_conf`}
                 clickHandler={handleClick_save}
-                label='Восст.'
+                label='Создать'
                 type="button" />
             }
           </div>
         </li>
+        {auth_store.auth_access.calib_extend &&
         <li
           key='conf_factory_file_handle'
           id='conf_factory_file_handle'
@@ -408,21 +417,22 @@ export default function ConfFileCalib_AVR(props) {
           </div>
           <div className='item_input'>
             <FormInput
-              id={`conf_factory_file_create_input`}
-              name={`conf_factory_file_create`}
+              id={`conf_factory_file_restore_input`}
+              name={`restore_factory_conf`}
               clickHandler={handleClick_save}
-              label='Создать'
+              label='Восст.'
               type="button" />
             {auth_store.auth_access.calib_extend &&
               <FormInput
-                id={`conf_factory_file_restore_input`}
-                name={`conf_factory_file_restore`}
+                id={`conf_factory_file_create_input`}
+                name={`create_new_factory_conf`}
                 clickHandler={handleClick_save}
-                label='Восст.'
+                label='Создать'
                 type="button" />
             }
           </div>
         </li>
+        }
         <li className="group_divider" />
         
         {/* <li
@@ -495,8 +505,8 @@ export default function ConfFileCalib_AVR(props) {
         </div>
       </li> 
       <li
-        key='conf_file_download_device'
-        id='conf_file_download_device'
+        key='sys_conf_file_download_device'
+        id='sys_conf_file_download_device'
         className="settings_item nested_item">
         <div className='item_header'>
           <label
@@ -528,8 +538,8 @@ export default function ConfFileCalib_AVR(props) {
         </div>
       </li>
       <li
-        key='conf_file_download_device'
-        id='conf_file_download_device'
+        key='user_conf_file_download_device'
+        id='user_conf_file_download_device'
         className="settings_item nested_item">
         <div className='item_header'>
           <label

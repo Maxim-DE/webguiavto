@@ -177,3 +177,21 @@ export function isEmpty(obj) {
 export function isFocused(element) {
   return document.activeElement === element
 }
+
+export function dataArr_to_string(arr) {
+  if (!arr || !Array.isArray(arr)) return
+
+  let input_value = arr[0],
+      divider = arr[1] != 0 ? arr[1] : 1,
+      status = arr[2],
+      postfix = arr[3] ?
+        ' ' + arr[3] :
+        '',
+      round_index = Math.log10(divider),
+      string_val
+
+  string_val = (input_value / divider).toFixed(round_index)
+  string_val = string_val + postfix
+
+  return string_val
+}
