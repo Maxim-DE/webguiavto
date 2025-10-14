@@ -42,7 +42,7 @@ export const MiscCalib = (props) => {
       <Firmware_calib
         clickHandler={handleClick} />
       <ConfFileCalib_AVR
-        calib_state={calib_store?.calib_conf_file}
+        calib_data={calib_store?.calib_conf_file}
         clickHandler={handleClick} />
       {/* <ChannelEnablerSettings 
         calib_data={Object.keys(props.section_data).length != 0 ?

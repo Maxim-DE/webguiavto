@@ -391,14 +391,12 @@ export default function ConfFileCalib_AVR(props) {
               clickHandler={handleClick_save}
               label='Восст.'
               type="button" />
-            {auth_store.auth_access.calib_extend &&
-              <FormInput
-                id={`conf_res_file_create_input`}
-                name={`create_new_res_conf`}
-                clickHandler={handleClick_save}
-                label='Создать'
-                type="button" />
-            }
+            <FormInput
+              id={`conf_res_file_create_input`}
+              name={`create_new_res_conf`}
+              clickHandler={handleClick_save}
+              label='Создать'
+              type="button" />
           </div>
         </li>
         {auth_store.auth_access.calib_extend &&
