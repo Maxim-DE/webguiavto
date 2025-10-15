@@ -89,7 +89,8 @@ async function fetch_req(url, options = {}, n) {
 }
 
 async function fetch_data(req_obj) {
-  const test_url = "http://localhost:4040",
+  // const test_url = "http://localhost:4040",
+  const test_url = "http://192.168.0.116",
         main_url = ""
 
   const host = ""

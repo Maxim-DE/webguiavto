@@ -153,7 +153,7 @@ function Firmware_calib(props) {
         updateHandler={props.clickHandler} /> 
         
       {/* TEST TEST TEST */}
-      <li
+      {/* <li
         key='firmware_refresh_calib'
         id='firmware_refresh_calib'
         className="settings_item">
@@ -172,7 +172,7 @@ function Firmware_calib(props) {
             label='Обновить'
             type="button" />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }

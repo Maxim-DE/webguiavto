@@ -144,7 +144,7 @@ function Hex_upload(props) {
           id="hex_upload_zone"
           name='file'
           ref={hex_dropzone_ref}
-          className={`button_input`}
+          className={`button_input disabled_input`}
           type="button"
           value='Открыть файл' />
       </div>

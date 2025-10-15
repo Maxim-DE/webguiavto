@@ -395,7 +395,7 @@ export default function ConfFileCalib_AVR(props) {
               id={`conf_res_file_create_input`}
               name={`create_new_res_conf`}
               clickHandler={handleClick_save}
-              label='Создать'
+              label='Сохранить'
               type="button" />
           </div>
         </li>
@@ -425,7 +425,7 @@ export default function ConfFileCalib_AVR(props) {
                 id={`conf_factory_file_create_input`}
                 name={`create_new_factory_conf`}
                 clickHandler={handleClick_save}
-                label='Создать'
+                label='Сохранить'
                 type="button" />
             }
           </div>
@@ -530,7 +530,7 @@ export default function ConfFileCalib_AVR(props) {
             id="hex_upload_zone"
             name='file'
             ref={hex_dropzone_ref}
-            className={`button_input`}
+            className={`button_input disabled_input`}
             type="button"
             value='Загрузить' />
         </div>
@@ -563,7 +563,7 @@ export default function ConfFileCalib_AVR(props) {
             id="hex_upload_zone"
             name='file'
             ref={hex_second_dropzone_ref}
-            className={`button_input`}
+            className={`button_input disabled_input`}
             type="button"
             value='Загрузить' />
         </div>
