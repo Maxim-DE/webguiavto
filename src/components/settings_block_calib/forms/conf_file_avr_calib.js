@@ -43,11 +43,11 @@ export const conf_file_links = {
     data: 'restore_factory_conf$1'
   },
   create_new_res_conf: {
-    address: 'calib_super_admin_conf_file.cgi',
+    address: 'calib_admin_conf_file.cgi',
     data: 'create_new_res_conf$1'
   },
   restore_res_conf: {
-    address: 'calib_super_admin_conf_file.cgi',
+    address: 'calib_admin_conf_file.cgi',
     data: 'restore_res_conf$1'
   },
   set_settings_as_factory: {
