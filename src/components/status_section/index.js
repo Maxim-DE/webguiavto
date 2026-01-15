@@ -89,7 +89,8 @@ function StatusSection(props) {
 
       if (GRAPH_MODE_TEST) {
         let request_obj = {
-          address: 'assets/images/avr_1000.svg',
+          
+          address: 'static/media/status_graph/raw/avr_1000.svg.gz',
           type: 'text',
           reducer: reducers.get_status_graph,
           notifications: {
