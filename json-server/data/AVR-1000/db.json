@@ -1,0 +1,735 @@
+{
+  "settings.cgi": {
+    "time_settings": {
+      "date": "2023-11-27",
+      "time": "15:32:09",
+      "time_settings": {
+        "period": "01:00,17:00"
+      },
+      "time_sync": {
+        "time_sync_switch": 1,
+        "ntp_server": "88.147.254.227",
+        "time_sync_timezone": 38,
+        "time_sync_period": 7
+      }
+    },
+    "misc_settings": {
+      "bootloader_enabled_switch": 1,
+      "request_period": 1000
+    }
+  },
+  "network.cgi": {
+    "device_adress": {
+      "mac_deafult": "08:00:45:00:19:50",
+      "mac": "08:00:45:00:19:50",
+      "ip": "192.168.0.121",
+      "subnet_mask": "255.255.255.0",
+      "gateway": "192.168.0.1"
+    },
+    "remote_control": {
+      "remote_ip_addr_1_settings": "",
+      "remote_ip_addr_2_settings": "",
+      "remote_ip_addr_3_settings": "",
+      "remote_ip_addr_4_settings": ""
+    },
+    "snmp_agent": {
+      "community_read": "public",
+      "community_write": "private",
+      "trap_settings": [
+        {
+          "active": 0,
+          "port": 162,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        },
+        {
+          "active": 0,
+          "port": 162,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        }
+      ]
+    }
+  },
+  "rds.cgi": {
+    "tp": 1,
+    "ta": 1,
+    "pi": "",
+    "ps_name": "",
+    "radio_text": "",
+    "alt_stations": {
+      "alt_stations_available": true,
+      "alt_station_switch": false,
+      "alt_stations_list": []
+    }
+  },
+  "info.cgi": {
+    "info_general": {
+      "serial_number": "XXXXX",
+      "model": 0,
+      "device_type_list": [
+        "АВР-1000"
+      ],
+      "plate_number": "ЕУИС.468243.026",
+      "plate_version": "0",
+      "time_from_on": "missing",
+      "time_failure_on": "missing",
+      "time_failure_off": "missing",
+      "memory_type": "W25Q32",
+      "commutaion_serial_number": "XXXXX"
+    },
+    "software_version": {
+      "os_version": "BlockControl_v2.1.1447",
+      "app_sha": "93c07852d58638e53233745fe46be698b6f80d33",
+      "web_version": "1.0.42-dev_block_control_layout",
+      "bootloader_version": "Bootloader_v2.6.0",
+      "audio_version": "missing"
+    },
+    "auth_info": {
+      "auth_id": "SUPER_ADMIN",
+      "auth_level": 3
+    }
+  },
+  "status.cgi": {
+    "status_info": {
+      "device_status": 0,
+      "time": "2023-12-01 17:18:48",
+      "active_control_mode": 1,
+      "current_signal_path": ["202"]
+    },
+    "status_logs": [
+      [
+        176,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 13:14:31.090",
+        0
+      ],
+      [
+        175,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 12:26:22.086",
+        0
+      ],
+      [
+        174,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 12:00:52.087",
+        0
+      ],
+      [
+        173,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 11:46:46.097",
+        0
+      ],
+      [
+        172,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 11:39:15.089",
+        0
+      ],
+      [
+        171,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 11:28:11.151",
+        0
+      ]
+    ],
+    "calib_adc": {
+      "device_1": {
+        "power_calib": {
+          "output_power": 1000,
+          "refected_power": 1700,
+          "output_power_threshold": 1000,
+          "coupling_coeff": 2500
+        },
+        "signal_calib": {
+          "l_signal": 2500,
+          "r_signal": 3000,
+          "swr_signal": 1500
+        }
+      },
+      "device_2": {
+        "power_calib": {
+          "output_power": 1,
+          "refected_power": 1,
+          "output_power_threshold": 1000,
+          "coupling_coeff": 2500
+        }
+      },
+      "device_3": {
+        "power_calib": {
+          "output_power": 1,
+          "refected_power": 1,
+          "output_power_threshold": 1000,
+          "coupling_coeff": 2500
+        }
+      },
+      "commutator_info": {
+        "commutator_analog_12v": "12 V",
+        "commutator_digital_5v": "5 V"
+      }
+    },
+    "status_graph": {
+      "input_0": {
+        "status": 0,
+        "is_available": 0,
+        "input_signal_type": "STEREO",
+        "l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ],
+        "aes": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "input_1": {
+        "status": 0,
+        "input_signal_type": "STEREO",
+        "mode": "0",
+        "l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ],
+        "input_res_signal_type": "STEREO",
+        "res_l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "input_2": {
+        "status": 0,
+        "input_signal_type": "STEREO",
+        "mode": "2",
+        "l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ],
+        "input_res_signal_type": "STEREO",
+        "res_l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "input_3": {
+        "status": 0,
+        "input_signal_type": "STEREO",
+        "mode": "Осн.",
+        "l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ],
+        "input_res_signal_type": "STEREO",
+        "res_l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "exiter_0": {
+        "status": 0,
+        "input_signal": [
+          108,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          108,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "active_conf": 1,
+        "refl_pwr": [
+          3001,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          128,
+          100,
+          0
+        ],
+        "freq": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "exiter_1": {
+        "status": 0,
+        "input_signal": [
+          108,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          108,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "refl_pwr": [
+          3001,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          128,
+          100,
+          0
+        ],
+        "freq": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "exiter_2": {
+        "status": 0,
+        "input_signal": [
+          108,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          108,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "refl_pwr": [
+          3001,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          128,
+          100,
+          0
+        ],
+        "freq": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "exiter_3": {
+        "status": 0,
+        "input_signal": [
+          108,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          108,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "refl_pwr": [
+          3001,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          128,
+          100,
+          0
+        ],
+        "freq": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "output_0": {
+        "status": 0,
+        "is_available": 0,
+        "swr": [
+          128,
+          100,
+          0
+        ]
+      },
+      "output_1": {
+        "status": 0,
+        "swr": [
+          128,
+          100,
+          0
+        ]
+      },
+      "output_2": {
+        "status": 0,
+        "swr": [
+          128,
+          100,
+          0
+        ]
+      },
+      "output_3": {
+        "status": 0,
+        "swr": [
+          128,
+          100,
+          0
+        ]
+      }
+    }
+  },
+  "calib_passw.cgi": {
+    "Notific": {
+      "status": "ok",
+      "text": "Вход выполнен"
+    },
+    "auth_info": {
+      "auth_id": "SUPER_ADMIN",
+      "auth_level": 3
+    }
+  },
+  "get_avr_device_info.cgi": [
+    {
+      "id": 1,
+      "slave_general": {
+        "frequency": [
+          1085,
+          10
+        ],
+        "input_power": [
+          1001,
+          10
+        ],
+        "input_signal_type": 0,
+        "channel_coef_type": 2,
+        "coef_l": [
+          18,
+          10
+        ],
+        "coef_r": [
+          10,
+          10
+        ],
+        "coef_mpx": [
+          20,
+          10
+        ],
+        "resistance_type": 0,
+        "deviation": [
+          300,
+          10
+        ]
+      },
+      "slave_add_general": {
+        "radio_label": "Радио",
+        "rds_enable": 1
+      },
+      "slave_rds": {
+        "tp": false,
+        "ta": false,
+        "pi": "0xF1F4",
+        "ps_name": "",
+        "radio_text": "",
+        "alt_stations": {
+          "alt_stations_available": true,
+          "alt_station_switch": false,
+          "alt_stations_list": [
+            {"id": 0, "value": [1136, 10]},
+            {"id": 1, "value": [816, 10]},
+            {"id": 2, "value": [951, 10]}
+          ]
+        }
+      },
+      "calib_power": {
+        "output_power": [
+          1000,
+          1
+        ],
+        "output_power_threshold": [
+          404,
+          1
+        ],
+        "coupling_coeff": [
+          200,
+          1
+        ],
+        "power_threshold_reserved_value": [
+          400,
+          1
+        ],
+        "threshold_type": 0, 
+        "threshold_0_value": [
+          400,
+          1
+        ],
+        "threshold_1_value": [
+          10,
+          10
+        ]
+      },
+      "calib_signal": {
+        "signal_type": 0,
+        "signal_0_value": [
+          30,
+          10
+        ],
+        "signal_1_value": [
+          30,
+          10
+        ],
+        "signal_2_value": [
+          30,
+          10
+        ]
+      },
+      "calib_signal_threshold": {
+        "signal_type_reserved": 0,
+        "signal_0_reserved_value": [
+          30,
+          10
+        ],
+        "signal_1_reserved_value": [
+          25,
+          10
+        ],
+        "signal_2_reserved_value": [
+          55,
+          10
+        ],
+        "reserved_threshold_timeout": 1000,
+        "signal_type_recovery": 0,
+        "signal_0_recovery_value": [
+          150,
+          10
+        ],
+        "signal_1_recovery_value": [
+          20,
+          10
+        ],
+        "signal_2_recovery_value": [
+          170,
+          10
+        ],
+        "recovery_threshold_timeout": 1000
+      }
+    }
+  ],
+  "get_avr_device_availiable.cgi": {
+    "device_availiability": {
+      "device_0": 1,
+      "device_1": 0,
+      "device_2": 0,
+      "device_3": 1
+    }
+  },
+  "calibration.cgi": {
+    "calib_serialNum": {
+      "calib_defence": 0,
+      "device_serial_num": "XXXXX",
+      "device_type": 1
+    },
+    "calib_general": {
+      "def_module": 0,
+      "fan_start_alarm": 1,
+      "tftp": 1,
+      "watchdog": 0,
+      "message_lcd": 1
+    },
+    "calib_modbus": {
+      "master_form_availiable": 1,
+      "master_baudrate": 3,
+      "master_req_period": 500,
+      "master_timeout": 50
+    },
+    "calib_conf_file": {
+      "factory_conf_create_time": "2025.08.27 21: 00",
+      "reserve_conf_create_time": "2025.08.27 21: 00"
+    },
+    "calib_firmware": {
+      "application": {
+        "info": {
+          "addr_start": 134348800,
+          "crc": -672482849,
+          "addr_end": 134770687,
+          "lenght": 421887,
+          "version": "BlockControl_v2.1.1447"
+        }
+      },
+      "firmware1": {
+        "header": {
+          "id": -1611990941,
+          "active": "false",
+          "index": 22
+        },
+        "info": {
+          "addr_start": 1433616,
+          "crc": -672482849,
+          "addr_end": 1855503,
+          "lenght": 421887,
+          "UsedSpace": 45,
+          "FreeSpace": 55,
+          "version": "BlockControl_v2.1.1447"
+        }
+      },
+      "firmware2": {
+        "header": {
+          "id": -1611990941,
+          "active": "false",
+          "index": 21
+        },
+        "info": {
+          "addr_start": 2351120,
+          "crc": 517689118,
+          "addr_end": 2773007,
+          "lenght": 421887,
+          "UsedSpace": 45,
+          "FreeSpace": 55,
+          "version": "BlockControl_v2.1.1440"
+        }
+      }
+    }
+  },
+  "calib_modbus_mode.cgi": {
+    "Notific": {
+      "status": "ok",
+      "text": "Режим сменен"
+    }
+  },
+  "get_transmitter.cgi": {
+    "supply_on_setting": 0,
+    "ModeOneChannel": 1,
+    "channel_setting": 0
+  }
+}
