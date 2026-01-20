@@ -12,6 +12,11 @@ services:
       # Монтируем только исходный код
       - ./src:/app/src
       - ./public:/app/public
+      - ./build_scripts:/app/build_scripts
+      - ./gulpfile.js:/app/gulpfile.js                    # Для скриптов сборки
+      - ./.git:/app/.git                                  # Для скриптов сборки
+      - ./version_build.json:/app/version_build.json      # Для скриптов сборки
+      
       # - ./package.json:/app/package.json
       # node_modules из контейнера в локальную папку
       # - ./node_modules:/app/node_modules
@@ -23,19 +28,6 @@ services:
     stdin_open: true
     tty: true
 
-
-  # Рабочий вариант !!!!!!!!!!!
-  # json-server:
-  #   image: vimagick/json-server
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true    
-  #   command: -h 0.0.0.0 -p 3000 --watch db.json
-  #   ports:
-  #     - "4040:3000"
-  #   volumes:
-  #     - ./json-server/data/AVR-1000/db.json:/data/db.json
-
-
   json-server:
     image: m65535/web-json-server:1.0.0-beta.3
     working_dir: /data/    
@@ -46,77 +38,3 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true    
     command: json-server --watch db.json --host 0.0.0.0 --port 3001
-
-  # json-server:
-  #     image: m65535/web-json-server:1.0.0-beta.3  # json-server уже установлен глобально!
-  #     container_name: "webgui-json-server"
-  #     working_dir: /app/
-  #     ports:
-  #       - "4040:3001"
-  #     volumes:
-  #       - ./json-server/data/AVR-1000/db.json:/app/db.json
-  #     environment:
-  #       - NODE_ENV=development
-  #       - CHOKIDAR_USEPOLLING=true
-  #       - CHOKIDAR_INTERVAL=1000  
-  #     command: json-server --watch db.json --host 0.0.0.0 --port 3001
-  #     # command: json-server --watch db.json --host 0.0.0.0 --port 3001 --watch-poll
-
-
-#   json-server:
-#       image: m65535/web-node:16-alpine
-#       container_name: "webgui-json-server"
-#       working_dir: /app/
-#       ports:
-#         - "4040:3001"
-#       volumes:
-#         - ./json-server/data/AVR-1000/db.json:/app/db.json           # Монтируем проект AVR-1000 !
-#         - ./json-server:/app/json-server
-#         - json-server-global:/usr/local/lib/node_modules             # Сохраняем глобальные пакеты
-#       environment:
-#         - NODE_ENV=development
-#         - CHOKIDAR_USEPOLLING=true        
-#       command: >
-#           sh -c "
-#               if [ ! -d node_modules ]; then
-#                 echo 'Устанавливаем зависимости...'
-#                 npm install -g
-#               fi
-              
-#             "
-
-# volumes:
-#   json-server-global:
-
-
-
-# version: '3.8'
-
-# services:
-#   webgui:
-#     image: apaskal/condev:latest
-#     container_name: webgui
-#     hostname: webgui
-#     stdin_open: true
-#     tty: true
-#     ports:
-#       - "127.0.0.1:3000:3000/tcp"
-#       - "127.0.0.1:3080:3080/tcp"
-#     volumes:
-#       # Основной volume - монтируем текущую директорию
-#       - .:/workspace
-#       # SSH agent для Windows
-#       - type: bind
-#         source: ${SSH_AUTH_SOCK:-/tmp/ssh-agent}
-#         target: /tmp/ssh-agent
-#     environment:
-#       - SSH_AUTH_SOCK=/tmp/ssh-agent
-#       - USERID=1000
-#       - GIT_COMMITTER_NAME=author
-#       - GIT_AUTHOR_NAME=author
-#       - EMAIL=author@condev.js
-#       - CHOKIDAR_USEPOLLING=true
-#       - WDS_SOCKET_HOST=localhost
-#       - NODE_ENV=development      
-#     working_dir: /workspace
-#     command: ${COMMAND:-/bin/bash}
