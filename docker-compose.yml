@@ -16,6 +16,8 @@ services:
       - ./gulpfile.js:/app/gulpfile.js                    # Для скриптов сборки
       - ./.git:/app/.git                                  # Для скриптов сборки
       - ./version_build.json:/app/version_build.json      # Для скриптов сборки
+      - ./build_arch:/app/build_arch                      # Для скриптов сборки итоговый скрипт       
+      
       
       # - ./package.json:/app/package.json
       # node_modules из контейнера в локальную папку
