@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:docker": "WATCHPACK_POLLING=true react-scripts start",
-    "build": "npx gulp pre_build_preparation && npm run build:react && node ./build_scripts/update_build.mjs && npm run build:archive && node ./build_scripts/insert_version_buildName.mjs && npx gulp revert_git",
+    "build":               "npx gulp pre_build_preparation && npm run build:react && node ./build_scripts/update_build.mjs       && npm run build:archive && node ./build_scripts/insert_version_buildName.mjs && npx gulp revert_git",
     "build:wo_build_incr": "npx gulp pre_build_preparation && npm run build:react && node ./build_scripts/insert_version_txt.mjs && npm run build:archive && node ./build_scripts/insert_version_buildName.mjs && npx gulp revert_git",
     "build:debug": "react-scripts build",
     "build:react": "react-scripts build && npx gulp full_gzip_build",
