@@ -44,6 +44,23 @@ function MiscSendEvents(props) {
     window.location.assign(url);
   }
 
+
+// 192.168.0.116/DebugEventSheduler.cgi?number$1;commnad$1
+
+const handleSendEvent = (transmitterId, command) => (event) => {
+  const request_obj = {
+    
+    address: `DebugEventSheduler.cgi?number$${transmitterId};commnad$${command}`,  // Исправлено: обратные кавычки и ${}
+    notifications: {
+      good: 'default',
+      bad: 'default'
+    },
+  }
+
+  props.clickHandler(request_obj);
+}
+
+
   const readSector_link_build = (mode) => {
     let link = `/ReadSector.bin?sector$${readSectorState.init_sector};num$${readSectorState.sector_num}`
 
@@ -70,86 +87,67 @@ function MiscSendEvents(props) {
 
       {auth_store.auth_access.calib_extend &&
       <>
-      {/* <li
-        key='sector_num'
-        id='sector_num'
-        className="settings_item nested_item">
-        <div className='item_input'>
-          <input
-            name='sector_num'
-            type="text"
-            data-threshold="high"
-            style={style_obj}
-            value={readSectorState.sector_num}
-            onChange={handleChange}
-          />
-        </div>
-      </li> */}
+      {/*Ряд кнопок на генерацию событие включение от SCHEDULER*/}
+
+      <div className='item_input'>От расписания (вкл/выкл)</div>
+
       <li
-        key='sector_download_actions'
-        id='sector_download_actions'
         className="settings_item">
-        <div className='item_header'>
-        </div>
         <div className='item_input'>
-          <a
-            className='button_input download_link'
-            href={readSector_link_build('download')}
-            target="_blank"
-            rel='noopener noreferrer'
-            download>
-            ПРД-1 Вкл 
-          </a> 
-        </div>
-        <div className='item_input'>
-          <a
-            className='button_input download_link'
-            href={readSector_link_build('download')}
-            target="_blank"
-            rel='noopener noreferrer'
-            download>
-            ПРД-2 Вкл 
-          </a> 
-        </div>       
-        <div className='item_input'>
-          {/* <FormInput
-            // id={`reboot_avr_calib_input`}
-            // name={`reboot_avr_calib`}
-            // clickHandler={handleReboot}
-            label='Перезагрузить АВР'
-            type="button" /> */}
-
-          <a
-            className='button_input download_link'
-            href={readSector_link_build('download')}
-            target="_blank"
-            rel='noopener noreferrer'
-            download>
-            ПРД-3 Вкл 
-          </a>
-        </div>         
-      </li>
-
-      {/* <li
-        key='output_test_pic_enable_calib'
-        id='output_test_pic_enable_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`output_test_pic_enable_calib_input`}
-            className="settings_itemLabel">
-            Блок АФУ_0 на картинке
-          </label>
+          <FormInput
+            id={`generate_event_on_transmiter_1`}
+            name={`generate_event_on_transmiter_1`}
+            label='ПРД-1 Вкл'
+            clickHandler={handleSendEvent(1,1)}
+            type="button" />
         </div>
         <div className='item_input'>
           <FormInput
-            id={`output_test_pic_enable_calib_input`}
-            name={`output_test_pic_enable_calib`}
-            changeHandler={handleChange_save}
-            input_value={generalCalibState.output_test_pic_enable}
-            type="switch" />
+            id={`generate_event_on_transmiter_2`}
+            name={`generate_event_on_transmiter_2`}
+            label='ПРД-2 Вкл'
+            clickHandler={handleSendEvent(2,1)}
+            type="button" />
+        </div>       
+        <div className='item_input'>
+          <FormInput
+            id={`generate_event_on_transmiter_3`}
+            name={`generate_event_on_transmiter_3`}
+            label='ПРД-3 Вкл'
+            clickHandler={handleSendEvent(3,1)}
+            type="button" />
+        </div>         
+      </li>
+      {/*Ряд кнопок на генерацию событие выключение */}
+      <li
+        className="settings_item">
+        <div className='item_input'>
+          <FormInput
+            id={`generate_event_off_transmiter_1`}
+            name={`generate_event_off_transmiter_1`}
+            label='ПРД-1 Выкл'
+            clickHandler={handleSendEvent(1,0)}
+            type="button" />
         </div>
-      </li>       */}
+        <div className='item_input'>
+          <FormInput
+            id={`generate_event_off_transmiter_2`}
+            name={`generate_event_off_transmiter_2`}
+            label='ПРД-2 Выкл'
+            clickHandler={handleSendEvent(2,0)}
+            type="button" />
+        </div>       
+        <div className='item_input'>
+          <FormInput
+            id={`generate_event_off_transmiter_3`}
+            name={`generate_event_off_transmiter_3`}
+            label='ПРД-3 Выкл'
+            clickHandler={handleSendEvent(3,0)}
+            type="button" />
+        </div>         
+      </li>
+
+      {/*  продолжение */}
 
       </>
       }
