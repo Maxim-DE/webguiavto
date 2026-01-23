@@ -7,6 +7,8 @@ import CalibDeviceSwitch from '../../../../calib_device_switch';
 import SlaveAddGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_add_general_calib_avr';
 import SlaveGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_general_calib_avr';
 import Slave_Rds_general_AVR from '../../../../settings_block_calib/forms/slave_rds_general_avr';
+import Slave_scheduler_general_AVR from '../../../../settings_block_calib/forms/slave_scheduler_general_avr';
+
 import { filter_obj } from '../../../../../logic/utilites';
 
 
@@ -29,21 +31,11 @@ export const AvrControl = (props) => {
 
   // const rds_enable = device_store?.slave_general?.rds_enable
   const [rdsEnable, setRdsEnable] = useState(false)
+  const [schedulerEnable, setSchedulerEnable] = useState(false)
+
 
   const res_ex_settings_enable = 0
-
-  // React.useEffect(() => {
-  //   const request_obj = {
-  //     address: `get_avr_device_availiable.cgi`,
-  //     reducer: reducers.get_avr_device_availability,
-  //     notifications: {
-  //       good: 'default',
-  //       bad: 'default'
-  //     },
-  //   }
-
-  //   props.updateHandler(request_obj);
-  // }, [])
+  
 
   React.useEffect(() => {
     setDeviceState(prevState => ({
@@ -71,7 +63,9 @@ export const AvrControl = (props) => {
     <SettingsSectionWrap 
       section_name={`${props.section_name}`}
       section_header="управление устройствами"
-      section_subheader={device_switch}>
+      section_subheader={device_switch}
+      >
+        
       <SlaveGeneralCalib_AVR
         calib_state={device_store?.slave_general}
         clickHandler={handleClick}
@@ -79,13 +73,48 @@ export const AvrControl = (props) => {
       <SlaveAddGeneralCalib_AVR
         calib_state={device_store?.slave_add_general}
         clickHandler={handleClick} 
-        rdsHandler={setRdsEnable} />
+        rdsHandler={setRdsEnable}
+        SchedulerHandler={setSchedulerEnable} />
       {rdsEnable == 1 &&
         <Slave_Rds_general_AVR
           section_name="rds_settings"
           calib_state={device_store?.slave_rds}
           clickHandler={handleClick} />
       }
+
+
+        <Slave_scheduler_general_AVR
+          section_name="scheduler_settings"
+          calib_state={device_store?.slave_rds}
+          clickHandler={handleClick} />
+
+      {/* Что бы это вызывать надо сделать блок шедулера ! */}
+      {/* {schedulerEnable == 1 &&
+        <Slave_scheduler_general_AVR
+          section_name="rds_settings"
+          calib_state={device_store?.slave_rds}
+          clickHandler={handleClick} />
+      } */}
+
+  
+
+
+
+     {/* Надо создать что-то аналогичное !!!!!!!!!!!!!!!
+     {rdsEnable == 1 &&
+        <Slave_Rds_general_AVR
+          section_name="rds_settings"
+          calib_state={device_store?.slave_rds}
+          clickHandler={handleClick} />
+      } */}
+
+      
+      {/* section_subheader - Это кнопки ПРД1 ПРД2 ПРД3 */}
+      {/* SlaveGeneralCalib_AVR - Должен быть первый блок общие настройки тогда зачем там стоит rdsHandler ? */}
+
+      {/* SlaveAddGeneralCalib_AVR -  */}
+      {/* Slave_Rds_general_AVR - новый блок в котом отображается RDS надпись */}
+      
       {/* {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
         <div className='content_unavailiable' >
           <div className='centered'>

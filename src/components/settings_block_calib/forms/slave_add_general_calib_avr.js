@@ -17,7 +17,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     radio_label: '',
-    rds_enable: 0
+    rds_enable: 0,
+    scheduler_enable:0
   })
 
   const state_prev_copy = React.useRef(null)
@@ -51,6 +52,10 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   React.useEffect(() => {
     props.rdsHandler(generalCalibState.rds_enable)
   }, [generalCalibState.rds_enable])
+
+  React.useEffect(() => {
+    props.schedulerHandler?.(generalCalibState.scheduler_enable)
+  }, [generalCalibState.scheduler_enable])  
 
   const handleChange = (event) => {
     const target = event.target;
@@ -158,6 +163,31 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type="switch" />
         </div>
       </li>
+
+      <li
+        key='scheduler_enable'
+        id='scheduler_enable'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`scheduler_enable_input`}
+            className="settings_itemLabel">
+            Работа по расписанию
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`scheduler_enable_input`}
+            name={`scheduler_enable`}
+            changeHandler={(e) => {
+              handleChange(e)
+              handleClick_save(e)
+            }}
+            input_value={generalCalibState.scheduler_enable}
+            type="switch" />
+        </div>
+      </li>
+
       {/* <li
         key='input_power_calib'
         id='input_power_calib'

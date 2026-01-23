@@ -37,7 +37,7 @@ export default function Time_settings(props) {
     console.log(timeSettingsState);
   }, [timeSettingsState])
 
-    const state_handler = (state) => {
+  const state_handler = (state) => {
     let target_state_clone = cloneDeep(timeSettingsState)
 
     for (const key in state) {
