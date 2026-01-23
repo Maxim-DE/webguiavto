@@ -23,10 +23,22 @@ export const AvrControl = (props) => {
     }
   })
 
+
+
   const section_store = useSelector((store) => store.globalStore.global_data.section_data?.avr_device_control),
         availiability_store = section_store?.device_avaliability,
         status_device_store = filter_obj(useSelector((store) => store.globalStore.global_data.status_data.status_graph), (key, value) => key.includes('exiter')) ,
         device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`]
+
+
+  // просмотр изменений device_store !! 
+  // React.useEffect(() => {
+  //   console.log('=== device_store обновился ===');
+  //   console.log('device_store:', device_store);
+  //   console.log('slave_general:', device_store?.slave_general);
+  //   console.log('slave_add_general:', device_store?.slave_add_general);
+  //   console.log('scheduler:', device_store?.scheduler);
+  // }, [device_store]);  
 
 
   // const rds_enable = device_store?.slave_general?.rds_enable
@@ -58,13 +70,11 @@ export const AvrControl = (props) => {
       settings_type={res_ex_settings_enable} />
 
   return (
-    <>
-      
-    <SettingsSectionWrap 
+    <SettingsSectionWrap
       section_name={`${props.section_name}`}
       section_header="управление устройствами"
       section_subheader={device_switch}
-      >
+    >
         
       {/* блок общие настройки  */}
       <SlaveGeneralCalib_AVR
@@ -72,21 +82,23 @@ export const AvrControl = (props) => {
         clickHandler={handleClick}
         rdsHandler={setRdsEnable} 
         schedulerHandler={setSchedulerEnable}
-        />
+      />
 
       {/* блок дополнительно  */}
       <SlaveAddGeneralCalib_AVR
         calib_state={device_store?.slave_add_general}  //slave_add_general объект который приходит от сервера
         clickHandler={handleClick} 
         rdsHandler={setRdsEnable}
-        schedulerHandler={setSchedulerEnable} />
+        schedulerHandler={setSchedulerEnable} 
+      />
       
       {/* блок rds - общее  */}
       {rdsEnable == 1 &&
         <Slave_Rds_general_AVR
           section_name="rds_settings"
           calib_state={device_store?.slave_rds}  //slave_rds объект который приходит от сервера
-          clickHandler={handleClick} />
+          clickHandler={handleClick} 
+        />
       }
 
       {/* блок расписание  */}
@@ -94,11 +106,10 @@ export const AvrControl = (props) => {
         <Slave_scheduler_general_AVR
           section_name="scheduler_settings"
           calib_state={device_store?.scheduler}   
-          clickHandler={handleClick} />
+          clickHandler={handleClick} 
+        />
       }
 
-
     </SettingsSectionWrap>
-    </>
   )
 }

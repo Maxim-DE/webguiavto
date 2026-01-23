@@ -520,8 +520,7 @@
       "auth_level": 3
     }
   },
-  "get_avr_device_info.cgi": [
-    {
+  "get_avr_device_info.cgi":{
       "id": 1,
       "slave_general": {
         "frequency": [
@@ -554,8 +553,30 @@
       },
       "slave_add_general": {
         "radio_label": "Радио",
-        "rds_enable": 1,
+        "rds_enable": 0,
         "scheduler_enable": 1
+      },
+      "scheduler": {
+        "on": {
+          "on_mo": false,
+          "on_tu": false,
+          "on_we": false,
+          "on_th": true,
+          "on_fr": false,
+          "on_sa": false,
+          "on_su": false,
+          "on_time": "09:00"
+        },
+        "off": {
+          "off_mo": false,
+          "off_tu": false,
+          "off_we": false,
+          "off_th": false,
+          "off_fr": false,
+          "off_sa": false,
+          "off_su": false,
+          "off_time": "21:00"
+        }
       },
       "slave_rds": {
         "tp": false,
@@ -645,8 +666,7 @@
         ],
         "recovery_threshold_timeout": 1000
       }
-    }
-  ],
+    },
   "get_avr_device_availiable.cgi": {
     "device_availiability": {
       "device_0": 1,
