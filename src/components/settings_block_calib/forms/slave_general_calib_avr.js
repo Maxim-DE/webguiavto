@@ -65,6 +65,11 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     props.rdsHandler(generalCalibState.rds_enable)
   }, [generalCalibState.rds_enable])
 
+  
+  React.useEffect(() => {
+    props.rdsHandler(generalCalibState.scheduler_enable)
+  }, [generalCalibState.scheduler_enable])
+
   const handleChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;

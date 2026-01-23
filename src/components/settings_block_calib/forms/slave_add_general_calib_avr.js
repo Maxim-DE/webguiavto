@@ -50,12 +50,14 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   }, [calib_state])
 
   React.useEffect(() => {
-    props.rdsHandler(generalCalibState.rds_enable)
-  }, [generalCalibState.rds_enable])
+    // console.log('rds_enable changed:', generalCalibState.rds_enable);
+    props.rdsHandler(generalCalibState.rds_enable);
+  }, [generalCalibState.rds_enable]);
 
   React.useEffect(() => {
-    props.schedulerHandler?.(generalCalibState.scheduler_enable)
-  }, [generalCalibState.scheduler_enable])  
+    // console.log('scheduler_enable changed:', generalCalibState.scheduler_enable);
+    props.schedulerHandler?.(generalCalibState.scheduler_enable);
+  }, [generalCalibState.scheduler_enable]);
 
   const handleChange = (event) => {
     const target = event.target;

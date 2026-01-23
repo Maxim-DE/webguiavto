@@ -66,78 +66,38 @@ export const AvrControl = (props) => {
       section_subheader={device_switch}
       >
         
+      {/* блок общие настройки  */}
       <SlaveGeneralCalib_AVR
         calib_state={device_store?.slave_general}
         clickHandler={handleClick}
-        rdsHandler={setRdsEnable} />
+        rdsHandler={setRdsEnable} 
+        schedulerHandler={setSchedulerEnable}
+        />
+
+      {/* блок дополнительно  */}
       <SlaveAddGeneralCalib_AVR
-        calib_state={device_store?.slave_add_general}
+        calib_state={device_store?.slave_add_general}  //slave_add_general объект который приходит от сервера
         clickHandler={handleClick} 
         rdsHandler={setRdsEnable}
-        SchedulerHandler={setSchedulerEnable} />
+        schedulerHandler={setSchedulerEnable} />
+      
+      {/* блок rds - общее  */}
       {rdsEnable == 1 &&
         <Slave_Rds_general_AVR
           section_name="rds_settings"
-          calib_state={device_store?.slave_rds}
+          calib_state={device_store?.slave_rds}  //slave_rds объект который приходит от сервера
+          clickHandler={handleClick} />
+      }
+
+      {/* блок расписание  */}
+      {schedulerEnable == 1 &&
+        <Slave_scheduler_general_AVR
+          section_name="scheduler_settings"
+          calib_state={device_store?.scheduler}   
           clickHandler={handleClick} />
       }
 
 
-        <Slave_scheduler_general_AVR
-          section_name="scheduler_settings"
-          calib_state={device_store?.slave_rds}
-          clickHandler={handleClick} />
-
-      {/* Что бы это вызывать надо сделать блок шедулера ! */}
-      {/* {schedulerEnable == 1 &&
-        <Slave_scheduler_general_AVR
-          section_name="rds_settings"
-          calib_state={device_store?.slave_rds}
-          clickHandler={handleClick} />
-      } */}
-
-  
-
-
-
-     {/* Надо создать что-то аналогичное !!!!!!!!!!!!!!!
-     {rdsEnable == 1 &&
-        <Slave_Rds_general_AVR
-          section_name="rds_settings"
-          calib_state={device_store?.slave_rds}
-          clickHandler={handleClick} />
-      } */}
-
-      
-      {/* section_subheader - Это кнопки ПРД1 ПРД2 ПРД3 */}
-      {/* SlaveGeneralCalib_AVR - Должен быть первый блок общие настройки тогда зачем там стоит rdsHandler ? */}
-
-      {/* SlaveAddGeneralCalib_AVR -  */}
-      {/* Slave_Rds_general_AVR - новый блок в котом отображается RDS надпись */}
-      
-      {/* {deviceState.device_avaliability[`device_${deviceState.active_device}`] == 0 &&
-        <div className='content_unavailiable' >
-          <div className='centered'>
-            <div className='modal alert_modal'>
-                <div className='alert_message_wrap'>
-                  Устройство недоступно.
-                </div>
-            </div>
-          </div>
-        </div>
-      } */}
-      {/* <GeneralCalibSettings_AVR
-        calib_state={device_store?.calib_general}
-        clickHandler={handleClick} /> */}
-      {/* <PowerCalibSettings_AVR
-        calib_state={device_store?.calib_power}
-        clickHandler={handleClick} /> */}
-      {/* <SignalCalibSettings
-        calib_state={device_store?.calib_signal}
-        clickHandler={handleClick} />
-      <SignalThresholdSettings
-        calib_state={device_store?.calib_signal_threshold}
-        clickHandler={handleClick} /> */}
     </SettingsSectionWrap>
     </>
   )

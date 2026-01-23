@@ -554,7 +554,8 @@
       },
       "slave_add_general": {
         "radio_label": "Радио",
-        "rds_enable": 1
+        "rds_enable": 1,
+        "scheduler_enable": 1
       },
       "slave_rds": {
         "tp": false,
