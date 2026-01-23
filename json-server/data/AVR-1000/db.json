@@ -556,6 +556,35 @@
         "rds_enable": 0,
         "scheduler_enable": 1
       },
+      "slave_scheduler": {    
+          "type": 0,
+          "power_on": {
+            "DayWeek": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "hour": 0,
+            "min": 0
+          },
+          "power_off": {
+            "DayWeek": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "hour": 0,
+            "min": 0
+          }
+      },      
       "scheduler": {
         "on": {
           "on_mo": false,
