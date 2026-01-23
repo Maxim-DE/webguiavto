@@ -112,7 +112,7 @@ function Status_graphs(props) {
         try {
           graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
         } catch (error) {
-          console.warn("Can't get value span with id: " + graph_block_value_span_id)
+          // console.warn("Can't get value span with id: " + graph_block_value_span_id)
           continue
         }
 

@@ -90,6 +90,8 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
       value = target.type === 'checkbox' ? target.checked : target.value; 
     }
 
+    // console.log("rdsGeneralState:",name,value)
+
     setRdsGeneralState(prevState => ({
       ...prevState,
       [name]: value

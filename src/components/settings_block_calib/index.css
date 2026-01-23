@@ -241,6 +241,9 @@
 
 
 
+
+
+
 .schedule-block {
   background: #f8f9fa;
   padding: 20px;
@@ -248,7 +251,7 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border: 1px solid #e9ecef;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .block-title {
@@ -265,50 +268,51 @@
 }
 
 .day-label {
-  font-size: 12px;
+  font-size: 16px;
   color: #6c757d;
   text-align: center;
-  width: 24px;
+  width: 20px;
 }
 
+/* устанавливает чекс боксы в ряд и делает между ними растояние 15 px */
 .checkboxes-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.checkbox-container {
+/* .checkbox-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 24px;
   height: 24px;
   position: relative;
-}
+} */
 
-.checkbox-container input {
+/* .checkbox-container input {
   opacity: 0;
   position: absolute;
   width: 100%;
   height: 100%;
   cursor: pointer;
-}
+} */
 
-.checkmark {
+/* .checkmark {
   width: 18px;
   height: 18px;
   border: 2px solid #adb5bd;
   border-radius: 4px;
   background: white;
   transition: all 0.2s ease;
-}
+} */
 
-.checkbox-container input:checked + .checkmark {
+/* .checkbox-container input:checked + .checkmark {
   background: #007bff;
   border-color: #007bff;
-}
+} */
 
-.checkbox-container input:checked + .checkmark::after {
+/* .checkbox-container input:checked + .checkmark::after {
   content: "✓";
   color: white;
   font-size: 12px;
@@ -316,7 +320,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .time-input {
   display: flex;
