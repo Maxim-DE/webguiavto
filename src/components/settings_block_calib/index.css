@@ -237,21 +237,19 @@
 
 
 
+/* Стили блока раписания */
 
-
-
-
-
+/* Стили блока расписания */
 
 
 .schedule-block {
   background: #f8f9fa;
-  padding: 20px;
-  padding-top: 20px;
+  padding: 10px;
+  /* padding-top: 20px; */
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border: 1px solid #e9ecef;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 }
 
 .block-title {
@@ -265,67 +263,108 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
+  padding: 0 8px; /* Отступ для выравнивания с радио-кнопками */
 }
 
 .day-label {
   font-size: 16px;
   color: #6c757d;
   text-align: center;
-  width: 20px;
+  width: 28px; /* Увеличиваем ширину для радио-кнопок */
+  flex-shrink: 0;
 }
 
-/* устанавливает чекс боксы в ряд и делает между ними растояние 15 px */
-.checkboxes-row {
+/* Контейнер для радио-кнопок */
+.radio-days-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  padding: 0 8px; /* Выравнивание с днями недели */
 }
 
-/* .checkbox-container {
+/* Стили для каждой радио-кнопки */
+.radio-day {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
-  position: relative;
-} */
+  width: 28px; /* Такая же ширина как у day-label */
+  height: 28px;
+  flex-shrink: 0;
+}
+/* Исправленные стили для радио-кнопок */
+.radio-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  position: relative; /* Добавляем */
+}
 
-/* .checkbox-container input {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-} */
 
-/* .checkmark {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #adb5bd;
-  border-radius: 4px;
-  background: white;
+
+/* Стилизация радио-кнопок */
+.radio-day input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6c757d; /* Серый периметр всегда */
+  border-radius: 50%;
+  outline: none;
   transition: all 0.2s ease;
-} */
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: white; /* Белый фон */
+}
 
-/* .checkbox-container input:checked + .checkmark {
-  background: #007bff;
-  border-color: #007bff;
-} */
+.radio-day input[type="radio"]:checked {
+  border-color: #6c757d; /* Оставляем серый периметр */
+  background-color: white; /* Белый фон */
+}
 
-/* .checkbox-container input:checked + .checkmark::after {
-  content: "✓";
-  color: white;
-  font-size: 12px;
+.radio-day input[type="radio"]:checked::after {
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #007bff; /* Синяя точка */
+  border-radius: 50%;
+  display: block;
+}
+
+/* .radio-day input[type="radio"]:hover {
+  border-color: #007bff;
 } */
+ 
+/* Заблокированное состояние */
+.radio-day input[type="radio"]:disabled {
+  border-color: #dee2e6;
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+/* Заблокированное и выбранное */
+.radio-day input[type="radio"]:disabled:checked {
+  border-color: #dee2e6; /* Серый периметр */
+  background-color: #f8f9fa; /* Светлый фон */
+}
+
+.radio-day input[type="radio"]:disabled:checked::after {
+  background-color: #adb5bd; /* Серая точка */
+}
 
 .time-input {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-top: 15px;
 }
 
 .time-input label {
@@ -339,3 +378,36 @@
   border-radius: 6px;
   font-size: 14px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

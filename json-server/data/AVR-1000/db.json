@@ -524,7 +524,7 @@
       "id": 1,
       "slave_general": {
         "frequency": [
-          1085,
+          1075,
           10
         ],
         "input_power": [
@@ -557,30 +557,14 @@
         "scheduler_enable": 1
       },
       "slave_scheduler": {    
-          "type": 0,
+          "type": 1,
           "power_on": {
-            "DayWeek": [
-              1,
-              1,
-              0,
-              1,
-              1,
-              1,
-              1
-            ],
+            "day": 2,
             "hour": 12,
             "min": 59
           },
           "power_off": {
-            "DayWeek": [
-              1,
-              1,
-              1,
-              0,
-              1,
-              1,
-              1
-            ],
+            "day": 5,
             "hour": 21,
             "min": 45
           }

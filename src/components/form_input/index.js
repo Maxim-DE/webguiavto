@@ -265,6 +265,27 @@ function  FormInput(
       </div>
     )
   } 
+  else if (props.type == "radio") {
+    return (
+      <div className="radio_container">
+        <input
+          id={props.id}
+          name={props.name}  // Важно: одинаковый name для всех radio в группе
+          type="radio"
+          className={`${props.class || ''} ${props.disabled && 'disabled_input'}`}
+          value={props.value}  // Значение этой конкретной radio-кнопки
+          checked={props.checked || props.input_value === props.value}
+          onChange={handleChange}
+          disabled={props.disabled}
+        />
+        {props.label && (
+          <label htmlFor={props.id} className="radio_label">
+            {props.label}
+          </label>
+        )}
+      </div>
+    )
+  }  
   // else if (props.type == "text_range") {
   //   const value_range = inputValue.split(',')
   //   return (
