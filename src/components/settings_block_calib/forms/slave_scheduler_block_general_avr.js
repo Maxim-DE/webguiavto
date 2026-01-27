@@ -45,7 +45,7 @@ export default function Slave_scheduler_block_general_AVR({
   };
 
   const handleDayChange = (event) => {
-    if (props.isDisabled) return; // ← блокируем при disabled
+    // if (props.isDisabled) return; // ← блокируем при disabled
     const selectedIndex = parseInt(event.target.value, 10); // 0, 1, 2, ..., 6
     const dayNumber = indexToDayNumber(selectedIndex); // 1, 2, 3, ..., 7
     
@@ -71,11 +71,17 @@ export default function Slave_scheduler_block_general_AVR({
   // Формируем время в формате "HH:MM" из hour и min
   const currentTime = `${String(state.hour || 0).padStart(2, '0')}:${String(state.min || 0).padStart(2, '0')}`;
 
+
+
+
+
   return (
     <div className="schedule-block">
       <div className="block-title">{props.header}</div>
 
-      {/* Формируем подпись ПН. ВТ. ... */}
+
+ 
+      {props.type == 1 &&(
       <div className="days-row">
         {ScheduleBlock.days.map((day, index) => (
           <span key={`day-${index}`} className="day-label">
@@ -83,8 +89,9 @@ export default function Slave_scheduler_block_general_AVR({
           </span>
         ))}
       </div>
-
-      {/* Радио-кнопки для выбора дня недели */}
+      )}
+      
+      {props.type == 1 &&(
       <div className="radio-days-row">
         {ScheduleBlock.days.map((dayLabel, index) => (
           <div key={`${prefix}_day_${index}`} className="radio-day">
@@ -95,17 +102,14 @@ export default function Slave_scheduler_block_general_AVR({
               value={index} // 0, 1, 2, ..., 6
               checked={currentDayIndex !== -1 && currentDayIndex === index}
               onChange={handleDayChange}
-              disabled={props.isDisabled}
+            //   disabled={props.isDisabled}
             />
-            <label 
-              htmlFor={`${prefix}_day_${index}_radio`} 
-              className="radio-day-label"
-              title={dayLabel}
-            >
-            </label>
+
           </div>
         ))}
       </div>
+      )}
+      
       
       {ScheduleBlock.showTime && (
         <div className="time-input">
