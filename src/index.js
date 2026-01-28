@@ -7,7 +7,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { store } from './store/store';
 import { Provider } from 'react-redux';
-export const GRAPH_MODE_TEST = true;
+export const GRAPH_MODE_TEST = false;
 
 // import reportWebVitals from './reportWebVitals';
 

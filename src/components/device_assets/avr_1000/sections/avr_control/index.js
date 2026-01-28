@@ -87,20 +87,11 @@ export const AvrControl = (props) => {
       {/* блок дополнительно  */}
       <SlaveAddGeneralCalib_AVR
         calib_state={device_store?.slave_add_general}  //slave_add_general объект который приходит от сервера
-        clickHandler={handleClick} 
+        clickHandler={handleClick}
         rdsHandler={setRdsEnable}
-        schedulerHandler={setSchedulerEnable} 
+        schedulerHandler={setSchedulerEnable}
       />
       
-      {/* блок rds - общее  */}
-      {rdsEnable == 1 &&
-        <Slave_Rds_general_AVR
-          section_name="rds_settings"
-          calib_state={device_store?.slave_rds}  //slave_rds объект который приходит от сервера
-          clickHandler={handleClick} 
-        />
-      }
-
       {/* блок расписание  */}
       {schedulerEnable == 1 &&
         <Slave_scheduler_general_AVR
@@ -110,6 +101,17 @@ export const AvrControl = (props) => {
           clickHandler={handleClick} 
         />
       }
+
+      {/* блок rds - общее  */}
+      {rdsEnable == 1 &&
+        <Slave_Rds_general_AVR
+          section_name="rds_settings"
+          calib_state={device_store?.slave_rds}  //slave_rds объект который приходит от сервера
+          clickHandler={handleClick}
+        />
+      }
+
+
 
     </SettingsSectionWrap>
   )
