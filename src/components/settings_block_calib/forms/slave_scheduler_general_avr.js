@@ -133,7 +133,8 @@ export default function Slave_scheduler_general_AVR({ calib_state, clickHandler,
       const req_data_str = `${name}$${formattedValue}`;
       
       const request_obj = {
-        address: 'calib_add_general.cgi',
+        address: `set_${props.section_name}.cgi`,
+        // address: 'calib_add_general.cgi',
         data: req_data_str,
         reducer: reducers.save_avr_device_data,
         notifications: {
@@ -148,6 +149,9 @@ export default function Slave_scheduler_general_AVR({ calib_state, clickHandler,
       clickHandler(request_obj);
     };
 
+
+    
+    
 
     // // Для сохранения всех изменений (кнопка "Сохранить")
     // const saveAllChanges = (event) => {
@@ -258,7 +262,8 @@ export default function Slave_scheduler_general_AVR({ calib_state, clickHandler,
     });
     
     const request_obj = {
-      address: 'calib_add_general.cgi',
+      address: `set_${props.section_name}.cgi`,
+      // address: 'calib_add_general.cgi',
       data: req_data_str,
       reducer: reducers.save_avr_device_data,
       notifications: { good: 'default', bad: 'default' },

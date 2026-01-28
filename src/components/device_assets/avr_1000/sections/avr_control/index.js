@@ -97,8 +97,8 @@ export const AvrControl = (props) => {
         <Slave_scheduler_general_AVR
           section_name="scheduler_settings"
           // calib_state={device_store?.scheduler}   
-          calib_state={device_store?.slave_scheduler}   
-          clickHandler={handleClick} 
+          calib_state={device_store?.slave_scheduler}
+          clickHandler={handleClick}
         />
       }
 

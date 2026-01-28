@@ -16,6 +16,7 @@ import { hasCyrillicSymbols, isHexNumber, isInNumRange } from '../../../logic/va
 import { useFormValidation } from '../../../logic/validation/formValidation_hook'
 
 
+
 export default function Slave_scheduler_block_general_AVR({ 
   calib_state, 
   clickHandler,
@@ -33,25 +34,15 @@ export default function Slave_scheduler_block_general_AVR({
   // Получаем префикс для id из blockType
   const prefix = blockType === "power_on" ? "on" : "off";
   
-  // Преобразуем день из формата 1-7 в индекс массива 0-6
-  const dayNumberToIndex = (dayNumber) => {
-    if (dayNumber === 0) return -1;
-    return dayNumber >= 1 && dayNumber <= 7 ? dayNumber - 1 : dayNumber;
-  };
-
-  // Преобразуем индекс массива 0-6 в формат 1-7
-  const indexToDayNumber = (index) => {
-    return index + 1;
-  };
+  // ВАЖНО: state.day приходит 0-6 (0 = Понедельник)
+  // Нет необходимости в преобразованиях, так как radio кнопки используют 0-6
 
   const handleDayChange = (event) => {
-    // if (props.isDisabled) return; // ← блокируем при disabled
-    const selectedIndex = parseInt(event.target.value, 10); // 0, 1, 2, ..., 6
-    const dayNumber = indexToDayNumber(selectedIndex); // 1, 2, 3, ..., 7
+    const selectedDay = parseInt(event.target.value, 10); // 0-6
     
-    // Обновляем только день
+    // Обновляем день (0-6)
     updateState({
-      day: dayNumber
+      day: selectedDay
     });
   };  
 
@@ -65,22 +56,17 @@ export default function Slave_scheduler_block_general_AVR({
     });
   };
 
-  // Получаем текущий выбранный день (от 0 до 6 для радио-кнопок)
-  const currentDayIndex = dayNumberToIndex(state.day);
+  // Получаем текущий выбранный день (0-6 для радио-кнопок)
+  // Просто используем state.day без преобразований
+  const currentDay = state.day !== undefined ? state.day : -1;
   
   // Формируем время в формате "HH:MM" из hour и min
   const currentTime = `${String(state.hour || 0).padStart(2, '0')}:${String(state.min || 0).padStart(2, '0')}`;
-
-
-
-
 
   return (
     <div className="schedule-block">
       <div className="block-title">{props.header}</div>
 
-
- 
       {props.type == 1 &&(
       <div className="days-row">
         {ScheduleBlock.days.map((day, index) => (
@@ -100,16 +86,14 @@ export default function Slave_scheduler_block_general_AVR({
               name={`${prefix}_day_radio`}
               type="radio"
               value={index} // 0, 1, 2, ..., 6
-              checked={currentDayIndex !== -1 && currentDayIndex === index}
+              checked={currentDay !== -1 && currentDay === index}
               onChange={handleDayChange}
             //   disabled={props.isDisabled}
             />
-
           </div>
         ))}
       </div>
       )}
-      
       
       {ScheduleBlock.showTime && (
         <div className="time-input">
@@ -126,58 +110,67 @@ export default function Slave_scheduler_block_general_AVR({
 }
 
 
-// export default function Slave_scheduler_block_general_AVR({ calib_state, clickHandler,blockType = "on",state = {},updateState, ...props }) {
+// export default function Slave_scheduler_block_general_AVR({ 
+//   calib_state, 
+//   clickHandler,
+//   blockType = "power_on",  // изменено с "on" на "power_on"
+//   state = {},              // state это {day, hour, min}
+//   updateState, 
+//   ...props 
+// }) {
   
-//     const ScheduleBlock = { 
-//         // title: title,
-//         days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-//         checkedDays: [], // массив индексов отмеченных дней [0, 2, 4]
-//         timeValue: "00:00",
-//         showTime: true
-//     };
+//   const ScheduleBlock = { 
+//     days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+//     showTime: true
+//   };
 
+//   // Получаем префикс для id из blockType
+//   const prefix = blockType === "power_on" ? "on" : "off";
+  
+//   // Преобразуем день из формата 1-7 в индекс массива 0-6
+//   const dayNumberToIndex = (dayNumber) => {
+//     // if (dayNumber === 255) return -1;
+//     return dayNumber >= 1 && dayNumber <= 7 ? dayNumber - 1 : dayNumber;
+//   };
 
-// //   const {isFormValid, validStatus_getter} = useFormValidation()
-//     const state_prev_copy = React.useRef(null)
-//     const prefix = blockType; // "on" или "off"
+//   // Преобразуем индекс массива 0-6 в формат 1-7
+//   const indexToDayNumber = (index) => {
+//     return index + 1;
+//   };
 
-//     // Преобразуем день из формата 1-7 в индекс массива 0-6
-//     const dayNumberToIndex = (dayNumber) => {
-//         // Если день приходит как 1-7, преобразуем в 0-6
-//         // Если 0-6, оставляем как есть
-//         return dayNumber >= 1 && dayNumber <= 7 ? dayNumber - 1 : dayNumber;
-//     };
+//   const handleDayChange = (event) => {
+//     // if (props.isDisabled) return; // ← блокируем при disabled
+//     const selectedIndex = parseInt(event.target.value, 10); // 0, 1, 2, ..., 6
+//     const dayNumber = indexToDayNumber(selectedIndex); // 1, 2, 3, ..., 7
+    
+//     // Обновляем только день
+//     updateState({
+//       day: dayNumber
+//     });
+//   };  
 
-//     // Преобразуем индекс массива 0-6 в формат 1-7
-//     const indexToDayNumber = (index) => {
-//         // Преобразуем 0-6 в 1-7
-//         return index + 1;
-//     };
+//   const handleTimeChange = (event) => {
+//     const [hour, minute] = event.target.value.split(':');
+    
+//     // Обновляем час и минуту
+//     updateState({
+//       hour: parseInt(hour, 10),
+//       min: parseInt(minute, 10)
+//     });
+//   };
 
-//     const handleDayChange = (event) => {
-//         const selectedIndex = parseInt(event.target.value, 10); // 0, 1, 2, ..., 6
-//         const dayNumber = indexToDayNumber(selectedIndex); // 1, 2, 3, ..., 7
-        
-//         updateState({
-//         [`${prefix}_day`]: dayNumber
-//         });
-//     };  
+    
+//   // Формируем время в формате "HH:MM" из hour и min
+//   const currentTime = `${String(state.hour || 0).padStart(2, '0')}:${String(state.min || 0).padStart(2, '0')}`;
 
-//     const handleTimeChange = (event) => {
-//         const value = event.target.value;
-//         updateState({
-//         [`${prefix}_time`]: value
-//         });
-//     };
-
-// // Получаем текущий выбранный день (от 0 до 6 для радио-кнопок)
-//   const currentDayIndex = dayNumberToIndex(state[`${prefix}_day`] || 1);
 
 //   return (
 //     <div className="schedule-block">
 //       <div className="block-title">{props.header}</div>
 
-//       {/* Формируем подпись ПН. ВТ. ... */}
+
+ 
+//       {props.type == 1 &&(
 //       <div className="days-row">
 //         {ScheduleBlock.days.map((day, index) => (
 //           <span key={`day-${index}`} className="day-label">
@@ -185,42 +178,38 @@ export default function Slave_scheduler_block_general_AVR({
 //           </span>
 //         ))}
 //       </div>
-
-//       {/* Радио-кнопки для выбора дня недели */}
+//       )}
+      
+//       {props.type == 1 &&(
 //       <div className="radio-days-row">
 //         {ScheduleBlock.days.map((dayLabel, index) => (
 //           <div key={`${prefix}_day_${index}`} className="radio-day">
-//             {/* Используем нативный input, т.к. FormInput не поддерживает radio */}
 //             <input
 //               id={`${prefix}_day_${index}_radio`}
 //               name={`${prefix}_day_radio`}
 //               type="radio"
 //               value={index} // 0, 1, 2, ..., 6
-//               checked={currentDayIndex === index}
+//               checked={state.day === index}
 //               onChange={handleDayChange}
+//             //   disabled={props.isDisabled}
 //             />
-//             {/* Опционально: подпись под радио-кнопкой */}
-//             <label 
-//               htmlFor={`${prefix}_day_${index}_radio`} 
-//               className="radio-day-label"
-//               title={dayLabel}
-//             >
-//               {/* {dayLabel.substring(0, 1)} */}
-//             </label>
+
 //           </div>
 //         ))}
 //       </div>
+//       )}
+      
       
 //       {ScheduleBlock.showTime && (
 //         <div className="time-input">
 //           <label>Время:</label>
 //           <input 
 //             type="time" 
-//             value={state[`${prefix}_time`] || "00:00"}
+//             value={currentTime}
 //             onChange={handleTimeChange}
 //           />
 //         </div>
 //       )}
 //     </div>
 //   )
-// }   
+// }
