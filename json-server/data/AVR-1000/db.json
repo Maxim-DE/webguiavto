@@ -1,4 +1,35 @@
 {
+  "info.cgi": {
+    "info_general": {
+      "serial_number": "XXXXX",
+      "model": 0,
+      "device_type_list": [
+        "АВР-1000"
+      ],
+      "plate_number": "ЕУИС.468243.026",
+      "plate_version": "0",
+      "time_from_on": "missing",
+      "time_failure_on": "missing",
+      "time_failure_off": "missing",
+      "memory_type": "W25Q32",
+      "commutaion_serial_number": "XXXXX"
+    },
+    "software_version": {
+      "os_version": "BlockControl_v2.1.1447",
+      "app_sha": "93c07852d58638e53233745fe46be698b6f80d33",
+      "web_version": "1.0.42-dev_block_control_layout",
+      "bootloader_version": "Bootloader_v2.6.0",
+      "audio_version": "missing"
+    },
+    "auth_info": {
+      "auth_id": "user",
+      "auth_level": 1
+    },
+    "auth_info_del": {
+      "auth_id": "SUPER_ADMIN",
+      "auth_level": 3
+    }    
+  },  
   "settings.cgi": {
     "time_settings": {
       "date": "2023-11-27",
@@ -14,8 +45,11 @@
       }
     },
     "misc_settings": {
-      "bootloader_enabled_switch": 1,
-      "request_period": 1000
+      "res_device_1": 1,
+      "res_device_2": 1,
+      "res_device_3": 1,
+      "afu_protect_enable": 1,
+      "IsExistBlockAfu": 1
     }
   },
   "network.cgi": {
@@ -63,38 +97,12 @@
       "alt_stations_list": []
     }
   },
-  "info.cgi": {
-    "info_general": {
-      "serial_number": "XXXXX",
-      "model": 0,
-      "device_type_list": [
-        "АВР-1000"
-      ],
-      "plate_number": "ЕУИС.468243.026",
-      "plate_version": "0",
-      "time_from_on": "missing",
-      "time_failure_on": "missing",
-      "time_failure_off": "missing",
-      "memory_type": "W25Q32",
-      "commutaion_serial_number": "XXXXX"
-    },
-    "software_version": {
-      "os_version": "BlockControl_v2.1.1447",
-      "app_sha": "93c07852d58638e53233745fe46be698b6f80d33",
-      "web_version": "1.0.42-dev_block_control_layout",
-      "bootloader_version": "Bootloader_v2.6.0",
-      "audio_version": "missing"
-    },
-    "auth_info": {
-      "auth_id": "SUPER_ADMIN",
-      "auth_level": 3
-    }
-  },
   "status.cgi": {
     "status_info": {
       "device_status": 0,
       "time": "2023-12-01 17:18:48",
       "active_control_mode": 1,
+      "afu_active_control_mode": 1,
       "current_signal_path": ["202"]
     },
     "status_logs": [
@@ -477,7 +485,7 @@
       },
       "output_0": {
         "status": 0,
-        "is_available": 0,
+        "is_available": 1,
         "swr": [
           128,
           100,

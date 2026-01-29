@@ -14,17 +14,22 @@ import { isInNumRange } from "../../../../../../logic/validation/validators";
 
 export default function Misc_settings(props) {
   const miscSettings_store = useSelector((store) => store.globalStore.global_data.section_data.settings.misc_settings)
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
+  // const status_store = useSelector((store) => store.globalStore.global_data.section_data)
 
   const [miscSettingsState, setMiscSettingsState] = React.useState({
     res_device_1: 0,
     res_device_2: 0,
     res_device_3: 0,
+    afu_protect_enable: 0,
+    IsExistBlockAfu:0
   })
 
   const { isFormValid, validStatus_getter } = useFormValidation()
 
   React.useEffect(() => {
     console.log(miscSettings_store);
+    
 
     if (miscSettings_store != 'null' && miscSettings_store != undefined) {
       let settings_state_copy = miscSettingsState
@@ -79,6 +84,41 @@ export default function Misc_settings(props) {
     props.clickHandler(request_obj);
   }
 
+
+  const handleChange_save = (event) => {
+    let target = event.target;
+    let value = target.type === 'checkbox' ? Number(target.checked) : target.value
+    let name = target.name.replace('_calib', '');
+    // let name = target.name
+
+    setMiscSettingsState(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+
+    value = typeof value === 'boolean' ? Number(value) : value
+
+    const request_obj = {
+      address: `set_${props.section_name}.cgi`,
+      // address: 'calib_general.cgi',
+      data: `${name}$${value}`,
+      reducer: reducers.save_avr_device_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+  
+      save_data: {
+        calib_general: {
+          [name]: value
+        }
+      }
+    }
+  
+    props.clickHandler(request_obj);
+  }
+
+
   return (
     <SettingsBlockWrap header={'прочие настройки'}
       settings_type={'misc_settings'}
@@ -126,19 +166,35 @@ export default function Misc_settings(props) {
               input_value={miscSettingsState.res_device_3}
               type="checkbox" />
           </span>
-          {/* <FormInput
-            id={`reserved_devices_num_input`}
-            name={`reserved_devices_num`}
-            changeHandler={handleChange}
-            input_value={miscSettingsState.reserved_devices_num}
-            validators={[
-              isInNumRange(0, 3)
-            ]}
-            formValidHandler={validStatus_getter}
-            style={{ margin: '0', maxWidth: '75px' }}
-            type="text" /> */}
         </div>
       </li>
+
+      {/* Резервное АФУ */}
+      
+     
+      {miscSettingsState.IsExistBlockAfu == 1 && auth_level >= 2 &&
+        <li
+          key='input_protect_afu_enable_calib'
+          id='input_protect_afu_enable_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`input_protect_afu_enable_calibb_input`}
+              className="settings_itemLabel">
+              Резервное АФУ
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`input_protect_afu_enable_calib_input`}
+              name={`afu_protect_enable_calib`}
+              changeHandler={handleChange_save}
+              input_value={miscSettingsState.afu_protect_enable}
+              // input_value={generalCalibState.input_test_pic_enable}
+              type="switch" />
+          </div>
+        </li>
+      }
     </SettingsBlockWrap>
   )
 

@@ -106,7 +106,8 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 
 function avr_svg_editing(svg, data_svg, auth_access) {
   const active_control_mode = store.getState().globalStore.global_data.status_data.status_info?.active_control_mode,
-        current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
+        current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path,
+        afu_active_control_mode=store.getState().globalStore.global_data.status_data.status_info?.afu_active_control_mode
 
   const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
@@ -138,6 +139,8 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
       const exiter_status = data_svg?.[device_type]?.status
 
+      
+
       if (exiter_status == 1) {
         button_cover.style.fill = status_colors[0]
       } else {
@@ -149,6 +152,25 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       } else {
         button.style.display = ''
       }
+
+      // if (afu_active_control_mode == 0) {
+      //   button.style.display = 'none'
+      // } else {
+      //   button.style.display = ''
+      // }    
+      
+      
+      // Проверяем конкретную кнопку output_0
+      if(button.id === "output_0_power_button"){
+        if (afu_active_control_mode == 0) {
+          button.style.display = 'none'
+        } else  {
+          button.style.display = ''
+        }
+      }
+    
+
+      
     });
   }
 
@@ -420,6 +442,9 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       test_output_block.style = "visibility: hidden"
     }
   }
+
+
+
   // if (amp_1_buttons_list) {
   //   amp_1_buttons_list.forEach((button) => {
   //     if (auth_access.calib == 0) {
