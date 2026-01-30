@@ -175,11 +175,11 @@ function CalibNavList({ id, name, updateHandler, index, isParentActive, setParen
   const [isExpanded, setIsExpanded] = React.useState(false);
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (!isParentActive) {
-      setIsExpanded(false);
-    }
-  }, [isParentActive])
+  // React.useEffect(() => {
+  //   if (!isParentActive) {
+  //     setIsExpanded(false);
+  //   }
+  // }, [isParentActive])
 
   const handleNestedClick = (event) => {
     event.stopPropagation()

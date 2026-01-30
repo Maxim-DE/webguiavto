@@ -22,13 +22,9 @@
       "audio_version": "missing"
     },
     "auth_info": {
-      "auth_id": "user",
-      "auth_level": 1
-    },
-    "auth_info_del": {
       "auth_id": "SUPER_ADMIN",
       "auth_level": 3
-    }    
+    }
   },  
   "settings.cgi": {
     "time_settings": {
