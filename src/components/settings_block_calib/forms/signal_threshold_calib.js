@@ -160,7 +160,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
           <label
             htmlFor={`reserved_threshold_timeout_calib_input`}
             className="settings_itemLabel">
-            Тайм-аут перехода на резерв, сек
+            Тайм-аут перехода на резерв, с
           </label>
         </div>
         <div className='item_input'>
@@ -229,7 +229,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
           <label
             htmlFor={`recovery_threshold_timeout_calib_input`}
             className="settings_itemLabel">
-            Тайм-аут на восстановление звука, сек
+            Тайм-аут на восстановление звука, с
           </label>
         </div>
         <div className='item_input'>

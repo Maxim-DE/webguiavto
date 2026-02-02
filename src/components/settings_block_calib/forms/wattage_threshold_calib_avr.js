@@ -21,7 +21,10 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
     power_timeout_reserved_value: 0,
     threshold_type: 0,
     threshold_0_value: 0,
-    threshold_1_value: 1
+    threshold_1_value: 1,
+    swr_reserved_value:0,
+    afu_active_control_mode:0,  // Для вкл/вкл поля
+    IsExistBlockAfu:0           // Для вкл/вкл поля
   })
 
   React.useEffect(() => {
@@ -113,7 +116,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
           <label
             htmlFor={`power_threshold_reserved_calib_input`}
             className="settings_itemLabel">
-            Порог для перехода на резерв
+            Порог для перехода на резерв, Вт
           </label>
         </div>
         <div className='item_input'>
@@ -140,7 +143,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
           <label
             htmlFor={`power_timeout_reserved_calib_input`}
             className="settings_itemLabel">
-            Таймаут для перехода на резерв
+            Таймаут для перехода на резерв, с
           </label>
         </div>
         <div className='item_input'>
@@ -159,6 +162,41 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
             type="button" />
         </div>
       </li>
+      <li className="group_divider"></li>
+
+      
+      {/* {powerCalibState.afu_active_control_mode ==1 && powerCalibState.IsExistBlockAfu ==1 &&  */}
+      {powerCalibState.IsExistBlockAfu ==1 && 
+      <li
+        key='swr_reserved_calib'
+        id='swr_reserved_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`swr_reserved_calib_input`}
+            className="settings_itemLabel">
+            Порог КСВ
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`swr_reserved_calib_input`}
+            name={`swr_reserved_value_calib`}
+            changeHandler={handleChange}
+            input_value={powerCalibState.swr_reserved_value}
+            style={{ margin: '0', maxWidth: '75px' }}
+            type="text" />
+          <FormInput
+            id={`swr_reserved_calib_save`}
+            name={`swr_reserved_value_calib`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+      }
+
+      
       {/* <li
         key='signal_recovery_threshold_calib'
         id='signal_recovery_threshold_calib'

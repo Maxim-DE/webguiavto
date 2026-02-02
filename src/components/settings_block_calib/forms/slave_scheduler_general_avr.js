@@ -283,7 +283,7 @@ export default function Slave_scheduler_general_AVR({ calib_state, clickHandler,
     // Внутри компонента уже SettingsBlockWrap  не надо. 
 
     <SettingsBlockWrap 
-      header={'Планировщик'}
+      header={'Расписание работы'}
       settings_type={'rds_general_settings'}
       section_name={props.section_name}
       save_handler={saveAllChanges}

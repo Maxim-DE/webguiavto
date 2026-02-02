@@ -145,7 +145,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
         </div>
       </li>
 
-      {/* Работа по расписанию */}   
+      {/* Работа по расписанию */}
       <li
         key='scheduler_enable'
         id='scheduler_enable'
@@ -154,8 +154,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
           <label
             htmlFor={`scheduler_enable_input`}
             className="settings_itemLabel">
-            {/* Работа по расписанию */}
-            Планировщик
+            Работа по расписанию
+            {/* Расписание работы */}
           </label>
         </div>
         <div className='item_input'>
