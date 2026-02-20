@@ -15,6 +15,8 @@ import { isInNumRange } from "../../../../../../logic/validation/validators";
 export default function Misc_settings(props) {
   const miscSettings_store = useSelector((store) => store.globalStore.global_data.section_data.settings.misc_settings)
   const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
+  const IsModeManual = useSelector((store) => store.globalStore.global_data.status_data.status_info.active_control_mode)
+  
   // const status_store = useSelector((store) => store.globalStore.global_data.section_data)
 
   const [miscSettingsState, setMiscSettingsState] = React.useState({
@@ -144,6 +146,7 @@ export default function Misc_settings(props) {
               name={`res_device_1`}
               changeHandler={handleChange}
               input_value={miscSettingsState.res_device_1}
+              disabled={(IsModeManual==1)?false:true}
               type="checkbox" />
           </span>
 
@@ -154,6 +157,7 @@ export default function Misc_settings(props) {
               name={`res_device_2`}
               changeHandler={handleChange}
               input_value={miscSettingsState.res_device_2}
+              disabled={(IsModeManual==1)?false:true}
               type="checkbox" />
           </span>
 
@@ -164,6 +168,7 @@ export default function Misc_settings(props) {
               name={`res_device_3`}
               changeHandler={handleChange}
               input_value={miscSettingsState.res_device_3}
+              disabled={(IsModeManual==1)?false:true}
               type="checkbox" />
           </span>
         </div>
@@ -191,6 +196,7 @@ export default function Misc_settings(props) {
               changeHandler={handleChange_save}
               input_value={miscSettingsState.afu_protect_enable}
               // input_value={generalCalibState.input_test_pic_enable}
+              disabled={(IsModeManual==1)?false:true}
               type="switch" />
           </div>
         </li>

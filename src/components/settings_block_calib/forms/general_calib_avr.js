@@ -18,6 +18,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     tftp: 0,
     input_test_pic_enable: 0,
     output_test_pic_enable: 0,
+    authorization:true
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -165,8 +166,33 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
               type="switch" />
           </div>
         </li>
+        {/* Авторизация вкл/выкл */}
+        <li
+          key='authorization_calib'
+          id='authorization_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              htmlFor={`authorization_calib_input`}
+              className="settings_itemLabel">
+              Авторизация
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`authorization_calib_input`}
+              name={`authorization_calib`}
+              changeHandler={handleChange_save}
+              input_value={!!generalCalibState.authorization}
+              type="switch" />
+          </div>
+        </li>   
+
       </>
       }
+
+      {/* TFTP вкл/выкл загрузчик */}
+
       <li
         key='tftp_calib'
         id='tftp_calib'
@@ -187,6 +213,10 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
             type="switch" />
         </div>
       </li>
+
+       
+
+
       <li
         key='reboot_device_calib'
         id='reboot_device_calib'

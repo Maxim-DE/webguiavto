@@ -2,6 +2,7 @@ import { status_colors } from "../components/graph_blocks"
 import { store } from "../store/store"
 import { filter_obj, getRandomColor } from "./utilites"
 
+
 export default function svg_editing_logic(svg, data_svg, device_type) {
   switch (device_type) {
     case 'st_250':
@@ -150,24 +151,18 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       if (active_control_mode == 0) {
         button.style.display = 'none'
       } else {
-        button.style.display = ''
+        button.style.display = ''    // Это кнопки в ПРД вкл/выкл 
+        // Включаем только в ручном режиме их !!
+        if(button.id === "output_0_power_button"){
+          if (afu_active_control_mode == 0) {
+            button.style.display = 'none'   // Эта кнопка в афу рез.
+          } else  {
+            button.style.display = ''
+          }
+        }         
       }
-
-      // if (afu_active_control_mode == 0) {
-      //   button.style.display = 'none'
-      // } else {
-      //   button.style.display = ''
-      // }    
-      
-      
-      // Проверяем конкретную кнопку output_0
-      if(button.id === "output_0_power_button"){
-        if (afu_active_control_mode == 0) {
-          button.style.display = 'none'
-        } else  {
-          button.style.display = ''
-        }
-      }
+  
+ 
     
 
       

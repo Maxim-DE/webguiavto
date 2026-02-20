@@ -683,7 +683,8 @@
       "fan_start_alarm": 1,
       "tftp": 1,
       "watchdog": 0,
-      "message_lcd": 1
+      "message_lcd": 1,
+      "Authorization": true
     },
     "calib_modbus": {
       "master_form_availiable": 1,
