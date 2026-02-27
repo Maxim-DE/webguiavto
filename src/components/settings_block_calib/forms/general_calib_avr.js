@@ -108,18 +108,30 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     clickHandler(request_obj);
   }
 
+  // const handleReboot_reserved = () => {
+  //   const request_obj = {
+  //     address: 'reboot_reserved_device.cgi',
+  //     reducer: coreReducers.reboot_device,
+  //     notifications: {
+  //       good: 'default',
+  //       bad: 'default'
+  //     },
+  //   }
+
+  //   clickHandler(request_obj);
+  // }
+  
   const handleReboot_reserved = () => {
     const request_obj = {
-      address: 'reboot_reserved_device.cgi',
-      reducer: coreReducers.reboot_device,
+      address: `reboot_reserved_device.cgi`,
       notifications: {
         good: 'default',
         bad: 'default'
       },
-    }
-
+    }    
     clickHandler(request_obj);
   }
+
 
   return (
     <Settings_block_calib header={`основ. настройки`}
