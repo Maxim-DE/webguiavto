@@ -6,7 +6,7 @@ import { dataArray_to_string } from '../../logic/request_logic'
 import { reducers } from '../../store/reducers/avr_control_reducers'
 import { new_status_colors } from '../graph_blocks'
 
-const device_amount = 3
+const device_amount = 1 // количество вкладок прд
 
 function CalibDeviceSwitch({ clickHandler, parent_state, state_handler, device_avaliability, settings_type, ...props }) {
   const amount_arr = [...Array(device_amount).keys()].map(i => i + 1)

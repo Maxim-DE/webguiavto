@@ -197,7 +197,7 @@ export default function Modbus_master_AVR_calib(props) {
           <label
             htmlFor={`master_reserve_address_input`}
             className="settings_itemLabel">
-            Адрес резервного передатчика
+            Адрес основного передатчика
           </label>
         </div>
         <div className='item_input'>
@@ -218,6 +218,34 @@ export default function Modbus_master_AVR_calib(props) {
             label='Сохранить'
             type="button" />
         </div>
+
+        <div className='item_header'>
+          <label
+            htmlFor={`master_reserve_address_input`}
+            className="settings_itemLabel">
+            Адрес резервного передатчика
+          </label>
+        </div>
+        
+        <div className='item_input'>
+          <FormInput
+            id={`slave_address_calib_input`}
+            name={`master_reserve_address_calib`}
+            disabled={!masterSlaveCalibState.master_form_available}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={masterSlaveCalibState.master_reserve_address}
+            type="select"
+            variants={[...Array(10).keys()].map(i => i + 1)} />
+          <FormInput
+            id={`master_reserve_address_save`}
+            name={`master_reserve_address`}
+            disabled={!masterSlaveCalibState.master_form_available}
+            clickHandler={handleClick_saveSelectArrs}
+            label='Сохранить'
+            type="button" />
+        </div>
+
       </li>
     </Settings_block_calib>
   )

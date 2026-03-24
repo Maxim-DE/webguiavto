@@ -121,63 +121,63 @@ export default function Misc_settings(props) {
   }
 
 
-  return (
-    <SettingsBlockWrap header={'прочие настройки'}
-      settings_type={'misc_settings'}
-      section_name={props.section_name}
-      save_handler={handleClick_save}
-      disable_save={!isFormValid} >
-      <li
-        key='reserved_devices'
-        id='reserved_devices'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`res_device_1_input`}
-            className="settings_itemLabel">
-            Резервируемые устр-ва
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='checkbox_wrap'>
-            1
-            <FormInput
-              id={`res_device_1_input`}
-              name={`res_device_1`}
-              changeHandler={handleChange}
-              input_value={miscSettingsState.res_device_1}
-              disabled={(IsModeManual==1)?false:true}
-              type="checkbox" />
-          </span>
+  return 
+    // <SettingsBlockWrap header={'прочие настройки'}
+    //   settings_type={'misc_settings'}
+    //   section_name={props.section_name}
+    //   save_handler={handleClick_save}
+    //   disable_save={!isFormValid} >
+    //   <li
+    //     key='reserved_devices'
+    //     id='reserved_devices'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`res_device_1_input`}
+    //         className="settings_itemLabel">
+    //         Резервируемые устр-ва
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <span className='checkbox_wrap'>
+    //         1
+    //         <FormInput
+    //           id={`res_device_1_input`}
+    //           name={`res_device_1`}
+    //           changeHandler={handleChange}
+    //           input_value={miscSettingsState.res_device_1}
+    //           disabled={(IsModeManual==1)?false:true}
+    //           type="checkbox" />
+    //       </span>
 
-          <span className='checkbox_wrap'>
-            2
-            <FormInput
-              id={`res_device_2_input`}
-              name={`res_device_2`}
-              changeHandler={handleChange}
-              input_value={miscSettingsState.res_device_2}
-              disabled={(IsModeManual==1)?false:true}
-              type="checkbox" />
-          </span>
+    //       <span className='checkbox_wrap'>
+    //         2
+    //         <FormInput
+    //           id={`res_device_2_input`}
+    //           name={`res_device_2`}
+    //           changeHandler={handleChange}
+    //           input_value={miscSettingsState.res_device_2}
+    //           disabled={(IsModeManual==1)?false:true}
+    //           type="checkbox" />
+    //       </span>
 
-          <span className='checkbox_wrap'>
-            3
-            <FormInput
-              id={`res_device_3_input`}
-              name={`res_device_3`}
-              changeHandler={handleChange}
-              input_value={miscSettingsState.res_device_3}
-              disabled={(IsModeManual==1)?false:true}
-              type="checkbox" />
-          </span>
-        </div>
-      </li>
+    //       <span className='checkbox_wrap'>
+    //         3
+    //         <FormInput
+    //           id={`res_device_3_input`}
+    //           name={`res_device_3`}
+    //           changeHandler={handleChange}
+    //           input_value={miscSettingsState.res_device_3}
+    //           disabled={(IsModeManual==1)?false:true}
+    //           type="checkbox" />
+    //       </span>
+    //     </div>
+    //   </li>
 
       {/* Резервное АФУ */}
       
      
-      {miscSettingsState.IsExistBlockAfu == 1 && auth_level >= 2 &&
+      {/* {miscSettingsState.IsExistBlockAfu == 1 && auth_level >= 2 &&
         <li
           key='input_protect_afu_enable_calib'
           id='input_protect_afu_enable_calib'
@@ -200,8 +200,8 @@ export default function Misc_settings(props) {
               type="switch" />
           </div>
         </li>
-      }
-    </SettingsBlockWrap>
-  )
+      } */}
+  //   </SettingsBlockWrap>
+  // )
 
 }

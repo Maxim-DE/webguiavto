@@ -101,6 +101,7 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
   } catch (error) {
     console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
   }
+  
 
   return svg
 }
@@ -153,13 +154,13 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       } else {
         button.style.display = ''    // Это кнопки в ПРД вкл/выкл 
         // Включаем только в ручном режиме их !!
-        if(button.id === "output_0_power_button"){
-          if (afu_active_control_mode == 0) {
-            button.style.display = 'none'   // Эта кнопка в афу рез.
-          } else  {
-            button.style.display = ''
-          }
-        }         
+        // if(button.id === "output_0_power_button"){
+        //   if (afu_active_control_mode == 0) {
+        //     button.style.display = 'none'   // Эта кнопка в афу рез.
+        //   } else  {
+        //     button.style.display = ''
+        //   }
+        // }         
       }
   
  
@@ -211,8 +212,17 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       handlePathColor(signal_path_layer, path, signal_path_colors[index])
 
       const path_input_descr = path[0],
-            required_input = input_blocks_list[path_input_descr]
-
+      required_input = input_blocks_list[path_input_descr]
+      if (!required_input) {
+        console.log(`Пропускаем path ${index}: required_input не найден для ${path_input_descr}`);
+        return; // Переходим к следующей итерации
+      }
+      console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')
+      console.log(path_input_descr)
+      console.log('//////////////////////////////////////////////')
+      console.log(required_input)
+      console.log("----------------------------------------------")
+      console.log(input_blocks_list)
       const input_path_display_list = required_input.querySelectorAll('path[id*="path_display"]')
 
       input_path_display_list.forEach(path => {
@@ -320,7 +330,7 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
       //primary input display
       input_mode_device_icon[1].style = "fill: #7ADC47"
-      input_mode_device_icon[0].style = "fill: #e74c3c"
+      input_mode_device_icon[0].style = "fill: #e74c3c" // цвет звука 
       //res input display
       // input_mode_device_icon[0].firstElementChild.firstChild.innerHTML = 'ВЫКЛ'
       // input_mode_device_icon[0].lastElementChild.style = "fill: #e74c3c"
@@ -347,96 +357,96 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     }
 
   })
-
-  const test_input_block = svg.querySelector('#layer_1 > g[id*="input_0"]')
+// удаление не помогло с блоком инпут 1 
+  // const test_input_block = svg.querySelector('#layer_1 > g[id*="input_0"]')
         
-  if (test_input_block) {
-    const test_input_signal_buttons_list = svg.querySelectorAll(`#input_0_control_buttons g[id*="set"]`),
-          test_input_availability = data_svg[`input_0`]?.is_available
+  // if (test_input_block) {
+  //   const test_input_signal_buttons_list = svg.querySelectorAll(`#input_0_control_buttons g[id*="set"]`),
+  //         test_input_availability = data_svg[`input_0`]?.is_available
 
 
-    if (test_input_block) {
-      const signal_type = data_svg[`input_0`]?.input_signal_type
+  //   if (test_input_block) {
+  //     const signal_type = data_svg[`input_0`]?.input_signal_type
 
-      test_input_signal_buttons_list.forEach(button => {
-        const signal_type_regex = /set_\w+_/,
-              signal_type_index = button.id.match(signal_type_regex)[0].replace('set_', '').replace("_", "")
+  //     test_input_signal_buttons_list.forEach(button => {
+  //       const signal_type_regex = /set_\w+_/,
+  //             signal_type_index = button.id.match(signal_type_regex)[0].replace('set_', '').replace("_", "")
 
-        switch (signal_type) {
-          case "L":
-            if (button.id.includes('l')) {
-              button.classList.add("active_ex_conf");
-            } else {
-              button.classList.remove("active_ex_conf");
-            }
+  //       switch (signal_type) {
+  //         case "L":
+  //           if (button.id.includes('l')) {
+  //             button.classList.add("active_ex_conf");
+  //           } else {
+  //             button.classList.remove("active_ex_conf");
+  //           }
 
-            break;
+  //           break;
           
-          case "R":
-            if (button.id.includes('r')) {
-              button.classList.add("active_ex_conf");
-            } else {
-              button.classList.remove("active_ex_conf");
-            }
+  //         case "R":
+  //           if (button.id.includes('r')) {
+  //             button.classList.add("active_ex_conf");
+  //           } else {
+  //             button.classList.remove("active_ex_conf");
+  //           }
 
-            break;
+  //           break;
           
-          case "STEREO":
-            if (button.id.includes('stereo')) {
-              button.classList.add("active_ex_conf");
-            } else {
-              button.classList.remove("active_ex_conf");
-            }
+  //         case "STEREO":
+  //           if (button.id.includes('stereo')) {
+  //             button.classList.add("active_ex_conf");
+  //           } else {
+  //             button.classList.remove("active_ex_conf");
+  //           }
 
-            break;
+  //           break;
 
-          case "MPX":
-            if (button.id.includes('mpx')) {
-              button.classList.add("active_ex_conf");
-            } else {
-              button.classList.remove("active_ex_conf");
-            }
+  //         case "MPX":
+  //           if (button.id.includes('mpx')) {
+  //             button.classList.add("active_ex_conf");
+  //           } else {
+  //             button.classList.remove("active_ex_conf");
+  //           }
 
-            break;
+  //           break;
 
-          case "AES":
-            if (button.id.includes('aes')) {
-              button.classList.add("active_ex_conf");
-            } else {
-              button.classList.remove("active_ex_conf");
-            }
+  //         case "AES":
+  //           if (button.id.includes('aes')) {
+  //             button.classList.add("active_ex_conf");
+  //           } else {
+  //             button.classList.remove("active_ex_conf");
+  //           }
 
-            break;
+  //           break;
 
-          default:
-            break;
-        }
+  //         default:
+  //           break;
+  //       }
 
-        if (active_control_mode == 0) {
-          button.style.display = 'none'
-        } else {
-          button.style.display = ''
-        }
-      })
-    }
+  //       if (active_control_mode == 0) {
+  //         button.style.display = 'none'
+  //       } else {
+  //         button.style.display = ''
+  //       }
+  //     })
+  //   }
 
-    if (test_input_availability) {
-      test_input_block.style = "visibility: visibility"
-    } else {
-      test_input_block.style = "visibility: hidden"
-    }
-  }
+  //   if (test_input_availability) {
+  //     test_input_block.style = "visibility: visibility"
+  //   } else {
+  //     test_input_block.style = "visibility: visibility"
+  //   }
+  // }
 
-  const test_output_block = svg.querySelector('#layer_1 > g[id*="output_0"]'),
-        test_output_availability = data_svg[`output_0`]?.is_available
+  // const test_output_block = svg.querySelector('#layer_1 > g[id*="output_0"]'),
+  //       test_output_availability = data_svg[`output_0`]?.is_available
 
-  if (test_output_block) {
-    if (test_output_availability) {
-      test_output_block.style = "visibility: visibility"
-    } else {
-      test_output_block.style = "visibility: hidden"
-    }
-  }
+  // if (test_output_block) {
+  //   if (test_output_availability) {
+  //     test_output_block.style = "visibility: visibility"
+  //   } else {
+  //     test_output_block.style = "visibility: hidden"
+  //   }
+  // }
 
 
 

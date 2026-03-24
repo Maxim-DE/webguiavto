@@ -16,8 +16,8 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     def_module: 0,
     fan_start_alarm: 0,
     tftp: 0,
-    input_test_pic_enable: 0,
-    output_test_pic_enable: 0,
+    // input_test_pic_enable: 0,
+    // output_test_pic_enable: 0,
     authorization:true
   })
 
@@ -138,7 +138,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>
-        <li
+        {/* <li
           key='input_test_pic_enable_calib'
           id='input_test_pic_enable_calib'
           className="settings_item">
@@ -157,8 +157,8 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
               input_value={generalCalibState.input_test_pic_enable}
               type="switch" />
           </div>
-        </li>
-        <li
+        </li> */}
+        {/* <li
           key='output_test_pic_enable_calib'
           id='output_test_pic_enable_calib'
           className="settings_item">
@@ -177,7 +177,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
               input_value={generalCalibState.output_test_pic_enable}
               type="switch" />
           </div>
-        </li>
+        </li> */}
         {/* Авторизация вкл/выкл */}
         <li
           key='authorization_calib'

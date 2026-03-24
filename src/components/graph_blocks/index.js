@@ -90,9 +90,10 @@ function Status_graphs(props) {
 
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
-
+          // console.log("device_icon: ",device_icon)
           if (!device_icon) {
             console.error("Can't find device icon with key: " + key)
+            // debugger  
             continue;
           }
 

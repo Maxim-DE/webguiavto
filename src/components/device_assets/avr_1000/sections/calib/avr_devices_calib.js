@@ -60,12 +60,12 @@ export const AvrDevicesCalib = (props) => {
     }))
   }, [availiability_store])
 
-  useEffect(() => {
-    const is_res_available = res_input_device_state.input_0.is_available
-    if (is_res_available != undefined || is_res_available != null) {
-      res_ex_settings_enable.current = is_res_available
-    }
-  }, [res_input_device_state])
+  // useEffect(() => {
+  //   const is_res_available = res_input_device_state.input_0.is_available
+  //   if (is_res_available != undefined || is_res_available != null) {
+  //     res_ex_settings_enable.current = is_res_available
+  //   }
+  // }, [res_input_device_state])
   
   const handleClick = block_data => {
     block_data.data = `avr_device$${Number(deviceState.active_device)};` + (block_data.data ? block_data.data : '')
