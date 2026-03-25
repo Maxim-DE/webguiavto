@@ -288,6 +288,68 @@
           0
         ]
       }
+    },
+            "nav_info": {
+    "Передатчик рез.": [
+      {
+        "name": "Частота",
+        "value": 8800,
+        "divider": 100,
+        "units": "МГц"
+      },
+      {
+        "name": "Pвых",
+        "value": 3,
+        "status": 2,
+        "divider": 1,
+        "adc": 194,
+        "units": "Вт"
+      },
+      {
+        "name": "Pотр",
+        "value": 0,
+        "status": 0,
+        "divider": 1,
+        "adc": 49,
+        "units": "Вт"
+      },
+      {
+        "name": "КСВ",
+        "value": 100,
+        "divider": 100,
+        "status": 0
+      }
+    ],
+    "Передатчик 1": [
+      {
+        "name": "Частота",
+        "value": 8800,
+        "divider": 100,
+        "units": "МГц"
+      },
+      {
+        "name": "Pвых",
+        "value": 1,
+        "status": 2,
+        "divider": 1,
+        "adc": 100,
+        "units": "Вт"
+      },
+      {
+        "name": "Pотр",
+        "value": 0,
+        "status": 0,
+        "divider": 1,
+        "adc": 14,
+        "units": "Вт"
+      },
+      {
+        "name": "КСВ",
+        "value": 100,
+        "divider": 100,
+        "status": 0
+      }
+    ]
     }
   },
   "calib_passw.cgi": {
@@ -464,9 +526,13 @@
     },
     "calib_modbus": {
       "master_form_availiable": 1,
+      "master_reserve_address": 2,
+      "master_main_address": 4,
       "master_baudrate": 3,
       "master_req_period": 500,
       "master_timeout": 50
+      
+
     },
     "calib_conf_file": {
       "factory_conf_create_time": "2025.08.27 21: 00",
