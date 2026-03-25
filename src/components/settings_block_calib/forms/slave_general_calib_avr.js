@@ -121,356 +121,356 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
 
   }
 
-  return (
-    <SettingsBlockWrap 
-      header={`общие настройки`}
-      settings_type={`slave_general`}
-      section_name={props.section_name}
-      save_handler={handleClick_save}
-      disable_save={!isFormValid} >
-      <li
-        key='frequency_calib'
-        id='frequency_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`frequency_calib_input`}
-            className="settings_itemLabel">
-            Установка нес. частоты, МГц
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`frequency_calib_input`}
-            name={`frequency_calib`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.frequency}
-            style={{ margin: '0', maxWidth: '75px' }}
-            type="text"
-            validators={[
-              isInNumRange(87.5, 108)
-            ]}
-            formValidHandler={validStatus_getter} />
-          {/* <FormInput
-            id={`frequency_calib_save`}
-            name={`frequency_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' /> */}
-        </div>
-      </li>
-      <li
-        key='input_power_calib'
-        id='input_power_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`input_pwr_calib_input`}
-            className="settings_itemLabel">
-            Выходная мощность, Вт
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`input_power_calib_input`}
-            name={`input_power_calib`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.input_power}
-            style={{ margin: '0', maxWidth: '75px' }}
-            placeholder='Вт'
-            type="text" />
-          {/* <FormInput
-            id={`input_power_calib_save`}
-            name={`input_power_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-          type='button' /> */}
-        </div>
-      </li>
-      <li className="group_divider"></li>
-      <li
-        key='input_signal_type_calib'
-        id='input_signal_type_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`input_signal_type_calib_input`}
-            className="settings_itemLabel">
-            Тип вход. сигнала
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`input_signal_type_calib_input`}
-            name={`input_signal_type_calib`}
-            type='select'
-            input_value={generalCalibState.input_signal_type}
-            title='Тип сигнала'
-            variants={[
-              'Stereo',
-              'L',
-              'R',
-              'КСС',
-              'AES'
-            ]}
-            changeHandler={handleChange} />
-          {/* <FormInput
-            id={`input_signal_type_calib_save`}
-            name={`input_signal_type_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' /> */}
-        </div>
-      </li>
-      <li
-        key='channel_coef_calib'
-        id='channel_coef_calib'
-        className={`settings_item ${(generalCalibState.input_signal_type == 0 ||
-                                    generalCalibState.input_signal_type == 4) && 'calib'}`}>
-        <div className='item_header'>
-          <label
-            htmlFor={`channel_coef_type_calib_input`}
-            className="settings_itemLabel">
-            Коэффициент передачи, дБ
-          </label>
-          {/* <FormInput
-            id={`channel_coef_type_calib_input`}
-            name={`channel_coef_type_calib`}
-            type='select'
-            input_value={generalCalibState.channel_coef_type}
-            title='Канал'
-            variants={[
-              'Stereo',
-              'L',
-              'R',
-              'КСС'
-            ]}
-            changeHandler={handleChange} /> */}
-        </div>
-        <div className='item_input'>
-          {generalCalibState.input_signal_type == 1 &&
-            <>
+  return 
+    // <SettingsBlockWrap 
+    //   header={`общие настройки`}
+    //   settings_type={`slave_general`}
+    //   section_name={props.section_name}
+    //   save_handler={handleClick_save}
+    //   disable_save={!isFormValid} >
+    //   <li
+    //     key='frequency_calib'
+    //     id='frequency_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`frequency_calib_input`}
+    //         className="settings_itemLabel">
+    //         Установка нес. частоты, МГц
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`frequency_calib_input`}
+    //         name={`frequency_calib`}
+    //         changeHandler={handleChange}
+    //         input_value={generalCalibState.frequency}
+    //         style={{ margin: '0', maxWidth: '75px' }}
+    //         type="text"
+    //         validators={[
+    //           isInNumRange(87.5, 108)
+    //         ]}
+    //         formValidHandler={validStatus_getter} />
+    //       {/* <FormInput
+    //         id={`frequency_calib_save`}
+    //         name={`frequency_calib`}
+    //         clickHandler={handleClick_save}
+    //         label='Сохранить'
+    //         type='button' /> */}
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='input_power_calib'
+    //     id='input_power_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`input_pwr_calib_input`}
+    //         className="settings_itemLabel">
+    //         Выходная мощность, Вт
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`input_power_calib_input`}
+    //         name={`input_power_calib`}
+    //         changeHandler={handleChange}
+    //         input_value={generalCalibState.input_power}
+    //         style={{ margin: '0', maxWidth: '75px' }}
+    //         placeholder='Вт'
+    //         type="text" />
+    //       {/* <FormInput
+    //         id={`input_power_calib_save`}
+    //         name={`input_power_calib`}
+    //         clickHandler={handleClick_save}
+    //         label='Сохранить'
+    //       type='button' /> */}
+    //     </div>
+    //   </li>
+    //   <li className="group_divider"></li>
+    //   <li
+    //     key='input_signal_type_calib'
+    //     id='input_signal_type_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`input_signal_type_calib_input`}
+    //         className="settings_itemLabel">
+    //         Тип вход. сигнала
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`input_signal_type_calib_input`}
+    //         name={`input_signal_type_calib`}
+    //         type='select'
+    //         input_value={generalCalibState.input_signal_type}
+    //         title='Тип сигнала'
+    //         variants={[
+    //           'Stereo',
+    //           'L',
+    //           'R',
+    //           'КСС',
+    //           'AES'
+    //         ]}
+    //         changeHandler={handleChange} />
+    //       {/* <FormInput
+    //         id={`input_signal_type_calib_save`}
+    //         name={`input_signal_type_calib`}
+    //         clickHandler={handleClick_save}
+    //         label='Сохранить'
+    //         type='button' /> */}
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='channel_coef_calib'
+    //     id='channel_coef_calib'
+    //     className={`settings_item ${(generalCalibState.input_signal_type == 0 ||
+    //                                 generalCalibState.input_signal_type == 4) && 'calib'}`}>
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`channel_coef_type_calib_input`}
+    //         className="settings_itemLabel">
+    //         Коэффициент передачи, дБ
+    //       </label>
+    //       {/* <FormInput
+    //         id={`channel_coef_type_calib_input`}
+    //         name={`channel_coef_type_calib`}
+    //         type='select'
+    //         input_value={generalCalibState.channel_coef_type}
+    //         title='Канал'
+    //         variants={[
+    //           'Stereo',
+    //           'L',
+    //           'R',
+    //           'КСС'
+    //         ]}
+    //         changeHandler={handleChange} /> */}
+    //     </div>
+    //     <div className='item_input'>
+    //       {generalCalibState.input_signal_type == 1 &&
+    //         <>
               
-              <FormInput
-                id={`coef_l_calib_input`}
-                name={`coef_l`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_l}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              {/* <FormInput
-                id={`coef_l_calib_save`}
-                name={`coef_l_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type="button" /> */}
-            </>
-          }
-          {generalCalibState.input_signal_type == 2 &&
-            <>
-              <FormInput
-                id={`coef_r_calib_input`}
-                name={`coef_r`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_r}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              {/* <FormInput
-                id={`coef_r_calib_save`}
-                name={`coef_r_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type="button" /> */}
-            </>
-          }
-          {generalCalibState.input_signal_type == 3 &&
-            <>
-              <FormInput
-                id={`coef_mpx_calib_input`}
-                name={`coef_mpx`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_mpx}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              {/* <FormInput
-                id={`coef_mpx_calib_save`}
-                name={`coef_mpx_calib`}
-                clickHandler={handleClick_save}
-                label='Сохранить'
-                type="button" /> */}
-            </>
-          }
-          {generalCalibState.input_signal_type == 4 &&
-            <>
-              L
-              <FormInput
-                id={`coef_aes_l_calib_input`}
-                name={`coef_aes_l`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_aes_l}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              <div className="vertical_li_divider"></div>
-              R
-              <FormInput
-                id={`coef_aes_r_calib_input`}
-                name={`coef_aes_r`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_aes_r}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-            </>
-          }
-          {generalCalibState.input_signal_type == 0 && 
-            <>
-              L
-              <FormInput
-                id={`coef_l_calib_input`}
-                name={`coef_l`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_l}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-              <div className="vertical_li_divider"></div>
-              R
-              <FormInput
-                id={`coef_r_calib_input`}
-                name={`coef_r`}
-                changeHandler={handleChange}
-                input_value={generalCalibState.coef_r}
-                style={{ margin: '0', maxWidth: '75px' }}
-                placeholder='Вт'
-                type="text_buttons"
-                statusHandler={setGeneralCalibState}
-                max={'6'}
-                min={'-6'}
-                step={0.1} />
-            </>
-          }
-        </div>
-      </li>
-      <li className="group_divider"></li>
-      <li
-        key='resistance_type_calib'
-        id='resistance_type_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`resistance_type_calib_input`}
-            className="settings_itemLabel">
-            Вх. сопротивление (L/R)
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`resistance_type_calib_input`}
-            name={`resistance_type_calib`}
-            type='select'
-            input_value={generalCalibState.resistance_type}
-            title='Тип сигнала'
-            variants={[
-              '600 Ом',
-              '10 кОм',
-            ]}
-            changeHandler={handleChange} />
-          {/* <FormInput
-            id={`resistance_type_calib_save`}
-            name={`resistance_type_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' /> */}
-        </div>
-      </li>
-      <li
-        key='deviation_calib'
-        id='deviation_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`deviation_calib_input`}
-            className="settings_itemLabel">
-            Девиация
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`deviation_calib_input`}
-            name={`deviation`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.deviation}
-            style={{ margin: '0', maxWidth: '75px' }}
-            placeholder='Вт'
-            type="text_buttons"
-            statusHandler={setGeneralCalibState}
-            max={'30'}
-            min={'-30'}
-            step={1} />
-          {/* <FormInput
-            id={`deviation_calib_save`}
-            name={`deviation_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' /> */}
-        </div>
-      </li>
-      <li
-        key='turn_on_timeout_calib'
-        id='turn_on_timeout_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`turn_on_timeout_calib_input`}
-            className="settings_itemLabel">
-            Время вкл. уст-ва в сеть, сек
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`turn_on_timeout_calib_input`}
-            name={`turn_on_timeout_calib`}
-            changeHandler={handleChange}
-            placeholder='мсек'
-            input_value={generalCalibState.turn_on_timeout}
-            style={{ margin: '0', maxWidth: '75px' }}
-            type="text" />
-          {/* <FormInput
-            id={`frequency_calib_save`}
-            name={`frequency_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type='button' /> */}
-        </div>
-      </li>
-    </SettingsBlockWrap>
-  )
+    //           <FormInput
+    //             id={`coef_l_calib_input`}
+    //             name={`coef_l`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_l}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //           {/* <FormInput
+    //             id={`coef_l_calib_save`}
+    //             name={`coef_l_calib`}
+    //             clickHandler={handleClick_save}
+    //             label='Сохранить'
+    //             type="button" /> */}
+    //         </>
+    //       }
+    //       {generalCalibState.input_signal_type == 2 &&
+    //         <>
+    //           <FormInput
+    //             id={`coef_r_calib_input`}
+    //             name={`coef_r`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_r}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //           {/* <FormInput
+    //             id={`coef_r_calib_save`}
+    //             name={`coef_r_calib`}
+    //             clickHandler={handleClick_save}
+    //             label='Сохранить'
+    //             type="button" /> */}
+    //         </>
+    //       }
+    //       {generalCalibState.input_signal_type == 3 &&
+    //         <>
+    //           <FormInput
+    //             id={`coef_mpx_calib_input`}
+    //             name={`coef_mpx`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_mpx}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //           {/* <FormInput
+    //             id={`coef_mpx_calib_save`}
+    //             name={`coef_mpx_calib`}
+    //             clickHandler={handleClick_save}
+    //             label='Сохранить'
+    //             type="button" /> */}
+    //         </>
+    //       }
+    //       {generalCalibState.input_signal_type == 4 &&
+    //         <>
+    //           L
+    //           <FormInput
+    //             id={`coef_aes_l_calib_input`}
+    //             name={`coef_aes_l`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_aes_l}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //           <div className="vertical_li_divider"></div>
+    //           R
+    //           <FormInput
+    //             id={`coef_aes_r_calib_input`}
+    //             name={`coef_aes_r`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_aes_r}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //         </>
+    //       }
+    //       {generalCalibState.input_signal_type == 0 && 
+    //         <>
+    //           L
+    //           <FormInput
+    //             id={`coef_l_calib_input`}
+    //             name={`coef_l`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_l}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //           <div className="vertical_li_divider"></div>
+    //           R
+    //           <FormInput
+    //             id={`coef_r_calib_input`}
+    //             name={`coef_r`}
+    //             changeHandler={handleChange}
+    //             input_value={generalCalibState.coef_r}
+    //             style={{ margin: '0', maxWidth: '75px' }}
+    //             placeholder='Вт'
+    //             type="text_buttons"
+    //             statusHandler={setGeneralCalibState}
+    //             max={'6'}
+    //             min={'-6'}
+    //             step={0.1} />
+    //         </>
+    //       }
+    //     </div>
+    //   </li>
+    //   <li className="group_divider"></li>
+    //   <li
+    //     key='resistance_type_calib'
+    //     id='resistance_type_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`resistance_type_calib_input`}
+    //         className="settings_itemLabel">
+    //         Вх. сопротивление (L/R)
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`resistance_type_calib_input`}
+    //         name={`resistance_type_calib`}
+    //         type='select'
+    //         input_value={generalCalibState.resistance_type}
+    //         title='Тип сигнала'
+    //         variants={[
+    //           '600 Ом',
+    //           '10 кОм',
+    //         ]}
+    //         changeHandler={handleChange} />
+    //       {/* <FormInput
+    //         id={`resistance_type_calib_save`}
+    //         name={`resistance_type_calib`}
+    //         clickHandler={handleClick_save}
+    //         label='Сохранить'
+    //         type='button' /> */}
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='deviation_calib'
+    //     id='deviation_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`deviation_calib_input`}
+    //         className="settings_itemLabel">
+    //         Девиация
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`deviation_calib_input`}
+    //         name={`deviation`}
+    //         changeHandler={handleChange}
+    //         input_value={generalCalibState.deviation}
+    //         style={{ margin: '0', maxWidth: '75px' }}
+    //         placeholder='Вт'
+    //         type="text_buttons"
+    //         statusHandler={setGeneralCalibState}
+    //         max={'30'}
+    //         min={'-30'}
+    //         step={1} />
+    //       {/* <FormInput
+    //         id={`deviation_calib_save`}
+    //         name={`deviation_calib`}
+    //         clickHandler={handleClick_save}
+    //         label='Сохранить'
+    //         type='button' /> */}
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='turn_on_timeout_calib'
+    //     id='turn_on_timeout_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`turn_on_timeout_calib_input`}
+    //         className="settings_itemLabel">
+    //         Время вкл. уст-ва в сеть, сек
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`turn_on_timeout_calib_input`}
+    //         name={`turn_on_timeout_calib`}
+    //         changeHandler={handleChange}
+    //         placeholder='мсек'
+    //         input_value={generalCalibState.turn_on_timeout}
+    //         style={{ margin: '0', maxWidth: '75px' }}
+    //         type="text" />
+    //       {/* <FormInput
+    //         id={`frequency_calib_save`}
+    //         name={`frequency_calib`}
+    //         clickHandler={handleClick_save}
+    //         label='Сохранить'
+    //         type='button' /> */}
+    //     </div>
+    //   </li>
+    // </SettingsBlockWrap>
+  // )
 }
