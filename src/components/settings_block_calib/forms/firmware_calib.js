@@ -59,7 +59,7 @@ function Firmware_calib(props) {
           </label>
         </div>
       </li>
-      <li
+      {/* <li
         key='commutator_current_ver_calib'
         id='commutator_current_ver_calib'
         className="settings_item">
@@ -74,8 +74,8 @@ function Firmware_calib(props) {
             }
           </label>
         </div>
-      </li>
-      <li
+      </li> */}
+      {/* <li
         key='commutator_digital_current_ver_calib'
         id='commutator_digital_current_ver_calib'
         className="settings_item">
@@ -90,7 +90,7 @@ function Firmware_calib(props) {
             }
           </label>
         </div>
-      </li>
+      </li> */}
       {/* 
       <li
         key='firmware_add_version_label'

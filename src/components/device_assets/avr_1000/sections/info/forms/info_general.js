@@ -18,10 +18,10 @@ export default function Info_general(props) {
     serial_number: 'N/A',
     plate_number: 'N/A',
     plate_version: 'N/A',
-    commutaion_serial_number: 'N/A',
-    commutaion_plate_number: 'N/A',
-    commutaion_digital_serial_number: 'N/A',
-    commutaion_digital_plate_number: 'N/A'
+    // commutaion_serial_number: 'N/A',
+    // commutaion_plate_number: 'N/A',
+    // commutaion_digital_serial_number: 'N/A',
+    // commutaion_digital_plate_number: 'N/A'
   })
 
   React.useEffect(() => {
@@ -103,8 +103,8 @@ export default function Info_general(props) {
             type="text_sample" />
         </div>
       </li>
-      <li className="group_divider"></li>
-      <li
+      {/* <li className="group_divider"></li> */}
+      {/* <li
         key='commutaion_serial_number'
         id='commutaion_serial_number'
         className="settings_item">
@@ -173,7 +173,7 @@ export default function Info_general(props) {
             input_value={infoGeneralState.commutaion_digital_plate_number}
             type="text_sample" />
         </div>
-      </li>
+      </li> */}
     </SettingsBlockWrap>
   )
 }

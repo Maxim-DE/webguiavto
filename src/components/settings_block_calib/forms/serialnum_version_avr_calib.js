@@ -194,7 +194,7 @@ function SerialNumVersionCalibSettings_AVR(props) {
             type="button" />
         </div>
       </li>
-      <li
+      {/* <li
         key='commutaion_serial_num_calib'
         id='commutaion_serial_num_calib'
         className="settings_item calib">
@@ -221,7 +221,8 @@ function SerialNumVersionCalibSettings_AVR(props) {
             label='Сохранить'
             type="button" />
         </div>
-      </li><li
+      </li> */}
+      {/* <li
         key='commutaion_serial_num_calib'
         id='commutaion_serial_num_calib'
         className="settings_item calib">
@@ -248,7 +249,8 @@ function SerialNumVersionCalibSettings_AVR(props) {
             label='Сохранить'
             type="button" />
         </div>
-      </li><li
+      </li> */}
+      {/* <li
         key='master_baudrate_calib'
         id='master_baudrate_calib'
         className="settings_item calib">
@@ -280,7 +282,7 @@ function SerialNumVersionCalibSettings_AVR(props) {
             label='Сохранить'
             type="button" />
         </div>
-      </li>
+      </li> */}
     </Settings_block_calib>
   )
 }

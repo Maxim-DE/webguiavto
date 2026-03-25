@@ -104,7 +104,7 @@ export default function Software_version(props) {
             type="text_sample" />
         </div>
       </li>
-      <li
+      {/* <li
         key='commutaion_version'
         id='commutaion_version'
         className="settings_item">
@@ -121,8 +121,8 @@ export default function Software_version(props) {
             input_value={sofrwareVersionState.commutaion_version}
             type="text_sample" />
         </div>
-      </li>
-      <li
+      </li> */}
+      {/* <li
         key='commutaion_digital_version'
         id='commutaion_digital_version'
         className="settings_item">
@@ -139,7 +139,7 @@ export default function Software_version(props) {
             input_value={sofrwareVersionState.commutaion_digital_version}
             type="text_sample" />
         </div>
-      </li>
+      </li> */}
     </SettingsBlockWrap>
   )
 }

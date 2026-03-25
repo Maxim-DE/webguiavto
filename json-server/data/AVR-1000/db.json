@@ -11,8 +11,7 @@
       "time_from_on": "missing",
       "time_failure_on": "missing",
       "time_failure_off": "missing",
-      "memory_type": "W25Q32",
-      "commutaion_serial_number": "XXXXX"
+      "memory_type": "W25Q32"
     },
     "software_version": {
       "os_version": "BlockControl_v2.1.1447",
@@ -41,11 +40,7 @@
       }
     },
     "misc_settings": {
-      "res_device_1": 1,
-      "res_device_2": 1,
-      "res_device_3": 1,
-      "afu_protect_enable": 1,
-      "IsExistBlockAfu": 1
+      "res_device_1": 1
     }
   },
   "network.cgi": {
