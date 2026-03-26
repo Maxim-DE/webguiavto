@@ -111,6 +111,14 @@ function avr_svg_editing(svg, data_svg, auth_access) {
         current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path,
         afu_active_control_mode=store.getState().globalStore.global_data.status_data.status_info?.afu_active_control_mode
 
+
+    const voltage_span = svg.getElementById('voltage_value') 
+  voltage_span.value = "ads"
+  console.log ('voltage_span',voltage_span)
+  voltage_span.children[0].innerHTML = (data_svg['voltage'].volt[0] / data_svg['voltage'].volt[1]).toFixed(1) + " " + data_svg['voltage'].volt[3]
+  console.log (data_svg)
+  // debugger
+        
   const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
   swr_span_list.forEach(swr_span => {

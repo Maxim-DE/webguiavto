@@ -92,7 +92,7 @@
     "status_info": {
       "device_status": 0,
       "time": "2026-03-16 17:18:48",
-      "active_control_mode": 1,
+      "active_control_mode": 1, 
       "current_signal_path": ["111"]  
     },
     "status_logs": [ 
@@ -165,6 +165,14 @@
       }
     },
     "status_graph": {
+      "voltage": {
+        "volt": [
+          301,
+          3,
+          0,
+          "B"
+        ]        
+      },
       "input_1": {
         "status": 0,
         "input_signal_type": "STEREO",

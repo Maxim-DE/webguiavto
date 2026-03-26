@@ -22,8 +22,8 @@ export const AvrDevicesCalib = (props) => {
     device_avaliability: {
       device_0: 1,
       device_1: 1,
-      device_2: 1,
-      device_3: 1,
+      // device_2: 1,
+      // device_3: 1,
     }
   })
 
