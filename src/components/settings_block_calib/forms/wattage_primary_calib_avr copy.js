@@ -10,16 +10,6 @@ import { cloneDeep } from 'lodash';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
 
 function PowerCalibSettings_AVR({ calib_state, adc_store, clickHandler, ...props }) {
-  // const calib_state = useSelector((store) => {
-  //   if (deepKeyExists(store, 'calib_power')) {
-  //     return store.globalStore.global_data.calib_state.data.calib_power
-  //   } else return ''
-  // }),
-  // const adc_store = useSelector((store) => {
-  //     if (deepKeyExists(store.globalStore.global_data.status_data.calib_adc, 'power_calib')) {
-  //       return store.globalStore.global_data.status_data.calib_adc?.power_calib
-  //     } else return ''
-  //   })
 
   const [powerCalibState, setPowerCalibState] = React.useState({
     dac_value: '',
@@ -195,7 +185,7 @@ function PowerCalibSettings_AVR({ calib_state, adc_store, clickHandler, ...props
             type="button" />
         </div>
       </li>
-
+      
       {/* добавляет линию */}
       <li className="group_divider"></li> 
       <li

@@ -114,11 +114,11 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
     const voltage_span = svg.getElementById('voltage_value') 
   voltage_span.value = "ads"
-  console.log ('voltage_span',voltage_span)
+  // console.log ('voltage_span',voltage_span)
   voltage_span.children[0].innerHTML = (data_svg['voltage'].volt[0] / data_svg['voltage'].volt[1]).toFixed(1) + " " + data_svg['voltage'].volt[3]
-  console.log (data_svg)
+  // console.log (data_svg)
   // debugger
-        
+
   const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
   swr_span_list.forEach(swr_span => {
@@ -222,7 +222,7 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       const path_input_descr = path[0],
       required_input = input_blocks_list[path_input_descr]
       if (!required_input) {
-        console.log(`Пропускаем path ${index}: required_input не найден для ${path_input_descr}`);
+        // console.log(`Пропускаем path ${index}: required_input не найден для ${path_input_descr}`);
         return; // Переходим к следующей итерации
       }
       console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')

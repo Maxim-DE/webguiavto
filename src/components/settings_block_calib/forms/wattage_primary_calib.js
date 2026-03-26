@@ -26,7 +26,6 @@ function PowerCalibSettings(props) {
     output_power_threshold: '',
     coupling_coeff: ''
   })
-
   React.useEffect(() => {
     if (!calibPower_store) return
 
@@ -95,8 +94,40 @@ function PowerCalibSettings(props) {
 
   }
 
+  const newLocal = <li
+    key='output_power_threshold_calib'
+    id='output_power_threshold_calib'
+    className="settings_item calib">
+    <div className='item_header'>
+      <label
+        htmlFor={`output_power_threshold_calib_input`}
+        className="settings_itemLabel">
+        Ограничение P<sub>вых</sub> по ЦАП
+      </label>
+    </div>
+    <div className='item_input'>
+      <span className='item_adc_value'>
+        ЦАП: {adcPower_store.output_power_threshold}
+      </span>
+      <FormInput
+        id={`output_power_threshold_calib_input`}
+        name={`output_power_threshold_calib`}
+        changeHandler={handleChange}
+        input_value={powerCalibState.output_power_threshold}
+        style={{ margin: '0', maxWidth: '57px' }}
+        type="text" />
+      <FormInput
+        id={`output_power_threshold_calib_save`}
+        name={`output_power_threshold_calib`}
+        clickHandler={handleClick_save}
+        label='Сохранить'
+        type="button" />
+    </div>
+  </li>;
+
   return (
-    <Settings_block_calib header={`калибровка мощности`}
+    <Settings_block_calib 
+    header={`калибровка мощности`}
                           settings_type={`power_calib`}
                           save_handler={handleClick_save}>
       <li
@@ -188,36 +219,7 @@ function PowerCalibSettings(props) {
           </label>
         </div>
       </li>
-      <li
-        key='output_power_threshold_calib'
-        id='output_power_threshold_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`output_power_threshold_calib_input`}
-            className="settings_itemLabel">
-            Ограничение P<sub>вых</sub> по ЦАП
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            ЦАП: {adcPower_store.output_power_threshold}
-          </span>
-          <FormInput
-            id={`output_power_threshold_calib_input`}
-            name={`output_power_threshold_calib`}
-            changeHandler={handleChange}
-            input_value={powerCalibState.output_power_threshold}
-            style={{ margin: '0', maxWidth: '57px' }}
-            type="text" />
-          <FormInput
-            id={`output_power_threshold_calib_save`}
-            name={`output_power_threshold_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li>
+      {newLocal}
       <li className="group_divider"></li>
       <li
         key='сoupling_coeff_calib'

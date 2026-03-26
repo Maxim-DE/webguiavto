@@ -93,7 +93,7 @@
       "device_status": 0,
       "time": "2026-03-16 17:18:48",
       "active_control_mode": 1, 
-      "current_signal_path": ["111"]  
+      "current_signal_path": ["101"]  
     },
     "status_logs": [ 
       [
@@ -151,7 +151,8 @@
           "output_power": 1000,
           "refected_power": 1700,
           "output_power_threshold": 1000,
-          "coupling_coeff": 2500
+          "coupling_coeff": 2500,
+          "voltage_power": 1500
         },
         "signal_calib": {
           "l_signal": 2500,
@@ -292,7 +293,16 @@
         ]
       }
     },
-            "nav_info": {
+    "nav_info": {
+    "Напряжение сети": [
+      {
+        "name": "Сеть",
+        "value": 220,
+        "status": 1,
+        "adc": 194,
+        "units": "В"
+      }
+    ],
     "Передатчик рез.": [
       {
         "name": "Частота",
@@ -323,7 +333,7 @@
         "status": 0
       }
     ],
-    "Передатчик 1": [
+    "Передатчик Осн.": [
       {
         "name": "Частота",
         "value": 8800,
@@ -432,7 +442,11 @@
       },
       "calib_power": {
         "output_power": [
-          1000,
+          1230,
+          1
+        ],
+        "voltage_power": [
+          9813,
           1
         ],
         "output_power_threshold": [
@@ -498,10 +512,7 @@
           20,
           10
         ],
-        "signal_2_recovery_value": [
-          170,
-          10
-        ],
+
         "recovery_threshold_timeout": 1000
       }
     },

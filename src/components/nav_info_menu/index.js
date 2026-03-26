@@ -37,10 +37,6 @@ export const NavInfoMenu = ({ info_data, ...rest }) => {
       info_rows_ref.current.length = 0
     }
   }, [info_data])
-
-  // for (const key in info_data_mock) {
-  //   info_rows.push(<NavInfoRow name={key} key_info={info_data_mock[key]} />)
-  // }
   
   if (info_data && Object.keys(info_data).length > 0) {
     return (
