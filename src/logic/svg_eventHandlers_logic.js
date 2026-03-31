@@ -72,42 +72,6 @@ function avr_svg_event_editing(svg, clickHandler) {
 
   }
 
-  // const primary_input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]:not(g[id*="input_0"])')
-
-  // if (primary_input_blocks_list) {
-  //   const input_mode_handling_callback = avr_buttons_actions.switch_input_mode
-    
-  //   primary_input_blocks_list.forEach((block, index) => {
-  //     const input_mode_switch = block.querySelector('g[id*="mode_switch"]')
-  
-  //     if (!input_mode_switch.onclick) {
-  //       input_mode_switch.addEventListener("click", function () {
-  //         input_mode_handling_callback(index, clickHandler)
-  //       })
-  //     }
-  //   })
-  // }
-
-  // const test_input_block = svg.querySelector('#layer_1 > g[id*="input_0"]')
-
-  // const test_input_signal_buttons_list = svg.querySelectorAll(`#input_0_control_buttons g[id*="set"]`)
-
-  // if (test_input_block) {
-  //   const test_signal_handling_callback = avr_buttons_actions.switch_test_signal_mode
-
-  //   test_input_signal_buttons_list.forEach(button => {
-  //     const signal_type_regex = /set_\w+_/,
-  //       signal_type_index = button.id.match(signal_type_regex)[0].replace('set_', '').replace("_", "");
-
-  //     if (!button.onclick) {
-  //       button.addEventListener("click", function () {
-  //         test_signal_handling_callback(signal_type_index, clickHandler)
-  //       })
-  //     }
-  //   });
-  // }
-
-
   return svg
 }
 

@@ -142,174 +142,174 @@ export default function Slave_Rds_general_AVR({ calib_state, clickHandler, ...pr
     clickHandler(request_obj);
   }
 
-  return (
-    <SettingsBlockWrap 
-      header={'rds - общее'}
-      settings_type={'rds_general_settings'}
-      section_name={props.section_name}
-      save_handler={handleClick_save}
-      disable_save={!isFormValid} >
-      <li
-        key='tp_ta_settings'
-        id='tp_ta_settings'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`ta_input`}
-            className="settings_itemLabel">
-            Коды TP и TA
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='checkbox_wrap'>
-            TP
-            <FormInput
-              id={`tp_input`}
-              name={`tp`}
-              changeHandler={handleChange}
-              input_value={rdsGeneralState.tp}
-              type="checkbox" />
-          </span>
+  return 
+    // <SettingsBlockWrap 
+    //   header={'rds - общее'}
+    //   settings_type={'rds_general_settings'}
+    //   section_name={props.section_name}
+    //   save_handler={handleClick_save}
+    //   disable_save={!isFormValid} >
+    //   <li
+    //     key='tp_ta_settings'
+    //     id='tp_ta_settings'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`ta_input`}
+    //         className="settings_itemLabel">
+    //         Коды TP и TA
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <span className='checkbox_wrap'>
+    //         TP
+    //         <FormInput
+    //           id={`tp_input`}
+    //           name={`tp`}
+    //           changeHandler={handleChange}
+    //           input_value={rdsGeneralState.tp}
+    //           type="checkbox" />
+    //       </span>
 
-          <span className='checkbox_wrap'>
-            TA
-            <FormInput
-              id={`ta_input`}
-              name={`ta`}
-              changeHandler={handleChange}
-              input_value={rdsGeneralState.ta}
-              type="checkbox" />
-          </span>
-        </div>
-      </li>
-      <li
-        key='pi_settings'
-        id='pi_settings'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`pi_input`}
-            className="settings_itemLabel">
-            PI
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`pi_input`}
-            name={`pi`}
-            changeHandler={handleChange}
-            input_value={rdsGeneralState.pi}
-            style={{ margin: '0', maxWidth: '75px' }}
-            type="text" 
-            validators={[
-              isHexNumber(),
-              isInNumRange('0x0000', '0xFFFF')
-            ]}
-            formValidHandler={validStatus_getter} />
-        </div>
-      </li>
-      <li
-        key='ps_name_settings'
-        id='ps_name_settings'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`ps_name_input`}
-            className="settings_itemLabel">
-            PS Name	
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`ps_name_input`}
-            name={`ps_name`}
-            changeHandler={handleChange}
-            input_value={rdsGeneralState.ps_name}
-            type="text_large_split"
-            validators={[
-              hasCyrillicSymbols()
-            ]}
-            formValidHandler={validStatus_getter} />
-        </div>
-      </li>
-      <li
-        key='trans_genre_calib'
-        id='trans_genre_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`trans_genre_calib_input`}
-            className="settings_itemLabel">
-            Тип передачи
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`input_signal_type_calib_input`}
-            name={`trans_genre`}
-            type='select'
-            input_value={rdsGeneralState.trans_genre}
-            title='Тип передачи'
-            variants={transTypesArray}
-            changeHandler={handleChange} />
-        </div>
-      </li>
-      <li
-        key='trans_type_calib'
-        id='trans_type_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`trans_type_calib_input`}
-            className="settings_itemLabel">
-            Музыка/Речь
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`input_signal_type_calib_input`}
-            name={`trans_type`}
-            type='select'
-            input_value={rdsGeneralState.trans_type}
-            title='Тип передачи'
-            variants={[
-              'Речь',
-              'Музыка'
-            ]}
-            changeHandler={handleChange} />
-        </div>
-      </li>
-      <li
-        key='radio_text_settings'
-        id='radio_text_settings'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`radio_text_input`}
-            className="settings_itemLabel">
-            Radio text
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`radio_text_input`}
-            name={`radio_text`}
-            changeHandler={handleChange}
-            input_value={rdsGeneralState.radio_text}
-            max_length={64}
-            type="text_large"
-            validators={[
-              hasCyrillicSymbols()
-            ]}
-            formValidHandler={validStatus_getter} />
-        </div>
-      </li>
+    //       <span className='checkbox_wrap'>
+    //         TA
+    //         <FormInput
+    //           id={`ta_input`}
+    //           name={`ta`}
+    //           changeHandler={handleChange}
+    //           input_value={rdsGeneralState.ta}
+    //           type="checkbox" />
+    //       </span>
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='pi_settings'
+    //     id='pi_settings'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`pi_input`}
+    //         className="settings_itemLabel">
+    //         PI
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`pi_input`}
+    //         name={`pi`}
+    //         changeHandler={handleChange}
+    //         input_value={rdsGeneralState.pi}
+    //         style={{ margin: '0', maxWidth: '75px' }}
+    //         type="text" 
+    //         validators={[
+    //           isHexNumber(),
+    //           isInNumRange('0x0000', '0xFFFF')
+    //         ]}
+    //         formValidHandler={validStatus_getter} />
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='ps_name_settings'
+    //     id='ps_name_settings'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`ps_name_input`}
+    //         className="settings_itemLabel">
+    //         PS Name	
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`ps_name_input`}
+    //         name={`ps_name`}
+    //         changeHandler={handleChange}
+    //         input_value={rdsGeneralState.ps_name}
+    //         type="text_large_split"
+    //         validators={[
+    //           hasCyrillicSymbols()
+    //         ]}
+    //         formValidHandler={validStatus_getter} />
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='trans_genre_calib'
+    //     id='trans_genre_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`trans_genre_calib_input`}
+    //         className="settings_itemLabel">
+    //         Тип передачи
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`input_signal_type_calib_input`}
+    //         name={`trans_genre`}
+    //         type='select'
+    //         input_value={rdsGeneralState.trans_genre}
+    //         title='Тип передачи'
+    //         variants={transTypesArray}
+    //         changeHandler={handleChange} />
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='trans_type_calib'
+    //     id='trans_type_calib'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`trans_type_calib_input`}
+    //         className="settings_itemLabel">
+    //         Музыка/Речь
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`input_signal_type_calib_input`}
+    //         name={`trans_type`}
+    //         type='select'
+    //         input_value={rdsGeneralState.trans_type}
+    //         title='Тип передачи'
+    //         variants={[
+    //           'Речь',
+    //           'Музыка'
+    //         ]}
+    //         changeHandler={handleChange} />
+    //     </div>
+    //   </li>
+    //   <li
+    //     key='radio_text_settings'
+    //     id='radio_text_settings'
+    //     className="settings_item">
+    //     <div className='item_header'>
+    //       <label
+    //         htmlFor={`radio_text_input`}
+    //         className="settings_itemLabel">
+    //         Radio text
+    //       </label>
+    //     </div>
+    //     <div className='item_input'>
+    //       <FormInput
+    //         id={`radio_text_input`}
+    //         name={`radio_text`}
+    //         changeHandler={handleChange}
+    //         input_value={rdsGeneralState.radio_text}
+    //         max_length={64}
+    //         type="text_large"
+    //         validators={[
+    //           hasCyrillicSymbols()
+    //         ]}
+    //         formValidHandler={validStatus_getter} />
+    //     </div>
+    //   </li>
       {/* <Alt_station_manage
         parent_state={rdsGeneralState}
         state_handler={state_handler}
         update_handler={props.clickHandler}
         save_handler={handleClick_save}
         parent_props={calib_state} /> */}
-    </SettingsBlockWrap>
-  )
+    // </SettingsBlockWrap>
+  // )
 }

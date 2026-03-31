@@ -170,34 +170,54 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type="switch" />
         </div>
       </li>
-
-      {/* Пункт параметры RDS */}
+      {/* Резервирование Мощностии */}
       <li
-        key='rds_enable'
-        id='rds_enable'
+        key='reserve_enable'
+        id='reserve_enable'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`rds_enable_input`}
+            htmlFor={`reserve_enable_input`}
             className="settings_itemLabel">
-            Параметры RDS
+            Резервирование Мощностии
+            {/* Резервирование Мощностии */}
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`rds_enable_input`}
-            name={`rds_enable`}
+            id={`reserve_enable_input`}
+            name={`reserve_enable`}
             changeHandler={(e) => {
               handleChange(e)
               handleClick_save(e)
             }}
-            input_value={generalCalibState.rds_enable}
             type="switch" />
         </div>
       </li>
 
-
-
+      {/* Резервирование звука */}
+      <li
+        key='reserve_sound_enable'
+        id='reserve_sound_enable'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`reserve_sound_enable_input`}
+            className="settings_itemLabel">
+            Резервирование звука
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`reserve_sound_enable_input`}
+            name={`reserve_sound_enable`}
+            changeHandler={(e) => {
+              handleChange(e)
+              handleClick_save(e)
+            }}
+            type="switch" />
+        </div>
+      </li>
 
     </SettingsBlockWrap>
   )

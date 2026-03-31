@@ -111,14 +111,9 @@ function avr_svg_editing(svg, data_svg, auth_access) {
         current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path,
         afu_active_control_mode=store.getState().globalStore.global_data.status_data.status_info?.afu_active_control_mode
 
-
-    const voltage_span = svg.getElementById('voltage_value') 
-  voltage_span.value = "ads"
-  // console.log ('voltage_span',voltage_span)
-  voltage_span.children[0].innerHTML = (data_svg['voltage'].volt[0] / data_svg['voltage'].volt[1]).toFixed(1) + " " + data_svg['voltage'].volt[3]
-  // console.log (data_svg)
-  // debugger
-
+  const voltage_span = svg.getElementById('voltage_value') 
+  voltage_span.children[0].innerHTML = (data_svg['voltage'].volt[0] / data_svg['voltage'].volt[1]).toFixed(1) + " " + 
+                                     data_svg['voltage'].volt[3];
   const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
 
   swr_span_list.forEach(swr_span => {
@@ -170,11 +165,7 @@ function avr_svg_editing(svg, data_svg, auth_access) {
         //   }
         // }         
       }
-  
- 
-    
 
-      
     });
   }
 
@@ -213,7 +204,6 @@ function avr_svg_editing(svg, data_svg, auth_access) {
           "#F49F0A"
         ]
 
-
   if (Array.isArray(current_signal_path)) {
     current_signal_path.forEach((path, index) => {
       handlePathDisplay(signal_path_layer, path, index)
@@ -225,12 +215,12 @@ function avr_svg_editing(svg, data_svg, auth_access) {
         // console.log(`Пропускаем path ${index}: required_input не найден для ${path_input_descr}`);
         return; // Переходим к следующей итерации
       }
-      console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')
-      console.log(path_input_descr)
-      console.log('//////////////////////////////////////////////')
-      console.log(required_input)
-      console.log("----------------------------------------------")
-      console.log(input_blocks_list)
+      // console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')
+      // console.log(path_input_descr)
+      // console.log('//////////////////////////////////////////////')
+      // console.log(required_input)
+      // console.log("----------------------------------------------")
+      // console.log(input_blocks_list)
       const input_path_display_list = required_input.querySelectorAll('path[id*="path_display"]')
 
       input_path_display_list.forEach(path => {
@@ -242,13 +232,11 @@ function avr_svg_editing(svg, data_svg, auth_access) {
   }
 
   const primary_input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]:not(g[id*="input_0"])')
-
   primary_input_blocks_list.forEach((block, index) => {
     const signal_primary_group_list = block.querySelectorAll('g[id*="primary_secondary_info"] > g[id*="group"]'),
           signal_res_group_list = block.querySelectorAll('g[id*="res_secondary_info"] > g[id*="group"]'),
           signal_type = data_svg[`input_${index+1}`]?.input_signal_type,
           res_signal_type = data_svg[`input_${index+1}`]?.input_res_signal_type
-
     signal_primary_group_list.forEach(group => {
       group.style = "visibility: hidden"
     })
@@ -365,137 +353,7 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     }
 
   })
-// удаление не помогло с блоком инпут 1 
-  // const test_input_block = svg.querySelector('#layer_1 > g[id*="input_0"]')
-        
-  // if (test_input_block) {
-  //   const test_input_signal_buttons_list = svg.querySelectorAll(`#input_0_control_buttons g[id*="set"]`),
-  //         test_input_availability = data_svg[`input_0`]?.is_available
-
-
-  //   if (test_input_block) {
-  //     const signal_type = data_svg[`input_0`]?.input_signal_type
-
-  //     test_input_signal_buttons_list.forEach(button => {
-  //       const signal_type_regex = /set_\w+_/,
-  //             signal_type_index = button.id.match(signal_type_regex)[0].replace('set_', '').replace("_", "")
-
-  //       switch (signal_type) {
-  //         case "L":
-  //           if (button.id.includes('l')) {
-  //             button.classList.add("active_ex_conf");
-  //           } else {
-  //             button.classList.remove("active_ex_conf");
-  //           }
-
-  //           break;
-          
-  //         case "R":
-  //           if (button.id.includes('r')) {
-  //             button.classList.add("active_ex_conf");
-  //           } else {
-  //             button.classList.remove("active_ex_conf");
-  //           }
-
-  //           break;
-          
-  //         case "STEREO":
-  //           if (button.id.includes('stereo')) {
-  //             button.classList.add("active_ex_conf");
-  //           } else {
-  //             button.classList.remove("active_ex_conf");
-  //           }
-
-  //           break;
-
-  //         case "MPX":
-  //           if (button.id.includes('mpx')) {
-  //             button.classList.add("active_ex_conf");
-  //           } else {
-  //             button.classList.remove("active_ex_conf");
-  //           }
-
-  //           break;
-
-  //         case "AES":
-  //           if (button.id.includes('aes')) {
-  //             button.classList.add("active_ex_conf");
-  //           } else {
-  //             button.classList.remove("active_ex_conf");
-  //           }
-
-  //           break;
-
-  //         default:
-  //           break;
-  //       }
-
-  //       if (active_control_mode == 0) {
-  //         button.style.display = 'none'
-  //       } else {
-  //         button.style.display = ''
-  //       }
-  //     })
-  //   }
-
-  //   if (test_input_availability) {
-  //     test_input_block.style = "visibility: visibility"
-  //   } else {
-  //     test_input_block.style = "visibility: visibility"
-  //   }
-  // }
-
-  // const test_output_block = svg.querySelector('#layer_1 > g[id*="output_0"]'),
-  //       test_output_availability = data_svg[`output_0`]?.is_available
-
-  // if (test_output_block) {
-  //   if (test_output_availability) {
-  //     test_output_block.style = "visibility: visibility"
-  //   } else {
-  //     test_output_block.style = "visibility: hidden"
-  //   }
-  // }
-
-
-
-  // if (amp_1_buttons_list) {
-  //   amp_1_buttons_list.forEach((button) => {
-  //     if (auth_access.calib == 0) {
-  //       button.classList.add("disabled_svg_button");
-  //     } else {
-  //       button.classList.remove("disabled_svg_button");
-  //     }
-  //   })
-  // }
-
-  // if (amp_2_buttons_list) {
-  //   amp_2_buttons_list.forEach((button) => {
-  //     if (auth_access.calib == 0) {
-  //       button.classList.add("disabled_svg_button");
-  //     } else {
-  //       button.classList.remove("disabled_svg_button");
-  //     }
-  //   })
-  // }
-
-  // exiter_buttons_list.forEach((button) => {
-  //   if (auth_access.settings == 0) {
-  //     button.classList.add("disabled_svg_button");
-  //   } else {
-  //     button.classList.remove("disabled_svg_button");
-  //   }
-  // })
-
-  // const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
-  //       exiter_status = data_svg?.exiter?.status
-
-  // if (exiter_status == 1) {
-  //   exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[0]
-  // } else {
-  //   exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
-  // }
-
-
+  
   return svg
 }
 
