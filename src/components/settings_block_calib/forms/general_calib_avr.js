@@ -107,19 +107,6 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
 
     clickHandler(request_obj);
   }
-
-  // const handleReboot_reserved = () => {
-  //   const request_obj = {
-  //     address: 'reboot_reserved_device.cgi',
-  //     reducer: coreReducers.reboot_device,
-  //     notifications: {
-  //       good: 'default',
-  //       bad: 'default'
-  //     },
-  //   }
-
-  //   clickHandler(request_obj);
-  // }
   
   const handleReboot_reserved = () => {
     const request_obj = {
@@ -138,46 +125,6 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
     settings_type={`general_calib`}>
       {auth_store.auth_access.calib_extend &&
       <>
-        {/* <li
-          key='input_test_pic_enable_calib'
-          id='input_test_pic_enable_calib'
-          className="settings_item">
-          <div className='item_header'>
-            <label
-              htmlFor={`input_test_pic_enable_calib_input`}
-              className="settings_itemLabel">
-              Блок ВХОД_ТЕСТ на картинке
-            </label>
-          </div>
-          <div className='item_input'>
-            <FormInput
-              id={`input_test_pic_enable_calib_input`}
-              name={`input_test_pic_enable_calib`}
-              changeHandler={handleChange_save}
-              input_value={generalCalibState.input_test_pic_enable}
-              type="switch" />
-          </div>
-        </li> */}
-        {/* <li
-          key='output_test_pic_enable_calib'
-          id='output_test_pic_enable_calib'
-          className="settings_item">
-          <div className='item_header'>
-            <label
-              htmlFor={`output_test_pic_enable_calib_input`}
-              className="settings_itemLabel">
-              Блок АФУ_0 на картинке
-            </label>
-          </div>
-          <div className='item_input'>
-            <FormInput
-              id={`output_test_pic_enable_calib_input`}
-              name={`output_test_pic_enable_calib`}
-              changeHandler={handleChange_save}
-              input_value={generalCalibState.output_test_pic_enable}
-              type="switch" />
-          </div>
-        </li> */}
         {/* Авторизация вкл/выкл */}
         <li
           key='authorization_calib'
@@ -199,7 +146,6 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
               type="switch" />
           </div>
         </li>   
-
       </>
       }
 

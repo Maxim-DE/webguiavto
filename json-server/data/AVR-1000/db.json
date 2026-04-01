@@ -408,8 +408,10 @@
       },
       "slave_add_general": {
         "radio_label": "Радио",
-        "rds_enable": 0,
-        "scheduler_enable": 1
+        "scheduler_enable": 1,
+        "reserve_enable": 1,
+        "reserve_sound_enable": 1
+
       },
       "slave_scheduler": {    
           "type": 1,
@@ -544,8 +546,8 @@
       "master_main_address": 4,
       "master_baudrate": 3,
       "master_req_period": 500,
-      "master_timeout": 50
-      
+      "master_timeout": 50,
+      "modbus_enable": 0
 
     },
     "calib_conf_file": {

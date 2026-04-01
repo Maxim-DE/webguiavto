@@ -50,12 +50,10 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   }, [calib_state])
 
   React.useEffect(() => {
-    // console.log('rds_enable changed:', generalCalibState.rds_enable);
     props.rdsHandler(generalCalibState.rds_enable);
   }, [generalCalibState.rds_enable]);
 
   React.useEffect(() => {
-    // console.log('scheduler_enable changed:', generalCalibState.scheduler_enable);
     props.schedulerHandler?.(generalCalibState.scheduler_enable);
   }, [generalCalibState.scheduler_enable]);
 
@@ -75,8 +73,6 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
 
     const target = event.currentTarget,
           name = target.name.replace('_calib', '')
-
-    // const target_value = target.type === 'checkbox' ? Number(target.checked) : generalCalibState[name]
 
     const state_diff = target.type === 'checkbox' ? { [name]: generalCalibState[name] } : 
                                                           diff(state_prev_copy.current, generalCalibState),
@@ -155,7 +151,6 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             htmlFor={`scheduler_enable_input`}
             className="settings_itemLabel">
             Работа по расписанию
-            {/* Расписание работы */}
           </label>
         </div>
         <div className='item_input'>
@@ -170,7 +165,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type="switch" />
         </div>
       </li>
-      {/* Резервирование Мощностии */}
+      
       <li
         key='reserve_enable'
         id='reserve_enable'
@@ -179,8 +174,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
           <label
             htmlFor={`reserve_enable_input`}
             className="settings_itemLabel">
-            Резервирование Мощностии
-            {/* Резервирование Мощностии */}
+            Резервирование мощностии
           </label>
         </div>
         <div className='item_input'>
@@ -191,7 +185,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
               handleChange(e)
               handleClick_save(e)
             }}
-            type="switch" />
+            type="switch"
+            input_value={generalCalibState.reserve_enable} />
         </div>
       </li>
 
@@ -215,7 +210,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
               handleChange(e)
               handleClick_save(e)
             }}
-            type="switch" />
+            type="switch"
+            input_value={generalCalibState.reserve_sound_enable} />
         </div>
       </li>
 
