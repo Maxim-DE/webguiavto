@@ -1,272 +1,337 @@
-<svg width="1042" height="615" viewBox="0 0 1042 615" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="989" height="510" viewBox="0 0 989 510" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="avr_1+1">
 <g id="layer_2">
-<path id="path4139" d="M406.5 346.124H230.5" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_2" d="M675.5 348.75H736.5V226.009H824.5" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_3" d="M748.5 226.009L736.5 222.05L736.5 89.4099L674.5 88.75" stroke="#B5C6CF" stroke-width="2" stroke-dasharray="9.11 9.11"/>
-<path id="path4139_4" d="M332.5 347.431L344.5 340.832L344.5 89.4104L406.5 88.7505" stroke="#B5C6CF" stroke-width="2" stroke-dasharray="9.11 9.11"/>
+<path id="path4139" d="M359.42 325.75H230.5" stroke="#B5C6CF" stroke-width="2"/>
+<path id="path4139_2" d="M629.5 325.75L695.5 325.75V204.25H760.5" stroke="#B5C6CF" stroke-width="2"/>
+<path id="path4139_3" d="M629.5 82.75L695.5 82.75L695.5 203.75" stroke="#B5C6CF" stroke-width="2" stroke-dasharray="9.11 9.11"/>
+<path id="path4139_4" d="M359.5 82.75L294.5 82.75L294.5 325.75" stroke="#B5C6CF" stroke-width="2" stroke-dasharray="9.11 9.11"/>
+</g>
+<g id="layer_3">
+<g id="signal_path_4">
+<path id="path4139_5" d="M359.5 82.75L294.5 82.75L294.5 215.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="path4139_6" d="M629.5 82.7499L695.5 82.7499L695.5 204.25L760.5 204.25" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="signal_path_3">
+<path id="path4139_7" d="M294.5 215.75L294.5 325.75L359.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="path4139_8" d="M760 204.25L695.5 204.25L695.5 325.75L629.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="signal_path_2">
+<path id="path4139_9" d="M294.5 325.75L294.5 82.75L359.5 82.7503" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="path4139_10" d="M629.5 82.75L695.5 82.75L695.5 204.25L760.5 204.25" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="signal_path_1">
+<path id="path4139_11" d="M294.5 325.75L359.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="path4139_12" d="M760 204.25L695.5 204.25L695.5 325.75L629.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 </g>
 <g id="layer_1">
-<g id="exiter_1">
-<g id="rect8952-3" filter="url(#filter0_d_0_1)">
-<path d="M677.5 275.75H403.5C396.873 275.75 391.5 281.123 391.5 287.75V447.75C391.5 454.377 396.873 459.75 403.5 459.75H677.5C684.127 459.75 689.5 454.377 689.5 447.75V287.75C689.5 281.123 684.127 275.75 677.5 275.75Z" fill="#F7F7F7"/>
-<path d="M677.5 275.75H403.5C396.873 275.75 391.5 281.123 391.5 287.75V447.75C391.5 454.377 396.873 459.75 403.5 459.75H677.5C684.127 459.75 689.5 454.377 689.5 447.75V287.75C689.5 281.123 684.127 275.75 677.5 275.75Z" stroke="#C4C4C4"/>
-</g>
-<g id="secondary_info">
-<g id="g8994">
-<text id="exiter_1_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="653.81" y="380.725">--</tspan></text>
-<text id="text8992" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="413.5" y="381.023">&#x422;&#x438;&#x43f; &#x441;&#x438;&#x433;&#x43d;&#x430;&#x43b;&#x430;</tspan></text>
-</g>
-<g id="g8994_2">
-<text id="exiter_1_freq_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="653.81" y="402.093">--</tspan></text>
-<text id="text8992_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="413.5" y="402.391">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
-</g>
-<g id="g8994_3">
-<text id="exiter_1_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="653.81" y="423.461">--</tspan></text>
-<text id="text8992_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="413.5" y="423.76">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
-</g>
-<g id="g8994_4">
-<text id="exiter_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="653.81" y="444.829">--</tspan></text>
-<text id="text8992_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="413.5" y="445.127">&#x41a;&#x421;&#x412;</tspan></text>
-</g>
+<g id="output_1">
+<g id="rect8952" filter="url(#filter0_d_0_1)">
+<path d="M956.5 150.75L757.5 150.75C750.873 150.75 745.5 156.123 745.5 162.75V212.75C745.5 219.377 750.873 224.75 757.5 224.75H956.5C963.127 224.75 968.5 219.377 968.5 212.75V162.75C968.5 156.123 963.127 150.75 956.5 150.75Z" fill="#F7F7F7"/>
+<path d="M956.5 150.75L757.5 150.75C750.873 150.75 745.5 156.123 745.5 162.75V212.75C745.5 219.377 750.873 224.75 757.5 224.75H956.5C963.127 224.75 968.5 219.377 968.5 212.75V162.75C968.5 156.123 963.127 150.75 956.5 150.75Z" stroke="#C4C4C4" stroke-linecap="round"/>
 </g>
 <g id="header">
-<path id="exiter_1_device_icon" d="M414.17 286.688H402.17C401.618 286.688 401.17 287.138 401.17 287.693V299.765C401.17 300.321 401.618 300.771 402.17 300.771H414.17C414.722 300.771 415.17 300.321 415.17 299.765V287.693C415.17 287.138 414.722 286.688 414.17 286.688Z" fill="#7ADC47"/>
-<text id="exiter_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="424.617" y="298.695">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x41e;&#x421;&#x41d;.</tspan></text>
-<text id="exiter_1_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="424.5" y="320.719">--</tspan></text>
-<g id="exiter_1_power_button" clip-path="url(#clip0_0_1)">
-<path id="power_btn_cover" d="M606.5 301.834C610.366 301.834 613.5 298.681 613.5 294.792C613.5 290.903 610.366 287.75 606.5 287.75C602.634 287.75 599.5 290.903 599.5 294.792C599.5 298.681 602.634 301.834 606.5 301.834Z" fill="#7ADC47"/>
-<path id="Vector" d="M609.16 290.923L608.314 291.769C609.323 292.382 610 293.484 610 294.75C610 295.678 609.631 296.568 608.975 297.225C608.319 297.881 607.428 298.25 606.5 298.25C605.572 298.25 604.682 297.881 604.025 297.225C603.369 296.568 603 295.678 603 294.75C603 293.484 603.677 292.382 604.68 291.763L603.84 290.923C602.627 291.763 601.833 293.163 601.833 294.75C601.833 295.988 602.325 297.175 603.2 298.05C604.076 298.925 605.262 299.417 606.5 299.417C607.738 299.417 608.925 298.925 609.8 298.05C610.675 297.175 611.167 295.988 611.167 294.75C611.167 293.163 610.373 291.763 609.16 290.923ZM607.083 289.5H605.917V295.333H607.083" fill="black"/>
+<path id="output_1_device_icon" d="M763 175.25C767.142 175.25 770.5 171.892 770.5 167.75C770.5 163.608 767.142 160.25 763 160.25C758.858 160.25 755.5 163.608 755.5 167.75C755.5 171.892 758.858 175.25 763 175.25Z" fill="#7ADC47"/>
+<text id="output_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="779.5" y="175.042">&#x430;&#x444;&#x443;</tspan></text>
+</g>
+<g id="g8982">
+<g id="g8970">
+<path id="circle8962" d="M760.5 208.75C762.985 208.75 765 206.735 765 204.25C765 201.765 762.985 199.75 760.5 199.75C758.015 199.75 756 201.765 756 204.25C756 206.735 758.015 208.75 760.5 208.75Z" fill="#626879"/>
 </g>
 </g>
-<g id="primary_info_output">
-<g id="g10081-4">
-<path id="circle9062-2" d="M675.179 352.245C677.664 352.245 679.679 350.218 679.679 347.718C679.679 345.218 677.664 343.191 675.179 343.191C672.694 343.191 670.679 345.218 670.679 347.718C670.679 350.218 672.694 352.245 675.179 352.245Z" fill="#626879"/>
-<text id="exiter_1_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18.6667" letter-spacing="0em"><tspan x="653.284" y="352.356">--</tspan></text>
+<g id="secondary_info">
+<g id="g9004">
+<text id="output_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="933.919" y="210.174">--</tspan></text>
+<text id="text9002" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="790.5" y="209.719">&#x41a;&#x421;&#x412;</tspan></text>
 </g>
 </g>
-<g id="primary_info_input">
-<path id="circle8962" d="M406 351.519C408.485 351.519 410.5 349.493 410.5 346.993C410.5 344.492 408.485 342.466 406 342.466C403.515 342.466 401.5 344.492 401.5 346.993C401.5 349.493 403.515 351.519 406 351.519Z" fill="#626879"/>
-<text id="exiter_1_input_signal_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18.6667" letter-spacing="0em"><tspan x="417.5" y="351.63">--</tspan></text>
+</g>
+<g id="exiter_1">
+<g id="rect8952-3" filter="url(#filter1_d_0_1)">
+<path d="M632.5 258.75H356.5C349.873 258.75 344.5 264.123 344.5 270.75V471.75C344.5 478.377 349.873 483.75 356.5 483.75H632.5C639.127 483.75 644.5 478.377 644.5 471.75V270.75C644.5 264.123 639.127 258.75 632.5 258.75Z" fill="#F7F7F7"/>
+<path d="M632.5 258.75H356.5C349.873 258.75 344.5 264.123 344.5 270.75V471.75C344.5 478.377 349.873 483.75 356.5 483.75H632.5C639.127 483.75 644.5 478.377 644.5 471.75V270.75C644.5 264.123 639.127 258.75 632.5 258.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+<g id="secondary_info_2">
+<g id="g8994">
+<text id="exiter_1_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="411.674">--</tspan></text>
+<text id="text8992" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="411.951">&#x422;&#x438;&#x43f; &#x441;&#x438;&#x433;&#x43d;&#x430;&#x43b;&#x430;</tspan></text>
+</g>
+<g id="g8994_2">
+<text id="exiter_1_freq_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="432.674">--</tspan></text>
+<text id="text8992_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="432.951">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
+</g>
+<g id="g8994_3">
+<text id="exiter_1_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="453.674">--</tspan></text>
+<text id="text8992_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="453.951">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
+</g>
+<g id="g8994_4">
+<text id="exiter_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="474.674">--</tspan></text>
+<text id="text8992_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="474.95">&#x41a;&#x421;&#x412;</tspan></text>
+</g>
 </g>
 <g id="path8984">
-<path d="M417.2 360.277L663.5 359.729L417.2 360.277Z" fill="#C4C4C4"/>
-<path d="M417.2 360.277L663.5 359.729" stroke="#C4C4C4"/>
+<path d="M359.5 393.75L629.5 393.75L359.5 393.75Z" fill="#C4C4C4"/>
+<path d="M359.5 393.75L629.5 393.75" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+<g id="exiter_1_control_buttons">
+<g id="Frame 45">
+<rect x="359.5" y="343.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
+<rect x="359.5" y="343.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
+<text id="text8992_5" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="388.734" y="386.535">&#x413;&#x440;&#x443;&#x431;&#x43e;</tspan></text>
+<g id="exiter_1_set_ex1_button">
+<rect id="Rectangle 21" x="403.5" y="369.25" width="40" height="20" rx="10" transform="rotate(180 403.5 369.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38" d="M383.5 365.25V358.75V352.25M383.5 352.25L378.5 358.75M383.5 352.25L388.5 358.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="exiter_1_set_ex2_button">
+<rect id="Rectangle 21_2" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 450.5 349.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_2" d="M430.5 352.25V358.75V365.25M430.5 365.25L425.5 358.75M430.5 365.25L435.5 358.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
-<g id="input_1">
-<path id="path4139_5" opacity="0.7" d="M280.5 346.041L280.5 235.01L230.5 235.01" stroke="#B5C6CF" stroke-width="2" stroke-dasharray="9.11 9.11"/>
-<path id="input_1_primary_path_display" d="M231.5 346.041H280.5" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="input_1_reserve_path_display" d="M231.5 235.512H280.5V345.538" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="input_1_reserve">
-<g id="rect8952-3_2" filter="url(#filter1_d_0_1)">
-<path d="M233.5 181.75H33.5C26.8726 181.75 21.5 187.123 21.5 193.75V265.75C21.5 272.377 26.8726 277.75 33.5 277.75H233.5C240.127 277.75 245.5 272.377 245.5 265.75V193.75C245.5 187.123 240.127 181.75 233.5 181.75Z" fill="#F7F7F7"/>
-<path d="M233.5 181.75H33.5C26.8726 181.75 21.5 187.123 21.5 193.75V265.75C21.5 272.377 26.8726 277.75 33.5 277.75H233.5C240.127 277.75 245.5 272.377 245.5 265.75V193.75C245.5 187.123 240.127 181.75 233.5 181.75Z" stroke="#C4C4C4" stroke-linecap="round"/>
+<g id="Frame 43">
+<rect x="470.5" y="343.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
+<rect x="470.5" y="343.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
+<text id="text8992_6" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="493.11" y="386.535">&#x41f;&#x43b;&#x430;&#x432;&#x43d;&#x43e;</tspan></text>
+<g id="exiter_1_set_ex3_button">
+<rect id="Rectangle 21_3" x="514.5" y="369.25" width="40" height="20" rx="10" transform="rotate(180 514.5 369.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_3" d="M494.5 365.25V358.75V352.25M494.5 352.25L489.5 358.75M494.5 352.25L499.5 358.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<g id="res_secondary_info">
-<g id="input_1_res_l_group">
-<text id="input_1_res_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.591" y="241.674">--</tspan></text>
-<text id="text8992_5" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="241.973">L</tspan></text>
+<g id="exiter_1_set_ex4_button">
+<rect id="Rectangle 21_4" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 561.5 349.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_4" d="M541.5 352.25V358.75V365.25M541.5 365.25L536.5 358.75M541.5 365.25L546.5 358.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<g id="input_1_res_r_group">
-<text id="input_1_res_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.729" y="263.929">--</tspan></text>
-<text id="text9002" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="264.228">R</tspan></text>
 </g>
-<g id="input_1_res_mpx_group">
-<text id="input_1_res_mpx_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.591" y="241.674">--</tspan></text>
-<text id="text9002_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="241.973">&#x41a;&#x421;&#x421;</tspan></text>
+<g id="Frame 43_2">
+<rect x="582" y="343.75" width="47.5" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
+<rect x="582" y="343.75" width="47.5" height="30" rx="13" stroke="#E3E3E3"/>
+<text id="text8992_7" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="577.479" y="386.535">&#x41f;&#x440;&#x438;&#x43d;&#x44f;&#x442;&#x44c;</tspan></text>
+<g id="exiter_1_set_ex5_button">
+<rect id="Rectangle 21_5" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 625.5 348.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_5" d="M612.5 352.75L603.834 365.75L599.5 361.417" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
-<g id="input_1_res_aes_group">
-<text id="input_1_res_aes_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.591" y="241.674">--</tspan></text>
-<text id="AES" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="241.973">AES</tspan></text>
+</g>
+<g id="path8984_2">
+<path d="M462.5 386.75V343.75V386.75Z" fill="#C4C4C4"/>
+<path d="M462.5 386.75V343.75" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+<g id="path8984_3">
+<path d="M573.75 386.75V343.75V386.75Z" fill="#C4C4C4"/>
+<path d="M573.75 386.75V343.75" stroke="#C4C4C4" stroke-width="0.809128"/>
 </g>
 </g>
 <g id="header_2">
-<path id="input_1_device_icon" d="M44.1699 193.187H32.1699C31.6176 193.187 31.1699 193.638 31.1699 194.193V206.265C31.1699 206.821 31.6176 207.271 32.1699 207.271H44.1699C44.7222 207.271 45.1699 206.821 45.1699 206.265V194.193C45.1699 193.638 44.7222 193.187 44.1699 193.187Z" fill="#7ADC47"/>
-<text id="input_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="54.6172" y="205.195">&#x440;&#x435;&#x437;&#x435;&#x440;&#x432; (&#x41f;&#x420;&#x414;-1&#x420;)</tspan></text>
+<path id="exiter_1_device_icon" d="M368.428 268.75H355.571C354.979 268.75 354.5 269.23 354.5 269.821V282.679C354.5 283.27 354.979 283.75 355.571 283.75H368.428C369.02 283.75 369.5 283.27 369.5 282.679V269.821C369.5 269.23 369.02 268.75 368.428 268.75Z" fill="#7ADC47"/>
+<text id="exiter_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="376.648" y="283.428">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x41e;&#x421;&#x41d;.</tspan></text>
+<text id="exiter_1_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="377.5" y="304.719">--</tspan></text>
+<g id="exiter_1_power_button" clip-path="url(#clip0_0_1)">
+<path id="power_btn_cover" d="M552 283.75C556.142 283.75 559.5 280.392 559.5 276.25C559.5 272.108 556.142 268.75 552 268.75C547.858 268.75 544.5 272.108 544.5 276.25C544.5 280.392 547.858 283.75 552 283.75Z" fill="#7ADC47"/>
+<path id="Vector" d="M555.35 272.275L554.444 273.181C555.525 273.838 556.25 275.019 556.25 276.375C556.25 277.37 555.855 278.323 555.151 279.027C554.448 279.73 553.494 280.125 552.5 280.125C551.505 280.125 550.551 279.73 549.848 279.027C549.145 278.323 548.75 277.37 548.75 276.375C548.75 275.019 549.475 273.838 550.55 273.175L549.65 272.275C548.35 273.175 547.5 274.675 547.5 276.375C547.5 277.701 548.027 278.973 548.964 279.911C549.902 280.848 551.174 281.375 552.5 281.375C553.826 281.375 555.098 280.848 556.035 279.911C556.973 278.973 557.5 277.701 557.5 276.375C557.5 274.675 556.65 273.175 555.35 272.275ZM553.125 270.75H551.875V277H553.125" fill="black"/>
+</g>
+</g>
+<g id="path8984_4">
+<path d="M359.5 337.351L629.499 336.75L359.5 337.351Z" fill="#C4C4C4"/>
+<path d="M359.5 337.351L629.499 336.75" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+<g id="primary_info_output">
+<g id="g10081-4">
+<path id="circle9062-2" d="M629.5 330.75C632.261 330.75 634.5 328.511 634.5 325.75C634.5 322.989 632.261 320.75 629.5 320.75C626.739 320.75 624.5 322.989 624.5 325.75C624.5 328.511 626.739 330.75 629.5 330.75Z" fill="#626879"/>
+<text id="exiter_1_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="608.445" y="332.086">--</tspan></text>
+</g>
+</g>
+<g id="primary_info_input">
+<path id="circle8962_2" d="M359.5 330.75C362.261 330.75 364.5 328.511 364.5 325.75C364.5 322.989 362.261 320.75 359.5 320.75C356.739 320.75 354.5 322.989 354.5 325.75C354.5 328.511 356.739 330.75 359.5 330.75Z" fill="#626879"/>
+<text id="exiter_1_input_signal_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="369.5" y="332.086">--</tspan></text>
+</g>
+</g>
+<g id="exiter_0">
+<g id="rect8952-3_2" filter="url(#filter2_d_0_1)">
+<path d="M632.5 15.75H356.5C349.873 15.75 344.5 21.1226 344.5 27.75V228.75C344.5 235.377 349.873 240.75 356.5 240.75H632.5C639.127 240.75 644.5 235.377 644.5 228.75V27.75C644.5 21.1226 639.127 15.75 632.5 15.75Z" fill="#F7F7F7"/>
+<path d="M632.5 15.75H356.5C349.873 15.75 344.5 21.1226 344.5 27.75V228.75C344.5 235.377 349.873 240.75 356.5 240.75H632.5C639.127 240.75 644.5 235.377 644.5 228.75V27.75C644.5 21.1226 639.127 15.75 632.5 15.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="11 11"/>
+</g>
+<g id="secondary_info_3">
+<g id="g8994_5">
+<text id="exiter_0_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="168.674">--</tspan></text>
+<text id="text8992_8" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="168.951">&#x422;&#x438;&#x43f; &#x441;&#x438;&#x433;&#x43d;&#x430;&#x43b;&#x430;</tspan></text>
+</g>
+<g id="g8994_6">
+<text id="exiter_0_freq_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="189.674">--</tspan></text>
+<text id="text8992_9" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="189.951">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
+</g>
+<g id="g8994_7">
+<text id="exiter_0_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="210.674">--</tspan></text>
+<text id="text8992_10" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="210.951">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
+</g>
+<g id="g8994_8">
+<text id="exiter_0_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="231.674">--</tspan></text>
+<text id="text8992_11" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="231.95">&#x41a;&#x421;&#x412;</tspan></text>
+</g>
+</g>
+<g id="path8984_5">
+<path d="M359.5 150.75L629.5 150.75L359.5 150.75Z" fill="#C4C4C4"/>
+<path d="M359.5 150.75L629.5 150.75" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+<g id="exiter_0_control_buttons">
+<g id="Frame 45_2">
+<rect x="359.5" y="100.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
+<rect x="359.5" y="100.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
+<text id="text8992_12" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="388.734" y="143.535">&#x413;&#x440;&#x443;&#x431;&#x43e;</tspan></text>
+<g id="exiter_0_set_ex1_button">
+<rect id="Rectangle 21_6" x="403.5" y="126.25" width="40" height="20" rx="10" transform="rotate(180 403.5 126.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_6" d="M383.5 122.25V115.75V109.25M383.5 109.25L378.5 115.75M383.5 109.25L388.5 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="exiter_0_set_ex2_button">
+<rect id="Rectangle 21_7" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 450.5 106.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_7" d="M430.5 109.25V115.75V122.25M430.5 122.25L425.5 115.75M430.5 122.25L435.5 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<g id="Frame 43_3">
+<rect x="470.5" y="100.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
+<rect x="470.5" y="100.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
+<text id="text8992_13" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="493.11" y="143.535">&#x41f;&#x43b;&#x430;&#x432;&#x43d;&#x43e;</tspan></text>
+<g id="exiter_0_set_ex3_button">
+<rect id="Rectangle 21_8" x="514.5" y="126.25" width="40" height="20" rx="10" transform="rotate(180 514.5 126.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_8" d="M494.5 122.25V115.75V109.25M494.5 109.25L489.5 115.75M494.5 109.25L499.5 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="exiter_0_set_ex4_button">
+<rect id="Rectangle 21_9" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 561.5 106.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_9" d="M541.5 109.25V115.75V122.25M541.5 122.25L536.5 115.75M541.5 122.25L546.5 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<g id="Frame 43_4">
+<rect x="582" y="100.75" width="47.5" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
+<rect x="582" y="100.75" width="47.5" height="30" rx="13" stroke="#E3E3E3"/>
+<text id="text8992_14" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="577.479" y="143.535">&#x41f;&#x440;&#x438;&#x43d;&#x44f;&#x442;&#x44c;</tspan></text>
+<g id="exiter_0_set_ex5_button">
+<rect id="Rectangle 21_10" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 625.5 105.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector 38_10" d="M612.5 109.75L603.834 122.75L599.5 118.417" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<g id="path8984_6">
+<path d="M462.5 143.75V100.75V143.75Z" fill="#C4C4C4"/>
+<path d="M462.5 143.75V100.75" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+<g id="path8984_7">
+<path d="M573.75 143.75V100.75V143.75Z" fill="#C4C4C4"/>
+<path d="M573.75 143.75V100.75" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+</g>
+<g id="header_3">
+<path id="exiter_0_device_icon" d="M368.428 25.75H355.571C354.979 25.75 354.5 26.2297 354.5 26.8214V39.6786C354.5 40.2703 354.979 40.75 355.571 40.75H368.428C369.02 40.75 369.5 40.2703 369.5 39.6786V26.8214C369.5 26.2297 369.02 25.75 368.428 25.75Z" fill="#7ADC47"/>
+<text id="exiter_0_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="378.668" y="40.4277">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x440;&#x435;&#x437;.</tspan></text>
+<text id="exiter_0_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="377.5" y="61.7188">--</tspan></text>
+<g id="exiter_0_power_button" clip-path="url(#clip1_0_1)">
+<path id="power_btn_cover_2" d="M552 40.75C556.142 40.75 559.5 37.3921 559.5 33.25C559.5 29.1079 556.142 25.75 552 25.75C547.858 25.75 544.5 29.1079 544.5 33.25C544.5 37.3921 547.858 40.75 552 40.75Z" fill="#7ADC47"/>
+<path id="Vector_2" d="M555.35 29.275L554.444 30.1813C555.525 30.8375 556.25 32.0188 556.25 33.375C556.25 34.3696 555.855 35.3234 555.151 36.0267C554.448 36.7299 553.494 37.125 552.5 37.125C551.505 37.125 550.551 36.7299 549.848 36.0267C549.145 35.3234 548.75 34.3696 548.75 33.375C548.75 32.0188 549.475 30.8375 550.55 30.175L549.65 29.275C548.35 30.175 547.5 31.675 547.5 33.375C547.5 34.7011 548.027 35.9729 548.964 36.9105C549.902 37.8482 551.174 38.375 552.5 38.375C553.826 38.375 555.098 37.8482 556.035 36.9105C556.973 35.9729 557.5 34.7011 557.5 33.375C557.5 31.675 556.65 30.175 555.35 29.275ZM553.125 27.75H551.875V34H553.125" fill="black"/>
+</g>
+</g>
+<g id="path8984_8">
+<path d="M359.5 94.3511L629.499 93.7501L359.5 94.3511Z" fill="#C4C4C4"/>
+<path d="M359.5 94.3511L629.499 93.7501" stroke="#C4C4C4" stroke-width="0.809128"/>
+</g>
+<g id="primary_info_output_2">
+<g id="g10081-4_2">
+<path id="circle9062-2_2" d="M629.5 87.75C632.261 87.75 634.5 85.5114 634.5 82.75C634.5 79.9886 632.261 77.75 629.5 77.75C626.739 77.75 624.5 79.9886 624.5 82.75C624.5 85.5114 626.739 87.75 629.5 87.75Z" fill="#626879"/>
+<text id="exiter_0_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="608.445" y="89.0859">--</tspan></text>
+</g>
+</g>
+<g id="primary_info_input_2">
+<path id="circle8962_3" d="M359.5 87.75C362.261 87.75 364.5 85.5114 364.5 82.75C364.5 79.9886 362.261 77.75 359.5 77.75C356.739 77.75 354.5 79.9886 354.5 82.75C354.5 85.5114 356.739 87.75 359.5 87.75Z" fill="#626879"/>
+<text id="exiter_0_input_signal_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="369.5" y="89.0859">--</tspan></text>
+</g>
+</g>
+<g id="voltage">
+<g id="rect8952_2" filter="url(#filter3_d_0_1)">
+<path d="M232.5 15.75L32.5 15.7501C25.8726 15.7501 20.5 21.1227 20.5 27.7501V77.75C20.5 84.3774 25.8726 89.75 32.5 89.75H232.5C239.127 89.75 244.5 84.3774 244.5 77.75V27.75C244.5 21.1226 239.127 15.75 232.5 15.75Z" fill="#F7F7F7"/>
+<path d="M232.5 15.75L32.5 15.7501C25.8726 15.7501 20.5 21.1227 20.5 27.7501V77.75C20.5 84.3774 25.8726 89.75 32.5 89.75H232.5C239.127 89.75 244.5 84.3774 244.5 77.75V27.75C244.5 21.1226 239.127 15.75 232.5 15.75Z" stroke="#C4C4C4" stroke-linecap="round"/>
+</g>
+<g id="header_4">
+<path id="voltage_device_icon" d="M38 40.75C42.1421 40.75 45.5 37.3921 45.5 33.25C45.5 29.1079 42.1421 25.75 38 25.75C33.8579 25.75 30.5 29.1079 30.5 33.25C30.5 37.3921 33.8579 40.75 38 40.75Z" fill="#7ADC47"/>
+<text id="voltage_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="55.5" y="39.5417">&#x41d;&#x430;&#x43f;&#x440;&#x44f;&#x436;&#x435;&#x43d;&#x438;&#x435; &#x441;&#x435;&#x442;&#x438;</tspan></text>
+</g>
+<g id="secondary_info_4">
+<g id="g9004_2">
+<text id="voltage_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="152.919" y="71.6745">--</tspan></text>
+</g>
+</g>
+</g>
+<g id="input_1">
+<path id="path4139_13" d="M294 215.75L231.5 215.75" stroke="#B5C6CF" stroke-width="2" stroke-dasharray="9.11 9.11"/>
+<path id="input_1_reserve_path_display" d="M231.5 215.75H294.5" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="input_1_primary_path_display" d="M231 325.75H294.5" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="input_1_reserve">
+<g id="rect8952-3_3" filter="url(#filter4_d_0_1)">
+<path d="M233.5 162.25H33.5C26.8726 162.25 21.5 167.623 21.5 174.25V246.25C21.5 252.877 26.8726 258.25 33.5 258.25H233.5C240.127 258.25 245.5 252.877 245.5 246.25V174.25C245.5 167.623 240.127 162.25 233.5 162.25Z" fill="#F7F7F7"/>
+<path d="M233.5 162.25H33.5C26.8726 162.25 21.5 167.623 21.5 174.25V246.25C21.5 252.877 26.8726 258.25 33.5 258.25H233.5C240.127 258.25 245.5 252.877 245.5 246.25V174.25C245.5 167.623 240.127 162.25 233.5 162.25Z" stroke="#C4C4C4" stroke-linecap="round"/>
+</g>
+<g id="res_secondary_info">
+<g id="input_1_res_l_group">
+<text id="input_1_res_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="221.219">--</tspan></text>
+<text id="text8992_15" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="221.219">L</tspan></text>
+</g>
+<g id="input_1_res_r_group">
+<text id="input_1_res_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="245.219">--</tspan></text>
+<text id="text9002_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="244.728">R</tspan></text>
+</g>
+<g id="input_1_res_mpx_group">
+<text id="input_1_res_mpx_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="221.219">--</tspan></text>
+<text id="text9002_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="221.219">&#x41a;&#x421;&#x421;</tspan></text>
+</g>
+<g id="input_1_res_aes_group">
+<text id="input_1_res_aes_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="221.219">--</tspan></text>
+<text id="AES" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="221.219">AES</tspan></text>
+</g>
+</g>
+<g id="header_5">
+<path id="input_1_device_icon" d="M45.4286 173.75H32.5714C31.9797 173.75 31.5 174.23 31.5 174.821V187.679C31.5 188.27 31.9797 188.75 32.5714 188.75H45.4286C46.0203 188.75 46.5 188.27 46.5 187.679V174.821C46.5 174.23 46.0203 173.75 45.4286 173.75Z" fill="#7ADC47"/>
+<text id="input_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="54.5" y="185.928">&#x412;&#x425;&#x43e;&#x434; &#x440;&#x435;&#x437;.</tspan></text>
 </g>
 <g id="g9929-10">
-<g id="g10081-4_2">
-<path id="circle9062-2_2" d="M231.179 239.745C233.664 239.745 235.679 237.719 235.679 235.218C235.679 232.718 233.664 230.691 231.179 230.691C228.694 230.691 226.679 232.718 226.679 235.218C226.679 237.719 228.694 239.745 231.179 239.745Z" fill="#626879"/>
+<g id="g10081-4_3">
+<path id="circle9062-2_3" d="M231.5 220.25C233.985 220.25 236 218.235 236 215.75C236 213.265 233.985 211.25 231.5 211.25C229.015 211.25 227 213.265 227 215.75C227 218.235 229.015 220.25 231.5 220.25Z" fill="#626879"/>
 </g>
 </g>
 </g>
 <g id="input_1_primary">
-<g id="rect8952-3_3" filter="url(#filter2_d_0_1)">
-<path d="M233.5 291.74H33.5C26.8726 291.74 21.5 297.112 21.5 303.74V376.75C21.5 383.377 26.8726 388.75 33.5 388.75H233.5C240.127 388.75 245.5 383.377 245.5 376.75V303.74C245.5 297.112 240.127 291.74 233.5 291.74Z" fill="#F7F7F7"/>
-<path d="M233.5 291.74H33.5C26.8726 291.74 21.5 297.112 21.5 303.74V376.75C21.5 383.377 26.8726 388.75 33.5 388.75H233.5C240.127 388.75 245.5 383.377 245.5 376.75V303.74C245.5 297.112 240.127 291.74 233.5 291.74Z" stroke="#C4C4C4" stroke-linecap="round"/>
+<g id="rect8952-3_4" filter="url(#filter5_d_0_1)">
+<path d="M232.5 272.25H32.5C25.8726 272.25 20.5 277.623 20.5 284.25V357.25C20.5 363.877 25.8726 369.25 32.5 369.25H232.5C239.127 369.25 244.5 363.877 244.5 357.25V284.25C244.5 277.623 239.127 272.25 232.5 272.25Z" fill="#F7F7F7"/>
+<path d="M232.5 272.25H32.5C25.8726 272.25 20.5 277.623 20.5 284.25V357.25C20.5 363.877 25.8726 369.25 32.5 369.25H232.5C239.127 369.25 244.5 363.877 244.5 357.25V284.25C244.5 277.623 239.127 272.25 232.5 272.25Z" stroke="#C4C4C4" stroke-linecap="round"/>
 </g>
 <g id="primary_secondary_info">
 <g id="input_1_l_group">
-<text id="input_1_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.591" y="350.929">--</tspan></text>
-<text id="text8992_6" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="351.228">L</tspan></text>
+<text id="input_1_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="330.719">--</tspan></text>
+<text id="text8992_16" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="332.19">L</tspan></text>
 </g>
 <g id="input_1_r_group">
-<text id="input_1_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.729" y="373.183">--</tspan></text>
-<text id="text9002_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="373.482">R</tspan></text>
+<text id="input_1_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="354.719">--</tspan></text>
+<text id="text9002_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="354.719">R</tspan></text>
 </g>
 <g id="input_1_mpx_group">
-<text id="input_1_mpx_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.591" y="350.674">--</tspan></text>
-<text id="text9002_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="350.973">&#x41a;&#x421;&#x421;</tspan></text>
+<text id="input_1_mpx_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="330.719">--</tspan></text>
+<text id="text9002_5" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="330.719">&#x41a;&#x421;&#x421;</tspan></text>
 </g>
 <g id="input_1_aes_group">
-<text id="input_1_aes_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="209.591" y="350.674">--</tspan></text>
-<text id="AES_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="350.973">AES</tspan></text>
+<text id="input_1_aes_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="210.656" y="330.719">--</tspan></text>
+<text id="AES_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.5" y="330.719">AES</tspan></text>
 </g>
-</g>
-<g id="header_3">
-<g id="input_1_mode_switch">
-<path id="input_mode_switch_background" d="M200.5 318.75C206.023 318.75 210.5 314.273 210.5 308.75C210.5 303.227 206.023 298.75 200.5 298.75C194.977 298.75 190.5 303.227 190.5 308.75C190.5 314.273 194.977 318.75 200.5 318.75Z" fill="#7ADC47"/>
-<path id="Vector_2" d="M203.833 311.75H197.167V309.95L194.5 312.35L197.167 314.75V312.95H205.167V309.35H203.833M197.167 305.75H203.833V307.55L206.5 305.15L203.833 302.75V304.55H195.833V308.15H197.167V305.75Z" fill="black"/>
-</g>
-<path id="input_1_device_icon_2" d="M44.1699 303.187H32.1699C31.6176 303.187 31.1699 303.638 31.1699 304.193V316.265C31.1699 316.821 31.6176 317.271 32.1699 317.271H44.1699C44.7222 317.271 45.1699 316.821 45.1699 316.265V304.193C45.1699 303.638 44.7222 303.187 44.1699 303.187Z" fill="#7ADC47"/>
-<text id="input_1_header_label_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="54.6172" y="315.195">&#x432;&#x445;&#x43e;&#x434; (&#x41f;&#x420;&#x414;-1)</tspan></text>
-</g>
-<g id="g9929-10_2">
-<g id="g10081-4_3">
-<path id="circle9062-2_3" d="M231.179 349.745C233.664 349.745 235.679 347.719 235.679 345.218C235.679 342.718 233.664 340.691 231.179 340.691C228.694 340.691 226.679 342.718 226.679 345.218C226.679 347.719 228.694 349.745 231.179 349.745Z" fill="#626879"/>
-</g>
-</g>
-</g>
-</g>
-<g id="output_1">
-<g id="rect8952" filter="url(#filter3_d_0_1)">
-<path d="M1009.5 172.75L826.5 172.75C819.873 172.75 814.5 178.123 814.5 184.75V234.75C814.5 241.377 819.873 246.75 826.5 246.75H1009.5C1016.13 246.75 1021.5 241.377 1021.5 234.75V184.75C1021.5 178.123 1016.13 172.75 1009.5 172.75Z" fill="#F7F7F7"/>
-<path d="M1009.5 172.75L826.5 172.75C819.873 172.75 814.5 178.123 814.5 184.75V234.75C814.5 241.377 819.873 246.75 826.5 246.75H1009.5C1016.13 246.75 1021.5 241.377 1021.5 234.75V184.75C1021.5 178.123 1016.13 172.75 1009.5 172.75Z" stroke="#C4C4C4" stroke-linecap="round"/>
-</g>
-<g id="header_4">
-<path id="output_1_device_icon" d="M829.941 198.906C833.807 198.906 836.941 195.753 836.941 191.864C836.941 187.975 833.807 184.822 829.941 184.822C826.075 184.822 822.941 187.975 822.941 191.864C822.941 195.753 826.075 198.906 829.941 198.906Z" fill="#7ADC47"/>
-<text id="output_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="847.317" y="196.069">&#x430;&#x444;&#x443; 1</tspan></text>
-</g>
-<g id="g8982">
-<g id="g8970">
-<path id="circle8962_2" d="M828.2 230.594C830.685 230.594 832.7 228.568 832.7 226.067C832.7 223.567 830.685 221.541 828.2 221.541C825.715 221.541 823.7 223.567 823.7 226.067C823.7 228.568 825.715 230.594 828.2 230.594Z" fill="#626879"/>
-</g>
-</g>
-<g id="secondary_info_2">
-<g id="g9004">
-<text id="output_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="985.919" y="231.674">--</tspan></text>
-<text id="text9002_5" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="858.5" y="231.719">&#x41a;&#x421;&#x412;</tspan></text>
-</g>
-</g>
-</g>
-<g id="exiter_0">
-<g id="rect8952-3_4" filter="url(#filter4_d_0_1)">
-<path d="M679.5 15.75H403.5C396.873 15.75 391.5 21.1226 391.5 27.75V243.75C391.5 250.377 396.873 255.75 403.5 255.75H679.5C686.127 255.75 691.5 250.377 691.5 243.75V27.75C691.5 21.1226 686.127 15.75 679.5 15.75Z" fill="#F7F7F7"/>
-<path d="M679.5 15.75H403.5C396.873 15.75 391.5 21.1226 391.5 27.75V243.75C391.5 250.377 396.873 255.75 403.5 255.75H679.5C686.127 255.75 691.5 250.377 691.5 243.75V27.75C691.5 21.1226 686.127 15.75 679.5 15.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="11 11"/>
-</g>
-<g id="path8984_2">
-<path d="M513.5 140.75V100.75V140.75Z" fill="#C4C4C4"/>
-<path d="M513.5 140.75V100.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="path8984_3">
-<path d="M616.5 140.75V100.75V140.75Z" fill="#C4C4C4"/>
-<path d="M616.5 140.75V100.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<text id="text8992_7" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="11" letter-spacing="0em"><tspan x="620.5" y="136.01">&#x41f;&#x440;&#x438;&#x43d;&#x44f;&#x442;&#x44c;</tspan></text>
-<g id="secondary_info_3">
-<g id="g8994_5">
-<text id="exiter_0_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="656.919" y="181.674">--</tspan></text>
-<text id="text8992_8" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="416.5" y="181.973">&#x422;&#x438;&#x43f; &#x441;&#x438;&#x433;&#x43d;&#x430;&#x43b;&#x430;</tspan></text>
-</g>
-<g id="g8994_6">
-<text id="exiter_0_freq_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="656.919" y="203.043">--</tspan></text>
-<text id="text8992_9" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="416.5" y="203.341">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
-</g>
-<g id="g8994_7">
-<text id="exiter_0_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="656.919" y="224.411">--</tspan></text>
-<text id="text8992_10" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="416.5" y="224.709">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
-</g>
-<g id="g8994_8">
-<text id="exiter_0_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="656.919" y="245.779">--</tspan></text>
-<text id="text8992_11" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="416.5" y="246.077">&#x41a;&#x421;&#x412;</tspan></text>
-</g>
-</g>
-<g id="path8984_4">
-<path d="M418.5 145.75L668.5 145.75L418.5 145.75Z" fill="#C4C4C4"/>
-<path d="M418.5 145.75L668.5 145.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="exiter_0_control_buttons">
-<g id="Frame 43">
-<rect x="416.5" y="99.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="416.5" y="99.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<g id="exiter_0_set_ex1_button">
-<rect id="Rectangle 21" width="40" height="20" rx="10" transform="matrix(1 0 0 -1 421.5 124.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38" d="M441.5 120.75V114.25V107.75M441.5 107.75L446.5 114.25M441.5 107.75L436.5 114.25" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="exiter_0_set_ex2_button">
-<rect id="Rectangle 21_2" x="466.5" y="104.75" width="40" height="20" rx="10" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_2" d="M486.5 107.75V114.25V120.75M486.5 120.75L491.5 114.25M486.5 120.75L481.5 114.25" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="exiter_0_set_ex3_button">
-<rect id="Rectangle 21_3" x="519.5" y="98.75" width="44" height="22" rx="8" stroke="#E0E7EB" stroke-width="2" stroke-linecap="round"/>
-<path id="Vector_3" d="M543 117.75C543.247 117.75 543.475 117.661 543.663 117.5L550.223 112.136C550.411 111.975 550.5 111.805 550.5 111.611C550.5 111.215 550.144 110.9 549.649 110.9C549.412 110.9 549.174 110.973 549.026 111.102L546.77 112.912L543.198 116.11L543.683 116.28L543.881 113.679V103.461C543.881 103.041 543.515 102.75 543 102.75C542.485 102.75 542.119 103.041 542.119 103.461V113.679L542.317 116.28L542.812 116.11L539.23 112.912L536.974 111.102C536.816 110.973 536.588 110.9 536.351 110.9C535.856 110.9 535.5 111.215 535.5 111.611C535.5 111.805 535.579 111.975 535.797 112.152L542.337 117.5C542.525 117.661 542.753 117.75 543 117.75Z" fill="#626879" fill-opacity="0.85"/>
-</g>
-<g id="exiter_0_set_ex4_button">
-<rect id="Rectangle 21_4" x="570.5" y="98.75" width="44" height="22" rx="8" stroke="#E0E7EB" stroke-width="2" stroke-linecap="round"/>
-<path id="Vector_4" d="M594 102.75C593.753 102.75 593.525 102.839 593.337 103L586.777 108.364C586.589 108.525 586.5 108.695 586.5 108.889C586.5 109.285 586.856 109.6 587.351 109.6C587.588 109.6 587.826 109.527 587.974 109.398L590.23 107.588L593.802 104.39L593.317 104.22L593.119 106.821V117.039C593.119 117.459 593.485 117.75 594 117.75C594.515 117.75 594.881 117.459 594.881 117.039V106.821L594.683 104.22L594.188 104.39L597.77 107.588L600.026 109.398C600.184 109.527 600.412 109.6 600.649 109.6C601.144 109.6 601.5 109.285 601.5 108.889C601.5 108.695 601.421 108.525 601.203 108.348L594.663 103C594.475 102.839 594.247 102.75 594 102.75Z" fill="#626879" fill-opacity="0.85"/>
-</g>
-<g id="exiter_0_set_ex5_button">
-<rect id="Rectangle 21_5" x="621.5" y="98.75" width="44" height="22" rx="8" stroke="#E0E7EB" stroke-width="2" stroke-linecap="round"/>
-<path id="Vector_5" d="M643.176 117.75C643.55 117.75 643.846 117.583 644.055 117.258L652.282 104.198C652.439 103.944 652.5 103.751 652.5 103.549C652.5 103.066 652.187 102.75 651.708 102.75C651.36 102.75 651.168 102.864 650.959 103.198L643.141 115.758L639.084 110.404C638.867 110.096 638.649 109.974 638.336 109.974C637.84 109.974 637.5 110.316 637.5 110.799C637.5 111 637.587 111.229 637.752 111.439L642.271 117.241C642.532 117.583 642.802 117.75 643.176 117.75Z" fill="#626879" fill-opacity="0.85"/>
-</g>
-</g>
-<text id="text8992_12" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="10" letter-spacing="0em"><tspan x="450.5" y="140.168">&#x413;&#x440;&#x443;&#x431;&#x43e;</tspan></text>
-<text id="text8992_13" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="10" letter-spacing="0em"><tspan x="546.5" y="135.168">&#x41f;&#x43b;&#x430;&#x432;&#x43d;&#x43e;</tspan></text>
-<g id="header_5">
-<path id="exiter_0_device_icon" d="M414.5 26.5342H402.5C401.948 26.5342 401.5 26.9846 401.5 27.5402V39.612C401.5 40.1676 401.948 40.618 402.5 40.618H414.5C415.052 40.618 415.5 40.1676 415.5 39.612V27.5402C415.5 26.9846 415.052 26.5342 414.5 26.5342Z" fill="#7ADC47"/>
-<text id="exiter_0_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="424.947" y="38.5417">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x440;&#x435;&#x437;.</tspan></text>
-<text id="exiter_0_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="424.83" y="60.5654">--</tspan></text>
-<g id="exiter_0_power_button" clip-path="url(#clip1_0_1)">
-<path id="power_btn_cover_2" d="M606.83 41.6805C610.696 41.6805 613.83 38.5277 613.83 34.6386C613.83 30.7495 610.696 27.5967 606.83 27.5967C602.964 27.5967 599.83 30.7495 599.83 34.6386C599.83 38.5277 602.964 41.6805 606.83 41.6805Z" fill="#7ADC47"/>
-<path id="Vector_6" d="M609.49 30.77L608.644 31.6158C609.654 32.2283 610.33 33.3308 610.33 34.5967C610.33 35.5249 609.961 36.4152 609.305 37.0716C608.649 37.7279 607.758 38.0967 606.83 38.0967C605.902 38.0967 605.012 37.7279 604.355 37.0716C603.699 36.4152 603.33 35.5249 603.33 34.5967C603.33 33.3308 604.007 32.2283 605.01 31.61L604.17 30.77C602.957 31.61 602.164 33.01 602.164 34.5967C602.164 35.8344 602.655 37.0213 603.53 37.8965C604.406 38.7717 605.593 39.2633 606.83 39.2633C608.068 39.2633 609.255 38.7717 610.13 37.8965C611.005 37.0213 611.497 35.8344 611.497 34.5967C611.497 33.01 610.704 31.61 609.49 30.77ZM607.414 29.3467H606.247V35.18H607.414" fill="black"/>
-</g>
-</g>
-<g id="primary_info_output_2">
-<g id="g10081-4_4">
-<path id="circle9062-2_4" d="M675.179 88.0195C677.664 88.0195 679.679 85.9927 679.679 83.4925C679.679 80.9924 677.664 78.9656 675.179 78.9656C672.694 78.9656 670.679 80.9924 670.679 83.4925C670.679 85.9927 672.694 88.0195 675.179 88.0195Z" fill="#626879"/>
-<text id="exiter_0_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18.6667" letter-spacing="0em"><tspan x="653.283" y="88.1302">--</tspan></text>
-</g>
-</g>
-<g id="path8984_5">
-<path d="M416.5 96.3065L666.499 95.7501L416.5 96.3065Z" fill="#C4C4C4"/>
-<path d="M416.5 96.3065L666.499 95.7501" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="primary_info_input_2">
-<path id="circle8962_3" d="M406 88.0195C408.485 88.0195 410.5 85.9927 410.5 83.4925C410.5 80.9924 408.485 78.9656 406 78.9656C403.515 78.9656 401.5 80.9924 401.5 83.4925C401.5 85.9927 403.515 88.0195 406 88.0195Z" fill="#626879"/>
-<text id="exiter_0_input_signal_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18.6667" letter-spacing="0em"><tspan x="417.5" y="88.1302">--</tspan></text>
-</g>
-</g>
-</g>
-<g id="voltage">
-<g id="rect8952_2" filter="url(#filter5_d_0_1)">
-<path d="M233.5 15.75L32.5 15.7501C25.8726 15.7501 20.5 21.1227 20.5 27.7501V77.75C20.5 84.3774 25.8726 89.75 32.5 89.75H233.5C240.127 89.75 245.5 84.3774 245.5 77.75V27.75C245.5 21.1226 240.127 15.75 233.5 15.75Z" fill="#F7F7F7"/>
-<path d="M233.5 15.75L32.5 15.7501C25.8726 15.7501 20.5 21.1227 20.5 27.7501V77.75C20.5 84.3774 25.8726 89.75 32.5 89.75H233.5C240.127 89.75 245.5 84.3774 245.5 77.75V27.75C245.5 21.1226 240.127 15.75 233.5 15.75Z" stroke="#C4C4C4" stroke-linecap="round"/>
 </g>
 <g id="header_6">
-<path id="voltage_device_icon" d="M35.9419 41.906C39.8079 41.906 42.9419 38.7532 42.9419 34.8641C42.9419 30.9749 39.8079 27.8221 35.9419 27.8221C32.0759 27.8221 28.9419 30.9749 28.9419 34.8641C28.9419 38.7532 32.0759 41.906 35.9419 41.906Z" fill="#7ADC47"/>
-<text id="voltage_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="53.3174" y="38.0695">&#x41d;&#x430;&#x43f;&#x440;&#x44f;&#x436;&#x435;&#x43d;&#x438;&#x435; &#x441;&#x435;&#x442;&#x438;</tspan></text>
+<g id="input_1_mode_switch">
+<path id="input_mode_switch_background" d="M200.5 299.75C206.023 299.75 210.5 295.273 210.5 289.75C210.5 284.227 206.023 279.75 200.5 279.75C194.977 279.75 190.5 284.227 190.5 289.75C190.5 295.273 194.977 299.75 200.5 299.75Z" fill="#7ADC47"/>
+<path id="Vector_3" d="M203.833 292.75H197.167V290.95L194.5 293.35L197.167 295.75V293.95H205.167V290.35H203.833M197.167 286.75H203.833V288.55L206.5 286.15L203.833 283.75V285.55H195.833V289.15H197.167V286.75Z" fill="black"/>
 </g>
-<g id="secondary_info_4">
-<g id="g9004_2">
-<text id="voltage_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="169.919" y="70.6745">--</tspan></text>
+<path id="input_1_device_icon_2" d="M45.4286 283.75H32.5714C31.9797 283.75 31.5 284.23 31.5 284.821V297.679C31.5 298.27 31.9797 298.75 32.5714 298.75H45.4286C46.0203 298.75 46.5 298.27 46.5 297.679V284.821C46.5 284.23 46.0203 283.75 45.4286 283.75Z" fill="#7ADC47"/>
+<text id="input_1_header_label_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="54.5" y="296.428">&#x412;&#x445;&#x43e;&#x434; &#x41e;&#x441;&#x43d;.</tspan></text>
+</g>
+<g id="g9929-10_2">
+<g id="g10081-4_4">
+<path id="circle9062-2_4" d="M231 330.25C233.485 330.25 235.5 328.235 235.5 325.75C235.5 323.265 233.485 321.25 231 321.25C228.515 321.25 226.5 323.265 226.5 325.75C226.5 328.235 228.515 330.25 231 330.25Z" fill="#626879"/>
 </g>
 </g>
 </g>
-<g id="layer_3">
-<g id="signal_path_111">
-<path id="path4139_6" d="M824.5 226.009L736.5 226.009L736.5 348.75L674.5 348.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="path4139_7" d="M280.5 346.124C315.6 346.124 406.5 346.124 406.5 346.124" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="signal_path_101">
-<path id="path4139_8" d="M280.5 346.124L344.5 346.124L344.5 88.7501C379.6 88.7501 406.5 88.7501 406.5 88.7501" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="path4139_9" d="M674.5 88.7502L736.5 88.7502L736.5 226.009L824.5 226.009" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </g>
 </g>
 <defs>
-<filter id="filter0_d_0_1" x="371" y="260.25" width="339" height="225" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_0_1" x="725" y="135.25" width="264" height="115" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="5"/>
@@ -276,7 +341,7 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
-<filter id="filter1_d_0_1" x="1" y="166.25" width="265" height="137" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter1_d_0_1" x="323.75" y="243" width="341.5" height="266.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="5"/>
@@ -286,7 +351,7 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
-<filter id="filter2_d_0_1" x="1" y="276.24" width="265" height="138.01" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter2_d_0_1" x="323.75" y="0" width="341.5" height="266.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="5"/>
@@ -296,7 +361,7 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
-<filter id="filter3_d_0_1" x="794" y="157.25" width="248" height="115" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter3_d_0_1" x="0" y="0.25" width="265" height="115" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="5"/>
@@ -306,7 +371,7 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
-<filter id="filter4_d_0_1" x="370.75" y="0" width="341.5" height="281.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter4_d_0_1" x="1" y="146.75" width="265" height="137" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="5"/>
@@ -316,7 +381,7 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
-<filter id="filter5_d_0_1" x="0" y="0.25" width="266" height="115" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter5_d_0_1" x="0" y="256.75" width="265" height="138" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="5"/>
@@ -327,10 +392,10 @@
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
 <clipPath id="clip0_0_1">
-<rect width="14" height="14" fill="white" transform="translate(599.5 287.75)"/>
+<rect width="15" height="15" fill="white" transform="translate(544.5 268.75)"/>
 </clipPath>
 <clipPath id="clip1_0_1">
-<rect width="14" height="14" fill="white" transform="translate(599.83 27.5967)"/>
+<rect width="15" height="15" fill="white" transform="translate(544.5 25.75)"/>
 </clipPath>
 </defs>
 </svg>

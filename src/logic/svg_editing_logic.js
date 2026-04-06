@@ -188,6 +188,25 @@ function avr_svg_editing(svg, data_svg, auth_access) {
     });
   }
 
+  const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="button"]`)
+
+  if (main_exiter_conf_buttons_list) {
+    const active_conf = data_svg?.exiter_1?.active_conf
+    main_exiter_conf_buttons_list.forEach(button => {
+      if (button.id.includes(`ex${active_conf}`)) {
+        button.classList.add("active_ex_conf");
+      } else {
+        button.classList.remove("active_ex_conf");
+      }
+
+      if (active_control_mode == 0) {
+        button.classList.add("disabled_svg_button");
+      } else {
+        button.classList.remove("disabled_svg_button");
+      }
+    });
+  }
+
   const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
   const input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]')
 
@@ -217,8 +236,6 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       }
       // console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')
       // console.log(path_input_descr)
-      // console.log('//////////////////////////////////////////////')
-      // console.log(required_input)
       // console.log("----------------------------------------------")
       // console.log(input_blocks_list)
       const input_path_display_list = required_input.querySelectorAll('path[id*="path_display"]')
@@ -323,28 +340,15 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
     if (input_mode == "1") {
       switch_background.style = "fill: #7ADC47"
-
-      //primary input display
       input_mode_device_icon[1].style = "fill: #7ADC47"
       input_mode_device_icon[0].style = "fill: #e74c3c" // цвет звука 
-      //res input display
-      // input_mode_device_icon[0].firstElementChild.firstChild.innerHTML = 'ВЫКЛ'
-      // input_mode_device_icon[0].lastElementChild.style = "fill: #e74c3c"
-        
-      // switch_label.innerHTML = 'О'
       input_res_path.style.visibility = 'hidden'
       input_primary_path.style.visibility = "visible"
 
     } else if (input_mode == "2") {
       switch_background.style = "fill: #e74c3c"
-
-      //primary input display
       input_mode_device_icon[1].style = "fill: #e74c3c"
       input_mode_device_icon[0].style = "fill: #7ADC47"
-      //res input display
-      // input_mode_status_display[0].firstElementChild.firstChild.innerHTML = 'ВКЛ'
-      // input_mode_status_display[0].lastElementChild.style = "fill: #7ADC47"
-      // zswitch_label.innerHTML = 'Р'
       input_res_path.style.visibility = 'visible'
       input_primary_path.style.visibility = 'hidden'
     } else {

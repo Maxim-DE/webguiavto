@@ -57,7 +57,7 @@ function avr_svg_event_editing(svg, clickHandler) {
   const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id*="set_ex"]`)
 
   if (res_exiter_conf_buttons_list) {
-    const res_handling_callback = avr_buttons_actions.set_ex_conf_handler
+    const res_handling_callback = avr_buttons_actions.set_res_pwr_handler
 
     res_exiter_conf_buttons_list.forEach(button => {
       const target_device_regex = /ex\d+/,
@@ -72,6 +72,40 @@ function avr_svg_event_editing(svg, clickHandler) {
 
   }
 
+  const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id*="set_ex"]`)
+
+  if (main_exiter_conf_buttons_list) {
+    const res_handling_callback = avr_buttons_actions.set_main_conf_handler
+
+    main_exiter_conf_buttons_list.forEach(button => {
+      const target_device_regex = /ex\d+/,
+            target_device_index = button.id.match(target_device_regex)[0].replace('ex', '');
+
+      if (!button.onclick) {
+        button.addEventListener("click", function () {
+          res_handling_callback(target_device_index, clickHandler)
+        })
+      }
+    });
+
+  }
+
+  const primary_input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]:not(g[id*="input_0"])')
+
+  if (primary_input_blocks_list) {
+    const input_mode_handling_callback = avr_buttons_actions.switch_input_mode
+    
+    primary_input_blocks_list.forEach((block, index) => {
+      const input_mode_switch = block.querySelector('g[id*="mode_switch"]')
+  
+      if (!input_mode_switch.onclick) {
+        input_mode_switch.addEventListener("click", function () {
+          input_mode_handling_callback(index, clickHandler)
+        })
+      }
+    })
+  }
+  
   return svg
 }
 
@@ -128,10 +162,10 @@ const avr_buttons_actions = {
     clickHandler(request_obj)
   },
 
-  set_ex_conf_handler: (device_type, clickHandler) => {
+  set_res_pwr_handler: (device_type, clickHandler) => {
     const request_obj = {
       address: 'status_graph_settings.cgi',
-      data: `set_ex_conf$${device_type}`,
+      data: `set_res_pwr$${device_type}`,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -142,18 +176,20 @@ const avr_buttons_actions = {
     clickHandler(request_obj)
   },
 
-  // switch_test_signal_mode: (signal_mode, clickHandler) => {
-  //   const request_obj = {
-  //     address: 'status_graph_settings.cgi',
-  //     data: `set_test_signal_mode$${signal_mode}`,
-  //     notifications: {
-  //       good: 'default',
-  //       bad: 'default'
-  //     },
-  //   }
+  set_main_pwr_handler: (device_type, clickHandler) => {
+    const request_obj = {
+      address: 'status_graph_settings.cgi',
+      data: `set_pwr_conf$${device_type}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      reducer: reducers.transmitter,
+    }
 
-  //   clickHandler(request_obj)
-  // },
+    clickHandler(request_obj)
+  },
+
 
   switch_input_mode: (device_index, clickHandler) => {
     const request_obj = {
