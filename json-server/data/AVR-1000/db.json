@@ -251,7 +251,7 @@
         ]
       },    
       "exiter_1": {
-        "status": 1,
+        "status": 0,
         "input_signal": [
           108,
           10,
@@ -489,9 +489,7 @@
         ]
       },
       "calib_signal_threshold": {
-        "signal_type_reserved": 0,
-        "IsExistBlockAfu":true,
-        "afu_active_control_mode":true,        
+        "signal_type_reserved": 0,       
         "signal_0_reserved_value": [
           30,
           10

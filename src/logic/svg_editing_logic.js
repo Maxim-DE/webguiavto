@@ -171,33 +171,84 @@ function avr_svg_editing(svg, data_svg, auth_access) {
 
   const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
 
-  if (res_exiter_conf_buttons_list) {
-    const active_conf = data_svg?.exiter_0?.active_conf
-    res_exiter_conf_buttons_list.forEach(button => {
-      if (button.id.includes(`ex${active_conf}`)) {
-        button.classList.add("active_ex_conf");
-      } else {
-        button.classList.remove("active_ex_conf");
-      }
+if (res_exiter_conf_buttons_list) {
+  const active_conf = data_svg?.exiter_0?.active_conf
+  const isPrOff = data_svg?.pr === 0
+  const isDisabled = (active_control_mode == 0) || isPrOff
+  
+  res_exiter_conf_buttons_list.forEach(button => {
+    const device_type = button.id.replace(`_power_button`, '')
+    
+    button.classList.toggle("active_ex_conf", button.id.includes(`ex${active_conf}`));
+    button.classList.toggle("disabled_svg_button", isDisabled);
+    
+    if (isDisabled) {
+      button.style.pointerEvents = "none";
+    } else {
+      button.style.pointerEvents = "auto";
+    }
+  });
+}
 
-      if (active_control_mode == 0) {
-        button.classList.add("disabled_svg_button");
-      } else {
-        button.classList.remove("disabled_svg_button");
-      }
-    });
-  }
+//   const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
+
+//   if (res_exiter_conf_buttons_list) {
+//     const active_conf = data_svg?.exiter_0?.active_conf
+//           res_exiter_conf_buttons_list.forEach(button => {
+
+// // эксперементы (пытаюсь убрать кнопки при выкл питания прд )
+//     const device_type = button.id.replace(`_power_button`, '')
+//     const exiter_status = data_svg?.[device_type]?.status
+//     console.log('exiter0',exiter_status)
+//       if (exiter_status == 1) {
+//         button.classList.add ("disable_svg_button");
+//       } else {
+//         button.classList.remove("disabled_svg_button");
+//       }
+
+//       if (button.id.includes(`ex${active_conf}`)) {
+//         button.classList.add("active_ex_conf");
+//       } else {
+//         button.classList.remove("active_ex_conf");
+//       }
+
+//       if (active_control_mode == 1) {
+//         button.classList.add("disabled_svg_button");
+//       } else {
+//         button.classList.remove("disabled_svg_button");
+//       }
+//     });
+//   }
 
   const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="button"]`)
 
   if (main_exiter_conf_buttons_list) {
     const active_conf = data_svg?.exiter_1?.active_conf
-    main_exiter_conf_buttons_list.forEach(button => {
+          main_exiter_conf_buttons_list.forEach(button => {
+      
+    const device_type = button.id.replace(`_power_button`, '')
+    const exiter_status = data_svg?.[device_type]?.status
+
+    // console.log('device_type', device_type)
+    // console.log('exiter1',exiter_status)
+    // console.log('exiter1',exiter_status)
+    // console.log('active_conf', )
+    // console.log('active_conf', active_conf)
+      if (exiter_status == 1) {
+        button.classList.add ("disable_svg_button");
+      } else {
+        button.classList.remove("disabled_svg_button");
+      }
+
       if (button.id.includes(`ex${active_conf}`)) {
         button.classList.add("active_ex_conf");
       } else {
         button.classList.remove("active_ex_conf");
       }
+    // console.log('active_conf',active_conf)  
+    // console.log('main_exiter_conf_buttons_list',main_exiter_conf_buttons_list)
+    // console.log('active_control_mode',active_control_mode)
+    // console.log('button.classList',button.classLists)
 
       if (active_control_mode == 0) {
         button.classList.add("disabled_svg_button");

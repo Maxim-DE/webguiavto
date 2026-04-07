@@ -75,7 +75,7 @@ function avr_svg_event_editing(svg, clickHandler) {
   const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id*="set_ex"]`)
 
   if (main_exiter_conf_buttons_list) {
-    const res_handling_callback = avr_buttons_actions.set_main_conf_handler
+    const res_handling_callback = avr_buttons_actions.set_main_pwr_handler
 
     main_exiter_conf_buttons_list.forEach(button => {
       const target_device_regex = /ex\d+/,
