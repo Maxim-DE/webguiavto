@@ -8,6 +8,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
 export const GRAPH_MODE_TEST = true;
+export const GRAPH_MODE_TEST_PORT = 4040;
 
 // import reportWebVitals from './reportWebVitals';
 

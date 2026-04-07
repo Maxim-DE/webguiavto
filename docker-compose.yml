@@ -1,13 +1,13 @@
 version: '3.8'
-
+# name: "webgui-BlockControl"
+name: "${NAME_PROJECT}"
 services:
   react-app:
     image: m65535/web-node:16-alpine
-    # container_name: "${PROJECT_NAME}-app"
-    container_name: "webgui-app"
+    container_name: "${NAME_APP}"
     working_dir: /app
     ports:
-      - "3000:3000"
+      - "${APP_PORT}:3000"
     volumes:
       # Монтируем только исходный код
       - ./src:/app/src
@@ -32,11 +32,13 @@ services:
 
   json-server:
     image: m65535/web-json-server:1.0.0-beta.3
+    container_name: "json-server-${NAME_APP}"
     working_dir: /data/    
     ports:
-      - "4040:3001"
+      - "${JSON_PORT}:3001"
     volumes:
-      - ./json-server/data/AVR-1000/db.json:/data/db.json
+      # - ./json-server/data/BlockControl/db.json:/data/db.json
+      - ${JSON_PATCH}:/data/db.json
     environment:
       - CHOKIDAR_USEPOLLING=true    
     command: json-server --watch db.json --host 0.0.0.0 --port 3001

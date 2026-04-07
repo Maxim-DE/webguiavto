@@ -1,6 +1,7 @@
 import fetch_err_code_logic from "./fetch_err_code_logic";
 import { filter_obj } from "./utilites";
 import { GRAPH_MODE_TEST } from "..";
+import { GRAPH_MODE_TEST_PORT } from "..";
 
 function sectionData_format(state, section_name, data) {
   let data_entries = Object.entries(data);
@@ -89,18 +90,16 @@ async function fetch_req(url, options = {}, n) {
 }
 
 async function fetch_data(req_obj) {
-  const test_url = "http://localhost:4040",
-  // const test_url = "http://192.168.0.116",
-  main_url = ""
-
-
-
+  const main_url = ""
   const host = ""
   const request = req_obj;
   const query = request.address;
   const data = request.data ? `?${request.data}` : '';
   const options = request.options;
-  let   url = `${GRAPH_MODE_TEST ? test_url : main_url}${host}/${query}${data}`;
+
+  let test_url = `http://localhost:${GRAPH_MODE_TEST_PORT}`;
+  let url = `${GRAPH_MODE_TEST ? test_url : main_url}${host}/${query}${data}`;
+
   const retries_num = request.retries ? request.address : 0
 
   console.log("url");
