@@ -1,0 +1,1272 @@
+{
+  "info.cgi": {
+    "info_general": {
+      "serial_number": "XXXXX",
+      "model": 0,
+      "device_type_list": [
+        "АВР-1000"
+      ],
+      "plate_number": "ЕУИС.468243.026",
+      "plate_version": "0",
+      "time_from_on": "missing",
+      "time_failure_on": "missing",
+      "time_failure_off": "missing",
+      "memory_type": "W25Q32"
+    },
+    "software_version": {
+      "os_version": "BlockControl_v2.1.1447",
+      "app_sha": "93c07852d58638e53233745fe46be698b6f80d33",
+      "web_version": "1.0.42-dev_block_control_layout",
+      "bootloader_version": "Bootloader_v2.6.0",
+      "audio_version": "missing"
+    },
+    "auth_info": {
+      "auth_id": "SUPER_ADMIN",
+      "auth_level": 3
+    }
+  },  
+  "settings.cgi": {
+    "time_settings": {
+      "date": "2023-11-27",
+      "time": "15:32:09",
+      "time_settings": {
+        "period": "01:00,17:00"
+      },
+      "time_sync": {
+        "time_sync_switch": 1,
+        "ntp_server": "88.147.254.227",
+        "time_sync_timezone": 38,
+        "time_sync_period": 7
+      }
+    },
+    "misc_settings": {
+      "res_device_1": 1
+    }
+  },
+  "network.cgi": {
+    "device_adress": {
+      "mac_deafult": "08:00:45:00:19:50",
+      "mac": "08:00:45:00:19:50",
+      "ip": "192.168.0.121",
+      "subnet_mask": "255.255.255.0",
+      "gateway": "192.168.0.1"
+    },
+    "remote_control": {
+      "remote_ip_addr_1_settings": "",
+      "remote_ip_addr_2_settings": "",
+      "remote_ip_addr_3_settings": "",
+      "remote_ip_addr_4_settings": ""
+    },
+    "snmp_agent": {
+      "community_read": "public",
+      "community_write": "private",
+      "trap_settings": [
+        {
+          "active": 0,
+          "port": 162,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        },
+        {
+          "active": 0,
+          "port": 162,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        }
+      ]
+    }
+  },
+  "rds.cgi": {
+    "tp": 1,
+    "ta": 1,
+    "pi": "",
+    "ps_name": "",
+    "radio_text": "",
+    "alt_stations": {
+      "alt_stations_available": true,
+      "alt_station_switch": false,
+      "alt_stations_list": []
+    }
+  },
+  "status.cgi": {
+    "status_info": {
+      "device_status": 0,
+      "time": "2026-03-16 17:18:48",
+      "active_control_mode": 1, 
+      "current_signal_path": 2  
+    },
+    "status_logs": [ 
+      [
+        176,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 13:14:31.090",
+        0
+      ],
+      [
+        175,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 12:26:22.086",
+        0
+      ],
+      [
+        174,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 12:00:52.087",
+        0
+      ],
+      [
+        173,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 11:46:46.097",
+        0
+      ],
+      [
+        172,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 11:39:15.089",
+        0
+      ],
+      [
+        171,
+        3,
+        "System",
+        "Холодный старт",
+        "2023-12-01 11:28:11.151",
+        0
+      ]
+    ],
+    "calib_adc": {
+      "device_1": {
+        "power_calib": {
+          "output_power": 1000,
+          "refected_power": 1700,
+          "output_power_threshold": 1000,
+          "coupling_coeff": 2500,
+          "voltage_power": 1500
+        },
+        "signal_calib": {
+          "l_signal": 2500,
+          "r_signal": 3000,
+          "swr_signal": 1500
+        }
+      },
+      "commutator_info": {
+        "commutator_analog_12v": "12 V",
+        "commutator_digital_5v": "5 V"
+      }
+    },
+    "status_graph": {
+      "voltage": {
+        "volt": [
+          220,
+          1,
+          0,
+          "B"
+        ]        
+      },
+      "input_1": {
+        "status": 0,
+        "input_signal_type": "STEREO",
+        "mode": "1",
+        "l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ],
+        "input_res_signal_type": "STEREO",
+        "res_l": [
+          301,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_r": [
+          0,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },
+      "exiter_0": {
+        "status": 0,
+        "input_signal": [
+          108,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          1080,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "refl_pwr": [
+          3001,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          128,
+          100,
+          0
+        ],
+        "freq": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ]
+      },    
+      "exiter_1": {
+        "status": 0,
+        "input_signal": [
+          108,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          108,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "refl_pwr": [
+          3001,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          128,
+          100,
+          0
+        ],
+        "freq": [
+          1008,
+          10,
+          0,
+          "МГц"
+        ]
+      },
+      "output_1": {
+        "status": 1,
+        "swr": [
+          128,
+          100,
+          0
+        ]        
+      }
+    },
+    "nav_info": {
+    "Напряжение сети": [
+      {
+        "name": "Сеть",
+        "value": 220,
+        "status": 1,
+        "adc": 1946,
+        "units": "В"
+      }
+    ],
+    "Передатчик рез.": [
+      {
+        "name": "Частота",
+        "value": 8800,
+        "divider": 100,
+        "units": "МГц"
+      },
+      {
+        "name": "Pвых",
+        "value": 3,
+        "status": 2,
+        "divider": 1,
+        "adc": 194,
+        "units": "Вт"
+      },
+      {
+        "name": "Pотр",
+        "value": 0,
+        "status": 0,
+        "divider": 1,
+        "adc": 49,
+        "units": "Вт"
+      },
+      {
+        "name": "КСВ",
+        "value": 100,
+        "divider": 100,
+        "status": 0
+      }
+    ],
+    "Передатчик Осн.": [
+      {
+        "name": "Частота",
+        "value": 8800,
+        "divider": 100,
+        "units": "МГц"
+      },
+      {
+        "name": "Pвых",
+        "value": 1,
+        "status": 2,
+        "divider": 1,
+        "adc": 100,
+        "units": "Вт"
+      },
+      {
+        "name": "Pотр",
+        "value": 0,
+        "status": 0,
+        "divider": 1,
+        "adc": 14,
+        "units": "Вт"
+      },
+      {
+        "name": "КСВ",
+        "value": 100,
+        "divider": 100,
+        "status": 0
+      }
+    ]
+    }
+  },
+  "calib_passw.cgi": {
+    "Notific": {
+      "status": "ok",
+      "text": "Вход выполнен"
+    },
+    "auth_info": {
+      "auth_id": "SUPER_ADMIN",
+      "auth_level": 3
+    }
+  },
+  "get_avr_device_info.cgi":{
+      "id": 1,
+      "slave_general": {
+        "frequency": [
+          1075,
+          10
+        ],
+        "input_power": [
+          1001,
+          10
+        ],
+        "input_signal_type": 0,
+        "channel_coef_type": 2,
+        "coef_l": [
+          18,
+          10
+        ],
+        "coef_r": [
+          10,
+          10
+        ],
+        "coef_mpx": [
+          20,
+          10
+        ],
+        "resistance_type": 0,
+        "deviation": [
+          300,
+          10
+        ]
+      },
+      "slave_add_general": {
+        "radio_label": "Радио",
+        "scheduler_enable": 1,
+        "reserve_enable": 1,
+        "reserve_sound_enable": 1
+
+      },
+      "slave_scheduler": {    
+          "type": 1,
+          "power_on": {
+            "day": 2,
+            "hour": 12,
+            "min": 59
+          },
+          "power_off": {
+            "day": 5,
+            "hour": 21,
+            "min": 45
+          }
+      },      
+      "slave_rds": {
+        "tp": false,
+        "ta": false,
+        "pi": "0xF1F4",
+        "ps_name": "",
+        "radio_text": "",
+        "alt_stations": {
+          "alt_stations_available": true,
+          "alt_station_switch": false,
+          "alt_stations_list": [
+            {"id": 0, "value": [1136, 10]},
+            {"id": 1, "value": [816, 10]},
+            {"id": 2, "value": [951, 10]}
+          ]
+        }
+      },
+      "calib_power": {
+        "output_power": [
+          1230,
+          1
+        ],
+        "voltage_power": [
+          9813,
+          1
+        ],
+        "output_power_threshold": [
+          404,
+          1
+        ],
+        "coupling_coeff": [
+          200,
+          1
+        ],
+        "power_threshold_reserved_value": [
+          400,
+          1
+        ],
+        "threshold_type": 0, 
+        "threshold_0_value": [
+          400,
+          1
+        ],
+        "threshold_1_value": [
+          10,
+          10
+        ]
+      },
+      "calib_signal": {
+        "signal_type": 0,
+        "signal_0_value": [
+          30,
+          10
+        ],
+        "signal_1_value": [
+          30,
+          10
+        ],
+        "signal_2_value": [
+          30,
+          10
+        ]
+      },
+      "calib_signal_threshold": {
+        "signal_type_reserved": 0,       
+        "signal_0_reserved_value": [
+          30,
+          10
+        ],
+        "signal_1_reserved_value": [
+          25,
+          10
+        ],
+        "signal_2_reserved_value": [
+          55,
+          10
+        ],
+        "reserved_threshold_timeout": 1000,
+        "signal_type_recovery": 0,
+        "signal_0_recovery_value": [
+          150,
+          10
+        ],
+        "signal_1_recovery_value": [
+          20,
+          10
+        ],
+
+        "recovery_threshold_timeout": 1000
+      }
+    },
+  "get_avr_device_availiable.cgi": {
+    "device_availiability": {
+      "device_0": 1,
+      "device_1": 0,
+      "device_2": 0,
+      "device_3": 1
+    }
+  },
+  "calibration.cgi": {
+    "calib_serialNum": {
+      "calib_defence": 0,
+      "device_serial_num": "XXXXX",
+      "device_type": 1
+    },
+    "calib_general": {
+      "def_module": 0,
+      "fan_start_alarm": 1,
+      "tftp": 1,
+      "watchdog": 0,
+      "message_lcd": 1,
+      "Authorization": true
+    },
+    "calib_modbus": {
+      "master_form_availiable": 1,
+      "master_reserve_address": 2,
+      "master_main_address": 4,
+      "master_baudrate": 3,
+      "master_req_period": 500,
+      "master_timeout": 50,
+      "modbus_enable": 0
+
+    },
+    "calib_conf_file": {
+      "factory_conf_create_time": "2025.08.27 21: 00",
+      "reserve_conf_create_time": "2025.08.27 21: 00"
+    },
+    "calib_firmware": {
+      "application": {
+        "info": {
+          "addr_start": 134348800,
+          "crc": -672482849,
+          "addr_end": 134770687,
+          "lenght": 421887,
+          "version": "BlockControl_v2.1.1447"
+        }
+      },
+      "firmware1": {
+        "header": {
+          "id": -1611990941,
+          "active": "false",
+          "index": 22
+        },
+        "info": {
+          "addr_start": 1433616,
+          "crc": -672482849,
+          "addr_end": 1855503,
+          "lenght": 421887,
+          "UsedSpace": 45,
+          "FreeSpace": 55,
+          "version": "BlockControl_v2.1.1447"
+        }
+      },
+      "firmware2": {
+        "header": {
+          "id": -1611990941,
+          "active": "false",
+          "index": 21
+        },
+        "info": {
+          "addr_start": 2351120,
+          "crc": 517689118,
+          "addr_end": 2773007,
+          "lenght": 421887,
+          "UsedSpace": 45,
+          "FreeSpace": 55,
+          "version": "BlockControl_v2.1.1440"
+        }
+      }
+    }
+  },
+  "calib_modbus_mode.cgi": {
+    "Notific": {
+      "status": "ok",
+      "text": "Режим сменен"
+    }
+  },
+  "get_transmitter.cgi": {
+    "supply_on_setting": 0,
+    "ModeOneChannel": 1,
+    "channel_setting": 0
+  },
+  "GetLogErrorFull.cgi?syslog$1": {  
+  },
+  "GetLogErrorFull.cgi":     {
+      "syslog": [
+        [
+          141,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Цифра)",
+          "2026-01-21 11:38:57.345",
+          0
+        ],
+        [
+          140,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Аналог)",
+          "2026-01-21 11:38:57.345",
+          0
+        ],
+        [
+          139,
+          1,
+          "System",
+          "Нет связи с резервным передатчиком",
+          "2026-01-21 11:38:57.345",
+          0
+        ],
+        [
+          138,
+          0,
+          "System",
+          "Eth:служба TFTP запущена",
+          "2026-01-21 11:38:56.983",
+          0
+        ],
+        [
+          137,
+          0,
+          "System",
+          "Eth:служба SNTP запущена",
+          "2026-01-21 11:38:56.983",
+          0
+        ],
+        [
+          136,
+          0,
+          "System",
+          "Файл UserConfigFactory.bson (1247) успешно прочитан, размер 1826",
+          "1970-01-01 00:00:00.043",
+          0
+        ],
+        [
+          135,
+          0,
+          "System",
+          "Файл SysConfigFactory.bson (118) успешно прочитан, размер 1587",
+          "1970-01-01 00:00:00.040",
+          0
+        ],
+        [
+          134,
+          0,
+          "System",
+          "Файл UserConfigBackup.bson (1250) успешно прочитан, размер 1826",
+          "1970-01-01 00:00:00.038",
+          0
+        ],
+        [
+          133,
+          0,
+          "System",
+          "Файл SysConfigBackup.bson (118) успешно прочитан, размер 1587",
+          "1970-01-01 00:00:00.036",
+          0
+        ],
+        [
+          132,
+          0,
+          "System",
+          "Файл UserConfig1.bson (10) успешно прочитан, размер 1802",
+          "1970-01-01 00:00:00.032",
+          0
+        ],
+        [
+          131,
+          0,
+          "System",
+          "Файл SysConfig1.bson (293) успешно прочитан, размер 1633",
+          "1970-01-01 00:00:00.027",
+          0
+        ],
+        [
+          130,
+          1,
+          "System",
+          "LoadConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "1970-01-01 00:00:00.023",
+          0
+        ],
+        [
+          129,
+          3,
+          "System",
+          "Перезагрузка",
+          "1970-01-01 00:00:00.007",
+          0
+        ],
+        [
+          128,
+          0,
+          "Boot",
+          "Прошивка(HeaderATS_V2.0.0.bin) успешно загружена по TFTP.",
+          "2026-01-21 11:38:41.737",
+          0
+        ],
+        [
+          127,
+          1,
+          "System",
+          "Разрыв связи с блоком   БКА(Аналог)",
+          "2026-01-21 11:32:53.516",
+          0
+        ],
+        [
+          126,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Цифра)",
+          "2026-01-21 11:32:36.543",
+          0
+        ],
+        [
+          125,
+          1,
+          "System",
+          "Нет связи с резервным передатчиком",
+          "2026-01-21 11:32:36.131",
+          0
+        ],
+        [
+          124,
+          0,
+          "System",
+          "Связь с блоком БКА(Аналог)  установлена",
+          "2026-01-21 11:32:35.453",
+          0
+        ],
+        [
+          123,
+          0,
+          "System",
+          "Подключенно устройство..",
+          "2026-01-21 11:32:35.322",
+          0
+        ],
+        [
+          122,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Цифра)",
+          "2026-01-21 11:32:18.492",
+          0
+        ],
+        [
+          121,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Аналог)",
+          "2026-01-21 11:32:18.492",
+          0
+        ],
+        [
+          120,
+          1,
+          "System",
+          "Нет связи с резервным передатчиком",
+          "2026-01-21 11:32:18.492",
+          0
+        ],
+        [
+          119,
+          0,
+          "System",
+          "Eth:служба TFTP запущена",
+          "2026-01-21 11:32:18.141",
+          0
+        ],
+        [
+          118,
+          0,
+          "System",
+          "Eth:служба SNTP запущена",
+          "2026-01-21 11:32:18.141",
+          0
+        ],
+        [
+          117,
+          0,
+          "System",
+          "Файл UserConfigFactory.bson (1247) успешно прочитан, размер 1826",
+          "1970-01-01 00:00:00.047",
+          0
+        ],
+        [
+          116,
+          0,
+          "System",
+          "Файл SysConfigFactory.bson (118) успешно прочитан, размер 1587",
+          "1970-01-01 00:00:00.044",
+          0
+        ],
+        [
+          115,
+          0,
+          "System",
+          "Файл UserConfigBackup.bson (1250) успешно прочитан, размер 1826",
+          "1970-01-01 00:00:00.042",
+          0
+        ],
+        [
+          114,
+          0,
+          "System",
+          "Файл SysConfigBackup.bson (118) успешно прочитан, размер 1587",
+          "1970-01-01 00:00:00.040",
+          0
+        ],
+        [
+          113,
+          0,
+          "System",
+          "Файл UserConfig1.bson (7) успешно прочитан, размер 1802",
+          "1970-01-01 00:00:00.036",
+          0
+        ],
+        [
+          112,
+          0,
+          "System",
+          "Файл SysConfig1.bson (293) успешно прочитан, размер 1633",
+          "1970-01-01 00:00:00.029",
+          0
+        ],
+        [
+          111,
+          1,
+          "System",
+          "LoadConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "1970-01-01 00:00:00.025",
+          0
+        ],
+        [
+          110,
+          3,
+          "System",
+          "Холодный старт",
+          "1970-01-01 00:00:00.009",
+          0
+        ],
+        [
+          109,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Цифра)",
+          "2026-01-21 11:28:34.145",
+          0
+        ],
+        [
+          108,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Аналог)",
+          "2026-01-21 11:28:34.145",
+          0
+        ],
+        [
+          107,
+          1,
+          "System",
+          "Нет связи с резервным передатчиком",
+          "2026-01-21 11:28:34.145",
+          0
+        ],
+        [
+          106,
+          0,
+          "System",
+          "Eth:служба TFTP запущена",
+          "2026-01-21 11:28:33.794",
+          0
+        ],
+        [
+          105,
+          0,
+          "System",
+          "Eth:служба SNTP запущена",
+          "2026-01-21 11:28:33.794",
+          0
+        ],
+        [
+          104,
+          0,
+          "System",
+          "Файл UserConfigFactory.bson (1247) успешно прочитан, размер 1826",
+          "1970-01-01 00:00:00.114",
+          0
+        ],
+        [
+          103,
+          0,
+          "System",
+          "Файл SysConfigFactory.bson (118) успешно прочитан, размер 1587",
+          "1970-01-01 00:00:00.112",
+          0
+        ],
+        [
+          102,
+          0,
+          "System",
+          "Файл UserConfigBackup.bson (1250) успешно прочитан, размер 1826",
+          "1970-01-01 00:00:00.109",
+          0
+        ],
+        [
+          101,
+          0,
+          "System",
+          "Файл SysConfigBackup.bson (118) успешно прочитан, размер 1587",
+          "1970-01-01 00:00:00.107",
+          0
+        ],
+        [
+          100,
+          0,
+          "System",
+          "Файл UserConfig1.bson (4) успешно прочитан, размер 2297",
+          "1970-01-01 00:00:00.104",
+          0
+        ],
+        [
+          99,
+          0,
+          "System",
+          "Файл SysConfig1.bson (293) успешно прочитан, размер 1633",
+          "1970-01-01 00:00:00.026",
+          0
+        ],
+        [
+          98,
+          1,
+          "System",
+          "LoadConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "1970-01-01 00:00:00.022",
+          0
+        ],
+        [
+          97,
+          3,
+          "System",
+          "Перезагрузка",
+          "1970-01-01 00:00:00.007",
+          0
+        ],
+        [
+          96,
+          0,
+          "Boot",
+          "Прошивка(ATS_Firmware_v2.4.0.bin) успешно загружена по TFTP.",
+          "2026-01-21 11:28:18.495",
+          0
+        ],
+        [
+          95,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Цифра)",
+          "2026-01-21 11:19:49.546",
+          0
+        ],
+        [
+          94,
+          1,
+          "System",
+          "Нет связи с блоком БКА(Аналог)",
+          "2026-01-21 11:19:49.546",
+          0
+        ],
+        [
+          93,
+          1,
+          "System",
+          "Нет связи с резервным передатчиком",
+          "2026-01-21 11:19:49.546",
+          0
+        ],
+        [
+          92,
+          0,
+          "System",
+          "Eth:служба TFTP запущена",
+          "2026-01-21 11:19:49.194",
+          0
+        ],
+        [
+          91,
+          0,
+          "System",
+          "Eth:служба SNTP запущена",
+          "2026-01-21 11:19:49.194",
+          0
+        ],
+        [
+          90,
+          0,
+          "System",
+          "Файл UserConfigFactory.bson (1247) успешно прочитан, размер 1826",
+          "2026-01-21 11:19:47.181",
+          0
+        ],
+        [
+          89,
+          0,
+          "System",
+          "Файл SysConfigFactory.bson (118) успешно прочитан, размер 1587",
+          "2026-01-21 11:19:47.179",
+          0
+        ],
+        [
+          88,
+          0,
+          "System",
+          "Файл UserConfigBackup.bson (1250) успешно прочитан, размер 1826",
+          "2026-01-21 11:19:47.176",
+          0
+        ],
+        [
+          87,
+          0,
+          "System",
+          "Файл SysConfigBackup.bson (118) успешно прочитан, размер 1587",
+          "2026-01-21 11:19:47.174",
+          0
+        ],
+        [
+          86,
+          0,
+          "System",
+          "Config:Новый файл конфигурации успешно создан",
+          "2026-01-21 11:19:47.171",
+          0
+        ],
+        [
+          85,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.074",
+          0
+        ],
+        [
+          84,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.072",
+          0
+        ],
+        [
+          83,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.071",
+          0
+        ],
+        [
+          82,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.070",
+          0
+        ],
+        [
+          81,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.068",
+          0
+        ],
+        [
+          80,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.067",
+          0
+        ],
+        [
+          79,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.066",
+          0
+        ],
+        [
+          78,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.064",
+          0
+        ],
+        [
+          77,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.063",
+          0
+        ],
+        [
+          76,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.062",
+          0
+        ],
+        [
+          75,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.060",
+          0
+        ],
+        [
+          74,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.059",
+          0
+        ],
+        [
+          73,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.058",
+          0
+        ],
+        [
+          72,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.056",
+          0
+        ],
+        [
+          71,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.055",
+          0
+        ],
+        [
+          70,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.054",
+          0
+        ],
+        [
+          69,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.053",
+          0
+        ],
+        [
+          68,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.052",
+          0
+        ],
+        [
+          67,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.050",
+          0
+        ],
+        [
+          66,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.049",
+          0
+        ],
+        [
+          65,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.048",
+          0
+        ],
+        [
+          64,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.046",
+          0
+        ],
+        [
+          63,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.045",
+          0
+        ],
+        [
+          62,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.044",
+          0
+        ],
+        [
+          61,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.042",
+          0
+        ],
+        [
+          60,
+          1,
+          "System",
+          "LoadUserConfig:Файл1 не удалось прочитать из-за ошибки ERROR",
+          "2026-01-21 11:19:47.041",
+          0
+        ]
+      ]
+    }
+}
