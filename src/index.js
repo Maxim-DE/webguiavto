@@ -8,7 +8,9 @@ import { MemoryRouter } from 'react-router-dom';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
 
-// import reportWebVitals from './reportWebVitals';
+export const GRAPH_MODE_TEST = true;
+export const GRAPH_MODE_TEST_PORT = 5050;
+
 
 ReactDOM.render(
   <React.StrictMode>

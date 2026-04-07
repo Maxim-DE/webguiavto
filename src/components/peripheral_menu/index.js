@@ -1,6 +1,5 @@
 import React from 'react';
-import { LuFileQuestion } from "react-icons/lu";
-
+import { MdMemory } from "react-icons/md";
 
 import Pie from '../circle_indicator'
 
@@ -105,7 +104,7 @@ function PeripheralMenu(props) {
             <span className="time_value">{props.software_version ? props.software_version : '...'}</span>
           </div>
         </Tooltip>
-        <LuFileQuestion className='peripheral_info_icon' size={30} />
+        <MdMemory className='peripheral_info_icon' size={25} />
       </>
       }
     </div>

@@ -21,6 +21,10 @@ import { device_status } from '../../logic/utilites';
 import { err_erase } from '../../store/errPool_store_slice';
 import { AlertDialogWrap } from '../alert_dialog_wrap';
 
+import { GRAPH_MODE_TEST } from '../..';
+
+
+
 export const device_model_table = {
   'УРЦ-1000': 're_amp_1000',
   'УРЦ-2000': 're_amp_2000',
@@ -86,6 +90,24 @@ function StatusSection(props) {
 
     if (status_store.status_svg.img.length === 0) {
       if (device_type_arr.length === 0 || device_type === 255) return
+
+        if (GRAPH_MODE_TEST) {
+          let request_obj = {
+            address: 'static/media/status_graph/block_control_re_4000.svg',
+            // address: 'static/media/status_graph/block_control_st_1000.svg',
+            type: 'text',
+            options: 'localhost',
+            reducer: reducers.get_status_graph,
+            notifications: {
+              good: 'none',
+              bad: 'default'
+            },
+          }
+
+          props.updateHandler(request_obj)
+
+          return
+        }
 
       let svg_req_str = `${device_model_table[device_type_str]}.svg.gz`
   
