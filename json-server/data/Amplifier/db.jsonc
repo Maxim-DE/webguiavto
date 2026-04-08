@@ -1,15 +1,6 @@
-  // авторизация
 {
-  "Notific": {
-    "status": "ok",
-    "text": "Вход выполнен"
-  },
-  "auth_info": {
-    "auth_id": "super_admin",
-    "auth_level": 3
-  },
-
-  // info.cgi
+ 
+"info.cgi": {
   "info_general": {
     "serial_number": "XXXXX",
     "model": 1,
@@ -39,10 +30,12 @@
     "UpTimeSec": 3771
   },
   "auth_info": {
-    "auth_id": "guest",
-    "auth_level": 0
-  },
-  //status.cgi
+    "auth_id": "super_admin",
+    "auth_level": 3                 //  3- супер админ 2- админ 1 - user
+  }
+},
+//Запрос на параметры (на картинке)
+"status.cgi": {  
   "status_info": {
     "device_status": 4,
     "time": "2026-04-08 13:18:09",
@@ -286,8 +279,10 @@
         "units": "°С"
       }
     ]
-  },
+  }
+},
 // настройки 
+"settings.cgi": {
   "time_settings": {
     "date": "2026-04-08",
     "time": "13:45:09",
@@ -304,7 +299,9 @@
   "misc_settings": {
     "bootloader_enabled_switch": 1,
     "request_period": 1000
-  },
+  }
+},
+"network.cgi": {
   // настройки сети 
   "device_adress": {
     "mac_deafult": "08:00:1b:00:19:50",
@@ -336,41 +333,10 @@
         "trap_community": ""
       }
     ]
-  },
-  // Данные об устройстве 
-  "info_general": {
-    "serial_number": "XXXXX",
-    "model": 1,
-    "device_type_list": [
-      "УРЦ-1000",
-      "УРЦ-2000",
-      "УСТ-250",
-      "УСТ-500"
-    ],
-    "plate_number": "ЕУИС.468243.026",
-    "plate_version": "1",
-    "time_from_on": "missing",
-    "time_failure_on": "missing",
-    "time_failure_off": "missing",
-    "memory_type": "W25Q32"
-  },
-  "software_version": {
-    "os_version": "Amplifier_v3.2.447",
-    "app_sha": "b'e02df806f0a42ddf78598c6c964bbf38a214255a\n'",
-    "web_version": "Amp-1.0.93",
-    "bootloader_version": "Bootloader_v2.6.0",
-    "audio_version": "missing"
-  },
-  "Time": {
-    "Now": "2026-04-08 13:46:52",
-    "UpTime": "00001:32:07",
-    "UpTimeSec": 5527
-  },
-  "auth_info": {
-    "auth_id": "super_admin",
-    "auth_level": 3
-  },
-  // Калибровка
+  }
+},
+// Калибровка
+"calibration.cgi": {
   "calib_serialNum": {
     "calib_defence": 1,
     "device_serial_num": "XXXXX",
@@ -602,8 +568,11 @@
         "version": "Amplifier_v3.2.0"
       }
     }
-  },
-  // системный журнал
+  }
+},
+
+// системный журнал
+"GetLogErrorFull.cgi": {
   "syslog": [
     [
       31342,
@@ -1945,4 +1914,5 @@
       0
     ]
   ]
+}
 }
