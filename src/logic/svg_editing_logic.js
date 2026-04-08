@@ -135,106 +135,88 @@ function avr_svg_editing(svg, data_svg, auth_access) {
   //       amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
   //       amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`)
 
-  const pwr_buttons_list = svg.querySelectorAll(`g[id$="power_button"]`)
+const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
 
-  if (pwr_buttons_list) {
-    pwr_buttons_list.forEach(button => {
-      const device_type = button.id.replace(`_power_button`, ''),
-            button_cover = button.querySelector(`path[id*="btn_cover"]`)
+if (res_exiter_conf_buttons_list) {
+  const active_conf = data_svg?.exiter_0?.active_conf
+  const exiter_status = data_svg?.exiter_0?.status  // Получаем статус питания
+  
+  res_exiter_conf_buttons_list.forEach(button => {
+    if (button.id.includes(`ex${active_conf}`)) {
+      button.classList.add("active_ex_conf");
+    } else {
+      button.classList.remove("active_ex_conf");
+    }
 
-      const exiter_status = data_svg?.[device_type]?.status
+    // Проверка на питание и режим управления для кнопок конфигурации
+    if (active_control_mode == 0 || exiter_status == 0) {
+      button.classList.add("disabled_svg_button");
+      button.style.opacity = "0.5";
+      button.style.pointerEvents = "none";
+    } else {
+      button.classList.remove("disabled_svg_button");
+      button.style.opacity = "";
+      button.style.pointerEvents = "";
+    }
+  });
+}
 
-    // console.log('device_type', device_type)
-    // console.log('exiter',exiter_status)
-    // console.log('active_conf', active_conf)
-      
+// Кнопки конфигурации для exiter_1 (основной) - делаем неактивными при отсутствии питания
+const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="button"]`)
 
-      if (exiter_status == 1) {
-        button_cover.style.fill = status_colors[0]
-      } else {
-        button_cover.style.fill = status_colors[2]
-      }
+if (main_exiter_conf_buttons_list) {
+  const active_conf = data_svg?.exiter_1?.active_conf
+  const exiter_status = data_svg?.exiter_1?.status  // Получаем статус питания
+  
+  main_exiter_conf_buttons_list.forEach(button => {
+    if (button.id.includes(`ex${active_conf}`)) {
+      button.classList.add("active_ex_conf");
+    } else {
+      button.classList.remove("active_ex_conf");
+    }
 
-      if (active_control_mode == 0) {
-        button.style.display = 'none'
-      } else {
-        button.style.display = ''    // Это кнопки в ПРД вкл/выкл 
-        // Включаем только в ручном режиме их !!
-        // if(button.id === "output_0_power_button"){
-        //   if (afu_active_control_mode == 0) {
-        //     button.style.display = 'none'   // Эта кнопка в афу рез.
-        //   } else  {
-        //     button.style.display = ''
-        //   }
-        // }         
-      }
+    // Проверка на питание и режим управления для кнопок конфигурации
+    if (active_control_mode == 0 || exiter_status == 0) {
+      button.classList.add("disabled_svg_button");
+      button.style.opacity = "0.5";
+      button.style.pointerEvents = "none";
+    } else {
+      button.classList.remove("disabled_svg_button");
+      button.style.opacity = "";
+      button.style.pointerEvents = "";
+    }
+  });
+}
 
-    });
-  }
+const pwr_buttons_list = svg.querySelectorAll(`g[id$="power_button"]`)
 
-  const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
+if (pwr_buttons_list) {
+  pwr_buttons_list.forEach(button => {
+    const device_type = button.id.replace(`_power_button`, ''),
+          button_cover = button.querySelector(`path[id*="btn_cover"]`)
 
-  if (res_exiter_conf_buttons_list) {
-    const active_conf = data_svg?.exiter_0?.active_conf
-          res_exiter_conf_buttons_list.forEach(button => {
-
-// эксперементы (пытаюсь убрать кнопки при выкл питания прд )
-    const device_type = button.id.replace(`_power_button`, '')
     const exiter_status = data_svg?.[device_type]?.status
-    console.log('exiter',exiter_status)
-    // console.log('exiter0',exiter_status)
-      if (exiter_status == 1) {
-        button.classList.add ("disable_svg_button");
-      } else {
-        button.classList.remove("disabled_svg_button");
-      }
 
-      if (button.id.includes(`ex${active_conf}`)) {
-        button.classList.add("active_ex_conf");
-      } else {
-        button.classList.remove("active_ex_conf");
-      }
+    // Меняем цвет кнопки в зависимости от статуса питания
+    if (exiter_status == 1) {
+      button_cover.style.fill = status_colors[0]
+    } else {
+      button_cover.style.fill = status_colors[2]
+    }
 
-      if (active_control_mode == 1) {
-        button.classList.add("disabled_svg_button");
-      } else {
-        button.classList.remove("disabled_svg_button");
-      }
-    });
-  }
-
-  const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="button"]`)
-
-  if (main_exiter_conf_buttons_list) {
-    const active_conf = data_svg?.exiter_1?.active_conf
-          main_exiter_conf_buttons_list.forEach(button => {
-      
-    // const device_type = button.id.replace(`_power_button`, '')
-    // const exiter_status = data_svg?.[device_type]?.status
-
-    //   if (exiter_status == 1) {
-    //     button.classList.add ("disable_svg_button");
-    //   } else {
-    //     button.classList.remove("disabled_svg_button");
-    //   }
-
-      if (button.id.includes(`ex${active_conf}`)) {
-        button.classList.add("active_ex_conf");
-      } else {
-        button.classList.remove("active_ex_conf");
-      }
-    // console.log('active_conf',active_conf)  
-    // console.log('main_exiter_conf_buttons_list',main_exiter_conf_buttons_list)
-    // console.log('active_control_mode',active_control_mode)
-    // console.log('button.classList',button.classLists)
-
-      if (active_control_mode == 0) {
-        button.classList.add("disabled_svg_button");
-      } else {
-        button.classList.remove("disabled_svg_button");
-      }
-    });
-  }
+    // Убираем любые блокировки с кнопок питания
+    button.style.opacity = "";
+    button.style.pointerEvents = "";
+    button.classList.remove("disabled_svg_button");
+    
+    // Только скрываем/показываем в зависимости от режима управления
+    if (active_control_mode == 0) {
+      button.style.display = 'none'
+    } else {
+      button.style.display = ''
+    }
+  });
+}
 
   const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
   const input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]')

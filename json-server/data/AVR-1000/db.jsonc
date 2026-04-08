@@ -92,6 +92,7 @@
     "status_info": {
       "device_status": 0,
       "time": "2026-03-16 17:18:48",
+      // ручной автомат
       "active_control_mode": 1, 
       "current_signal_path": 2  
     },
@@ -251,7 +252,7 @@
         ]
       },    
       "exiter_1": {
-        "status": 0,
+        "status": 1,
         "input_signal": [
           108,
           10,

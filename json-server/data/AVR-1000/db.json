@@ -251,7 +251,7 @@
         ]
       },
       "exiter_1": {
-        "status": 0,
+        "status": 1,
         "input_signal": [
           108,
           10,
