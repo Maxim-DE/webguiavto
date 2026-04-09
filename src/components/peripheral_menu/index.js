@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsMemory } from "react-icons/bs";
+import { MdMemory } from "react-icons/md";
 
 import Pie from '../circle_indicator'
 
@@ -104,7 +104,7 @@ function PeripheralMenu(props) {
             <span className="time_value">{props.software_version ? props.software_version : '...'}</span>
           </div>
         </Tooltip>
-        <BsMemory className='peripheral_info_icon' size={25} />
+        <MdMemory className='peripheral_info_icon' size={25} />
       </>
       }
     </div>
