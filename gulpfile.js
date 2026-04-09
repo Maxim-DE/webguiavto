@@ -8,11 +8,17 @@ const stripDebug = require('gulp-strip-debug')
 var exec = require('child_process').exec
 
 
+
 let gzip_file_array = [
   'build/static/js/*.js',
   'build/static/css/*.css',
   // 'build/static/media/*.svg',
   // 'build/static/media/*.png',
+  'build/static/js/*.js.map',    // Добавить
+  'build/static/css/*.css.map',  // Добавить  
+  'build/static/js/*.js.map.gz',    // Добавить
+  'build/static/css/*.css.map.gz',  // Добавить  
+
   'build/static/media/status_graph/*.svg'
 ];
 
@@ -100,19 +106,47 @@ function delete_logs() {
   .pipe(dest('build/static/js/'))
 }
 
+// function revert_git(cb) {
+//   exec('git checkout src/logic/request_logic.js', function (err, stdout, stderr) {
+//     console.log(stdout);
+//     console.log(stderr);
+//     cb(err);
+//   });
+//    exec('git checkout public/index.html', function (err, stdout, stderr) {
+//     console.log(stdout);
+//     console.log(stderr);
+//     cb(err);
+//   });
+// }
+
 function revert_git(cb) {
-  exec('git checkout src/logic/request_logic.js', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-   exec('git checkout public/index.html', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
+  const exec = require('child_process').exec;
+  
+  // Удаляем блокировку перед началом
+  exec('rm -f .git/index.lock', (err) => {
+    if (err) console.log('Note: Could not remove lock file', err.message);
+    
+    // Последовательно восстанавливаем файлы
+    exec('git checkout src/logic/request_logic.js', (err1, stdout1, stderr1) => {
+      console.log('Restoring request_logic.js:', stdout1 || stderr1);
+      
+      if (err1) {
+        console.error('Error restoring request_logic.js:', err1.message);
+      }
+      
+      exec('git checkout public/index.html', (err2, stdout2, stderr2) => {
+        console.log('Restoring index.html:', stdout2 || stderr2);
+        
+        if (err2) {
+          console.error('Error restoring index.html:', err2.message);
+        }
+        
+        // Передаем первую ошибку (или null если все ок)
+        cb(err1 || err2);
+      });
+    });
   });
 }
-
 
 exports.build_gzip = build_gzip;
 exports.delete_raw_files = delete_raw_files;
