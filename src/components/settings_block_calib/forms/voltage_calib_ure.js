@@ -226,7 +226,7 @@ function VoltageCalibSettings_URE(props) {
                   style={{ margin: '0', maxWidth: '54px' }}
                   max_length={4}
                   input_value={voltageCalibState.dac_admin_value}
-                  clickHandler={handleChange}
+                  changeHandler={handleChange}
                 />
                 <FormInput
                   id={`dac_admin_value_calib_save`}

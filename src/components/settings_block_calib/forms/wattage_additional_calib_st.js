@@ -348,7 +348,7 @@ function WattageAdditionalCalibSettings_ST(props) {
             name={`ballast_1_threshold_low`}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
             input_value={wattageAdditionalCalibState.ballast_1_threshold_low}
-            clickHandler={handleChange}
+            changeHandler={handleChange}
           />
           <span>до</span>
           <FormInput
@@ -358,7 +358,7 @@ function WattageAdditionalCalibSettings_ST(props) {
             name={`ballast_1_threshold_high`}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
             input_value={wattageAdditionalCalibState.ballast_1_threshold_high}
-            clickHandler={handleChange}
+            changeHandler={handleChange}
           />
         </div>
         <FormInput
