@@ -1,0 +1,1145 @@
+{
+  "status.cgi": {
+    "calib_available": 0,
+    "status_info": {
+      "device_status": 3,
+      "time": ""
+    },
+    "status_graph": {
+      "modulator": {
+        "status": 0,
+        "channel": [
+          0,
+          1,
+          0
+        ],
+        "output_pwr": [
+          0,
+          1000,
+          2,
+          "мВт"
+        ],
+        "temperature": [
+          0,
+          1,
+          0,
+          "°С"
+        ]
+      },
+      "amplifier_1": {
+        "status": 0,
+        "voltage": [
+          0,
+          10,
+          3,
+          "В"
+        ],
+        "current": [
+          0,
+          10,
+          0,
+          "А"
+        ],
+        "temperature": [
+          0,
+          10,
+          0,
+          "°С"
+        ]
+      },
+      "amplifier_2": {
+        "status": 0,
+        "voltage": [
+          0,
+          10,
+          3,
+          "В"
+        ],
+        "current": [
+          0,
+          10,
+          0,
+          "А"
+        ],
+        "temperature": [
+          0,
+          10,
+          0,
+          "°С"
+        ]
+      },
+      "adder": {
+        "status": 0,
+        "ballast": [
+          0,
+          1,
+          0,
+          "Вт"
+        ]
+      },
+      "output": {
+        "status": 0,
+        "input_pwr": [
+          0,
+          10,
+          2,
+          "Вт"
+        ],
+        "refl_pwr": [
+          0,
+          10,
+          3,
+          "Вт"
+        ],
+        "swr": [
+          0,
+          100,
+          3
+        ],
+        "ballast": [
+          0,
+          1,
+          0,
+          "Вт"
+        ]
+      }
+    },
+    "status_peripheral": {
+      "pout": [
+        0,
+        10,
+        2,
+        "Вт"
+      ],
+      "voltage": [
+        0,
+        10,
+        3,
+        "В"
+      ],
+      "current": [
+        0,
+        10,
+        0,
+        "А"
+      ],
+      "temperature": [
+        0,
+        10,
+        0,
+        "°С"
+      ]
+    },
+    "status_settings": {
+      "supply_on_setting": 3,
+      "channel_setting": 0,
+      "rds_mode": 1,
+      "freq_control": 10880,
+      "output_control": 165
+    },
+    "status_logs": [
+      [
+        7,
+        0,
+        "SNTP::Время с сервера получено",
+        [
+          26,
+          4,
+          9,
+          12,
+          36,
+          43,
+          0
+        ],
+        0
+      ],
+      [
+        6,
+        3,
+        "Холодный старт",
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1019
+        ],
+        0
+      ],
+      [
+        5,
+        0,
+        "SNTP::Время с сервера получено",
+        [
+          26,
+          4,
+          9,
+          12,
+          21,
+          13,
+          0
+        ],
+        0
+      ],
+      [
+        4,
+        3,
+        "Холодный старт",
+        [
+          23,
+          1,
+          1,
+          0,
+          6,
+          10,
+          126
+        ],
+        0
+      ],
+      [
+        3,
+        0,
+        "SNTP::Служба запущена",
+        [
+          23,
+          1,
+          1,
+          0,
+          5,
+          55,
+          765
+        ],
+        0
+      ],
+      [
+        2,
+        2,
+        "super_admin:Изменил сетевые настройки",
+        [
+          23,
+          1,
+          1,
+          0,
+          4,
+          53,
+          649
+        ],
+        0
+      ]
+    ],
+    "calib_adc": {
+      "current_calib": {
+        "I1": 1,
+        "I2": 1
+      },
+      "current_threshhold_calib": {
+        "I1": 0,
+        "I2": 0
+      },
+      "voltage_calib": {
+        "U1": 2
+      },
+      "power_calib": {
+        "dac_value": [
+          2,
+          0
+        ],
+        "output_power": 1,
+        "refected_power": 2,
+        "output_power_threshold": 4095,
+        "coupling_coeff": 2500
+      },
+      "power_additional_calib": {
+        "input_power": 2,
+        "ballast_1": 0
+      }
+    }
+  },
+  "info.cgi": {
+    "info_general": {
+      "Type_Device": "СТ-100",
+      "serial_number": "XXXXXX",
+      "type": [
+        2,
+        2
+      ],
+      "plate_number": "ЕУИС.468243.026",
+      "plate_version": "0",
+      "time_from_on": "missing",
+      "time_failure_on": "missing",
+      "time_failure_off": "missing",
+      "memory_type": "W25Q32",
+      "calib_misc": {
+        "calib_channels": {
+          "channel_list": [
+            {
+              "channel": 6,
+              "access": 0
+            },
+            {
+              "channel": 7,
+              "access": 0
+            },
+            {
+              "channel": 8,
+              "access": 0
+            },
+            {
+              "channel": 9,
+              "access": 0
+            },
+            {
+              "channel": 10,
+              "access": 0
+            },
+            {
+              "channel": 11,
+              "access": 0
+            },
+            {
+              "channel": 12,
+              "access": 0
+            },
+            {
+              "channel": 21,
+              "access": 0
+            },
+            {
+              "channel": 22,
+              "access": 0
+            },
+            {
+              "channel": 23,
+              "access": 0
+            },
+            {
+              "channel": 24,
+              "access": 0
+            },
+            {
+              "channel": 25,
+              "access": 0
+            },
+            {
+              "channel": 26,
+              "access": 0
+            },
+            {
+              "channel": 27,
+              "access": 0
+            },
+            {
+              "channel": 28,
+              "access": 0
+            },
+            {
+              "channel": 29,
+              "access": 0
+            },
+            {
+              "channel": 30,
+              "access": 0
+            },
+            {
+              "channel": 31,
+              "access": 0
+            },
+            {
+              "channel": 32,
+              "access": 0
+            },
+            {
+              "channel": 33,
+              "access": 0
+            },
+            {
+              "channel": 34,
+              "access": 0
+            },
+            {
+              "channel": 35,
+              "access": 0
+            },
+            {
+              "channel": 36,
+              "access": 0
+            },
+            {
+              "channel": 37,
+              "access": 0
+            },
+            {
+              "channel": 38,
+              "access": 0
+            },
+            {
+              "channel": 39,
+              "access": 0
+            },
+            {
+              "channel": 40,
+              "access": 0
+            },
+            {
+              "channel": 41,
+              "access": 0
+            },
+            {
+              "channel": 42,
+              "access": 0
+            },
+            {
+              "channel": 43,
+              "access": 0
+            },
+            {
+              "channel": 44,
+              "access": 0
+            },
+            {
+              "channel": 45,
+              "access": 0
+            },
+            {
+              "channel": 46,
+              "access": 0
+            },
+            {
+              "channel": 47,
+              "access": 0
+            },
+            {
+              "channel": 48,
+              "access": 0
+            },
+            {
+              "channel": 49,
+              "access": 0
+            },
+            {
+              "channel": 50,
+              "access": 0
+            },
+            {
+              "channel": 51,
+              "access": 0
+            },
+            {
+              "channel": 52,
+              "access": 0
+            },
+            {
+              "channel": 53,
+              "access": 0
+            },
+            {
+              "channel": 54,
+              "access": 0
+            },
+            {
+              "channel": 55,
+              "access": 0
+            },
+            {
+              "channel": 56,
+              "access": 0
+            },
+            {
+              "channel": 57,
+              "access": 0
+            },
+            {
+              "channel": 58,
+              "access": 0
+            },
+            {
+              "channel": 59,
+              "access": 0
+            },
+            {
+              "channel": 60,
+              "access": 0
+            },
+            {
+              "channel": 61,
+              "access": 0
+            },
+            {
+              "channel": 62,
+              "access": 0
+            },
+            {
+              "channel": 63,
+              "access": 0
+            },
+            {
+              "channel": 64,
+              "access": 0
+            },
+            {
+              "channel": 65,
+              "access": 0
+            },
+            {
+              "channel": 66,
+              "access": 0
+            },
+            {
+              "channel": 67,
+              "access": 0
+            },
+            {
+              "channel": 68,
+              "access": 0
+            },
+            {
+              "channel": 69,
+              "access": 0
+            },
+            {
+              "channel": 70,
+              "access": 0
+            },
+            {
+              "channel": 71,
+              "access": 0
+            },
+            {
+              "channel": 72,
+              "access": 0
+            },
+            {
+              "channel": 73,
+              "access": 0
+            },
+            {
+              "channel": 74,
+              "access": 0
+            },
+            {
+              "channel": 75,
+              "access": 0
+            },
+            {
+              "channel": 76,
+              "access": 0
+            },
+            {
+              "channel": 77,
+              "access": 0
+            },
+            {
+              "channel": 78,
+              "access": 0
+            },
+            {
+              "channel": 79,
+              "access": 0
+            },
+            {
+              "channel": 80,
+              "access": 0
+            }
+          ]
+        }
+      }
+    },
+    "software_version": {
+      "os_version": "DigitalExciter_v1.8.1",
+      "app_sha": "0449e3209565bbe10b512f3aa2042aa450042e94",
+      "bootloader_version": "Bootloader_v2.6.0",
+      "web_version": "St250-1.0.37",
+      "audio_version": "missing"
+    },
+    "auth_info": {
+      "auth_id": "super_admin",
+      "auth_level": 3
+    },
+    "BackupConf": {
+      "device": "false",
+      "user": "false"
+    }
+  },
+  "settings.cgi": {
+    "time_settings": {
+      "date": "",
+      "time": "",
+      "time_settings": {
+        "period": "01:00,17:00"
+      },
+      "time_sync": {
+        "time_sync_switch": 1,
+        "ntp_server": "94.103.91.82",
+        "time_sync_timezone": 27,
+        "time_sync_period": 7
+      }
+    },
+    "misc_settings": {
+      "bootloader_enabled_switch": 1,
+      "request_period": 1000
+    }
+  },
+  "network.cgi": {
+    "device_adress": {
+      "mac_deafult": "08:00:1a:00:19:50",
+      "mac": "08:00:1a:00:19:50",
+      "ip": "192.168.1.114",
+      "subnet_mask": "255.255.255.0",
+      "gateway": "192.168.1.18"
+    },
+    "remote_control": {
+      "remote_ip_addr_1_settings": "",
+      "remote_ip_addr_2_settings": "",
+      "remote_ip_addr_3_settings": "",
+      "remote_ip_addr_4_settings": ""
+    },
+    "snmp_agent": {
+      "community_read": "public",
+      "community_write": "private",
+      "trap_settings": [
+        {
+          "active": 0,
+          "port": 0,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        },
+        {
+          "active": 0,
+          "port": 0,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        }
+      ]
+    }
+  },
+  "calibration.cgi": {
+    "calib_serialNum": {
+      "calib_defence": 1,
+      "device_serial_num": "XXXXXX",
+      "device_type": [
+        2,
+        2
+      ]
+    },
+    "calib_current": {
+      "current_value": {
+        "I1": {
+          "value": [
+            100,
+            10
+          ],
+          "availability": 1
+        },
+        "I2": {
+          "value": [
+            100,
+            10
+          ],
+          "availability": 1
+        },
+        "I3": {
+          "value": [
+            100,
+            10
+          ],
+          "availability": 0
+        },
+        "I4": {
+          "value": [
+            100,
+            10
+          ],
+          "availability": 0
+        }
+      },
+      "threshold": {
+        "I1": {
+          "high": [
+            110,
+            10
+          ],
+          "low": [
+            50,
+            10
+          ],
+          "availability": 1
+        },
+        "I2": {
+          "high": [
+            110,
+            10
+          ],
+          "low": [
+            50,
+            10
+          ],
+          "availability": 1
+        },
+        "I3": {
+          "high": [
+            110,
+            10
+          ],
+          "low": [
+            50,
+            10
+          ],
+          "availability": 0
+        },
+        "I4": {
+          "high": [
+            110,
+            10
+          ],
+          "low": [
+            50,
+            10
+          ],
+          "availability": 0
+        }
+      }
+    },
+    "calib_voltage": {
+      "U1": [
+        100,
+        10
+      ]
+    },
+    "calib_power": {
+      "dac_value": [
+        0,
+        1
+      ],
+      "output_power": [
+        100,
+        10
+      ],
+      "output_power_threshold": [
+        4095,
+        1
+      ],
+      "coupling_coeff": [
+        0,
+        1
+      ]
+    },
+    "calib_additional_power": {
+      "input_power": [
+        100,
+        1
+      ],
+      "ballast_1_avaliable": 1,
+      "ballast_1": [
+        100,
+        1
+      ],
+      "ballast_1_threshold_low": [
+        50,
+        1
+      ],
+      "ballast_1_threshold_high": [
+        110,
+        1
+      ]
+    },
+    "calib_fan": {
+      "fan_pwm": 1,
+      "fan_pwm_control": 0,
+      "fan_temp_threshold_on": [
+        300,
+        10
+      ],
+      "fan_temp_threshold_max": [
+        600,
+        10
+      ]
+    },
+    "calib_temp": {
+      "temp_address": 0,
+      "temp_threshold_on": [
+        600,
+        10
+      ],
+      "temp_threshold_off": [
+        700,
+        10
+      ]
+    },
+    "calib_general": {
+      "amp_enable": 0,
+      "def_module": 1,
+      "fan_start_alarm": 1,
+      "tftp": 0
+    },
+    "calib_configFile": {
+      "factory_reset_available": 0
+    },
+    "calib_network": {
+      "req_period": 1000,
+      "retry_time_value": 1,
+      "retry_count": 10,
+      "keep_alive_timeout": 2000
+    },
+    "calib_console_output": {
+      "console_output_switch": "true",
+      "ip_address": "192.168.1.150",
+      "output_type": 1,
+      "out_port": 5321,
+      "in_port": 0,
+      "err_port": 0
+    },
+    "calib_modbus": {
+      "slave_address": 0,
+      "slave_baudrate": 3,
+      "slave_order_num": 0
+    },
+    "calib_misc": {
+      "calib_channels": {
+        "channel_list": [
+          {
+            "channel": 6,
+            "access": 0
+          },
+          {
+            "channel": 7,
+            "access": 0
+          },
+          {
+            "channel": 8,
+            "access": 0
+          },
+          {
+            "channel": 9,
+            "access": 0
+          },
+          {
+            "channel": 10,
+            "access": 0
+          },
+          {
+            "channel": 11,
+            "access": 0
+          },
+          {
+            "channel": 12,
+            "access": 0
+          },
+          {
+            "channel": 21,
+            "access": 0
+          },
+          {
+            "channel": 22,
+            "access": 0
+          },
+          {
+            "channel": 23,
+            "access": 0
+          },
+          {
+            "channel": 24,
+            "access": 0
+          },
+          {
+            "channel": 25,
+            "access": 0
+          },
+          {
+            "channel": 26,
+            "access": 0
+          },
+          {
+            "channel": 27,
+            "access": 0
+          },
+          {
+            "channel": 28,
+            "access": 0
+          },
+          {
+            "channel": 29,
+            "access": 0
+          },
+          {
+            "channel": 30,
+            "access": 0
+          },
+          {
+            "channel": 31,
+            "access": 0
+          },
+          {
+            "channel": 32,
+            "access": 0
+          },
+          {
+            "channel": 33,
+            "access": 0
+          },
+          {
+            "channel": 34,
+            "access": 0
+          },
+          {
+            "channel": 35,
+            "access": 0
+          },
+          {
+            "channel": 36,
+            "access": 0
+          },
+          {
+            "channel": 37,
+            "access": 0
+          },
+          {
+            "channel": 38,
+            "access": 0
+          },
+          {
+            "channel": 39,
+            "access": 0
+          },
+          {
+            "channel": 40,
+            "access": 0
+          },
+          {
+            "channel": 41,
+            "access": 0
+          },
+          {
+            "channel": 42,
+            "access": 0
+          },
+          {
+            "channel": 43,
+            "access": 0
+          },
+          {
+            "channel": 44,
+            "access": 0
+          },
+          {
+            "channel": 45,
+            "access": 0
+          },
+          {
+            "channel": 46,
+            "access": 0
+          },
+          {
+            "channel": 47,
+            "access": 0
+          },
+          {
+            "channel": 48,
+            "access": 0
+          },
+          {
+            "channel": 49,
+            "access": 0
+          },
+          {
+            "channel": 50,
+            "access": 0
+          },
+          {
+            "channel": 51,
+            "access": 0
+          },
+          {
+            "channel": 52,
+            "access": 0
+          },
+          {
+            "channel": 53,
+            "access": 0
+          },
+          {
+            "channel": 54,
+            "access": 0
+          },
+          {
+            "channel": 55,
+            "access": 0
+          },
+          {
+            "channel": 56,
+            "access": 0
+          },
+          {
+            "channel": 57,
+            "access": 0
+          },
+          {
+            "channel": 58,
+            "access": 0
+          },
+          {
+            "channel": 59,
+            "access": 0
+          },
+          {
+            "channel": 60,
+            "access": 0
+          },
+          {
+            "channel": 61,
+            "access": 0
+          },
+          {
+            "channel": 62,
+            "access": 0
+          },
+          {
+            "channel": 63,
+            "access": 0
+          },
+          {
+            "channel": 64,
+            "access": 0
+          },
+          {
+            "channel": 65,
+            "access": 0
+          },
+          {
+            "channel": 66,
+            "access": 0
+          },
+          {
+            "channel": 67,
+            "access": 0
+          },
+          {
+            "channel": 68,
+            "access": 0
+          },
+          {
+            "channel": 69,
+            "access": 0
+          },
+          {
+            "channel": 70,
+            "access": 0
+          },
+          {
+            "channel": 71,
+            "access": 0
+          },
+          {
+            "channel": 72,
+            "access": 0
+          },
+          {
+            "channel": 73,
+            "access": 0
+          },
+          {
+            "channel": 74,
+            "access": 0
+          },
+          {
+            "channel": 75,
+            "access": 0
+          },
+          {
+            "channel": 76,
+            "access": 0
+          },
+          {
+            "channel": 77,
+            "access": 0
+          },
+          {
+            "channel": 78,
+            "access": 0
+          },
+          {
+            "channel": 79,
+            "access": 0
+          },
+          {
+            "channel": 80,
+            "access": 0
+          }
+        ]
+      }
+    },
+    "calib_firmware": {
+      "application": {
+        "info": {
+          "addr_start": 134348800,
+          "crc": 845257622,
+          "addr_end": 134811647,
+          "lenght": 462847,
+          "version": "DigitalExciter_v1.8.1"
+        }
+      },
+      "firmware1": {
+        "header": {
+          "id": 358785752,
+          "active": "false",
+          "index": 13
+        },
+        "info": {
+          "addr_start": 0,
+          "crc": 0,
+          "addr_end": 0,
+          "lenght": 0,
+          "UsedSpace": 0,
+          "FreeSpace": 0,
+          "version": ""
+        }
+      },
+      "firmware2": {
+        "header": {
+          "id": -1,
+          "active": "false",
+          "index": -1
+        },
+        "info": {
+          "addr_start": 0,
+          "crc": 0,
+          "addr_end": 0,
+          "lenght": 0,
+          "UsedSpace": 0,
+          "FreeSpace": 0,
+          "version": ""
+        }
+      }
+    }
+  },
+  "get_transmitter.cgi": {
+    "supply_on_setting": 0,
+    "channel_setting": 0,
+    "ModeOneChannel": 0
+  },
+  "peripheral_structure.cgi": {
+    "structure": [
+      {
+        "name": "voltage",
+        "min": 75,
+        "max": 125
+      },
+      {
+        "name": "pout",
+        "min": 50,
+        "max": 110
+      },
+      {
+        "name": "current",
+        "min": 50,
+        "max": 110
+      },
+      {
+        "name": "temperature",
+        "min": 60,
+        "max": 70
+      }
+    ]
+  }
+}
