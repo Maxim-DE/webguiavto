@@ -38,6 +38,12 @@ function VoltageCalibSettings_URE(props) {
   
   const device_type = info_section_data?.info_general?.model !== undefined ? info_section_data.info_general.model : 0
 
+  // Refs для управления интервалами автоповтора
+  const incrementIntervalRef = React.useRef(null);
+  const decrementIntervalRef = React.useRef(null);
+  const incrementTimeoutRef = React.useRef(null);
+  const decrementTimeoutRef = React.useRef(null);
+
   React.useEffect(() => {
     if (calibVoltage_store != undefined && Object.keys(calibVoltage_store).length != 0) {
       let calib_state_copy = {}
@@ -57,16 +63,108 @@ function VoltageCalibSettings_URE(props) {
     }
   }, [calibVoltage_store])
 
+  // Очистка интервалов при размонтировании
+  React.useEffect(() => {
+    return () => {
+      if (incrementIntervalRef.current) clearInterval(incrementIntervalRef.current);
+      if (decrementIntervalRef.current) clearInterval(decrementIntervalRef.current);
+      if (incrementTimeoutRef.current) clearTimeout(incrementTimeoutRef.current);
+      if (decrementTimeoutRef.current) clearTimeout(decrementTimeoutRef.current);
+    };
+  }, []);
+
   const handleChange = (event) => {
     const target = event.target;
-    const value = target.type == 'checkbox' ? Number(target.checked) : target.value;
+    let value = target.type == 'checkbox' ? Number(target.checked) : target.value;
     const name = target.name.replace('_calib', '');
+
+    // Валидация для dac_admin_value: только цифры и диапазон 0-4095
+    if (name === 'dac_admin_value') {
+      value = value.replace(/[^\d]/g, '');
+      let num = parseInt(value, 10);
+      if (!isNaN(num)) {
+        num = Math.min(Math.max(num, 0), 4095);
+        value = num.toString();
+      }
+    }
 
     setVoltageCalibState(prevState => ({
       ...prevState,
       [name]: value
     }))
   }
+
+  // Функция увеличения значения на 10
+  const incrementByTen = () => {
+    setVoltageCalibState(prevState => {
+      const currentValue = parseInt(prevState.dac_admin_value, 10) || 0;
+      const newValue = Math.min(currentValue + 10, 4095);
+      return {
+        ...prevState,
+        dac_admin_value: newValue.toString()
+      };
+    });
+  };
+
+  // Функция уменьшения значения на 10
+  const decrementByTen = () => {
+    setVoltageCalibState(prevState => {
+      const currentValue = parseInt(prevState.dac_admin_value, 10) || 0;
+      const newValue = Math.max(currentValue - 10, 0);
+      return {
+        ...prevState,
+        dac_admin_value: newValue.toString()
+      };
+    });
+  };
+
+  // Обработчик начала зажатия кнопки увеличения
+  const startIncrement = () => {
+    // Первое мгновенное изменение
+    incrementByTen();
+    
+    // Таймаут перед началом автоповтора (500ms)
+    incrementTimeoutRef.current = setTimeout(() => {
+      // Запускаем интервал с частотой ~10 раз в секунду
+      incrementIntervalRef.current = setInterval(() => {
+        incrementByTen();
+      }, 100);
+    }, 500);
+  };
+
+  // Обработчик начала зажатия кнопки уменьшения
+  const startDecrement = () => {
+    // Первое мгновенное изменение
+    decrementByTen();
+    
+    // Таймаут перед началом автоповтора (500ms)
+    decrementTimeoutRef.current = setTimeout(() => {
+      // Запускаем интервал с частотой ~10 раз в секунду
+      decrementIntervalRef.current = setInterval(() => {
+        decrementByTen();
+      }, 100);
+    }, 500);
+  };
+
+  // Обработчик отпускания кнопок (останавливает все)
+  const stopChange = () => {
+    if (incrementIntervalRef.current) {
+      clearInterval(incrementIntervalRef.current);
+      incrementIntervalRef.current = null;
+    }
+    if (decrementIntervalRef.current) {
+      clearInterval(decrementIntervalRef.current);
+      decrementIntervalRef.current = null;
+    }
+    if (incrementTimeoutRef.current) {
+      clearTimeout(incrementTimeoutRef.current);
+      incrementTimeoutRef.current = null;
+    }
+    if (decrementTimeoutRef.current) {
+      clearTimeout(decrementTimeoutRef.current);
+      decrementTimeoutRef.current = null;
+    }
+  };
 
   const handleClick_save = (event) => {
     const target = event.target,
@@ -159,6 +257,31 @@ function VoltageCalibSettings_URE(props) {
 
   }
 
+  // Стили для кнопок +10/-10
+  const buttonStyle = {
+    width: '24px',
+    height: '24px',
+    background: '#e0e7eb',
+    color: '#2F323A',
+    border: 'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '14px',
+    userSelect: 'none',
+    transition: 'background 0.1s'
+  };
+
+  // const buttonHoverStyle = {
+  //   ...buttonStyle,
+  //   background: '#2b2be6'
+  // };
+
+  // const buttonActiveStyle = {
+  //   ...buttonStyle,
+  //   background: '#2929cc'
+  // };
+
   return (
     <Settings_block_calib header={`калибровка напряжений`}
       settings_type={`voltage_primary_calib`}>
@@ -210,24 +333,45 @@ function VoltageCalibSettings_URE(props) {
                 </label>
               </div>
               <div className='item_input'>
-                {/* <span className='item_adc_value'>
-              АЦП<sub>АРУ</sub>: {
-                adcPower_store ? adcPower_store.dac_value[0] : ''
-              }
-            </span> */}
                 <span className='item_adc_value'>
                   ЦАП<sub>БП</sub>: {adcVoltage_store?.dac}
                 </span>
-                <FormInput
-                  type="text"
-                  id={`dac_admin_value_calib_input`}
-                  name={`dac_admin_value_calib`}
-                  class="text_range"
-                  style={{ margin: '0', maxWidth: '54px' }}
-                  max_length={4}
-                  input_value={voltageCalibState.dac_admin_value}
-                  changeHandler={handleChange}
-                />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <button
+                    type="button"
+                    onMouseDown={startDecrement}
+                    onMouseUp={stopChange}
+                    onMouseLeave={stopChange}
+                    onTouchStart={startDecrement}
+                    onTouchEnd={stopChange}
+                    style={buttonStyle}
+                    title="Уменьшить на 10 (зажмите для ускорения)"
+                  >
+                    ▼
+                  </button>
+                  <FormInput
+                    type="text"
+                    id={`dac_admin_value_calib_input`}
+                    name={`dac_admin_value_calib`}
+                    class="text_range"
+                    style={{ margin: '0', maxWidth: '60px', textAlign: 'center' }}
+                    max_length={4}
+                    input_value={voltageCalibState.dac_admin_value}
+                    changeHandler={handleChange}
+                  />
+                  <button
+                    type="button"
+                    onMouseDown={startIncrement}
+                    onMouseUp={stopChange}
+                    onMouseLeave={stopChange}
+                    onTouchStart={startIncrement}
+                    onTouchEnd={stopChange}
+                    style={buttonStyle}
+                    title="Увеличить на 10 (зажмите для ускорения)"
+                  >
+                    ▲
+                  </button>
+                </div>
                 <FormInput
                   id={`dac_admin_value_calib_save`}
                   name={`dac_admin_value_calib`}
@@ -304,48 +448,6 @@ function VoltageCalibSettings_URE(props) {
         }
       </>
       }
-      {/* <li
-        key='U2_calib'
-        id='U2_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <FormInput
-            id={`U2_available_calib_input`}
-            name={`U2_available_calib`}
-            changeHandler={(e) => {
-              handleChange(e);
-              handleAvaliablility_save(e)
-            }}
-            input_value={voltageCalibState.U2_available}
-            type="checkbox" />
-          <label
-            htmlFor={`U2_calib_input`}
-            className="settings_itemLabel">
-            Калибровка U2
-          </label>
-        </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            АЦП: {adcVoltage_store?.U2}
-          </span>
-          <FormInput
-            id={`U2_calib_input`}
-            name={`U2_calib`}
-            class="calib_input"
-            changeHandler={handleChange}
-            placeholder={'X.X В'}
-            disabled={!voltageCalibState.U2_available}
-            input_value={voltageCalibState.U2}
-            type="text" />
-          <FormInput
-            id={`U2_calib_save`}
-            name={`U2_calib`}
-            disabled={!voltageCalibState.U2_available}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li> */}
     </Settings_block_calib>
   )
 }
