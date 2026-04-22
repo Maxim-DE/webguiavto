@@ -93,7 +93,7 @@
       "device_status": 0,
       "time": "2026-03-16 17:18:48",
       "active_control_mode": 1,
-      "current_signal_path": 2
+      "current_signal_path": 3
     },
     "status_logs": [
       [
@@ -177,7 +177,7 @@
       "input_1": {
         "status": 0,
         "input_signal_type": "STEREO",
-        "mode": "1",
+        "mode": "2",
         "l": [
           301,
           10,
@@ -217,7 +217,7 @@
         ]
       },
       "exiter_0": {
-        "status": 0,
+        "status": 1,
         "input_signal": [
           108,
           10,
@@ -239,7 +239,7 @@
           "Вт"
         ],
         "swr": [
-          128,
+          101,
           100,
           0
         ],
@@ -251,7 +251,7 @@
         ]
       },
       "exiter_1": {
-        "status": 1,
+        "status": 0,
         "input_signal": [
           108,
           10,

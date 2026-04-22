@@ -178,7 +178,7 @@
       "input_1": {
         "status": 0,
         "input_signal_type": "STEREO",
-        "mode": "1",
+        "mode": "2",
         "l": [
           301,
           10,
@@ -218,7 +218,7 @@
         ]
       },
       "exiter_0": {
-        "status": 0,
+        "status": 1,
         "input_signal": [
           108,
           10,
@@ -252,7 +252,7 @@
         ]
       },    
       "exiter_1": {
-        "status": 1,
+        "status": 0,
         "input_signal": [
           108,
           10,
