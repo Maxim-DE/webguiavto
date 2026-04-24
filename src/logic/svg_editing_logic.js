@@ -11,7 +11,7 @@ export default function svg_editing_logic(svg, data_svg, device_type) {
     case 'УРЦ-2000':
       return re_amp_svg_editing(svg, data_svg)
 
-    case 'АВР-1000':
+    case 'АВР 1+1':
       return avr_svg_editing(svg, data_svg)
   
     default:

@@ -4,7 +4,7 @@
       "serial_number": "XXXXX",
       "model": 0,
       "device_type_list": [
-        "АВР-100"
+        "АВР 1+1"
       ],
       "plate_number": "ЕУИС.468243.026",
       "plate_version": "0",
@@ -81,7 +81,7 @@
       "device_status": 0,
       "time": "2026-03-16 17:18:48",
       "active_control_mode": 1,
-      "current_signal_path": 3
+      "current_signal_path": 1
     },
     "status_logs": [
       [
