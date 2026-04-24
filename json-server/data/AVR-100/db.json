@@ -76,18 +76,6 @@
       ]
     }
   },
-  "rds.cgi": {
-    "tp": 1,
-    "ta": 1,
-    "pi": "",
-    "ps_name": "",
-    "radio_text": "",
-    "alt_stations": {
-      "alt_stations_available": true,
-      "alt_station_switch": false,
-      "alt_stations_list": []
-    }
-  },
   "status.cgi": {
     "status_info": {
       "device_status": 0,
@@ -239,7 +227,7 @@
           "Вт"
         ],
         "swr": [
-          101,
+          128,
           100,
           0
         ],

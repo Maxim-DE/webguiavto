@@ -76,25 +76,26 @@
       ]
     }
   },
-  "rds.cgi": {
-    "tp": 1,
-    "ta": 1,
-    "pi": "",
-    "ps_name": "",
-    "radio_text": "",
-    "alt_stations": {
-      "alt_stations_available": true,
-      "alt_station_switch": false,
-      "alt_stations_list": []
-    }
-  },
+  //rds 
+  // "rds.cgi": {
+  //   "tp": 1,
+  //   "ta": 1,
+  //   "pi": "",
+  //   "ps_name": "",
+  //   "radio_text": "",
+  //   "alt_stations": {
+  //     "alt_stations_available": true,
+  //     "alt_station_switch": false,
+  //     "alt_stations_list": []
+  //   }
+  // },
   "status.cgi": {
     "status_info": {
       "device_status": 0,
       "time": "2026-03-16 17:18:48",
       // ручной автомат
       "active_control_mode": 1, 
-      "current_signal_path": 2  
+      "current_signal_path": 1
     },
     "status_logs": [ 
       [
