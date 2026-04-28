@@ -51,29 +51,9 @@
       "subnet_mask": "255.255.255.0",
       "gateway": "192.168.0.1"
     },
-    "remote_control": {
-      "remote_ip_addr_1_settings": "",
-      "remote_ip_addr_2_settings": "",
-      "remote_ip_addr_3_settings": "",
-      "remote_ip_addr_4_settings": ""
-    },
     "snmp_agent": {
       "community_read": "public",
-      "community_write": "private",
-      "trap_settings": [
-        {
-          "active": 0,
-          "port": 162,
-          "ip": "0.0.0.0",
-          "trap_community": ""
-        },
-        {
-          "active": 0,
-          "port": 162,
-          "ip": "0.0.0.0",
-          "trap_community": ""
-        }
-      ]
+      "community_write": "private"
     }
   },
   "status.cgi": {
@@ -137,20 +117,15 @@
       "device_1": {
         "power_calib": {
           "output_power": 1000,
-          "refected_power": 1700,
-          "output_power_threshold": 1000,
-          "coupling_coeff": 2500,
-          "voltage_power": 1500
+          "coupling_coeff": 1500,
+          "voltage_power": 2500
         },
         "signal_calib": {
           "l_signal": 2500,
           "r_signal": 3000,
-          "swr_signal": 1500
+          "swr_signal": 1500,
+          "aes_signal": 2200
         }
-      },
-      "commutator_info": {
-        "commutator_analog_12v": "12 V",
-        "commutator_digital_5v": "5 V"
       }
     },
     "status_graph": {
@@ -165,103 +140,63 @@
       "input_1": {
         "status": 0,
         "input_signal_type": "STEREO",
-        "mode": "2",
+        "mode": "1",
         "l": [
-          301,
+          31,
           10,
           0,
           "дБ"
         ],
         "r": [
-          0,
+          32,
           10,
           0,
           "дБ"
         ],
         "mpx": [
-          1008,
+          18,
           10,
           0,
           "кГц"
         ],
         "input_res_signal_type": "STEREO",
         "res_l": [
-          301,
+          30,
           10,
           0,
           "дБ"
         ],
         "res_r": [
-          0,
+          29,
           10,
           0,
           "дБ"
-        ],
-        "res_mpx": [
-          1008,
-          10,
-          0,
-          "кГц"
         ]
       },
       "exiter_0": {
-        "status": 1,
-        "input_signal": [
-          108,
-          10,
-          0,
-          "дБ"
-        ],
-        "input_signal_type": "STEREO",
-        "output_pwr": [
-          1080,
-          10,
-          0,
-          "Вт"
-        ],
-        "station_header": "Радио Россия",
-        "refl_pwr": [
-          3001,
-          10,
-          0,
-          "Вт"
-        ],
-        "swr": [
-          128,
-          100,
-          0
-        ],
-        "freq": [
-          1008,
-          10,
-          0,
-          "кГц"
-        ]
-      },
-      "exiter_1": {
         "status": 0,
         "input_signal": [
-          108,
+          1,
           10,
           0,
           "дБ"
         ],
         "input_signal_type": "STEREO",
         "output_pwr": [
-          108,
+          1,
           10,
           0,
           "Вт"
         ],
-        "station_header": "Радио Россия",
+        "station_header": "Авто Радио",
         "refl_pwr": [
-          3001,
+          1,
           10,
           0,
           "Вт"
         ],
         "swr": [
-          128,
+          110,
           100,
           0
         ],
@@ -272,10 +207,44 @@
           "МГц"
         ]
       },
+      "exiter_1": {
+        "status": 1,
+        "input_signal": [
+          32,
+          10,
+          0,
+          "дБ"
+        ],
+        "input_signal_type": "STEREO",
+        "output_pwr": [
+          1005,
+          10,
+          0,
+          "Вт"
+        ],
+        "station_header": "Радио Россия",
+        "refl_pwr": [
+          10,
+          10,
+          0,
+          "Вт"
+        ],
+        "swr": [
+          115,
+          100,
+          0
+        ],
+        "freq": [
+          1020,
+          10,
+          0,
+          "МГц"
+        ]
+      },
       "output_1": {
         "status": 1,
         "swr": [
-          128,
+          115,
           100,
           0
         ]
@@ -287,23 +256,23 @@
           "name": "Сеть",
           "value": 220,
           "status": 1,
-          "adc": 1946,
+          "adc": 2500,
           "units": "В"
         }
       ],
       "Передатчик рез.": [
         {
           "name": "Частота",
-          "value": 8800,
+          "value": 10080,
           "divider": 100,
           "units": "МГц"
         },
         {
           "name": "Pвых",
-          "value": 3,
+          "value": 0.1,
           "status": 2,
           "divider": 1,
-          "adc": 194,
+          "adc": 5,
           "units": "Вт"
         },
         {
@@ -311,12 +280,12 @@
           "value": 0,
           "status": 0,
           "divider": 1,
-          "adc": 49,
+          "adc": 1,
           "units": "Вт"
         },
         {
           "name": "КСВ",
-          "value": 100,
+          "value": 110,
           "divider": 100,
           "status": 0
         }
@@ -324,21 +293,21 @@
       "Передатчик Осн.": [
         {
           "name": "Частота",
-          "value": 8800,
+          "value": 10200,
           "divider": 100,
           "units": "МГц"
         },
         {
           "name": "Pвых",
-          "value": 1,
+          "value": 100.5,
           "status": 2,
           "divider": 1,
-          "adc": 100,
+          "adc": 3800,
           "units": "Вт"
         },
         {
           "name": "Pотр",
-          "value": 0,
+          "value": 1,
           "status": 0,
           "divider": 1,
           "adc": 14,
@@ -346,7 +315,7 @@
         },
         {
           "name": "КСВ",
-          "value": 100,
+          "value": 115,
           "divider": 100,
           "status": 0
         }
@@ -367,35 +336,17 @@
     "id": 1,
     "slave_general": {
       "frequency": [
-        1075,
+        1020,
         10
       ],
       "input_power": [
         1001,
         10
       ],
-      "input_signal_type": 0,
-      "channel_coef_type": 2,
-      "coef_l": [
-        18,
-        10
-      ],
-      "coef_r": [
-        10,
-        10
-      ],
-      "coef_mpx": [
-        20,
-        10
-      ],
-      "resistance_type": 0,
-      "deviation": [
-        300,
-        10
-      ]
+      "input_signal_type": 0
     },
     "slave_add_general": {
-      "radio_label": "Радио",
+      "radio_label": "Радио Россия",
       "scheduler_enable": 1,
       "reserve_enable": 1,
       "reserve_sound_enable": 1
@@ -413,55 +364,21 @@
         "min": 45
       }
     },
-    "slave_rds": {
-      "tp": false,
-      "ta": false,
-      "pi": "0xF1F4",
-      "ps_name": "",
-      "radio_text": "",
-      "alt_stations": {
-        "alt_stations_available": true,
-        "alt_station_switch": false,
-        "alt_stations_list": [
-          {
-            "id": 0,
-            "value": [
-              1136,
-              10
-            ]
-          },
-          {
-            "id": 1,
-            "value": [
-              816,
-              10
-            ]
-          },
-          {
-            "id": 2,
-            "value": [
-              951,
-              10
-            ]
-          }
-        ]
-      }
-    },
     "calib_power": {
       "output_power": [
-        1230,
-        1
-      ],
-      "voltage_power": [
-        9813,
-        1
-      ],
-      "output_power_threshold": [
-        404,
+        100,
         1
       ],
       "coupling_coeff": [
         200,
+        1
+      ],
+      "voltage_power": [
+        220,
+        1
+      ],
+      "power_timeout_reserved_value": [
+        40,
         1
       ],
       "power_threshold_reserved_value": [
