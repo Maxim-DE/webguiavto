@@ -27,8 +27,8 @@
     <g id="layer_1">
       <g id="output_1">
         <g id="rect8952" filter="url(#filter0_d_0_1)">
-          <path fill="#f7f7f7" d="M956.5 150.75h-199c-6.627 0-12 5.373-12 12v50c0 6.627 5.373 12 12 12h199c6.627 0 12-5.373 12-12v-50c0-6.627-5.373-12-12-12"/>
-          <path stroke="#c4c4c4" stroke-linecap="round" d="M956.5 150.75h-199c-6.627 0-12 5.373-12 12v50c0 6.627 5.373 12 12 12h199c6.627 0 12-5.373 12-12v-50c0-6.627-5.373-12-12-12Z"/>
+          <path fill="#f7f7f7" d="M956.5 150.75h-199c-6.627 0-12 5.373-12 12v64.8c0 6.627 5.373 12 12 12h199c6.627 0 12-5.373 12-12v-64.8c0-6.627-5.373-12-12-12"/>
+          <path stroke="#c4c4c4" stroke-linecap="round" d="M956.5 150.75h-199c-6.627 0-12 5.373-12 12v64.8c0 6.627 5.373 12 12 12h199c6.627 0 12-5.373 12-12v-64.8c0-6.627-5.373-12-12-12Z"/>
         </g>
         <g id="header">
           <path id="output_1_device_icon" fill="#7adc47" d="M763 175.25a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15"/>
@@ -39,10 +39,14 @@
             <path id="circle8962" fill="#626879" d="M760.5 208.75a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9"/>
           </g>
         </g>
-        <g id="secondary_info">
-          <g id="g9004" fill="#000" font-family="Roboto" letter-spacing="0em">
-            <text xml:space="preserve" id="output_1_swr_value" font-size="17.333" style="white-space:pre"><tspan x="933.919" y="210.174">--</tspan></text>
-            <text xml:space="preserve" id="text9002" font-size="16" style="white-space:pre"><tspan x="790.5" y="209.719">КСВ</tspan></text>
+        <g id="secondary_info" fill="#000" font-family="Roboto" letter-spacing="0em">
+          <g id="g9004">
+            <text xml:space="preserve" id="output_1_swr_value" font-size="17.333" style="white-space:pre"><tspan x="933.919" y="209.674">--</tspan></text>
+            <text xml:space="preserve" id="text9002" font-size="16" style="white-space:pre"><tspan x="770.5" y="209.219">КСВ</tspan></text>
+          </g>
+          <g id="g9004_2">
+            <text xml:space="preserve" id="output_1_Pout_value" font-size="17.333" style="white-space:pre"><tspan x="933.919" y="230.674">--</tspan></text>
+            <text xml:space="preserve" id="text9002_2" font-size="16" style="white-space:pre"><tspan x="770.5" y="230.219">Мощн. Вых.</tspan></text>
           </g>
         </g>
       </g>
@@ -248,7 +252,7 @@
           <text xml:space="preserve" id="voltage_header_label" fill="#626879" font-family="Roboto" font-size="21.333" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan x="55.5" y="40.542">Напряжение сети</tspan></text>
         </g>
         <g id="secondary_info_4">
-          <g id="g9004_2">
+          <g id="g9004_3">
             <text xml:space="preserve" id="voltage_value" fill="#000" font-family="Roboto" font-size="17.333" letter-spacing="0em" style="white-space:pre"><tspan x="152.919" y="71.674">--</tspan></text>
           </g>
         </g>
@@ -269,11 +273,11 @@
             </g>
             <g id="input_1_res_r_group">
               <text xml:space="preserve" id="input_1_res_r_value" style="white-space:pre"><tspan x="210.656" y="245.219">--</tspan></text>
-              <text xml:space="preserve" id="text9002_2" style="white-space:pre"><tspan x="45.5" y="244.728">R</tspan></text>
+              <text xml:space="preserve" id="text9002_3" style="white-space:pre"><tspan x="45.5" y="244.728">R</tspan></text>
             </g>
             <g id="input_1_res_mpx_group">
               <text xml:space="preserve" id="input_1_res_mpx_value" style="white-space:pre"><tspan x="210.656" y="221.219">--</tspan></text>
-              <text xml:space="preserve" id="text9002_3" style="white-space:pre"><tspan x="45.5" y="221.219">КСС</tspan></text>
+              <text xml:space="preserve" id="text9002_4" style="white-space:pre"><tspan x="45.5" y="221.219">КСС</tspan></text>
             </g>
             <g id="input_1_res_aes_group">
               <text xml:space="preserve" id="input_1_res_aes_value" style="white-space:pre"><tspan x="210.656" y="221.219">--</tspan></text>
@@ -302,11 +306,11 @@
             </g>
             <g id="input_1_r_group">
               <text xml:space="preserve" id="input_1_r_value" style="white-space:pre"><tspan x="210.656" y="354.719">--</tspan></text>
-              <text xml:space="preserve" id="text9002_4" style="white-space:pre"><tspan x="45.5" y="354.719">R</tspan></text>
+              <text xml:space="preserve" id="text9002_5" style="white-space:pre"><tspan x="45.5" y="354.719">R</tspan></text>
             </g>
             <g id="input_1_mpx_group">
               <text xml:space="preserve" id="input_1_mpx_value" style="white-space:pre"><tspan x="210.656" y="330.719">--</tspan></text>
-              <text xml:space="preserve" id="text9002_5" style="white-space:pre"><tspan x="45.5" y="330.719">КСС</tspan></text>
+              <text xml:space="preserve" id="text9002_6" style="white-space:pre"><tspan x="45.5" y="330.719">КСС</tspan></text>
             </g>
             <g id="input_1_aes_group">
               <text xml:space="preserve" id="input_1_aes_value" style="white-space:pre"><tspan x="210.656" y="330.719">--</tspan></text>
@@ -331,7 +335,7 @@
     </g>
   </g>
   <defs>
-    <filter id="filter0_d_0_1" width="264" height="115" x="725" y="135.25" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+    <filter id="filter0_d_0_1" width="264" height="129.8" x="725" y="135.25" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
       <feOffset dy="5"/>

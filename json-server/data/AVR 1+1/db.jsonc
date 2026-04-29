@@ -1,30 +1,24 @@
 {
   "info.cgi": {
-    "info_general": {
-      "serial_number": "XXXXX",
-      "model": 0,
-      "device_type_list": [
-        "АВР 1+1"
-      ],
-      "plate_number": "ЕУИС.468243.026",
-      "plate_version": "0",
-      "time_from_on": "missing",
-      "time_failure_on": "missing",
-      "time_failure_off": "missing",
-      "memory_type": "W25Q32"
-    },
-    "software_version": {
-      "os_version": "BlockControl_v2.1.1447",
-      "app_sha": "93c07852d58638e53233745fe46be698b6f80d33",
-      "web_version": "1.0.42-dev_block_control_layout",
-      "bootloader_version": "Bootloader_v2.6.0",
-      "audio_version": "missing"
-    },
-    "auth_info": {
-      "auth_id": "SUPER_ADMIN",
-      "auth_level": 3
-    }
-  },  
+  "info_general": {
+    "serial_number": "26ХХХ",
+    "model": 0,
+    "device_type_list": [
+      "АВР 1+1"
+    ],
+    "plate_number": "ИУИС.468333.001",
+    "plate_version": "0"
+  },
+  "software_version": {
+    "os_version": "ATS_Firmware_v2.5.9",
+    "web_version": "ATS-1.0.134",
+    "bootloader_version": "ATS_Boot_v1.4.0",
+  },
+  "auth_info": {
+    "auth_id": "SUPER_ADMIN",
+    "auth_level": 3
+  }
+},
   "settings.cgi": {
     "time_settings": {
       "date": "2023-11-27",
@@ -38,9 +32,6 @@
         "time_sync_timezone": 38,
         "time_sync_period": 7
       }
-    },
-    "misc_settings": {
-      "res_device_1": 1
     }
   },
   "network.cgi": {
@@ -119,21 +110,19 @@
         //калибровка мощности прд 1 
         "power_calib": {
           "output_power": 1000, //ацп Калибровка вых. мощности
-          // "refected_power": 1700,
-          // "output_power_threshold": 2000,
           "coupling_coeff": 1500, //Коэфициент связи ацп
           "voltage_power": 2500 //АЦП Калибровка напряжения сети
         },
         "signal_calib": {
-          "l_signal": 2500,
-          "r_signal": 3000,
-          "swr_signal": 1500, //КСС ацп
-          "aes_signal": 2200 //КСС ацп
-        }
-      // },
-      // "commutator_info": {
-      //   "commutator_analog_12v": "12 V",
-      //   "commutator_digital_5v": "5 V"
+            "l_signal": 500,
+            "r_signal": 1000,
+            "swr_signal": 1250,
+            "aes_signal": 1500,
+            "l_res_signal": 2000,
+            "r_res_signal": 2250,
+            "swr_res_signal": 2500,
+            "aes_res_signal": 2750
+           }
       }
     },
     // данные на картинке
@@ -180,20 +169,21 @@
           10,
           0,
           "дБ"
-        // ],
-        // "res_mpx": [
-        //   1008,
-        //   10,
-        //   0,
-        //   "кГц"
+        ],
+        "res_mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
         ]
       },
+      
       "exiter_0": {
         "status": 0,
         "input_signal": [
           1,
           10,
-          0,
+          2,
           "дБ"
         ],
         "input_signal_type": "STEREO",
@@ -245,7 +235,7 @@
           "Вт"
         ],
         "swr": [
-          115,
+          112,
           100,
           0
         ],
@@ -261,7 +251,13 @@
         "swr": [
           115,
           100,
-          0
+          3
+        ],
+        "Pout" : [
+          110,
+          1,
+          0,
+          "Вт"
         ]        
       }
     },
@@ -358,6 +354,10 @@
           1001,
           10
         ],
+        "turn_on_timeout": [
+          25,
+          1
+        ],
         "input_signal_type": 0
       },
       "slave_add_general": {
@@ -392,16 +392,7 @@
         ],
         "voltage_power": [
           220,
-          1
-        ],
-
-       "power_timeout_reserved_value":[
-        40,
-        1
-       ],
-        "power_threshold_reserved_value": [
-          400,
-          1
+          1,
         ],
         "threshold_type": 0, 
         "threshold_0_value": [
@@ -413,6 +404,16 @@
           10
         ]
       },
+      "calib_power_threshold": {
+    "power_threshold_reserved_value": [
+      500,
+      1
+    ],
+    "power_timeout_reserved_value": [
+      30,
+      1
+    ]
+  },
       "calib_signal": {
         "signal_type": 0,
         "signal_0_value": [
@@ -459,23 +460,16 @@
   "get_avr_device_availiable.cgi": {
     "device_availiability": {
       "device_0": 1,
-      "device_1": 0,
-      "device_2": 0,
-      "device_3": 1
+      "device_1": 0
     }
   },
   "calibration.cgi": {
     "calib_serialNum": {
-      "calib_defence": 0,
       "device_serial_num": "XXXXX",
-      "device_type": 1
+      "avr_model__type": 1
     },
     "calib_general": {
-      "def_module": 0,
-      "fan_start_alarm": 1,
       "tftp": 1,
-      "watchdog": 0,
-      "message_lcd": 1,
       "Authorization": true
     },
     "calib_modbus": {
@@ -486,52 +480,15 @@
       "master_req_period": 500,
       "master_timeout": 50,
       "modbus_enable": 0
-
     },
-    "calib_conf_file": {
-      "factory_conf_create_time": "2025.08.27 21: 00",
-      "reserve_conf_create_time": "2025.08.27 21: 00"
+  "calib_conf_file": {
+    "reserve_conf_create_time": "2025-10-15 17:17:34",
+    "factory_conf_create_time": "2025-10-15 12:29:55"
     },
     "calib_firmware": {
       "application": {
         "info": {
-          "addr_start": 134348800,
-          "crc": -672482849,
-          "addr_end": 134770687,
-          "lenght": 421887,
-          "version": "BlockControl_v2.1.1447"
-        }
-      },
-      "firmware1": {
-        "header": {
-          "id": -1611990941,
-          "active": "false",
-          "index": 22
-        },
-        "info": {
-          "addr_start": 1433616,
-          "crc": -672482849,
-          "addr_end": 1855503,
-          "lenght": 421887,
-          "UsedSpace": 45,
-          "FreeSpace": 55,
-          "version": "BlockControl_v2.1.1447"
-        }
-      },
-      "firmware2": {
-        "header": {
-          "id": -1611990941,
-          "active": "false",
-          "index": 21
-        },
-        "info": {
-          "addr_start": 2351120,
-          "crc": 517689118,
-          "addr_end": 2773007,
-          "lenght": 421887,
-          "UsedSpace": 45,
-          "FreeSpace": 55,
-          "version": "BlockControl_v2.1.1440"
+          "version": "ATS_Firmware_v2.5.9"
         }
       }
     }
