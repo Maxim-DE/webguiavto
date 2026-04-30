@@ -10,8 +10,9 @@ import svg_eventHandler_logic from '../../logic/svg_eventHandlers_logic';
 
 export const status_colors = [
   '#ABE188', //good
-  '#f9c22e', //warning
+  '#d8d521', //warning
   '#fe5f55', //error
+  // '#f92ee8', //warning
   '#68CEDE', //hibernation
 ]
 
@@ -34,7 +35,6 @@ function Status_graphs(props) {
     svg_processing(graph_container_ref.current, props.data)
   }, [props.data, active_control_mode, current_signal_path])
 
-
   React.useEffect(() => {
     
     let graph_container = graph_container_ref.current
@@ -54,7 +54,7 @@ function Status_graphs(props) {
   }, [props.graph_svg])
 
 
-  function svg_processing(svg_ref, svg_data) {
+function svg_processing(svg_ref, svg_data) {
     let graph_svg_container = svg_ref
     let graph_data = svg_data
 
@@ -80,7 +80,7 @@ function Status_graphs(props) {
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
       let graph_block_data = graph_data[key]
-
+      console.log('graph_block_data',graph_block_data)
       if (graph_block === null) {
         console.error("Can't find svg device block with key: " + key)
         continue;
@@ -93,12 +93,9 @@ function Status_graphs(props) {
           // console.log("device_icon: ",device_icon)
           if (!device_icon) {
             console.error("Can't find device icon with key: " + key)
-            // debugger  
             continue;
           }
-
           device_icon.style.fill = new_status_colors[`${graph_block_data[item]}`]
-
           continue
         }
 
@@ -117,8 +114,6 @@ function Status_graphs(props) {
           continue
         }
 
-
-
         let new_value
 
         if (Array.isArray(graph_block_data[item])) {
@@ -130,7 +125,12 @@ function Status_graphs(props) {
               '',
             round_index
 
-          if (Array.isArray(input_value)) {
+          // ДОБАВЛЕНА ПРОВЕРКА СТАТУСА
+          if (status === 3) {
+            new_value = "--"
+            // graph_block_value_span.style.fontWeight = "1500";
+
+          } else if (Array.isArray(input_value)) {
             const result_arr = input_value.map((val_instance, val_index) => {
               const arr_val = val_instance[0] ?? 255
 
@@ -154,7 +154,7 @@ function Status_graphs(props) {
             new_value = new_value + postfix
           }
 
-          if (status != 0) {
+          if (status != 0 && status !== 3) { // Добавлена проверка на status !== 3
             graph_block_value_span.style.fontWeight = "500";
             graph_block_value_span.style.fill = status_colors[status];
           } else {
@@ -163,16 +163,15 @@ function Status_graphs(props) {
             graph_block_value_span.style.fill = '#202020';
           }
 
-
         } else {
           graph_block_value_span.style.fontWeight = "300";
-          new_value = graph_block_data[item]
+          new_value = graph_block_data[item] //не находит тип сигнала 
         }
-
+        
         graph_block_value_span.innerHTML = new_value
       }
     }
-
+// debugger
     let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str, props.updateHandler, props.auth_access)
 
     // graph_svg_container.innerHTML = ''
