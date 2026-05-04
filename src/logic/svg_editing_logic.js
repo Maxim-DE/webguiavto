@@ -109,36 +109,6 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 function avr_svg_editing(svg, data_svg, auth_access) {
   const active_control_mode = store.getState().globalStore.global_data.status_data.status_info?.active_control_mode,
         current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
-  const voltage_span = svg.getElementById('voltage_value') 
-  voltage_span.children[0].innerHTML = (data_svg['voltage'].volt[0] / data_svg['voltage'].volt[1]).toFixed(1) + " " + 
-                                     data_svg['voltage'].volt[3];
-
-  // const swr_span_list = svg.querySelectorAll(`text[id*="swr_value"]`)
-  // swr_span_list.forEach(swr_span => {
-  //   const device_type = swr_span.id.replace(`_swr_value`, ''),
-  //         output_data = data_svg[device_type]
-  //         // console.log('swr',data_svg[device_type])
-
-  //   try {
-  //     if (output_data.swr[2] == 3 && swr_span != undefined) {
-  //       swr_span.children[0].innerHTML = '--'
-  //       swr_span.children[0].style.fill = '#202020';
-  //       swr_span.children[0].style.fontWeight = "300";
-  //     }
-  //   } catch (error) {
-  //     console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
-  //   }
-    
-  // });
-   // Добавленная обработка для Pout значений
-  // const Pout_span = svg.getElementById('output_1_Pout_value') 
-  // Pout_span.children[0].innerHTML = (data_svg['output_1'].Pout[0] / data_svg['output_1'].Pout[1] + " " + 
-  //                                    data_svg['output_1'].Pout[3]);
-
-
-  // const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
-  //       amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
-  //       amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`)
 
 const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
 

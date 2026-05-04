@@ -80,17 +80,14 @@ function svg_processing(svg_ref, svg_data) {
     for (const key in graph_data) {
       let graph_block = graph_svg.querySelector(`#${key}`)
       let graph_block_data = graph_data[key]
-      console.log('graph_block_data',graph_block_data)
       if (graph_block === null) {
         console.error("Can't find svg device block with key: " + key)
         continue;
       }
 
-      for (const item in graph_block_data) {
-
+      for (const item in graph_block_data) {                
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
-          // console.log("device_icon: ",device_icon)
           if (!device_icon) {
             console.error("Can't find device icon with key: " + key)
             continue;

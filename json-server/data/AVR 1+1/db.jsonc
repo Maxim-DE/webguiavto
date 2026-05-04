@@ -16,7 +16,7 @@
   },
   "auth_info": {
     "auth_id": "SUPER_ADMIN",
-    "auth_level": 3
+    "auth_level": 1
   }
 },
   "settings.cgi": {
@@ -180,18 +180,18 @@
       },
       
       "exiter_0": {
-        "status": 1,
+        "status": 0,
         "input_signal": [
           1,
           10,
-          4,
+          0,
           "дБ"
         ],
         "input_signal_type": "STEREO",
         "output_pwr": [
           1,
           10,
-          3,
+          0,
           "Вт"
         ],
         "station_header": "Авто Радио",
@@ -204,12 +204,12 @@
         "swr": [
           110,
           100,
-          2
+          0
         ],
         "freq": [
           1008,
           10,
-          1,
+          0,
           "МГц"
         ]
       },    
@@ -243,7 +243,7 @@
         "freq": [
           1020,
           10,
-          2,
+          0,
           "МГц"
         ]
       },
