@@ -1,0 +1,10 @@
+[1;33mОстановка контейнеров...[0m 
+time="2026-05-04T15:53:27+07:00" level=warning msg="/home/max/project/ATS-1+1/webguiavto/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container ATS_1_1  Stopping
+ Container json-server-ATS_1_1  Stopping
+ Container ATS_1_1  Stopped
+ Container ATS_1_1  Removing
+ Container ATS_1_1  Removed
+ Container json-server-ATS_1_1  Error while Stopping
+
+make: *** [makefile:34: down] Ошибка 130

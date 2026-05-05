@@ -243,7 +243,7 @@ if (pwr_buttons_list) {
     signal_primary_group_list.forEach(group => {
       group.style = "visibility: hidden"
     })
-    
+
     switch (signal_type) {
       case "L":
         signal_primary_group_list[0].style = "visibility: visible"

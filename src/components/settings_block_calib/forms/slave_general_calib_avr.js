@@ -222,35 +222,40 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' /> */}
         </div>
       </li>
+       {/* добавляет линию */}
+      <li className="group_divider"></li> 
 
       <li
-        key='turn_on_timeout_calib'
-        id='turn_on_timeout_calib'
-        className="settings_item">
+        key='voltage_power_calib'
+        id='voltage_power_calib'
+        className="settings_item calib">
         <div className='item_header'>
           <label
-            htmlFor={`turn_on_timeout_calib_input`}
+            htmlFor={`voltage_power_calib_input`}
             className="settings_itemLabel">
-            Время вкл. уст-ва в сеть, сек
-          </label>
-        </div>
+            Калибровка напряжения сети 
+          </label> 
+          </div>
         <div className='item_input'>
+          <span className='item_adc_value'>
+            АЦП: {generalCalibState?.voltage_adc_power}
+          </span>
           <FormInput
-            id={`turn_on_timeout_calib_input`}
-            name={`turn_on_timeout_calib`}
+            id={`voltage_power_calib_input`}
+            name={`voltage_power_calib`}
             changeHandler={handleChange}
-            placeholder='мсек'
-            input_value={generalCalibState.turn_on_timeout}
+            input_value={generalCalibState.voltage_power}
             style={{ margin: '0', maxWidth: '75px' }}
             type="text" />
-          {/* <FormInput
-            id={`frequency_calib_save`}
-            name={`frequency_calib`}
+          <FormInput
+            id={`voltage_power_calib_save`}
+            name={`voltage_power_calib`}
             clickHandler={handleClick_save}
             label='Сохранить'
-            type='button' /> */}
+            type="button" />
         </div>
-      </li>
+      </li> 
+      
     </SettingsBlockWrap>
   )
 }

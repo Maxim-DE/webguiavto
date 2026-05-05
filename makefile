@@ -43,12 +43,12 @@ status: ## Показать статус контейнеров
 
 open: ## Открыть веб-страницу в браузере
 	@echo "$(YELLOW)Открываю браузер: $(URL)$(NC)"
-	@if command -v open >/dev/null 2>&1; then \
-		open "$(URL)"; \
-	elif command -v xdg-open >/dev/null 2>&1; then \
-		xdg-open "$(URL)"; \
+	@if command -v xdg-open >/dev/null 2>&1; then \
+		nohup xdg-open "$(URL)" > /dev/null 2>&1 & \
+	elif command -v open >/dev/null 2>&1; then \
+		nohup open "$(URL)" > /dev/null 2>&1 & \
 	elif command -v start >/dev/null 2>&1; then \
-		start "$(URL)"; \
+		start "$(URL)" > /dev/null 2>&1 & \
 	else \
 		echo "$(RED)Не удалось открыть браузер автоматически$(NC)"; \
 		echo "Пожалуйста, откройте вручную: $(URL)"; \

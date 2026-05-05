@@ -103,6 +103,24 @@ export default function Info_general(props) {
             type="text_sample" />
         </div>
       </li>
+      <li
+        key='Power_Supply_Unit'
+        id='Power_Supply_Unit'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`Power_Supply_Unit_input`}
+            className="settings_itemLabel">
+            Блок питания
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`Power_Supply_Unit`}
+            input_value={infoGeneralState.Power_Supply_Unit}
+            type="text_sample" />
+        </div>
+      </li>
       {/* <li className="group_divider"></li> */}
       {/* <li
         key='commutaion_serial_number'

@@ -131,8 +131,10 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
             input_value={signalThresholdCalibState.signal_type_reserved}
             title='Тип сигнала'
             variants={[
-              'AES/L',
-              'AES/R',
+              'L',
+              'R',
+              'AES_L',
+              'AES_R',
               'КСС'
             ]}
             changeHandler={handleChange} />
@@ -200,8 +202,10 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
             input_value={signalThresholdCalibState.signal_type_recovery}
             title='Тип сигнала'
             variants={[
-              'AES/L',
-              'AES/R',
+              'L',
+              'R',
+              'AES_L',
+              'AES_R',
               'КСС'
             ]}
             changeHandler={handleChange} />
