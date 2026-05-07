@@ -137,7 +137,7 @@
       },
       "input_1": {
         "status": 0,
-        "input_signal_type": "STEREO",
+        "input_signal_type": "AES",
         "mode": "1",
         "l": [
           31,
@@ -156,6 +156,18 @@
           10,
           0,
           "кГц"
+        ],
+        "aes_l": [
+          31,
+          10,
+          0,
+          "дБ"
+        ],
+        "aes_r": [
+          32,
+          10,
+          0,
+          "дБ"
         ],
         "input_res_signal_type": "STEREO",
         "res_l": [
