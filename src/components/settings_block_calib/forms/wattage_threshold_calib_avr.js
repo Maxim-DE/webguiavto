@@ -162,7 +162,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
             type="button" />
         </div>
       </li>
-      <li className="group_divider"></li>
+      {/* <li className="group_divider"></li> */}
 
       
       {/* {powerCalibState.afu_active_control_mode ==1 && powerCalibState.IsExistBlockAfu ==1 &&  */}

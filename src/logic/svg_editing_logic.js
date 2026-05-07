@@ -124,7 +124,7 @@ if (res_exiter_conf_buttons_list) {
     }
 
     // Проверка на питание и режим управления для кнопок конфигурации
-    if (active_control_mode == 0 || exiter_status != 1) {
+    if (active_control_mode == 0 || exiter_status != 1 ) {
       button.classList.add("disabled_svg_button");
       button.style.opacity = "0.5";
       button.style.pointerEvents = "none";

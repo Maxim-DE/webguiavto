@@ -181,6 +181,27 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
         settings_type={`signal_level_calib`}
         section_name={props.section_name}>
         <li
+          key='signal_zero_calib'
+          id='signal_zero_calib'
+          className="settings_item">
+          <div className='item_header'>
+            <label
+              // htmlFor={`signal_zero_all_calib_input`}
+              className="settings_itemLabel">
+              Калибровка всех нулей каналов
+            </label>
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`signal_zero_all_calib_input`}
+              name={`signal_zero_calib`}
+              label='Калибровать'
+              clickHandler={handleClick_calib_zeros}
+              type="button" />
+          </div>
+        </li>
+        <li className="group_divider"></li>
+        <li
           key='signal_type_level_calib'
           id='signal_type_level_calib'
           className="settings_item calib">
@@ -228,7 +249,10 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
             {signalCalibState.signal_type == 4 &&
               <>
                 <span className='item_adc_value'>
-                  АЦП<sub>AES</sub>: {adc_store?.aes_signal}
+                  АЦП<sub>AES_R</sub>: {adc_store?.aes_r_signal}
+                </span>
+                <span className='item_adc_value'>
+                  АЦП<sub>AES_L</sub>: {adc_store?.aes_l_signal}
                 </span>
                 <div className="vertical_li_divider"></div>
               </>
@@ -241,28 +265,9 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
               type="button" />
           </div>
         </li>
-        <li
-          key='signal_zero_calib'
-          id='signal_zero_calib'
-          className="settings_item">
-          <div className='item_header'>
-            <label
-              // htmlFor={`signal_zero_all_calib_input`}
-              className="settings_itemLabel">
-              Калибровка всех нулей каналов
-            </label>
-          </div>
-          <div className='item_input'>
-            <FormInput
-              id={`signal_zero_all_calib_input`}
-              name={`signal_zero_calib`}
-              label='Калибровать'
-              clickHandler={handleClick_calib_zeros}
-              type="button" />
-          </div>
-        </li>
         {active_device != 0 &&
         <>
+        <li className="group_divider"></li>
         <li
           key='signal_type_level_calib'
           id='signal_type_level_calib'
@@ -311,7 +316,10 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
             {signalCalibState.signal_type_res == 4 &&
               <>
                 <span className='item_adc_value'>
-                  АЦП<sub>AES</sub>: {adc_store?.aes_res_signal}
+                  АЦП<sub>AES_R</sub>: {adc_store?.aes_r_res_signal}
+                </span>
+                <span className='item_adc_value'>
+                  АЦП<sub>AES_L</sub>: {adc_store?.aes_l_res_signal}
                 </span>
                 <div className="vertical_li_divider"></div>
               </>
@@ -324,7 +332,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
               type="button" />
           </div>
         </li>
-        <li
+        {/* <li
           key='signal_zero_calib'
           id='signal_zero_calib'
           className="settings_item">
@@ -343,7 +351,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
               clickHandler={handleClick_calib_zeros_res}
               type="button" />
           </div>
-        </li>
+        </li> */}
         </>
         }
       </Settings_block_calib>

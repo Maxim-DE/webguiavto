@@ -115,11 +115,13 @@
           "l_signal": 500,
           "r_signal": 1000,
           "swr_signal": 1250,
-          "aes_signal": 1500,
+          "aes_l_signal": 1500,
+          "aes_r_signal": 1600,
           "l_res_signal": 2000,
           "r_res_signal": 2250,
           "swr_res_signal": 2500,
-          "aes_res_signal": 2750
+          "aes_l_res_signal": 2900,
+          "aes_r_res_signal": 3000
         }
       }
     },
@@ -176,7 +178,7 @@
         ]
       },
       "exiter_0": {
-        "status": 0,
+        "status": 1,
         "input_signal": [
           1,
           10,

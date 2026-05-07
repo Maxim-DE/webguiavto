@@ -12,7 +12,7 @@ export default function svg_eventHandler_logic(svg, data_svg, device_type, click
           device_type == "РЦ-4000"):
       return re_amp_svg_event_editing(svg, data_svg)
 
-    case (device_type == "АВР-1000"):
+    case (device_type == "АВР 1+1"):
       return avr_svg_event_editing(svg, clickHandler)
   
     default:
@@ -179,7 +179,7 @@ const avr_buttons_actions = {
   set_main_pwr_handler: (device_type, clickHandler) => {
     const request_obj = {
       address: 'status_graph_settings.cgi',
-      data: `set_pwr_conf$${device_type}`,
+      data: `set_main_pwr$${device_type}`,
       notifications: {
         good: 'default',
         bad: 'default'

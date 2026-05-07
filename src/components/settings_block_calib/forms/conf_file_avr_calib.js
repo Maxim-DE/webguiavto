@@ -532,7 +532,8 @@ export default function ConfFileCalib_AVR(props) {
             ref={hex_dropzone_ref}
             className={`button_input disabled_input`}
             type="button"
-            value='Загрузить' />
+            value='Загрузить' 
+            disabled/>
         </div>
       </li>
       <li
@@ -565,7 +566,9 @@ export default function ConfFileCalib_AVR(props) {
             ref={hex_second_dropzone_ref}
             className={`button_input disabled_input`}
             type="button"
-            value='Загрузить' />
+            value='Загрузить' 
+            disabled/>
+            
         </div>
       </li>
       {/* <li
