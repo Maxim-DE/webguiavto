@@ -150,7 +150,7 @@ export default function Modbus_master_AVR_calib(props) {
           <label
             htmlFor={`modbus_enable_input`}
             className="settings_itemLabel">
-            MODBUS-MATSTER
+            MODBUS-MATSTER  
           </label>
         </div>
         <div className='item_input'>

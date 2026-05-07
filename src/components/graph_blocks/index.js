@@ -10,7 +10,7 @@ import svg_eventHandler_logic from '../../logic/svg_eventHandlers_logic';
 
 export const status_colors = [
   '#ABE188', //good
-  '#d8d521', //warning
+  '#FFC107', //warning
   '#fe5f55', //error
   // '#f92ee8', //warning
   '#68CEDE', //hibernation
@@ -130,11 +130,10 @@ function svg_processing(svg_ref, svg_data) {
           } else if (Array.isArray(input_value)) {
             const result_arr = input_value.map((val_instance, val_index) => {
               const arr_val = val_instance[0] ?? 255
-
+              
               divider = val_instance[1] ?? 1
               round_index = Math.log10(divider)
               postfix = val_instance[2] ?? postfix
-
               return (arr_val / divider).toFixed(round_index) + ' ' + postfix
             })
             new_value = result_arr.join(' / ')
@@ -145,9 +144,8 @@ function svg_processing(svg_ref, svg_data) {
 
           } else {
             divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
-            round_index = Math.log10(divider)
-  
-            new_value = (input_value / divider).toFixed(round_index)
+            round_index = Math.log10(divider)          
+            new_value = (input_value / divider).toFixed(round_index);
             new_value = new_value + postfix
           }
 

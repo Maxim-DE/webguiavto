@@ -41,12 +41,12 @@
 </g>
 <g id="secondary_info">
 <g id="g9004">
-<text id="output_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="933.919" y="209.674">--</tspan></text>
-<text id="text9002" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="770.5" y="209.219">&#x41a;&#x421;&#x412;</tspan></text>
+<text id="output_1_Pout_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="933.919" y="209.674">--</tspan></text>
+<text id="text9002" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="770.5" y="209.219">&#x41c;&#x43e;&#x449;&#x43d;. &#x412;&#x44b;&#x445;.</tspan></text>
 </g>
 <g id="g9004_2">
-<text id="output_1_Pout_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="933.919" y="230.674">--</tspan></text>
-<text id="text9002_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="770.5" y="230.219">&#x41c;&#x43e;&#x449;&#x43d;. &#x412;&#x44b;&#x445;.</tspan></text>
+<text id="output_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="933.919" y="230.674">--</tspan></text>
+<text id="text9002_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="770.5" y="230.219">&#x41a;&#x421;&#x412;</tspan></text>
 </g>
 </g>
 </g>

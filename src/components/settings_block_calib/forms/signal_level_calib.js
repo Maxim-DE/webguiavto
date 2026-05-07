@@ -241,7 +241,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
             {signalCalibState.signal_type == 3 &&
               <>
                 <span className='item_adc_value'>
-                  АЦП<sub>КСС</sub>: {adc_store?.swr_signal}
+                  АЦП<sub>КСС</sub>: {adc_store?.mpx_signal}
                 </span>
                 <div className="vertical_li_divider"></div>
               </>
@@ -308,7 +308,7 @@ export default function SignalCalibSettings({ calib_state, adc_store, active_dev
             {signalCalibState.signal_type_res == 3 &&
               <>
                 <span className='item_adc_value'>
-                  АЦП<sub>КСС</sub>: {adc_store?.swr_res_signal}
+                  АЦП<sub>КСС</sub>: {adc_store?.mpx_res_signal}
                 </span>
                 <div className="vertical_li_divider"></div>
               </>
