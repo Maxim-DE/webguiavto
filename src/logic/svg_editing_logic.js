@@ -1,7 +1,8 @@
+import React from 'react'
 import { status_colors } from "../components/graph_blocks"
 import { store } from "../store/store"
 import { filter_obj, getRandomColor } from "./utilites"
-
+import useGlobalStore from './auth_store';
 
 export default function svg_editing_logic(svg, data_svg, device_type) {
   switch (device_type) {
@@ -106,9 +107,10 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
   return svg
 }
 
-function avr_svg_editing(svg, data_svg, auth_access) {
+function avr_svg_editing(svg, data_svg) {
   const active_control_mode = store.getState().globalStore.global_data.status_data.status_info?.active_control_mode,
         current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
+const auth_store = store.getState().authStore.auth_data
 
 const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
 
@@ -124,7 +126,7 @@ if (res_exiter_conf_buttons_list) {
     }
 
     // Проверка на питание и режим управления для кнопок конфигурации
-    if (active_control_mode == 0 || exiter_status != 1) {
+    if (active_control_mode == 0 || exiter_status != 1 || auth_store == 0) {
       button.classList.add("disabled_svg_button");
       button.style.opacity = "0.5";
       button.style.pointerEvents = "none";

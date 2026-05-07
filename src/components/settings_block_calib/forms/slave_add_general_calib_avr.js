@@ -1,23 +1,15 @@
 import React from 'react'
-
-import Settings_block_calib from '..';
 import FormInput from '../../form_input';
-
-import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-
 import cloneDeep from 'lodash/cloneDeep';
 import { reducers } from '../../../store/reducers/avr_control_reducers';
 import { diff } from 'deep-object-diff';
 import { dataArray_to_string } from '../../../logic/request_logic';
 import SettingsBlockWrap from '../../settings_block_wrap';
-import { hasCyrillicSymbols } from '../../../logic/validation/validators';
-import { useFormValidation } from '../../../logic/validation/formValidation_hook';
 
 export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ...props }) {
 
   const [generalCalibState, setGeneralCalibState] = React.useState({
     radio_label: '',
-    rds_enable: 0,
     scheduler_enable:0
   })
 

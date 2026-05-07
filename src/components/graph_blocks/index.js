@@ -144,8 +144,14 @@ function svg_processing(svg_ref, svg_data) {
 
           } else {
             divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
-            round_index = Math.log10(divider)          
-            new_value = (input_value / divider).toFixed(round_index);
+            round_index = Math.log10(divider)  // всегда 1 знак после запятой
+                      
+            if (divider === 1) {
+                new_value = input_value.toString();
+            } else {
+                new_value = (input_value / divider).toFixed(round_index);
+            }
+            
             new_value = new_value + postfix
           }
 
