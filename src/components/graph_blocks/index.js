@@ -123,21 +123,30 @@ function svg_processing(svg_ref, svg_data) {
             round_index
 
           // ДОБАВЛЕНА ПРОВЕРКА СТАТУСА
-          if (status === 3) {
+          if (status === 3) { 
             new_value = "--"
             // graph_block_value_span.style.fontWeight = "1500";
 
           } else if (Array.isArray(input_value)) {
             const result_arr = input_value.map((val_instance, val_index) => {
               const arr_val = val_instance[0] ?? 255
-              
+              // добавить статус 
               divider = val_instance[1] ?? 1
+              if (divider == 1) {
+                round_index = divider
+              }
+              else {
               round_index = Math.log10(divider)
-              postfix = val_instance[2] ?? postfix
+              }
+              status = val_instance[2]
+              postfix = val_instance[3] ?? postfix
+              if (status == 3 ){
+                return '--'
+                }
               return (arr_val / divider).toFixed(round_index) + ' ' + postfix
             })
             new_value = result_arr.join(' / ')
-
+            
           } else if (typeof input_value == 'string') {
             new_value = input_value
             

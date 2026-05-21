@@ -17,7 +17,7 @@
   },
   "auth_info": {
     "auth_id": "SUPER_ADMIN",
-    "auth_level": 0
+    "auth_level": 3
   }
 },
   "settings.cgi": {
@@ -207,12 +207,22 @@
       
       "exiter_0": {
         "status": 1,
-        "input_signal": [
-          1,
-          10,
-          0,
-          "дБ"
-        ],
+                    "input_signal": [
+                [
+                    [
+                        -69.4,
+                        1,
+                        3,
+                        "дБ"
+                    ],
+                    [
+                        -99.2,
+                        1,
+                        0,
+                        "дБ"
+                    ]
+                ]
+            ],
         "input_signal_type": "STEREO",
         "output_pwr": [
           1,
@@ -220,7 +230,7 @@
           0,
           "Вт"
         ],
-        "station_header": "Авто Радио",
+        "station_header": "Europa Plus",
         "refl_pwr": [
           1,
           10,
@@ -524,13 +534,12 @@
       "Authorization": true
     },
     "calib_modbus": {
-      "master_form_availiable": 1,
       "master_reserve_address": 2,
       "master_main_address": 4,
       "master_baudrate": 3,
       "master_req_period": 500,
       "master_timeout": 50,
-      "modbus_enable": 0
+      "modbus_enable": 1
     },
   "calib_conf_file": {
     "reserve_conf_create_time": "2025-10-15 17:17:34",
