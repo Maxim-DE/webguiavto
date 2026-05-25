@@ -104,6 +104,43 @@ export default function Software_version(props) {
             type="text_sample" />
         </div>
       </li>
+      <li className="group_divider"></li>
+      <li
+        key='os_version'
+        id='os_version'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`os_version_input`}
+            className="settings_itemLabel">
+            ПО осн. ПРД
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`os_version`}
+            input_value={sofrwareVersionState.os_version_main_exiter}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='os_version'
+        id='os_version'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`os_version_input`}
+            className="settings_itemLabel">
+            ПО рез. ПРД
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`os_version`}
+            input_value={sofrwareVersionState.os_version_res_exiter}
+            type="text_sample" />
+        </div>
+      </li>
       {/* <li
         key='commutaion_version'
         id='commutaion_version'

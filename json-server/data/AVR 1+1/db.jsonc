@@ -2,22 +2,27 @@
   "info.cgi": {
   "info_general": {
     "serial_number": "26ХХХ",
+    "serial_number_main_exiter": "26main",
+    "serial_number_res_exiter": "26res",
     "model": 0,
     "device_type_list": [
       "АВР 1+1"
     ],
-    "plate_number": "ИУИС.468333.001",
-    "plate_version": "0",
+    "plate_number": "ЕУИС.468333.001",
+    "plate_number_main_exiter": "ЕУИС.468333.001",
+    "plate_number_res_exiter": "ЕУИС.468333.001",
     "Power_Supply_Unit": 8.5
   },
   "software_version": {
     "os_version": "ATS_Firmware_v2.5.9",
+    "os_version_main_exiter": "RadioExciter_v1.102.0",
+    "os_version_res_exiter": "RadioExciter_v1.102.0",
     "web_version": "ATS-1.0.134",
     "bootloader_version": "ATS_Boot_v1.4.0"
   },
   "auth_info": {
     "auth_id": "SUPER_ADMIN",
-    "auth_level": 3
+    "auth_level": 2
   }
 },
   "settings.cgi": {

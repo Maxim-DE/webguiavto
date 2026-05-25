@@ -375,7 +375,7 @@ export default function ConfFileCalib_AVR(props) {
           key='conf_res_file_handle'
           id='conf_res_file_handle'
           className="settings_item nested_item"
-          style={{height: "45px"}}>
+          style={{minHeight: "45px", height: "auto"}}>
           <div className='item_header'>
             <label
               htmlFor={`conf_res_file_handle_input`}
@@ -404,7 +404,7 @@ export default function ConfFileCalib_AVR(props) {
           key='conf_factory_file_handle'
           id='conf_factory_file_handle'
           className="settings_item nested_item"
-          style={{height: "45px"}}>
+          style={{minHeight: "45px", height: "auto"}}>
           <div className='item_header'>
             <label
               htmlFor={`conf_factory_file_handle_input`}
@@ -431,43 +431,7 @@ export default function ConfFileCalib_AVR(props) {
           </div>
         </li>
         }
-        <li className="group_divider" />
-        
-        {/* <li
-          key='set_settings_as_factory'
-          id='set_settings_as_factory'
-          className="settings_item calib">
-          <div className='item_header'>
-            <label
-              htmlFor={`set_settings_as_factory_input`}
-              className="settings_itemLabel">
-              Управление рез. файлом конф. <br />
-              (Время создания посл. конф: )
-            </label>
-          </div>
-          <div className='item_input'>
-            <FormInput
-              id={`create_new_res_conf_input`}
-              name={`create_new_res_conf`}
-              clickHandler={handleClick_save}
-              label='Создать'
-              type="button" />
-            <FormInput
-              id={`reserve_conf_reset_input`}
-              name={`reserve_conf_reset`}
-              clickHandler={handleClick_save}
-              label='Восстановить из резерва'
-              type="button" />
-            <FormInput
-              id={`save_as_factory_input`}
-              name={`save_as_factory`}
-              clickHandler={handleChange_save}
-              label='Сохр. как завод.'
-              type="button" />
-          </div>
-        </li> */}
-      {/* <li className="group_divider" /> */}
-      
+      <li className="group_divider" />      
       <li
         key='conf_file_manage'
         id='conf_file_manage'

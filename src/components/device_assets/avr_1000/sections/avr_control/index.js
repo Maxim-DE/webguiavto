@@ -28,18 +28,6 @@ export const AvrControl = (props) => {
         status_device_store = filter_obj(useSelector((store) => store.globalStore.global_data.status_data.status_graph), (key, value) => key.includes('exiter')) ,
         device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`]
 
-
-  // просмотр изменений device_store !! 
-  // React.useEffect(() => {
-  //   console.log('=== device_store обновился ===');
-  //   console.log('device_store:', device_store);
-  //   console.log('slave_general:', device_store?.slave_general);
-  //   console.log('slave_add_general:', device_store?.slave_add_general);
-  //   console.log('scheduler:', device_store?.scheduler);
-  // }, [device_store]);  
-
-
-  // const rds_enable = device_store?.slave_general?.rds_enable
   const [rdsEnable, setRdsEnable] = useState(false)
   const [schedulerEnable, setSchedulerEnable] = useState(false)
 

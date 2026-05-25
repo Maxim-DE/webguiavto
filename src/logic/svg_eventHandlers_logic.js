@@ -200,7 +200,6 @@ const avr_buttons_actions = {
         bad: 'default'
       },
     }
-
     clickHandler(request_obj)
   }
 }

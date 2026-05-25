@@ -48,7 +48,25 @@ export default function Info_general(props) {
       header={'общее'}
       settings_type={'info_general'}
       section_name={props.section_name}>
-
+      <li
+        key='Power_Supply_Unit'
+        id='Power_Supply_Unit'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`Power_Supply_Unit_input`}
+            className="settings_itemLabel">
+            Напряжение на пиковых детекторах
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`Power_Supply_Unit`}
+            input_value={infoGeneralState.Power_Supply_Unit}
+            type="text_sample" />
+        </div>
+      </li>
+      <li className="group_divider"></li>
       <li
         key='serial_number'
         id='serial_number'
@@ -85,39 +103,78 @@ export default function Info_general(props) {
             type="text_sample" />
         </div>
       </li>
+      <li className="group_divider"></li>
+
       <li
-        key='plate_version'
-        id='plate_version'
+        key='serial_number'
+        id='serial_number'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`plate_version_input`}
+            htmlFor={`serial_number_input`}
             className="settings_itemLabel">
-            Ревизия платы
+            Серийный номер осн. ПРД
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`plate_version`}
-            input_value={infoGeneralState.plate_version}
+            id={`serial_number`}
+            input_value={infoGeneralState.serial_number_main_exiter}
             type="text_sample" />
         </div>
       </li>
       <li
-        key='Power_Supply_Unit'
-        id='Power_Supply_Unit'
+        key='serial_number'
+        id='serial_number'
         className="settings_item">
         <div className='item_header'>
           <label
-            htmlFor={`Power_Supply_Unit_input`}
+            htmlFor={`serial_number_input`}
             className="settings_itemLabel">
-            Блок питания
+            Серийный номер рез. ПРД
           </label>
         </div>
         <div className='item_input'>
           <FormInput
-            id={`Power_Supply_Unit`}
-            input_value={infoGeneralState.Power_Supply_Unit}
+            id={`serial_number`}
+            input_value={infoGeneralState.serial_number_res_exiter}
+            type="text_sample" />
+        </div>
+      </li>
+      <li className="group_divider"></li>
+      <li
+        key='plate_number'
+        id='plate_number'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`plate_number_input`}
+            className="settings_itemLabel">
+            Номер платы осн. ПРД
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`plate_number`}
+            input_value={infoGeneralState.plate_number_main_exiter}
+            type="text_sample" />
+        </div>
+      </li>
+      <li
+        key='plate_number'
+        id='plate_number'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`plate_number_input`}
+            className="settings_itemLabel">
+            Номер платы рез. ПРД
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`plate_number`}
+            input_value={infoGeneralState.plate_number_res_exiter}
             type="text_sample" />
         </div>
       </li>
