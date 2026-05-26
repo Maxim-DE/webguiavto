@@ -6,7 +6,7 @@
       "serial_number_res_exiter": "26res",
       "model": 0,
       "device_type_list": [
-        "АВР 1+1"
+        "Система автоматического резервирования 1+1"
       ],
       "plate_number": "ЕУИС.468333.001",
       "plate_number_main_exiter": "ЕУИС.468333.001",
@@ -213,7 +213,7 @@
             [
               -69.4,
               1,
-              3,
+              0,
               "дБ"
             ],
             [
@@ -226,17 +226,17 @@
         ],
         "input_signal_type": "STEREO",
         "output_pwr": [
+          1000,
           1,
-          10,
           0,
           "Вт"
         ],
         "station_header": "Europa Plus",
-        "refl_pwr": [
-          1,
+        "temp": [
+          392,
           10,
           0,
-          "Вт"
+          "`C"
         ],
         "swr": [
           110,
@@ -266,11 +266,11 @@
           "Вт"
         ],
         "station_header": "Радио Россия",
-        "refl_pwr": [
-          10,
+        "temp": [
+          200,
           10,
           0,
-          "Вт"
+          "`C"
         ],
         "swr": [
           112,

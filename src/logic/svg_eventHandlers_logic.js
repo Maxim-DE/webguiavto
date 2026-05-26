@@ -12,7 +12,7 @@ export default function svg_eventHandler_logic(svg, data_svg, device_type, click
           device_type == "РЦ-4000"):
       return re_amp_svg_event_editing(svg, data_svg)
 
-    case (device_type == "АВР 1+1"):
+    case (device_type == "Система автоматичееского резервирования 1+1"):
       return avr_svg_event_editing(svg, clickHandler)
   
     default:

@@ -9,7 +9,7 @@
 <g id="layer_3">
 <g id="signal_path_4">
 <path id="path4139_5" d="M294.5 325.75L359.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="path4139_6" d="M760 204.25L695.5 204.25L695.5 325.75L629.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="path4139_6" d="M760 204.25L695.5 204.25L695.5 325.749L629.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g id="signal_path_3">
 <path id="path4139_7" d="M294.5 215.75L294.5 325.75L359.5 325.75" stroke="#FE5F55" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -65,12 +65,12 @@
 <text id="text8992_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="189.951">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
 </g>
 <g id="g8994_3">
-<text id="exiter_1_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="210.674">--</tspan></text>
-<text id="text8992_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="210.951">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
+<text id="exiter_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="210.674">--</tspan></text>
+<text id="text8992_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="210.95">&#x41a;&#x421;&#x412;</tspan></text>
 </g>
 <g id="g8994_4">
-<text id="exiter_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="231.674">--</tspan></text>
-<text id="text8992_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="231.95">&#x41a;&#x421;&#x412;</tspan></text>
+<text id="exiter_1_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="231.674">--</tspan></text>
+<text id="text8992_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="231.951">&#x422;&#x435;&#x43c;&#x43f;&#x435;&#x440;&#x430;&#x442;&#x443;&#x440;&#x430;</tspan></text>
 </g>
 </g>
 <g id="path8985">
@@ -94,7 +94,7 @@
 <g id="Frame 43">
 <rect x="470.5" y="100.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
 <rect x="470.5" y="100.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_6" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="493.11" y="143.535">&#x41f;&#x43b;&#x430;&#x432;&#x43d;&#x43e;</tspan></text>
+<text id="text8992_6" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="498.326" y="143.535">&#x422;&#x43e;&#x447;&#x43d;&#x43e;</tspan></text>
 <g id="exiter_1_set_ex3_button">
 <rect id="Rectangle 21_3" x="514.5" y="126.25" width="40" height="20" rx="10" transform="rotate(180 514.5 126.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
 <path id="Vector 38_3" d="M494.5 122.25V115.75V109.25M499.5 115.75L494.5 109.25L489.5 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -127,8 +127,8 @@
 <text id="exiter_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="376.648" y="40.4277">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x41e;&#x421;&#x41d;.</tspan></text>
 <text id="exiter_1_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="377.5" y="61.7188">--</tspan></text>
 <g id="exiter_1_power_button" clip-path="url(#clip0_0_1)">
-<path id="power_btn_cover" d="M552 40.75C556.142 40.75 559.5 37.3921 559.5 33.25C559.5 29.1079 556.142 25.75 552 25.75C547.858 25.75 544.5 29.1079 544.5 33.25C544.5 37.3921 547.858 40.75 552 40.75Z" fill="#7ADC47"/>
-<path id="Vector" d="M555.35 29.275L554.444 30.1813C555.525 30.8375 556.25 32.0188 556.25 33.375C556.25 34.3696 555.855 35.3234 555.151 36.0267C554.448 36.7299 553.494 37.125 552.5 37.125C551.505 37.125 550.551 36.7299 549.848 36.0267C549.145 35.3234 548.75 34.3696 548.75 33.375C548.75 32.0188 549.475 30.8375 550.55 30.175L549.65 29.275C548.35 30.175 547.5 31.675 547.5 33.375C547.5 34.7011 548.027 35.9729 548.964 36.9105C549.902 37.8482 551.174 38.375 552.5 38.375C553.826 38.375 555.098 37.8482 556.035 36.9105C556.973 35.9729 557.5 34.7011 557.5 33.375C557.5 31.675 556.65 30.175 555.35 29.275ZM553.125 27.75H551.875V34H553.125" fill="black"/>
+<path id="power_btn_cover" d="M532 40.75C536.142 40.75 539.5 37.3921 539.5 33.25C539.5 29.1079 536.142 25.75 532 25.75C527.858 25.75 524.5 29.1079 524.5 33.25C524.5 37.3921 527.858 40.75 532 40.75Z" fill="#7ADC47"/>
+<path id="Vector" d="M535.35 29.275L534.444 30.1813C535.525 30.8375 536.25 32.0188 536.25 33.375C536.25 34.3696 535.855 35.3234 535.152 36.0267C534.448 36.7299 533.495 37.125 532.5 37.125C531.505 37.125 530.552 36.7299 529.848 36.0267C529.145 35.3234 528.75 34.3696 528.75 33.375C528.75 32.0188 529.475 30.8375 530.55 30.175L529.65 29.275C528.35 30.175 527.5 31.675 527.5 33.375C527.5 34.7011 528.027 35.9729 528.964 36.9105C529.902 37.8482 531.174 38.375 532.5 38.375C533.826 38.375 535.098 37.8482 536.036 36.9105C536.973 35.9729 537.5 34.7011 537.5 33.375C537.5 31.675 536.65 30.175 535.35 29.275ZM533.125 27.75H531.875V34H533.125" fill="black"/>
 </g>
 </g>
 <g id="path8984_3">
@@ -161,12 +161,12 @@
 <text id="text8992_9" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="432.951">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
 </g>
 <g id="g8994_7">
-<text id="exiter_0_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="453.674">--</tspan></text>
-<text id="text8992_10" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="453.951">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
+<text id="exiter_0_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="453.674">--</tspan></text>
+<text id="text8992_10" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="453.95">&#x41a;&#x421;&#x412;</tspan></text>
 </g>
 <g id="g8994_8">
-<text id="exiter_0_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="474.674">--</tspan></text>
-<text id="text8992_11" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="474.95">&#x41a;&#x421;&#x412;</tspan></text>
+<text id="exiter_0_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="609.919" y="474.674">--</tspan></text>
+<text id="text8992_11" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="369.5" y="474.951">&#x422;&#x435;&#x43c;&#x43f;&#x435;&#x440;&#x430;&#x442;&#x443;&#x440;&#x430;&#10;</tspan></text>
 </g>
 </g>
 <g id="path8985_2">
@@ -190,7 +190,7 @@
 <g id="Frame 43_3">
 <rect x="470.5" y="343.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
 <rect x="470.5" y="343.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_13" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="493.11" y="386.535">&#x41f;&#x43b;&#x430;&#x432;&#x43d;&#x43e;</tspan></text>
+<text id="text8992_13" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="498.326" y="386.535">&#x422;&#x43e;&#x447;&#x43d;&#x43e;</tspan></text>
 <g id="exiter_0_set_ex3_button">
 <rect id="Rectangle 21_8" x="514.5" y="369.25" width="40" height="20" rx="10" transform="rotate(180 514.5 369.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
 <path id="Vector 38_8" d="M494.5 365.25V358.75V352.25M499.5 358.75L494.5 352.25L489.5 358.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -222,10 +222,6 @@
 <path id="exiter_0_device_icon" d="M368.428 268.75H355.571C354.979 268.75 354.5 269.23 354.5 269.821V282.679C354.5 283.27 354.979 283.75 355.571 283.75H368.428C369.02 283.75 369.5 283.27 369.5 282.679V269.821C369.5 269.23 369.02 268.75 368.428 268.75Z" fill="#7ADC47"/>
 <text id="exiter_0_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="378.668" y="283.428">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x440;&#x435;&#x437;.</tspan></text>
 <text id="exiter_0_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="377.5" y="304.719">--</tspan></text>
-<g id="exiter_0_power_button" clip-path="url(#clip1_0_1)">
-<path id="power_btn_cover_2" d="M552 283.75C556.142 283.75 559.5 280.392 559.5 276.25C559.5 272.108 556.142 268.75 552 268.75C547.858 268.75 544.5 272.108 544.5 276.25C544.5 280.392 547.858 283.75 552 283.75Z" fill="#7ADC47"/>
-<path id="Vector_2" d="M555.35 272.275L554.444 273.181C555.525 273.838 556.25 275.019 556.25 276.375C556.25 277.37 555.855 278.323 555.151 279.027C554.448 279.73 553.494 280.125 552.5 280.125C551.505 280.125 550.551 279.73 549.848 279.027C549.145 278.323 548.75 277.37 548.75 276.375C548.75 275.019 549.475 273.838 550.55 273.175L549.65 272.275C548.35 273.175 547.5 274.675 547.5 276.375C547.5 277.701 548.027 278.973 548.964 279.911C549.902 280.848 551.174 281.375 552.5 281.375C553.826 281.375 555.098 280.848 556.035 279.911C556.973 278.973 557.5 277.701 557.5 276.375C557.5 274.675 556.65 273.175 555.35 272.275ZM553.125 270.75H551.875V277H553.125" fill="black"/>
-</g>
 </g>
 <g id="path8984_6">
 <path d="M359.5 337.051H629.5H359.5Z" fill="#C4C4C4"/>
@@ -240,6 +236,10 @@
 <g id="primary_info_input_2">
 <path id="circle8962_3" d="M359.5 330.75C362.261 330.75 364.5 328.511 364.5 325.75C364.5 322.989 362.261 320.75 359.5 320.75C356.739 320.75 354.5 322.989 354.5 325.75C354.5 328.511 356.739 330.75 359.5 330.75Z" fill="#626879"/>
 <text id="exiter_0_input_signal_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="369.5" y="332.086">--</tspan></text>
+</g>
+<g id="exiter_0_power_button" clip-path="url(#clip1_0_1)">
+<path id="power_btn_cover_2" d="M532 283.75C536.142 283.75 539.5 280.392 539.5 276.25C539.5 272.108 536.142 268.75 532 268.75C527.858 268.75 524.5 272.108 524.5 276.25C524.5 280.392 527.858 283.75 532 283.75Z" fill="#7ADC47"/>
+<path id="Vector_2" d="M535.35 272.275L534.444 273.181C535.525 273.838 536.25 275.019 536.25 276.375C536.25 277.37 535.855 278.323 535.152 279.027C534.448 279.73 533.495 280.125 532.5 280.125C531.505 280.125 530.552 279.73 529.848 279.027C529.145 278.323 528.75 277.37 528.75 276.375C528.75 275.019 529.475 273.838 530.55 273.175L529.65 272.275C528.35 273.175 527.5 274.675 527.5 276.375C527.5 277.701 528.027 278.973 528.964 279.911C529.902 280.848 531.174 281.375 532.5 281.375C533.826 281.375 535.098 280.848 536.036 279.911C536.973 278.973 537.5 277.701 537.5 276.375C537.5 274.675 536.65 273.175 535.35 272.275ZM533.125 270.75H531.875V277H533.125" fill="black"/>
 </g>
 </g>
 <g id="voltage">
@@ -400,10 +400,10 @@
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
 </filter>
 <clipPath id="clip0_0_1">
-<rect width="15" height="15" fill="white" transform="translate(544.5 25.75)"/>
+<rect width="15" height="15" fill="white" transform="translate(524.5 25.75)"/>
 </clipPath>
 <clipPath id="clip1_0_1">
-<rect width="15" height="15" fill="white" transform="translate(544.5 268.75)"/>
+<rect width="15" height="15" fill="white" transform="translate(524.5 268.75)"/>
 </clipPath>
 </defs>
 </svg>
