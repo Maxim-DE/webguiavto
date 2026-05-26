@@ -186,7 +186,15 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
             Перезагрузка устройств
           </label>
         </div>
+        </li>
+        <li>
         <div className='item_input'>
+          <FormInput
+            id={`reboot_main_device_calib_input`}
+            name={`reboot_main_deviceb`}
+            clickHandler={handleReboot_reserved}
+            label='Перезагрузить осн. ПРД'
+            type="button" />
           <FormInput
             id={`reboot_reserved_device_calib_input`}
             name={`reboot_reserved_deviceb`}
@@ -197,7 +205,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
             id={`reboot_avr_calib_input`}
             name={`reboot_avr_calib`}
             clickHandler={handleReboot}
-            label='Перезагрузить АВР'
+            label='Перезагрузить САР'
             type="button" />
         </div>
       </li>
@@ -209,7 +217,7 @@ function GeneralCalibSettings_AVR({ calib_state, clickHandler, ...props }) {
           <label
             htmlFor={`reboot_device_calib_input`}
             className="settings_itemLabel">
-            Перезагрузка АВР
+            Перезагрузка САР
           </label>
         </div>
         <div className='item_input'>

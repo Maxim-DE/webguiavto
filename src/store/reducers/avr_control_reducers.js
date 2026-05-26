@@ -3,7 +3,7 @@ import { refreshGlobalStore } from "../global_store_slice";
 
 export const reducers = {
 
-  // обработка запросов на получение данных slave-device в АВР
+  // обработка запросов на получение данных slave-device в САР
   get_avr_device_data: ({ request_name, request_resp, request_params }) => {
 
     let obj_to_refresh = {
@@ -36,7 +36,7 @@ export const reducers = {
     store.dispatch(refreshGlobalStore(obj_to_refresh))
   },
 
-  // обработка запросов на сохранение данных slave-device в АВР
+  // обработка запросов на сохранение данных slave-device в САР
   save_avr_device_data: ({ request_resp, request_params }) => {
 
     let obj_to_refresh = {
