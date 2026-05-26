@@ -1,10 +1,5 @@
 import React from 'react'
-
-import Settings_block_calib from '..';
 import FormInput from '../../form_input';
-
-import { calib_state_conversion } from '../../../logic/calib_state_conversion';
-
 import cloneDeep from 'lodash/cloneDeep';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import SettingsBlockWrap from '../../settings_block_wrap';
@@ -81,37 +76,44 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     }))
   }
 
-  const handleClick_save = (event) => {
-    const state_diff = diff(state_prev_copy.current, generalCalibState),
-          req_data_str = dataArray_to_string(state_diff, (value, key) => {
-            if (calib_state != undefined && calib_state[key] != undefined) {
-              if (Array.isArray(calib_state[key])) {
-                if (typeof calib_state[key][1] == 'number' &&
-                    calib_state[key][1] > 0) {
-                      const converted_val = isNaN(parseFloat(value)) ?
-                                            1 :
-                                            parseFloat(value).toFixed(Math.log10(calib_state[key][1]))
-
-                      return converted_val * calib_state[key][1]
-                    }
+  const handleClick_save = (fieldName, event) => {
+    // Создаем объект только с одним полем, которое нужно сохранить
+    const singleFieldState = {
+      [fieldName]: generalCalibState[fieldName]
+    };
+    
+    const state_diff = diff(
+      { [fieldName]: state_prev_copy.current?.[fieldName] }, 
+      singleFieldState
+    );
+    
+    const req_data_str = dataArray_to_string(state_diff, (value, key) => {
+      if (calib_state != undefined && calib_state[key] != undefined) {
+        if (Array.isArray(calib_state[key])) {
+          if (typeof calib_state[key][1] == 'number' &&
+              calib_state[key][1] > 0) {
+                const converted_val = isNaN(parseFloat(value)) ?
+                                      1 :
+                                      parseFloat(value).toFixed(Math.log10(calib_state[key][1]))
+                return converted_val * calib_state[key][1]
+              }
+        } else {
+          return typeof value == "boolean" ? Number(value) : value;
+        }
       } else {
-                return typeof value == "boolean" ? Number(value) : value;
+        return typeof value == "boolean" ? Number(value) : value;
       }
-    } else {
-              return typeof value == "boolean" ? Number(value) : value;
-    }
-          })
+    })
 
     const request_obj = {
       address: 'calib_signal.cgi',
       data: req_data_str,
       reducer: reducers.calibration_form,
-      update_data: generalCalibState,
+      update_data: singleFieldState,
       notifications: {
         good: 'default',
         bad: 'default'
       },
-
       save_data: {
         slave_general: state_diff
       }
@@ -119,15 +121,22 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
 
     clickHandler(request_obj);
 
+    // Обновляем предыдущее состояние для сохраненного поля
+    if (state_prev_copy.current) {
+      state_prev_copy.current = {
+        ...state_prev_copy.current,
+        [fieldName]: generalCalibState[fieldName]
+      };
+    }
   }
 
   return (
     <SettingsBlockWrap 
       header={`общие настройки`}
-      settings_type={`slave_general`}
-      section_name={props.section_name}
+      settings_type={`slave_general`}>
+      {/* section_name={props.section_name}
       save_handler={handleClick_save}
-      disable_save={!isFormValid} >
+      disable_save={!isFormValid} > */}
       <li
         key='frequency_calib'
         id='frequency_calib'
@@ -151,15 +160,15 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
               isInNumRange(87.5, 108)
             ]}
             formValidHandler={validStatus_getter} />
-          {/* <FormInput
+          <FormInput
             id={`frequency_calib_save`}
             name={`frequency_calib`}
-            clickHandler={handleClick_save}
+            clickHandler={(event) => handleClick_save('frequency', event)}
             label='Сохранить'
-            type='button' /> */}
+            type='button' />
         </div>
       </li>
-      <li
+      {/* <li
         key='input_power_calib'
         id='input_power_calib'
         className="settings_item">
@@ -179,15 +188,15 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             style={{ margin: '0', maxWidth: '75px' }}
             placeholder='Вт'
             type="text" />
-          {/* <FormInput
+          <FormInput
             id={`input_power_calib_save`}
             name={`input_power_calib`}
-            clickHandler={handleClick_save}
+            clickHandler={(event) => handleClick_save('input_power', event)}
             label='Сохранить'
-          type='button' /> */}
+          type='button' />
         </div>
-      </li>
-      <li className="group_divider"></li>
+      </li> */}
+      {/* <li className="group_divider"></li> */}
       <li
         key='input_signal_type_calib'
         id='input_signal_type_calib'
@@ -214,48 +223,14 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
               'AES'
             ]}
             changeHandler={handleChange} />
-          {/* <FormInput
+          <FormInput
             id={`input_signal_type_calib_save`}
             name={`input_signal_type_calib`}
-            clickHandler={handleClick_save}
+            clickHandler={(event) => handleClick_save('input_signal_type', event)}
             label='Сохранить'
-            type='button' /> */}
+            type='button' />
         </div>
-      </li>
-       {/* добавляет линию */}
-      <li className="group_divider"></li> 
-
-      <li
-        key='voltage_power_calib'
-        id='voltage_power_calib'
-        className="settings_item calib">
-        <div className='item_header'>
-          <label
-            htmlFor={`voltage_power_calib_input`}
-            className="settings_itemLabel">
-            Калибровка напряжения сети 
-          </label> 
-          </div>
-        <div className='item_input'>
-          <span className='item_adc_value'>
-            АЦП: {generalCalibState?.voltage_adc_power}
-          </span>
-          <FormInput
-            id={`voltage_power_calib_input`}
-            name={`voltage_power_calib`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.voltage_power}
-            style={{ margin: '0', maxWidth: '75px' }}
-            type="text" />
-          <FormInput
-            id={`voltage_power_calib_save`}
-            name={`voltage_power_calib`}
-            clickHandler={handleClick_save}
-            label='Сохранить'
-            type="button" />
-        </div>
-      </li> 
-      
+      </li>      
     </SettingsBlockWrap>
   )
 }

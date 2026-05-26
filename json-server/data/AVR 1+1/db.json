@@ -22,7 +22,7 @@
     },
     "auth_info": {
       "auth_id": "SUPER_ADMIN",
-      "auth_level": 2
+      "auth_level": 3
     }
   },
   "settings.cgi": {
@@ -396,12 +396,7 @@
         25,
         1
       ],
-      "input_signal_type": 0,
-      "voltage_adc_power": 2500,
-      "voltage_power": [
-        2200,
-        10
-      ]
+      "input_signal_type": 0
     },
     "slave_add_general": {
       "radio_label": "Радио Россия",
@@ -422,6 +417,13 @@
         "min": 45
       }
     },
+    "calib_mains_voltage": {
+      "voltage_adc_power": 1230,
+      "voltage_power": [
+        2260,
+        10
+      ]
+    },
     "calib_power": {
       "output_power": [
         100,
@@ -429,10 +431,6 @@
       ],
       "coupling_coeff": [
         200,
-        1
-      ],
-      "voltage_power": [
-        220,
         1
       ],
       "threshold_type": 0,

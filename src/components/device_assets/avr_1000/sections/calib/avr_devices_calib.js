@@ -10,6 +10,9 @@ import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/watta
 import { dataArray_to_string } from '../../../../../logic/request_logic';
 import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr';
 import { deepKeyExists, filter_obj } from '../../../../../logic/utilites';
+import MainsVoltageCalib_AVR from '../../../../settings_block_calib/forms/mains_voltage_calib_avr'; // Добавленный импорт
+// import { setAuthLevel, setIsAuth, setUserId } from "../auth_store_slice";
+
 
 export const AvrDevicesCalib = (props) => {
   const [deviceState, setDeviceState] = React.useState({
@@ -35,6 +38,9 @@ export const AvrDevicesCalib = (props) => {
   const adc_device_store = adc_store?.[`device_${Number(deviceState.active_device)}`];
 
   const res_ex_settings_enable = useRef(0);
+  
+  // Получаем уровень авторизации из Redux store
+  const authLevel = useSelector((store) => store.globalStore.global_data.user_data?.auth_level || 0);
 
   useEffect(() => {
     setDeviceState(prevState => ({
@@ -65,6 +71,15 @@ export const AvrDevicesCalib = (props) => {
         section_header="управление каналами"
         section_subheader={device_switch}
       >
+       {/* Новая вкладка калибровки напряжения сети - показывается только при уровне авторизации 3 */}
+       {/* {authLevel == 3 && ( */}
+        <MainsVoltageCalib_AVR
+          calib_state={device_store?.calib_mains_voltage}  // ← исправлено: calib_mains_voltage вместо mains_voltage_calib
+          clickHandler={handleClick}
+      adc_store={device_store?.calib_mains_voltage?.voltage_adc_power}  // ← исправлено
+          section_name={props.section_name}
+        />
+       {/* )}  */}
         <PowerCalibSettings_AVR
           calib_state={device_store?.calib_power}
           clickHandler={handleClick}
@@ -89,7 +104,6 @@ export const AvrDevicesCalib = (props) => {
             />
           </>
         )}
-
       </SettingsSectionWrap>
     </>
   );
