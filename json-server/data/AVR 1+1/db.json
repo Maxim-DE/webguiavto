@@ -114,7 +114,8 @@
       "device_1": {
         "power_calib": {
           "output_power": 1000,
-          "coupling_coeff": 1500
+          "coupling_coeff": 1500,
+          "voltage_adc_power": 2000
         },
         "signal_calib": {
           "l_signal": 500,
@@ -251,7 +252,7 @@
         ]
       },
       "exiter_1": {
-        "status": 1,
+        "status": 0,
         "input_signal": [
           32,
           10,
@@ -418,7 +419,6 @@
       }
     },
     "calib_mains_voltage": {
-      "voltage_adc_power": 1230,
       "voltage_power": [
         2260,
         10

@@ -110,7 +110,7 @@ function MainsVoltageCalib_AVR({ calib_state, adc_store, clickHandler, ...props 
         </div>
         <div className='item_input'>
           <span className='item_adc_value'>
-            АЦП: {adcValue}
+            АЦП: {adc_store?.voltage_adc_power}
           </span>
           <FormInput
             id={`voltage_power_calib_input`}
