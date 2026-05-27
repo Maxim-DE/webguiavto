@@ -3,6 +3,8 @@ import { status_colors } from "../components/graph_blocks"
 import { store } from "../store/store"
 import { filter_obj, getRandomColor } from "./utilites"
 import useGlobalStore from './auth_store';
+import { useSelector } from 'react-redux'
+
 
 export default function svg_editing_logic(svg, data_svg, device_type) {
   switch (device_type) {
@@ -110,91 +112,93 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 function avr_svg_editing(svg, data_svg) {
   const active_control_mode = store.getState().globalStore.global_data.status_data.status_info?.active_control_mode,
         current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
-const auth_store = store.getState().authStore.auth_data
-
-const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
-
-if (res_exiter_conf_buttons_list) {
-  const active_conf = data_svg?.exiter_0?.active_conf
-  const exiter_status = data_svg?.exiter_0?.status  // Получаем статус питания
   
-  res_exiter_conf_buttons_list.forEach(button => {
-    if (button.id.includes(`ex${active_conf}`)) {
-      button.classList.add("active_ex_conf");
-    } else {
-      button.classList.remove("active_ex_conf");
-    }
+  // Получаем auth_level из Redux store
+  const auth_level = store.getState().authStore.auth_data.auth_level
 
-    // Проверка на питание и режим управления для кнопок конфигурации
-    if (active_control_mode == 0 || exiter_status != 1 || auth_store == 0) {
-      button.classList.add("disabled_svg_button");
-      button.style.opacity = "0.5";
-      button.style.pointerEvents = "none";
-    } else {
-      button.classList.remove("disabled_svg_button");
-      button.style.opacity = "";
-      button.style.pointerEvents = "";
-    }
-  });
-}
-
-// Кнопки конфигурации для exiter_1 (основной) - делаем неактивными при отсутствии питания
-const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="button"]`)
-
-if (main_exiter_conf_buttons_list) {
-  const active_conf = data_svg?.exiter_1?.active_conf
-  const exiter_status = data_svg?.exiter_1?.status  // Получаем статус питания
-  
-  main_exiter_conf_buttons_list.forEach(button => {
-    if (button.id.includes(`ex${active_conf}`)) {
-      button.classList.add("active_ex_conf");
-    } else {
-      button.classList.remove("active_ex_conf");
-    }
-
-    // Проверка на питание и режим управления для кнопок конфигурации
-    if (active_control_mode == 0 || exiter_status != 1) {
-      button.classList.add("disabled_svg_button");
-      button.style.opacity = "0.5";
-      button.style.pointerEvents = "none";
-    } else {
-      button.classList.remove("disabled_svg_button");
-      button.style.opacity = "";
-      button.style.pointerEvents = "";
-    }
-  });
-}
-
-const pwr_buttons_list = svg.querySelectorAll(`g[id$="power_button"]`)
-
-if (pwr_buttons_list) {
-  pwr_buttons_list.forEach(button => {
-    const device_type = button.id.replace(`_power_button`, ''),
-          button_cover = button.querySelector(`path[id*="btn_cover"]`)
-
-    const exiter_status = data_svg?.[device_type]?.status
-
-    // Меняем цвет кнопки в зависимости от статуса питания
-    if (exiter_status == 1) {
-      button_cover.style.fill = status_colors[0]
-    } else {
-      button_cover.style.fill = status_colors[2]
-    }
-
-    // Убираем любые блокировки с кнопок питания
-    button.style.opacity = "";
-    button.style.pointerEvents = "";
-    button.classList.remove("disabled_svg_button");
+  const res_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_0 g[id$="button"]`)
+  if (res_exiter_conf_buttons_list) {
+    const active_conf = data_svg?.exiter_0?.active_conf
+    const exiter_status = data_svg?.exiter_0?.status  // Получаем статус питания
     
-    // Только скрываем/показываем в зависимости от режима управления
-    if (active_control_mode == 0) {
-      button.style.display = 'none'
-    } else {
-      button.style.display = ''
-    }
-  });
-}
+    res_exiter_conf_buttons_list.forEach(button => {
+      if (button.id.includes(`ex${active_conf}`)) {
+        button.classList.add("active_ex_conf");
+      } else {
+        button.classList.remove("active_ex_conf");
+      }
 
+      // Проверка на питание, режим управления и уровень авторизации для кнопок конфигурации
+      if (active_control_mode == 0 || exiter_status != 1 || auth_level < 1) {
+        button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
+      } else {
+        button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
+      }
+    });
+  }
+
+  // Кнопки конфигурации для exiter_1 (основной) - делаем неактивными при отсутствии питания или недостаточном уровне авторизации
+  const main_exiter_conf_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="button"]`)
+
+  if (main_exiter_conf_buttons_list) {
+    const active_conf = data_svg?.exiter_1?.active_conf
+    const exiter_status = data_svg?.exiter_1?.status  // Получаем статус питания
+
+    main_exiter_conf_buttons_list.forEach(button => {
+      if (button.id.includes(`ex${active_conf}`)) {
+        button.classList.add("active_ex_conf");
+      } else {
+        button.classList.remove("active_ex_conf");
+      }
+
+      // Проверка на питание, режим управления и уровень авторизации для кнопок конфигурации
+      if (active_control_mode == 0 || exiter_status != 1 || auth_level < 1) {
+        button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
+      } else {
+        button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
+      }
+    });
+  }
+
+  const pwr_buttons_list = svg.querySelectorAll(`g[id$="power_button"]`)
+
+  if (pwr_buttons_list) {
+    pwr_buttons_list.forEach(button => {
+      const device_type = button.id.replace(`_power_button`, ''),
+            button_cover = button.querySelector(`path[id*="btn_cover"]`)
+
+      const exiter_status = data_svg?.[device_type]?.status
+
+      // Меняем цвет кнопки в зависимости от статуса питания
+      if (exiter_status == 1) {
+        button_cover.style.fill = status_colors[0]
+      } else {
+        button_cover.style.fill = status_colors[2]
+      }
+
+      // Убираем любые блокировки с кнопок питания
+      button.style.opacity = "";
+      button.style.pointerEvents = "";
+      button.classList.remove("disabled_svg_button");
+      
+      // Только скрываем/показываем в зависимости от режима управления и уровня авторизации
+      if (active_control_mode == 0 || auth_level < 1) {
+        button.style.display = 'none'
+      } else {
+        button.style.display = ''
+      }
+    });
+  }
+
+  // ... остальной код функции остается без изменений
   const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
   const input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]')
 
@@ -219,13 +223,8 @@ if (pwr_buttons_list) {
       const path_input_descr = path[0],
       required_input = input_blocks_list[path_input_descr]
       if (!required_input) {
-        // console.log(`Пропускаем path ${index}: required_input не найден для ${path_input_descr}`);
-        return; // Переходим к следующей итерации
+        return;
       }
-      // console.log('\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')
-      // console.log(path_input_descr)
-      // console.log("----------------------------------------------")
-      // console.log(input_blocks_list)
       const input_path_display_list = required_input.querySelectorAll('path[id*="path_display"]')
 
       input_path_display_list.forEach(path => {
@@ -308,7 +307,7 @@ if (pwr_buttons_list) {
 
     const input_switch_button = block.querySelector('g[id*="mode_switch"]')
 
-    if (active_control_mode == 0) {
+    if (active_control_mode == 0 || auth_level < 0) {
       input_switch_button.style = "visibility: hidden"
     } else {
       input_switch_button.style = "visibility: visible"
@@ -323,7 +322,7 @@ if (pwr_buttons_list) {
     if (input_mode == "1") {
       switch_background.style = "fill: #7ADC47"
       input_mode_device_icon[1].style = "fill: #7ADC47"
-      input_mode_device_icon[0].style = "fill: #e74c3c" // цвет звука 
+      input_mode_device_icon[0].style = "fill: #e74c3c"
       input_res_path.style.visibility = 'hidden'
       input_primary_path.style.visibility = "visible"
 

@@ -25,14 +25,14 @@ const links_items = [
   { id: 'status', name: "Статус", icon: <HiRss size={30} />, req_access_level: 0 },
   { id: 'settings', name: "Общие настройки", icon: <IoMdSettings size={30} />, req_access_level: 1 },
   { id: 'network', name: "Сетевые настройки", icon: <FaNetworkWired size={30} />, req_access_level: 1 },
-  { id: 'avr', name: "Управление устройствами", icon: <MdSettingsInputComponent  size={30} />, req_access_level: 1 },
+  { id: 'avr', name: "Управление", icon: <MdSettingsInputComponent  size={30} />, req_access_level: 1 },
   { id: 'info', name: "Данные об устройстве", 
     icon: <MdOutlineInfo size={30} />, req_access_level: 0 },
   { id: 'userlog', name: "Польз. журнал", icon: <RiFileList3Line size={30} />, req_access_level: 0 },
   {
     id: 'calibration', name: "Расширенные настройки", req_access_level: 2, children: [
       { id: 'main', name: "Общее", icon: <TbDeviceHeartMonitor size={25} />, nested: true },
-      { id: 'avr_calib', name: "Управление каналами", icon: <MdOutlineSettingsInputComponent size={25} />, nested: true },
+      { id: 'avr_calib', name: "Конфигурация", icon: <MdOutlineSettingsInputComponent size={25} />, nested: true },
       { id: 'misc', name: "Прочее", icon: <MdOutlineMiscellaneousServices size={25} />, nested: true },
       { id: 'syslog', name: "Системный журнал", icon: <RiFileList3Fill size={25} />, nested: true },
       { id: 'developer', name: "Для разработчиков", icon: <FaCode size={25} />, nested: true },
@@ -42,7 +42,7 @@ const links_items = [
 
 const calib_links_items = [
   { id: 'main', name: "Калибровка", nested: true },
-  { id: 'avr_calib', name: "Управление каналами", nested: true },
+  { id: 'avr_calib', name: "Конфигурация", nested: true },
   { id: 'misc', name: "Прочее", nested: true },
   { id: 'developer', name: "Для разработчиков", nested: true },
 ]

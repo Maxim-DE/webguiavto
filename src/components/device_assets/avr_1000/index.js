@@ -56,7 +56,7 @@ export default function DeviceWrap_AVR1000(props) {
             <Route path='avr' element={
               <AvrControl
                 section_name="avr"
-                section_header="управление устройствами"
+                section_header="управление"
                 updateHandler={updateHandler}
               />
             } />

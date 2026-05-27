@@ -58,7 +58,7 @@ export const AvrControl = (props) => {
   return (
     <SettingsSectionWrap
       section_name={`${props.section_name}`}
-      section_header="управление устройствами"
+      section_header="управление"
       section_subheader={device_switch}
     >
         

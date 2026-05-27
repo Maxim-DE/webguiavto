@@ -22,7 +22,7 @@
     },
     "auth_info": {
       "auth_id": "SUPER_ADMIN",
-      "auth_level": 3
+      "auth_level": 0
     }
   },
   "settings.cgi": {
@@ -252,7 +252,7 @@
         ]
       },
       "exiter_1": {
-        "status": 0,
+        "status": 1,
         "input_signal": [
           32,
           10,

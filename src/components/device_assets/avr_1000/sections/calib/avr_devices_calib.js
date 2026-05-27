@@ -1,17 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SettingsSectionWrap from '../../../../settings_section_wrap';
 import { useSelector } from 'react-redux';
-import { reducers } from '../../../../../store/reducers/avr_control_reducers';
 import CalibDeviceSwitch from '../../../../calib_device_switch';
-import GeneralCalibSettings_AVR from '../../../../settings_block_calib/forms/general_calib_avr';
 import SignalCalibSettings from '../../../../settings_block_calib/forms/signal_level_calib';
 import SignalThresholdSettings from '../../../../settings_block_calib/forms/signal_threshold_calib';
 import PowerCalibSettings_AVR from '../../../../settings_block_calib/forms/wattage_primary_calib_avr';
-import { dataArray_to_string } from '../../../../../logic/request_logic';
 import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr';
 import { deepKeyExists, filter_obj } from '../../../../../logic/utilites';
 import MainsVoltageCalib_AVR from '../../../../settings_block_calib/forms/mains_voltage_calib_avr'; // Добавленный импорт
-// import { setauth_level, setIsAuth, setUserId } from "../auth_store_slice";
 
 
 export const AvrDevicesCalib = (props) => {
@@ -29,10 +25,6 @@ export const AvrDevicesCalib = (props) => {
   const status_device_store = filter_obj(
     useSelector((store) => store.globalStore.global_data.status_data.status_graph),
     (key, value) => key.includes('exiter')
-  );
-  const res_input_device_state = filter_obj(
-    useSelector((store) => store.globalStore.global_data.status_data.status_graph),
-    (key, value) => key.includes('input_0')
   );
   const device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`];
   const adc_device_store = adc_store?.[`device_${Number(deviceState.active_device)}`];
@@ -67,7 +59,7 @@ export const AvrDevicesCalib = (props) => {
     <>
       <SettingsSectionWrap
         section_name={`${props.section_name}`}
-        section_header="управление каналами"
+        section_header="конфигурация"
         section_subheader={device_switch}
       >
        {/* Новая вкладка калибровки напряжения сети - показывается только при уровне авторизации 3 */}
