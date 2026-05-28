@@ -18,14 +18,9 @@ export default function Info_general(props) {
     serial_number: 'N/A',
     plate_number: 'N/A',
     plate_version: 'N/A',
-    // commutaion_serial_number: 'N/A',
-    // commutaion_plate_number: 'N/A',
-    // commutaion_digital_serial_number: 'N/A',
-    // commutaion_digital_plate_number: 'N/A'
   })
 
   React.useEffect(() => {
-    console.log(infoGeneral_store);
     if (infoGeneral_store != 'null' && infoGeneral_store) {
       let settings_state_copy = infoGeneralState
 

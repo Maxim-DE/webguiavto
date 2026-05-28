@@ -8,8 +8,6 @@ import { dataArr_to_string } from '../../../../../../logic/utilites'
 export default function Software_version(props) {
   const softwareVersion_store = useSelector((store) => store.globalStore.global_data.section_data.info?.software_version)
 
-  const adc_store = useSelector((store) => store.globalStore.global_data.status_data.calib_adc)
-
   const [sofrwareVersionState, setSofrwareVersionState] = React.useState({
     os_version: 'N/A',
     bootloader_version: 'N/A',
@@ -25,24 +23,16 @@ export default function Software_version(props) {
       let settings_state_copy = sofrwareVersionState
 
       for (const key in softwareVersion_store) {
+        if (softwareVersion_store[key].length === 0) {
+          settings_state_copy[key] = 'N/A'
+          continue
+        }
         settings_state_copy[key] = softwareVersion_store[key]
       }
 
       setSofrwareVersionState(settings_state_copy)
     }
   }, [softwareVersion_store])
-
-    const commutator_adc_val_compute = (adc_data) => {
-      if (!adc_data || typeof(adc_data) != "object") return
-  
-      let compute_result = {}
-  
-      for (let key in adc_data) {
-        compute_result[key] = dataArr_to_string(adc_data[key])
-      }
-  
-      return compute_result
-    }
 
   return (
     <SettingsBlockWrap
