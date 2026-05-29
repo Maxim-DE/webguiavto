@@ -3,6 +3,7 @@
     "info_general": {
       "serial_number": "XXXXX",
       "model": 0,
+      "IsExistAvr": 0,                //0- Отсутствует АВР  1- присутствует АВР 1+1
       "device_type_list": [
         "РЦ-4000",
         "СТ-1000"
