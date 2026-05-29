@@ -1,7 +1,7 @@
 import { status_colors } from "../components/graph_blocks"
 import { filter_obj } from "./utilites"
 
-export default function svg_editing_logic(svg, data_svg, device_type, clickHandler, auth_access) {
+export default function svg_editing_logic(svg, data_svg, device_type, is_exist_avr, clickHandler, auth_access) {
   switch (true) {
     case device_type == 'st_250':
       return st_250_svg_editing(svg, data_svg)
@@ -10,9 +10,17 @@ export default function svg_editing_logic(svg, data_svg, device_type, clickHandl
           device_type == "УСТ-500"):
       return re_amp_svg_editing(svg, data_svg)
 
-    case (device_type == "СТ-1000" || 
-          device_type == "РЦ-4000"):
-      return block_control_svg_editing(svg, data_svg, auth_access)
+    case (device_type == "СТ-1000"):
+      return block_control_svg_editing(svg, data_svg, auth_access)      
+
+    case (device_type == "РЦ-4000"):
+      if(is_exist_avr==1){
+        // return block_control_svg_editing(svg, data_svg, auth_access)
+        // Новая функция
+      }
+      if(is_exist_avr==0){
+        return block_control_svg_editing(svg, data_svg, auth_access)
+      }
   
     default:
       return svg

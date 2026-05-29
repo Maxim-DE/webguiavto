@@ -50,12 +50,15 @@ function StatusSection(props) {
 
   let device_type_arr = [],
       device_type = 0,
+      device_is_exist_avr=0,
       device_type_str = ''
 
   if (section_store.info.info_general) {
     device_type_arr = section_store.info.info_general.device_type_list ? section_store.info.info_general.device_type_list : [],
     device_type = section_store.info.info_general.model ? section_store.info.info_general?.model : 0
     device_type_str = device_type_arr[device_type]
+    device_is_exist_avr=section_store.info.info_general.IsExistAvr
+
   }
 
   // const device_type_arr = Object.keys(section_store.info).length > 0 ? section_store.info.info_general.device_type_list : '',
@@ -336,6 +339,7 @@ function StatusSection(props) {
         <Status_graphs
           settings_type="graphs"
           device_type={device_type}
+          device_is_exist_avr={device_is_exist_avr}
           device_type_str={device_type_str}
           graph_svg={status_store.status_svg.img}
           auth_access={auth_store.auth_access}

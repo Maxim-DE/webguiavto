@@ -158,7 +158,9 @@ function Status_graphs(props) {
       }
     }
 
-    let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str, props.updateHandler, props.auth_access)
+    // let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str, props.updateHandler, props.auth_access)
+
+    let edited_svg = svg_editing_logic(graph_svg, graph_data, props.device_type_str,props.device_is_exist_avr, props.updateHandler, props.auth_access)
 
     // graph_svg_container.innerHTML = ''
     // graph_svg_container.append(edited_svg)
