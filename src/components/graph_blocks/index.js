@@ -45,7 +45,7 @@ function Status_graphs(props) {
 
     let parsed_svg = new DOMParser().parseFromString(props.graph_svg, "text/xml").childNodes[0]
 
-    const edited_svg = svg_eventHandler_logic(parsed_svg, {}, props.device_type_str, props.updateHandler)
+    const edited_svg = svg_eventHandler_logic(parsed_svg, {}, props.device_type_str, props.device_is_exist_avr, props.updateHandler)
 
     graph_container.append(edited_svg);
 

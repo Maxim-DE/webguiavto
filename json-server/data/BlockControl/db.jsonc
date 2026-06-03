@@ -3,7 +3,7 @@
     "info_general": {
       "serial_number": "XXXXX",
       "model": 0,
-      "IsExistAvr": 0,                //0- Отсутствует АВР  1- присутствует АВР 1+1
+      "IsExistAvr": 1,                //0- Отсутствует АВР  1- присутствует АВР 1+1
       "device_type_list": [
         "РЦ-4000",
         "СТ-1000"
@@ -35,7 +35,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 3
+      "auth_level": 0
     }
   },  
   "settings.cgi": {
@@ -114,26 +114,30 @@
               "status" : 1,
               "input_pwr" : [ 0, 10, 2, "Вт" ],
               "output_pwr" : [ 0, 1, 2, "Вт" ],
-              "swr" : [ 0, 100, 3, "" ],
-              "ballast" : [ 0, 1, 0, "Вт" ],
+              "swr" : [ 110, 100, 0, "" ],
+            //   "ballast" : [ 0, 1, 0, "" ],
               "temp" : [ 0, 10, 0, "°С" ],
-              "voltage" : [ 42, 10, 3, "В" ],
-              "current_1" : [ 0, 10, 0, "А" ],
-              "current_2" : [ 0, 10, 0, "А" ],
-              "current_3" : [ 0, 10, 0, "А" ]
+              "voltage" : [ 42, 10, 0, "В" ],
+              "current_1" : [ 228, 10, 0, "А" ],
+              "current_2" : [ 194, 10, 0, "А" ],
+              "current_3" : [ 240, 10, 0, "А" ]
           },
           "amplifier_group_2" : {
               "status" : 1,
-              "input_pwr" : [ 0, 10, 2, "Вт" ],
-              "output_pwr" : [ 0, 1, 2, "Вт" ],
-              "swr" : [ 0, 100, 3, "" ],
-              "ballast" : [ 0, 1, 0, "Вт" ],
-              "temp" : [ 0, 10, 0, "°С" ],
-              "voltage" : [ 542, 10, 2, "В" ],
-              "current_1" : [ 0, 10, 0, "А" ],
-              "current_2" : [ 0, 10, 0, "А" ],
-              "current_3" : [ 0, 10, 0, "А" ]
+              "input_pwr" : [ 150, 10, 0, "Вт" ],
+              "output_pwr" : [ 1000, 1, 0, "Вт" ],
+              "swr" : [ 105, 100, 0, "" ], // убрать балласт (на картинке ксв это баласт)
+            //   "ballast" : [ 115, 100, 0, "" ],
+              "temp" : [ 423, 10, 0, "°С" ],
+              "voltage" : [ 522, 10, 0, "В" ],
+              "current_1" : [ 221, 10, 0, "А" ],
+              "current_2" : [ 224, 10, 0, "А" ],
+              "current_3" : [ 226, 10, 0, "А" ]
           },
+        //   "CAP":{
+        //     "CAP_input_pwr_value" : [ -999, 10, 0, "дБ" ],
+        //     "CAP_output_pwr_value" : [ -999, 10, 0, "дБ" ],
+        //   },
           "output" : {
               "status" : 1,
               "input_pwr" : [ 0, 1, 2, "Вт" ],
@@ -165,15 +169,33 @@
           "def_module_status" : 1
       },
       "nav_info" : {
-          "Возбудитель" : [ {
+        "САР 1+1" : [ {
+              "name" : "Сеть",
+              "value" : 220,
+              "status" : 0,
+              "divider" : 1,
+              "units" : "В"
+          }, {
+              "name" : "КСВ",
+              "value" : 11,
+              "status" : 0,
+              "divider" : 10
+          }, {
+              "name" : "Мощн. отр.",
+              "value" : 12,
+              "status" : 0,
+              "divider" : 10,
+              "units" : "Вт"
+          } ],
+          "ПРД Осн. 26В10" : [ {
               "name" : "Частота",
-              "value" : 0,
-              "status" : 255,
+              "value" : 10000,
+              "status" : 0,
               "divider" : 100,
               "units" : "МГц"
           }, {
               "name" : "Pвых",
-              "value" : 0,
+              "value" : 48,
               "status" : 0,
               "divider" : 1,
               "units" : "Вт"
@@ -197,7 +219,44 @@
               "units" : "дБ"
           }, {
               "name" : "Температура",
+              "value" : 400,
+              "status" : 0,
+              "divider" : 10,
+              "units" : "°С"
+          } ],
+          "ПРД Рез. 26В19" : [ {
+              "name" : "Частота",
+              "value" : 10000,
+              "status" : 0,
+              "divider" : 100,
+              "units" : "МГц"
+          }, {
+              "name" : "Pвых",
+              "value" : 48,
+              "status" : 0,
+              "divider" : 1,
+              "units" : "Вт"
+          }, {
+              "name" : "Уровень L",
               "value" : 0,
+              "status" : 0,
+              "divider" : 10,
+              "units" : "дБ"
+          }, {
+              "name" : "Уровень R",
+              "value" : 0,
+              "status" : 0,
+              "divider" : 10,
+              "units" : "дБ"
+          }, {
+              "name" : "Девиация",
+              "value" : 0,
+              "status" : 0,
+              "divider" : 10,
+              "units" : "дБ"
+          }, {
+              "name" : "Температура",
+              "value" : 400,
               "status" : 0,
               "divider" : 10,
               "units" : "°С"
@@ -360,13 +419,12 @@
       "auth_level": 3
     }
   },
-
-
   "calibration.cgi": {
         "calib_serialNum" : {
             "calib_defence" : 1,
             "device_serial_num" : "XXXXX",
-            "device_type" : 0
+            "device_type" : 0,
+            "IsExistAvr": 1
         },
         "calib_power" : {
             "output_power" : [ 4000, 1 ],

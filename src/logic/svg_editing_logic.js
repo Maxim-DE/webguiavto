@@ -15,8 +15,7 @@ export default function svg_editing_logic(svg, data_svg, device_type, is_exist_a
 
     case (device_type == "РЦ-4000"):
       if(is_exist_avr==1){
-        // return block_control_svg_editing(svg, data_svg, auth_access)
-        // Новая функция
+        return block_control_avr_svg_editing(svg, data_svg, auth_access)
       }
       if(is_exist_avr==0){
         return block_control_svg_editing(svg, data_svg, auth_access)
@@ -114,32 +113,29 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 
   return svg
 }
-
-function block_control_svg_editing(svg, data_svg, auth_access) {
-  const output_data = data_svg?.output,
-    output_svg_list = svg.querySelectorAll(`text[id*="swr_value"]`)
-
-  output_svg_list.forEach(output_svg => {
-    try {
-      if (output_data.swr[2] == 3 && output_svg != undefined) {
-        output_svg.children[0].innerHTML = '--'
-        output_svg.children[0].style.fill = '#202020';
-        output_svg.children[0].style.fontWeight = "300";
-      }
-    } catch (error) {
-      console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
-    }
-  });
+// меняй здесь !!!
+function block_control_avr_svg_editing(svg, data_svg, auth_access) {
 
   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
-        output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
+        output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`),
+        cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttins"] g[id$="button"]`)
 
   if (amp_1_buttons_list) {
     amp_1_buttons_list.forEach((button) => {
+      if (auth_access.calib == 0) {
+        button.classList.add("disabled_svg_button");
+      } else {
+        button.classList.remove("disabled_svg_button");
+      }
+    })
+  }
+
+  if (cap_buttons_list) {
+    cap_buttons_list.forEach((button) => {
       if (auth_access.calib == 0) {
         button.classList.add("disabled_svg_button");
       } else {
@@ -211,3 +207,103 @@ function block_control_svg_editing(svg, data_svg, auth_access) {
 
   return svg
 }
+
+
+
+// РАСКОМЕНТИРУЙ !!!
+// function block_control_svg_editing(svg, data_svg, auth_access) {
+//   const output_data = data_svg?.output,
+//     output_svg_list = svg.querySelectorAll(`text[id*="swr_value"]`)
+
+//   output_svg_list.forEach(output_svg => {
+//     try {
+//       if (output_data.swr[2] == 3 && output_svg != undefined) {
+//         output_svg.children[0].innerHTML = '--'
+//         output_svg.children[0].style.fill = '#202020';
+//         output_svg.children[0].style.fontWeight = "300";
+//       }
+//     } catch (error) {
+//       console.log(`Произошла ошибка при обработке данных картинки: ${error}`);
+//     }
+//   });
+
+//   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+//         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
+//         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
+//         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+//         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
+//         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
+
+//   if (amp_1_buttons_list) {
+//     amp_1_buttons_list.forEach((button) => {
+//       if (auth_access.calib == 0) {
+//         button.classList.add("disabled_svg_button");
+//       } else {
+//         button.classList.remove("disabled_svg_button");
+//       }
+//     })
+//   }
+
+//   if (amp_2_buttons_list) {
+//     amp_2_buttons_list.forEach((button) => {
+//       if (auth_access.calib == 0) {
+//         button.classList.add("disabled_svg_button");
+//       } else {
+//         button.classList.remove("disabled_svg_button");
+//       }
+//     })
+//   }
+
+//   if (output_buttons_list) {
+//     output_buttons_list.forEach((button) => {
+//       if (auth_access.calib == 0) {
+//         button.classList.add("disabled_svg_button");
+//       } else {
+//         button.classList.remove("disabled_svg_button");
+//       }
+//     })
+//   }
+
+//   exiter_buttons_list.forEach((button) => {
+//     if (auth_access.settings == 0) {
+//       button.classList.add("disabled_svg_button");
+//     } else {
+//       button.classList.remove("disabled_svg_button");
+//     }
+//   })
+
+//   const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+//         exiter_status = data_svg?.exiter?.status
+
+//   if (exiter_status == 1) {
+//     exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[0]
+//   } else {
+//     exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
+//   }
+
+//   if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
+//     let inner_input = input_wrap.querySelector(`input`)
+
+//     if (inner_input) {
+//       if (auth_access.settings == 0) {
+//         inner_input.disabled = true;
+//       } else {
+//         inner_input.disabled = false;
+//       }
+//     }
+//   })
+
+//   if (ping_input_list) {
+//     ping_input_list.forEach((button) => {
+//       if (auth_access.calib == 0) {
+//         button.classList.add("disabled_svg_button");
+//         button.classList.add("invisible");
+//       } else {
+//         button.classList.remove("disabled_svg_button");
+//         button.classList.remove("invisible");
+//       }
+//     })
+//   }
+
+//   return svg
+// }

@@ -272,6 +272,26 @@ function SerialNumVersionCalibSettings(props) {
             type="button" />
         </div>
       </li>
+      <li
+        key='IsExistAvr_calib'
+        id='IsExistAvr_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`IsExistAvr`}
+            className="settings_itemLabel">
+            САР 1+1
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`IsExistAvr`}
+            name={`IsExistAvr`}
+            changeHandler={handleChange_defence}
+            input_value={serialNumVersionCalibState.IsExistAvr}
+            type="switch" />
+        </div>
+      </li>
     </Settings_block_calib>
   )
 }
