@@ -35,7 +35,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 0
+      "auth_level": 3
     }
   },
   "settings.cgi": {

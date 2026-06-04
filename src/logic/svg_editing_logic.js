@@ -134,15 +134,15 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
     })
   }
 
-  if (cap_buttons_list) {
-    cap_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
-        button.classList.add("disabled_svg_button");
-      } else {
-        button.classList.remove("disabled_svg_button");
-      }
-    })
-  }
+  // if (cap_buttons_list) {
+  //   cap_buttons_list.forEach((button) => {
+  //     if (auth_access.calib == 0) {
+  //       button.classList.add("disabled_svg_button");
+  //     } else {
+  //       button.classList.remove("disabled_svg_button");
+  //     }
+  //   })
+  // }
 
   if (amp_2_buttons_list) {
     amp_2_buttons_list.forEach((button) => {

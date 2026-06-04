@@ -44,14 +44,98 @@ function re_amp_svg_event_editing(svg, data_svg, clickHandler) {
 
 
 function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
-  const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+  const cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`),
+        exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
+        
         exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
 
+  // Получаем начальное состояние активного режима из data_svg
+  const initial_active_mode = (() => {
+    try {
+      if (data_svg && data_svg.status_info && data_svg.status_info.active_control_mode !== undefined) {
+        return data_svg.status_info.active_control_mode
+      }
+      if (data_svg && data_svg.active_control_mode !== undefined) {
+        return data_svg.active_control_mode
+      }
+      return 0 // значение по умолчанию
+    } catch (error) {
+      console.error('Error getting active_control_mode:', error)
+      return 0
+    }
+  })()
+
+  // Функция для создания запроса
+  const create_CAPModeRequest = (mode_num, clickHandler) => {
+    const request_obj = {
+      address: `set_cap_control_mode.cgi`,
+      data: `mode$${Number(mode_num)};`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+    clickHandler(request_obj)
+  }
+
+  // Обработчик кликов для SVG кнопок CAP
+  const handle_CAPModeChange = (event, clickHandler) => {
+    const target = event.currentTarget,
+          mode_num = target.getAttribute('data-mode') || 
+                     (target.id.includes('auto') ? 0 : 1)
+    
+    if (mode_num !== null && mode_num !== undefined) {
+      create_CAPModeRequest(mode_num, clickHandler)
+      // Обновляем подсветку после клика
+      setTimeout(() => {
+        setActiveCAPModeOnSVG(Number(mode_num))
+      }, 50)
+    }
+  }
+
+  // Функция для подсветки активного режима на SVG
+  const setActiveCAPModeOnSVG = (active_control_mode) => {
+    if (!cap_buttons_list || cap_buttons_list.length === 0) return
+    
+    cap_buttons_list.forEach(button => {
+      const mode_num = button.getAttribute('data-mode') || 
+                      (button.id.includes('auto') ? 0 : 1)
+      
+      if (Number(mode_num) === active_control_mode) {
+        button.classList.add('active_cap_mode')
+        button.style.opacity = '1'
+        button.style.filter = 'brightness(1.2)'
+      } else {
+        button.classList.remove('active_cap_mode')
+        button.style.opacity = '0.6'
+        button.style.filter = 'brightness(1)'
+      }
+    })
+  }
+
+  // Инициализация обработчиков для CAP кнопок
+  if (cap_buttons_list && cap_buttons_list.length > 0) {
+    cap_buttons_list.forEach(button => {
+      if (!button.onclick) {
+        button.addEventListener("click", function(event) {
+          handle_CAPModeChange(event, clickHandler)
+        })
+        button.style.cursor = 'pointer'
+      }
+    })
+    
+    // Устанавливаем начальную подсветку из JSON
+    setTimeout(() => {
+      setActiveCAPModeOnSVG(initial_active_mode)
+    }, 300)
+  }
+
+  // Обработчики для exiter кнопок
   exiter_buttons_list.forEach(button => {
     const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
           pwr_save_callback = block_control_buttons_actions.save_power_handler
@@ -70,6 +154,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     }
   })
 
+  // Обработчики для input полей
   if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
 
     // Находим элемент text среди дочерних узлов
@@ -175,6 +260,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
 
   const supply_handling_callback = block_control_buttons_actions.supply_handler
 
+  // Обработчики для amp_1 кнопок
   if (amp_1_buttons_list) amp_1_buttons_list.forEach(button => {
     const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
           button_params = button.id.replace('_val_button', '').split("_"),
@@ -188,6 +274,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     }
   })
 
+  // Обработчики для amp_2 кнопок
   if (amp_2_buttons_list) amp_2_buttons_list.forEach(button => {
     const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
           button_params = button.id.replace('_val_button', '').split("_"),
@@ -201,7 +288,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     }
   })
   
-
+  // Обработчики для output кнопок
   output_buttons_list.forEach(button => {
     let button_callback = re_amp_buttons_actions[button.id.replace('_button', '')]
 
@@ -212,12 +299,14 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     }
   })
         
+  // Обработчик для exiter_pwr кнопки
   if (exiter_pwr_button) {
     exiter_pwr_button.addEventListener("click", function () {
       supply_handling_callback(clickHandler)
     })
   }
 
+  // Обработчики для ping кнопок
   if (ping_input_list) ping_input_list.forEach(button => {
     const ping_dest_device = button.id.replace('_check_amp_network_button', '')
 
@@ -240,6 +329,19 @@ const re_amp_buttons_actions = {
         good: 'default',
         bad: 'default'
       }
+    }
+
+    clickHandler(request_obj)
+  },
+    set_ex_conf_handler: (device_type, clickHandler) => {
+    const request_obj = {
+      address: 'status_graph_settings.cgi',
+      data: `set_ex_conf$${device_type}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      reducer: reducers.transmitter,
     }
 
     clickHandler(request_obj)
@@ -344,8 +446,6 @@ const block_control_buttons_actions = {
   }
 }
 
-
-// Раскоментируй
 // function block_control_svg_event_editing(svg, data_svg, clickHandler) {
 
 //   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),

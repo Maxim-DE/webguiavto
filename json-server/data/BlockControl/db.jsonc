@@ -35,7 +35,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 0
+      "auth_level": 3
     }
   },  
   "settings.cgi": {
@@ -97,7 +97,8 @@
           "device_status" : 0,
           "time" : "2026-04-06 16:29:11",
           "magic_number" : 1470515113,
-          "UpTime" : "00000:00:15"
+          "UpTime" : "00000:00:15",
+          "active_control_mode": 1 
       },
       "status_graph" : {
           "exiter" : {
