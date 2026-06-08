@@ -122,34 +122,65 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`),
-        cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttins"] g[id$="button"]`)
+        cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`)
 
+        console.log('data_svg',data_svg.cap.active_control_mode)
+        
   if (amp_1_buttons_list) {
     amp_1_buttons_list.forEach((button) => {
       if (auth_access.calib == 0) {
         button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
       } else {
         button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
       }
     })
   }
-
+  // console.log('active_control_mode',active_control_mode)
   // if (cap_buttons_list) {
-  //   cap_buttons_list.forEach((button) => {
-  //     if (auth_access.calib == 0) {
+  //   const active_conf = data_svg?.active_control_mode
+  //   cap_buttons_list.forEach(button => {
+  //     if (button.id.includes(`ex${active_conf}`)) {
+  //       button.classList.add("active_ex_conf");
+  //     } else {
+  //       button.classList.remove("active_ex_conf");
+  //     }
+
+  //     if (active_control_mode == 0) {
   //       button.classList.add("disabled_svg_button");
   //     } else {
   //       button.classList.remove("disabled_svg_button");
   //     }
-  //   })
+  //   });
   // }
+
+  if (cap_buttons_list) {
+    cap_buttons_list.forEach((button) => {
+      if (auth_access.calib == 0) {
+        button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
+      } else {
+        button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
+      }
+    })
+  }
 
   if (amp_2_buttons_list) {
     amp_2_buttons_list.forEach((button) => {
       if (auth_access.calib == 0) {
         button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
       } else {
         button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
       }
     })
   }
@@ -158,18 +189,26 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
     output_buttons_list.forEach((button) => {
       if (auth_access.calib == 0) {
         button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
       } else {
         button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
       }
     })
   }
 
   exiter_buttons_list.forEach((button) => {
-    if (auth_access.settings == 0) {
-      button.classList.add("disabled_svg_button");
-    } else {
-      button.classList.remove("disabled_svg_button");
-    }
+      if (auth_access.calib == 0) {
+        button.classList.add("disabled_svg_button");
+        button.style.opacity = "0.5";
+        button.style.pointerEvents = "none";
+      } else {
+        button.classList.remove("disabled_svg_button");
+        button.style.opacity = "";
+        button.style.pointerEvents = "";
+      }
   })
 
   const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),

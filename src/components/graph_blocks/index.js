@@ -26,36 +26,27 @@ export const new_status_colors = {
 }
 
 function Status_graphs(props) {
-
   const graph_container_ref = React.useRef(null)
 
   React.useEffect(() => {
     svg_processing(graph_container_ref.current, props.data)
   }, [props.data])
 
-
   React.useEffect(() => {
     if (!props.graph_svg) {
       return
     } 
-
     let graph_container = graph_container_ref.current
-
     graph_container.innerHTML = ''
-
     let parsed_svg = new DOMParser().parseFromString(props.graph_svg, "text/xml").childNodes[0]
-
-    const edited_svg = svg_eventHandler_logic(parsed_svg, {}, props.device_type_str, props.device_is_exist_avr, props.updateHandler)
-
+    const edited_svg = svg_eventHandler_logic(parsed_svg, {}, props.device_type_str, props.device_is_exist_avr, props.active_control_mode, props.updateHandler)
     graph_container.append(edited_svg);
-
   }, [props.graph_svg])
 
 
   function svg_processing(svg_ref, svg_data) {
     let graph_svg_container = svg_ref
     let graph_data = svg_data
-
     if (!graph_svg_container) {
       console.error("Can't find svg ref container!")
       return
@@ -120,19 +111,56 @@ function Status_graphs(props) {
 
         if (Array.isArray(graph_block_data[item])) {
           let input_value = graph_block_data[item][0],
-            divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
+            divider, 
             status = graph_block_data[item][2],
             postfix = graph_block_data[item][3] ?
               ' ' + graph_block_data[item][3] :
               '',
             round_index
 
-          round_index = Math.log10(divider)
+          // ДОБАВЛЕНА ПРОВЕРКА СТАТУСА
+          if (status === 3) { 
+            new_value = "--"
+            // graph_block_value_span.style.fontWeight = "1500";
 
-          new_value = (input_value / divider).toFixed(round_index)
-          new_value = new_value + postfix
+          } else if (Array.isArray(input_value)) {
+            const result_arr = input_value.map((val_instance, val_index) => {
+              const arr_val = val_instance[0] ?? 255
+              // добавить статус 
+              divider = val_instance[1] ?? 1
+              if (divider == 1) {
+                round_index = 0
+              }
+              else {
+              round_index = Math.log10(divider)
+              }
+              status = val_instance[2]
+              postfix = val_instance[3] ?? postfix
+              if (status == 3 ){
+                return '--'
+                }
+              return (arr_val / divider).toFixed(round_index) + ' ' + postfix
+            })
+            new_value = result_arr.join(' / ')
+            
+          } else if (typeof input_value == 'string') {
+            new_value = input_value
+            
 
-          if (status != 0) {
+          } else {
+            divider = graph_block_data[item][1] != 0 ? graph_block_data[item][1] : 1,
+            round_index = Math.log10(divider)  // всегда 1 знак после запятой
+                      
+            if (divider === 1) {
+                new_value = input_value.toString();
+            } else {
+                new_value = (input_value / divider).toFixed(round_index);
+            }
+            
+            new_value = new_value + postfix
+          }
+
+          if (status != 0 && status !== 3) { // Добавлена проверка на status !== 3
             graph_block_value_span.style.fontWeight = "500";
             graph_block_value_span.style.fill = status_colors[status];
           } else {
@@ -141,9 +169,9 @@ function Status_graphs(props) {
             graph_block_value_span.style.fill = '#202020';
           }
 
-
         } else {
-          new_value = graph_block_data[item]
+          graph_block_value_span.style.fontWeight = "300";
+          new_value = graph_block_data[item] //не находит тип сигнала 
         }
 
         graph_block_value_span.innerHTML = new_value

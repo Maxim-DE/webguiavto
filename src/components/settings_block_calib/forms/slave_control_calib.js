@@ -14,7 +14,7 @@ const slave_devices = [
 
 export default function Slave_control_calib({ clickHandler, ...rest }) {
   const [slaveControlState, setSlaveControlState] = React.useState({
-    exiter_1_action: 0,
+    exiter_action: 0,
     amplifier_1_action: 0,
     amplifier_2_action: 0
   })

@@ -342,6 +342,7 @@ function StatusSection(props) {
           settings_type="graphs"
           device_type={device_type}
           device_is_exist_avr={device_is_exist_avr}
+          active_control_mode={useSelector((store) => store.globalStore.global_data.status_data.status_info.active_control_mode)}
           device_type_str={device_type_str}
           graph_svg={status_store.status_svg.img}
           auth_access={auth_store.auth_access}

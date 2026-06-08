@@ -37,7 +37,7 @@
       "auth_id": "super_admin",
       "auth_level": 3
     }
-  },  
+  },
   "settings.cgi": {
     "time_settings": {
       "date": "2026-04-06",
@@ -56,89 +56,102 @@
       "bootloader_enabled_switch": 1,
       "request_period": 1000
     }
-    
   },
   "network.cgi": {
     "device_adress": {
-        "mac_deafult": "08:00:25:00:19:50",
-        "mac": "08:00:25:00:19:50",
-        "ip": "192.168.1.121",
-        "subnet_mask": "255.255.255.0",
-        "gateway": "192.168.1.18"
-      },
-      "remote_control": {
-        "remote_ip_addr_1_settings": "",
-        "remote_ip_addr_2_settings": "",
-        "remote_ip_addr_3_settings": "",
-        "remote_ip_addr_4_settings": ""
-      },
-      "snmp_agent": {
-        "community_read": "public",
-        "community_write": "private",
-        "trap_settings": [
-          {
-            "active": 0,
-            "port": 162,
-            "ip": "0.0.0.0",
-            "trap_community": ""
-          },
-          {
-            "active": 0,
-            "port": 162,
-            "ip": "0.0.0.0",
-            "trap_community": ""
-          }
-        ]
-      }    
+      "mac_deafult": "08:00:25:00:19:50",
+      "mac": "08:00:25:00:19:50",
+      "ip": "192.168.1.121",
+      "subnet_mask": "255.255.255.0",
+      "gateway": "192.168.1.18"
+    },
+    "remote_control": {
+      "remote_ip_addr_1_settings": "",
+      "remote_ip_addr_2_settings": "",
+      "remote_ip_addr_3_settings": "",
+      "remote_ip_addr_4_settings": ""
+    },
+    "snmp_agent": {
+      "community_read": "public",
+      "community_write": "private",
+      "trap_settings": [
+        {
+          "active": 0,
+          "port": 162,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        },
+        {
+          "active": 0,
+          "port": 162,
+          "ip": "0.0.0.0",
+          "trap_community": ""
+        }
+      ]
+    }
   },
-
   "status.cgi": {
-      "status_info" : {
-          "device_status" : 0,
-          "time" : "2026-04-06 16:29:11",
-          "magic_number" : 1470515113,
-          "UpTime" : "00000:00:15",
-          "active_control_mode": 1 
+    "status_info": {
+      "device_status": 0,
+      "time": "2026-04-06 16:29:11",
+      "magic_number": 1470515113,
+      "UpTime": "00000:00:15"
+    },
+    "status_graph": {
+      "exiter": {
+        "status": 1,
+        // "station_header": "Радио Россия",
+        // "swr": [115, 100, 0],
+        "input_signal_type": "STEREO",
+        // "input_signal": [[[0, 10, 0, "дБ"], [0, 10, 0, "дБ"]]],
+        "output_pwr": [54, 1, 0, "Вт"],
+        "freq": [10001, 100, 0, "МГц"],
+        "temp": [400, 10, 0, "°С"]
+      },      
+    //   "exiter_2": {
+    //     "status": 0,
+    //     "station_header": "Радио Россия",
+    //     "swr": [115, 100, 0],
+    //     "input_signal_type": "STEREO",
+    //     "input_signal": [[[0, 10, 0, "дБ"], [0, 10, 0, "дБ"]]],
+    //     "output_pwr": [54, 1, 0, "Вт"],
+    //     "freq": [10001, 100, 0, "МГц"],
+    //     "temp": [400, 10, 0, "°С"]
+    //   },
+      "amplifier_group_1": {
+        "status": 1,
+        "input_pwr": [0, 10, 0, "Вт"],
+        "output_pwr": [0, 1, 2, "Вт"],
+        "swr": [110, 100, 0, ""],
+        //   "ballast": [ 0, 1, 0, "" ],
+        "temp": [0, 10, 0, "°С"],
+        "voltage": [42, 10, 0, "В"],
+        "current_1": [228, 10, 0, "А"],
+        "current_2": [194, 10, 0, "А"],
+        "current_3": [240, 10, 0, "А"]
       },
-      "status_graph" : {
-          "exiter" : {
-              "status" : 0,
-              "input_signal_type" : "STEREO",
-              "output_pwr" : [ 0, 1, 0, "Вт" ], 
-              "freq" : [ 10001, 100, 255, "МГц" ],
-              "l_channel" : [ 0, 10, 0, "дБ" ],
-              "r_channel" : [ 0, 10, 0, "дБ" ],
-              "deviation" : [ 0, 10, 0, "дБ" ],
-              "temp" : [ 0, 10, 0, "°С" ]
-          },
-          "amplifier_group_1" : {
-              "status" : 1,
-              "input_pwr" : [ 0, 10, 2, "Вт" ],
-              "output_pwr" : [ 0, 1, 2, "Вт" ],
-              "swr" : [ 110, 100, 0, "" ],
-            //   "ballast" : [ 0, 1, 0, "" ],
-              "temp" : [ 0, 10, 0, "°С" ],
-              "voltage" : [ 42, 10, 0, "В" ],
-              "current_1" : [ 228, 10, 0, "А" ],
-              "current_2" : [ 194, 10, 0, "А" ],
-              "current_3" : [ 240, 10, 0, "А" ]
-          },
-          "amplifier_group_2" : {
-              "status" : 1,
-              "input_pwr" : [ 150, 10, 0, "Вт" ],
-              "output_pwr" : [ 1000, 1, 0, "Вт" ],
-              "swr" : [ 105, 100, 0, "" ], // убрать балласт (на картинке ксв это баласт)
-            //   "ballast" : [ 115, 100, 0, "" ],
-              "temp" : [ 423, 10, 0, "°С" ],
-              "voltage" : [ 522, 10, 0, "В" ],
-              "current_1" : [ 221, 10, 0, "А" ],
-              "current_2" : [ 224, 10, 0, "А" ],
-              "current_3" : [ 226, 10, 0, "А" ]
-          },
-        //   "CAP":{
-        //     "CAP_input_pwr_value" : [ -999, 10, 0, "дБ" ],
-        //     "CAP_output_pwr_value" : [ -999, 10, 0, "дБ" ],
-        //   },
+      "amplifier_group_2": {
+        "status": 1,
+        "input_pwr": [150, 10, 0, "Вт"],
+        "output_pwr": [1000, 1, 0, "Вт"],
+        "swr": [105, 100, 0, ""], // убрать балласт (на картинке ксв это баласт)
+        //   "ballast": [ 115, 100, 0, "" ],
+        "temp": [423, 10, 0, "°С"],
+        "voltage": [522, 10, 0, "В"],
+        "current_1": [221, 10, 0, "А"],
+        "current_2": [224, 10, 0, "А"],
+        "current_3": [226, 10, 0, "А"]
+      },
+      "cap": {
+        "input_pwr": [54, 1, 0, "Вт"],
+        "output_pwr": [54, 1, 0, "Вт"],
+        "mains_voltage": [220.2, 1, 0, "В"],
+        "swr": [1.15, 1, 0],
+        "refl_pwr": [1, 1, 0, "Вт"],
+        "active_control_mode": 0,
+        "input_signal_type": [[[0, 10, 0, "дБ"], [0, 10, 0, "дБ"]]],
+        "output_signal_type": [[[0, 10, 0, "дБ"], [0, 10, 0, "дБ"]]]
+      },
           "output" : {
               "status" : 1,
               "input_pwr" : [ 0, 1, 2, "Вт" ],
@@ -151,265 +164,314 @@
               "ballast_1" : [ 0, 1, 0, "Вт" ]
           }
       },
-      "status_logs" : [ [ 2645, 0, "System", "Связь с усилителем 2 установлена", "2026-04-06 16:29:03.501", 0 ], [ 2644, 0, "System", "Связь с усилителем 1 установлена", "2026-04-06 16:28:58.452", 0 ], [ 2643, 0, "System", "SNTP::Время с сервера получено", "2023-01-01 00:00:00.898", 0 ], [ 2642, 3, "System", "Холодный старт", "2000-01-01 00:00:00.090", 0 ], [ 2641, 0, "System", "Связь с усилителем 2 установлена", "2026-04-06 10:48:38.519", 0 ], [ 2640, 0, "System", "Связь с усилителем 1 установлена", "2026-04-06 10:48:33.473", 0 ] ],
-      "calib_adc" : {
-          "power_calib" : {
-              "output_power" : 3,
-              "refected_power" : 2,
-              "output_power_threshold" : 1000,
-              "coupling_coeff" : 2500
-          },
-          "power_additional_calib" : {
-              "ballast_1" : 2
-          },
-          "pwr_sensor_calib" : {
-              "coeff" : [ 1531, 1000 ]
-          }
+    "status_logs": [
+      [2645, 0, "System", "Связь с усилителем 2 установлена", "2026-04-06 16:29:03.501", 0],
+      [2644, 0, "System", "Связь с усилителем 1 установлена", "2026-04-06 16:28:58.452", 0],
+      [2643, 0, "System", "SNTP::Время с сервера получено", "2023-01-01 00:00:00.898", 0],
+      [2642, 3, "System", "Холодный старт", "2000-01-01 00:00:00.090", 0],
+      [2641, 0, "System", "Связь с усилителем 2 установлена", "2026-04-06 10:48:38.519", 0],
+      [2640, 0, "System", "Связь с усилителем 1 установлена", "2026-04-06 10:48:33.473", 0]
+    ],
+    "calib_adc": {
+      "power_calib": {
+        "output_power": 3,
+        "refected_power": 2,
+        "output_power_threshold": 1000,
+        "coupling_coeff": 2500
       },
-      "calib_info" : {
-          "def_module_status" : 1
+      "power_additional_calib": {
+        "ballast_1": 2
       },
-      "nav_info" : {
-        "САР 1+1" : [ {
-              "name" : "Сеть",
-              "value" : 220,
-              "status" : 0,
-              "divider" : 1,
-              "units" : "В"
-          }, {
-              "name" : "КСВ",
-              "value" : 11,
-              "status" : 0,
-              "divider" : 10
-          }, {
-              "name" : "Мощн. отр.",
-              "value" : 12,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "Вт"
-          } ],
-          "ПРД Осн. 26В10" : [ {
-              "name" : "Частота",
-              "value" : 10000,
-              "status" : 0,
-              "divider" : 100,
-              "units" : "МГц"
-          }, {
-              "name" : "Pвых",
-              "value" : 48,
-              "status" : 0,
-              "divider" : 1,
-              "units" : "Вт"
-          }, {
-              "name" : "Уровень L",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "дБ"
-          }, {
-              "name" : "Уровень R",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "дБ"
-          }, {
-              "name" : "Девиация",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "дБ"
-          }, {
-              "name" : "Температура",
-              "value" : 400,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "°С"
-          } ],
-          "ПРД Рез. 26В19" : [ {
-              "name" : "Частота",
-              "value" : 10000,
-              "status" : 0,
-              "divider" : 100,
-              "units" : "МГц"
-          }, {
-              "name" : "Pвых",
-              "value" : 48,
-              "status" : 0,
-              "divider" : 1,
-              "units" : "Вт"
-          }, {
-              "name" : "Уровень L",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "дБ"
-          }, {
-              "name" : "Уровень R",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "дБ"
-          }, {
-              "name" : "Девиация",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "дБ"
-          }, {
-              "name" : "Температура",
-              "value" : 400,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "°С"
-          } ],
-          "Параметры БУ" : [ {
-              "name" : "Pвых",
-              "value" : 0,
-              "status" : 2,
-              "divider" : 1,
-              "adc" : 3,
-              "units" : "Вт"
-          }, {
-              "name" : "Pотр",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 1,
-              "adc" : 2,
-              "units" : "Вт"
-          }, {
-              "name" : "КСВ",
-              "value" : 0,
-              "status" : 3,
-              "divider" : 100,
-              "units" : " "
-          }, {
-              "name" : "Балласт",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 1,
-              "adc" : 2,
-              "units" : "Вт"
-          }, {
-              "name" : "Температура",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "°С"
-          } ],
-          "Усилитель 1" : [ {
-              "name" : "Pвых",
-              "value" : 0,
-              "status" : 2,
-              "divider" : 1,
-              "units" : "Вт"
-          }, {
-              "name" : "КСВ",
-              "value" : 0,
-              "status" : 3,
-              "divider" : 100,
-              "units" : ""
-          }, {
-              "name" : "Pбал",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 1,
-              "units" : "Вт"
-          }, {
-              "name" : "Pвх",
-              "value" : 0,
-              "status" : 2,
-              "divider" : 10,
-              "units" : "Вт"
-          }, {
-              "name" : "U1",
-              "value" : 42,
-              "status" : 3,
-              "divider" : 10,
-              "units" : "В"
-          }, {
-              "name" : "Ток1",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "А"
-          }, {
-              "name" : "Ток2",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "А"
-          }, {
-              "name" : "Ток3",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "А"
-          }, {
-              "name" : "Температура",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "°С"
-          } ],
-          "Усилитель 2" : [ {
-              "name" : "Pвых",
-              "value" : 0,
-              "status" : 2,
-              "divider" : 1,
-              "units" : "Вт"
-          }, {
-              "name" : "КСВ",
-              "value" : 0,
-              "status" : 3,
-              "divider" : 100,
-              "units" : ""
-          }, {
-              "name" : "Pбал",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 1,
-              "units" : "Вт"
-          }, {
-              "name" : "Pвх",
-              "value" : 0,
-              "status" : 2,
-              "divider" : 10,
-              "units" : "Вт"
-          }, {
-              "name" : "U1",
-              "value" : 542,
-              "status" : 2,
-              "divider" : 10,
-              "units" : "В"
-          }, {
-              "name" : "Ток1",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "А"
-          }, {
-              "name" : "Ток2",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "А"
-          }, {
-              "name" : "Ток3",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "А"
-          }, {
-              "name" : "Температура",
-              "value" : 0,
-              "status" : 0,
-              "divider" : 10,
-              "units" : "°С"
-          } ]
+      "pwr_sensor_calib": {
+        "coeff": [1531, 1000]
       }
+    },
+    "calib_info": {
+      "def_module_status": 1
+    },
+    "nav_info": {
+      "САР 1+1": [
+        {
+          "name": "Сеть",
+          "value": 220,
+          "status": 0,
+          "divider": 1,
+          "units": "В"
+        },
+        {
+          "name": "КСВ",
+          "value": 11,
+          "status": 0,
+          "divider": 10
+        },
+        {
+          "name": "Мощн. отр.",
+          "value": 12,
+          "status": 0,
+          "divider": 10,
+          "units": "Вт"
+        }
+      ],
+      "ПРД Осн. 26В10": [
+        {
+          "name": "Частота",
+          "value": 10000,
+          "status": 0,
+          "divider": 100,
+          "units": "МГц"
+        },
+        {
+          "name": "Pвых",
+          "value": 48,
+          "status": 0,
+          "divider": 1,
+          "units": "Вт"
+        },
+        {
+          "name": "Уровень L",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "дБ"
+        },
+        {
+          "name": "Уровень R",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "дБ"
+        },
+        {
+          "name": "Девиация",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "дБ"
+        },
+        {
+          "name": "Температура",
+          "value": 400,
+          "status": 0,
+          "divider": 10,
+          "units": "°С"
+        }
+      ],
+      "ПРД Рез. 26В19": [
+        {
+          "name": "Частота",
+          "value": 10000,
+          "status": 0,
+          "divider": 100,
+          "units": "МГц"
+        },
+        {
+          "name": "Pвых",
+          "value": 48,
+          "status": 0,
+          "divider": 1,
+          "units": "Вт"
+        },
+        {
+          "name": "Уровень L",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "дБ"
+        },
+        {
+          "name": "Уровень R",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "дБ"
+        },
+        {
+          "name": "Девиация",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "дБ"
+        },
+        {
+          "name": "Температура",
+          "value": 400,
+          "status": 0,
+          "divider": 10,
+          "units": "°С"
+        }
+      ],
+      "Параметры БУ": [
+        {
+          "name": "Pвых",
+          "value": 0,
+          "status": 2,
+          "divider": 1,
+          "adc": 3,
+          "units": "Вт"
+        },
+        {
+          "name": "Pотр",
+          "value": 0,
+          "status": 0,
+          "divider": 1,
+          "adc": 2,
+          "units": "Вт"
+        },
+        {
+          "name": "КСВ",
+          "value": 0,
+          "status": 3,
+          "divider": 100,
+          "units": " "
+        },
+        {
+          "name": "Балласт",
+          "value": 0,
+          "status": 0,
+          "divider": 1,
+          "adc": 2,
+          "units": "Вт"
+        },
+        {
+          "name": "Температура",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "°С"
+        }
+      ],
+      "Усилитель 1": [
+        {
+          "name": "Pвых",
+          "value": 0,
+          "status": 2,
+          "divider": 1,
+          "units": "Вт"
+        },
+        {
+          "name": "КСВ",
+          "value": 0,
+          "status": 3,
+          "divider": 100,
+          "units": ""
+        },
+        {
+          "name": "Pбал",
+          "value": 0,
+          "status": 0,
+          "divider": 1,
+          "units": "Вт"
+        },
+        {
+          "name": "Pвх",
+          "value": 0,
+          "status": 2,
+          "divider": 10,
+          "units": "Вт"
+        },
+        {
+          "name": "U1",
+          "value": 42,
+          "status": 3,
+          "divider": 10,
+          "units": "В"
+        },
+        {
+          "name": "Ток1",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "А"
+        },
+        {
+          "name": "Ток2",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "А"
+        },
+        {
+          "name": "Ток3",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "А"
+        },
+        {
+          "name": "Температура",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "°С"
+        }
+      ],
+      "Усилитель 2": [
+        {
+          "name": "Pвых",
+          "value": 0,
+          "status": 2,
+          "divider": 1,
+          "units": "Вт"
+        },
+        {
+          "name": "КСВ",
+          "value": 0,
+          "status": 3,
+          "divider": 100,
+          "units": ""
+        },
+        {
+          "name": "Pбал",
+          "value": 0,
+          "status": 0,
+          "divider": 1,
+          "units": "Вт"
+        },
+        {
+          "name": "Pвх",
+          "value": 0,
+          "status": 2,
+          "divider": 10,
+          "units": "Вт"
+        },
+        {
+          "name": "U1",
+          "value": 542,
+          "status": 2,
+          "divider": 10,
+          "units": "В"
+        },
+        {
+          "name": "Ток1",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "А"
+        },
+        {
+          "name": "Ток2",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "А"
+        },
+        {
+          "name": "Ток3",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "А"
+        },
+        {
+          "name": "Температура",
+          "value": 0,
+          "status": 0,
+          "divider": 10,
+          "units": "°С"
+        }
+      ]
+    }
   },
-
-
   "calib_passw.cgi": {
     "Notific": {
       "status": "ok",
@@ -421,214 +483,208 @@
     }
   },
   "calibration.cgi": {
-        "calib_serialNum" : {
-            "calib_defence" : 1,
-            "device_serial_num" : "XXXXX",
-            "device_type" : 0,
-            "IsExistAvr": 1
+    "calib_serialNum": {
+      "calib_defence": 1,
+      "device_serial_num": "XXXXX",
+      "device_type": 0,
+      "IsExistAvr": 1
+    },
+    "calib_power": {
+      "output_power": [4000, 1],
+      "output_power_threshold": [4001, 1],
+      "coupling_coeff": [0, 1]
+    },
+    "calib_additional_power": {
+      "ballast_1_avaliable": 1,
+      "ballast_1": [1100, 1],
+      "ballast_1_threshold_low": [800, 1],
+      "ballast_1_threshold_high": [1002, 1]
+    },
+    "calib_pwr_sensor": {
+      "coeff": [3000, 1000]
+    },
+    "calib_fan": {
+      "fan_pwm": 0,
+      "fan_pwm_control": 0,
+      "fan_calib_mode": 0,
+      "fan_temp_threshold_on": [400, 10],
+      "fan_temp_threshold_max": [600, 10]
+    },
+    "calib_temp": {
+      "temp_address": 0,
+      "temp_threshold_on": [300, 10],
+      "temp_threshold_off": [600, 10]
+    },
+    "calib_general": {
+      "def_module": 1,
+      "fan_start_alarm": "true",
+      "tftp": 1,
+      "watchdog": 1,
+      "message_lcd": 1,
+      "controller": 0
+    },
+    "calib_modbus": {
+      "master_form_availiable": 1,
+      "master_baudrate": 3,
+      "master_req_period": 500,
+      "master_timeout": 50
+    },
+    "calib_firmware": {
+      "application": {
+        "info": {
+          "addr_start": 134348800,
+          "crc": -1847564469,
+          "addr_end": 135102463,
+          "lenght": 753663,
+          "version": "BlockControl_v2.13.43"
+        }
+      },
+      "firmware1": {
+        "header": {
+          "id": -1611990941,
+          "active": "false",
+          "index": 84
         },
-        "calib_power" : {
-            "output_power" : [ 4000, 1 ],
-            "output_power_threshold" : [ 4001, 1 ],
-            "coupling_coeff" : [ 0, 1 ]
+        "info": {
+          "addr_start": 1433616,
+          "crc": -1456610459,
+          "addr_end": 2187279,
+          "lenght": 753663,
+          "UsedSpace": 82,
+          "FreeSpace": 18,
+          "version": "BlockControl_v2.12.0"
+        }
+      },
+      "firmware2": {
+        "header": {
+          "id": -1611990941,
+          "active": "false",
+          "index": 85
         },
-        "calib_additional_power" : {
-            "ballast_1_avaliable" : 1,
-            "ballast_1" : [ 1100, 1 ],
-            "ballast_1_threshold_low" : [ 800, 1 ],
-            "ballast_1_threshold_high" : [ 1002, 1 ]
-        },
-        "calib_pwr_sensor" : {
-            "coeff" : [ 3000, 1000 ]
-        },
-        "calib_fan" : {
-            "fan_pwm" : 0,
-            "fan_pwm_control" : 0,
-            "fan_calib_mode" : 0,
-            "fan_temp_threshold_on" : [ 400, 10 ],
-            "fan_temp_threshold_max" : [ 600, 10 ]
-        },
-        "calib_temp" : {
-            "temp_address" : 0,
-            "temp_threshold_on" : [ 300, 10 ],
-            "temp_threshold_off" : [ 600, 10 ]
-        },
-        "calib_general" : {
-            "def_module" : 1,
-            "fan_start_alarm" : "true",
-            "tftp" : 1,
-            "watchdog" : 1,
-            "message_lcd" : 1,
-            "controller" : 0
-        },
-        "calib_modbus" : {
-            "master_form_availiable" : 1,
-            "master_baudrate" : 3,
-            "master_req_period" : 500,
-            "master_timeout" : 50
-        },
-        "calib_firmware" : {
-            "application" : {
-                "info" : {
-                    "addr_start" : 134348800,
-                    "crc" : -1847564469,
-                    "addr_end" : 135102463,
-                    "lenght" : 753663,
-                    "version" : "BlockControl_v2.13.43"
-                }
-            },
-            "firmware1" : {
-                "header" : {
-                    "id" : -1611990941,
-                    "active" : "false",
-                    "index" : 84
-                },
-                "info" : {
-                    "addr_start" : 1433616,
-                    "crc" : -1456610459,
-                    "addr_end" : 2187279,
-                    "lenght" : 753663,
-                    "UsedSpace" : 82,
-                    "FreeSpace" : 18,
-                    "version" : "BlockControl_v2.12.0"
-                }
-            },
-            "firmware2" : {
-                "header" : {
-                    "id" : -1611990941,
-                    "active" : "false",
-                    "index" : 85
-                },
-                "info" : {
-                    "addr_start" : 2351120,
-                    "crc" : 336093443,
-                    "addr_end" : 3104783,
-                    "lenght" : 753663,
-                    "UsedSpace" : 82,
-                    "FreeSpace" : 18,
-                    "version" : "BlockControl_v2.13.41"
-                }
-            }
-        }    
+        "info": {
+          "addr_start": 2351120,
+          "crc": 336093443,
+          "addr_end": 3104783,
+          "lenght": 753663,
+          "UsedSpace": 82,
+          "FreeSpace": 18,
+          "version": "BlockControl_v2.13.41"
+        }
+      }
+    }
   },
-
-
-   "modbus_get_device_list.cgi":{
-        "device_list":[
-            {
-                "id":0,
-                "type":"УРЦ-2000",
-                "order_number":1,
-                "firm_ver":"Amplifier_v3.2.0",
-                "protocol_ver":1,
-                "address":2
-            },
-            {
-                "id":1,
-                "type":"УРЦ-2000",
-                "order_number":2,
-                "firm_ver":"Amplifier_v3.2.0",
-                "protocol_ver":1,
-                "address":3
-            }
-        ]    
+  "modbus_get_device_list.cgi": {
+    "device_list": [
+      {
+        "id": 0,
+        "type": "УРЦ-2000",
+        "order_number": 1,
+        "firm_ver": "Amplifier_v3.2.0",
+        "protocol_ver": 1,
+        "address": 2
+      },
+      {
+        "id": 1,
+        "type": "УРЦ-2000",
+        "order_number": 2,
+        "firm_ver": "Amplifier_v3.2.0",
+        "protocol_ver": 1,
+        "address": 3
+      }
+    ]
   },
-
-  "GetLogErrorFull.cgi?syslog$1": {  
-  },
-  "GetLogErrorFull.cgi?userlog$1": {  
-  },  
-  "GetLogErrorFull.cgi":     {
+  "GetLogErrorFull.cgi?syslog$1": {},
+  "GetLogErrorFull.cgi?userlog$1": {},
+  "GetLogErrorFull.cgi": {
     "syslog": [
-        [
+      [
         18524,
         2,
         "super_admin",
         "Авторизирован",
         "2026-04-07 10:19:29.790",
         0
-        ],
-        [
+      ],
+      [
         18523,
         0,
         "System",
         "Связь с усилителем 2 установлена",
         "2026-04-07 10:19:07.512",
         0
-        ],
-        [
+      ],
+      [
         18522,
         0,
         "System",
         "Температура в норме, вентилятор ВЫКЛ",
         "2026-04-07 10:19:07.448",
         0
-        ],
-        [
+      ],
+      [
         18521,
         0,
         "System",
         "Связь с усилителем 1 установлена",
         "2026-04-07 10:19:02.465",
         0
-        ],
-        [
+      ],
+      [
         18520,
         0,
         "System",
         "Eth:служба SNTP запущена",
         "2023-01-01 00:00:00.740",
         0
-        ],
-        [
+      ],
+      [
         18519,
         0,
         "System",
         "Eth:служба TFTP запущена",
         "2023-01-01 00:00:00.740",
         0
-        ],
-        [
+      ],
+      [
         18518,
         0,
         "System",
         "Прочитан уникальный код памяти:0x15E532B8",
         "2000-00-00 00:00:00.000",
         0
-        ],
-        [
+      ],
+      [
         18517,
         3,
         "System",
         "Холодный старт",
         "2000-00-00 00:00:00.000",
         0
-        ],
-        [
+      ],
+      [
         18516,
         2,
         "super_admin",
         "Авторизирован",
         "2026-04-06 16:38:31.420",
         0
-        ],
-        [
+      ],
+      [
         18515,
         0,
         "System",
         "Связь с усилителем 2 установлена",
         "2026-04-06 16:29:03.501",
         0
-        ],
-        [
+      ],
+      [
         18514,
         0,
         "System",
         "Температура в норме, вентилятор ВЫКЛ",
         "2026-04-06 16:29:03.406",
         0
-        ]
+      ]
     ]
-
   }
 }

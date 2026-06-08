@@ -2,7 +2,7 @@ import { reducers } from "../store/reducers/status_settings_reducers"
 import { SVG_inputElement } from "./svg_inputHandling_logic"
 import { filter_obj, makeSVG, numberOfCharactersAfter } from "./utilites"
 
-export default function svg_eventHandler_logic(svg, data_svg, device_type, is_exist_avr, clickHandler) {
+export default function svg_eventHandler_logic(svg, data_svg, device_type, is_exist_avr, active_control_mode, clickHandler ) {
   switch (true) {
 
     case (device_type == "УРЦ-2000" || 
@@ -14,8 +14,6 @@ export default function svg_eventHandler_logic(svg, data_svg, device_type, is_ex
     case (device_type == "РЦ-4000"):
       if(is_exist_avr==1){
         return block_control_avr_svg_event_editing(svg, data_svg, clickHandler)
-        // return block_control_svg_event_editing(svg, data_svg, auth_access)
-        // Новая функция
       }
       if(is_exist_avr==0){
         return block_control_svg_event_editing(svg, data_svg, clickHandler) 
@@ -44,6 +42,7 @@ function re_amp_svg_event_editing(svg, data_svg, clickHandler) {
 
 
 function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
+
   const cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`),
         exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
@@ -53,23 +52,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
-
-  // Получаем начальное состояние активного режима из data_svg
-  const initial_active_mode = (() => {
-    try {
-      if (data_svg && data_svg.status_info && data_svg.status_info.active_control_mode !== undefined) {
-        return data_svg.status_info.active_control_mode
-      }
-      if (data_svg && data_svg.active_control_mode !== undefined) {
-        return data_svg.active_control_mode
-      }
-      return 0 // значение по умолчанию
-    } catch (error) {
-      console.error('Error getting active_control_mode:', error)
-      return 0
-    }
-  })()
-
+      
   // Функция для создания запроса
   const create_CAPModeRequest = (mode_num, clickHandler) => {
     const request_obj = {
@@ -83,6 +66,37 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     clickHandler(request_obj)
   }
 
+  // Функция для подсветки активного режима на SVG
+  const setActiveCAPModeOnSVG = (active_mode) => {
+    if (!cap_buttons_list || cap_buttons_list.length === 0) return
+    
+    cap_buttons_list.forEach(button => {
+      const mode_num = button.getAttribute('data-mode') || 
+                      (button.id.includes('auto') ? 0 : 1)
+      
+      // Находим все графические элементы внутри кнопки
+      const rects = button.querySelectorAll('rect')
+      
+      if (Number(mode_num) === Number(active_mode)) {
+        // Активная кнопка - закрашиваем в зеленый
+        rects.forEach(rect => {
+          rect.setAttribute('fill', '#abe188')
+          rect.setAttribute('fill-opacity', '1')
+        })
+        button.style.opacity = '1'
+        button.style.filter = 'brightness(1)'
+      } else {
+        // Неактивная кнопка - возвращаем исходный цвет
+        rects.forEach(rect => {
+          rect.removeAttribute('fill')
+          rect.removeAttribute('fill-opacity')
+        })
+        button.style.opacity = '0.5'
+        button.style.filter = 'brightness(0.7)'
+      }
+    })
+  }
+
   // Обработчик кликов для SVG кнопок CAP
   const handle_CAPModeChange = (event, clickHandler) => {
     const target = event.currentTarget,
@@ -92,30 +106,8 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     if (mode_num !== null && mode_num !== undefined) {
       create_CAPModeRequest(mode_num, clickHandler)
       // Обновляем подсветку после клика
-      setTimeout(() => {
-        setActiveCAPModeOnSVG(Number(mode_num))
-      }, 50)
+      setActiveCAPModeOnSVG(Number(mode_num))
     }
-  }
-
-  // Функция для подсветки активного режима на SVG
-  const setActiveCAPModeOnSVG = (active_control_mode) => {
-    if (!cap_buttons_list || cap_buttons_list.length === 0) return
-    
-    cap_buttons_list.forEach(button => {
-      const mode_num = button.getAttribute('data-mode') || 
-                      (button.id.includes('auto') ? 0 : 1)
-      
-      if (Number(mode_num) === active_control_mode) {
-        button.classList.add('active_cap_mode')
-        button.style.opacity = '1'
-        button.style.filter = 'brightness(1.2)'
-      } else {
-        button.classList.remove('active_cap_mode')
-        button.style.opacity = '0.6'
-        button.style.filter = 'brightness(1)'
-      }
-    })
   }
 
   // Инициализация обработчиков для CAP кнопок
@@ -128,11 +120,6 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
         button.style.cursor = 'pointer'
       }
     })
-    
-    // Устанавливаем начальную подсветку из JSON
-    setTimeout(() => {
-      setActiveCAPModeOnSVG(initial_active_mode)
-    }, 300)
   }
 
   // Обработчики для exiter кнопок
