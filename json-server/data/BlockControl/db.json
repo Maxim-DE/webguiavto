@@ -100,6 +100,11 @@
     "status_graph": {
       "exiter": {
         "status": 1,
+        "swr": [
+          115,
+          100,
+          0
+        ],
         "input_signal_type": "STEREO",
         "output_pwr": [
           54,

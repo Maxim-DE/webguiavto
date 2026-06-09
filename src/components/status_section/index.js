@@ -304,7 +304,7 @@ function StatusSection(props) {
     <section
       id={`${props.section_name}_section`}
       ref={statusSectionRef} >
-      <div className="section_header">
+      <div className="section_header_2">
         <div className="header_info_wrap">
           <h2>СТАТУС:&nbsp;
             {device_status_output}
@@ -335,7 +335,7 @@ function StatusSection(props) {
           {device_time_output}
         </span>
       </div>
-      <div className="section_header">
+      <div className="section_header_2">
       </div>
       <div className="section_status">
         <Status_graphs

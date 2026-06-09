@@ -45,9 +45,9 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
 
   const cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`),
         exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+        exiter_2_buttons_list = svg.querySelectorAll(`#exiter_2 g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-        
         exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
@@ -124,8 +124,8 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
 
   // Обработчики для exiter кнопок
   exiter_buttons_list.forEach(button => {
-    const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
-          pwr_save_callback = block_control_buttons_actions.save_power_handler
+    const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler_1,
+          pwr_save_callback = block_control_buttons_actions.save_power_handler_1
 
     if (!button.onclick) {
       if (button.id.includes("save_val")){
@@ -133,9 +133,27 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
           pwr_save_callback(clickHandler)
         })
       } else {
-        const action_type = button.id.replace("exiter_", '').replace("_val_button", '')
+        const action_type = button.id.replace("exiter_1", '').replace("_val_button", '')
         button.addEventListener("click", function () {
           pwr_handling_callback(action_type, clickHandler)
+        })
+      }
+    }
+  })
+
+  exiter_2_buttons_list.forEach(button => {
+    const pwr_handling_callback_1 = block_control_buttons_actions.plusMinusHandler_2,
+          pwr_save_callback = block_control_buttons_actions.save_power_handler_2
+
+    if (!button.onclick) {
+      if (button.id.includes("save_val")){
+        button.addEventListener("click", function () {
+          pwr_save_callback(clickHandler)
+        })
+      } else {
+        const action_type = button.id.replace("exiter_2", '').replace("_val_button", '')
+        button.addEventListener("click", function () {
+          pwr_handling_callback_1(action_type, clickHandler)
         })
       }
     }
@@ -387,10 +405,28 @@ const block_control_buttons_actions = {
     clickHandler(request_obj)
   },
 
-  plusMinusHandler: (action_type, clickHandler) => {
+  plusMinusHandler_1: (action_type, clickHandler) => {
     const name = action_type
 
-    let output_string = `power_${name}$0`
+    let output_string = `exiter_main_power_${name}$0`
+
+    const request_obj = {
+      address: 'transmitter.cgi',
+      data: output_string,
+      reducer: reducers.transmitter,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      }
+    }
+
+    clickHandler(request_obj)
+  },
+
+    plusMinusHandler_2: (action_type, clickHandler) => {
+    const name = action_type
+
+    let output_string = `exiter_res_power_${name}$0`
 
     const request_obj = {
       address: 'transmitter.cgi',
@@ -409,6 +445,34 @@ const block_control_buttons_actions = {
     const request_obj = {
       address: 'transmitter.cgi',
       data: `save_power$1`,
+      reducer: reducers.transmitter,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    clickHandler(request_obj)
+  },
+
+    save_power_handler_1: (clickHandler) => {
+    const request_obj = {
+      address: 'transmitter.cgi',
+      data: `exiter_main_save_power$1`,
+      reducer: reducers.transmitter,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+
+    clickHandler(request_obj)
+  },
+
+    save_power_handler_2: (clickHandler) => {
+    const request_obj = {
+      address: 'transmitter.cgi',
+      data: `exiter_res_save_power$1`,
       reducer: reducers.transmitter,
       notifications: {
         good: 'default',
