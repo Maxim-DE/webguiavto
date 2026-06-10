@@ -13,7 +13,11 @@ let gzip_file_array = [
   'build/static/css/*.css',
   // 'build/static/media/*.svg',
   // 'build/static/media/*.png',
-  'build/static/media/status_graph/*.svg'
+  'build/static/js/*.js.map',    // Добавить
+  'build/static/css/*.css.map',  // Добавить  
+  'build/static/js/*.js.map.gz',    // Добавить
+  'build/static/css/*.css.map.gz',  // Добавить    
+  'build/static/media/status_graph/*.svg'  
 ];
 
 function build_gzip() {
