@@ -77,6 +77,11 @@ function Status_graphs(props) {
 
       for (const item in graph_block_data) {
 
+        // const skipKeys = ['active_control_mode', 'other_skip_key'];
+        //   if (skipKeys.includes(item)) {
+        //     continue;
+        // }
+
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
 

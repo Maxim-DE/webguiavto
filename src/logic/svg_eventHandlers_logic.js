@@ -49,7 +49,9 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
         exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+        exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_power_button`),
         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+        exiter_2_input_list = svg.querySelectorAll(`#exiter_2 g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
       
@@ -263,6 +265,109 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
     input_wrap.append(text_input)
   })
 
+    if (exiter_2_input_list.length > 0) exiter_2_input_list.forEach(input_wrap => {
+
+    // Находим элемент text среди дочерних узлов
+    let inner_text = null;
+    for (let i = 0; i < input_wrap.childNodes.length; i++) {
+        const node = input_wrap.childNodes[i];
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'text') {
+            inner_text = node;
+            break;
+        }
+    }
+    
+    if (!inner_text) {
+        console.error('Text element not found in', input_wrap);
+        return;
+    }
+
+    // Проверяем наличие firstChild перед получением атрибутов
+    if (!inner_text.firstChild) {
+        console.error('firstChild not found in text element');
+        return;
+    }
+    
+    const svg_input_class = new SVG_inputElement()
+
+    const input_describe_arr = input_wrap.id.split("_"),
+          input_id = `${input_describe_arr[0]}_${input_describe_arr[1]}_${input_describe_arr[2]}_input`,
+          input_action_type = `${input_describe_arr[1]}_${input_describe_arr[2]}`
+
+    let input_params = {}
+
+    if (input_action_type.includes("freq")) {
+      input_params = {
+        label_l_offset: 94,
+        label_h_offset: 15,
+        styles: {
+          width: "60px",
+          height: "19px",
+          fontSize: "14px",
+          textAlign: "right",
+        },
+        label: "МГц"
+      }
+    } else if (input_action_type.includes("channel")) {
+      input_params = {
+        label_l_offset: 37,
+        label_h_offset: 14,
+        styles: {
+          width: "40px",
+          height: "19px",
+          fontSize: "14px",
+          textAlign: "right",
+        },
+        label: ""
+      }
+    }
+
+    // Получаем координаты из tspan (firstChild), а не из самого text
+    let x = null, y = null;
+    
+    // Пробуем получить координаты из tspan
+    if (inner_text.firstChild && inner_text.firstChild.getAttribute) {
+        x = inner_text.firstChild.getAttribute('x');
+        y = inner_text.firstChild.getAttribute('y');
+    }
+    
+    // Если в tspan нет координат, пробуем получить из самого text
+    if ((!x || !y) && inner_text.getAttribute) {
+        x = inner_text.getAttribute('x');
+        y = inner_text.getAttribute('y');
+    }
+    
+    // Проверяем, что координаты получены
+    if (!x || !y) {
+        console.error('Could not get coordinates from text element or tspan');
+        return;
+    }
+    
+    let text_input = svg_input_class.createInputElement(parseFloat(x) - input_params.label_l_offset, parseFloat(y) - input_params.label_h_offset, "text", {
+      id: `${input_id}_text`
+    }, input_params.styles, "", input_params.label, function (input_value) {
+
+      const multiplier_power = numberOfCharactersAfter(input_value),
+            result_value = input_value * Math.pow(10, multiplier_power)
+
+      const output_string = `set_${input_action_type}$${result_value.toFixed(0)}`
+
+      const request_obj = {
+        address: 'transmitter.cgi',
+        data: output_string,
+        reducer: reducers.transmitter,
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        }
+      }
+
+      clickHandler(request_obj)
+    })
+
+    input_wrap.append(text_input)
+  })
+
   const supply_handling_callback = block_control_buttons_actions.supply_handler
 
   // Обработчики для amp_1 кнопок
@@ -307,6 +412,12 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
   // Обработчик для exiter_pwr кнопки
   if (exiter_pwr_button) {
     exiter_pwr_button.addEventListener("click", function () {
+      supply_handling_callback(clickHandler)
+    })
+  }
+
+  if (exiter_2_pwr_button) {
+    exiter_2_pwr_button.addEventListener("click", function () {
       supply_handling_callback(clickHandler)
     })
   }
@@ -497,192 +608,192 @@ const block_control_buttons_actions = {
   }
 }
 
-// function block_control_svg_event_editing(svg, data_svg, clickHandler) {
+function block_control_svg_event_editing(svg, data_svg, clickHandler) {
 
-//   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
-//         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
-//         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-//         exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
-//         exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
-//         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
-//         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`),
-//         cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`)
+  const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+        amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
+        amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
+        exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+        ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
+        output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`),
+        cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`)
 
-//   exiter_buttons_list.forEach(button => {
-//     const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
-//           pwr_save_callback = block_control_buttons_actions.save_power_handler
+  exiter_buttons_list.forEach(button => {
+    const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
+          pwr_save_callback = block_control_buttons_actions.save_power_handler
 
-//     if (!button.onclick) {
-//       if (button.id.includes("save_val")){
-//         button.addEventListener("click", function () {
-//           pwr_save_callback(clickHandler)
-//         })
-//       } else {
-//         const action_type = button.id.replace("exiter_", '').replace("_val_button", '')
-//         button.addEventListener("click", function () {
-//           pwr_handling_callback(action_type, clickHandler)
-//         })
-//       }
-//     }
-//   })
+    if (!button.onclick) {
+      if (button.id.includes("save_val")){
+        button.addEventListener("click", function () {
+          pwr_save_callback(clickHandler)
+        })
+      } else {
+        const action_type = button.id.replace("exiter_", '').replace("_val_button", '')
+        button.addEventListener("click", function () {
+          pwr_handling_callback(action_type, clickHandler)
+        })
+      }
+    }
+  })
 
-//   if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
+  if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
     
-//     // Находим элемент text среди дочерних узлов
-//     let inner_text = null;
-//     for (let i = 0; i < input_wrap.childNodes.length; i++) {
-//         const node = input_wrap.childNodes[i];
-//         if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'text') {
-//             inner_text = node;
-//             break;
-//         }
-//     }
+    // Находим элемент text среди дочерних узлов
+    let inner_text = null;
+    for (let i = 0; i < input_wrap.childNodes.length; i++) {
+        const node = input_wrap.childNodes[i];
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'text') {
+            inner_text = node;
+            break;
+        }
+    }
     
-//     if (!inner_text) {
-//         console.error('Text element not found in', input_wrap);
-//         return;
-//     }
+    if (!inner_text) {
+        console.error('Text element not found in', input_wrap);
+        return;
+    }
 
-//     // Проверяем наличие firstChild перед получением атрибутов
-//     if (!inner_text.firstChild) {
-//         console.error('firstChild not found in text element');
-//         return;
-//     }
+    // Проверяем наличие firstChild перед получением атрибутов
+    if (!inner_text.firstChild) {
+        console.error('firstChild not found in text element');
+        return;
+    }
     
-//     const svg_input_class = new SVG_inputElement()
+    const svg_input_class = new SVG_inputElement()
 
-//     const input_describe_arr = input_wrap.id.split("_"),
-//           input_id = `${input_describe_arr[0]}_${input_describe_arr[1]}_${input_describe_arr[2]}_input`,
-//           input_action_type = `${input_describe_arr[1]}_${input_describe_arr[2]}`
+    const input_describe_arr = input_wrap.id.split("_"),
+          input_id = `${input_describe_arr[0]}_${input_describe_arr[1]}_${input_describe_arr[2]}_input`,
+          input_action_type = `${input_describe_arr[1]}_${input_describe_arr[2]}`
 
-//     let input_params = {}
+    let input_params = {}
 
-//     if (input_action_type.includes("freq")) {
-//       input_params = {
-//         label_l_offset: 94,
-//         label_h_offset: 15,
-//         styles: {
-//           width: "60px",
-//           height: "19px",
-//           fontSize: "14px",
-//           textAlign: "right",
-//         },
-//         label: "МГц"
-//       }
-//     } else if (input_action_type.includes("channel")) {
-//       input_params = {
-//         label_l_offset: 37,
-//         label_h_offset: 14,
-//         styles: {
-//           width: "40px",
-//           height: "19px",
-//           fontSize: "14px",
-//           textAlign: "right",
-//         },
-//         label: ""
-//       }
-//     }
+    if (input_action_type.includes("freq")) {
+      input_params = {
+        label_l_offset: 94,
+        label_h_offset: 15,
+        styles: {
+          width: "60px",
+          height: "19px",
+          fontSize: "14px",
+          textAlign: "right",
+        },
+        label: "МГц"
+      }
+    } else if (input_action_type.includes("channel")) {
+      input_params = {
+        label_l_offset: 37,
+        label_h_offset: 14,
+        styles: {
+          width: "40px",
+          height: "19px",
+          fontSize: "14px",
+          textAlign: "right",
+        },
+        label: ""
+      }
+    }
 
-//     // Получаем координаты из tspan (firstChild), а не из самого text
-//     let x = null, y = null;
+    // Получаем координаты из tspan (firstChild), а не из самого text
+    let x = null, y = null;
     
-//     // Пробуем получить координаты из tspan
-//     if (inner_text.firstChild && inner_text.firstChild.getAttribute) {
-//         x = inner_text.firstChild.getAttribute('x');
-//         y = inner_text.firstChild.getAttribute('y');
-//     }
+    // Пробуем получить координаты из tspan
+    if (inner_text.firstChild && inner_text.firstChild.getAttribute) {
+        x = inner_text.firstChild.getAttribute('x');
+        y = inner_text.firstChild.getAttribute('y');
+    }
     
-//     // Если в tspan нет координат, пробуем получить из самого text
-//     if ((!x || !y) && inner_text.getAttribute) {
-//         x = inner_text.getAttribute('x');
-//         y = inner_text.getAttribute('y');
-//     }
+    // Если в tspan нет координат, пробуем получить из самого text
+    if ((!x || !y) && inner_text.getAttribute) {
+        x = inner_text.getAttribute('x');
+        y = inner_text.getAttribute('y');
+    }
     
-//     // Проверяем, что координаты получены
-//     if (!x || !y) {
-//         console.error('Could not get coordinates from text element or tspan');
-//         return;
-//     }
+    // Проверяем, что координаты получены
+    if (!x || !y) {
+        console.error('Could not get coordinates from text element or tspan');
+        return;
+    }
     
-//     let text_input = svg_input_class.createInputElement(parseFloat(x) - input_params.label_l_offset, parseFloat(y) - input_params.label_h_offset, "text", {
-//       id: `${input_id}_text`
-//     }, input_params.styles, "", input_params.label, function (input_value) {
+    let text_input = svg_input_class.createInputElement(parseFloat(x) - input_params.label_l_offset, parseFloat(y) - input_params.label_h_offset, "text", {
+      id: `${input_id}_text`
+    }, input_params.styles, "", input_params.label, function (input_value) {
 
-//       const multiplier_power = numberOfCharactersAfter(input_value),
-//             result_value = input_value * Math.pow(10, multiplier_power)
+      const multiplier_power = numberOfCharactersAfter(input_value),
+            result_value = input_value * Math.pow(10, multiplier_power)
 
-//       const output_string = `set_${input_action_type}$${result_value.toFixed(0)}`
+      const output_string = `set_${input_action_type}$${result_value.toFixed(0)}`
 
-//       const request_obj = {
-//         address: 'transmitter.cgi',
-//         data: output_string,
-//         reducer: reducers.transmitter,
-//         notifications: {
-//           good: 'default',
-//           bad: 'default'
-//         }
-//       }
+      const request_obj = {
+        address: 'transmitter.cgi',
+        data: output_string,
+        reducer: reducers.transmitter,
+        notifications: {
+          good: 'default',
+          bad: 'default'
+        }
+      }
 
-//       clickHandler(request_obj)
-//     })
+      clickHandler(request_obj)
+    })
 
-//     input_wrap.append(text_input)
-//   })
+    input_wrap.append(text_input)
+  })
 
-//   const supply_handling_callback = block_control_buttons_actions.supply_handler
+  const supply_handling_callback = block_control_buttons_actions.supply_handler
 
-//   if (amp_1_buttons_list) amp_1_buttons_list.forEach(button => {
-//     const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
-//           button_params = button.id.replace('_val_button', '').split("_"),
-//           action_type = button_params[button_params.length - 1],
-//           device_type = button.id.replace(`_${action_type}_val_button`, '')
+  if (amp_1_buttons_list) amp_1_buttons_list.forEach(button => {
+    const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
+          button_params = button.id.replace('_val_button', '').split("_"),
+          action_type = button_params[button_params.length - 1],
+          device_type = button.id.replace(`_${action_type}_val_button`, '')
 
-//     if (!button.onclick) {
-//       button.addEventListener("click", function () {
-//         voltage_handling_callback(device_type, action_type, clickHandler)
-//       })
-//     }
-//   })
+    if (!button.onclick) {
+      button.addEventListener("click", function () {
+        voltage_handling_callback(device_type, action_type, clickHandler)
+      })
+    }
+  })
 
-//   if (amp_2_buttons_list) amp_2_buttons_list.forEach(button => {
-//     const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
-//           button_params = button.id.replace('_val_button', '').split("_"),
-//           action_type = button_params[button_params.length - 1],
-//           device_type = button.id.replace(`_${action_type}_val_button`, '')
+  if (amp_2_buttons_list) amp_2_buttons_list.forEach(button => {
+    const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
+          button_params = button.id.replace('_val_button', '').split("_"),
+          action_type = button_params[button_params.length - 1],
+          device_type = button.id.replace(`_${action_type}_val_button`, '')
 
-//     if (!button.onclick) {
-//       button.addEventListener("click", function () {
-//         voltage_handling_callback(device_type, action_type, clickHandler)
-//       })
-//     }
-//   })
+    if (!button.onclick) {
+      button.addEventListener("click", function () {
+        voltage_handling_callback(device_type, action_type, clickHandler)
+      })
+    }
+  })
   
 
-//   output_buttons_list.forEach(button => {
-//     let button_callback = re_amp_buttons_actions[button.id.replace('_button', '')]
+  output_buttons_list.forEach(button => {
+    let button_callback = re_amp_buttons_actions[button.id.replace('_button', '')]
 
-//     if (!button.onclick) {
-//       button.addEventListener("click", function () {
-//         button_callback(clickHandler)
-//       })
-//     }
-//   })
+    if (!button.onclick) {
+      button.addEventListener("click", function () {
+        button_callback(clickHandler)
+      })
+    }
+  })
         
-//   if (exiter_pwr_button) {
-//     exiter_pwr_button.addEventListener("click", function () {
-//       supply_handling_callback(clickHandler)
-//     })
-//   }
+  if (exiter_pwr_button) {
+    exiter_pwr_button.addEventListener("click", function () {
+      supply_handling_callback(clickHandler)
+    })
+  }
 
-//   if (ping_input_list) ping_input_list.forEach(button => {
-//     const ping_dest_device = button.id.replace('_check_amp_network_button', '')
+  if (ping_input_list) ping_input_list.forEach(button => {
+    const ping_dest_device = button.id.replace('_check_amp_network_button', '')
 
-//     if (!button.onclick) {
-//       button.addEventListener("click", function () {
-//         block_control_buttons_actions.network_ping_handler(ping_dest_device, clickHandler)
-//       })
-//     }
-//   })
+    if (!button.onclick) {
+      button.addEventListener("click", function () {
+        block_control_buttons_actions.network_ping_handler(ping_dest_device, clickHandler)
+      })
+    }
+  })
 
-//   return svg
-// }
+  return svg
+}

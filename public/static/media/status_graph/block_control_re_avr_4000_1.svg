@@ -116,15 +116,13 @@
 <g id="Frame 12">
 <rect width="138" height="23" transform="matrix(-1 0 0 1 525.75 386.75)" fill="white" fill-opacity="0.01"/>
 <text id="cap_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="412.914" y="404.402">--</tspan></text>
-<g id="Ellipse 4">
-<circle id="Ellipse 4_2" cx="4.5" cy="4.5" r="4.5" transform="matrix(-1 0 0 1 400.75 393.75)" fill="#626879"/>
-</g>
+<path id="circle8962_3" d="M396.75 403.75C399.511 403.75 401.75 401.511 401.75 398.75C401.75 395.989 399.511 393.75 396.75 393.75C393.989 393.75 391.75 395.989 391.75 398.75C391.75 401.511 393.989 403.75 396.75 403.75Z" fill="#626879"/>
 </g>
 <g id="Frame 13">
 <rect width="138" height="23" transform="translate(525.75 386.75)" fill="white" fill-opacity="0.01"/>
 <text id="cap_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="640.914" y="404.402">--</tspan></text>
-<g id="Ellipse 4_3">
-<circle id="Ellipse 4_4" cx="659.25" cy="398.25" r="4.5" fill="#626879"/>
+<g id="Ellipse 4">
+<circle id="Ellipse 4_2" cx="659.25" cy="398.25" r="4.5" fill="#626879"/>
 </g>
 </g>
 </g>
@@ -132,15 +130,13 @@
 <g id="Frame 12_2">
 <rect width="138" height="23" transform="matrix(-1 0 0 1 525.75 409.75)" fill="white" fill-opacity="0.01"/>
 <text id="cap_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="412.914" y="427.402">--</tspan></text>
-<g id="Ellipse 4_5">
-<circle id="Ellipse 4_6" cx="4.5" cy="4.5" r="4.5" transform="matrix(-1 0 0 1 400.75 416.75)" fill="#626879"/>
-</g>
+<path id="circle8962_4" d="M396.75 426.75C399.511 426.75 401.75 424.511 401.75 421.75C401.75 418.989 399.511 416.75 396.75 416.75C393.989 416.75 391.75 418.989 391.75 421.75C391.75 424.511 393.989 426.75 396.75 426.75Z" fill="#626879"/>
 </g>
 <g id="Frame 13_2">
 <rect width="138" height="23" transform="translate(525.75 409.75)" fill="white" fill-opacity="0.01"/>
 <text id="cap_output_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="640.914" y="427.402">--</tspan></text>
-<g id="Ellipse 4_7">
-<circle id="Ellipse 4_8" cx="659.25" cy="421.25" r="4.5" fill="#626879"/>
+<g id="Ellipse 4_3">
+<circle id="Ellipse 4_4" cx="659.25" cy="421.25" r="4.5" fill="#626879"/>
 </g>
 </g>
 </g>
@@ -176,11 +172,11 @@
 <rect width="273.684" height="23.1855" transform="translate(772.292 357.048)" fill="white" fill-opacity="0.01"/>
 <text id="amplifier_group_2_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="788.292" y="374.701">--</tspan></text>
 <text id="amplifier_group_2_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="1019.96" y="374.701">--</tspan></text>
-<g id="Ellipse 4_9">
-<circle id="Ellipse 4_10" cx="1041.79" cy="368.548" r="4.5" fill="#626879"/>
+<g id="Ellipse 4_5">
+<circle id="Ellipse 4_6" cx="1041.79" cy="368.548" r="4.5" fill="#626879"/>
 </g>
 <g id="Ellipse 5">
-<circle id="Ellipse 4_11" cx="776.792" cy="368.548" r="4.5" fill="#626879"/>
+<circle id="Ellipse 4_7" cx="776.792" cy="368.548" r="4.5" fill="#626879"/>
 </g>
 </g>
 <g id="amplifier_1_display">
@@ -264,11 +260,11 @@
 <rect width="273.684" height="23.1855" transform="translate(772.292 62.0483)" fill="white" fill-opacity="0.01"/>
 <text id="amplifier_group_1_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="788.292" y="79.7007">--</tspan></text>
 <text id="amplifier_group_1_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="1019.96" y="79.7007">--</tspan></text>
-<g id="Ellipse 4_12">
-<circle id="Ellipse 4_13" cx="1041.79" cy="73.5483" r="4.5" fill="#626879"/>
+<g id="Ellipse 4_8">
+<circle id="Ellipse 4_9" cx="1041.79" cy="73.5483" r="4.5" fill="#626879"/>
 </g>
 <g id="Ellipse 5_2">
-<circle id="Ellipse 4_14" cx="776.792" cy="73.5483" r="4.5" fill="#626879"/>
+<circle id="Ellipse 4_10" cx="776.792" cy="73.5483" r="4.5" fill="#626879"/>
 </g>
 </g>
 <g id="amplifier_1_display_2">
@@ -517,7 +513,7 @@
 </g>
 </g>
 <g id="primary_info_input">
-<path id="circle8962_3" d="M45.75 89.75C48.5114 89.75 50.75 87.5114 50.75 84.75C50.75 81.9886 48.5114 79.75 45.75 79.75C42.9886 79.75 40.75 81.9886 40.75 84.75C40.75 87.5114 42.9886 89.75 45.75 89.75Z" fill="#626879"/>
+<path id="circle8962_5" d="M45.75 89.75C48.5114 89.75 50.75 87.5114 50.75 84.75C50.75 81.9886 48.5114 79.75 45.75 79.75C42.9886 79.75 40.75 81.9886 40.75 84.75C40.75 87.5114 42.9886 89.75 45.75 89.75Z" fill="#626879"/>
 <text id="exiter_input_signal_value" transform="translate(55.75 72.75)" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="0" y="18.3359">--</tspan></text>
 </g>
 </g>
@@ -615,7 +611,7 @@
 </g>
 </g>
 <g id="primary_info_input_2">
-<path id="circle8962_4" d="M45.75 321.75C48.5114 321.75 50.75 319.511 50.75 316.75C50.75 313.989 48.5114 311.75 45.75 311.75C42.9886 311.75 40.75 313.989 40.75 316.75C40.75 319.511 42.9886 321.75 45.75 321.75Z" fill="#626879"/>
+<path id="circle8962_6" d="M45.75 321.75C48.5114 321.75 50.75 319.511 50.75 316.75C50.75 313.989 48.5114 311.75 45.75 311.75C42.9886 311.75 40.75 313.989 40.75 316.75C40.75 319.511 42.9886 321.75 45.75 321.75Z" fill="#626879"/>
 <text id="exiter_2_input_signal_value" transform="translate(55.75 304.75)" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="0" y="18.3359">--</tspan></text>
 </g>
 </g>
@@ -632,10 +628,10 @@
 <path id="path4139_9" d="M1115.35 108.729V73.75H1053.35V210.75H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
 <path id="path4139_10" d="M702.698 327.75V369.75H765.139V487.25H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
 <path id="path4139_11" d="M1116.43 327.75V369.75H1052.91V428.25V487.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<ellipse id="Ellipse 4_15" cx="1053.12" cy="369.55" rx="4.88665" ry="4.5" fill="#626879"/>
-<ellipse id="Ellipse 4_16" cx="765.302" cy="369.55" rx="4.88665" ry="4.5" fill="#626879"/>
+<ellipse id="Ellipse 4_11" cx="1053.12" cy="369.55" rx="4.88665" ry="4.5" fill="#626879"/>
+<ellipse id="Ellipse 4_12" cx="765.302" cy="369.55" rx="4.88665" ry="4.5" fill="#626879"/>
 <ellipse id="Ellipse 5_3" cx="1053.07" cy="73.55" rx="4.88665" ry="4.5" fill="#626879"/>
-<ellipse id="Ellipse 4_17" cx="765.302" cy="73.55" rx="4.88665" ry="4.5" fill="#626879"/>
+<ellipse id="Ellipse 4_13" cx="765.302" cy="73.55" rx="4.88665" ry="4.5" fill="#626879"/>
 <path id="path4139_12" d="M1052.91 241.75V272.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
 <path id="path4139_13" d="M1052.91 210.75V241.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
 <path id="path4139_14" d="M765.139 241.75V272.25H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
