@@ -98,8 +98,75 @@
       "UpTime": "00000:00:15"
     },
     "status_graph": {
-      "exiter": {
+      "input_1": {
+        "status": 0,
+        "input_signal_type": "AES",
+        "mode": "1",
+        "l": [
+          31,
+          10,
+          0,
+          "дБ"
+        ],
+        "r": [
+          32,
+          10,
+          0,
+          "дБ"
+        ],
+        "mpx": [
+          18,
+          10,
+          0,
+          "кГц"
+        ],
+        "aes_l": [
+          31,
+          10,
+          0,
+          "дБ"
+        ],
+        "aes_r": [
+          8.67,
+          1,
+          0,
+          "дБ"
+        ],
+        "input_res_signal_type": "AES",
+        "res_l": [
+          30,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_r": [
+          29,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_mpx": [
+          1008,
+          10,
+          0,
+          "кГц"
+        ],
+        "res_aes_l": [
+          31,
+          10,
+          0,
+          "дБ"
+        ],
+        "res_aes_r": [
+          32,
+          10,
+          1,
+          "дБ"
+        ]
+      },
+      "exiter_1": {
         "status": 1,
+        "progres_bar": "Установка частоты",
         "station_header": "Радио Россия",
         "swr": [
           115,
@@ -318,34 +385,18 @@
           0,
           "Вт"
         ],
-        "active_control_mode": 0,
-        "input_signal_type": [
+        "active_control_mode": 1,
+        "signal_type": [
           [
             [
-              0,
+              -9990,
               10,
               0,
               "дБ"
             ],
             [
-              0,
-              10,
-              0,
-              "дБ"
-            ]
-          ]
-        ],
-        "output_signal_type": [
-          [
-            [
-              0,
-              10,
-              0,
-              "дБ"
-            ],
-            [
-              0,
-              10,
+              -9990,
+              1,
               0,
               "дБ"
             ]
@@ -757,7 +808,7 @@
       "calib_defence": 1,
       "device_serial_num": "XXXXX",
       "device_type": 0,
-      "IsExistAvr": 1
+      "IsExistAvr": 0
     },
     "calib_power": {
       "output_power": [

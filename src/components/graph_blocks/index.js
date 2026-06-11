@@ -76,22 +76,17 @@ function Status_graphs(props) {
       }
 
       for (const item in graph_block_data) {
-
-        // const skipKeys = ['active_control_mode', 'other_skip_key'];
-        //   if (skipKeys.includes(item)) {
-        //     continue;
-        // }
-
+        const skipKeys = ['active_control_mode', 'other_skip_key'];
+          if (skipKeys.includes(item)) {
+            continue;
+        }
         if (item == "status") {
           let device_icon = graph_block.querySelector(`#${key}_device_icon`)
-
           if (!device_icon) {
             console.error("Can't find device icon with key: " + key)
             continue;
           }
-
           device_icon.style.fill = new_status_colors[`${graph_block_data[item]}`]
-
           continue
         }
 
