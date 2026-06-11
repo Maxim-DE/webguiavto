@@ -1,763 +1,3466 @@
-<svg width="1443" height="724" viewBox="0 0 1443 724" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="block_control_re_avr_4000_1">
-<g id="layer_1">
-<g id="adder" clip-path="url(#clip0_0_1)">
-<path id="Rectangle 1" d="M1135.21 104.75H1116.12C1109.1 104.75 1103.4 112.546 1103.4 122.162V309.338C1103.4 318.954 1109.1 326.75 1116.12 326.75H1135.21C1142.23 326.75 1147.93 318.954 1147.93 309.338V122.162C1147.93 112.546 1142.23 104.75 1135.21 104.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4"/>
-<path id="Vector 1" d="M1115.35 312.608L1135.44 114.75" stroke="#C4C4C4" stroke-width="2" stroke-linecap="round"/>
-<path id="Vector 2" d="M1115.89 114.75L1134.64 312.608" stroke="#C4C4C4" stroke-width="2" stroke-linecap="round"/>
-</g>
-<g id="adder_2" clip-path="url(#clip1_0_1)">
-<path id="Rectangle 1_2" d="M703.009 104.75H683.927C676.902 104.75 671.207 112.546 671.207 122.162V309.338C671.207 318.954 676.902 326.75 683.927 326.75H703.009C710.034 326.75 715.729 318.954 715.729 309.338V122.162C715.729 112.546 710.034 104.75 703.009 104.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4"/>
-<path id="Vector 1_2" d="M683.152 312.608L703.241 114.75" stroke="#C4C4C4" stroke-width="2" stroke-linecap="round"/>
-<path id="Vector 2_2" d="M683.695 114.75L702.442 312.608" stroke="#C4C4C4" stroke-width="2" stroke-linecap="round"/>
-</g>
-<g id="output" filter="url(#filter0_d_0_1)">
-<g clip-path="url(#clip2_0_1)">
-<path id="rect8952" d="M1410.66 61.75H1204.45C1197.82 61.75 1192.45 67.1226 1192.45 73.75L1192.45 206.75C1192.45 213.377 1197.82 218.75 1204.45 218.75H1410.66C1417.29 218.75 1422.66 213.377 1422.66 206.75V73.75C1422.66 67.1226 1417.29 61.75 1410.66 61.75Z" fill="#F7F7F7" stroke="#C4C4C4"/>
-<g id="g8960">
-<path id="output_device_icon" d="M1209.76 87.4059C1213.96 87.4059 1217.36 84.2531 1217.36 80.3639C1217.36 76.4748 1213.96 73.322 1209.76 73.322C1205.56 73.322 1202.16 76.4748 1202.16 80.3639C1202.16 84.2531 1205.56 87.4059 1209.76 87.4059Z" fill="#7ADC47"/>
-<text id="text8958" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="1228.63" y="84.5692">&#x432;&#x44b;&#x445;&#x43e;&#x434;</tspan></text>
-</g>
-<g id="g8982">
-<g id="g8970">
-<path id="circle8962" d="M1207.87 118.917C1210.57 118.917 1212.76 116.902 1212.76 114.417C1212.76 111.931 1210.57 109.917 1207.87 109.917C1205.17 109.917 1202.98 111.931 1202.98 114.417C1202.98 116.902 1205.17 118.917 1207.87 118.917Z" fill="#626879"/>
-<text id="output_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Inter" font-size="18.6667" letter-spacing="0em"><tspan x="1220.36" y="120.038">--</tspan></text>
-</g>
-</g>
-<g id="path8984">
-<path d="M1223.94 128.75H1393.34H1223.94Z" fill="#C4C4C4"/>
-<path d="M1223.94 128.75H1393.34" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="path8984_2">
-<path d="M1223.94 164.75H1393.34H1223.94Z" fill="#C4C4C4"/>
-<path d="M1223.94 164.75H1393.34" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="g8994">
-<text id="output_refl_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="1386.87" y="185.674">--</tspan></text>
-<text id="text8992" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1219.45" y="184.719">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
-</g>
-<g id="g9004">
-<text id="output_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="1386.87" y="205.674">--</tspan></text>
-<text id="text9002" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1219.45" y="204.719">&#x41a;&#x421;&#x412;</tspan></text>
-</g>
-<g id="Frame 43">
-<g id="Frame 43_2">
-<rect x="1218.45" y="133.75" width="110" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="1218.45" y="133.75" width="110" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="output_plus_val_button">
-<rect id="Rectangle 21" x="1267.95" y="155.75" width="45" height="18" rx="9" transform="rotate(180 1267.95 155.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38" d="M1245.45 152.75V146.25V139.75M1250.45 146.25L1245.45 139.75L1240.45 146.25" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="output_minus_val_button">
-<rect id="Rectangle 21_2" width="45" height="18" rx="9" transform="matrix(-1 0 0 1 1324.95 137.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_2" d="M1302.45 139.75V146.25V152.75M1307.45 146.25L1302.45 152.75L1297.45 146.25" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_3">
-<rect x="1338.45" y="133.75" width="40" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="1338.45" y="133.75" width="40" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="output_save_val_button">
-<rect id="Rectangle 21_3" width="30" height="18" rx="9" transform="matrix(-1 0 0 1 1373.45 137.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_3" d="M1365.2 140.25L1356.53 153.25L1352.2 148.917" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="path8984_3">
-<path d="M1333.45 158.75L1333.45 133.75L1333.45 158.75Z" fill="#C4C4C4"/>
-<path d="M1333.45 158.75L1333.45 133.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-</g>
-</g>
-</g>
-<g id="ballast_group" filter="url(#filter1_d_0_1)">
-<g clip-path="url(#clip3_0_1)">
-<path id="rect8952_2" d="M1410.66 239.75H1204.45C1197.82 239.75 1192.45 245.123 1192.45 251.75V327.75C1192.45 334.377 1197.82 339.75 1204.45 339.75H1410.66C1417.29 339.75 1422.66 334.377 1422.66 327.75V251.75C1422.66 245.123 1417.29 239.75 1410.66 239.75Z" fill="#F7F7F7" stroke="#C4C4C4"/>
-<g id="g10081-8">
-<text id="ballast_group_temp_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1223.98" y="291.294">&#x422;&#x435;&#x43c;&#x43f;.:</tspan></text>
-<text id="ballast_group_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1276.46" y="291.417">--</tspan></text>
-</g>
-<g id="amplifier_2_display">
-<text id="text7925-5-1-9" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="1229.45" y="319.902">&#x411;&#x430;&#x43b;&#x43b;&#x430;&#x441;&#x442; 1</tspan></text>
-<path id="rect6-8" d="M1404.73 302.75H1229.17C1227.11 302.75 1225.45 304.627 1225.45 306.941V320.559C1225.45 322.873 1227.11 324.75 1229.17 324.75H1404.73C1406.78 324.75 1408.45 322.873 1408.45 320.559V306.941C1408.45 304.627 1406.78 302.75 1404.73 302.75Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6-1">
-<text id="ballast_group_ballast_1_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1345.45" y="319.219">--</tspan></text>
-</g>
-</g>
-<g id="g8960_2">
-<text id="text8958_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="1228.63" y="262.569">&#x431;&#x430;&#x43b;&#x43b;&#x430;&#x441;&#x442;</tspan></text>
-<path id="ballast_group_device_icon" fill-rule="evenodd" clip-rule="evenodd" d="M1204.39 248.75C1203.19 248.75 1202.22 249.645 1202.22 250.75V260.75C1202.22 261.855 1203.19 262.75 1204.39 262.75H1215.25C1216.45 262.75 1217.43 261.855 1217.43 260.75V250.75C1217.43 249.645 1216.45 248.75 1215.25 248.75H1204.39ZM1207.65 252.75C1206.45 252.75 1205.48 253.645 1205.48 254.75H1204.39C1203.79 254.75 1203.31 255.198 1203.31 255.75C1203.31 256.302 1203.79 256.75 1204.39 256.75H1205.48C1205.48 257.855 1206.45 258.75 1207.65 258.75H1212C1213.19 258.75 1214.17 257.855 1214.17 256.75H1215.25C1215.85 256.75 1216.34 256.302 1216.34 255.75C1216.34 255.198 1215.85 254.75 1215.25 254.75H1214.17C1214.17 253.645 1213.19 252.75 1212 252.75H1207.65ZM1207.65 254.75H1212V256.75H1207.65V254.75Z" fill="#7ADC47"/>
-</g>
-<g id="g8982_2">
-<g id="g8970_2">
-<path id="circle8962_2" d="M1207.87 317.094C1210.57 317.094 1212.76 315.068 1212.76 312.567C1212.76 310.067 1210.57 308.041 1207.87 308.041C1205.17 308.041 1202.98 310.067 1202.98 312.567C1202.98 315.068 1205.17 317.094 1207.87 317.094Z" fill="#626879"/>
-</g>
-</g>
-</g>
-</g>
-<g id="cap">
-<g id="Rectangle 12" filter="url(#filter2_d_0_1)">
-<rect x="375.75" y="353.75" width="300" height="196" rx="12" fill="#F7F7F7"/>
-<rect x="375.75" y="353.75" width="300" height="196" rx="12" stroke="#C4C4C4" stroke-width="1.08"/>
-</g>
-<g id="Frame 9">
-<g id="Frame 16">
-<text id="cap_mains_voltage_label" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="387.75" y="490.877">&#x41d;&#x430;&#x43f;&#x440;&#x44f;&#x436;&#x435;&#x43d;&#x438;&#x435; &#x441;&#x435;&#x442;&#x438;</tspan></text>
-<text id="cap_mains_voltage_value" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="655.229" y="490.877">--</tspan></text>
-</g>
-<g id="Frame 14">
-<text id="cap_swr_label" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="387.75" y="513.877">&#x41a;&#x421;&#x412;</tspan></text>
-<text id="cap_swr_value" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="655.226" y="513.877">--</tspan></text>
-</g>
-<g id="Frame 17">
-<text id="cap_refl_pwr_label" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="387.75" y="536.877">&#x41c;&#x43e;&#x449;&#x43d;. &#x43e;&#x442;&#x440;.</tspan></text>
-<text id="cap_refl_pwr_value" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="655.226" y="536.877">--</tspan></text>
-</g>
-</g>
-<g id="Frame 35">
-<g id="Frame 12">
-<rect width="138" height="23" transform="matrix(-1 0 0 1 525.75 386.75)" fill="white" fill-opacity="0.01"/>
-<text id="cap_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="412.914" y="404.402">--</tspan></text>
-<path id="circle8962_3" d="M396.75 403.75C399.511 403.75 401.75 401.511 401.75 398.75C401.75 395.989 399.511 393.75 396.75 393.75C393.989 393.75 391.75 395.989 391.75 398.75C391.75 401.511 393.989 403.75 396.75 403.75Z" fill="#626879"/>
-</g>
-<g id="Frame 13">
-<rect width="138" height="23" transform="translate(525.75 386.75)" fill="white" fill-opacity="0.01"/>
-<text id="cap_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="640.914" y="404.402">--</tspan></text>
-<g id="Ellipse 4">
-<circle id="Ellipse 4_2" cx="659.25" cy="398.25" r="4.5" fill="#626879"/>
-</g>
-</g>
-</g>
-<g id="Frame 36">
-<g id="Frame 12_2">
-<rect width="138" height="23" transform="matrix(-1 0 0 1 525.75 409.75)" fill="white" fill-opacity="0.01"/>
-<text id="cap_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="412.914" y="427.402">--</tspan></text>
-<path id="circle8962_4" d="M396.75 426.75C399.511 426.75 401.75 424.511 401.75 421.75C401.75 418.989 399.511 416.75 396.75 416.75C393.989 416.75 391.75 418.989 391.75 421.75C391.75 424.511 393.989 426.75 396.75 426.75Z" fill="#626879"/>
-</g>
-<g id="Frame 13_2">
-<rect width="138" height="23" transform="translate(525.75 409.75)" fill="white" fill-opacity="0.01"/>
-<text id="cap_output_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="640.914" y="427.402">--</tspan></text>
-<g id="Ellipse 4_3">
-<circle id="Ellipse 4_4" cx="659.25" cy="421.25" r="4.5" fill="#626879"/>
-</g>
-</g>
-</g>
-<g id="Frame 5">
-<text id="cap 1+1" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" font-weight="600" letter-spacing="0em"><tspan x="411.75" y="377.586">&#x421;&#x410;&#x420; 1+1</tspan></text>
-<path id="cap_device_icon" d="M402.655 363.187H388.693C388.05 363.187 387.53 363.638 387.53 364.193V376.265C387.53 376.821 388.05 377.271 388.693 377.271H402.655C403.297 377.271 403.818 376.821 403.818 376.265V364.193C403.818 363.638 403.297 363.187 402.655 363.187Z" fill="#7ADC47"/>
-<g id="cap_check_amp_network_button" clip-path="url(#clip4_0_1)">
-<path id="Vector" d="M614.25 375.875L616.5 372.875C615.875 372.406 615.094 372.125 614.25 372.125C613.406 372.125 612.625 372.406 612 372.875L614.25 375.875ZM614.25 364.625C611.719 364.625 609.381 365.462 607.5 366.875L608.625 368.375C610.187 367.2 612.137 366.5 614.25 366.5C616.362 366.5 618.312 367.2 619.875 368.375L621 366.875C619.119 365.462 616.781 364.625 614.25 364.625ZM614.25 368.375C612.562 368.375 611.006 368.931 609.75 369.875L610.875 371.375C611.812 370.669 612.981 370.25 614.25 370.25C615.519 370.25 616.687 370.669 617.625 371.375L618.75 369.875C617.494 368.931 615.937 368.375 614.25 368.375Z" fill="black"/>
-</g>
-</g>
-<g id="cap_control_buttons">
-<rect x="387.75" y="442.75" width="240" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="387.75" y="442.75" width="240" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="cap_conf_manual_button">
-<rect id="Rectangle 21_4" x="497.75" y="465.75" width="100" height="20" rx="10" transform="rotate(180 497.75 465.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<text id="cap_conf_manual_button_2" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="423.25" y="460.377">&#x420;&#x443;&#x447;&#x43d;&#x43e;&#x439;</tspan></text>
-</g>
-<g id="cap_conf_auto_button">
-<rect id="Rectangle 21_5" width="100" height="20" rx="10" transform="matrix(-1 0 0 1 617.75 445.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<text id="cap_conf_auto_button_2" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="538.25" y="460.377">&#x410;&#x432;&#x442;&#x43e;&#x43c;&#x430;&#x442;</tspan></text>
-</g>
-</g>
-<path id="Vector 4" d="M382.75 437.75H668.75" stroke="#C4C4C4" stroke-linecap="round"/>
-<g id="path8984_4">
-<path d="M382.75 472.75H668.75H382.75Z" fill="#C4C4C4"/>
-<path d="M382.75 472.75H668.75" stroke="#C4C4C4" stroke-width="0.809128" stroke-linecap="round"/>
-</g>
-</g>
-<g id="amplifier_group_2" filter="url(#filter3_d_0_1)">
-<g clip-path="url(#clip5_0_1)">
-<path id="graph_container-6" d="M758.135 319.75H1059.91C1066.54 319.75 1071.91 325.123 1071.91 331.75V576.75C1071.91 583.377 1066.54 588.75 1059.91 588.75H758.135C751.508 588.75 746.135 583.377 746.135 576.75V331.75C746.135 325.123 751.508 319.75 758.135 319.75Z" fill="#F7F7F7" stroke="#C4C4C4" stroke-width="1.078" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="Frame 12_3">
-<rect width="273.684" height="23.1855" transform="translate(772.292 357.048)" fill="white" fill-opacity="0.01"/>
-<text id="amplifier_group_2_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="788.292" y="374.701">--</tspan></text>
-<text id="amplifier_group_2_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="1019.96" y="374.701">--</tspan></text>
-<g id="Ellipse 4_5">
-<circle id="Ellipse 4_6" cx="1041.79" cy="368.548" r="4.5" fill="#626879"/>
-</g>
-<g id="Ellipse 5">
-<circle id="Ellipse 4_7" cx="776.792" cy="368.548" r="4.5" fill="#626879"/>
-</g>
-</g>
-<g id="amplifier_1_display">
-<text id="text7925-5-1" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="792.51" y="512.353">&#x423;&#x41c; 1</tspan></text>
-<path id="rect6" d="M1034.04 494.75H784.008C781.083 494.75 778.713 496.704 778.713 499.114V513.294C778.713 515.704 781.083 517.658 784.008 517.658H1034.04C1036.96 517.658 1039.33 515.704 1039.33 513.294V499.114C1039.33 496.704 1036.96 494.75 1034.04 494.75Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6">
-<text id="amplifier_group_2_current_1_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="921.288" y="510.665">I1:</tspan></text>
-<text id="amplifier_group_2_current_1_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="954.051" y="510.665">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_2_display_2">
-<text id="text7925-5-1-9_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="792.51" y="542.617">&#x423;&#x41c; 2</tspan></text>
-<path id="rect6-8_2" d="M1034.04 525.516H784.008C781.083 525.516 778.713 527.448 778.713 529.829V543.845C778.713 546.226 781.083 548.158 784.008 548.158H1034.04C1036.96 548.158 1039.33 546.226 1039.33 543.845V529.829C1039.33 527.448 1036.96 525.516 1034.04 525.516Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6-1_2">
-<text id="amplifier_group_2_current_2_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="921.288" y="541.904">I2:</tspan></text>
-<text id="amplifier_group_2_current_2_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="954.655" y="541.904">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_3_display">
-<text id="text7925-5-1-0" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="791.38" y="573.617">&#x423;&#x41c; 3</tspan></text>
-<path id="rect6-1" d="M1034.04 556.016H784.007C781.083 556.016 778.713 557.948 778.713 560.329V574.345C778.713 576.726 781.083 578.658 784.007 578.658H1034.04C1036.96 578.658 1039.33 576.726 1039.33 574.345V560.329C1039.33 557.948 1036.96 556.016 1034.04 556.016Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6-9">
-<text id="amplifier_group_2_current_3_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="920.968" y="572.627">I3:</tspan></text>
-<text id="amplifier_group_2_current_3_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="951.374" y="572.627">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_group_header">
-<text id="text7925-5" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="793.557" y="343.542">&#x423;&#x441;&#x438;&#x43b;&#x438;&#x442;&#x435;&#x43b;&#x44c; 2</tspan></text>
-<path id="amplifier_group_2_device_icon" d="M781.542 336.33L766.725 330.487C766.475 330.388 766.192 330.341 765.904 330.35C765.615 330.358 765.332 330.423 765.082 330.536C764.832 330.65 764.623 330.808 764.48 330.996C764.335 331.184 764.258 331.395 764.258 331.607L764.234 344.19C764.234 344.402 764.309 344.608 764.452 344.787C764.596 344.966 764.803 345.112 765.053 345.211C765.303 345.309 765.586 345.356 765.874 345.348C766.163 345.339 766.447 345.275 766.697 345.161L781.539 338.421C781.789 338.307 781.996 338.149 782.141 337.961C782.286 337.773 782.362 337.562 782.362 337.35C782.362 337.138 782.287 336.933 782.143 336.753C782 336.574 781.792 336.428 781.542 336.33Z" fill="#7ADC47"/>
-<g id="amplifier_group_2_check_amp_network_button" clip-path="url(#clip6_0_1)">
-<path id="Vector_2" d="M1020.02 342.875L1022.52 339.875C1021.83 339.406 1020.96 339.125 1020.02 339.125C1019.09 339.125 1018.22 339.406 1017.52 339.875L1020.02 342.875ZM1020.02 331.625C1017.21 331.625 1014.61 332.462 1012.52 333.875L1013.77 335.375C1015.51 334.2 1017.68 333.5 1020.02 333.5C1022.37 333.5 1024.54 334.2 1026.27 335.375L1027.52 333.875C1025.43 332.462 1022.84 331.625 1020.02 331.625ZM1020.02 335.375C1018.15 335.375 1016.42 335.931 1015.02 336.875L1016.27 338.375C1017.32 337.669 1018.61 337.25 1020.02 337.25C1021.43 337.25 1022.73 337.669 1023.77 338.375L1025.02 336.875C1023.63 335.931 1021.9 335.375 1020.02 335.375Z" fill="black"/>
-</g>
-</g>
-<g id="amplifier_group_params_display">
-<g id="g10086-1">
-<text id="pwr_input_value-9" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="789.135" y="441.719">&#x41d;&#x430;&#x43f;&#x440;&#x44f;&#x436;&#x435;&#x43d;&#x438;&#x435; &#x411;&#x41f;</tspan></text>
-<text id="amplifier_group_2_voltage_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="1019.55" y="442.674">--</tspan></text>
-</g>
-<g id="g10081-8_2">
-<text id="pwr_output_value-0" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="789.135" y="464.219">&#x422;&#x435;&#x43c;&#x43f;&#x435;&#x440;&#x430;&#x442;&#x443;&#x440;&#x430;</tspan></text>
-<text id="amplifier_group_2_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1020.22" y="464.544">--</tspan></text>
-</g>
-<g id="g10086-1_2">
-<text id="pwr_output_value-0_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="789.135" y="484.847">&#x41a;&#x421;&#x412;</tspan></text>
-<text id="amplifier_group_2_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="1019.81" y="485.698">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_group_2_control_buttons">
-<g id="Frame 43_4">
-<rect x="777.135" y="391.75" width="182" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="777.135" y="391.75" width="182" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="amplifier_group_2_plus_val_button">
-<rect id="Rectangle 21_6" x="864.635" y="413.75" width="65" height="18" rx="9" transform="rotate(180 864.635 413.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_4" d="M832.135 411.25V404.75V398.25M837.135 404.75L832.135 398.25L827.135 404.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="amplifier_group_2_minus_val_button">
-<rect id="Rectangle 21_7" width="65" height="18" rx="9" transform="matrix(-1 0 0 1 936.635 395.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_5" d="M904.635 398.25V404.75V411.25M909.635 404.75L904.635 411.25L899.635 404.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_5">
-<rect x="969.135" y="391.75" width="48" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="969.135" y="391.75" width="48" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="amplifier_group_2_save_val_button">
-<rect id="Rectangle 21_8" width="40" height="18" rx="9" transform="matrix(-1 0 0 1 1013.13 395.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_6" d="M999.885 398.25L991.218 411.25L986.885 406.917" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="path8984_5">
-<path d="M964.135 416.75L964.135 391.75L964.135 416.75Z" fill="#C4C4C4"/>
-<path d="M964.135 416.75L964.135 391.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-</g>
-<path id="Vector 4_2" d="M778.713 386.75H1039.33" stroke="#C4C4C4" stroke-linecap="round"/>
-<path id="Vector 5" d="M778.713 421.75H1039.33" stroke="#C4C4C4" stroke-linecap="round"/>
-</g>
-</g>
-<g id="amplifier_group_1" filter="url(#filter4_d_0_1)">
-<path id="graph_container-6_2" d="M758.135 24.75H1059.91C1066.54 24.75 1071.91 30.1226 1071.91 36.75V281.75C1071.91 288.377 1066.54 293.75 1059.91 293.75H758.135C751.508 293.75 746.135 288.377 746.135 281.75V36.75C746.135 30.1226 751.508 24.75 758.135 24.75Z" fill="#F7F7F7" stroke="#C4C4C4" stroke-width="1.078" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="Frame 12_4">
-<rect width="273.684" height="23.1855" transform="translate(772.292 62.0483)" fill="white" fill-opacity="0.01"/>
-<text id="amplifier_group_1_input_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="788.292" y="79.7007">--</tspan></text>
-<text id="amplifier_group_1_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em"><tspan x="1019.96" y="79.7007">--</tspan></text>
-<g id="Ellipse 4_8">
-<circle id="Ellipse 4_9" cx="1041.79" cy="73.5483" r="4.5" fill="#626879"/>
-</g>
-<g id="Ellipse 5_2">
-<circle id="Ellipse 4_10" cx="776.792" cy="73.5483" r="4.5" fill="#626879"/>
-</g>
-</g>
-<g id="amplifier_1_display_2">
-<text id="text7925-5-1_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="792.51" y="217.353">&#x423;&#x41c; 1</tspan></text>
-<path id="rect6_2" d="M1034.04 199.75H784.008C781.083 199.75 778.713 201.704 778.713 204.114V218.294C778.713 220.704 781.083 222.658 784.008 222.658H1034.04C1036.96 222.658 1039.33 220.704 1039.33 218.294V204.114C1039.33 201.704 1036.96 199.75 1034.04 199.75Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6_2">
-<text id="amplifier_group_1_current_1_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="921.288" y="215.665">I1:</tspan></text>
-<text id="amplifier_group_1_current_1_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="954.051" y="215.665">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_2_display_3">
-<text id="text7925-5-1-9_3" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="792.51" y="247.617">&#x423;&#x41c; 2</tspan></text>
-<path id="rect6-8_3" d="M1034.04 230.516H784.008C781.083 230.516 778.713 232.448 778.713 234.829V248.845C778.713 251.226 781.083 253.158 784.008 253.158H1034.04C1036.96 253.158 1039.33 251.226 1039.33 248.845V234.829C1039.33 232.448 1036.96 230.516 1034.04 230.516Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6-1_3">
-<text id="amplifier_group_1_current_2_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="921.288" y="246.904">I2:</tspan></text>
-<text id="amplifier_group_1_current_2_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="954.655" y="246.904">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_3_display_2">
-<text id="text7925-5-1-0_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="18" font-style="italic" letter-spacing="0em"><tspan x="791.38" y="278.617">&#x423;&#x41c; 3</tspan></text>
-<path id="rect6-1_2" d="M1034.04 261.016H784.007C781.083 261.016 778.713 262.948 778.713 265.329V279.345C778.713 281.726 781.083 283.658 784.007 283.658H1034.04C1036.96 283.658 1039.33 281.726 1039.33 279.345V265.329C1039.33 262.948 1036.96 261.016 1034.04 261.016Z" stroke="#626879" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7.7 3.3"/>
-<g id="g6-9_2">
-<text id="amplifier_group_1_current_3_label" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="920.968" y="277.627">I3:</tspan></text>
-<text id="amplifier_group_1_current_3_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="951.374" y="277.627">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_group_header_2">
-<text id="text7925-5_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21.3333" font-weight="500" letter-spacing="0em"><tspan x="793.557" y="48.5417">&#x423;&#x441;&#x438;&#x43b;&#x438;&#x442;&#x435;&#x43b;&#x44c; 1</tspan></text>
-<path id="amplifier_group_1_device_icon" d="M781.542 41.3295L766.725 35.4866C766.475 35.3882 766.192 35.3409 765.904 35.3497C765.615 35.3584 765.332 35.4227 765.082 35.5364C764.832 35.6499 764.623 35.8085 764.48 35.9965C764.335 36.1843 764.258 36.3949 764.258 36.6068L764.234 49.19C764.234 49.4019 764.309 49.6078 764.452 49.787C764.596 49.9662 764.803 50.1123 765.053 50.2107C765.303 50.3091 765.586 50.3563 765.874 50.3476C766.163 50.3389 766.447 50.2745 766.697 50.161L781.539 43.4208C781.789 43.3073 781.996 43.1486 782.141 42.9607C782.286 42.7728 782.362 42.5623 782.362 42.3504C782.362 42.1384 782.287 41.9325 782.143 41.7534C782 41.5741 781.792 41.4279 781.542 41.3295Z" fill="#7ADC47"/>
-<g id="amplifier_group_1_check_amp_network_button" clip-path="url(#clip7_0_1)">
-<path id="Vector_3" d="M1020.02 47.875L1022.52 44.875C1021.83 44.4063 1020.96 44.125 1020.02 44.125C1019.09 44.125 1018.22 44.4063 1017.52 44.875L1020.02 47.875ZM1020.02 36.625C1017.21 36.625 1014.61 37.4625 1012.52 38.875L1013.77 40.375C1015.51 39.2 1017.68 38.5 1020.02 38.5C1022.37 38.5 1024.54 39.2 1026.27 40.375L1027.52 38.875C1025.43 37.4625 1022.84 36.625 1020.02 36.625ZM1020.02 40.375C1018.15 40.375 1016.42 40.9312 1015.02 41.875L1016.27 43.375C1017.32 42.6688 1018.61 42.25 1020.02 42.25C1021.43 42.25 1022.73 42.6688 1023.77 43.375L1025.02 41.875C1023.63 40.9312 1021.9 40.375 1020.02 40.375Z" fill="black"/>
-</g>
-</g>
-<g id="amplifier_group_params_display_2">
-<g id="g10086-1_3">
-<text id="pwr_input_value-9_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="790.135" y="146.5">&#x41d;&#x430;&#x43f;&#x440;&#x44f;&#x436;&#x435;&#x43d;&#x438;&#x435; &#x411;&#x41f;</tspan></text>
-<text id="amplifier_group_1_voltage_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="1020.55" y="147.456">--</tspan></text>
-</g>
-<g id="g10081-8_3">
-<text id="pwr_output_value-0_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="790.135" y="169">&#x422;&#x435;&#x43c;&#x43f;&#x435;&#x440;&#x430;&#x442;&#x443;&#x440;&#x430;</tspan></text>
-<text id="amplifier_group_1_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1021.22" y="169.326">--</tspan></text>
-</g>
-<g id="g10081-8_4">
-<text id="pwr_output_value-0_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="790.135" y="190">&#x41a;&#x421;&#x412;:</tspan></text>
-<text id="amplifier_group_1_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="1020.29" y="190.499">--</tspan></text>
-</g>
-</g>
-<g id="amplifier_group_1_control_buttons">
-<g id="Frame 43_6">
-<rect x="777.135" y="96.75" width="182" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="777.135" y="96.75" width="182" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="amplifier_group_1_plus_val_button">
-<rect id="Rectangle 21_9" x="864.635" y="118.75" width="65" height="18" rx="9" transform="rotate(180 864.635 118.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_7" d="M832.135 116.25V109.75V103.25M837.135 109.75L832.135 103.25L827.135 109.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="amplifier_group_1_minus_val_button">
-<rect id="Rectangle 21_10" width="65" height="18" rx="9" transform="matrix(-1 0 0 1 936.635 100.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_8" d="M904.635 103.25V109.75V116.25M909.635 109.75L904.635 116.25L899.635 109.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_7">
-<rect x="969.135" y="96.75" width="48" height="25" rx="12.5" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="969.135" y="96.75" width="48" height="25" rx="12.5" stroke="#E3E3E3"/>
-<g id="amplifier_group_1_save_val_button">
-<rect id="Rectangle 21_11" width="40" height="18" rx="9" transform="matrix(-1 0 0 1 1013.13 100.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_9" d="M999.885 103.25L991.218 116.25L986.885 111.917" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="path8984_6">
-<path d="M964.135 121.75L964.135 96.75L964.135 121.75Z" fill="#C4C4C4"/>
-<path d="M964.135 121.75L964.135 96.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-</g>
-<path id="Vector 4_3" d="M778.713 91.75H1039.33" stroke="#C4C4C4" stroke-linecap="round"/>
-<path id="Vector 5_2" d="M778.713 126.75H1039.33" stroke="#C4C4C4" stroke-linecap="round"/>
-</g>
-<g id="input_1_reserve">
-<g id="rect8952-3" filter="url(#filter5_d_0_1)">
-<path d="M303.75 602.25H103.75C97.1226 602.25 91.75 607.623 91.75 614.25V686.25C91.75 692.877 97.1226 698.25 103.75 698.25H303.75C310.377 698.25 315.75 692.877 315.75 686.25V614.25C315.75 607.623 310.377 602.25 303.75 602.25Z" fill="#F7F7F7"/>
-<path d="M303.75 602.25H103.75C97.1226 602.25 91.75 607.623 91.75 614.25V686.25C91.75 692.877 97.1226 698.25 103.75 698.25H303.75C310.377 698.25 315.75 692.877 315.75 686.25V614.25C315.75 607.623 310.377 602.25 303.75 602.25Z" stroke="#C4C4C4" stroke-linecap="round"/>
-</g>
-<g id="res_secondary_info">
-<g id="input_1_res_l_group">
-<text id="input_1_res_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="661.219">--</tspan></text>
-<text id="text8992_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="661.219">L</tspan></text>
-</g>
-<g id="input_1_res_r_group">
-<text id="input_1_res_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="685.219">--</tspan></text>
-<text id="text9002_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="684.728">R</tspan></text>
-</g>
-<g id="input_1_res_mpx_group">
-<text id="input_1_res_mpx_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="661.219">--</tspan></text>
-<text id="text9002_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="661.219">&#x41a;&#x421;&#x421;</tspan></text>
-</g>
-<g id="input_1_res_aes_r_group">
-<text id="input_1_res_aes_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="685.219">--</tspan></text>
-<text id="AES_R" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="685.219">AES_R</tspan></text>
-</g>
-<g id="input_1_res_aes_l_group">
-<text id="input_1_res_aes_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="661.219">--</tspan></text>
-<text id="AES_L" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="661.219">AES_L</tspan></text>
-</g>
-</g>
-<g id="header">
-<path id="input_1_device_icon" d="M115.679 613.75H102.821C102.23 613.75 101.75 614.23 101.75 614.821V627.679C101.75 628.27 102.23 628.75 102.821 628.75H115.679C116.27 628.75 116.75 628.27 116.75 627.679V614.821C116.75 614.23 116.27 613.75 115.679 613.75Z" fill="#7ADC47"/>
-<text id="input_1_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="124.75" y="625.928">&#x412;&#x425;&#x43e;&#x434; &#x440;&#x435;&#x437;.</tspan></text>
-</g>
-<g id="g9929-10">
-<g id="g10081-4">
-<path id="circle9062-2" d="M301.75 660.25C304.235 660.25 306.25 658.235 306.25 655.75C306.25 653.265 304.235 651.25 301.75 651.25C299.265 651.25 297.25 653.265 297.25 655.75C297.25 658.235 299.265 660.25 301.75 660.25Z" fill="#626879"/>
-</g>
-</g>
-</g>
-<g id="input_1_primary">
-<g id="rect8952-3_2" filter="url(#filter6_d_0_1)">
-<path d="M302.75 491.25H102.75C96.1226 491.25 90.75 496.623 90.75 503.25V576.25C90.75 582.877 96.1226 588.25 102.75 588.25H302.75C309.377 588.25 314.75 582.877 314.75 576.25V503.25C314.75 496.623 309.377 491.25 302.75 491.25Z" fill="#F7F7F7"/>
-<path d="M302.75 491.25H102.75C96.1226 491.25 90.75 496.623 90.75 503.25V576.25C90.75 582.877 96.1226 588.25 102.75 588.25H302.75C309.377 588.25 314.75 582.877 314.75 576.25V503.25C314.75 496.623 309.377 491.25 302.75 491.25Z" stroke="#C4C4C4" stroke-linecap="round"/>
-</g>
-<g id="primary_secondary_info">
-<g id="input_1_l_group">
-<text id="input_1_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="549.719">--</tspan></text>
-<text id="text8992_3" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="551.19">L</tspan></text>
-</g>
-<g id="input_1_r_group">
-<text id="input_1_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="573.719">--</tspan></text>
-<text id="text9002_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="573.719">R</tspan></text>
-</g>
-<g id="input_1_mpx_group">
-<text id="input_1_mpx_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="549.719">--</tspan></text>
-<text id="text9002_5" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="549.719">&#x41a;&#x421;&#x421;</tspan></text>
-</g>
-<g id="input_1_aes_r_group">
-<text id="input_1_aes_r_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="573.719">--</tspan></text>
-<text id="AES_R_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="573.719">AES_R</tspan></text>
-</g>
-<g id="input_1_aes_l_group">
-<text id="input_1_aes_l_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="280.906" y="549.719">--</tspan></text>
-<text id="AES_L_2" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="115.75" y="549.719">AES_L</tspan></text>
-</g>
-</g>
-<g id="header_2">
-<g id="input_1_mode_switch">
-<path id="input_mode_switch_background" d="M270.75 518.75C276.273 518.75 280.75 514.273 280.75 508.75C280.75 503.227 276.273 498.75 270.75 498.75C265.227 498.75 260.75 503.227 260.75 508.75C260.75 514.273 265.227 518.75 270.75 518.75Z" fill="#7ADC47"/>
-<path id="Vector_4" d="M274.083 511.75H267.417V509.95L264.75 512.35L267.417 514.75V512.95H275.417V509.35H274.083M267.417 505.75H274.083V507.55L276.75 505.15L274.083 502.75V504.55H266.083V508.15H267.417V505.75Z" fill="black"/>
-</g>
-<path id="input_1_device_icon_2" d="M115.679 502.75H102.821C102.23 502.75 101.75 503.23 101.75 503.821V516.679C101.75 517.27 102.23 517.75 102.821 517.75H115.679C116.27 517.75 116.75 517.27 116.75 516.679V503.821C116.75 503.23 116.27 502.75 115.679 502.75Z" fill="#7ADC47"/>
-<text id="input_1_header_label_2" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="124.75" y="515.428">&#x412;&#x445;&#x43e;&#x434; &#x41e;&#x441;&#x43d;.</tspan></text>
-</g>
-<g id="g9929-10_2">
-<g id="g10081-4_2">
-<path id="circle9062-2_2" d="M301.25 549.25C303.735 549.25 305.75 547.235 305.75 544.75C305.75 542.265 303.735 540.25 301.25 540.25C298.765 540.25 296.75 542.265 296.75 544.75C296.75 547.235 298.765 549.25 301.25 549.25Z" fill="#626879"/>
-</g>
-</g>
-</g>
-<g id="exiter">
-<g id="rect8952-3_3" filter="url(#filter7_d_0_1)">
-<path d="M308.75 15.75H32.75C26.1226 15.75 20.75 21.1226 20.75 27.75V228.75C20.75 235.377 26.1226 240.75 32.75 240.75H308.75C315.377 240.75 320.75 235.377 320.75 228.75V27.75C320.75 21.1226 315.377 15.75 308.75 15.75Z" fill="#F7F7F7"/>
-<path d="M308.75 15.75H32.75C26.1226 15.75 20.75 21.1226 20.75 27.75V228.75C20.75 235.377 26.1226 240.75 32.75 240.75H308.75C315.377 240.75 320.75 235.377 320.75 228.75V27.75C320.75 21.1226 315.377 15.75 308.75 15.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round"/>
-</g>
-<g id="secondary_info">
-<g id="g8994_2">
-<text id="exiter_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="286.169" y="168.674">--</tspan></text>
-<text id="text8992_4" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="168.95">&#x422;&#x438;&#x43f; &#x441;&#x438;&#x433;&#x43d;&#x430;&#x43b;&#x430;</tspan></text>
-</g>
-<g id="g8994_3">
-<text id="text8992_5" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="189.45">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
-<g id="exiter_freq_val_wrap_number">
-<text id="exiter_freq_value" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="287.081" y="187.877">--</tspan></text>
-</g>
-</g>
-<g id="g8994_4">
-<text id="exiter_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="286.169" y="210.174">--</tspan></text>
-<text id="text8992_6" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="210.45">&#x41a;&#x421;&#x412;</tspan></text>
-</g>
-<g id="g8994_5">
-<text id="exiter_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="286.169" y="231.174">--</tspan></text>
-<text id="text8992_7" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="231.45">&#x422;&#x435;&#x43c;&#x43f;&#x435;&#x440;&#x430;&#x442;&#x443;&#x440;&#x430;</tspan></text>
-</g>
-</g>
-<g id="path8985">
-<path d="M35.75 150.75L305.75 150.75L35.75 150.75Z" fill="#C4C4C4"/>
-<path d="M35.75 150.75L305.75 150.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="exiter_control_buttons">
-<g id="Frame 45">
-<rect x="35.75" y="100.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="35.75" y="100.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_8" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="64.9844" y="143.535">&#x413;&#x440;&#x443;&#x431;&#x43e;</tspan></text>
-<g id="exiter_plus_big_step_val_button">
-<rect id="Rectangle 21_12" x="79.75" y="126.25" width="40" height="20" rx="10" transform="rotate(180 79.75 126.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_10" d="M59.75 122.25V115.75V109.25M64.75 115.75L59.75 109.25L54.75 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="exiter_minus_big_step_val_button">
-<rect id="Rectangle 21_13" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 126.75 106.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_11" d="M106.75 109.25V115.75V122.25M111.75 115.75L106.75 122.25L101.75 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_8">
-<rect x="146.75" y="100.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="146.75" y="100.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_9" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="174.576" y="143.535">&#x422;&#x43e;&#x447;&#x43d;&#x43e;</tspan></text>
-<g id="exiter_plus_small_step_val_button">
-<rect id="Rectangle 21_14" x="190.75" y="126.25" width="40" height="20" rx="10" transform="rotate(180 190.75 126.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_12" d="M170.75 122.25V115.75V109.25M175.75 115.75L170.75 109.25L165.75 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="exiter_minus_small_step_val_button">
-<rect id="Rectangle 21_15" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 237.75 106.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_13" d="M217.75 109.25V115.75V122.25M222.75 115.75L217.75 122.25L212.75 115.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_9">
-<rect x="258.25" y="100.75" width="47.5" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="258.25" y="100.75" width="47.5" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_10" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="253.729" y="143.535">&#x41f;&#x440;&#x438;&#x43d;&#x44f;&#x442;&#x44c;</tspan></text>
-<g id="exiter_save_val_button">
-<rect id="Rectangle 21_16" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 301.75 105.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_14" d="M288.75 109.75L280.084 122.75L275.75 118.417" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="path8984_7">
-<path d="M138.75 143.75V100.75V143.75Z" fill="#C4C4C4"/>
-<path d="M138.75 143.75V100.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="path8984_8">
-<path d="M250 143.75V100.75V143.75Z" fill="#C4C4C4"/>
-<path d="M250 143.75V100.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-</g>
-<g id="header_3">
-<path id="exiter_device_icon" d="M44.6783 25.75H31.8212C31.2295 25.75 30.7498 26.2297 30.7498 26.8214V39.6786C30.7498 40.2703 31.2295 40.75 31.8212 40.75H44.6783C45.2701 40.75 45.7498 40.2703 45.7498 39.6786V26.8214C45.7498 26.2297 45.2701 25.75 44.6783 25.75Z" fill="#7ADC47"/>
-<text id="exiter_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="52.8982" y="40.4277">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x41e;&#x421;&#x41d;.</tspan></text>
-<text id="exiter_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="53.7498" y="61.7188">--</tspan></text>
-<g id="exiter_power_button" clip-path="url(#clip8_0_1)">
-<path id="power_btn_cover" d="M208.25 40.75C212.392 40.75 215.75 37.3921 215.75 33.25C215.75 29.1079 212.392 25.75 208.25 25.75C204.108 25.75 200.75 29.1079 200.75 33.25C200.75 37.3921 204.108 40.75 208.25 40.75Z" fill="#7ADC47"/>
-<path id="Vector_5" d="M211.6 29.275L210.694 30.1813C211.775 30.8375 212.5 32.0188 212.5 33.375C212.5 34.3696 212.105 35.3234 211.402 36.0267C210.698 36.7299 209.745 37.125 208.75 37.125C207.755 37.125 206.802 36.7299 206.098 36.0267C205.395 35.3234 205 34.3696 205 33.375C205 32.0188 205.725 30.8375 206.8 30.175L205.9 29.275C204.6 30.175 203.75 31.675 203.75 33.375C203.75 34.7011 204.277 35.9729 205.214 36.9105C206.152 37.8482 207.424 38.375 208.75 38.375C210.076 38.375 211.348 37.8482 212.286 36.9105C213.223 35.9729 213.75 34.7011 213.75 33.375C213.75 31.675 212.9 30.175 211.6 29.275ZM209.375 27.75H208.125V34H209.375" fill="black"/>
-</g>
-</g>
-<g id="path8984_9">
-<path d="M35.7498 94.0505H305.75H35.7498Z" fill="#C4C4C4"/>
-<path d="M35.7498 94.0505H305.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="primary_info_output">
-<g id="g10081-4_3">
-<path id="circle9062-2_3" d="M305.75 87.75C308.511 87.75 310.75 85.5114 310.75 82.75C310.75 79.9886 308.511 77.75 305.75 77.75C302.989 77.75 300.75 79.9886 300.75 82.75C300.75 85.5114 302.989 87.75 305.75 87.75Z" fill="#626879"/>
-<text id="exiter_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="284.695" y="89.0859">--</tspan></text>
-</g>
-</g>
-<g id="primary_info_input">
-<path id="circle8962_5" d="M45.75 89.75C48.5114 89.75 50.75 87.5114 50.75 84.75C50.75 81.9886 48.5114 79.75 45.75 79.75C42.9886 79.75 40.75 81.9886 40.75 84.75C40.75 87.5114 42.9886 89.75 45.75 89.75Z" fill="#626879"/>
-<text id="exiter_input_signal_value" transform="translate(55.75 72.75)" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="0" y="18.3359">--</tspan></text>
-</g>
-</g>
-<g id="exiter_2">
-<g id="rect8952-3_4" filter="url(#filter8_d_0_1)">
-<path d="M308.75 247.75H32.75C26.1226 247.75 20.75 253.123 20.75 259.75V460.75C20.75 467.377 26.1226 472.75 32.75 472.75H308.75C315.377 472.75 320.75 467.377 320.75 460.75V259.75C320.75 253.123 315.377 247.75 308.75 247.75Z" fill="#F7F7F7"/>
-<path d="M308.75 247.75H32.75C26.1226 247.75 20.75 253.123 20.75 259.75V460.75C20.75 467.377 26.1226 472.75 32.75 472.75H308.75C315.377 472.75 320.75 467.377 320.75 460.75V259.75C320.75 253.123 315.377 247.75 308.75 247.75Z" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round"/>
-</g>
-<g id="secondary_info_2">
-<g id="g8994_6">
-<text id="exiter_2_input_signal_type_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="286.169" y="400.674">--</tspan></text>
-<text id="text8992_11" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="400.95">&#x422;&#x438;&#x43f; &#x441;&#x438;&#x433;&#x43d;&#x430;&#x43b;&#x430;</tspan></text>
-</g>
-<g id="g8994_7">
-<text id="text8992_12" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="421.45">&#x41d;&#x435;&#x441;. &#x447;&#x430;&#x441;&#x442;&#x43e;&#x442;&#x430;</tspan></text>
-<g id="exiter_2_freq_val_wrap_number">
-<text id="exiter_2_freq_value" fill="#2F323A" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="15" letter-spacing="0em"><tspan x="287.081" y="419.877">--</tspan></text>
-</g>
-</g>
-<g id="g8994_8">
-<text id="exiter_2_swr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="286.169" y="442.174">--</tspan></text>
-<text id="text8992_13" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="442.45">&#x41a;&#x421;&#x412;</tspan></text>
-</g>
-<g id="g8994_9">
-<text id="exiter_2_temp_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="17.3333" letter-spacing="0em"><tspan x="286.169" y="463.174">--</tspan></text>
-<text id="text8992_14" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" letter-spacing="0em"><tspan x="45.75" y="463.45">&#x422;&#x435;&#x43c;&#x43f;&#x435;&#x440;&#x430;&#x442;&#x443;&#x440;&#x430;</tspan></text>
-</g>
-</g>
-<g id="path8985_2">
-<path d="M35.75 382.75L305.75 382.75L35.75 382.75Z" fill="#C4C4C4"/>
-<path d="M35.75 382.75L305.75 382.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="exiter_2_control_buttons">
-<g id="Frame 45_2">
-<rect x="35.75" y="332.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="35.75" y="332.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_15" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="64.9844" y="375.535">&#x413;&#x440;&#x443;&#x431;&#x43e;</tspan></text>
-<g id="exiter_2_plus_big_step_val_button">
-<rect id="Rectangle 21_17" x="79.75" y="358.25" width="40" height="20" rx="10" transform="rotate(180 79.75 358.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_15" d="M59.75 354.25V347.75V341.25M64.75 347.75L59.75 341.25L54.75 347.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="exiter_2_minus_big_step_val_button">
-<rect id="Rectangle 21_18" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 126.75 338.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_16" d="M106.75 341.25V347.75V354.25M111.75 347.75L106.75 354.25L101.75 347.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_10">
-<rect x="146.75" y="332.75" width="95" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="146.75" y="332.75" width="95" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_16" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="174.576" y="375.535">&#x422;&#x43e;&#x447;&#x43d;&#x43e;</tspan></text>
-<g id="exiter_2_plus_small_step_val_button">
-<rect id="Rectangle 21_19" x="190.75" y="358.25" width="40" height="20" rx="10" transform="rotate(180 190.75 358.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_17" d="M170.75 354.25V347.75V341.25M175.75 347.75L170.75 341.25L165.75 347.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<g id="exiter_2_minus_small_step_val_button">
-<rect id="Rectangle 21_20" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 237.75 338.25)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_18" d="M217.75 341.25V347.75V354.25M222.75 347.75L217.75 354.25L212.75 347.75" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="Frame 43_11">
-<rect x="258.25" y="332.75" width="47.5" height="30" rx="13" fill="#E5E5E5" fill-opacity="0.8"/>
-<rect x="258.25" y="332.75" width="47.5" height="30" rx="13" stroke="#E3E3E3"/>
-<text id="text8992_17" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="14" letter-spacing="0em"><tspan x="253.729" y="375.535">&#x41f;&#x440;&#x438;&#x43d;&#x44f;&#x442;&#x44c;</tspan></text>
-<g id="exiter_2_save_val_button">
-<rect id="Rectangle 21_21" width="40" height="20" rx="10" transform="matrix(-1 0 0 1 301.75 337.75)" fill="#F3F3F3" fill-opacity="0.7" stroke="#D5D5D5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector 38_19" d="M288.75 341.75L280.084 354.75L275.75 350.417" stroke="#626879" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
-<g id="path8984_10">
-<path d="M138.75 375.75V332.75V375.75Z" fill="#C4C4C4"/>
-<path d="M138.75 375.75V332.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="path8984_11">
-<path d="M250 375.75V332.75V375.75Z" fill="#C4C4C4"/>
-<path d="M250 375.75V332.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-</g>
-<g id="header_4">
-<path id="exiter_2_device_icon" d="M44.6783 257.75H31.8212C31.2295 257.75 30.7498 258.23 30.7498 258.821V271.679C30.7498 272.27 31.2295 272.75 31.8212 272.75H44.6783C45.2701 272.75 45.7498 272.27 45.7498 271.679V258.821C45.7498 258.23 45.2701 257.75 44.6783 257.75Z" fill="#7ADC47"/>
-<text id="exiter_2_header_label" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em"><tspan x="52.8982" y="272.428">&#x43f;&#x435;&#x440;&#x435;&#x434;&#x430;&#x442;&#x447;&#x438;&#x43a; &#x41e;&#x421;&#x41d;.</tspan></text>
-<text id="exiter_2_station_header_value" fill="#626879" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em"><tspan x="53.7498" y="293.719">--</tspan></text>
-<g id="exiter_2_power_button" clip-path="url(#clip9_0_1)">
-<path id="power_btn_cover_2" d="M208.25 272.75C212.392 272.75 215.75 269.392 215.75 265.25C215.75 261.108 212.392 257.75 208.25 257.75C204.108 257.75 200.75 261.108 200.75 265.25C200.75 269.392 204.108 272.75 208.25 272.75Z" fill="#7ADC47"/>
-<path id="Vector_6" d="M211.6 261.275L210.694 262.181C211.775 262.838 212.5 264.019 212.5 265.375C212.5 266.37 212.105 267.323 211.402 268.027C210.698 268.73 209.745 269.125 208.75 269.125C207.755 269.125 206.802 268.73 206.098 268.027C205.395 267.323 205 266.37 205 265.375C205 264.019 205.725 262.838 206.8 262.175L205.9 261.275C204.6 262.175 203.75 263.675 203.75 265.375C203.75 266.701 204.277 267.973 205.214 268.911C206.152 269.848 207.424 270.375 208.75 270.375C210.076 270.375 211.348 269.848 212.286 268.911C213.223 267.973 213.75 266.701 213.75 265.375C213.75 263.675 212.9 262.175 211.6 261.275ZM209.375 259.75H208.125V266H209.375" fill="black"/>
-</g>
-</g>
-<g id="path8984_12">
-<path d="M35.7498 326.051H305.75H35.7498Z" fill="#C4C4C4"/>
-<path d="M35.7498 326.051H305.75" stroke="#C4C4C4" stroke-width="0.809128"/>
-</g>
-<g id="primary_info_output_2">
-<g id="g10081-4_4">
-<path id="circle9062-2_4" d="M305.75 319.75C308.511 319.75 310.75 317.511 310.75 314.75C310.75 311.989 308.511 309.75 305.75 309.75C302.989 309.75 300.75 311.989 300.75 314.75C300.75 317.511 302.989 319.75 305.75 319.75Z" fill="#626879"/>
-<text id="exiter_2_output_pwr_value" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="284.695" y="321.086">--</tspan></text>
-</g>
-</g>
-<g id="primary_info_input_2">
-<path id="circle8962_6" d="M45.75 321.75C48.5114 321.75 50.75 319.511 50.75 316.75C50.75 313.989 48.5114 311.75 45.75 311.75C42.9886 311.75 40.75 313.989 40.75 316.75C40.75 319.511 42.9886 321.75 45.75 321.75Z" fill="#626879"/>
-<text id="exiter_2_input_signal_value" transform="translate(55.75 304.75)" fill="black" style="white-space: pre" xml:space="preserve" font-family="Roboto" font-size="20" letter-spacing="0em"><tspan x="0" y="18.3359">--</tspan></text>
-</g>
-</g>
-</g>
-<g id="layer_2">
-<path id="path4139" d="M1052.91 517.75V548.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_2" d="M1052.91 487.25V517.75H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_3" d="M765.139 517.75V548.25H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_4" d="M765.139 487.25V517.75H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_5" d="M612.567 158.75H648.131V312.75H670.344" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_6" d="M1148.67 312.75H1202.99" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_7" d="M1148.67 114.75H1202.99" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_8" d="M703.784 108.729V73.75H765.139V210.75H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_9" d="M1115.35 108.729V73.75H1053.35V210.75H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_10" d="M702.698 327.75V369.75H765.139V487.25H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_11" d="M1116.43 327.75V369.75H1052.91V428.25V487.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<ellipse id="Ellipse 4_11" cx="1053.12" cy="369.55" rx="4.88665" ry="4.5" fill="#626879"/>
-<ellipse id="Ellipse 4_12" cx="765.302" cy="369.55" rx="4.88665" ry="4.5" fill="#626879"/>
-<ellipse id="Ellipse 5_3" cx="1053.07" cy="73.55" rx="4.88665" ry="4.5" fill="#626879"/>
-<ellipse id="Ellipse 4_13" cx="765.302" cy="73.55" rx="4.88665" ry="4.5" fill="#626879"/>
-<path id="path4139_12" d="M1052.91 241.75V272.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_13" d="M1052.91 210.75V241.25H1039.33" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_14" d="M765.139 241.75V272.25H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
-<path id="path4139_15" d="M765.139 210.75V241.25H778.713" stroke="#B5C6CF" stroke-width="1.55478"/>
-</g>
-</g>
-<defs>
-<filter id="filter0_d_0_1" x="1172.45" y="46.75" width="270.215" height="197" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter1_d_0_1" x="1172.45" y="224.75" width="270.215" height="140" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter2_d_0_1" x="360.21" y="338.21" width="341.08" height="237.08" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dx="5" dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter3_d_0_1" x="726.135" y="304.75" width="365.777" height="309" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter4_d_0_1" x="725.596" y="9.21094" width="366.854" height="310.078" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter5_d_0_1" x="71.25" y="586.75" width="265" height="137" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter6_d_0_1" x="70.25" y="475.75" width="265" height="138" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter7_d_0_1" x="0" y="0" width="341.5" height="266.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<filter id="filter8_d_0_1" x="0" y="232" width="341.5" height="266.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="5"/>
-<feGaussianBlur stdDeviation="10"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
-</filter>
-<clipPath id="clip0_0_1">
-<rect width="44.5228" height="222" fill="white" transform="translate(1103.4 104.75)"/>
-</clipPath>
-<clipPath id="clip1_0_1">
-<rect width="44.5228" height="222" fill="white" transform="translate(671.207 104.75)"/>
-</clipPath>
-<clipPath id="clip2_0_1">
-<rect width="230.215" height="157" fill="white" transform="translate(1192.45 61.75)"/>
-</clipPath>
-<clipPath id="clip3_0_1">
-<rect width="230.215" height="100" fill="white" transform="translate(1192.45 239.75)"/>
-</clipPath>
-<clipPath id="clip4_0_1">
-<rect width="15" height="15" fill="white" transform="translate(606.75 362.75)"/>
-</clipPath>
-<clipPath id="clip5_0_1">
-<rect width="325.776" height="269" fill="white" transform="translate(746.135 319.75)"/>
-</clipPath>
-<clipPath id="clip6_0_1">
-<rect width="16.6667" height="15" fill="white" transform="translate(1011.69 329.75)"/>
-</clipPath>
-<clipPath id="clip7_0_1">
-<rect width="16.6667" height="15" fill="white" transform="translate(1011.69 34.75)"/>
-</clipPath>
-<clipPath id="clip8_0_1">
-<rect width="15" height="15" fill="white" transform="translate(200.75 25.75)"/>
-</clipPath>
-<clipPath id="clip9_0_1">
-<rect width="15" height="15" fill="white" transform="translate(200.75 257.75)"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1440"
+   height="735"
+   viewBox="0 0 1440 735"
+   fill="none"
+   version="1.1"
+   id="svg164"
+   sodipodi:docname="block_control_re_avr_4000_1.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview164"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.85986395"
+     inkscape:cx="161.65348"
+     inkscape:cy="367.5"
+     inkscape:window-width="1440"
+     inkscape:window-height="834"
+     inkscape:window-x="1920"
+     inkscape:window-y="79"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg164" />
+  <g
+     id="block_control_re_avr_4000_1">
+    <g
+       id="layer_1">
+      <g
+         id="adder"
+         clip-path="url(#clip0_0_1)">
+        <path
+           id="Rectangle 1"
+           d="M1109.18 118.75H1090.32C1083.38 118.75 1077.75 126.546 1077.75 136.162V323.338C1077.75 332.954 1083.38 340.75 1090.32 340.75H1109.18C1116.12 340.75 1121.75 332.954 1121.75 323.338V136.162C1121.75 126.546 1116.12 118.75 1109.18 118.75Z"
+           stroke="#C4C4C4"
+           stroke-width="1.5"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           stroke-dasharray="3 4" />
+        <path
+           id="Vector 1"
+           d="M1089.55 326.608L1109.41 128.75"
+           stroke="#C4C4C4"
+           stroke-width="2"
+           stroke-linecap="round" />
+        <path
+           id="Vector 2"
+           d="M1090.09 128.75L1108.62 326.608"
+           stroke="#C4C4C4"
+           stroke-width="2"
+           stroke-linecap="round" />
+      </g>
+      <g
+         id="adder_2"
+         clip-path="url(#clip1_0_1)">
+        <path
+           id="Rectangle 1_2"
+           d="M647.179 118.75H628.321C621.378 118.75 615.75 126.546 615.75 136.162V323.338C615.75 332.954 621.378 340.75 628.321 340.75H647.179C654.122 340.75 659.75 332.954 659.75 323.338V136.162C659.75 126.546 654.122 118.75 647.179 118.75Z"
+           stroke="#C4C4C4"
+           stroke-width="1.5"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           stroke-dasharray="3 4" />
+        <path
+           id="Vector 1_2"
+           d="M627.555 326.608L647.408 128.75"
+           stroke="#C4C4C4"
+           stroke-width="2"
+           stroke-linecap="round" />
+        <path
+           id="Vector 2_2"
+           d="M628.091 128.75L646.619 326.608"
+           stroke="#C4C4C4"
+           stroke-width="2"
+           stroke-linecap="round" />
+      </g>
+      <g
+         id="output"
+         filter="url(#filter0_d_0_1)">
+        <g
+           clip-path="url(#clip2_0_1)"
+           id="g12">
+          <path
+             id="rect8952"
+             d="M1407.75 66.5015H1185.36C1178.73 66.5015 1173.36 71.8741 1173.36 78.5015L1173.36 246.133C1173.36 252.761 1178.73 258.133 1185.36 258.133H1407.75C1414.38 258.133 1419.75 252.761 1419.75 246.133V78.5015C1419.75 71.874 1414.38 66.5015 1407.75 66.5015Z"
+             fill="#F7F7F7"
+             stroke="#C4C4C4" />
+          <g
+             id="g8960">
+            <path
+               id="output_device_icon"
+               d="M1191.89 97.8163C1196.38 97.8163 1200.02 93.968 1200.02 89.221C1200.02 84.474 1196.38 80.6257 1191.89 80.6257C1187.4 80.6257 1183.75 84.474 1183.75 89.221C1183.75 93.968 1187.4 97.8163 1191.89 97.8163Z"
+               fill="#7ADC47" />
+            <text
+               id="text8958"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="21.3333"
+               font-weight="500"
+               letter-spacing="0em"><tspan
+                 x="1212.08"
+                 y="89.9884"
+                 id="tspan1">выход</tspan></text>
+          </g>
+          <g
+             id="g8982">
+            <g
+               id="g8970">
+              <path
+                 id="circle8962"
+                 d="M1189.86 136.278C1192.75 136.278 1195.09 133.819 1195.09 130.786C1195.09 127.752 1192.75 125.293 1189.86 125.293C1186.98 125.293 1184.63 127.752 1184.63 130.786C1184.63 133.819 1186.98 136.278 1189.86 136.278Z"
+                 fill="#626879" />
+              <text
+                 id="output_input_pwr_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Inter"
+                 font-size="18.6667"
+                 letter-spacing="0em"><tspan
+                   x="1203.23"
+                   y="133.613"
+                   id="tspan2">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="path8984">
+            <path
+               d="M1207.07 148.281H1388.37Z"
+               fill="#C4C4C4"
+               id="path2" />
+            <path
+               d="M1207.07 148.281H1388.37"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path3" />
+          </g>
+          <g
+             id="path8984_2">
+            <path
+               d="M1207.07 192.222H1388.37Z"
+               fill="#C4C4C4"
+               id="path4" />
+            <path
+               d="M1207.07 192.222H1388.37"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path5" />
+          </g>
+          <g
+             id="g8994">
+            <text
+               id="output_refl_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="1383.78"
+                 y="214.249"
+                 id="tspan5">--</tspan></text>
+            <text
+               id="text8992"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="1200.36"
+                 y="213.293"
+                 id="tspan6">Мощн. отр.</tspan></text>
+          </g>
+          <g
+             id="g9004">
+            <text
+               id="output_swr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="1383.78"
+                 y="238.661"
+                 id="tspan7">--</tspan></text>
+            <text
+               id="text9002"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="1200.36"
+                 y="237.705"
+                 id="tspan8">КСВ</tspan></text>
+          </g>
+          <g
+             id="Frame 43">
+            <g
+               id="Frame 43_2">
+              <rect
+                 x="1199.36"
+                 y="138.501"
+                 width="110"
+                 height="25"
+                 rx="12.5"
+                 fill="#E5E5E5"
+                 fill-opacity="0.8"
+                 id="rect8" />
+              <rect
+                 x="1199.36"
+                 y="138.501"
+                 width="110"
+                 height="25"
+                 rx="12.5"
+                 stroke="#E3E3E3"
+                 id="rect9" />
+              <g
+                 id="output_plus_val_button">
+                <rect
+                   id="Rectangle 21"
+                   x="1248.86"
+                   y="160.501"
+                   width="45"
+                   height="18"
+                   rx="9"
+                   transform="rotate(180 1248.86 160.501)"
+                   fill="#F3F3F3"
+                   fill-opacity="0.7"
+                   stroke="#D5D5D5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+                <path
+                   id="Vector 38"
+                   d="M1226.36 157.501V151.001V144.501M1231.36 151.001L1226.36 144.501L1221.36 151.001"
+                   stroke="#626879"
+                   stroke-width="1.5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+              </g>
+              <g
+                 id="output_minus_val_button">
+                <rect
+                   id="Rectangle 21_2"
+                   width="45"
+                   height="18"
+                   rx="9"
+                   transform="matrix(-1 0 0 1 1305.86 142.501)"
+                   fill="#F3F3F3"
+                   fill-opacity="0.7"
+                   stroke="#D5D5D5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+                <path
+                   id="Vector 38_2"
+                   d="M1283.36 144.501V151.001V157.501M1288.36 151.001L1283.36 157.501L1278.36 151.001"
+                   stroke="#626879"
+                   stroke-width="1.5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+              </g>
+            </g>
+            <g
+               id="Frame 43_3">
+              <rect
+                 x="1319.36"
+                 y="138.501"
+                 width="40"
+                 height="25"
+                 rx="12.5"
+                 fill="#E5E5E5"
+                 fill-opacity="0.8"
+                 id="rect10" />
+              <rect
+                 x="1319.36"
+                 y="138.501"
+                 width="40"
+                 height="25"
+                 rx="12.5"
+                 stroke="#E3E3E3"
+                 id="rect11" />
+              <g
+                 id="output_save_val_button">
+                <rect
+                   id="Rectangle 21_3"
+                   width="30"
+                   height="18"
+                   rx="9"
+                   transform="matrix(-1 0 0 1 1354.36 142.501)"
+                   fill="#F3F3F3"
+                   fill-opacity="0.7"
+                   stroke="#D5D5D5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+                <path
+                   id="Vector 38_3"
+                   d="M1346.11 145.001L1337.44 158.001L1333.11 153.668"
+                   stroke="#626879"
+                   stroke-width="1.5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+              </g>
+            </g>
+            <g
+               id="path8984_3">
+              <path
+                 d="M1314.36 163.501L1314.36 138.501Z"
+                 fill="#C4C4C4"
+                 id="path11" />
+              <path
+                 d="M1314.36 163.501L1314.36 138.501"
+                 stroke="#C4C4C4"
+                 stroke-width="0.809128"
+                 id="path12" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="ballast_group"
+         filter="url(#filter1_d_0_1)">
+        <g
+           clip-path="url(#clip3_0_1)"
+           id="g16">
+          <path
+             id="rect8952_2"
+             d="M1407.75 283.766H1185.36C1178.73 283.766 1173.36 289.138 1173.36 295.766V393.824C1173.36 400.452 1178.73 405.824 1185.36 405.824H1407.75C1414.38 405.824 1419.75 400.452 1419.75 393.824V295.766C1419.75 289.138 1414.38 283.766 1407.75 283.766Z"
+             fill="#F7F7F7"
+             stroke="#C4C4C4" />
+          <g
+             id="g10081-8">
+            <text
+               id="ballast_group_temp_label"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="1204.89"
+                 y="346.309"
+                 id="tspan12">Темп.:</tspan></text>
+            <text
+               id="ballast_group_temp_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="1257.37"
+                 y="346.432"
+                 id="tspan13">--</tspan></text>
+          </g>
+          <g
+             id="amplifier_2_display">
+            <text
+               id="text7925-5-1-9"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-style="italic"
+               letter-spacing="0em"><tspan
+                 x="1210.36"
+                 y="374.918"
+                 id="tspan14">Балласт 1</tspan></text>
+            <path
+               id="rect6-8"
+               d="M1401.32 357.766H1210.4C1208.17 357.766 1206.36 359.642 1206.36 361.957V375.574C1206.36 377.889 1208.17 379.766 1210.4 379.766H1401.32C1403.55 379.766 1405.36 377.889 1405.36 375.574V361.957C1405.36 359.642 1403.55 357.766 1401.32 357.766Z"
+               stroke="#626879"
+               stroke-width="1.1"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-dasharray="7.7 3.3" />
+            <g
+               id="g6-1">
+              <text
+                 id="ballast_group_ballast_1_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="1342.36"
+                   y="374.234"
+                   id="tspan15">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="g8960_2">
+            <text
+               id="text8958_2"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="21.3333"
+               font-weight="500"
+               letter-spacing="0em"><tspan
+                 x="1212.08"
+                 y="307.253"
+                 id="tspan16">балласт</tspan></text>
+            <path
+               id="ballast_group_device_icon"
+               fill-rule="evenodd"
+               clip-rule="evenodd"
+               d="M1186.15 294.751C1184.86 294.751 1183.82 295.844 1183.82 297.192V309.398C1183.82 310.746 1184.86 311.839 1186.15 311.839H1197.77C1199.05 311.839 1200.09 310.746 1200.09 309.398V297.192C1200.09 295.844 1199.05 294.751 1197.77 294.751H1186.15ZM1189.63 299.633C1188.35 299.633 1187.31 300.726 1187.31 302.074H1186.15C1185.5 302.074 1184.98 302.621 1184.98 303.295C1184.98 303.969 1185.5 304.515 1186.15 304.515H1187.31C1187.31 305.864 1188.35 306.957 1189.63 306.957H1194.28C1195.56 306.957 1196.61 305.864 1196.61 304.515H1197.77C1198.41 304.515 1198.93 303.969 1198.93 303.295C1198.93 302.621 1198.41 302.074 1197.77 302.074H1196.61C1196.61 300.726 1195.56 299.633 1194.28 299.633H1189.63ZM1189.63 302.074H1194.28V304.515H1189.63V302.074Z"
+               fill="#7ADC47" />
+          </g>
+          <g
+             id="g8982_2">
+            <g
+               id="g8970_2">
+              <path
+                 id="circle8962_2"
+                 d="M1189.86 378.171C1192.75 378.171 1195.09 375.697 1195.09 372.645C1195.09 369.594 1192.75 367.12 1189.86 367.12C1186.98 367.12 1184.63 369.594 1184.63 372.645C1184.63 375.697 1186.98 378.171 1189.86 378.171Z"
+                 fill="#626879" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         id="cap">
+        <g
+           id="Rectangle 12"
+           filter="url(#filter2_d_0_1)">
+          <rect
+             x="361.75"
+             y="356.75"
+             width="250"
+             height="199"
+             rx="12"
+             fill="#F7F7F7"
+             id="rect16" />
+          <rect
+             x="361.75"
+             y="356.75"
+             width="250"
+             height="199"
+             rx="12"
+             stroke="#C4C4C4"
+             stroke-width="1.08"
+             id="rect17" />
+        </g>
+        <g
+           id="Frame 9">
+          <g
+             id="Frame 16">
+            <text
+               id="cap_mains_voltage_label"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="373.75"
+                 y="493.877"
+                 id="tspan17">Напряжение сети</tspan></text>
+            <text
+               id="cap_mains_voltage_value"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="641.229"
+                 y="493.877"
+                 id="tspan18">--</tspan></text>
+          </g>
+          <g
+             id="Frame 14">
+            <text
+               id="cap_swr_label"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="373.75"
+                 y="516.877"
+                 id="tspan19">КСВ</tspan></text>
+            <text
+               id="cap_swr_value"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="641.226"
+                 y="516.877"
+                 id="tspan20">--</tspan></text>
+          </g>
+          <g
+             id="Frame 17">
+            <text
+               id="cap_refl_pwr_label"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="373.75"
+                 y="539.877"
+                 id="tspan21">Мощн. отр.</tspan></text>
+            <text
+               id="cap_refl_pwr_value"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="641.226"
+                 y="539.877"
+                 id="tspan22">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="Frame 35">
+          <g
+             id="Frame 12">
+            <rect
+               width="135"
+               height="23"
+               transform="matrix(-1 0 0 1 511.75 390.75)"
+               fill="white"
+               fill-opacity="0.01"
+               id="rect22" />
+            <text
+               id="cap_input_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-weight="300"
+               letter-spacing="0em"><tspan
+                 x="399.914"
+                 y="408.402"
+                 id="tspan23">--</tspan></text>
+            <path
+               id="circle8962_3"
+               d="M381.75 407.75C384.511 407.75 386.75 405.511 386.75 402.75C386.75 399.989 384.511 397.75 381.75 397.75C378.989 397.75 376.75 399.989 376.75 402.75C376.75 405.511 378.989 407.75 381.75 407.75Z"
+               fill="#626879" />
+          </g>
+          <g
+             id="Frame 13">
+            <rect
+               width="135"
+               height="23"
+               transform="translate(511.75 390.75)"
+               fill="white"
+               fill-opacity="0.01"
+               id="rect23" />
+            <text
+               id="cap_output_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-weight="300"
+               letter-spacing="0em"><tspan
+                 x="623.914"
+                 y="408.402"
+                 id="tspan24">--</tspan></text>
+            <path
+               id="circle8962_4"
+               d="M641.75 407.75C644.511 407.75 646.75 405.511 646.75 402.75C646.75 399.989 644.511 397.75 641.75 397.75C638.989 397.75 636.75 399.989 636.75 402.75C636.75 405.511 638.989 407.75 641.75 407.75Z"
+               fill="#626879" />
+          </g>
+        </g>
+        <g
+           id="Frame 36">
+          <g
+             id="Frame 12_2">
+            <rect
+               width="220"
+               height="23"
+               transform="matrix(-1 0 0 1 596.75 413.75)"
+               fill="white"
+               fill-opacity="0.01"
+               id="rect24" />
+            <text
+               id="cap_signal_type_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-weight="300"
+               letter-spacing="0em"><tspan
+                 x="482.414"
+                 y="431.402"
+                 id="tspan25">--</tspan></text>
+            <path
+               id="circle8962_5"
+               d="M591.75 427.75C594.511 427.75 596.75 425.511 596.75 422.75C596.75 419.989 594.511 417.75 591.75 417.75C588.989 417.75 586.75 419.989 586.75 422.75C586.75 425.511 588.989 427.75 591.75 427.75Z"
+               fill="#626879" />
+            <path
+               id="circle8962_6"
+               d="M381.75 430.75C384.511 430.75 386.75 428.511 386.75 425.75C386.75 422.989 384.511 420.75 381.75 420.75C378.989 420.75 376.75 422.989 376.75 425.75C376.75 428.511 378.989 430.75 381.75 430.75Z"
+               fill="#626879" />
+          </g>
+        </g>
+        <g
+           id="Frame 5">
+          <text
+             id="cap 1+1"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="20"
+             font-weight="600"
+             letter-spacing="0em"><tspan
+               x="397.75"
+               y="380.586"
+               id="tspan26">САР 1+1</tspan></text>
+          <path
+             id="cap_device_icon"
+             d="M387.679 365.75H374.821C374.23 365.75 373.75 366.23 373.75 366.821V379.679C373.75 380.27 374.23 380.75 374.821 380.75H387.679C388.27 380.75 388.75 380.27 388.75 379.679V366.821C388.75 366.23 388.27 365.75 387.679 365.75Z"
+             fill="#7ADC47" />
+          <g
+             id="cap_check_amp_network_button"
+             clip-path="url(#clip4_0_1)">
+            <path
+               id="Vector"
+               d="M600.25 378.875L602.5 375.875C601.875 375.406 601.094 375.125 600.25 375.125C599.406 375.125 598.625 375.406 598 375.875L600.25 378.875ZM600.25 367.625C597.719 367.625 595.381 368.462 593.5 369.875L594.625 371.375C596.187 370.2 598.137 369.5 600.25 369.5C602.362 369.5 604.312 370.2 605.875 371.375L607 369.875C605.119 368.462 602.781 367.625 600.25 367.625ZM600.25 371.375C598.562 371.375 597.006 371.931 595.75 372.875L596.875 374.375C597.812 373.669 598.981 373.25 600.25 373.25C601.519 373.25 602.687 373.669 603.625 374.375L604.75 372.875C603.494 371.931 601.937 371.375 600.25 371.375Z"
+               fill="black" />
+          </g>
+        </g>
+        <g
+           id="cap_control_buttons">
+          <rect
+             x="381.75"
+             y="445.75"
+             width="260"
+             height="28"
+             rx="13"
+             fill="#E5E5E5"
+             fill-opacity="0.8"
+             id="rect26" />
+          <rect
+             x="381.75"
+             y="445.75"
+             width="260"
+             height="28"
+             rx="13"
+             stroke="#E3E3E3"
+             id="rect27" />
+          <g
+             id="cap_conf_manual_button">
+            <rect
+               id="Rectangle 21_4"
+               x="496.75"
+               y="470.75"
+               width="110"
+               height="20"
+               rx="10"
+               transform="rotate(180 496.75 470.75)"
+               fill="#F3F3F3"
+               fill-opacity="0.7"
+               stroke="#D5D5D5"
+               stroke-linecap="round"
+               stroke-linejoin="round" />
+            <text
+               id="cap_conf_manual_button_2"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="417.25"
+                 y="464.877"
+                 id="tspan27">Ручной</tspan></text>
+          </g>
+          <g
+             id="cap_conf_auto_button">
+            <rect
+               id="Rectangle 21_5"
+               width="110"
+               height="20"
+               rx="10"
+               transform="matrix(-1 0 0 1 636.75 450.75)"
+               fill="#F3F3F3"
+               fill-opacity="0.7"
+               stroke="#D5D5D5"
+               stroke-linecap="round"
+               stroke-linejoin="round" />
+            <text
+               id="cap_conf_auto_button_2"
+               fill="#2F323A"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="15"
+               letter-spacing="0em"><tspan
+                 x="552.25"
+                 y="464.877"
+                 id="tspan28">Автомат</tspan></text>
+          </g>
+        </g>
+        <path
+           id="Vector 4"
+           d="M376.75 441.75H646.75"
+           stroke="#C4C4C4"
+           stroke-linecap="round" />
+        <g
+           id="path8984_4">
+          <path
+             d="M376.75 477.75H646.75Z"
+             fill="#C4C4C4"
+             id="path28" />
+          <path
+             d="M376.75 477.75H646.75"
+             stroke="#C4C4C4"
+             stroke-width="0.809128"
+             stroke-linecap="round"
+             id="path29" />
+        </g>
+      </g>
+      <g
+         id="amplifier_group_2"
+         filter="url(#filter3_d_0_1)">
+        <g
+           clip-path="url(#clip5_0_1)"
+           id="g50">
+          <path
+             id="graph_container-6"
+             d="M707.75 381.75H984.75C991.377 381.75 996.75 387.123 996.75 393.75V639.75C996.75 646.377 991.377 651.75 984.75 651.75H707.75C701.123 651.75 695.75 646.377 695.75 639.75V393.75C695.75 387.123 701.123 381.75 707.75 381.75Z"
+             fill="#F7F7F7"
+             stroke="#C4C4C4"
+             stroke-width="1.078"
+             stroke-linecap="round"
+             stroke-linejoin="round" />
+          <g
+             id="Frame 12_3">
+            <rect
+               width="273.684"
+               height="23.1855"
+               transform="translate(709.908 419.048)"
+               fill="white"
+               fill-opacity="0.01"
+               id="rect29" />
+            <text
+               id="amplifier_group_2_input_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-weight="300"
+               letter-spacing="0em"><tspan
+                 x="725.908"
+                 y="436.701"
+                 id="tspan29">--</tspan></text>
+            <text
+               id="amplifier_group_2_output_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-weight="300"
+               letter-spacing="0em"><tspan
+                 x="957.572"
+                 y="436.701"
+                 id="tspan30">--</tspan></text>
+            <g
+               id="Ellipse 4">
+              <circle
+                 id="Ellipse 4_2"
+                 cx="979.408"
+                 cy="430.548"
+                 r="4.5"
+                 fill="#626879" />
+            </g>
+            <g
+               id="Ellipse 5">
+              <circle
+                 id="Ellipse 4_3"
+                 cx="714.408"
+                 cy="430.548"
+                 r="4.5"
+                 fill="#626879" />
+            </g>
+          </g>
+          <g
+             id="amplifier_1_display">
+            <text
+               id="text7925-5-1"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-style="italic"
+               letter-spacing="0em"><tspan
+                 x="738.598"
+                 y="574.353"
+                 id="tspan31">УМ 1</tspan></text>
+            <path
+               id="rect6"
+               d="M961.758 557.401H730.743C728.04 557.401 725.85 559.362 725.85 561.781V576.013C725.85 578.432 728.04 580.394 730.743 580.394H961.758C964.46 580.394 966.65 578.432 966.65 576.013V561.781C966.65 559.362 964.46 557.401 961.758 557.401Z"
+               stroke="#626879"
+               stroke-width="1.1"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-dasharray="7.7 3.3" />
+            <g
+               id="g6">
+              <text
+                 id="amplifier_group_2_current_1_label"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="857.582"
+                   y="572.665"
+                   id="tspan32">I1:</tspan></text>
+              <text
+                 id="amplifier_group_2_current_1_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="887.853"
+                   y="572.665"
+                   id="tspan33">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="amplifier_2_display_2">
+            <text
+               id="text7925-5-1-9_2"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-style="italic"
+               letter-spacing="0em"><tspan
+                 x="738.598"
+                 y="604.616"
+                 id="tspan34">УМ 2</tspan></text>
+            <path
+               id="rect6-8_2"
+               d="M961.758 588.281H730.743C728.04 588.281 725.85 590.22 725.85 592.61V606.678C725.85 609.068 728.04 611.007 730.743 611.007H961.758C964.46 611.007 966.65 609.068 966.65 606.678V592.61C966.65 590.22 964.46 588.281 961.758 588.281Z"
+               stroke="#626879"
+               stroke-width="1.1"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-dasharray="7.7 3.3" />
+            <g
+               id="g6-1_2">
+              <text
+                 id="amplifier_group_2_current_2_label"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="857.582"
+                   y="603.904"
+                   id="tspan35">I2:</tspan></text>
+              <text
+                 id="amplifier_group_2_current_2_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="888.412"
+                   y="603.904"
+                   id="tspan36">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="amplifier_3_display">
+            <text
+               id="text7925-5-1-0"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="18"
+               font-style="italic"
+               letter-spacing="0em"><tspan
+                 x="737.554"
+                 y="635.617"
+                 id="tspan37">УМ 3</tspan></text>
+            <path
+               id="rect6-1"
+               d="M961.759 618.894H730.742C728.04 618.894 725.85 620.833 725.85 623.224V637.291C725.85 639.681 728.04 641.62 730.742 641.62H961.759C964.46 641.62 966.65 639.681 966.65 637.291V623.224C966.65 620.833 964.46 618.894 961.759 618.894Z"
+               stroke="#626879"
+               stroke-width="1.1"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               stroke-dasharray="7.7 3.3" />
+            <g
+               id="g6-9">
+              <text
+                 id="amplifier_group_2_current_3_label"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="857.287"
+                   y="635.546"
+                   id="tspan38">I3:</tspan></text>
+              <text
+                 id="amplifier_group_2_current_3_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="885.38"
+                   y="635.546"
+                   id="tspan39">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="amplifier_group_header">
+            <text
+               id="text7925-5"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="21.3333"
+               font-weight="500"
+               letter-spacing="0em"><tspan
+                 x="739.565"
+                 y="405.557"
+                 id="tspan40">Усилитель 2</tspan></text>
+            <path
+               id="amplifier_group_2_device_icon"
+               d="M728.465 398.391L714.774 392.527C714.543 392.428 714.281 392.38 714.016 392.389C713.749 392.398 713.487 392.463 713.256 392.577C713.025 392.691 712.832 392.85 712.699 393.038C712.565 393.227 712.495 393.438 712.495 393.651L712.472 406.281C712.472 406.494 712.542 406.7 712.674 406.88C712.807 407.06 712.999 407.207 713.229 407.305C713.46 407.404 713.721 407.452 713.988 407.443C714.255 407.434 714.517 407.37 714.748 407.256L728.461 400.49C728.692 400.376 728.883 400.217 729.017 400.029C729.151 399.84 729.222 399.629 729.222 399.416C729.222 399.203 729.153 398.997 729.02 398.817C728.887 398.637 728.696 398.49 728.465 398.391Z"
+               fill="#7ADC47" />
+            <g
+               id="amplifier_group_2_check_amp_network_button"
+               clip-path="url(#clip6_0_1)">
+              <path
+                 id="Vector_2"
+                 d="M969.639 404.875L972.139 401.875C971.445 401.406 970.577 401.125 969.639 401.125C968.702 401.125 967.834 401.406 967.139 401.875L969.639 404.875ZM969.639 393.625C966.827 393.625 964.229 394.462 962.139 395.875L963.389 397.375C965.125 396.2 967.292 395.5 969.639 395.5C971.986 395.5 974.153 396.2 975.889 397.375L977.139 395.875C975.049 394.462 972.452 393.625 969.639 393.625ZM969.639 397.375C967.764 397.375 966.035 397.931 964.639 398.875L965.889 400.375C966.931 399.669 968.229 399.25 969.639 399.25C971.049 399.25 972.347 399.669 973.389 400.375L974.639 398.875C973.243 397.931 971.514 397.375 969.639 397.375Z"
+                 fill="black" />
+            </g>
+          </g>
+          <g
+             id="amplifier_group_params_display">
+            <g
+               id="g10086-1">
+              <text
+                 id="pwr_input_value-9"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="726.75"
+                   y="503.719"
+                   id="tspan41">Напряжение БП</tspan></text>
+              <text
+                 id="amplifier_group_2_voltage_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="17.3333"
+                 letter-spacing="0em"><tspan
+                   x="957.169"
+                   y="504.674"
+                   id="tspan42">--</tspan></text>
+            </g>
+            <g
+               id="g10081-8_2">
+              <text
+                 id="pwr_output_value-0"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="726.75"
+                   y="526.219"
+                   id="tspan43">Температура</tspan></text>
+              <text
+                 id="amplifier_group_2_temp_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="957.84"
+                   y="526.544"
+                   id="tspan44">--</tspan></text>
+            </g>
+            <g
+               id="g10086-1_2">
+              <text
+                 id="pwr_output_value-0_2"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="726.75"
+                   y="546.847"
+                   id="tspan45">КСВ</tspan></text>
+              <text
+                 id="amplifier_group_2_swr_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="17.3333"
+                 letter-spacing="0em"><tspan
+                   x="957.429"
+                   y="547.698"
+                   id="tspan46">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="amplifier_group_2_control_buttons">
+            <g
+               id="Frame 43_4">
+              <rect
+                 x="726.75"
+                 y="453.75"
+                 width="182"
+                 height="25"
+                 rx="12.5"
+                 fill="#E5E5E5"
+                 fill-opacity="0.8"
+                 id="rect46" />
+              <rect
+                 x="726.75"
+                 y="453.75"
+                 width="182"
+                 height="25"
+                 rx="12.5"
+                 stroke="#E3E3E3"
+                 id="rect47" />
+              <g
+                 id="amplifier_group_2_plus_val_button">
+                <rect
+                   id="Rectangle 21_6"
+                   x="814.25"
+                   y="475.75"
+                   width="65"
+                   height="18"
+                   rx="9"
+                   transform="rotate(180 814.25 475.75)"
+                   fill="#F3F3F3"
+                   fill-opacity="0.7"
+                   stroke="#D5D5D5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+                <path
+                   id="Vector 38_4"
+                   d="M781.75 473.25V466.75V460.25M786.75 466.75L781.75 460.25L776.75 466.75"
+                   stroke="#626879"
+                   stroke-width="1.5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+              </g>
+              <g
+                 id="amplifier_group_2_minus_val_button">
+                <rect
+                   id="Rectangle 21_7"
+                   width="65"
+                   height="18"
+                   rx="9"
+                   transform="matrix(-1 0 0 1 886.25 457.75)"
+                   fill="#F3F3F3"
+                   fill-opacity="0.7"
+                   stroke="#D5D5D5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+                <path
+                   id="Vector 38_5"
+                   d="M854.25 460.25V466.75V473.25M859.25 466.75L854.25 473.25L849.25 466.75"
+                   stroke="#626879"
+                   stroke-width="1.5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+              </g>
+            </g>
+            <g
+               id="Frame 43_5">
+              <rect
+                 x="918.75"
+                 y="453.75"
+                 width="48"
+                 height="25"
+                 rx="12.5"
+                 fill="#E5E5E5"
+                 fill-opacity="0.8"
+                 id="rect48" />
+              <rect
+                 x="918.75"
+                 y="453.75"
+                 width="48"
+                 height="25"
+                 rx="12.5"
+                 stroke="#E3E3E3"
+                 id="rect49" />
+              <g
+                 id="amplifier_group_2_save_val_button">
+                <rect
+                   id="Rectangle 21_8"
+                   width="40"
+                   height="18"
+                   rx="9"
+                   transform="matrix(-1 0 0 1 962.75 457.75)"
+                   fill="#F3F3F3"
+                   fill-opacity="0.7"
+                   stroke="#D5D5D5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+                <path
+                   id="Vector 38_6"
+                   d="M949.5 460.25L940.833 473.25L936.5 468.917"
+                   stroke="#626879"
+                   stroke-width="1.5"
+                   stroke-linecap="round"
+                   stroke-linejoin="round" />
+              </g>
+            </g>
+            <g
+               id="path8984_5">
+              <path
+                 d="M913.75 478.75L913.75 453.75Z"
+                 fill="#C4C4C4"
+                 id="path49" />
+              <path
+                 d="M913.75 478.75L913.75 453.75"
+                 stroke="#C4C4C4"
+                 stroke-width="0.809128"
+                 id="path50" />
+            </g>
+          </g>
+          <path
+             id="Vector 4_2"
+             d="M725.85 448.75H966.65"
+             stroke="#C4C4C4"
+             stroke-linecap="round" />
+          <path
+             id="Vector 5"
+             d="M725.85 483.75H966.65"
+             stroke="#C4C4C4"
+             stroke-linecap="round" />
+        </g>
+      </g>
+      <g
+         id="amplifier_group_1"
+         filter="url(#filter4_d_0_1)">
+        <path
+           id="graph_container-6_2"
+           d="M707.75 21.75H984.75C991.377 21.75 996.75 27.1226 996.75 33.75V279.75C996.75 286.377 991.377 291.75 984.75 291.75H707.75C701.123 291.75 695.75 286.377 695.75 279.75V33.75C695.75 27.1226 701.123 21.75 707.75 21.75Z"
+           fill="#F7F7F7"
+           stroke="#C4C4C4"
+           stroke-width="1.078"
+           stroke-linecap="round"
+           stroke-linejoin="round" />
+        <g
+           id="Frame 12_4">
+          <rect
+             width="273.684"
+             height="23.1855"
+             transform="translate(709.908 59.0483)"
+             fill="white"
+             fill-opacity="0.01"
+             id="rect50" />
+          <text
+             id="amplifier_group_1_input_pwr_value"
+             fill="black"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="18"
+             font-weight="300"
+             letter-spacing="0em"><tspan
+               x="725.908"
+               y="76.7007"
+               id="tspan50">--</tspan></text>
+          <text
+             id="amplifier_group_1_output_pwr_value"
+             fill="black"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="18"
+             font-weight="300"
+             letter-spacing="0em"><tspan
+               x="957.572"
+               y="76.7007"
+               id="tspan51">--</tspan></text>
+          <g
+             id="Ellipse 4_4">
+            <circle
+               id="Ellipse 4_5"
+               cx="979.408"
+               cy="70.5483"
+               r="4.5"
+               fill="#626879" />
+          </g>
+          <g
+             id="Ellipse 5_2">
+            <circle
+               id="Ellipse 4_6"
+               cx="714.408"
+               cy="70.5483"
+               r="4.5"
+               fill="#626879" />
+          </g>
+        </g>
+        <g
+           id="amplifier_1_display_2">
+          <text
+             id="text7925-5-1_2"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="18"
+             font-style="italic"
+             letter-spacing="0em"><tspan
+               x="738.598"
+               y="214.353"
+               id="tspan52">УМ 1</tspan></text>
+          <path
+             id="rect6_2"
+             d="M961.758 197.401H730.743C728.04 197.401 725.85 199.362 725.85 201.781V216.013C725.85 218.432 728.04 220.394 730.743 220.394H961.758C964.46 220.394 966.65 218.432 966.65 216.013V201.781C966.65 199.362 964.46 197.401 961.758 197.401Z"
+             stroke="#626879"
+             stroke-width="1.1"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             stroke-dasharray="7.7 3.3" />
+          <g
+             id="g6_2">
+            <text
+               id="amplifier_group_1_current_1_label"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="857.582"
+                 y="212.665"
+                 id="tspan53">I1:</tspan></text>
+            <text
+               id="amplifier_group_1_current_1_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="887.853"
+                 y="212.665"
+                 id="tspan54">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="amplifier_2_display_3">
+          <text
+             id="text7925-5-1-9_3"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="18"
+             font-style="italic"
+             letter-spacing="0em"><tspan
+               x="738.598"
+               y="244.617"
+               id="tspan55">УМ 2</tspan></text>
+          <path
+             id="rect6-8_3"
+             d="M961.758 228.281H730.743C728.04 228.281 725.85 230.22 725.85 232.611V246.678C725.85 249.068 728.04 251.007 730.743 251.007H961.758C964.46 251.007 966.65 249.068 966.65 246.678V232.611C966.65 230.22 964.46 228.281 961.758 228.281Z"
+             stroke="#626879"
+             stroke-width="1.1"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             stroke-dasharray="7.7 3.3" />
+          <g
+             id="g6-1_3">
+            <text
+               id="amplifier_group_1_current_2_label"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="857.582"
+                 y="243.904"
+                 id="tspan56">I2:</tspan></text>
+            <text
+               id="amplifier_group_1_current_2_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="888.412"
+                 y="243.904"
+                 id="tspan57">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="amplifier_3_display_2">
+          <text
+             id="text7925-5-1-0_2"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="18"
+             font-style="italic"
+             letter-spacing="0em"><tspan
+               x="737.554"
+               y="275.617"
+               id="tspan58">УМ 3</tspan></text>
+          <path
+             id="rect6-1_2"
+             d="M961.759 258.895H730.742C728.04 258.895 725.85 260.833 725.85 263.224V277.291C725.85 279.682 728.04 281.621 730.742 281.621H961.759C964.46 281.621 966.65 279.682 966.65 277.291V263.224C966.65 260.833 964.46 258.895 961.759 258.895Z"
+             stroke="#626879"
+             stroke-width="1.1"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             stroke-dasharray="7.7 3.3" />
+          <g
+             id="g6-9_2">
+            <text
+               id="amplifier_group_1_current_3_label"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="857.287"
+                 y="275.546"
+                 id="tspan59">I3:</tspan></text>
+            <text
+               id="amplifier_group_1_current_3_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="885.38"
+                 y="275.546"
+                 id="tspan60">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="amplifier_group_header_2">
+          <text
+             id="text7925-5_2"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="21.3333"
+             font-weight="500"
+             letter-spacing="0em"><tspan
+               x="739.565"
+               y="45.5565"
+               id="tspan61">Усилитель 1</tspan></text>
+          <path
+             id="amplifier_group_1_device_icon"
+             d="M728.465 38.3913L714.774 32.5266C714.543 32.4279 714.281 32.3805 714.016 32.3892C713.749 32.398 713.487 32.4626 713.256 32.5766C713.025 32.6905 712.832 32.8497 712.699 33.0384C712.565 33.227 712.495 33.4383 712.495 33.651L712.472 46.281C712.472 46.4937 712.542 46.7004 712.674 46.8802C712.807 47.0601 712.999 47.2067 713.229 47.3055C713.46 47.4043 713.721 47.4517 713.988 47.4429C714.255 47.4342 714.517 47.3696 714.748 47.2556L728.461 40.4904C728.692 40.3764 728.883 40.2171 729.017 40.0286C729.151 39.84 729.222 39.6287 729.222 39.416C729.222 39.2032 729.153 38.9965 729.02 38.8167C728.887 38.6368 728.696 38.4901 728.465 38.3913Z"
+             fill="#7ADC47" />
+          <g
+             id="amplifier_group_1_check_amp_network_button"
+             clip-path="url(#clip7_0_1)">
+            <path
+               id="Vector_3"
+               d="M969.639 44.875L972.139 41.875C971.445 41.4063 970.577 41.125 969.639 41.125C968.702 41.125 967.834 41.4063 967.139 41.875L969.639 44.875ZM969.639 33.625C966.827 33.625 964.229 34.4625 962.139 35.875L963.389 37.375C965.125 36.2 967.292 35.5 969.639 35.5C971.986 35.5 974.153 36.2 975.889 37.375L977.139 35.875C975.049 34.4625 972.452 33.625 969.639 33.625ZM969.639 37.375C967.764 37.375 966.035 37.9312 964.639 38.875L965.889 40.375C966.931 39.6688 968.229 39.25 969.639 39.25C971.049 39.25 972.347 39.6688 973.389 40.375L974.639 38.875C973.243 37.9312 971.514 37.375 969.639 37.375Z"
+               fill="black" />
+          </g>
+        </g>
+        <g
+           id="amplifier_group_params_display_2">
+          <g
+             id="g10086-1_3">
+            <text
+               id="pwr_input_value-9_2"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="727.75"
+                 y="143.5"
+                 id="tspan62">Напряжение БП</tspan></text>
+            <text
+               id="amplifier_group_1_voltage_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="958.169"
+                 y="144.456"
+                 id="tspan63">--</tspan></text>
+          </g>
+          <g
+             id="g10081-8_3">
+            <text
+               id="pwr_output_value-0_3"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="727.75"
+                 y="166"
+                 id="tspan64">Температура</tspan></text>
+            <text
+               id="amplifier_group_1_temp_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="958.84"
+                 y="166.326"
+                 id="tspan65">--</tspan></text>
+          </g>
+          <g
+             id="g10081-8_4">
+            <text
+               id="pwr_output_value-0_4"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="727.75"
+                 y="187"
+                 id="tspan66">КСВ:</tspan></text>
+            <text
+               id="amplifier_group_1_swr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="957.906"
+                 y="187.499"
+                 id="tspan67">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="amplifier_group_1_control_buttons">
+          <g
+             id="Frame 43_6">
+            <rect
+               x="726.75"
+               y="93.75"
+               width="182"
+               height="25"
+               rx="12.5"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect67" />
+            <rect
+               x="726.75"
+               y="93.75"
+               width="182"
+               height="25"
+               rx="12.5"
+               stroke="#E3E3E3"
+               id="rect68" />
+            <g
+               id="amplifier_group_1_plus_val_button">
+              <rect
+                 id="Rectangle 21_9"
+                 x="814.25"
+                 y="115.75"
+                 width="65"
+                 height="18"
+                 rx="9"
+                 transform="rotate(180 814.25 115.75)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_7"
+                 d="M781.75 113.25V106.75V100.25M786.75 106.75L781.75 100.25L776.75 106.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+            <g
+               id="amplifier_group_1_minus_val_button">
+              <rect
+                 id="Rectangle 21_10"
+                 width="65"
+                 height="18"
+                 rx="9"
+                 transform="matrix(-1 0 0 1 886.25 97.75)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_8"
+                 d="M854.25 100.25V106.75V113.25M859.25 106.75L854.25 113.25L849.25 106.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="Frame 43_7">
+            <rect
+               x="918.75"
+               y="93.75"
+               width="48"
+               height="25"
+               rx="12.5"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect69" />
+            <rect
+               x="918.75"
+               y="93.75"
+               width="48"
+               height="25"
+               rx="12.5"
+               stroke="#E3E3E3"
+               id="rect70" />
+            <g
+               id="amplifier_group_1_save_val_button">
+              <rect
+                 id="Rectangle 21_11"
+                 width="40"
+                 height="18"
+                 rx="9"
+                 transform="matrix(-1 0 0 1 962.75 97.75)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_9"
+                 d="M949.5 100.25L940.833 113.25L936.5 108.917"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="path8984_6">
+            <path
+               d="M913.75 118.75L913.75 93.75Z"
+               fill="#C4C4C4"
+               id="path70" />
+            <path
+               d="M913.75 118.75L913.75 93.75"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path71" />
+          </g>
+        </g>
+        <path
+           id="Vector 4_3"
+           d="M725.85 88.75H966.65"
+           stroke="#C4C4C4"
+           stroke-linecap="round" />
+        <path
+           id="Vector 5_2"
+           d="M725.85 123.75H966.65"
+           stroke="#C4C4C4"
+           stroke-linecap="round" />
+      </g>
+      <g
+         id="exiter">
+        <g
+           id="rect8952-3"
+           filter="url(#filter5_d_0_1)">
+          <path
+             d="M309.75 15.75H32.75C26.1226 15.75 20.75 21.1226 20.75 27.75V253.75C20.75 260.377 26.1226 265.75 32.75 265.75H309.75C316.377 265.75 321.75 260.377 321.75 253.75V27.75C321.75 21.1226 316.377 15.75 309.75 15.75Z"
+             fill="#F7F7F7"
+             id="path72" />
+          <path
+             d="M309.75 15.75H32.75C26.1226 15.75 20.75 21.1226 20.75 27.75V253.75C20.75 260.377 26.1226 265.75 32.75 265.75H309.75C316.377 265.75 321.75 260.377 321.75 253.75V27.75C321.75 21.1226 316.377 15.75 309.75 15.75Z"
+             stroke="#C4C4C4"
+             stroke-width="1.5"
+             stroke-linecap="round"
+             id="path73" />
+        </g>
+        <g
+           id="secondary_info">
+          <g
+             id="g8994_2">
+            <text
+               id="text8992_2"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="40.7476"
+                 y="201.45"
+                 id="tspan73">Нес. частота</tspan></text>
+            <g
+               id="exiter_freq_val_wrap_number">
+              <text
+                 id="exiter_freq_value"
+                 fill="#2F323A"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="15"
+                 letter-spacing="0em"><tspan
+                   x="292.583"
+                   y="199.877"
+                   id="tspan74">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="g8994_3">
+            <text
+               id="exiter_swr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="291.167"
+                 y="222.174"
+                 id="tspan75">--</tspan></text>
+            <text
+               id="text8992_3"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="40.7476"
+                 y="222.45"
+                 id="tspan76">КСВ</tspan></text>
+          </g>
+          <g
+             id="g8994_4">
+            <text
+               id="exiter_temp_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="291.167"
+                 y="243.174"
+                 id="tspan77">--</tspan></text>
+            <text
+               id="text8992_4"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="40.7476"
+                 y="243.45"
+                 id="tspan78">Температура</tspan></text>
+          </g>
+          <g
+             id="g8994_5">
+            <text
+               id="exiter_input_signal_type_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="291.167"
+                 y="264.174"
+                 id="tspan79">--</tspan></text>
+            <text
+               id="text8992_5"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="40.7476"
+                 y="264.45"
+                 id="tspan80">Тип сигнала</tspan></text>
+          </g>
+        </g>
+        <g
+           id="g8994_6">
+          <text
+             id="exiter_progres_bar_value"
+             fill="#000000"
+             style="text-align:center;text-anchor:middle;white-space:pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="17.3333px"
+             letter-spacing="0em"
+             x="4.4602776"
+             y="0"><tspan
+               x="166.96001"
+               y="114.674"
+               id="tspan81">--</tspan></text>
+        </g>
+        <g
+           id="path8985">
+          <path
+             d="M35.75 180.75L306.75 180.75Z"
+             fill="#C4C4C4"
+             id="path81" />
+          <path
+             d="M35.75 180.75L306.75 180.75"
+             stroke="#C4C4C4"
+             stroke-width="0.809128"
+             id="path82" />
+        </g>
+        <g
+           id="exiter_control_buttons">
+          <g
+             id="Frame 45">
+            <rect
+               x="35.75"
+               y="130.75"
+               width="95"
+               height="30"
+               rx="13"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect82" />
+            <rect
+               x="35.75"
+               y="130.75"
+               width="95"
+               height="30"
+               rx="13"
+               stroke="#E3E3E3"
+               id="rect83" />
+            <text
+               id="text8992_6"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="14"
+               letter-spacing="0em"><tspan
+                 x="64.9844"
+                 y="173.535"
+                 id="tspan83">Грубо</tspan></text>
+            <g
+               id="exiter_plus_big_step_val_button">
+              <rect
+                 id="Rectangle 21_12"
+                 x="79.75"
+                 y="156.25"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="rotate(180 79.75 156.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_10"
+                 d="M59.75 152.25V145.75V139.25M64.75 145.75L59.75 139.25L54.75 145.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+            <g
+               id="exiter_minus_big_step_val_button">
+              <rect
+                 id="Rectangle 21_13"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="matrix(-1 0 0 1 126.75 136.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_11"
+                 d="M106.75 139.25V145.75V152.25M111.75 145.75L106.75 152.25L101.75 145.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="Frame 43_8">
+            <rect
+               x="147.75"
+               y="130.75"
+               width="95"
+               height="30"
+               rx="13"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect84" />
+            <rect
+               x="147.75"
+               y="130.75"
+               width="95"
+               height="30"
+               rx="13"
+               stroke="#E3E3E3"
+               id="rect85" />
+            <text
+               id="text8992_7"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="14"
+               letter-spacing="0em"><tspan
+                 x="175.576"
+                 y="173.535"
+                 id="tspan85">Точно</tspan></text>
+            <g
+               id="exiter_plus_small_step_val_button">
+              <rect
+                 id="Rectangle 21_14"
+                 x="191.75"
+                 y="156.25"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="rotate(180 191.75 156.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_12"
+                 d="M171.75 152.25V145.75V139.25M176.75 145.75L171.75 139.25L166.75 145.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+            <g
+               id="exiter_minus_small_step_val_button">
+              <rect
+                 id="Rectangle 21_15"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="matrix(-1 0 0 1 238.75 136.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_13"
+                 d="M218.75 139.25V145.75V152.25M223.75 145.75L218.75 152.25L213.75 145.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="Frame 43_9">
+            <rect
+               x="258.25"
+               y="130.75"
+               width="47.5"
+               height="30"
+               rx="13"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect86" />
+            <rect
+               x="258.25"
+               y="130.75"
+               width="47.5"
+               height="30"
+               rx="13"
+               stroke="#E3E3E3"
+               id="rect87" />
+            <text
+               id="text8992_8"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="14"
+               letter-spacing="0em"><tspan
+                 x="253.729"
+                 y="173.535"
+                 id="tspan87">Принять</tspan></text>
+            <g
+               id="exiter_save_val_button">
+              <rect
+                 id="Rectangle 21_16"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="matrix(-1 0 0 1 301.75 135.75)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_14"
+                 d="M288.75 139.75L280.084 152.75L275.75 148.417"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="path8984_7">
+            <path
+               d="M138.75 173.75V130.75Z"
+               fill="#C4C4C4"
+               id="path87" />
+            <path
+               d="M138.75 173.75V130.75"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path88" />
+          </g>
+          <g
+             id="path8984_8">
+            <path
+               d="M250 173.75V130.75Z"
+               fill="#C4C4C4"
+               id="path89" />
+            <path
+               d="M250 173.75V130.75"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path90" />
+          </g>
+        </g>
+        <g
+           id="header">
+          <path
+             id="exiter_device_icon"
+             d="M44.6781 25.75H31.8209C31.2292 25.75 30.7495 26.2297 30.7495 26.8214V39.6786C30.7495 40.2703 31.2292 40.75 31.8209 40.75H44.6781C45.2698 40.75 45.7495 40.2703 45.7495 39.6786V26.8214C45.7495 26.2297 45.2698 25.75 44.6781 25.75Z"
+             fill="#7ADC47" />
+          <text
+             id="exiter_header_label"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="21"
+             font-weight="500"
+             letter-spacing="0em"><tspan
+               x="52.8979"
+               y="40.4277"
+               id="tspan90">передатчик ОСН.</tspan></text>
+          <text
+             id="exiter_station_header_value"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="16"
+             font-style="italic"
+             letter-spacing="0em"><tspan
+               x="53.7495"
+               y="61.7188"
+               id="tspan91">--</tspan></text>
+          <g
+             id="exiter_power_button"
+             clip-path="url(#clip8_0_1)">
+            <path
+               id="power_btn_cover"
+               d="M248.25 65.75C252.392 65.75 255.75 62.3921 255.75 58.25C255.75 54.1079 252.392 50.75 248.25 50.75C244.108 50.75 240.75 54.1079 240.75 58.25C240.75 62.3921 244.108 65.75 248.25 65.75Z"
+               fill="#7ADC47" />
+            <path
+               id="Vector_4"
+               d="M251.6 54.275L250.694 55.1813C251.775 55.8375 252.5 57.0188 252.5 58.375C252.5 59.3696 252.105 60.3234 251.402 61.0267C250.698 61.7299 249.745 62.125 248.75 62.125C247.755 62.125 246.802 61.7299 246.098 61.0267C245.395 60.3234 245 59.3696 245 58.375C245 57.0188 245.725 55.8375 246.8 55.175L245.9 54.275C244.6 55.175 243.75 56.675 243.75 58.375C243.75 59.7011 244.277 60.9729 245.214 61.9105C246.152 62.8482 247.424 63.375 248.75 63.375C250.076 63.375 251.348 62.8482 252.286 61.9105C253.223 60.9729 253.75 59.7011 253.75 58.375C253.75 56.675 252.9 55.175 251.6 54.275ZM249.375 52.75H248.125V59H249.375"
+               fill="black" />
+          </g>
+        </g>
+        <g
+           id="path8984_9">
+          <path
+             d="M35.7495 123.75H305.75Z"
+             fill="#C4C4C4"
+             id="path91" />
+          <path
+             d="M35.7495 123.75H305.75"
+             stroke="#C4C4C4"
+             stroke-width="0.809128"
+             id="path92" />
+        </g>
+        <g
+           id="primary_info_output">
+          <g
+             id="g10081-4">
+            <path
+               id="circle9062-2"
+               d="M296.75 87.75C299.511 87.75 301.75 85.5114 301.75 82.75C301.75 79.9886 299.511 77.75 296.75 77.75C293.989 77.75 291.75 79.9886 291.75 82.75C291.75 85.5114 293.989 87.75 296.75 87.75Z"
+               fill="#626879" />
+            <text
+               id="exiter_output_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="20"
+               letter-spacing="0em"><tspan
+                 x="277.195"
+                 y="89.0859"
+                 id="tspan92">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="primary_info_input">
+          <path
+             id="circle8962_7"
+             d="M45.75 89.75C48.5114 89.75 50.75 87.5114 50.75 84.75C50.75 81.9886 48.5114 79.75 45.75 79.75C42.9886 79.75 40.75 81.9886 40.75 84.75C40.75 87.5114 42.9886 89.75 45.75 89.75Z"
+             fill="#626879" />
+          <text
+             id="exiter_input_signal_value"
+             transform="translate(55.75 72.75)"
+             fill="black"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="20"
+             letter-spacing="0em"><tspan
+               x="0"
+               y="18.3359"
+               id="tspan93">--</tspan></text>
+        </g>
+        <g
+           id="path8984_10">
+          <path
+             d="M35.7495 97.75H305.75Z"
+             fill="#C4C4C4"
+             id="path93" />
+          <path
+             d="M35.7495 97.75H305.75"
+             stroke="#C4C4C4"
+             stroke-width="0.809128"
+             id="path94" />
+        </g>
+      </g>
+      <g
+         id="exiter_2">
+        <g
+           id="rect8952-3_2"
+           filter="url(#filter6_d_0_1)">
+          <path
+             d="M637.75 53.75H360.75C354.123 53.75 348.75 59.1226 348.75 65.75V266.75C348.75 273.377 354.123 278.75 360.75 278.75H637.75C644.377 278.75 649.75 273.377 649.75 266.75V65.75C649.75 59.1226 644.377 53.75 637.75 53.75Z"
+             fill="#F7F7F7"
+             id="path95" />
+          <path
+             d="M637.75 53.75H360.75C354.123 53.75 348.75 59.1226 348.75 65.75V266.75C348.75 273.377 354.123 278.75 360.75 278.75H637.75C644.377 278.75 649.75 273.377 649.75 266.75V65.75C649.75 59.1226 644.377 53.75 637.75 53.75Z"
+             stroke="#C4C4C4"
+             stroke-width="1.5"
+             stroke-linecap="round"
+             id="path96" />
+        </g>
+        <g
+           id="secondary_info_2">
+          <g
+             id="g8994_7">
+            <text
+               id="exiter_2_input_signal_type_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="620.169"
+                 y="206.674"
+                 id="tspan96">--</tspan></text>
+            <text
+               id="text8992_9"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="368.75"
+                 y="206.95"
+                 id="tspan97">Тип сигнала</tspan></text>
+          </g>
+          <g
+             id="g8994_8">
+            <text
+               id="text8992_10"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="368.75"
+                 y="227.45"
+                 id="tspan98">Нес. частота</tspan></text>
+            <g
+               id="exiter_2_freq_val_wrap_number">
+              <text
+                 id="exiter_2_freq_value"
+                 fill="#2F323A"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="15"
+                 letter-spacing="0em"><tspan
+                   x="621.536"
+                   y="225.877"
+                   id="tspan99">--</tspan></text>
+            </g>
+          </g>
+          <g
+             id="g8994_9">
+            <text
+               id="exiter_2_swr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="620.169"
+                 y="248.174"
+                 id="tspan100">--</tspan></text>
+            <text
+               id="text8992_11"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="368.75"
+                 y="248.45"
+                 id="tspan101">КСВ</tspan></text>
+          </g>
+          <g
+             id="g8994_10">
+            <text
+               id="exiter_2_temp_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="17.3333"
+               letter-spacing="0em"><tspan
+                 x="620.169"
+                 y="269.174"
+                 id="tspan102">--</tspan></text>
+            <text
+               id="text8992_12"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="16"
+               letter-spacing="0em"><tspan
+                 x="368.75"
+                 y="269.45"
+                 id="tspan103">Температура</tspan></text>
+          </g>
+        </g>
+        <g
+           id="path8985_2">
+          <path
+             d="M363.75 188.75L633.75 188.75Z"
+             fill="#C4C4C4"
+             id="path103" />
+          <path
+             d="M363.75 188.75L633.75 188.75"
+             stroke="#C4C4C4"
+             stroke-width="0.809128"
+             id="path104" />
+        </g>
+        <g
+           id="exiter_2_control_buttons">
+          <g
+             id="Frame 45_2">
+            <rect
+               x="363.75"
+               y="138.75"
+               width="95"
+               height="30"
+               rx="13"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect104" />
+            <rect
+               x="363.75"
+               y="138.75"
+               width="95"
+               height="30"
+               rx="13"
+               stroke="#E3E3E3"
+               id="rect105" />
+            <text
+               id="text8992_13"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="14"
+               letter-spacing="0em"><tspan
+                 x="392.984"
+                 y="181.535"
+                 id="tspan105">Грубо</tspan></text>
+            <g
+               id="exiter_2_plus_big_step_val_button">
+              <rect
+                 id="Rectangle 21_17"
+                 x="407.75"
+                 y="164.25"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="rotate(180 407.75 164.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_15"
+                 d="M387.75 160.25V153.75V147.25M392.75 153.75L387.75 147.25L382.75 153.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+            <g
+               id="exiter_2_minus_big_step_val_button">
+              <rect
+                 id="Rectangle 21_18"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="matrix(-1 0 0 1 454.75 144.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_16"
+                 d="M434.75 147.25V153.75V160.25M439.75 153.75L434.75 160.25L429.75 153.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="Frame 43_10">
+            <rect
+               x="475.75"
+               y="138.75"
+               width="95"
+               height="30"
+               rx="13"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect106" />
+            <rect
+               x="475.75"
+               y="138.75"
+               width="95"
+               height="30"
+               rx="13"
+               stroke="#E3E3E3"
+               id="rect107" />
+            <text
+               id="text8992_14"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="14"
+               letter-spacing="0em"><tspan
+                 x="503.576"
+                 y="181.535"
+                 id="tspan107">Точно</tspan></text>
+            <g
+               id="exiter_2_plus_small_step_val_button">
+              <rect
+                 id="Rectangle 21_19"
+                 x="519.75"
+                 y="164.25"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="rotate(180 519.75 164.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_17"
+                 d="M499.75 160.25V153.75V147.25M504.75 153.75L499.75 147.25L494.75 153.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+            <g
+               id="exiter_2_minus_small_step_val_button">
+              <rect
+                 id="Rectangle 21_20"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="matrix(-1 0 0 1 566.75 144.25)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_18"
+                 d="M546.75 147.25V153.75V160.25M551.75 153.75L546.75 160.25L541.75 153.75"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="Frame 43_11">
+            <rect
+               x="586.25"
+               y="138.75"
+               width="47.5"
+               height="30"
+               rx="13"
+               fill="#E5E5E5"
+               fill-opacity="0.8"
+               id="rect108" />
+            <rect
+               x="586.25"
+               y="138.75"
+               width="47.5"
+               height="30"
+               rx="13"
+               stroke="#E3E3E3"
+               id="rect109" />
+            <text
+               id="text8992_15"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="14"
+               letter-spacing="0em"><tspan
+                 x="581.729"
+                 y="181.535"
+                 id="tspan109">Принять</tspan></text>
+            <g
+               id="exiter_2_save_val_button">
+              <rect
+                 id="Rectangle 21_21"
+                 width="40"
+                 height="20"
+                 rx="10"
+                 transform="matrix(-1 0 0 1 629.75 143.75)"
+                 fill="#F3F3F3"
+                 fill-opacity="0.7"
+                 stroke="#D5D5D5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+              <path
+                 id="Vector 38_19"
+                 d="M616.75 147.75L608.084 160.75L603.75 156.417"
+                 stroke="#626879"
+                 stroke-width="1.5"
+                 stroke-linecap="round"
+                 stroke-linejoin="round" />
+            </g>
+          </g>
+          <g
+             id="path8984_11">
+            <path
+               d="M466.75 181.75V138.75Z"
+               fill="#C4C4C4"
+               id="path109" />
+            <path
+               d="M466.75 181.75V138.75"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path110" />
+          </g>
+          <g
+             id="path8984_12">
+            <path
+               d="M578 181.75V138.75Z"
+               fill="#C4C4C4"
+               id="path111" />
+            <path
+               d="M578 181.75V138.75"
+               stroke="#C4C4C4"
+               stroke-width="0.809128"
+               id="path112" />
+          </g>
+        </g>
+        <g
+           id="header_2">
+          <path
+             id="exiter_2_device_icon"
+             d="M372.678 63.75H359.821C359.229 63.75 358.75 64.2297 358.75 64.8214V77.6786C358.75 78.2703 359.229 78.75 359.821 78.75H372.678C373.27 78.75 373.75 78.2703 373.75 77.6786V64.8214C373.75 64.2297 373.27 63.75 372.678 63.75Z"
+             fill="#7ADC47" />
+          <text
+             id="exiter_2_header_label"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="21"
+             font-weight="500"
+             letter-spacing="0em"><tspan
+               x="382.918"
+               y="78.4277"
+               id="tspan112">передатчик рез.</tspan></text>
+          <text
+             id="exiter_2_station_header_value"
+             fill="#626879"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="16"
+             font-style="italic"
+             letter-spacing="0em"><tspan
+               x="381.75"
+               y="99.7188"
+               id="tspan113">--</tspan></text>
+          <g
+             id="exiter_2_power_button"
+             clip-path="url(#clip9_0_1)">
+            <path
+               id="power_btn_cover_2"
+               d="M576.25 78.75C580.392 78.75 583.75 75.3921 583.75 71.25C583.75 67.1079 580.392 63.75 576.25 63.75C572.108 63.75 568.75 67.1079 568.75 71.25C568.75 75.3921 572.108 78.75 576.25 78.75Z"
+               fill="#7ADC47" />
+            <path
+               id="Vector_5"
+               d="M579.6 67.275L578.694 68.1813C579.775 68.8375 580.5 70.0188 580.5 71.375C580.5 72.3696 580.105 73.3234 579.402 74.0267C578.698 74.7299 577.745 75.125 576.75 75.125C575.755 75.125 574.802 74.7299 574.098 74.0267C573.395 73.3234 573 72.3696 573 71.375C573 70.0188 573.725 68.8375 574.8 68.175L573.9 67.275C572.6 68.175 571.75 69.675 571.75 71.375C571.75 72.7011 572.277 73.9729 573.214 74.9105C574.152 75.8482 575.424 76.375 576.75 76.375C578.076 76.375 579.348 75.8482 580.286 74.9105C581.223 73.9729 581.75 72.7011 581.75 71.375C581.75 69.675 580.9 68.175 579.6 67.275ZM577.375 65.75H576.125V72H577.375"
+               fill="black" />
+          </g>
+        </g>
+        <g
+           id="path8984_13">
+          <path
+             d="M363.75 131.75H633.75Z"
+             fill="#C4C4C4"
+             id="path113" />
+          <path
+             d="M363.75 131.75H633.75"
+             stroke="#C4C4C4"
+             stroke-width="0.809128"
+             id="path114" />
+        </g>
+        <g
+           id="primary_info_output_2">
+          <g
+             id="g10081-4_2">
+            <path
+               id="circle9062-2_2"
+               d="M624.75 125.75C627.511 125.75 629.75 123.511 629.75 120.75C629.75 117.989 627.511 115.75 624.75 115.75C621.989 115.75 619.75 117.989 619.75 120.75C619.75 123.511 621.989 125.75 624.75 125.75Z"
+               fill="#626879" />
+            <text
+               id="exiter_2_output_pwr_value"
+               fill="black"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="20"
+               letter-spacing="0em"><tspan
+                 x="605.195"
+                 y="127.086"
+                 id="tspan114">--</tspan></text>
+          </g>
+        </g>
+        <g
+           id="primary_info_input_2">
+          <path
+             id="circle8962_8"
+             d="M373.75 125.75C376.512 125.75 378.75 123.511 378.75 120.75C378.75 117.989 376.512 115.75 373.75 115.75C370.989 115.75 368.75 117.989 368.75 120.75C368.75 123.511 370.989 125.75 373.75 125.75Z"
+             fill="#626879" />
+          <text
+             id="exiter_2_input_signal_value"
+             transform="translate(383.75 108.75)"
+             fill="black"
+             style="white-space: pre"
+             xml:space="preserve"
+             font-family="Roboto"
+             font-size="20"
+             letter-spacing="0em"><tspan
+               x="0"
+               y="18.3359"
+               id="tspan115">--</tspan></text>
+        </g>
+      </g>
+      <g
+         id="input_1">
+        <path
+           id="path4139"
+           d="M316.25 556.25L253.75 556.25"
+           stroke="#B5C6CF"
+           stroke-width="2"
+           stroke-dasharray="9.11 9.11" />
+        <path
+           id="input_1_reserve_path_display"
+           d="M253.75 666.25H316.75"
+           stroke="#FE5F55"
+           stroke-width="5"
+           stroke-linecap="round"
+           stroke-linejoin="round" />
+        <path
+           id="input_1_primary_path_display"
+           d="M252.75 556.25H316.25"
+           stroke="#FE5F55"
+           stroke-width="5"
+           stroke-linecap="round"
+           stroke-linejoin="round" />
+        <g
+           id="input_1_reserve">
+          <g
+             id="rect8952-3_3"
+             filter="url(#filter7_d_0_1)">
+            <path
+               d="M255.75 613.25H55.75C49.1226 613.25 43.75 618.623 43.75 625.25V697.25C43.75 703.877 49.1226 709.25 55.75 709.25H255.75C262.377 709.25 267.75 703.877 267.75 697.25V625.25C267.75 618.623 262.377 613.25 255.75 613.25Z"
+               fill="#F7F7F7"
+               id="path115" />
+            <path
+               d="M255.75 613.25H55.75C49.1226 613.25 43.75 618.623 43.75 625.25V697.25C43.75 703.877 49.1226 709.25 55.75 709.25H255.75C262.377 709.25 267.75 703.877 267.75 697.25V625.25C267.75 618.623 262.377 613.25 255.75 613.25Z"
+               stroke="#C4C4C4"
+               stroke-linecap="round"
+               id="path116" />
+          </g>
+          <g
+             id="res_secondary_info">
+            <g
+               id="input_1_res_l_group">
+              <text
+                 id="input_1_res_l_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="672.219"
+                   id="tspan116">--</tspan></text>
+              <text
+                 id="text8992_16"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="672.219"
+                   id="tspan117">L</tspan></text>
+            </g>
+            <g
+               id="input_1_res_r_group">
+              <text
+                 id="input_1_res_r_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="696.219"
+                   id="tspan118">--</tspan></text>
+              <text
+                 id="text9002_2"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="695.728"
+                   id="tspan119">R</tspan></text>
+            </g>
+            <g
+               id="input_1_res_mpx_group">
+              <text
+                 id="input_1_res_mpx_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="672.219"
+                   id="tspan120">--</tspan></text>
+              <text
+                 id="text9002_3"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="672.219"
+                   id="tspan121">КСС</tspan></text>
+            </g>
+            <g
+               id="input_1_res_aes_r_group">
+              <text
+                 id="input_1_res_aes_r_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="696.219"
+                   id="tspan122">--</tspan></text>
+              <text
+                 id="AES_R"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="696.219"
+                   id="tspan123">AES_R</tspan></text>
+            </g>
+            <g
+               id="input_1_res_aes_l_group">
+              <text
+                 id="input_1_res_aes_l_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="672.219"
+                   id="tspan124">--</tspan></text>
+              <text
+                 id="AES_L"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="672.219"
+                   id="tspan125">AES_L</tspan></text>
+            </g>
+          </g>
+          <g
+             id="header_3">
+            <path
+               id="input_1_device_icon"
+               d="M67.6786 624.75H54.8214C54.2297 624.75 53.75 625.23 53.75 625.821V638.679C53.75 639.27 54.2297 639.75 54.8214 639.75H67.6786C68.2703 639.75 68.75 639.27 68.75 638.679V625.821C68.75 625.23 68.2703 624.75 67.6786 624.75Z"
+               fill="#7ADC47" />
+            <text
+               id="input_1_header_label"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="21"
+               font-weight="500"
+               letter-spacing="0em"><tspan
+                 x="76.75"
+                 y="636.928"
+                 id="tspan126">ВХод рез.</tspan></text>
+          </g>
+          <g
+             id="g9929-10">
+            <g
+               id="g10081-4_3">
+              <path
+                 id="circle9062-2_3"
+                 d="M253.75 671.25C256.235 671.25 258.25 669.235 258.25 666.75C258.25 664.265 256.235 662.25 253.75 662.25C251.265 662.25 249.25 664.265 249.25 666.75C249.25 669.235 251.265 671.25 253.75 671.25Z"
+                 fill="#626879" />
+            </g>
+          </g>
+        </g>
+        <g
+           id="input_1_primary">
+          <g
+             id="rect8952-3_4"
+             filter="url(#filter8_d_0_1)">
+            <path
+               d="M254.75 502.25H54.75C48.1226 502.25 42.75 507.623 42.75 514.25V587.25C42.75 593.877 48.1226 599.25 54.75 599.25H254.75C261.377 599.25 266.75 593.877 266.75 587.25V514.25C266.75 507.623 261.377 502.25 254.75 502.25Z"
+               fill="#F7F7F7"
+               id="path126" />
+            <path
+               d="M254.75 502.25H54.75C48.1226 502.25 42.75 507.623 42.75 514.25V587.25C42.75 593.877 48.1226 599.25 54.75 599.25H254.75C261.377 599.25 266.75 593.877 266.75 587.25V514.25C266.75 507.623 261.377 502.25 254.75 502.25Z"
+               stroke="#C4C4C4"
+               stroke-linecap="round"
+               id="path127" />
+          </g>
+          <g
+             id="primary_secondary_info">
+            <g
+               id="input_1_l_group">
+              <text
+                 id="input_1_l_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="560.719"
+                   id="tspan127">--</tspan></text>
+              <text
+                 id="text8992_17"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="562.19"
+                   id="tspan128">L</tspan></text>
+            </g>
+            <g
+               id="input_1_r_group">
+              <text
+                 id="input_1_r_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="584.719"
+                   id="tspan129">--</tspan></text>
+              <text
+                 id="text9002_4"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="584.719"
+                   id="tspan130">R</tspan></text>
+            </g>
+            <g
+               id="input_1_mpx_group">
+              <text
+                 id="input_1_mpx_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="560.719"
+                   id="tspan131">--</tspan></text>
+              <text
+                 id="text9002_5"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="560.719"
+                   id="tspan132">КСС</tspan></text>
+            </g>
+            <g
+               id="input_1_aes_r_group">
+              <text
+                 id="input_1_aes_r_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="584.719"
+                   id="tspan133">--</tspan></text>
+              <text
+                 id="AES_R_2"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="584.719"
+                   id="tspan134">AES_R</tspan></text>
+            </g>
+            <g
+               id="input_1_aes_l_group">
+              <text
+                 id="input_1_aes_l_value"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="232.906"
+                   y="560.719"
+                   id="tspan135">--</tspan></text>
+              <text
+                 id="AES_L_2"
+                 fill="black"
+                 style="white-space: pre"
+                 xml:space="preserve"
+                 font-family="Roboto"
+                 font-size="16"
+                 letter-spacing="0em"><tspan
+                   x="67.75"
+                   y="560.719"
+                   id="tspan136">AES_L</tspan></text>
+            </g>
+          </g>
+          <g
+             id="header_4">
+            <g
+               id="input_1_mode_switch">
+              <path
+                 id="input_mode_switch_background"
+                 d="M222.75 529.75C228.273 529.75 232.75 525.273 232.75 519.75C232.75 514.227 228.273 509.75 222.75 509.75C217.227 509.75 212.75 514.227 212.75 519.75C212.75 525.273 217.227 529.75 222.75 529.75Z"
+                 fill="#7ADC47" />
+              <path
+                 id="Vector_6"
+                 d="M226.083 522.75H219.417V520.95L216.75 523.35L219.417 525.75V523.95H227.417V520.35H226.083M219.417 516.75H226.083V518.55L228.75 516.15L226.083 513.75V515.55H218.083V519.15H219.417V516.75Z"
+                 fill="black" />
+            </g>
+            <path
+               id="input_1_device_icon_2"
+               d="M67.6786 513.75H54.8214C54.2297 513.75 53.75 514.23 53.75 514.821V527.679C53.75 528.27 54.2297 528.75 54.8214 528.75H67.6786C68.2703 528.75 68.75 528.27 68.75 527.679V514.821C68.75 514.23 68.2703 513.75 67.6786 513.75Z"
+               fill="#7ADC47" />
+            <text
+               id="input_1_header_label_2"
+               fill="#626879"
+               style="white-space: pre"
+               xml:space="preserve"
+               font-family="Roboto"
+               font-size="21"
+               font-weight="500"
+               letter-spacing="0em"><tspan
+                 x="76.75"
+                 y="526.428"
+                 id="tspan137">Вход Осн.</tspan></text>
+          </g>
+          <g
+             id="g9929-10_2">
+            <g
+               id="g10081-4_4">
+              <path
+                 id="circle9062-2_4"
+                 d="M253.25 560.25C255.735 560.25 257.75 558.235 257.75 555.75C257.75 553.265 255.735 551.25 253.25 551.25C250.765 551.25 248.75 553.265 248.75 555.75C248.75 558.235 250.765 560.25 253.25 560.25Z"
+                 fill="#626879" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="layer_2">
+      <path
+         id="path4139_2"
+         d="M1121.85 336.348H1176.18"
+         stroke="#B5C6CF"
+         stroke-width="1.55478" />
+      <path
+         id="path4139_3"
+         d="M1121.85 138.431H1176.18"
+         stroke="#B5C6CF"
+         stroke-width="1.55478" />
+    </g>
+  </g>
+  <defs
+     id="defs164">
+    <filter
+       id="filter0_d_0_1"
+       x="1153.36"
+       y="51.5015"
+       width="286.389"
+       height="231.632"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood137" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix137" />
+      <feOffset
+         dy="5"
+         id="feOffset137" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur137" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite137" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix138" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend138" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend139" />
+    </filter>
+    <filter
+       id="filter1_d_0_1"
+       x="1153.36"
+       y="268.766"
+       width="286.389"
+       height="162.059"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood139" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix139" />
+      <feOffset
+         dy="5"
+         id="feOffset139" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur139" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite139" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix140" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend140" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend141" />
+    </filter>
+    <filter
+       id="filter2_d_0_1"
+       x="346.21"
+       y="341.21"
+       width="291.08"
+       height="240.08"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood141" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix141" />
+      <feOffset
+         dx="5"
+         dy="5"
+         id="feOffset141" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur141" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite141" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix142" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend142" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend143" />
+    </filter>
+    <filter
+       id="filter3_d_0_1"
+       x="675.75"
+       y="366.75"
+       width="341"
+       height="310"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood143" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix143" />
+      <feOffset
+         dy="5"
+         id="feOffset143" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur143" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite143" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix144" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend144" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend145" />
+    </filter>
+    <filter
+       id="filter4_d_0_1"
+       x="675.211"
+       y="6.21094"
+       width="342.078"
+       height="311.078"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood145" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix145" />
+      <feOffset
+         dy="5"
+         id="feOffset145" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur145" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite145" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix146" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend146" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend147" />
+    </filter>
+    <filter
+       id="filter5_d_0_1"
+       x="0"
+       y="0"
+       width="342.5"
+       height="291.5"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood147" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix147" />
+      <feOffset
+         dy="5"
+         id="feOffset147" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur147" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite147" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix148" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend148" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend149" />
+    </filter>
+    <filter
+       id="filter6_d_0_1"
+       x="328"
+       y="38"
+       width="342.5"
+       height="266.5"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood149" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix149" />
+      <feOffset
+         dy="5"
+         id="feOffset149" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur149" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite149" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix150" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend150" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend151" />
+    </filter>
+    <filter
+       id="filter7_d_0_1"
+       x="23.25"
+       y="597.75"
+       width="265"
+       height="137"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood151" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix151" />
+      <feOffset
+         dy="5"
+         id="feOffset151" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur151" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite151" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix152" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend152" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend153" />
+    </filter>
+    <filter
+       id="filter8_d_0_1"
+       x="22.25"
+       y="486.75"
+       width="265"
+       height="138"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood153" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix153" />
+      <feOffset
+         dy="5"
+         id="feOffset153" />
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur153" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite153" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+         id="feColorMatrix154" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_0_1"
+         id="feBlend154" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect1_dropShadow_0_1"
+         result="shape"
+         id="feBlend155" />
+    </filter>
+    <clipPath
+       id="clip0_0_1">
+      <rect
+         width="44"
+         height="222"
+         fill="white"
+         transform="translate(1077.75 118.75)"
+         id="rect155" />
+    </clipPath>
+    <clipPath
+       id="clip1_0_1">
+      <rect
+         width="44"
+         height="222"
+         fill="white"
+         transform="translate(615.75 118.75)"
+         id="rect156" />
+    </clipPath>
+    <clipPath
+       id="clip2_0_1">
+      <rect
+         width="246.389"
+         height="191.632"
+         fill="white"
+         transform="translate(1173.36 66.5015)"
+         id="rect157" />
+    </clipPath>
+    <clipPath
+       id="clip3_0_1">
+      <rect
+         width="246.389"
+         height="122.059"
+         fill="white"
+         transform="translate(1173.36 283.766)"
+         id="rect158" />
+    </clipPath>
+    <clipPath
+       id="clip4_0_1">
+      <rect
+         width="15"
+         height="15"
+         fill="white"
+         transform="translate(592.75 365.75)"
+         id="rect159" />
+    </clipPath>
+    <clipPath
+       id="clip5_0_1">
+      <rect
+         width="301"
+         height="270"
+         fill="white"
+         transform="translate(695.75 381.75)"
+         id="rect160" />
+    </clipPath>
+    <clipPath
+       id="clip6_0_1">
+      <rect
+         width="16.6667"
+         height="15"
+         fill="white"
+         transform="translate(961.306 391.75)"
+         id="rect161" />
+    </clipPath>
+    <clipPath
+       id="clip7_0_1">
+      <rect
+         width="16.6667"
+         height="15"
+         fill="white"
+         transform="translate(961.306 31.75)"
+         id="rect162" />
+    </clipPath>
+    <clipPath
+       id="clip8_0_1">
+      <rect
+         width="15"
+         height="15"
+         fill="white"
+         transform="translate(240.75 50.75)"
+         id="rect163" />
+    </clipPath>
+    <clipPath
+       id="clip9_0_1">
+      <rect
+         width="15"
+         height="15"
+         fill="white"
+         transform="translate(568.75 63.75)"
+         id="rect164" />
+    </clipPath>
+  </defs>
 </svg>

@@ -2,7 +2,7 @@ import { reducers } from "../store/reducers/status_settings_reducers"
 import { SVG_inputElement } from "./svg_inputHandling_logic"
 import { filter_obj, makeSVG, numberOfCharactersAfter } from "./utilites"
 
-export default function svg_eventHandler_logic(svg, data_svg, device_type, is_exist_avr, active_control_mode, clickHandler ) {
+export default function svg_eventHandler_logic(svg, data_svg, device_type, is_exist_avr, active_control_mode, clickHandler) {
   switch (true) {
 
     case (device_type == "УРЦ-2000" || 
@@ -12,10 +12,10 @@ export default function svg_eventHandler_logic(svg, data_svg, device_type, is_ex
       return block_control_svg_event_editing(svg, data_svg, clickHandler)      
 
     case (device_type == "РЦ-4000"):
-      if(is_exist_avr==1){
-        return block_control_avr_svg_event_editing(svg, data_svg, clickHandler)
+      if(is_exist_avr == 1){
+        return block_control_avr_svg_event_editing(svg, data_svg, active_control_mode, clickHandler)
       }
-      if(is_exist_avr==0){
+      if(is_exist_avr == 0){
         return block_control_svg_event_editing(svg, data_svg, clickHandler) 
       }
     default:
@@ -41,7 +41,7 @@ function re_amp_svg_event_editing(svg, data_svg, clickHandler) {
 }
 
 
-function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
+function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode, clickHandler) {
 
   const cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`),
         exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
@@ -71,6 +71,8 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
   // Функция для подсветки активного режима на SVG
   const setActiveCAPModeOnSVG = (active_mode) => {
     if (!cap_buttons_list || cap_buttons_list.length === 0) return
+    
+    console.log('setActiveCAPModeOnSVG called with:', active_mode)
     
     cap_buttons_list.forEach(button => {
       const mode_num = button.getAttribute('data-mode') || 
@@ -122,6 +124,14 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
         button.style.cursor = 'pointer'
       }
     })
+    
+    // НАЧАЛЬНАЯ ПОДСВЕТКА - используем active_control_mode из параметров
+    console.log('Initial active_control_mode:', active_control_mode)
+    if (active_control_mode !== undefined && active_control_mode !== null) {
+      setActiveCAPModeOnSVG(active_control_mode)
+    } else {
+      setActiveCAPModeOnSVG(0)
+    }
   }
 
   // Обработчики для exiter кнопок
@@ -432,8 +442,38 @@ function block_control_avr_svg_event_editing(svg, data_svg, clickHandler) {
       })
     }
   })
+  
+  const primary_input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]:not(g[id*="input_0"])')
 
+  if (primary_input_blocks_list) {
+    const input_mode_handling_callback = avr_buttons_actions.switch_input_mode
+    
+    primary_input_blocks_list.forEach((block, index) => {
+      const input_mode_switch = block.querySelector('g[id*="mode_switch"]')
+  
+      if (!input_mode_switch.onclick) {
+        input_mode_switch.addEventListener("click", function () {
+          input_mode_handling_callback(index, clickHandler)
+        })
+      }
+    })
+  }
+  
   return svg
+}
+
+const avr_buttons_actions = {
+  switch_input_mode: (device_index, clickHandler) => {
+    const request_obj = {
+      address: 'status_graph_settings.cgi',
+      data: `switch_input_mode$${device_index}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
+    clickHandler(request_obj)
+  }
 }
 
 const re_amp_buttons_actions = {
@@ -552,21 +592,7 @@ const block_control_buttons_actions = {
     clickHandler(request_obj)
   },
 
-  save_power_handler: (clickHandler) => {
-    const request_obj = {
-      address: 'transmitter.cgi',
-      data: `save_power$1`,
-      reducer: reducers.transmitter,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-    }
-
-    clickHandler(request_obj)
-  },
-
-    save_power_handler_1: (clickHandler) => {
+  save_power_handler_1: (clickHandler) => {
     const request_obj = {
       address: 'transmitter.cgi',
       data: `exiter_main_save_power$1`,
@@ -620,8 +646,8 @@ function block_control_svg_event_editing(svg, data_svg, clickHandler) {
         cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`)
 
   exiter_buttons_list.forEach(button => {
-    const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler,
-          pwr_save_callback = block_control_buttons_actions.save_power_handler
+    const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler_1,
+          pwr_save_callback = block_control_buttons_actions.save_power_handler_1
 
     if (!button.onclick) {
       if (button.id.includes("save_val")){
