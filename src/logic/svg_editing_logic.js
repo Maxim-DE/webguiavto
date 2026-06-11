@@ -116,11 +116,11 @@ function re_amp_svg_editing(svg, data_svg, auth_access) {
 // меняй здесь !!!
 function block_control_avr_svg_editing(svg, data_svg, auth_access) {
 
-  const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+  const exiter_1_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="control_buttons"] g[id$="button"]`),
         exiter_2_buttons_list = svg.querySelectorAll(`#exiter_2 g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+        exiter_1_input_list = svg.querySelectorAll(`#exiter_1 g[id*="val_wrap"]`),
         exiter_2_input_list = svg.querySelectorAll(`#exiter_2 g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`),
@@ -218,7 +218,7 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
     })
   }
 
-  exiter_buttons_list.forEach((button) => {
+  exiter_1_buttons_list.forEach((button) => {
       if (auth_access.calib == 0) {
         button.classList.add("disabled_svg_button");
         button.style.opacity = "0.5";
@@ -242,16 +242,16 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
       }
   })
 
-  const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
-        exiter_status = data_svg?.exiter?.status
-
-  if (exiter_status == 1) {
-    exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[0]
+  const exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_1_power_button`),
+        exiter_1_status = data_svg?.exiter_1?.status
+      
+  if (exiter_1_status == 1) {
+    exiter_1_pwr_button.querySelector('#power_btn_cover_1').style.fill = status_colors[0]
   } else {
-    exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
+    exiter_1_pwr_button.querySelector('#power_btn_cover_1').style.fill = status_colors[2]
   }
 
-  if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
+  if (exiter_1_input_list.length > 0) exiter_1_input_list.forEach(input_wrap => {
     let inner_input = input_wrap.querySelector(`input`)
 
     if (inner_input) {

@@ -44,13 +44,13 @@ function re_amp_svg_event_editing(svg, data_svg, clickHandler) {
 function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode, clickHandler) {
 
   const cap_buttons_list = svg.querySelectorAll(`#cap g[id$="control_buttons"] g[id$="button"]`),
-        exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
+        exiter_1_buttons_list = svg.querySelectorAll(`#exiter_1 g[id$="control_buttons"] g[id$="button"]`),
         exiter_2_buttons_list = svg.querySelectorAll(`#exiter_2 g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-        exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
+        exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_power_button`),
         exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_power_button`),
-        exiter_input_list = svg.querySelectorAll(`#exiter g[id*="val_wrap"]`),
+        exiter_1_input_list = svg.querySelectorAll(`#exiter_1 g[id*="val_wrap"]`),
         exiter_2_input_list = svg.querySelectorAll(`#exiter_2 g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
         output_buttons_list = svg.querySelectorAll(`#output g[id$="button"]`)
@@ -135,7 +135,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
   }
 
   // Обработчики для exiter кнопок
-  exiter_buttons_list.forEach(button => {
+  exiter_1_buttons_list.forEach(button => {
     const pwr_handling_callback = block_control_buttons_actions.plusMinusHandler_1,
           pwr_save_callback = block_control_buttons_actions.save_power_handler_1
 
@@ -172,7 +172,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
   })
 
   // Обработчики для input полей
-  if (exiter_input_list.length > 0) exiter_input_list.forEach(input_wrap => {
+  if (exiter_1_input_list.length > 0) exiter_1_input_list.forEach(input_wrap => {
 
     // Находим элемент text среди дочерних узлов
     let inner_text = null;
@@ -419,9 +419,9 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
     }
   })
         
-  // Обработчик для exiter_pwr кнопки
-  if (exiter_pwr_button) {
-    exiter_pwr_button.addEventListener("click", function () {
+  // Обработчик для exiter_1_pwr кнопки
+  if (exiter_1_pwr_button) {
+    exiter_1_pwr_button.addEventListener("click", function () {
       supply_handling_callback(clickHandler)
     })
   }
@@ -634,6 +634,7 @@ const block_control_buttons_actions = {
   }
 }
 
+// без авр(САР)
 function block_control_svg_event_editing(svg, data_svg, clickHandler) {
 
   const exiter_buttons_list = svg.querySelectorAll(`#exiter g[id$="control_buttons"] g[id$="button"]`),
