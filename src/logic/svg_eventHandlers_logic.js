@@ -48,8 +48,8 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
         exiter_2_buttons_list = svg.querySelectorAll(`#exiter_2 g[id$="control_buttons"] g[id$="button"]`),
         amp_1_buttons_list = svg.querySelectorAll(`#amplifier_group_1 g[id$="control_buttons"] g[id$="button"]`),
         amp_2_buttons_list = svg.querySelectorAll(`#amplifier_group_2 g[id$="control_buttons"] g[id$="button"]`),
-        exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_power_button`),
-        exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_power_button`),
+        exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_1_power_button`),
+        exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_2_power_button`),
         exiter_1_input_list = svg.querySelectorAll(`#exiter_1 g[id*="val_wrap"]`),
         exiter_2_input_list = svg.querySelectorAll(`#exiter_2 g[id*="val_wrap"]`),
         ping_input_list = svg.querySelectorAll(`g[id*="check_amp_network"]`),
@@ -378,8 +378,11 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
     input_wrap.append(text_input)
   })
 
-  const supply_handling_callback = block_control_buttons_actions.supply_handler
+  const supply_handling_callback_1 = block_control_buttons_actions.supply_handler_1
+  const supply_handling_callback_2 = block_control_buttons_actions.supply_handler_2
 
+    // console.log('supply_handling_callback',supply_handling_callback)
+    // console.log('______________________________________--')
   // Обработчики для amp_1 кнопок
   if (amp_1_buttons_list) amp_1_buttons_list.forEach(button => {
     const voltage_handling_callback = block_control_buttons_actions.status_settings_handler,
@@ -422,13 +425,13 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
   // Обработчик для exiter_1_pwr кнопки
   if (exiter_1_pwr_button) {
     exiter_1_pwr_button.addEventListener("click", function () {
-      supply_handling_callback(clickHandler)
+      supply_handling_callback_1(clickHandler)
     })
   }
 
   if (exiter_2_pwr_button) {
     exiter_2_pwr_button.addEventListener("click", function () {
-      supply_handling_callback(clickHandler)
+      supply_handling_callback_2(clickHandler)
     })
   }
 
@@ -546,6 +549,32 @@ const block_control_buttons_actions = {
     const request_obj = {
       address: 'status_graph_settings.cgi',
       data: `exiter$1;supply$1`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      reducer: reducers.transmitter,
+    }
+
+    clickHandler(request_obj)
+  },
+    supply_handler_1: (clickHandler) => {
+    const request_obj = {
+      address: 'status_graph_settings.cgi',
+      data: `exiter$1;supply$1`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      reducer: reducers.transmitter,
+    }
+
+    clickHandler(request_obj)
+  },
+    supply_handler_2: (clickHandler) => {
+    const request_obj = {
+      address: 'status_graph_settings.cgi',
+      data: `exiter$2;supply$1`,
       notifications: {
         good: 'default',
         bad: 'default'
