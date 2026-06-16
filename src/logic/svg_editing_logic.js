@@ -153,6 +153,29 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
       }
     })
   }
+  
+ const temp_group_list = svg.querySelector(`#cap g#cap_temp`)
+const exiter_type = data_svg?.cap?.input_exiter_type
+
+if (temp_group_list) {
+  const groups = temp_group_list.querySelectorAll('g')
+  groups.forEach(group => {
+    group.style.visibility = "hidden"
+  })
+  
+  switch (exiter_type) {
+    case "0":
+      const mainGroup = temp_group_list.querySelector('g[id*="main"]')
+      if (mainGroup) mainGroup.style.visibility = "visible"
+      break;
+    case "1":
+      const resGroup = temp_group_list.querySelector('g[id*="res"]')
+      if (resGroup) resGroup.style.visibility = "visible"
+      break;    
+    default:
+      break;
+  }
+}
 
   // Получаем активный режим из data_svg.cap
   const active_control_mode = data_svg?.cap?.active_control_mode
@@ -361,8 +384,6 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
     }
      const input_switch_button = block.querySelector('g[id*="mode_switch"]')
 
-      // const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
-      // console.log('auth_level',auth_level)
     if (active_control_mode == 0 || auth_access < 0) {
       input_switch_button.style = "visibility: hidden"
     } else {
@@ -379,15 +400,15 @@ function block_control_avr_svg_editing(svg, data_svg, auth_access) {
       switch_background.style = "fill: #7ADC47"
       input_mode_device_icon[1].style = "fill: #7ADC47"
       input_mode_device_icon[0].style = "fill: #e74c3c"
-      input_res_path.style.visibility = 'hidden'
-      input_primary_path.style.visibility = "visible"
+      // input_res_path.style.visibility = 'hidden'
+      // input_primary_path.style.visibility = "visible"
 
     } else if (input_mode == "2") {
       switch_background.style = "fill: #e74c3c"
       input_mode_device_icon[1].style = "fill: #e74c3c"
       input_mode_device_icon[0].style = "fill: #7ADC47"
-      input_res_path.style.visibility = 'visible'
-      input_primary_path.style.visibility = 'hidden'
+      // input_res_path.style.visibility = 'visible'
+      // input_primary_path.style.visibility = 'hidden'
     } else {
       input_res_path.style.visibility = "hidden"
       input_primary_path.style.visibility = "hidden"
