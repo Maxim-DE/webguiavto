@@ -77,7 +77,7 @@ function StatusSection(props) {
 
         if (GRAPH_MODE_TEST) {
           let request_obj = {
-            address: 'static/media/status_graph/re_amp_1000.svg',
+            address: 'static/media/status_graph/re_amp_2000.svg',
             // address: 'static/media/status_graph/block_control_st_1000.svg',
             type: 'text',
             options: 'localhost',

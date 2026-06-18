@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import './index.css'
 
-
 import { MdOutlineExposurePlus2 } from 'react-icons/md'
 import { TbPlus } from 'react-icons/tb'
 import { TbMinus } from 'react-icons/tb'
@@ -19,21 +18,6 @@ import { cloneDeep } from 'lodash';
 
 function FormInput(
   {
-    // id, 
-    // name, 
-    // type, 
-    // className,
-    // input_value,
-    // style,
-    // disabled,
-    // placeholder,
-    // changeHandler,
-    // stateHandler,
-    // variants,
-    // step,
-    // max,
-    // min,
-    // validators
     ...props
   }
 ) {
@@ -59,7 +43,7 @@ function FormInput(
     let is_modal_open = openModal;
 
     if (is_modal_open == true &&
-        addInput_ref.current != null) {
+      addInput_ref.current != null) {
       setTimeout(() => {
         addInput_ref.current.focus()
       }, 100)
@@ -71,7 +55,7 @@ function FormInput(
 
     if (props.formValidHandler) {
       props.formValidHandler({
-        id: props.name, 
+        id: props.name,
         valid_status: !hasInputValidError
       })
     }
@@ -102,7 +86,7 @@ function FormInput(
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    if(target.type == 'text') {
+    if (target.type == 'text') {
       target.value = target.value.replace(/,/g, '.')
     }
 
@@ -117,25 +101,25 @@ function FormInput(
     event.preventDefault()
 
     const target = event.currentTarget,
-          name = target.name
+      name = target.name
 
     let letters_regex = /[A-Za-z]+/g;
-          
+
     let target_data = name.split('_'),
-        action = target_data[0],
-        action_value = target_data[2] != undefined ? Number(target_data[2]) : 1,
-        round_digits = roundDigits(action_value)
-    
+      action = target_data[0],
+      action_value = target_data[2] != undefined ? Number(target_data[2]) : 1,
+      round_digits = roundDigits(action_value)
+
     console.log(target_data);
 
     if (typeof props.input_value == 'string') {
       if (props.input_value.match(letters_regex) ||
-          props.input_value.match(/,/)) {
+        props.input_value.match(/,/)) {
         toast.error('Неправильный тип данных для изменения', { autoClose: 1500 })
 
         const corrected_value = Number(props.input_value.replace(letters_regex, '').replace(/,/, '.'))
 
-        props.statusHandler(prevState => ({
+        props.stateHandler(prevState => ({
           ...prevState,
           [props.name]: corrected_value
         }))
@@ -152,22 +136,21 @@ function FormInput(
       output_value = (output_value + action_value).toFixed(round_digits)
     }
 
-    if (props.max ||  props.min) {
+    if (props.max || props.min) {
       if (output_value > Number(props.max)) {
         output_value = Number(props.max)
       } else if (output_value < Number(props.min)) {
         output_value = Number(props.min)
       }
-      
+
     }
 
-    props.statusHandler(prevState => ({
+    props.stateHandler(prevState => ({
       ...prevState,
       [props.name]: output_value
     }))
-    
-  }
 
+  }
 
   const modal_clickHandler = (event) => {
     let is_modal_open = openModal;
@@ -176,8 +159,8 @@ function FormInput(
 
   const onBlur_addInput_handler = (event) => {
     const is_modal_open = openModal,
-          isExpandButtonPressed = event.relatedTarget && 
-                                  event.relatedTarget.className.includes("text_large_expand_input")
+      isExpandButtonPressed = event.relatedTarget &&
+        event.relatedTarget.className.includes("text_large_expand_input")
 
     if (!isExpandButtonPressed && is_modal_open) {
       setOpenModal(false)
@@ -212,7 +195,7 @@ function FormInput(
           maxLength={props.max_length}
           onBlur={handleBlur}
           data-error={!!isError}
-          />
+        />
       </div>
     )
   } else if (props.type == "password") {
@@ -269,35 +252,7 @@ function FormInput(
         />
       </div>
     )
-  } 
-  // else if (props.type == "text_range") {
-  //   const value_range = inputValue.split(',')
-  //   return (
-      // <div
-      //   className="text_range_container"
-        // id={props.id}
-        // name={props.name}
-      // >
-      //   <span>от</span>
-      //   <input
-      //     type="text"
-      //     className="text_range"
-      //     onChange={handleChange}
-      //     data-range="0"
-      //     value={value_range[0]}
-      //   />
-      //   <span>до</span>
-      //   <input
-      //     type="text"
-      //     className="text_range"
-      //     data-range="1"
-      //     onChange={handleChange}
-      //     value={value_range[1]}
-      //   />
-      // </div>
-  //   )
-  // } 
-
+  }
   else if (props.type == "text_buttons") {
     return (
       <div className="text_buttons_container">
@@ -307,16 +262,7 @@ function FormInput(
             type={'error'}
             tooltip_text={isError} />
         }
-        {/* <button 
-          className='button_input plus_minus'
-          name='minus_value_3'
-          onClick={(e) => {
-            plusMinusHandler(e, props.name)
-          }}>
-          <TbMinus />
-          3
-        </button> */}
-        <button 
+        <button
           className='button_input plus_minus'
           name={`minus_value_${props.step}`}
           onClick={(e) => {
@@ -335,7 +281,7 @@ function FormInput(
           max={props.max}
           min={props.min}
         />
-        <button 
+        <button
           className='button_input plus_minus'
           name={`plus_value_${props.step}`}
           onClick={(e) => {
@@ -343,70 +289,57 @@ function FormInput(
           }}>
           <TbPlus />
         </button>
-        {/* <button 
-          className='button_input plus_minus'
-          name='plus_value_3'
-          onClick={(e) => {
-            plusMinusHandler(e, props.name)
-          }}>
-          <TbPlus />
-          3
-        </button> */}
       </div>
     )
-  } 
-
+  }
   else if (props.type == "text_large") {
-
     return (
       <>
-      <div className='text_large_container'>
-        {isError &&
-          <InputTooltip
-            id={props.id}
-            type={'error'}
-            tooltip_text={isError} />
-        }
-        <input
-          id={props.id}
-          name={props.name}
-          type="text"
-          className={`text_large_not_expanded ${isError && 'error_input'}`}
-          value={props.input_value}
-          onChange={handleChange}
-          maxLength={props.max_length}
-        />
-        <input 
-            className='text_large_expand_input button_input'
-          type="button" 
-          value="..."
-          onClick={modal_clickHandler} />
-        <div 
-          className={`text_large_expanded_wrap ${isError && 'error_input'}`}
-          style={{ 
-            // display: openModal ? 'block' : 'block' ,
-            margin: openModal ? '30px 0 0 -212px' : '16px 0 0 -212px',
-            visibility: openModal ? 'visible' : 'hidden',
-            opacity: openModal ? '1' : '0'
-          }}>
+        <div className='text_large_container'>
+          {isError &&
+            <InputTooltip
+              id={props.id}
+              type={'error'}
+              tooltip_text={isError} />
+          }
           <input
             id={props.id}
             name={props.name}
             type="text"
-            className='text_large_expanded'
+            className={`text_large_not_expanded ${isError && 'error_input'}`}
             value={props.input_value}
-            ref={addInput_ref}
             onChange={handleChange}
-            onBlur={(e) => { onBlur_addInput_handler(e) }}
             maxLength={props.max_length}
           />
+          <input
+            className='text_large_expand_input button_input'
+            type="button"
+            value="..."
+            onClick={modal_clickHandler} />
+          <div
+            className={`text_large_expanded_wrap ${isError && 'error_input'}`}
+            style={{
+              margin: openModal ? '30px 0 0 -212px' : '16px 0 0 -212px',
+              visibility: openModal ? 'visible' : 'hidden',
+              opacity: openModal ? '1' : '0'
+            }}>
+            <input
+              id={props.id}
+              name={props.name}
+              type="text"
+              className='text_large_expanded'
+              value={props.input_value}
+              ref={addInput_ref}
+              onChange={handleChange}
+              onBlur={(e) => { onBlur_addInput_handler(e) }}
+              maxLength={props.max_length}
+            />
+          </div>
         </div>
-      </div>
       </>
     )
-  } 
+  }
   else if (props.type == "text_large_split") {
-
     return (
       <>
         <div className='text_large_container'>
@@ -450,7 +383,7 @@ function FormInput(
         </div>
       </>
     )
-  } 
+  }
   else if (props.type == "select") {
     return (
       <select
@@ -461,21 +394,17 @@ function FormInput(
         disabled={props.disabled}
         value={props.input_value}
       >
-      {props.variants &&
-        props.variants.map((item, index) => {
-          if (typeof item != 'undefined') {
-            return (
-              <option 
-                key={index}
-                value={index}>{item}</option>
-            ) 
-          }
-        })
-      }
-        {/* <option value='1'>4564</option>
-        <option value='2'>456</option>
-        <option value='3'>45</option>
-        <option value='4'>4</option> */}
+        {props.variants &&
+          props.variants.map((item, index) => {
+            if (typeof item != 'undefined') {
+              return (
+                <option
+                  key={index}
+                  value={index}>{item}</option>
+              )
+            }
+          })
+        }
       </select>
     )
   } else if (props.type == "text_sample") {
@@ -485,9 +414,8 @@ function FormInput(
         {props.input_value}
       </span>
     )
-  } 
+  }
   else if (props.type == "slider") {
-    // const value_range = props.input_value.split(',')
     return (
       <div className="form_input_wrap">
         {isError &&
@@ -499,9 +427,7 @@ function FormInput(
         <div
           className="slider_container"
           id={props.id}>
-          {/* <span>{value_range[0]}</span> */}
           <span>{props.input_value}</span>
-
           <input
             id={props.id}
             name={props.name}
@@ -517,7 +443,6 @@ function FormInput(
         </div>
       </div>
     )
-    
   } else if (props.type == "button") {
     return (
       <button
@@ -532,9 +457,102 @@ function FormInput(
         {props.label}
       </button>
     )
-  }
+  } else if (props.type == "button_arrow") {
+    // Настройка автоповтора для кнопки
+    const intervalRef = React.useRef(null);
+    const timeoutRef = React.useRef(null);
+    const clickHandlerRef = React.useRef(props.clickHandler);
+    const propsRef = React.useRef(props);
 
-  else if (props.type == "custom") {
+    // Обновляем ref при изменении пропсов
+    React.useEffect(() => {
+      clickHandlerRef.current = props.clickHandler;
+      propsRef.current = props;
+    }, [props.clickHandler, props]);
+
+    // Очистка интервалов при размонтировании
+    React.useEffect(() => {
+      return () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      };
+    }, []);
+
+    const executeClick = (e) => {
+      if (clickHandlerRef.current) {
+        // Создаем синтетическое событие с необходимыми полями
+        const syntheticEvent = {
+          ...e,
+          target: {
+            ...e?.target,
+            name: propsRef.current.name,
+            value: propsRef.current.value
+          },
+          preventDefault: () => { },
+          stopPropagation: () => { }
+        };
+        clickHandlerRef.current(syntheticEvent);
+      }
+    };
+
+    const handleMouseDown = (e) => {
+      e.preventDefault();
+
+      // Вызываем onClick сразу при нажатии
+      executeClick(e);
+
+      // Таймер для определения долгого нажатия
+      timeoutRef.current = setTimeout(() => {
+        // Запускаем интервал для автоповтора
+        intervalRef.current = setInterval(() => {
+          executeClick(e);
+        }, 100);
+      }, 500);
+    };
+
+    const handleMouseUp = (e) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+
+    const handleMouseLeave = (e) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+
+    // Используем ту же структуру, что и для обычной кнопки
+    return (
+      <button
+        id={props.id}
+        name={props.name}
+        title={props.title}
+        className={`button_input ${props.class != undefined && props.class} ${props.disabled && 'disabled_input'}`}
+        disabled={props.disabled}
+        type="button"
+        style={props.style}
+        onClick={executeClick}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseDown}
+        onTouchEnd={handleMouseUp}
+      >
+        {props.label}
+      </button>
+    )
+  } else if (props.type == "custom") {
     return custom_inputs[props.id](handleChange, props.input_value, props.id)
   }
 }

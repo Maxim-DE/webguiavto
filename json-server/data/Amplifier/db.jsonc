@@ -31,7 +31,7 @@
   },
   "auth_info": {
     "auth_id": "super_admin",
-    "auth_level": 3                 //  3- супер админ 2- админ 1 - user
+    "auth_level": 3                //  3- супер админ 2- админ 1 - user
   }
 },
 //Запрос на параметры (на картинке)
@@ -427,11 +427,11 @@
       10
     ],
     "dac_value": [
-      2000,
+      3000,
       1
     ],
     "dac_admin_value": [
-      2000,
+      1000,
       1
     ],
     "dac_threshold": [
