@@ -76,7 +76,7 @@ function Status_graphs(props) {
       }
 
       for (const item in graph_block_data) {
-        const skipKeys = ['active_control_mode', 'other_skip_key'];
+        const skipKeys = ['active_control_mode','input_exiter_type', 'other_skip_key'];
           if (skipKeys.includes(item)) {
             continue;
         }

@@ -345,7 +345,7 @@
         ]
       },
       "cap": {
-        "input_exiter_type": "0",
+        "input_exiter_type": 0,
         "temp_main_exiter": [
           42,
           1,
@@ -358,6 +358,7 @@
           0,
           "°C"
         ],
+        "input_signal_type": 1,
         "input_pwr": [
           54,
           1,
