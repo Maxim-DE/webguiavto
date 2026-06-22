@@ -109,7 +109,7 @@ export default function Snmp_agent(props) {
             type="text" />
         </div>
       </li>
-      <li
+      {/* <li
         key='mib_file_download'
         id='mib_file_download'
         className="settings_item">
@@ -128,7 +128,7 @@ export default function Snmp_agent(props) {
             clickHandler={clickHandler_mibDownload}
             type="button" />
         </div>
-      </li>
+      </li> */}
     </SettingsBlockWrap>
   )
 }

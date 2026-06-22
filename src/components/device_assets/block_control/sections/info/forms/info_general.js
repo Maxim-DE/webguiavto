@@ -18,7 +18,7 @@ export default function Info_general(props) {
   const upTime = status_info_store?.UpTime
 
   const [infoGeneralState, setInfoGeneralState] = React.useState({
-    serial_number: 'N/A',
+    // serial_number: 'N/A',
     plate_number: 'N/A',
     plate_version: 'N/A',
     memory_type: 'N/A'
