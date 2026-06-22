@@ -415,7 +415,6 @@ if (temp_group_list) {
 
   })
 
-  // console.log('current_signal_path',store.globalStore.global_data.status_data.status_info?.current_signal_path)
   const current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
    const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
   const input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]')
