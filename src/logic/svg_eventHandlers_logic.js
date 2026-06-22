@@ -561,7 +561,7 @@ const block_control_buttons_actions = {
     supply_handler_1: (clickHandler) => {
     const request_obj = {
       address: 'status_graph_settings.cgi',
-      data: `exiter$1;supply$1`,
+      data: `exiter_1$1;supply$1`,
       notifications: {
         good: 'default',
         bad: 'default'
@@ -574,7 +574,7 @@ const block_control_buttons_actions = {
     supply_handler_2: (clickHandler) => {
     const request_obj = {
       address: 'status_graph_settings.cgi',
-      data: `exiter$2;supply$1`,
+      data: `exiter_2$1;supply$1`,
       notifications: {
         good: 'default',
         bad: 'default'
