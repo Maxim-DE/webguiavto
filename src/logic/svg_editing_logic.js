@@ -1,5 +1,6 @@
 import { status_colors } from "../components/graph_blocks"
 import { filter_obj } from "./utilites"
+import { store } from "../store/store"
 
 export default function svg_editing_logic(svg, data_svg, device_type, is_exist_avr, clickHandler, auth_access) {
   switch (true) {
@@ -346,14 +347,11 @@ if (temp_group_list) {
         break;
       case "КСС":
         signal_primary_group_list[2].style = "visibility: visible"
-
         break;
-  
       case "AES":
         signal_primary_group_list[3].style = "visibility: visible"
         signal_primary_group_list[4].style = "visibility: visible"
       break;
-    
       default:
         break;
     }
@@ -401,21 +399,59 @@ if (temp_group_list) {
       switch_background.style = "fill: #7ADC47"
       input_mode_device_icon[1].style = "fill: #7ADC47"
       input_mode_device_icon[0].style = "fill: #e74c3c"
-      // input_res_path.style.visibility = 'hidden'
-      // input_primary_path.style.visibility = "visible"
+      input_res_path.style.visibility = 'hidden'
+      input_primary_path.style.visibility = "visible"
 
     } else if (input_mode == "2") {
       switch_background.style = "fill: #e74c3c"
       input_mode_device_icon[1].style = "fill: #e74c3c"
       input_mode_device_icon[0].style = "fill: #7ADC47"
-      // input_res_path.style.visibility = 'visible'
-      // input_primary_path.style.visibility = 'hidden'
+      input_res_path.style.visibility = 'visible'
+      input_primary_path.style.visibility = 'hidden'
     } else {
       input_res_path.style.visibility = "hidden"
       input_primary_path.style.visibility = "hidden"
     }
 
   })
+
+  // console.log('current_signal_path',store.globalStore.global_data.status_data.status_info?.current_signal_path)
+  const current_signal_path = store.getState().globalStore.global_data.status_data.status_info?.current_signal_path
+   const signal_paths_list = svg.querySelectorAll(`g[id*="signal_path"]`)
+  const input_blocks_list = svg.querySelectorAll('#layer_1 > g[id*="input"]')
+
+  signal_paths_list.forEach(path => {
+    path.style.display = 'none'
+  })
+
+  const signal_path_layer = svg.querySelector(`g[id*="layer_3"]`),
+        signal_path_colors = [
+          "#FE5F55",
+          "#7D83FF",
+          "#6C534E",
+          "#0A2463",
+          "#F49F0A"
+        ]
+
+  if (Array.isArray(current_signal_path)) {
+    current_signal_path.forEach((path, index) => {
+      handlePathDisplay(signal_path_layer, path, index)
+      handlePathColor(signal_path_layer, path, signal_path_colors[index])
+
+      const path_input_descr = path[0],
+      required_input = input_blocks_list[path_input_descr]
+      if (!required_input) {
+        return;
+      }
+      const input_path_display_list = required_input.querySelectorAll('path[id*="path_display"]')
+
+      input_path_display_list.forEach(path => {
+        path.style.stroke = signal_path_colors[index]
+      })
+    });
+  } else {
+    handlePathDisplay(signal_path_layer, current_signal_path)
+  }
 
   return svg
 }
@@ -515,4 +551,28 @@ function block_control_svg_editing(svg, data_svg, auth_access) {
   }
 
   return svg
+}
+
+function handlePathDisplay(signal_paths_list, current_signal_path, index) {
+  if (signal_paths_list && current_signal_path) {
+    const current_path_str = current_signal_path
+
+    const required_path = signal_paths_list.querySelector(`g[id *= "${current_path_str}"]`)
+    if (required_path) {
+      required_path.style.display = 'block'
+    }
+  }
+}
+
+function handlePathColor(signal_paths_list, current_signal_path, path_color) {
+  if (current_signal_path) {
+
+    const current_path_str = current_signal_path
+    const required_path = signal_paths_list.querySelector(`g[id *= "${current_path_str}"]`)
+    
+    if (required_path) {
+      required_path.children[0].style.stroke = path_color
+      required_path.children[1].style.stroke = path_color
+    }
+  }
 }
