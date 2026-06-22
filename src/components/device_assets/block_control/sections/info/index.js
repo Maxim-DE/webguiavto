@@ -4,6 +4,9 @@ import SettingsSectionWrap from '../../../../settings_section_wrap'
 
 // import Time_settings from './forms/time_settings'
 import Info_general from './forms/info_general';
+import Info_amplifire from './forms/info_amplifire';
+import Info_exiter from './forms/info_exiter';
+import Info_cap from './forms/info_cap';
 import Software_version from './forms/software_version';
 import { reducers } from '../../../../../store/reducers/core_store_reducers';
 import Reset_Info from './forms/reset';
@@ -52,6 +55,15 @@ export default function InfoSection(props) {
         // settings_data={props.section_data === 'null' ?
         //   'null'
         //   : props.section_data.software_version}
+        clickHandler={updateHandler} />
+      <Info_exiter 
+        section_name="info"
+        clickHandler={updateHandler} />
+      <Info_cap 
+        section_name="info"
+        clickHandler={updateHandler} />
+      <Info_amplifire 
+        section_name="info"
         clickHandler={updateHandler} />
       {auth_store.auth_access.calib_extend &&
         <Reset_Info

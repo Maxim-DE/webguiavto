@@ -1,7 +1,7 @@
 {
   "info.cgi": {
     "info_general": {
-      "serial_number": "XXXXX",
+      "serial_number": "26asd",
       "model": 0,
       "IsExistAvr": 1,                //0- Отсутствует АВР  1- присутствует АВР 1+1
       "device_type_list": [
@@ -14,6 +14,22 @@
       "time_failure_on": "missing",
       "time_failure_off": "missing",
       "memory_type": "W25Q32"
+    },
+    "info_amplifire": {
+      "serial_number_amplifire_1": "26111",
+      "software_amplifire_1_version": "Amplifier_v3.3.71",
+      "serial_number_amplifire_2": "26222",
+      "software_amplifire_2_version": ""
+    },
+    "info_exiter": {
+      "serial_number_exiter_1": "26111",
+      "software_exiter_1_version": "RadioExiter_v1.102.0",
+      "serial_number_exiter_2": "",
+      "software_exiter_2_version": "RadioExiter_v1.102.0"
+    },
+    "info_cap": {
+      "serial_number_cap": "26CAP",
+      "software_cap_version": "ATS-1-1_Firmware_v1.1.0"
     },
     "software_version": {
       "os_version": "BlockControl_v2.13.43",
