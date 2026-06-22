@@ -89,14 +89,14 @@ async function fetch_data(req_obj) {
   const options = request.options;
   const data = request.data ? `?${request.data}` : '';
 
-  let test_url = `http://localhost:${GRAPH_MODE_TEST_PORT}`;
+  let test_url = `:${GRAPH_MODE_TEST_PORT}`;
   let url = `${GRAPH_MODE_TEST ? test_url : main_url}${host}/${query}${data}`;
 
   const retries_num = request.retries ? request.address : 0
   
     if (typeof options !== 'undefined') {
     if (options != null) {
-      if (options == 'localhost') {
+      if (options == '') {
         url = `${main_url}${host}/${query}${data}`;
       }
     }
