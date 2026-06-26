@@ -7,6 +7,8 @@ import useGlobalStore from '../../../logic/auth_store';
 import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import { reducers as coreReducers } from '../../../store/reducers/core_store_reducers';
 import { useSelector } from 'react-redux';
+// import useSectionStore from '../../logic/sectionsRefs_store';
+
 
 function GeneralCalibSettings_BC(props) {
   const calibGeneral_store = useSelector((store) => store.globalStore.global_data.calib_state.data?.calib_general),
@@ -21,7 +23,9 @@ function GeneralCalibSettings_BC(props) {
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
-
+const section_store = useSelector((store) => store.globalStore.global_data.section_data)
+// console.log('section_store',section_store)
+// console.log('section_store.info.info_general.IsExistAvr',section_store.info.info_general.IsExistAvr)
   React.useEffect(() => {
     if (!calibGeneral_store) {
       return
@@ -69,7 +73,18 @@ function GeneralCalibSettings_BC(props) {
   
     props.clickHandler(request_obj);
   }
+  
+ const handleChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name.replace('_calib', '')
 
+    setGeneralCalibState(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+  
   const handleClick_save = (event) => {
       const target = event.target,
             name = target.name.replace('_calib', ''),
@@ -175,6 +190,42 @@ function GeneralCalibSettings_BC(props) {
       <li className="group_divider"></li>
       </>
       }
+      {section_store.info.info_general.IsExistAvr ===1 &&
+       <li
+        key='input_signal_type_calib'
+        id='input_signal_type_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`input_signal_type_calib_input`}
+            className="settings_itemLabel">
+            Тип вход. сигнала
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`input_signal_type_calib_input`}
+            name={`input_signal_type_calib`}
+            type='select'
+            input_value={generalCalibState.input_signal_type}
+            title='Тип сигнала'
+            variants={[
+              'Stereo',
+              'L',
+              'R',
+              'КСС',
+              'AES'
+            ]}
+            changeHandler={handleChange} />
+          <FormInput
+            id={`input_signal_type_calib_save`}
+            name={`input_signal_type_calib`}
+            clickHandler={handleClick_save}  // без обертки, передаем саму функцию
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>    
+      } 
       <li
         key='watchdog_calib'
         id='watchdog_calib'

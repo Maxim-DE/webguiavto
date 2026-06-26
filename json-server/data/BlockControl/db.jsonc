@@ -212,7 +212,7 @@
         "swr": [1.15, 1, 0],
         "refl_pwr": [1, 1, 0, "Вт"],
         "active_control_mode": 0,
-        "signal_type": [[[-999, 10, 0, "дБ"], [-999, 10, 0, "дБ"]]],
+        "signal_type": [[[-999, 10, 0, "дБ"]]],
         // "output_signal_type": [[[0, 10, 0, "дБ"], [0, 10, 0, "дБ"]]]
       },
           "output" : {
@@ -550,7 +550,7 @@
       "calib_defence": 1,
       "device_serial_num": "XXXXX",
       "device_type": 0,
-      "IsExistAvr": 0
+      "IsExistAvr": 1
     },
     "calib_power": {
       "output_power": [4000, 1],
@@ -584,7 +584,8 @@
       "tftp": 1,
       "watchdog": 1,
       "message_lcd": 1,
-      "controller": 0
+      "controller": 0,
+      "input_signal_type": 0
     },
     "calib_modbus": {
       "master_form_availiable": 1,

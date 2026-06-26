@@ -316,6 +316,7 @@ function WattageAdditionalCalibSettings_BC(props) {
             id={`ballast_1_calib_save`}
             name={`ballast_1_calib`}
             type="button"
+            label='Сохранить'
             value={'Сохранить'}
             disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
             clickHandler={handleClick_ballast} />
@@ -363,6 +364,7 @@ function WattageAdditionalCalibSettings_BC(props) {
           id={`ballast_1_threshold_save_calib`}
           name={`ballast_1_threshold_calib`}
           type="button"
+          label='Сохранить'
           value={'Сохранить'}
           disabled={!wattageAdditionalCalibState.ballast_1_avaliable}
           clickHandler={handleClick_threshold_save} />

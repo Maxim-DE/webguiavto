@@ -412,12 +412,6 @@
               10,
               0,
               "дБ"
-            ],
-            [
-              -999,
-              10,
-              0,
-              "дБ"
             ]
           ]
         ]
@@ -826,7 +820,7 @@
       "calib_defence": 1,
       "device_serial_num": "XXXXX",
       "device_type": 0,
-      "IsExistAvr": 0
+      "IsExistAvr": 1
     },
     "calib_power": {
       "output_power": [
@@ -893,7 +887,8 @@
       "tftp": 1,
       "watchdog": 1,
       "message_lcd": 1,
-      "controller": 0
+      "controller": 0,
+      "input_signal_type": 0
     },
     "calib_modbus": {
       "master_form_availiable": 1,
