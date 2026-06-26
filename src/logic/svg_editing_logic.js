@@ -1,6 +1,6 @@
 import React from 'react'
 import { status_colors } from "../components/graph_blocks"
-import { store } from "../store/store"
+  import { store } from "../store/store"
 import { filter_obj, getRandomColor } from "./utilites"
 import useGlobalStore from './auth_store';
 import { useSelector } from 'react-redux'
@@ -258,14 +258,11 @@ function avr_svg_editing(svg, data_svg) {
         break;
       case "КСС":
         signal_primary_group_list[2].style = "visibility: visible"
-
         break;
-  
       case "AES":
         signal_primary_group_list[3].style = "visibility: visible"
         signal_primary_group_list[4].style = "visibility: visible"
       break;
-    
       default:
         break;
     }
@@ -277,30 +274,21 @@ function avr_svg_editing(svg, data_svg) {
     switch (res_signal_type) {
       case "L":
         signal_res_group_list[0].style = "visibility: visible"
-
         break;
-
       case "R":
         signal_res_group_list[1].style = "visibility: visible"
-
         break;
-
       case "STEREO":
         signal_res_group_list[0].style = "visibility: visible"
         signal_res_group_list[1].style = "visibility: visible"
-
         break;
-
       case "КСС":
         signal_res_group_list[2].style = "visibility: visible"
-
         break;
-
       case "AES":
         signal_res_group_list[3].style = "visibility: visible"
         signal_res_group_list[4].style = "visibility: visible"
         break;
-
       default:
         break;
     }
@@ -349,14 +337,7 @@ function handlePathDisplay(signal_paths_list, current_signal_path, index) {
     const required_path = signal_paths_list.querySelector(`g[id *= "${current_path_str}"]`)
     if (required_path) {
       required_path.style.display = 'block'
-  
-        // if (index && index > 0) {
-        //   const path_color = getRandomColor()
-        //   required_path.children[0].style.stroke = path_color
-        //   required_path.children[1].style.stroke = path_color
-        // }
     }
-    // })
   }
 }
 

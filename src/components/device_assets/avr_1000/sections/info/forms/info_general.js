@@ -19,25 +19,22 @@ export default function Info_general(props) {
     plate_number: 'N/A',
     plate_version: 'N/A',
   })
+  // console.log('infoGeneralState.plate_number_main_exiter',infoGeneralState.plate_number_main_exiter)
 
   React.useEffect(() => {
     if (infoGeneral_store != 'null' && infoGeneral_store) {
       let settings_state_copy = infoGeneralState
-
       for (const key in infoGeneral_store) {
-        
         if (infoGeneral_store[key].length === 0) {
           settings_state_copy[key] = 'N/A'
           continue
         }
-
         settings_state_copy[key] = infoGeneral_store[key]
       }
-
       setInfoGeneralState(settings_state_copy)
     }
   }, [infoGeneral_store])
-
+  // console.log('infoGeneralState.plate_number_main_exiter',infoGeneralState.plate_number_main_exiter)
   return (
     <SettingsBlockWrap
       header={'общее'}

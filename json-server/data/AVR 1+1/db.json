@@ -401,7 +401,6 @@
     },
     "slave_add_general": {
       "radio_label": "Радио Россия",
-      "scheduler_enable": 1,
       "reserve_enable": 1,
       "reserve_sound_enable": 1
     },

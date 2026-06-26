@@ -405,7 +405,7 @@
       },
       "slave_add_general": {
         "radio_label": "Радио Россия",
-        "scheduler_enable": 1,
+        // "scheduler_enable": 1, раскоментировать при вкл расписании 
         "reserve_enable": 1,
         "reserve_sound_enable": 1
 

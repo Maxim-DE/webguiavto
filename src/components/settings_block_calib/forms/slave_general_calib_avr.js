@@ -137,6 +137,34 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
       {/* section_name={props.section_name}
       save_handler={handleClick_save}
       disable_save={!isFormValid} > */}
+            <li
+        key='turn_on_timeout_calib'
+        id='turn_on_timeout_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`turn_on_timeout_calib_input`}
+            className="settings_itemLabel">
+            Время вкл. уст-ва в сеть, сек
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`turn_on_timeout_calib_input`}
+            name={`turn_on_timeout_calib`}
+            changeHandler={handleChange}
+            placeholder='мсек'
+            input_value={generalCalibState.turn_on_timeout}
+            style={{ margin: '0', maxWidth: '75px' }}
+            type="text" />
+          <FormInput
+            id={`turn_on_timeout_save`}
+            name={`turn_on_timeout`}
+            clickHandler={(event) => handleClick_save('turn_on_timeout', event)}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>
       <li
         key='frequency_calib'
         id='frequency_calib'
