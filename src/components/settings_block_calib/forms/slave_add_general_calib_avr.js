@@ -134,7 +134,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
       </li>
 
       {/* Работа по расписанию */}
-      <li
+      {/* <li
         key='scheduler_enable'
         id='scheduler_enable'
         className="settings_item">
@@ -156,7 +156,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             input_value={generalCalibState.scheduler_enable}
             type="switch" />
         </div>
-      </li>
+      </li> */}
       
       <li
         key='reserve_enable'
