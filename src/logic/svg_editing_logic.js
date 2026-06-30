@@ -190,7 +190,7 @@ if (temp_group_list) {
   if (amp_1_buttons_list) {
     amp_1_buttons_list.forEach((button) => {
       if(active_control_mode !== undefined) {
-        if (auth_level < 1 || active_control_mode == 0) {
+        if (auth_level < 2 || active_control_mode == 0) {
           button.classList.add("disabled_svg_button");
           button.style.opacity = "0.5";
           button.style.pointerEvents = "none";
@@ -220,7 +220,7 @@ if (temp_group_list) {
   if (amp_2_buttons_list) {
     amp_2_buttons_list.forEach((button) => {
       if(active_control_mode !== undefined) {
-        if (auth_level < 1 || active_control_mode == 0) {
+        if (auth_level < 2 || active_control_mode == 0) {
           button.classList.add("disabled_svg_button");
           button.style.opacity = "0.5";
           button.style.pointerEvents = "none";
@@ -248,14 +248,12 @@ if (temp_group_list) {
       }
     })
   }
-  const exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_1_power_button`),
-        exiter_1_status = data_svg?.exiter_1?.status
-  const exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_2_power_button`),
+  const exiter_1_status = data_svg?.exiter_1?.status,
         exiter_2_status = data_svg?.exiter_2?.status
 
   exiter_1_buttons_list.forEach((button) => {
       if(active_control_mode !== undefined) {
-        if (auth_level < 1 || active_control_mode == 0 || exiter_1_status == 0) {
+        if (auth_level < 2 || active_control_mode == 0 || exiter_1_status == 0) {
           button.classList.add("disabled_svg_button");
           button.style.opacity = "0.5";
           button.style.pointerEvents = "none";
@@ -269,7 +267,7 @@ if (temp_group_list) {
 
     exiter_2_buttons_list.forEach((button) => {
       if(active_control_mode !== undefined) {
-        if (auth_level < 1 || active_control_mode == 0||exiter_2_status == 0) {
+        if (auth_level < 2 || active_control_mode == 0||exiter_2_status == 0) {
           button.classList.add("disabled_svg_button");
           button.style.opacity = "0.5";
           button.style.pointerEvents = "none";
@@ -280,43 +278,36 @@ if (temp_group_list) {
         }
       }
   })
+
+  const pwr_buttons_list = svg.querySelectorAll(`g[id$="power_button"]`)
+
+  if (pwr_buttons_list) {
+    pwr_buttons_list.forEach(button => {
+      const device_type = button.id.replace(`_power_button`, ''),
+            button_cover = button.querySelector(`path[id*="btn_cover"]`)
+
+      const exiter_status = data_svg?.[device_type]?.status
+
+      // Меняем цвет кнопки в зависимости от статуса питания
+      if (exiter_status == 1) {
+        button_cover.style.fill = status_colors[0]
+      } else {
+        button_cover.style.fill = status_colors[2]
+      }
+
+      // Убираем любые блокировки с кнопок питания
+      button.style.opacity = "";
+      button.style.pointerEvents = "";
+      button.classList.remove("disabled_svg_button");
       
-  if (exiter_1_status == 1 ) {
-    exiter_1_pwr_button.querySelector('#power_btn_cover_1').style.fill = status_colors[0]
-  } else {
-    exiter_1_pwr_button.querySelector('#power_btn_cover_1').style.fill = status_colors[2]
-  }
-
-  if (exiter_1_input_list.length > 0) exiter_1_input_list.forEach(input_wrap => {
-    let inner_input = input_wrap.querySelector(`input`)
-
-    if (inner_input) {
-      if (auth_access.settings == 0) {
-        inner_input.disabled = true;
+      // Только скрываем/показываем в зависимости от режима управления и уровня авторизации
+      if (active_control_mode == 0 || auth_level < 1) {
+        button.style.display = 'none'
       } else {
-        inner_input.disabled = false;
+        button.style.display = ''
       }
-    }
-  })
-
-  if (exiter_2_status == 1 ) {
-    exiter_2_pwr_button.querySelector('#power_btn_cover_2').style.fill = status_colors[0]
-  } else {
-    exiter_2_pwr_button.querySelector('#power_btn_cover_2').style.fill = status_colors[2]
-  }
-
-  if (exiter_2_input_list.length > 0) exiter_2_input_list.forEach(input_wrap => {
-    let inner_input = input_wrap.querySelector(`input`)
-
-    if (inner_input) {
-      if (auth_access.settings == 0) {
-        inner_input.disabled = true;
-      } else {
-        inner_input.disabled = false;
-      }
-    }
-  })
-  
+    });
+  }  
 
   if (ping_input_list) {
     ping_input_list.forEach((button) => {
