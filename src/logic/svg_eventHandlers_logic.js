@@ -588,7 +588,7 @@ const block_control_buttons_actions = {
   plusMinusHandler_1: (action_type, clickHandler) => {
     const name = action_type
 
-    let output_string = `exiter_main_power_${name}$0`
+    let output_string = `exiter_main_power${name}$0`
 
     const request_obj = {
       address: 'transmitter.cgi',
@@ -606,7 +606,7 @@ const block_control_buttons_actions = {
     plusMinusHandler_2: (action_type, clickHandler) => {
     const name = action_type
 
-    let output_string = `exiter_res_power_${name}$0`
+    let output_string = `exiter_res_power${name}$0`
 
     const request_obj = {
       address: 'transmitter.cgi',

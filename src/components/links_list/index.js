@@ -9,7 +9,7 @@ import { FaAngleLeft, FaAngleRight, FaNetworkWired, FaTools, FaCode } from "reac
 import { IoMdSettings } from "react-icons/io";
 import { RiFileList3Line, RiFileList3Fill } from "react-icons/ri";
 import { HiRss } from "react-icons/hi";
-import { MdOutlineInfo, MdOutlineMiscellaneousServices } from "react-icons/md";
+import { MdSettingsInputComponent, MdOutlineInfo, MdOutlineMiscellaneousServices } from "react-icons/md";
 import { TbDeviceHeartMonitor } from "react-icons/tb";
 
 
@@ -24,6 +24,7 @@ const links_items = [
   { id: 'status', name: "Статус", icon: <HiRss size={30} />, req_access_level: 0 },
   { id: 'settings', name: "Общие настройки", icon: <IoMdSettings size={30} />, req_access_level: 1 },
   { id: 'network', name: "Сетевые настройки", icon: <FaNetworkWired size={30} />, req_access_level: 1 },
+  { id: 'avr', name: "Управление САР", icon: <MdSettingsInputComponent  size={30} />,req_access_level: 1 },
   { id: 'info', name: "Данные об устройстве", 
     icon: <MdOutlineInfo size={30} />, req_access_level: 0 },
   { id: 'userlog', name: "Польз. журнал", icon: <RiFileList3Line size={30} />, req_access_level: 0 },
