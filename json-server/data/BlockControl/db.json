@@ -51,7 +51,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 3
+      "auth_level": 2
     }
   },
   "settings.cgi": {
@@ -404,11 +404,11 @@
           0,
           "Вт"
         ],
-        "active_control_mode": 0,
+        "active_control_mode": 1,
         "signal_type": [
           [
             [
-              -999,
+              1231,
               10,
               0,
               "дБ"

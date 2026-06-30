@@ -51,7 +51,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 3
+      "auth_level": 2
     }
   },
   "settings.cgi": {
@@ -211,8 +211,8 @@
         "mains_voltage": [220.2, 1, 0, "В"],
         "swr": [1.15, 1, 0],
         "refl_pwr": [1, 1, 0, "Вт"],
-        "active_control_mode": 0,
-        "signal_type": [[[-999, 10, 0, "дБ"]]],
+        "active_control_mode": 1,
+        "signal_type": [[[1231, 10, 0, "дБ"]]]
         // "output_signal_type": [[[0, 10, 0, "дБ"], [0, 10, 0, "дБ"]]]
       },
           "output" : {

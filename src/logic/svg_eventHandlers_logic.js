@@ -468,7 +468,7 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
 const avr_buttons_actions = {
   switch_input_mode: (device_index, clickHandler) => {
     const request_obj = {
-      address: 'status_graph_settings.cgi',
+      address: 'switch_input_sound.cgi',
       data: `switch_input_mode$${device_index}`,
       notifications: {
         good: 'default',
@@ -560,7 +560,7 @@ const block_control_buttons_actions = {
   },
     supply_handler_1: (clickHandler) => {
     const request_obj = {
-      address: 'status_graph_settings.cgi',
+      address: 'radio_exiter_control.cgi',
       data: `exiter_1$1;supply$1`,
       notifications: {
         good: 'default',
@@ -573,7 +573,7 @@ const block_control_buttons_actions = {
   },
     supply_handler_2: (clickHandler) => {
     const request_obj = {
-      address: 'status_graph_settings.cgi',
+      address: 'radio_exiter_control.cgi',
       data: `exiter_2$1;supply$1`,
       notifications: {
         good: 'default',

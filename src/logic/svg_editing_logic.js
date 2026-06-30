@@ -181,7 +181,7 @@ if (temp_group_list) {
 
   // Получаем активный режим из data_svg.cap
   const active_control_mode = data_svg?.cap?.active_control_mode
-
+  const auth_level = store.getState().authStore.auth_data.auth_level
   // Применяем подсветку для CAP кнопок
   if (cap_buttons_list && cap_buttons_list.length > 0 && active_control_mode !== undefined) {
     setActiveCAPModeOnSVG(active_control_mode)
@@ -189,21 +189,23 @@ if (temp_group_list) {
         
   if (amp_1_buttons_list) {
     amp_1_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
-        button.classList.add("disabled_svg_button");
-        button.style.opacity = "0.5";
-        button.style.pointerEvents = "none";
-      } else {
-        button.classList.remove("disabled_svg_button");
-        button.style.opacity = "";
-        button.style.pointerEvents = "";
+      if(active_control_mode !== undefined) {
+        if (auth_level < 1 || active_control_mode == 0) {
+          button.classList.add("disabled_svg_button");
+          button.style.opacity = "0.5";
+          button.style.pointerEvents = "none";
+        } else {
+          button.classList.remove("disabled_svg_button");
+          button.style.opacity = "";
+          button.style.pointerEvents = "";
+        }
       }
     })
   }
 
   if (cap_buttons_list) {
     cap_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
+      if (auth_level < 1) {
         button.classList.add("disabled_svg_button");
         button.style.opacity = "0.5";
         button.style.pointerEvents = "none";
@@ -217,60 +219,69 @@ if (temp_group_list) {
 
   if (amp_2_buttons_list) {
     amp_2_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
-        button.classList.add("disabled_svg_button");
-        button.style.opacity = "0.5";
-        button.style.pointerEvents = "none";
-      } else {
-        button.classList.remove("disabled_svg_button");
-        button.style.opacity = "";
-        button.style.pointerEvents = "";
+      if(active_control_mode !== undefined) {
+        if (auth_level < 1 || active_control_mode == 0) {
+          button.classList.add("disabled_svg_button");
+          button.style.opacity = "0.5";
+          button.style.pointerEvents = "none";
+        } else {
+          button.classList.remove("disabled_svg_button");
+          button.style.opacity = "";
+          button.style.pointerEvents = "";
+        }
       }
     })
   }
 
   if (output_buttons_list) {
     output_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
-        button.classList.add("disabled_svg_button");
-        button.style.opacity = "0.5";
-        button.style.pointerEvents = "none";
-      } else {
-        button.classList.remove("disabled_svg_button");
-        button.style.opacity = "";
-        button.style.pointerEvents = "";
+       if(active_control_mode !== undefined) {
+        if (auth_level < 1 || active_control_mode == 0) {
+          button.classList.add("disabled_svg_button");
+          button.style.opacity = "0.5";
+          button.style.pointerEvents = "none";
+        } else {
+          button.classList.remove("disabled_svg_button");
+          button.style.opacity = "";
+          button.style.pointerEvents = "";
+        }
       }
     })
   }
+  const exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_1_power_button`),
+        exiter_1_status = data_svg?.exiter_1?.status
+  const exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_2_power_button`),
+        exiter_2_status = data_svg?.exiter_2?.status
 
   exiter_1_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
-        button.classList.add("disabled_svg_button");
-        button.style.opacity = "0.5";
-        button.style.pointerEvents = "none";
-      } else {
-        button.classList.remove("disabled_svg_button");
-        button.style.opacity = "";
-        button.style.pointerEvents = "";
+      if(active_control_mode !== undefined) {
+        if (auth_level < 1 || active_control_mode == 0 || exiter_1_status == 0) {
+          button.classList.add("disabled_svg_button");
+          button.style.opacity = "0.5";
+          button.style.pointerEvents = "none";
+        } else {
+          button.classList.remove("disabled_svg_button");
+          button.style.opacity = "";
+          button.style.pointerEvents = "";
+        }
       }
   })
 
     exiter_2_buttons_list.forEach((button) => {
-      if (auth_access.calib == 0) {
-        button.classList.add("disabled_svg_button");
-        button.style.opacity = "0.5";
-        button.style.pointerEvents = "none";
-      } else {
-        button.classList.remove("disabled_svg_button");
-        button.style.opacity = "";
-        button.style.pointerEvents = "";
+      if(active_control_mode !== undefined) {
+        if (auth_level < 1 || active_control_mode == 0||exiter_2_status == 0) {
+          button.classList.add("disabled_svg_button");
+          button.style.opacity = "0.5";
+          button.style.pointerEvents = "none";
+        } else {
+          button.classList.remove("disabled_svg_button");
+          button.style.opacity = "";
+          button.style.pointerEvents = "";
+        }
       }
   })
-
-  const exiter_1_pwr_button = svg.querySelector(`#exiter_1 g#exiter_1_power_button`),
-        exiter_1_status = data_svg?.exiter_1?.status
       
-  if (exiter_1_status == 1) {
+  if (exiter_1_status == 1 ) {
     exiter_1_pwr_button.querySelector('#power_btn_cover_1').style.fill = status_colors[0]
   } else {
     exiter_1_pwr_button.querySelector('#power_btn_cover_1').style.fill = status_colors[2]
@@ -288,10 +299,7 @@ if (temp_group_list) {
     }
   })
 
-  const exiter_2_pwr_button = svg.querySelector(`#exiter_2 g#exiter_2_power_button`),
-        exiter_2_status = data_svg?.exiter_2?.status
-
-  if (exiter_2_status == 1) {
+  if (exiter_2_status == 1 ) {
     exiter_2_pwr_button.querySelector('#power_btn_cover_2').style.fill = status_colors[0]
   } else {
     exiter_2_pwr_button.querySelector('#power_btn_cover_2').style.fill = status_colors[2]
