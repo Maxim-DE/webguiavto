@@ -117,14 +117,14 @@
     "status_graph": {
       "input_1": {
         "status": 0,
-        "input_signal_type": "L",          // Должно быть равно  input_res_signal_type
+        "input_signal_type": "KCC",          // Должно быть равно  input_res_signal_type
         "mode": 1,                         // 1- основной 2 -резервный + пути 
         "l": [31, 10, 0, "дБ"],
         "r": [32, 10, 0, "дБ"],
         "mpx": [18, 10, 0, "кГц"],
         "aes_l": [31, 10, 0, "дБ"],
         "aes_r": [8.67, 1, 0, "дБ"],
-        "input_res_signal_type": "STEREO", // Должноб ыть равно  input_signal_type
+        "input_res_signal_type": "KCC", // Должноб ыть равно  input_signal_type
         "res_l": [
           30,
           10,
@@ -161,7 +161,7 @@
         "progres_bar": "Установка частоты",
         "station_header": "Радио Россия",
         "swr": [115, 100, 0],
-        "input_signal_type": "AES",
+        "input_signal_type": "КСС",
         "input_signal": [[[-999, 10, 0, "дБ"], [-999, 10, 0, "дБ"]]],
         "output_pwr": [54, 1, 0, "Вт"],
         "freq": [10001, 100, 0, "МГц"],
@@ -172,7 +172,7 @@
         "status": 1,
         "station_header": "Радио Россия",
         "swr": [120, 100, 0],
-        "input_signal_type": "AES",
+        "input_signal_type": "KCC",
         "input_signal": [[[-999, 10, 0, "дБ"], [-999, 10, 0, "дБ"]]],
         "output_pwr": [52, 1, 0, "Вт"],
         "freq": [1001, 100, 0, "МГц"],

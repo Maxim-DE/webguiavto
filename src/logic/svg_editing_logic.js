@@ -344,7 +344,7 @@ if (temp_group_list) {
         signal_primary_group_list[0].style = "visibility: visible"
         signal_primary_group_list[1].style = "visibility: visible"
         break;
-      case "КСС":
+      case "KCC":
         signal_primary_group_list[2].style = "visibility: visible"
         break;
       case "AES":
@@ -370,7 +370,7 @@ if (temp_group_list) {
         signal_res_group_list[0].style = "visibility: visible"
         signal_res_group_list[1].style = "visibility: visible"
         break;
-      case "КСС":
+      case "KCC":
         signal_res_group_list[2].style = "visibility: visible"
         break;
       case "AES":

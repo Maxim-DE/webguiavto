@@ -117,7 +117,7 @@
     "status_graph": {
       "input_1": {
         "status": 0,
-        "input_signal_type": "L",
+        "input_signal_type": "KCC",
         "mode": 1,
         "l": [
           31,
@@ -149,7 +149,7 @@
           0,
           "дБ"
         ],
-        "input_res_signal_type": "STEREO",
+        "input_res_signal_type": "KCC",
         "res_l": [
           30,
           10,
@@ -190,7 +190,7 @@
           100,
           0
         ],
-        "input_signal_type": "AES",
+        "input_signal_type": "КСС",
         "input_signal": [
           [
             [
@@ -229,7 +229,7 @@
           100,
           0
         ],
-        "input_signal_type": "AES",
+        "input_signal_type": "KCC",
         "input_signal": [
           [
             [
