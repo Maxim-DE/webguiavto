@@ -260,9 +260,9 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
       const output_string = `set_${input_action_type}$${result_value.toFixed(0)}`
 
       const request_obj = {
-        address: 'transmitter.cgi',
+        address: 'radio_exiter_control.cgi',
         data: output_string,
-        reducer: reducers.transmitter,
+        reducer: reducers.radio_exiter_control,
         notifications: {
           good: 'default',
           bad: 'default'
@@ -363,9 +363,9 @@ function block_control_avr_svg_event_editing(svg, data_svg, active_control_mode,
       const output_string = `set_${input_action_type}$${result_value.toFixed(0)}`
 
       const request_obj = {
-        address: 'transmitter.cgi',
+        address: 'radio_exiter_control.cgi',
         data: output_string,
-        reducer: reducers.transmitter,
+        reducer: reducers.radio_exiter_control,
         notifications: {
           good: 'default',
           bad: 'default'
