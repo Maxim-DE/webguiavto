@@ -7,14 +7,16 @@ import { TbMinus, TbPlus } from 'react-icons/tb'
 import { BsMoonFill } from 'react-icons/bs'
 
 const slave_devices = [
-  { type: 'exiter', order_num: 1, label: 'Возбудитель 1' },
+  { type: 'exiter_1', order_num: 1, label: 'Возбудитель 1' },
+  { type: 'exiter_2', order_num: 1, label: 'Возбудитель 2' },
+  { type: 'avr', order_num: 1, label: 'САР' },
   { type: 'amplifier', order_num: 1, label: 'Усилитель 1' },
   { type: 'amplifier', order_num: 2, label: 'Усилитель 2' },
 ]
 
 export default function Slave_control_calib({ clickHandler, ...rest }) {
   const [slaveControlState, setSlaveControlState] = React.useState({
-    exiter_action: 0,
+    exiter_1_action: 0,
     amplifier_1_action: 0,
     amplifier_2_action: 0
   })
@@ -78,7 +80,10 @@ export default function Slave_control_calib({ clickHandler, ...rest }) {
                 'Мощность',
                 'Sleep',
                 'Modbus',
-                slave_device.type == 'exiter' ? 'Управление' : undefined
+                'Управление',
+                // slave_device.type == 'exiter_1' ? 'Управление' : undefined,
+                // slave_device.type == 'exiter_2' ? 'Управление' : undefined,
+                // slave_device.type == 'avr' ? 'Управление' : undefined
               ]} />
             {slaveControlState[`${slave_device.type}_${slave_device.order_num}_action`] == 0 &&
               <>
