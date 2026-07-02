@@ -14,6 +14,8 @@ export const status_colors = [
   '#f9c22e', //warning
   '#fe5f55', //error
   '#68CEDE', //hibernation
+  '#54b910', //good
+  '#68CEDE', //hibernation
 ]
 
 export const new_status_colors = {
@@ -163,6 +165,7 @@ function Status_graphs(props) {
           if (status != 0 && status !== 3) { // Добавлена проверка на status !== 3
             graph_block_value_span.style.fontWeight = "500";
             graph_block_value_span.style.fill = status_colors[status];
+            console.log('status_colors',status_colors)
           } else {
             graph_block_value_span.style.fontWeight = "300";
             // graph_block_value_span.attributes["font-weight"].value = "300";
