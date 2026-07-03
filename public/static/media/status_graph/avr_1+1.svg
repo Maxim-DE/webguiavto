@@ -1,412 +1,443 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="svg83" fill="none" viewBox="0 0 989 510">
+<svg xmlns="http://www.w3.org/2000/svg" id="svg85" fill="none" viewBox="0 0 989 543">
   <g id="avr_1+1">
     <g id="layer_2" stroke="#b5c6cf" stroke-width="2">
-      <path id="path4139" d="M359.42 325.75H230.5"/>
-      <path id="path4139_2" d="M629.5 325.75h66v-121.5h65"/>
-      <path id="path4139_3" stroke-dasharray="9.11 9.11" d="M629.5 82.75h66v121"/>
-      <path id="path4139_4" stroke-dasharray="9.11 9.11" d="M359.5 82.75h-65v243"/>
+      <path id="path4139" d="M370.5 340.525C316.217 340.916 231.5 340.525 231.5 340.525"/>
+      <path id="path4139_2" d="M629.5 340.525H695.5V218.062H760.5"/>
+      <path id="path4139_3" stroke-dasharray="9.11 9.11" d="M629.5 84.525L694.5 84.525L695.5 218.062"/>
+      <path id="path4139_4" stroke-dasharray="9.11 9.11" d="M370.5 84.525L294.5 84.525L294.5 341.025"/>
     </g>
     <g id="layer_3" stroke="#fe5f55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
       <g id="signal_path_4">
-        <path id="path4139_5" d="M294.5 325.75h65"/>
-        <path id="path4139_6" d="M760 204.25h-64.5v121.499l-66 .001"/>
+        <path id="path4139_5" d="M294.5 340.525L370.5 340.525"/>
+        <use href="#path4139_6"/>
       </g>
       <g id="signal_path_3">
-        <path id="path4139_7" d="M294.5 215.75v110h65"/>
-        <path id="path4139_8" d="M760 204.25h-64.5v121.5h-66"/>
+        <path id="path4139_7" d="M294.5 229.525C294.5 272.524 294.5 297.526 294.5 340.525L370.5 340.525"/>
+        <use id="path4139_8" href="#path4139_6"/>
       </g>
       <g id="signal_path_2">
-        <path id="path4139_9" d="M294.5 325.75v-243h65"/>
-        <use href="#path4139_10"/>
+        <path id="path4139_9" d="M294.5 340.525L294.5 84.525L370.5 84.525"/>
+        <path id="path4139_10" d="M629.5 84.525L695.5 84.525L695.5 218.062L760.5 218.062"/>
       </g>
       <g id="signal_path_1">
-        <path id="path4139_11" d="M359.5 82.75h-65v133"/>
-        <use id="path4139_12" href="#path4139_10"/>
+        <path id="path4139_11" d="M370.5 84.525L294.5 84.525L294.5 230.025"/>
+        <path id="path4139_12" d="M629.5 84.525L695.5 84.525L695.5 218.525L760.5 218.525"/>
       </g>
     </g>
     <g id="layer_1">
       <g id="output_1">
-        <g id="rect8952" filter="url(#filter0_d_0_1)">
-          <path id="path1" fill="#f7f7f7" d="M956.5 150.75h-199c-6.627 0-12 5.373-12 12v64.8c0 6.627 5.373 12 12 12h199c6.627 0 12-5.373 12-12v-64.8c0-6.627-5.373-12-12-12"/>
-          <path id="path2" stroke="#c4c4c4" stroke-linecap="round" d="M956.5 150.75h-199c-6.627 0-12 5.373-12 12v64.8c0 6.627 5.373 12 12 12h199c6.627 0 12-5.373 12-12v-64.8c0-6.627-5.373-12-12-12Z"/>
+        <g id="rect8952" filter="url(#filter0_d_3275_762)">
+          <path id="path1" fill="#f7f7f7" d="M956.5 164.525L757.5 164.525C750.873 164.525 745.5 169.898 745.5 176.525V241.325C745.5 247.952 750.873 253.325 757.5 253.325H956.5C963.127 253.325 968.5 247.952 968.5 241.325V176.525C968.5 169.898 963.127 164.525 956.5 164.525Z"/>
+          <path id="path2" stroke="#c4c4c4" stroke-linecap="round" d="M956.5 164.525L757.5 164.525C750.873 164.525 745.5 169.898 745.5 176.525V241.325C745.5 247.952 750.873 253.325 757.5 253.325H956.5C963.127 253.325 968.5 247.952 968.5 241.325V176.525C968.5 169.898 963.127 164.525 956.5 164.525Z"/>
         </g>
         <g id="header">
-          <path id="output_1_device_icon" fill="#7adc47" d="M763 175.25a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15"/>
-          <text xml:space="preserve" id="output_1_header_label" fill="#626879" font-family="Roboto" font-size="21.333" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan2" x="779.5" y="175.042">ВЫХОД</tspan></text>
+          <path id="output_1_device_icon" fill="#7adc47" d="M763 189.025C767.142 189.025 770.5 185.667 770.5 181.525C770.5 177.383 767.142 174.025 763 174.025C758.858 174.025 755.5 177.383 755.5 181.525C755.5 185.667 758.858 189.025 763 189.025Z"/>
+          <text xml:space="preserve" id="output_1_header_label" fill="#626879" font-family="Roboto" font-size="21.333" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan2" x="779.5" y="188.817">ВЫХОД</tspan></text>
         </g>
         <g id="g8982">
           <g id="g8970">
-            <path id="circle8962" fill="#626879" d="M760.5 208.75a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9"/>
+            <path id="circle8962" fill="#626879" d="M760.5 222.525C762.985 222.525 765 220.51 765 218.025C765 215.54 762.985 213.525 760.5 213.525C758.015 213.525 756 215.54 756 218.025C756 220.51 758.015 222.525 760.5 222.525Z"/>
           </g>
         </g>
         <g id="secondary_info" fill="#000" font-family="Roboto" letter-spacing="0em">
           <g id="g9004">
-            <text xml:space="preserve" id="output_1_Pout_value" font-size="17.333" style="white-space:pre"><tspan id="tspan3" x="933.919" y="209.674">--</tspan></text>
-            <text xml:space="preserve" id="text9002" font-size="16" style="white-space:pre"><tspan id="tspan4" x="770.5" y="209.219">Мощн. Вых.</tspan></text>
+            <text xml:space="preserve" id="output_1_Pout_value" font-size="17.333" style="white-space:pre"><tspan id="tspan3" x="933.919" y="223.449">--</tspan></text>
+            <text xml:space="preserve" id="text9002" font-size="16" style="white-space:pre"><tspan id="tspan4" x="770.5" y="222.994">Мощн. Вых.</tspan></text>
           </g>
           <g id="g9004_2">
-            <text xml:space="preserve" id="output_1_swr_value" font-size="17.333" style="white-space:pre"><tspan id="tspan5" x="933.919" y="230.674">--</tspan></text>
-            <text xml:space="preserve" id="text9002_2" font-size="16" style="white-space:pre"><tspan id="tspan6" x="770.5" y="230.219">КСВ</tspan></text>
+            <text xml:space="preserve" id="output_1_swr_value" font-size="17.333" style="white-space:pre"><tspan id="tspan5" x="933.919" y="244.449">--</tspan></text>
+            <text xml:space="preserve" id="text9002_2" font-size="16" style="white-space:pre"><tspan id="tspan6" x="770.5" y="243.994">КСВ</tspan></text>
           </g>
-        </g>
-      </g>
-      <g id="exiter_1">
-        <g id="rect8952-3" filter="url(#filter1_d_0_1)">
-          <path id="path6" fill="#f7f7f7" d="M632.5 15.75h-276c-6.627 0-12 5.373-12 12v201c0 6.627 5.373 12 12 12h276c6.627 0 12-5.373 12-12v-201c0-6.627-5.373-12-12-12"/>
-          <path id="path7" stroke="#c4c4c4" stroke-linecap="round" stroke-width="1.5" d="M632.5 15.75h-276c-6.627 0-12 5.373-12 12v201c0 6.627 5.373 12 12 12h276c6.627 0 12-5.373 12-12v-201c0-6.627-5.373-12-12-12Z"/>
-        </g>
-        <g id="secondary_info_2" fill="#000" font-family="Roboto" letter-spacing="0em">
-          <g id="g8994">
-            <text xml:space="preserve" id="exiter_1_input_signal_type_value" font-size="17.333" style="white-space:pre"><tspan id="tspan7" x="609.919" y="168.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992" font-size="16" style="white-space:pre"><tspan id="tspan8" x="369.5" y="168.951">Тип сигнала</tspan></text>
-          </g>
-          <g id="g8994_2">
-            <text xml:space="preserve" id="exiter_1_freq_value" font-size="17.333" style="white-space:pre"><tspan id="tspan9" x="609.919" y="189.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_2" font-size="16" style="white-space:pre"><tspan id="tspan10" x="369.5" y="189.951">Нес. частота</tspan></text>
-          </g>
-          <g id="g8994_3">
-            <text xml:space="preserve" id="exiter_1_swr_value" font-size="17.333" style="white-space:pre"><tspan id="tspan11" x="609.919" y="210.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_3" font-size="16" style="white-space:pre"><tspan id="tspan12" x="369.5" y="210.95">КСВ</tspan></text>
-          </g>
-          <g id="g8994_4">
-            <text xml:space="preserve" id="exiter_1_temp_value" font-size="17.333" style="white-space:pre"><tspan id="tspan13" x="609.919" y="231.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_4" font-size="16" style="white-space:pre"><tspan id="tspan14" x="369.5" y="231.951">Температура</tspan></text>
-          </g>
-        </g>
-        <g id="path8985">
-          <path id="path14" fill="#c4c4c4" d="M359.5 150.75h270z"/>
-          <path id="path15" stroke="#c4c4c4" stroke-width=".809" d="M359.5 150.75h270"/>
-        </g>
-        <g id="exiter_1_control_buttons">
-          <g id="Frame 45">
-            <rect id="rect15" width="95" height="30" x="359.5" y="100.75" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
-            <rect id="rect16" width="95" height="30" x="359.5" y="100.75" stroke="#e3e3e3" rx="13"/>
-            <text xml:space="preserve" id="text8992_5" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan16" x="388.734" y="143.535">Грубо</tspan></text>
-            <g id="exiter_1_set_ex1_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21" width="40" height="20" x="403.5" y="126.25" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 403.5 126.25)"/>
-              <path id="Vector 38" stroke="#626879" stroke-width="1.5" d="M383.5 122.25v-13m5 6.5-5-6.5-5 6.5"/>
-            </g>
-            <g id="exiter_1_set_ex2_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_2" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 450.5 106.25)"/>
-              <path id="Vector 38_2" stroke="#626879" stroke-width="1.5" d="M430.5 109.25v13m5-6.5-5 6.5-5-6.5"/>
-            </g>
-          </g>
-          <g id="Frame 43">
-            <rect id="rect17" width="95" height="30" x="470.5" y="100.75" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
-            <rect id="rect18" width="95" height="30" x="470.5" y="100.75" stroke="#e3e3e3" rx="13"/>
-            <text xml:space="preserve" id="text8992_6" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan18" x="498.326" y="143.535">Точно</tspan></text>
-            <g id="exiter_1_set_ex3_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_3" width="40" height="20" x="514.5" y="126.25" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 514.5 126.25)"/>
-              <path id="Vector 38_3" stroke="#626879" stroke-width="1.5" d="M494.5 122.25v-13m5 6.5-5-6.5-5 6.5"/>
-            </g>
-            <g id="exiter_1_set_ex4_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_4" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 561.5 106.25)"/>
-              <path id="Vector 38_4" stroke="#626879" stroke-width="1.5" d="M541.5 109.25v13m5-6.5-5 6.5-5-6.5"/>
-            </g>
-          </g>
-          <g id="Frame 43_2">
-            <rect id="rect19" width="47.5" height="30" x="582" y="100.75" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
-            <rect id="rect20" width="47.5" height="30" x="582" y="100.75" stroke="#e3e3e3" rx="13"/>
-            <text xml:space="preserve" id="text8992_7" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan20" x="577.479" y="143.535">Принять</tspan></text>
-            <g id="exiter_1_set_ex5_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_5" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 625.5 105.75)"/>
-              <path id="Vector 38_5" stroke="#626879" stroke-width="1.5" d="m612.5 109.75-8.666 13-4.334-4.333"/>
-            </g>
-          </g>
-          <g id="path8984">
-            <path id="path20" fill="#c4c4c4" d="M462.5 143.75v-43z"/>
-            <path id="path21" stroke="#c4c4c4" stroke-width=".809" d="M462.5 143.75v-43"/>
-          </g>
-          <g id="path8984_2">
-            <path id="path22" fill="#c4c4c4" d="M573.75 143.75v-43z"/>
-            <path id="path23" stroke="#c4c4c4" stroke-width=".809" d="M573.75 143.75v-43"/>
-          </g>
-        </g>
-        <g id="header_2">
-          <path id="exiter_1_device_icon" fill="#7adc47" d="M368.428 25.75h-12.857a1.07 1.07 0 0 0-1.071 1.071V39.68a1.07 1.07 0 0 0 1.071 1.071h12.857c.592 0 1.072-.48 1.072-1.071V26.82c0-.591-.48-1.071-1.072-1.071"/>
-          <text xml:space="preserve" id="exiter_1_header_label" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan23" x="376.648" y="40.428">передатчик ОСН.</tspan></text>
-          <text xml:space="preserve" id="exiter_1_station_header_value" fill="#626879" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em" style="white-space:pre"><tspan id="tspan24" x="377.5" y="61.719">--</tspan></text>
-          <g id="exiter_1_power_button" clip-path="url(#clip0_0_1)">
-            <path id="power_btn_cover" fill="#7adc47" d="M532 40.75a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15"/>
-            <path id="Vector" fill="#000" d="m535.35 29.275-.906.906a3.73 3.73 0 0 1 1.806 3.194 3.75 3.75 0 1 1-7.5 0c0-1.356.725-2.538 1.8-3.2l-.9-.9c-1.3.9-2.15 2.4-2.15 4.1a5 5 0 0 0 5 5 5 5 0 0 0 5-5c0-1.7-.85-3.2-2.15-4.1m-2.225-1.525h-1.25V34h1.25"/>
-          </g>
-        </g>
-        <g id="path8984_3">
-          <path id="path24" fill="#c4c4c4" d="M359.5 94.05h270z"/>
-          <path id="path25" stroke="#c4c4c4" stroke-width=".809" d="M359.5 94.05h270"/>
-        </g>
-        <g id="primary_info_output">
-          <g id="g10081-4">
-            <path id="circle9062-2" fill="#626879" d="M629.5 87.75a5 5 0 1 0 0-10 5 5 0 0 0 0 10"/>
-            <text xml:space="preserve" id="exiter_1_output_pwr_value" fill="#000" font-family="Roboto" font-size="20" letter-spacing="0em" style="white-space:pre"><tspan id="tspan25" x="608.445" y="89.086">--</tspan></text>
-          </g>
-        </g>
-        <g id="primary_info_input">
-          <path id="circle8962_2" fill="#626879" d="M359.5 87.75a5 5 0 1 0 0-10 5 5 0 0 0 0 10"/>
-          <text xml:space="preserve" id="exiter_1_input_signal_value" fill="#000" font-family="Roboto" font-size="20" letter-spacing="0em" style="white-space:pre"><tspan id="tspan26" x="369.5" y="89.086">--</tspan></text>
-        </g>
-      </g>
-      <g id="exiter_0">
-        <g id="rect8952-3_2" filter="url(#filter2_d_0_1)">
-          <path id="path26" fill="#f7f7f7" d="M632.5 258.75h-276c-6.627 0-12 5.373-12 12v201c0 6.627 5.373 12 12 12h276c6.627 0 12-5.373 12-12v-201c0-6.627-5.373-12-12-12"/>
-          <path id="path27" stroke="#c4c4c4" stroke-dasharray="11 11" stroke-linecap="round" stroke-width="1.5" d="M632.5 258.75h-276c-6.627 0-12 5.373-12 12v201c0 6.627 5.373 12 12 12h276c6.627 0 12-5.373 12-12v-201c0-6.627-5.373-12-12-12Z"/>
-        </g>
-        <g id="secondary_info_3" fill="#000" font-family="Roboto" letter-spacing="0em">
-          <g id="g8994_5">
-            <text xml:space="preserve" id="exiter_0_input_signal_type_value" font-size="17.333" style="white-space:pre"><tspan id="tspan27" x="609.919" y="411.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_8" font-size="16" style="white-space:pre"><tspan id="tspan28" x="369.5" y="411.951">Тип сигнала</tspan></text>
-          </g>
-          <g id="g8994_6">
-            <text xml:space="preserve" id="exiter_0_freq_value" font-size="17.333" style="white-space:pre"><tspan id="tspan29" x="609.919" y="432.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_9" font-size="16" style="white-space:pre"><tspan id="tspan30" x="369.5" y="432.951">Нес. частота</tspan></text>
-          </g>
-          <g id="g8994_7">
-            <text xml:space="preserve" id="exiter_0_swr_value" font-size="17.333" style="white-space:pre"><tspan id="tspan31" x="609.919" y="453.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_10" font-size="16" style="white-space:pre"><tspan id="tspan32" x="369.5" y="453.95">КСВ</tspan></text>
-          </g>
-          <g id="g8994_8">
-            <text xml:space="preserve" id="exiter_0_temp_value" font-size="17.333" style="white-space:pre"><tspan id="tspan33" x="609.919" y="474.674">--</tspan></text>
-            <text xml:space="preserve" id="text8992_11" font-size="16" style="white-space:pre"><tspan id="tspan34" x="369.5" y="474.951">Температура
-</tspan></text>
-          </g>
-        </g>
-        <g id="path8985_2">
-          <path id="path34" fill="#c4c4c4" d="M359.5 393.75h270z"/>
-          <path id="path35" stroke="#c4c4c4" stroke-width=".809" d="M359.5 393.75h270"/>
-        </g>
-        <g id="exiter_0_control_buttons">
-          <g id="Frame 45_2">
-            <rect id="rect35" width="95" height="30" x="359.5" y="343.75" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
-            <rect id="rect36" width="95" height="30" x="359.5" y="343.75" stroke="#e3e3e3" rx="13"/>
-            <text xml:space="preserve" id="text8992_12" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan36" x="388.734" y="386.535">Грубо</tspan></text>
-            <g id="exiter_0_set_ex1_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_6" width="40" height="20" x="403.5" y="369.25" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 403.5 369.25)"/>
-              <path id="Vector 38_6" stroke="#626879" stroke-width="1.5" d="M383.5 365.25v-13m5 6.5-5-6.5-5 6.5"/>
-            </g>
-            <g id="exiter_0_set_ex2_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_7" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 450.5 349.25)"/>
-              <path id="Vector 38_7" stroke="#626879" stroke-width="1.5" d="M430.5 352.25v13m5-6.5-5 6.5-5-6.5"/>
-            </g>
-          </g>
-          <g id="Frame 43_3">
-            <rect id="rect37" width="95" height="30" x="470.5" y="343.75" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
-            <rect id="rect38" width="95" height="30" x="470.5" y="343.75" stroke="#e3e3e3" rx="13"/>
-            <text xml:space="preserve" id="text8992_13" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan38" x="498.326" y="386.535">Точно</tspan></text>
-            <g id="exiter_0_set_ex3_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_8" width="40" height="20" x="514.5" y="369.25" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 514.5 369.25)"/>
-              <path id="Vector 38_8" stroke="#626879" stroke-width="1.5" d="M494.5 365.25v-13m5 6.5-5-6.5-5 6.5"/>
-            </g>
-            <g id="exiter_0_set_ex4_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_9" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 561.5 349.25)"/>
-              <path id="Vector 38_9" stroke="#626879" stroke-width="1.5" d="M541.5 352.25v13m5-6.5-5 6.5-5-6.5"/>
-            </g>
-          </g>
-          <g id="Frame 43_4">
-            <rect id="rect39" width="47.5" height="30" x="582" y="343.75" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
-            <rect id="rect40" width="47.5" height="30" x="582" y="343.75" stroke="#e3e3e3" rx="13"/>
-            <text xml:space="preserve" id="text8992_14" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan40" x="577.479" y="386.535">Принять</tspan></text>
-            <g id="exiter_0_set_ex5_button" stroke-linecap="round" stroke-linejoin="round">
-              <rect id="Rectangle 21_10" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 625.5 348.75)"/>
-              <path id="Vector 38_10" stroke="#626879" stroke-width="1.5" d="m612.5 352.75-8.666 13-4.334-4.333"/>
-            </g>
-          </g>
-          <g id="path8984_4">
-            <path id="path40" fill="#c4c4c4" d="M462.5 386.75v-43z"/>
-            <path id="path41" stroke="#c4c4c4" stroke-width=".809" d="M462.5 386.75v-43"/>
-          </g>
-          <g id="path8984_5">
-            <path id="path42" fill="#c4c4c4" d="M573.75 386.75v-43z"/>
-            <path id="path43" stroke="#c4c4c4" stroke-width=".809" d="M573.75 386.75v-43"/>
-          </g>
-        </g>
-        <g id="header_3">
-          <path id="exiter_0_device_icon" fill="#7adc47" d="M368.428 268.75h-12.857c-.592 0-1.071.48-1.071 1.071v12.858c0 .591.479 1.071 1.071 1.071h12.857c.592 0 1.072-.48 1.072-1.071v-12.858c0-.591-.48-1.071-1.072-1.071"/>
-          <text xml:space="preserve" id="exiter_0_header_label" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan43" x="378.668" y="283.428">передатчик рез.</tspan></text>
-          <text xml:space="preserve" id="exiter_0_station_header_value" fill="#626879" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em" style="white-space:pre"><tspan id="tspan44" x="377.5" y="304.719">--</tspan></text>
-        </g>
-        <g id="path8984_6">
-          <path id="path44" fill="#c4c4c4" d="M359.5 337.051h270z"/>
-          <path id="path45" stroke="#c4c4c4" stroke-width=".809" d="M359.5 337.051h270"/>
-        </g>
-        <g id="primary_info_output_2">
-          <g id="g10081-4_2">
-            <path id="circle9062-2_2" fill="#626879" d="M629.5 330.75a5 5 0 1 0-.001-10.001 5 5 0 0 0 .001 10.001"/>
-            <text xml:space="preserve" id="exiter_0_output_pwr_value" fill="#000" font-family="Roboto" font-size="20" letter-spacing="0em" style="white-space:pre"><tspan id="tspan45" x="608.445" y="332.086">--</tspan></text>
-          </g>
-        </g>
-        <g id="primary_info_input_2">
-          <path id="circle8962_3" fill="#626879" d="M359.5 330.75a5 5 0 1 0-.001-10.001 5 5 0 0 0 .001 10.001"/>
-          <text xml:space="preserve" id="exiter_0_input_signal_value" fill="#000" font-family="Roboto" font-size="20" letter-spacing="0em" style="white-space:pre"><tspan id="tspan46" x="369.5" y="332.086">--</tspan></text>
-        </g>
-        <g id="exiter_0_power_button" clip-path="url(#clip1_0_1)">
-          <path id="power_btn_cover_2" fill="#7adc47" d="M532 283.75a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15"/>
-          <path id="Vector_2" fill="#000" d="m535.35 272.275-.906.906a3.73 3.73 0 0 1 1.806 3.194 3.75 3.75 0 0 1-3.75 3.75 3.75 3.75 0 0 1-3.75-3.75c0-1.356.725-2.537 1.8-3.2l-.9-.9c-1.3.9-2.15 2.4-2.15 4.1 0 1.326.527 2.598 1.464 3.536a5.004 5.004 0 0 0 7.072 0 5 5 0 0 0 1.464-3.536c0-1.7-.85-3.2-2.15-4.1m-2.225-1.525h-1.25V277h1.25"/>
         </g>
       </g>
       <g id="voltage">
-        <g id="rect8952_2" filter="url(#filter3_d_0_1)">
-          <path id="path46" fill="#f7f7f7" d="M232.5 15.75h-200c-6.627 0-12 5.373-12 12v50c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12v-50c0-6.627-5.373-12-12-12"/>
-          <path id="path47" stroke="#c4c4c4" stroke-linecap="round" d="M232.5 15.75h-200c-6.627 0-12 5.373-12 12v50c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12v-50c0-6.627-5.373-12-12-12Z"/>
+        <g id="rect8952_2" filter="url(#filter1_d_3275_762)">
+          <path id="path6" fill="#f7f7f7" d="M232.5 15.525L32.5 15.5251C25.8726 15.5251 20.5 20.8977 20.5 27.5251V77.525C20.5 84.1524 25.8726 89.525 32.5 89.525H232.5C239.127 89.525 244.5 84.1524 244.5 77.525V27.525C244.5 20.8976 239.127 15.525 232.5 15.525Z"/>
+          <path id="path7" stroke="#c4c4c4" stroke-linecap="round" d="M232.5 15.525L32.5 15.5251C25.8726 15.5251 20.5 20.8977 20.5 27.5251V77.525C20.5 84.1524 25.8726 89.525 32.5 89.525H232.5C239.127 89.525 244.5 84.1524 244.5 77.525V27.525C244.5 20.8976 239.127 15.525 232.5 15.525Z"/>
         </g>
-        <text xml:space="preserve" id="voltage_volt_value" x="4.46" y="0" fill="#000" font-family="Roboto" font-size="17.333" letter-spacing="0em" style="text-align:center;white-space:pre" text-anchor="middle"><tspan id="tspan47" x="128.71" y="71.674">--</tspan></text>
-        <g id="header_4">
-          <path id="voltage_device_icon" fill="#7adc47" d="M38 40.75a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15"/>
-          <text xml:space="preserve" id="voltage_header_label" fill="#626879" font-family="Roboto" font-size="21.333" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan48" x="55.5" y="40.542">Напряжение сети</tspan></text>
+        <text xml:space="preserve" id="voltage_volt_value" x="9.251" y="0" fill="#000" font-family="Roboto" font-size="17.333" letter-spacing="0em" style="text-align:center;white-space:pre" text-anchor="middle"><tspan id="tspan7" x="133.501" y="71.45">--</tspan></text>
+        <g id="header_2">
+          <path id="voltage_device_icon" fill="#7adc47" d="M38 40.525C42.1421 40.525 45.5 37.1672 45.5 33.025C45.5 28.8829 42.1421 25.525 38 25.525C33.8579 25.525 30.5 28.8829 30.5 33.025C30.5 37.1672 33.8579 40.525 38 40.525Z"/>
+          <text xml:space="preserve" id="voltage_header_label" fill="#626879" font-family="Roboto" font-size="21.333" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan8" x="55.5" y="40.317">Напряжение сети</tspan></text>
         </g>
       </g>
       <g id="input_1">
-        <path id="path4139_13" stroke="#b5c6cf" stroke-dasharray="9.11 9.11" stroke-width="2" d="M294 215.75h-62.5"/>
-        <path id="input_1_reserve_path_display" stroke="#fe5f55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M231.5 325.75h63"/>
-        <path id="input_1_primary_path_display" stroke="#fe5f55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M230.5 215.75H294"/>
+        <path id="path4139_13" stroke="#b5c6cf" stroke-dasharray="9.11 9.11" stroke-width="2" d="M294 230.025L231.5 230.025"/>
+        <path id="input_1_reserve_path_display" stroke="#fe5f55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M231.5 340.525L294.5 340.525"/>
+        <path id="input_1_primary_path_display" stroke="#fe5f55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M231 229.525L294 229.525"/>
         <g id="input_1_reserve">
-          <g id="rect8952-3_3" filter="url(#filter4_d_0_1)">
-            <path id="path48" fill="#f7f7f7" d="M233.5 272.75h-200c-6.627 0-12 5.373-12 12v72c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12v-72c0-6.627-5.373-12-12-12"/>
-            <path id="path49" stroke="#c4c4c4" stroke-linecap="round" d="M233.5 272.75h-200c-6.627 0-12 5.373-12 12v72c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12v-72c0-6.627-5.373-12-12-12Z"/>
+          <g id="rect8952-3" filter="url(#filter2_d_3275_762)">
+            <path id="path8" fill="#f7f7f7" d="M233.5 287.025H33.5C26.8726 287.025 21.5 292.398 21.5 299.025V371.025C21.5 377.652 26.8726 383.025 33.5 383.025H233.5C240.127 383.025 245.5 377.652 245.5 371.025V299.025C245.5 292.398 240.127 287.025 233.5 287.025Z"/>
+            <path id="path9" stroke="#c4c4c4" stroke-linecap="round" d="M233.5 287.025H33.5C26.8726 287.025 21.5 292.398 21.5 299.025V371.025C21.5 377.652 26.8726 383.025 33.5 383.025H233.5C240.127 383.025 245.5 377.652 245.5 371.025V299.025C245.5 292.398 240.127 287.025 233.5 287.025Z"/>
           </g>
           <g id="res_secondary_info" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em">
             <g id="input_1_res_l_group">
-              <text xml:space="preserve" id="input_1_res_l_value" style="white-space:pre"><tspan id="tspan49" x="210.656" y="331.719">--</tspan></text>
-              <text xml:space="preserve" id="text8992_15" style="white-space:pre"><tspan id="tspan50" x="45.5" y="331.719">L</tspan></text>
+              <text xml:space="preserve" id="input_1_res_l_value" style="white-space:pre"><tspan id="tspan9" x="210.656" y="345.994">--</tspan></text>
+              <text xml:space="preserve" id="text8992" style="white-space:pre"><tspan id="tspan10" x="45.5" y="345.994">L</tspan></text>
             </g>
             <g id="input_1_res_r_group">
-              <text xml:space="preserve" id="input_1_res_r_value" style="white-space:pre"><tspan id="tspan51" x="210.656" y="355.719">--</tspan></text>
-              <text xml:space="preserve" id="text9002_3" style="white-space:pre"><tspan id="tspan52" x="45.5" y="355.228">R</tspan></text>
+              <text xml:space="preserve" id="input_1_res_r_value" style="white-space:pre"><tspan id="tspan11" x="210.656" y="369.994">--</tspan></text>
+              <text xml:space="preserve" id="text9002_3" style="white-space:pre"><tspan id="tspan12" x="45.5" y="369.503">R</tspan></text>
             </g>
             <g id="input_1_res_mpx_group">
-              <text xml:space="preserve" id="input_1_res_mpx_value" style="white-space:pre"><tspan id="tspan53" x="210.656" y="331.719">--</tspan></text>
-              <text xml:space="preserve" id="text9002_4" style="white-space:pre"><tspan id="tspan54" x="45.5" y="331.719">КСС</tspan></text>
+              <text xml:space="preserve" id="input_1_res_mpx_value" style="white-space:pre"><tspan id="tspan13" x="210.656" y="345.994">--</tspan></text>
+              <text xml:space="preserve" id="text9002_4" style="white-space:pre"><tspan id="tspan14" x="45.5" y="345.994">КСС</tspan></text>
             </g>
             <g id="input_1_res_aes_r_group">
-              <text xml:space="preserve" id="input_1_res_aes_r_value" style="white-space:pre"><tspan id="tspan55" x="210.656" y="355.719">--</tspan></text>
-              <text xml:space="preserve" id="AES_R" style="white-space:pre"><tspan id="tspan56" x="45.5" y="355.719">AES_R</tspan></text>
+              <text xml:space="preserve" id="input_1_res_aes_r_value" style="white-space:pre"><tspan id="tspan15" x="210.656" y="369.994">--</tspan></text>
+              <text xml:space="preserve" id="AES_R" style="white-space:pre"><tspan id="tspan16" x="45.5" y="369.994">AES_R</tspan></text>
             </g>
             <g id="input_1_res_aes_l_group">
-              <text xml:space="preserve" id="input_1_res_aes_l_value" style="white-space:pre"><tspan id="tspan57" x="210.656" y="331.719">--</tspan></text>
-              <text xml:space="preserve" id="AES_L" style="white-space:pre"><tspan id="tspan58" x="45.5" y="331.719">AES_L</tspan></text>
+              <text xml:space="preserve" id="input_1_res_aes_l_value" style="white-space:pre"><tspan id="tspan17" x="210.656" y="345.994">--</tspan></text>
+              <text xml:space="preserve" id="AES_L" style="white-space:pre"><tspan id="tspan18" x="45.5" y="345.994">AES_L</tspan></text>
             </g>
           </g>
-          <g id="header_5">
-            <path id="input_1_device_icon" fill="#7adc47" d="M45.429 284.25H32.57c-.591 0-1.071.48-1.071 1.071v12.858c0 .591.48 1.071 1.071 1.071h12.86c.591 0 1.071-.48 1.071-1.071v-12.858c0-.591-.48-1.071-1.071-1.071"/>
-            <text xml:space="preserve" id="input_1_header_label" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan59" x="54.5" y="296.428">ВХод рез.</tspan></text>
+          <g id="header_3">
+            <path id="input_1_device_icon" fill="#7adc47" d="M45.4286 298.525H32.5714C31.9797 298.525 31.5 299.005 31.5 299.596V312.454C31.5 313.045 31.9797 313.525 32.5714 313.525H45.4286C46.0203 313.525 46.5 313.045 46.5 312.454V299.596C46.5 299.005 46.0203 298.525 45.4286 298.525Z"/>
+            <text xml:space="preserve" id="input_1_header_label" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan19" x="54.5" y="310.703">ВХод рез.</tspan></text>
           </g>
           <g id="g9929-10">
-            <g id="g10081-4_3">
-              <path id="circle9062-2_3" fill="#626879" d="M231.5 330.75a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9"/>
+            <g id="g10081-4">
+              <path id="circle9062-2" fill="#626879" d="M231.5 345.025C233.985 345.025 236 343.01 236 340.525C236 338.04 233.985 336.025 231.5 336.025C229.015 336.025 227 338.04 227 340.525C227 343.01 229.015 345.025 231.5 345.025Z"/>
             </g>
           </g>
         </g>
         <g id="input_1_primary">
-          <g id="rect8952-3_4" filter="url(#filter5_d_0_1)">
-            <path id="path59" fill="#f7f7f7" d="M232.5 161.75h-200c-6.627 0-12 5.373-12 12v73c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12v-73c0-6.627-5.373-12-12-12"/>
-            <path id="path60" stroke="#c4c4c4" stroke-linecap="round" d="M232.5 161.75h-200c-6.627 0-12 5.373-12 12v73c0 6.627 5.373 12 12 12h200c6.627 0 12-5.373 12-12v-73c0-6.627-5.373-12-12-12Z"/>
+          <g id="rect8952-3_2" filter="url(#filter3_d_3275_762)">
+            <path id="path19" fill="#f7f7f7" d="M232.5 176.025H32.5C25.8726 176.025 20.5 181.398 20.5 188.025V261.025C20.5 267.652 25.8726 273.025 32.5 273.025H232.5C239.127 273.025 244.5 267.652 244.5 261.025V188.025C244.5 181.398 239.127 176.025 232.5 176.025Z"/>
+            <path id="path20" stroke="#c4c4c4" stroke-linecap="round" d="M232.5 176.025H32.5C25.8726 176.025 20.5 181.398 20.5 188.025V261.025C20.5 267.652 25.8726 273.025 32.5 273.025H232.5C239.127 273.025 244.5 267.652 244.5 261.025V188.025C244.5 181.398 239.127 176.025 232.5 176.025Z"/>
           </g>
           <g id="primary_secondary_info" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em">
             <g id="input_1_l_group">
-              <text xml:space="preserve" id="input_1_l_value" style="white-space:pre"><tspan id="tspan60" x="210.656" y="220.219">--</tspan></text>
-              <text xml:space="preserve" id="text8992_16" style="white-space:pre"><tspan id="tspan61" x="45.5" y="221.69">L</tspan></text>
+              <text xml:space="preserve" id="input_1_l_value" style="white-space:pre"><tspan id="tspan20" x="210.656" y="234.494">--</tspan></text>
+              <text xml:space="preserve" id="text8992_2" style="white-space:pre"><tspan id="tspan21" x="45.5" y="235.965">L</tspan></text>
             </g>
             <g id="input_1_r_group">
-              <text xml:space="preserve" id="input_1_r_value" style="white-space:pre"><tspan id="tspan62" x="210.656" y="244.219">--</tspan></text>
-              <text xml:space="preserve" id="text9002_5" style="white-space:pre"><tspan id="tspan63" x="45.5" y="244.219">R</tspan></text>
+              <text xml:space="preserve" id="input_1_r_value" style="white-space:pre"><tspan id="tspan22" x="210.656" y="258.494">--</tspan></text>
+              <text xml:space="preserve" id="text9002_5" style="white-space:pre"><tspan id="tspan23" x="45.5" y="258.494">R</tspan></text>
             </g>
             <g id="input_1_mpx_group">
-              <text xml:space="preserve" id="input_1_mpx_value" style="white-space:pre"><tspan id="tspan64" x="210.656" y="220.219">--</tspan></text>
-              <text xml:space="preserve" id="text9002_6" style="white-space:pre"><tspan id="tspan65" x="45.5" y="220.219">КСС</tspan></text>
+              <text xml:space="preserve" id="input_1_mpx_value" style="white-space:pre"><tspan id="tspan24" x="210.656" y="234.494">--</tspan></text>
+              <text xml:space="preserve" id="text9002_6" style="white-space:pre"><tspan id="tspan25" x="45.5" y="234.494">КСС</tspan></text>
             </g>
             <g id="input_1_aes_r_group">
-              <text xml:space="preserve" id="input_1_aes_r_value" style="white-space:pre"><tspan id="tspan66" x="210.656" y="244.219">--</tspan></text>
-              <text xml:space="preserve" id="AES_R_2" style="white-space:pre"><tspan id="tspan67" x="45.5" y="244.219">AES_R</tspan></text>
+              <text xml:space="preserve" id="input_1_aes_r_value" style="white-space:pre"><tspan id="tspan26" x="210.656" y="258.494">--</tspan></text>
+              <text xml:space="preserve" id="AES_R_2" style="white-space:pre"><tspan id="tspan27" x="45.5" y="258.494">AES_R</tspan></text>
             </g>
             <g id="input_1_aes_l_group">
-              <text xml:space="preserve" id="input_1_aes_l_value" style="white-space:pre"><tspan id="tspan68" x="210.656" y="220.219">--</tspan></text>
-              <text xml:space="preserve" id="AES_L_2" style="white-space:pre"><tspan id="tspan69" x="45.5" y="220.219">AES_L</tspan></text>
+              <text xml:space="preserve" id="input_1_aes_l_value" style="white-space:pre"><tspan id="tspan28" x="210.656" y="234.494">--</tspan></text>
+              <text xml:space="preserve" id="AES_L_2" style="white-space:pre"><tspan id="tspan29" x="45.5" y="234.494">AES_L</tspan></text>
             </g>
           </g>
-          <g id="header_6">
+          <g id="header_4">
             <g id="input_1_mode_switch">
-              <path id="input_mode_switch_background" fill="#7adc47" d="M200.5 189.25c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10"/>
-              <path id="Vector_3" fill="#000" d="M203.833 182.25h-6.666v-1.8l-2.667 2.4 2.667 2.4v-1.8h8v-3.6h-1.334m-6.666-3.6h6.666v1.8l2.667-2.4-2.667-2.4v1.8h-8v3.6h1.334z"/>
+              <path id="input_mode_switch_background" fill="#7adc47" d="M200.5 203.525C206.023 203.525 210.5 199.048 210.5 193.525C210.5 188.002 206.023 183.525 200.5 183.525C194.977 183.525 190.5 188.002 190.5 193.525C190.5 199.048 194.977 203.525 200.5 203.525Z"/>
+              <path id="Vector" fill="#000" d="M203.833 196.525H197.167V194.725L194.5 197.125L197.167 199.525V197.725H205.167V194.125H203.833M197.167 190.525H203.833V192.325L206.5 189.925L203.833 187.525V189.325H195.833V192.925H197.167V190.525Z"/>
             </g>
-            <path id="input_1_device_icon_2" fill="#7adc47" d="M45.429 173.25H32.57c-.591 0-1.071.48-1.071 1.071v12.858c0 .591.48 1.071 1.071 1.071h12.86c.591 0 1.071-.48 1.071-1.071v-12.858c0-.591-.48-1.071-1.071-1.071"/>
-            <text xml:space="preserve" id="input_1_header_label_2" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan70" x="54.5" y="185.928">Вход Осн.</tspan></text>
+            <path id="input_1_device_icon_2" fill="#7adc47" d="M45.4286 187.525H32.5714C31.9797 187.525 31.5 188.005 31.5 188.596V201.454C31.5 202.045 31.9797 202.525 32.5714 202.525H45.4286C46.0203 202.525 46.5 202.045 46.5 201.454V188.596C46.5 188.005 46.0203 187.525 45.4286 187.525Z"/>
+            <text xml:space="preserve" id="input_1_header_label_2" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan30" x="54.5" y="200.203">Вход Осн.</tspan></text>
           </g>
           <g id="g9929-10_2">
+            <g id="g10081-4_2">
+              <path id="circle9062-2_2" fill="#626879" d="M231 234.025C233.485 234.025 235.5 232.01 235.5 229.525C235.5 227.04 233.485 225.025 231 225.025C228.515 225.025 226.5 227.04 226.5 229.525C226.5 232.01 228.515 234.025 231 234.025Z"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="exiter_1">
+        <g id="rect8952-3_3" filter="url(#filter4_d_3275_762)">
+          <path id="path30" fill="#f7f7f7" d="M638.5 15.525H361.5C354.873 15.525 349.5 20.8976 349.5 27.525V248.525C349.5 255.152 354.873 260.525 361.5 260.525H638.5C645.127 260.525 650.5 255.152 650.5 248.525V27.525C650.5 20.8976 645.127 15.525 638.5 15.525Z"/>
+          <path id="path31" stroke="#c4c4c4" stroke-linecap="round" stroke-width="1.05" d="M638.5 15.525H361.5C354.873 15.525 349.5 20.8976 349.5 27.525V248.525C349.5 255.152 354.873 260.525 361.5 260.525H638.5C645.127 260.525 650.5 255.152 650.5 248.525V27.525C650.5 20.8976 645.127 15.525 638.5 15.525Z"/>
+        </g>
+        <g id="secondary_info_2">
+          <g id="g8994">
+            <text xml:space="preserve" id="text8992_3" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan31" x="369.5" y="189.226">Нес. частота</tspan></text>
+            <g id="exiter_1_freq_val_wrap_number">
+              <text xml:space="preserve" id="exiter_1_freq_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan32" x="621.222" y="187.652">--</tspan></text>
+            </g>
+          </g>
+          <g id="g8994_2">
+            <text xml:space="preserve" id="text8992_4" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan33" x="369.5" y="209.226">Тип сигнала</tspan></text>
+            <g id="exiter_1_input_signal_type_wrap_number">
+              <text xml:space="preserve" id="exiter_1_input_signal_type_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan34" x="621.335" y="208.152">--</tspan></text>
+            </g>
+          </g>
+          <g id="g8994_3">
+            <text xml:space="preserve" id="text8992_5" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan35" x="369.5" y="229.225">Температура
+</tspan></text>
+            <g id="exiter_1_temp">
+              <text xml:space="preserve" id="exiter_1_temp_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan36" x="621.335" y="228.152">--</tspan></text>
+            </g>
+          </g>
+          <g id="g8994_4">
+            <text xml:space="preserve" id="text8992_6" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan37" x="369.5" y="249.725">КСВ</tspan></text>
+            <g id="exiter_1_swr_group">
+              <text xml:space="preserve" id="exiter_1_swr_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan38" x="621.335" y="248.152">--</tspan></text>
+            </g>
+          </g>
+        </g>
+        <g id="progres_bar">
+          <text xml:space="preserve" id="exiter_1_progres_bar_value" x="8.005" y="0" fill="#000" font-family="Roboto" font-size="15" letter-spacing="0em" style="text-align:center;white-space:pre" text-anchor="middle"><tspan id="tspan39" x="499.499" y="169.652">--</tspan></text>
+        </g>
+        <g id="path8985">
+          <path id="path39" fill="#c4c4c4" d="M364.5 150.525L635.5 150.525Z"/>
+          <path id="path40" stroke="#c4c4c4" stroke-width=".809" d="M364.5 150.525L635.5 150.525"/>
+        </g>
+        <g id="exiter_1_control_buttons">
+          <g id="Frame 45">
+            <rect id="rect40" width="95" height="30" x="364.5" y="100.525" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
+            <rect id="rect41" width="95" height="30" x="364.5" y="100.525" stroke="#e3e3e3" rx="13"/>
+            <text xml:space="preserve" id="text8992_7" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan41" x="393.734" y="143.31">Грубо</tspan></text>
+            <g id="exiter_1_set_ex1_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21" width="40" height="20" x="408.5" y="126.025" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 408.5 126.025)"/>
+              <path id="Vector 38" stroke="#626879" stroke-width="1.5" d="M388.5 122.025V115.525V109.025M393.5 115.525L388.5 109.025L383.5 115.525"/>
+            </g>
+            <g id="exiter_1_set_ex2_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_2" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 455.5 106.025)"/>
+              <path id="Vector 38_2" stroke="#626879" stroke-width="1.5" d="M435.5 109.025V115.525V122.025M440.5 115.525L435.5 122.025L430.5 115.525"/>
+            </g>
+          </g>
+          <g id="Frame 43">
+            <rect id="rect42" width="95" height="30" x="470.5" y="100.525" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
+            <rect id="rect43" width="95" height="30" x="470.5" y="100.525" stroke="#e3e3e3" rx="13"/>
+            <text xml:space="preserve" id="text8992_8" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan43" x="498.326" y="143.31">Точно</tspan></text>
+            <g id="exiter_1_set_ex3_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_3" width="40" height="20" x="514.5" y="126.025" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 514.5 126.025)"/>
+              <path id="Vector 38_3" stroke="#626879" stroke-width="1.5" d="M494.5 122.025V115.525V109.025M499.5 115.525L494.5 109.025L489.5 115.525"/>
+            </g>
+            <g id="exiter_1_set_ex4_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_4" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 561.5 106.025)"/>
+              <path id="Vector 38_4" stroke="#626879" stroke-width="1.5" d="M541.5 109.025V115.525V122.025M546.5 115.525L541.5 122.025L536.5 115.525"/>
+            </g>
+          </g>
+          <g id="Frame 43_2">
+            <rect id="rect44" width="59" height="30" x="575.5" y="100.525" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
+            <rect id="rect45" width="59" height="30" x="575.5" y="100.525" stroke="#e3e3e3" rx="13"/>
+            <text xml:space="preserve" id="text8992_9" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan45" x="576.479" y="143.31">Принять</tspan></text>
+            <g id="exiter_1_set_ex5_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_5" width="45" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 627.5 105.525)"/>
+              <path id="Vector 38_5" stroke="#626879" stroke-width="1.5" d="M611.5 109.525L602.833 122.525L598.5 118.192"/>
+            </g>
+          </g>
+          <g id="path8984">
+            <path id="path45" fill="#c4c4c4" d="M464.5 143.525V100.525Z"/>
+            <path id="path46" stroke="#c4c4c4" stroke-width=".809" d="M464.5 143.525V100.525"/>
+          </g>
+          <g id="path8984_2">
+            <path id="path47" fill="#c4c4c4" d="M570.5 143.525V100.525Z"/>
+            <path id="path48" stroke="#c4c4c4" stroke-width=".809" d="M570.5 143.525V100.525"/>
+          </g>
+        </g>
+        <g id="header_5">
+          <path id="exiter_1_device_icon" fill="#7adc47" d="M373.428 25.525H360.571C359.979 25.525 359.5 26.0047 359.5 26.5965V39.4536C359.5 40.0453 359.979 40.525 360.571 40.525H373.428C374.02 40.525 374.5 40.0453 374.5 39.4536V26.5965C374.5 26.0047 374.02 25.525 373.428 25.525Z"/>
+          <text xml:space="preserve" id="exiter_1_header_label" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan48" x="381.648" y="40.203">передатчик ОСН.</tspan></text>
+          <text xml:space="preserve" id="exiter_1_station_header_value" fill="#626879" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em" style="white-space:pre"><tspan id="tspan49" x="382.5" y="61.494">--</tspan></text>
+          <g id="exiter_1_power_button" clip-path="url(#clip0_3275_762)" transform="translate(-19.5)">
+            <path id="power_btn_cover_1" fill="#7adc47" d="m 557,40.525 c 4.142,0 7.5,-3.3578 7.5,-7.5 0,-4.1421 -3.358,-7.5 -7.5,-7.5 -4.142,0 -7.5,3.3579 -7.5,7.5 0,4.1422 3.358,7.5 7.5,7.5 z"/>
+            <path id="Vector_2" fill="#000" d="m 559.85,29.4603 -0.906,0.853 c 1.081,0.6176 1.806,1.7294 1.806,3.0058 0,0.9361 -0.395,1.8338 -1.098,2.4957 -0.704,0.6619 -1.657,1.0338 -2.652,1.0338 -0.995,0 -1.948,-0.3719 -2.652,-1.0338 -0.703,-0.6619 -1.098,-1.5596 -1.098,-2.4957 0,-1.2764 0.725,-2.3882 1.8,-3.0117 l -0.9,-0.8471 c -1.3,0.8471 -2.15,2.2588 -2.15,3.8588 0,1.2481 0.527,2.4451 1.464,3.3276 0.938,0.8825 2.21,1.3783 3.536,1.3783 1.326,0 2.598,-0.4958 3.536,-1.3783 0.937,-0.8825 1.464,-2.0795 1.464,-3.3276 0,-1.6 -0.85,-3.0117 -2.15,-3.8588 z m -2.225,-1.4353 h -1.25 v 5.8824 h 1.25"/>
+          </g>
+        </g>
+        <g id="path8984_3" fill="#c4c4c4">
+          <path id="path49" d="M364.5 93.525H634.5Z"/>
+          <path id="path50" d="M364.5 93.525L364.5 93.9296H634.5L634.5 93.525L634.499 93.1205H364.499L364.5 93.525Z"/>
+        </g>
+        <g id="Group 7">
+          <g id="primary_info_output">
+            <g id="g10081-4_3">
+              <path id="circle9062-2_3" fill="#626879" d="M629.5 89.525C632.261 89.525 634.5 87.2864 634.5 84.525C634.5 81.7636 632.261 79.525 629.5 79.525C626.739 79.525 624.5 81.7636 624.5 84.525C624.5 87.2864 626.739 89.525 629.5 89.525Z"/>
+              <text xml:space="preserve" id="exiter_1_output_pwr_value" fill="#000" font-family="Roboto" font-size="18" letter-spacing="0em" style="white-space:pre"><tspan id="tspan50" x="612.051" y="89.677">--</tspan></text>
+            </g>
+          </g>
+          <g id="primary_info_input">
             <g id="g10081-4_4">
-              <path id="circle9062-2_4" fill="#626879" d="M231 219.75a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9"/>
+              <path id="circle9062-2_4" fill="#626879" d="M370.5 89.525C367.739 89.525 365.5 87.2864 365.5 84.525C365.5 81.7636 367.739 79.525 370.5 79.525C373.261 79.525 375.5 81.7636 375.5 84.525C375.5 87.2864 373.261 89.525 370.5 89.525Z"/>
+              <text xml:space="preserve" id="exiter_1_input_signal_value" fill="#000" font-family="Roboto" font-size="18" letter-spacing="0em" style="white-space:pre" transform="translate(378 73.025)"><tspan id="tspan51" x="0" y="16.652">--</tspan></text>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="exiter_0">
+        <g id="rect8952-3_4" filter="url(#filter5_d_3275_762)">
+          <path id="path51" fill="#f7f7f7" d="M638.5 271.525H361.5C354.873 271.525 349.5 276.898 349.5 283.525V504.525C349.5 511.152 354.873 516.525 361.5 516.525H638.5C645.127 516.525 650.5 511.152 650.5 504.525V283.525C650.5 276.898 645.127 271.525 638.5 271.525Z"/>
+          <path id="path52" stroke="#c4c4c4" stroke-linecap="round" stroke-width="1.05" d="M638.5 271.525H361.5C354.873 271.525 349.5 276.898 349.5 283.525V504.525C349.5 511.152 354.873 516.525 361.5 516.525H638.5C645.127 516.525 650.5 511.152 650.5 504.525V283.525C650.5 276.898 645.127 271.525 638.5 271.525Z"/>
+        </g>
+        <g id="secondary_info_3">
+          <g id="g8994_5">
+            <text xml:space="preserve" id="text8992_10" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan52" x="369.5" y="445.225">Нес. частота</tspan></text>
+            <g id="exiter_0_freq_val_wrap_number">
+              <text xml:space="preserve" id="exiter_0_freq_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan53" x="621.222" y="443.652">--</tspan></text>
+            </g>
+          </g>
+          <g id="g8994_6">
+            <text xml:space="preserve" id="text8992_11" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan54" x="369.5" y="465.225">Тип сигнала</tspan></text>
+            <g id="exiter_0_input_signal_type_wrap_number">
+              <text xml:space="preserve" id="exiter_0_input_signal_type_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan55" x="621.335" y="464.152">--</tspan></text>
+            </g>
+          </g>
+          <g id="g8994_7">
+            <text xml:space="preserve" id="text8992_12" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan56" x="369.5" y="485.225">Температура
+</tspan></text>
+            <g id="exiter_0_temp">
+              <text xml:space="preserve" id="exiter_0_temp_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan57" x="621.335" y="484.152">--</tspan></text>
+            </g>
+          </g>
+          <g id="g8994_8">
+            <text xml:space="preserve" id="text8992_13" fill="#000" font-family="Roboto" font-size="16" letter-spacing="0em" style="white-space:pre"><tspan id="tspan58" x="369.5" y="505.725">КСВ</tspan></text>
+            <g id="exiter_0_swr_group">
+              <text xml:space="preserve" id="exiter_0_swr_value" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="white-space:pre"><tspan id="tspan59" x="621.335" y="504.152">--</tspan></text>
+            </g>
+          </g>
+        </g>
+        <g id="progres_bar_2">
+          <text xml:space="preserve" id="exiter_0_progres_bar_value" x="8.005" y="0" fill="#2f323a" font-family="Roboto" font-size="15" letter-spacing="0em" style="text-align:center;white-space:pre" text-anchor="middle"><tspan id="tspan60" x="499.499" y="425.652">--</tspan></text>
+        </g>
+        <g id="path8985_2">
+          <path id="path60" fill="#c4c4c4" d="M364.5 406.525L635.5 406.525Z"/>
+          <path id="path61" stroke="#c4c4c4" stroke-width=".809" d="M364.5 406.525L635.5 406.525"/>
+        </g>
+        <g id="exiter_0_control_buttons">
+          <g id="Frame 45_2">
+            <rect id="rect61" width="95" height="30" x="364.5" y="356.525" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
+            <rect id="rect62" width="95" height="30" x="364.5" y="356.525" stroke="#e3e3e3" rx="13"/>
+            <text xml:space="preserve" id="text8992_14" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan62" x="393.734" y="399.31">Грубо</tspan></text>
+            <g id="exiter_0_set_ex1_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_6" width="40" height="20" x="408.5" y="382.025" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 408.5 382.025)"/>
+              <path id="Vector 38_6" stroke="#626879" stroke-width="1.5" d="M388.5 378.025V371.525V365.025M393.5 371.525L388.5 365.025L383.5 371.525"/>
+            </g>
+            <g id="exiter_0_set_ex2_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_7" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 455.5 362.025)"/>
+              <path id="Vector 38_7" stroke="#626879" stroke-width="1.5" d="M435.5 365.025V371.525V378.025M440.5 371.525L435.5 378.025L430.5 371.525"/>
+            </g>
+          </g>
+          <g id="Frame 43_3">
+            <rect id="rect63" width="95" height="30" x="470.5" y="356.525" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
+            <rect id="rect64" width="95" height="30" x="470.5" y="356.525" stroke="#e3e3e3" rx="13"/>
+            <text xml:space="preserve" id="text8992_15" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan64" x="498.326" y="399.31">Точно</tspan></text>
+            <g id="exiter_0_set_ex3_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_8" width="40" height="20" x="514.5" y="382.025" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="rotate(180 514.5 382.025)"/>
+              <path id="Vector 38_8" stroke="#626879" stroke-width="1.5" d="M494.5 378.025V371.525V365.025M499.5 371.525L494.5 365.025L489.5 371.525"/>
+            </g>
+            <g id="exiter_0_set_ex4_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_9" width="40" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 561.5 362.025)"/>
+              <path id="Vector 38_9" stroke="#626879" stroke-width="1.5" d="M541.5 365.025V371.525V378.025M546.5 371.525L541.5 378.025L536.5 371.525"/>
+            </g>
+          </g>
+          <g id="Frame 43_4">
+            <rect id="rect65" width="59" height="30" x="575.5" y="356.525" fill="#e5e5e5" fill-opacity=".8" rx="13"/>
+            <rect id="rect66" width="59" height="30" x="575.5" y="356.525" stroke="#e3e3e3" rx="13"/>
+            <text xml:space="preserve" id="text8992_16" fill="#626879" font-family="Roboto" font-size="14" letter-spacing="0em" style="white-space:pre"><tspan id="tspan66" x="576.479" y="399.31">Принять</tspan></text>
+            <g id="exiter_0_set_ex5_button" stroke-linecap="round" stroke-linejoin="round">
+              <rect id="Rectangle 21_10" width="45" height="20" fill="#f3f3f3" fill-opacity=".7" stroke="#d5d5d5" rx="10" transform="matrix(-1 0 0 1 627.5 361.525)"/>
+              <path id="Vector 38_10" stroke="#626879" stroke-width="1.5" d="M611.5 365.525L602.833 378.525L598.5 374.192"/>
+            </g>
+          </g>
+          <g id="path8984_4">
+            <path id="path66" fill="#c4c4c4" d="M464.5 399.525V356.525Z"/>
+            <path id="path67" stroke="#c4c4c4" stroke-width=".809" d="M464.5 399.525V356.525"/>
+          </g>
+          <g id="path8984_5">
+            <path id="path68" fill="#c4c4c4" d="M570.5 399.525V356.525Z"/>
+            <path id="path69" stroke="#c4c4c4" stroke-width=".809" d="M570.5 399.525V356.525"/>
+          </g>
+        </g>
+        <g id="header_6">
+          <path id="exiter_0_device_icon" fill="#7adc47" d="M373.428 281.525H360.571C359.979 281.525 359.5 282.005 359.5 282.596V295.454C359.5 296.045 359.979 296.525 360.571 296.525H373.428C374.02 296.525 374.5 296.045 374.5 295.454V282.596C374.5 282.005 374.02 281.525 373.428 281.525Z"/>
+          <text xml:space="preserve" id="exiter_0_header_label" fill="#626879" font-family="Roboto" font-size="21" font-weight="500" letter-spacing="0em" style="white-space:pre"><tspan id="tspan69" x="383.668" y="296.203">передатчик РЕЗ.</tspan></text>
+          <text xml:space="preserve" id="exiter_0_station_header_value" fill="#626879" font-family="Roboto" font-size="16" font-style="italic" letter-spacing="0em" style="white-space:pre"><tspan id="tspan70" x="382.5" y="317.494">--</tspan></text>
+          <g id="exiter_0_power_button" clip-path="url(#clip1_3275_762)" transform="translate(-19.5)">
+            <path id="power_btn_cover_1_2" fill="#7adc47" d="m 557,296.525 c 4.142,0 7.5,-3.358 7.5,-7.5 0,-4.142 -3.358,-7.5 -7.5,-7.5 -4.142,0 -7.5,3.358 -7.5,7.5 0,4.142 3.358,7.5 7.5,7.5 z"/>
+            <path id="Vector_3" fill="#000" d="m 559.85,285.46 -0.906,0.853 c 1.081,0.618 1.806,1.73 1.806,3.006 0,0.936 -0.395,1.834 -1.098,2.496 -0.704,0.662 -1.657,1.034 -2.652,1.034 -0.995,0 -1.948,-0.372 -2.652,-1.034 -0.703,-0.662 -1.098,-1.56 -1.098,-2.496 0,-1.276 0.725,-2.388 1.8,-3.012 l -0.9,-0.847 c -1.3,0.847 -2.15,2.259 -2.15,3.859 0,1.248 0.527,2.445 1.464,3.328 0.938,0.882 2.21,1.378 3.536,1.378 1.326,0 2.598,-0.496 3.536,-1.378 0.937,-0.883 1.464,-2.08 1.464,-3.328 0,-1.6 -0.85,-3.012 -2.15,-3.859 z m -2.225,-1.435 h -1.25 v 5.882 h 1.25"/>
+          </g>
+        </g>
+        <g id="path8984_6" fill="#c4c4c4">
+          <path id="path70" d="M364.5 349.525H634.5Z"/>
+          <path id="path71" d="M364.5 349.525L364.5 349.93H634.5L634.5 349.525L634.499 349.12H364.499L364.5 349.525Z"/>
+        </g>
+        <g id="Group 7_2">
+          <g id="primary_info_output_2">
+            <g id="g10081-4_5">
+              <path id="circle9062-2_5" fill="#626879" d="M629.5 345.525C632.261 345.525 634.5 343.286 634.5 340.525C634.5 337.764 632.261 335.525 629.5 335.525C626.739 335.525 624.5 337.764 624.5 340.525C624.5 343.286 626.739 345.525 629.5 345.525Z"/>
+              <text xml:space="preserve" id="exiter_0_output_pwr_value" fill="#000" font-family="Roboto" font-size="18" letter-spacing="0em" style="white-space:pre"><tspan id="tspan71" x="612.051" y="345.677">--</tspan></text>
+            </g>
+          </g>
+          <g id="primary_info_input_2">
+            <g id="g10081-4_6">
+              <path id="circle9062-2_6" fill="#626879" d="M370.5 345.525C367.739 345.525 365.5 343.286 365.5 340.525C365.5 337.764 367.739 335.525 370.5 335.525C373.261 335.525 375.5 337.764 375.5 340.525C375.5 343.286 373.261 345.525 370.5 345.525Z"/>
+              <text xml:space="preserve" id="exiter_0_input_signal_value" fill="#000" font-family="Roboto" font-size="18" letter-spacing="0em" style="white-space:pre" transform="translate(378 329.025)"><tspan id="tspan72" x="0" y="16.652">--</tspan></text>
             </g>
           </g>
         </g>
       </g>
     </g>
   </g>
-  <defs id="defs83">
-    <filter id="filter0_d_0_1" width="264" height="129.8" x="725" y="135.25" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-      <feFlood id="feFlood70" flood-opacity="0" result="BackgroundImageFix"/>
-      <feColorMatrix id="feColorMatrix70" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
-      <feOffset id="feOffset70" dy="5"/>
-      <feGaussianBlur id="feGaussianBlur70" stdDeviation="10"/>
-      <feComposite id="feComposite70" in2="hardAlpha" operator="out"/>
-      <feColorMatrix id="feColorMatrix71" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-      <feBlend id="feBlend71" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_0_1"/>
-      <feBlend id="feBlend72" in="SourceGraphic" in2="effect1_dropShadow_0_1" mode="normal" result="shape"/>
-    </filter>
-    <filter id="filter1_d_0_1" width="341.5" height="266.5" x="323.75" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+  <defs id="defs85">
+    <filter id="filter0_d_3275_762" width="264" height="129.8" x="725" y="149.025" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood id="feFlood72" flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix id="feColorMatrix72" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
       <feOffset id="feOffset72" dy="5"/>
       <feGaussianBlur id="feGaussianBlur72" stdDeviation="10"/>
       <feComposite id="feComposite72" in2="hardAlpha" operator="out"/>
       <feColorMatrix id="feColorMatrix73" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-      <feBlend id="feBlend73" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_0_1"/>
-      <feBlend id="feBlend74" in="SourceGraphic" in2="effect1_dropShadow_0_1" mode="normal" result="shape"/>
+      <feBlend id="feBlend73" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_3275_762"/>
+      <feBlend id="feBlend74" in="SourceGraphic" in2="effect1_dropShadow_3275_762" mode="normal" result="shape"/>
     </filter>
-    <filter id="filter2_d_0_1" width="341.5" height="266.5" x="323.75" y="243" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+    <filter id="filter1_d_3275_762" width="265" height="115" x="0" y=".025" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood id="feFlood74" flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix id="feColorMatrix74" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
       <feOffset id="feOffset74" dy="5"/>
       <feGaussianBlur id="feGaussianBlur74" stdDeviation="10"/>
       <feComposite id="feComposite74" in2="hardAlpha" operator="out"/>
       <feColorMatrix id="feColorMatrix75" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-      <feBlend id="feBlend75" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_0_1"/>
-      <feBlend id="feBlend76" in="SourceGraphic" in2="effect1_dropShadow_0_1" mode="normal" result="shape"/>
+      <feBlend id="feBlend75" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_3275_762"/>
+      <feBlend id="feBlend76" in="SourceGraphic" in2="effect1_dropShadow_3275_762" mode="normal" result="shape"/>
     </filter>
-    <filter id="filter3_d_0_1" width="265" height="115" x="0" y=".25" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+    <filter id="filter2_d_3275_762" width="265" height="137" x="1" y="271.525" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood id="feFlood76" flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix id="feColorMatrix76" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
       <feOffset id="feOffset76" dy="5"/>
       <feGaussianBlur id="feGaussianBlur76" stdDeviation="10"/>
       <feComposite id="feComposite76" in2="hardAlpha" operator="out"/>
       <feColorMatrix id="feColorMatrix77" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-      <feBlend id="feBlend77" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_0_1"/>
-      <feBlend id="feBlend78" in="SourceGraphic" in2="effect1_dropShadow_0_1" mode="normal" result="shape"/>
+      <feBlend id="feBlend77" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_3275_762"/>
+      <feBlend id="feBlend78" in="SourceGraphic" in2="effect1_dropShadow_3275_762" mode="normal" result="shape"/>
     </filter>
-    <filter id="filter4_d_0_1" width="265" height="137" x="1" y="257.25" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+    <filter id="filter3_d_3275_762" width="265" height="138" x="0" y="160.525" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood id="feFlood78" flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix id="feColorMatrix78" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
       <feOffset id="feOffset78" dy="5"/>
       <feGaussianBlur id="feGaussianBlur78" stdDeviation="10"/>
       <feComposite id="feComposite78" in2="hardAlpha" operator="out"/>
       <feColorMatrix id="feColorMatrix79" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-      <feBlend id="feBlend79" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_0_1"/>
-      <feBlend id="feBlend80" in="SourceGraphic" in2="effect1_dropShadow_0_1" mode="normal" result="shape"/>
+      <feBlend id="feBlend79" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_3275_762"/>
+      <feBlend id="feBlend80" in="SourceGraphic" in2="effect1_dropShadow_3275_762" mode="normal" result="shape"/>
     </filter>
-    <filter id="filter5_d_0_1" width="265" height="138" x="0" y="146.25" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+    <filter id="filter4_d_3275_762" width="342.05" height="286.05" x="328.975" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
       <feFlood id="feFlood80" flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix id="feColorMatrix80" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
       <feOffset id="feOffset80" dy="5"/>
       <feGaussianBlur id="feGaussianBlur80" stdDeviation="10"/>
       <feComposite id="feComposite80" in2="hardAlpha" operator="out"/>
       <feColorMatrix id="feColorMatrix81" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-      <feBlend id="feBlend81" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_0_1"/>
-      <feBlend id="feBlend82" in="SourceGraphic" in2="effect1_dropShadow_0_1" mode="normal" result="shape"/>
+      <feBlend id="feBlend81" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_3275_762"/>
+      <feBlend id="feBlend82" in="SourceGraphic" in2="effect1_dropShadow_3275_762" mode="normal" result="shape"/>
     </filter>
-    <clipPath id="clip0_0_1">
-      <use href="#rect82" transform="translate(524.5 25.75)"/>
+    <filter id="filter5_d_3275_762" width="342.05" height="286.05" x="328.975" y="256" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood id="feFlood82" flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix id="feColorMatrix82" in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset id="feOffset82" dy="5"/>
+      <feGaussianBlur id="feGaussianBlur82" stdDeviation="10"/>
+      <feComposite id="feComposite82" in2="hardAlpha" operator="out"/>
+      <feColorMatrix id="feColorMatrix83" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
+      <feBlend id="feBlend83" in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_3275_762"/>
+      <feBlend id="feBlend84" in="SourceGraphic" in2="effect1_dropShadow_3275_762" mode="normal" result="shape"/>
+    </filter>
+    <clipPath id="clip0_3275_762">
+      <use href="#rect84" transform="translate(549.5 25.525)"/>
     </clipPath>
-    <clipPath id="clip1_0_1">
-      <use id="rect83" href="#rect82" transform="translate(524.5 268.75)"/>
+    <clipPath id="clip1_3275_762">
+      <use id="rect85" href="#rect84" transform="translate(549.5 281.525)"/>
     </clipPath>
-    <path id="path4139_10" d="M629.5 82.75h66v121.5h65"/>
-    <path id="rect82" fill="#fff" d="M0 0h15v15H0z"/>
+    <path id="path4139_6" d="M760 218.062L695.5 218.062L695.5 340.525L629.5 340.525"/>
+    <path id="rect84" fill="#fff" d="M0 0H15V15H0z"/>
   </defs>
 </svg>

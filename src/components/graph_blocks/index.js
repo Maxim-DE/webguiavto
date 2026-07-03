@@ -10,9 +10,10 @@ import svg_eventHandler_logic from '../../logic/svg_eventHandlers_logic';
 
 export const status_colors = [
   '#ABE188', //good
-  '#FFC107', //warning
+  '#f9c22e', //warning
   '#fe5f55', //error
-  // '#f92ee8', //warning
+  '#68CEDE', //hibernation
+  '#54b910', //good
   '#68CEDE', //hibernation
 ]
 

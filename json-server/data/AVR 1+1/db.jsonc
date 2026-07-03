@@ -213,6 +213,7 @@
       
       "exiter_0": {
         "status": 1,
+        "progres_bar": ["Установка частоты","",2],
           "input_signal": [
             [
                 [
@@ -257,6 +258,7 @@
       },    
       "exiter_1": {
         "status": 1,
+        "progres_bar": ["Установка частоты","",4],
         "input_signal": [
           32,
           10,
