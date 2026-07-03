@@ -76,68 +76,47 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     }))
   }
 
-  const handleClick_save = (fieldName, event) => {
-    // Проверяем, изменилось ли значение
-    const prevValue = state_prev_copy.current?.[fieldName];
-    const currentValue = generalCalibState[fieldName];
-    
-    // Если значения равны, не отправляем запрос
-    if (prevValue === currentValue) {
-      return;
-    }
-    
-    // Создаем объект только с одним полем, которое нужно сохранить
-    const singleFieldState = {
-      [fieldName]: generalCalibState[fieldName]
-    };
-    
-    const state_diff = diff(
-      { [fieldName]: state_prev_copy.current?.[fieldName] }, 
-      singleFieldState
-    );
-    
-    const req_data_str = dataArray_to_string(state_diff, (value, key) => {
-      if (calib_state != undefined && calib_state[key] != undefined) {
-        if (Array.isArray(calib_state[key])) {
-          if (typeof calib_state[key][1] == 'number' &&
-              calib_state[key][1] > 0) {
-                const converted_val = isNaN(parseFloat(value)) ?
-                                      1 :
-                                      parseFloat(value).toFixed(Math.log10(calib_state[key][1]))
-                return converted_val * calib_state[key][1]
-              }
-        } else {
-          return typeof value == "boolean" ? Number(value) : value;
-        }
-      } else {
-        return typeof value == "boolean" ? Number(value) : value;
+ const handleClick_save = (fieldName, event) => {
+  // Получаем текущее значение поля
+  const currentValue = generalCalibState[fieldName];
+  
+  // Преобразуем значение в нужный формат
+  let formattedValue = currentValue;
+  if (calib_state != undefined && calib_state[fieldName] != undefined) {
+    if (Array.isArray(calib_state[fieldName])) {
+      if (typeof calib_state[fieldName][1] == 'number' &&
+          calib_state[fieldName][1] > 0) {
+        const converted_val = isNaN(parseFloat(currentValue)) ?
+                              1 :
+                              parseFloat(currentValue).toFixed(Math.log10(calib_state[fieldName][1]));
+        formattedValue = converted_val * calib_state[fieldName][1];
       }
-    })
-
-    const request_obj = {
-      address: 'calib_signal.cgi',
-      data: req_data_str,
-      reducer: reducers.calibration_form,
-      update_data: singleFieldState,
-      notifications: {
-        good: 'default',
-        bad: 'default'
-      },
-      save_data: {
-        slave_general: state_diff
-      }
+    } else {
+      formattedValue = typeof currentValue == "boolean" ? Number(currentValue) : currentValue;
     }
+  } else {
+    formattedValue = typeof currentValue == "boolean" ? Number(currentValue) : currentValue;
+  }
+  
+  // Формируем строку запроса всегда с текущим значением
+  const req_data_str = `${fieldName}$${formattedValue}`;
 
-    clickHandler(request_obj);
-
-    // Обновляем предыдущее состояние для сохраненного поля
-    if (state_prev_copy.current) {
-      state_prev_copy.current = {
-        ...state_prev_copy.current,
-        [fieldName]: generalCalibState[fieldName]
-      };
+  const request_obj = {
+    address: 'calib_signal.cgi',
+    data: req_data_str,
+    reducer: reducers.calibration_form,
+    update_data: { [fieldName]: currentValue },
+    notifications: {
+      good: 'default',
+      bad: 'default'
+    },
+    save_data: {
+      slave_general: { [fieldName]: currentValue }
     }
   }
+
+  clickHandler(request_obj);
+}
 
   return (
     <SettingsBlockWrap 
