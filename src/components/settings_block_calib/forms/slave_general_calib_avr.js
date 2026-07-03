@@ -77,6 +77,15 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
   }
 
   const handleClick_save = (fieldName, event) => {
+    // Проверяем, изменилось ли значение
+    const prevValue = state_prev_copy.current?.[fieldName];
+    const currentValue = generalCalibState[fieldName];
+    
+    // Если значения равны, не отправляем запрос
+    if (prevValue === currentValue) {
+      return;
+    }
+    
     // Создаем объект только с одним полем, которое нужно сохранить
     const singleFieldState = {
       [fieldName]: generalCalibState[fieldName]
