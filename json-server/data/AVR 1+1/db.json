@@ -410,9 +410,7 @@
       "input_signal_type": 0
     },
     "slave_add_general": {
-      "radio_label": "Радио Россия",
-      "reserve_enable": 1,
-      "reserve_sound_enable": 1
+      "radio_label": "Радио Россия"
     },
     "slave_scheduler": {
       "type": 1,

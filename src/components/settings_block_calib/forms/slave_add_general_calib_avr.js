@@ -158,7 +158,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
         </div>
       </li> */}
       
-      <li
+      {/* <li
         key='reserve_enable'
         id='reserve_enable'
         className="settings_item">
@@ -180,10 +180,10 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type="switch"
             input_value={generalCalibState.reserve_enable} />
         </div>
-      </li>
+      </li> */}
 
       {/* Резервирование звука */}
-      <li
+      {/* <li
         key='reserve_sound_enable'
         id='reserve_sound_enable'
         className="settings_item">
@@ -205,7 +205,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type="switch"
             input_value={generalCalibState.reserve_sound_enable} />
         </div>
-      </li>
+      </li> */}
 
     </SettingsBlockWrap>
   )
