@@ -80,6 +80,10 @@
       "power_timeout_reserved_value": [
         45,
         1
+      ],
+      "rated_power_value": [
+        3500,
+        1
       ]
     }
   },
