@@ -51,7 +51,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 2
+      "auth_level": 3
     }
   },
   "settings.cgi": {
@@ -71,7 +71,17 @@
     "misc_settings": {
       "bootloader_enabled_switch": 1,
       "request_period": 1000
-    }
+    },
+    "calib_power_threshold": {
+      "power_threshold_reserved_value": [
+        700,
+        1
+      ],
+      "power_timeout_reserved_value": [
+        45,
+        1
+      ]
+    },
   },
   "network.cgi": {
     "device_adress": {
@@ -109,7 +119,7 @@
   "status.cgi": {
     "status_info": {
       "current_signal_path": 1,           // 1 - основной 2 - резервный
-      "device_status": 0,
+      "device_status": 1,
       "time": "2026-04-06 16:29:11",
       "magic_number": 1470515113,
       "UpTime": "00000:00:15"
@@ -125,40 +135,15 @@
         "aes_l": [31, 10, 0, "дБ"],
         "aes_r": [8.67, 1, 0, "дБ"],
         "input_res_signal_type": "KCC", // Должноб ыть равно  input_signal_type
-        "res_l": [
-          30,
-          10,
-          0,
-          "дБ"
-        ],
-        "res_r": [
-          29,
-          10,
-          0,
-          "дБ"
-        ],
-        "res_mpx": [
-          1008,
-          10,
-          0,
-          "кГц"
-        ],
-        "res_aes_l": [
-          31,
-          10,
-          0,
-          "дБ"
-        ],
-        "res_aes_r": [
-          32,
-          10,
-          1,
-          "дБ"
-        ]
+        "res_l": [30, 10, 0, "дБ"],
+        "res_r": [29, 10, 0, "дБ"],
+        "res_mpx": [1008, 10, 0, "кГц"],
+        "res_aes_l": [31, 10, 0, "дБ" ],
+        "res_aes_r": [32, 10, 1, "дБ" ]
       },
       "exiter_1": {
         "status": 0,
-        "progres_bar": "Установка частоты",
+        "progres_bar": ["Работает","",0],
         "station_header": "Радио Россия",
         "swr": [115, 100, 0],
         "input_signal_type": "КСС",
@@ -168,14 +153,14 @@
         // "temp": [400, 10, 0, "°С"]
       },        
       "exiter_2": {
-        "progres_bar": "Выключен",
+        "progres_bar": ["Сбой установки частоты","",4],
         "status": 1,
         "station_header": "Радио Россия",
         "swr": [120, 100, 0],
         "input_signal_type": "KCC",
         "input_signal": [[[-999, 10, 0, "дБ"], [-999, 10, 0, "дБ"]]],
         "output_pwr": [52, 1, 0, "Вт"],
-        "freq": [1001, 100, 0, "МГц"],
+        "freq": [1001, 100, 0, "МГц"]
         // "temp": [420, 10, 0, "°С"]
       },
       "amplifier_group_1": {

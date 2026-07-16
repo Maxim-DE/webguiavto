@@ -19,6 +19,10 @@ const initialState = {
     section_data: {
       settings: {},
       network: {},
+      avr_device_control: {
+        device_avaliability: {},
+        device_data: {},
+      },
       rds: {},
       info: {},
     },

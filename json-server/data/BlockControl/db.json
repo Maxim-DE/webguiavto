@@ -51,7 +51,7 @@
     },
     "auth_info": {
       "auth_id": "super_admin",
-      "auth_level": 2
+      "auth_level": 3
     }
   },
   "settings.cgi": {
@@ -71,6 +71,16 @@
     "misc_settings": {
       "bootloader_enabled_switch": 1,
       "request_period": 1000
+    },
+    "calib_power_threshold": {
+      "power_threshold_reserved_value": [
+        700,
+        1
+      ],
+      "power_timeout_reserved_value": [
+        45,
+        1
+      ]
     }
   },
   "network.cgi": {
@@ -109,7 +119,7 @@
   "status.cgi": {
     "status_info": {
       "current_signal_path": 1,
-      "device_status": 0,
+      "device_status": 1,
       "time": "2026-04-06 16:29:11",
       "magic_number": 1470515113,
       "UpTime": "00000:00:15"
@@ -183,7 +193,11 @@
       },
       "exiter_1": {
         "status": 0,
-        "progres_bar": "Установка частоты",
+        "progres_bar": [
+          "Работает",
+          "",
+          0
+        ],
         "station_header": "Радио Россия",
         "swr": [
           115,
@@ -221,7 +235,11 @@
         ]
       },
       "exiter_2": {
-        "progres_bar": "Выключен",
+        "progres_bar": [
+          "Сбой установки частоты",
+          "",
+          4
+        ],
         "status": 1,
         "station_header": "Радио Россия",
         "swr": [

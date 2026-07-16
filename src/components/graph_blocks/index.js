@@ -165,7 +165,6 @@ function Status_graphs(props) {
           if (status != 0 && status !== 3) { // Добавлена проверка на status !== 3
             graph_block_value_span.style.fontWeight = "500";
             graph_block_value_span.style.fill = status_colors[status];
-            console.log('status_colors',status_colors)
           } else {
             graph_block_value_span.style.fontWeight = "300";
             // graph_block_value_span.attributes["font-weight"].value = "300";
