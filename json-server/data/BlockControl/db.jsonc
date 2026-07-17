@@ -549,8 +549,10 @@
     "calib_additional_power": {
       "ballast_1_avaliable": 1,
       "ballast_1": [1100, 1],
+      "ballast_1_Limit": [800, 1],
       "ballast_1_threshold_low": [800, 1],
       "ballast_1_threshold_high": [1002, 1]
+
     },
     "calib_pwr_sensor": {
       "coeff": [3000, 1000]

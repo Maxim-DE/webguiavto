@@ -864,6 +864,10 @@
         1100,
         1
       ],
+      "ballast_1_Limit": [
+        800,
+        1
+      ],
       "ballast_1_threshold_low": [
         800,
         1
