@@ -26,7 +26,11 @@ export const AvrDevicesCalib = (props) => {
     useSelector((store) => store.globalStore.global_data.status_data.status_graph),
     (key, value) => key.includes('exiter')
   );
+  // console.log('section_store',useSelector((store) => store.globalStore.global_data.section_data))
+  // console.log('availiability_store',availiability_store)
+  // console.log(useSelector((store) => store.globalStore.global_data.status_data))
   const device_store = section_store.device_data?.[`device_${Number(deviceState.active_device)}`];
+  
   const adc_device_store = adc_store?.[`device_${Number(deviceState.active_device)}`];
 
   const res_ex_settings_enable = useRef(0);
@@ -54,8 +58,9 @@ export const AvrDevicesCalib = (props) => {
       settings_type={1}
     />
   );
-
+// console.log('device_store',device_store)
   return (
+    
     <>
       <SettingsSectionWrap
         section_name={`${props.section_name}`}

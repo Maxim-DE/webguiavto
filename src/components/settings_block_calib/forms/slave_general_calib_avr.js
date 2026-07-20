@@ -122,9 +122,6 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     <SettingsBlockWrap 
       header={`общие настройки`}
       settings_type={`slave_general`}>
-      {/* section_name={props.section_name}
-      save_handler={handleClick_save}
-      disable_save={!isFormValid} > */}
       <li
         key='frequency_calib'
         id='frequency_calib'
@@ -156,35 +153,6 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' />
         </div>
       </li>
-      {/* <li
-        key='input_power_calib'
-        id='input_power_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`input_pwr_calib_input`}
-            className="settings_itemLabel">
-            Выходная мощность, Вт
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`input_power_calib_input`}
-            name={`input_power_calib`}
-            changeHandler={handleChange}
-            input_value={generalCalibState.input_power}
-            style={{ margin: '0', maxWidth: '75px' }}
-            placeholder='Вт'
-            type="text" />
-          <FormInput
-            id={`input_power_calib_save`}
-            name={`input_power_calib`}
-            clickHandler={(event) => handleClick_save('input_power', event)}
-            label='Сохранить'
-          type='button' />
-        </div>
-      </li> */}
-      {/* <li className="group_divider"></li> */}
       <li
         key='input_signal_type_calib'
         id='input_signal_type_calib'
@@ -247,6 +215,37 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' />
         </div>
       </li>
+      <li
+        key='control_rc_type_calib'
+        id='control_rc_type_calib'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`control_rc_type_calib_input`}
+            className="settings_itemLabel">
+            Переключение РЦ
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`control_rc_type_calib_input`}
+            name={`control_rc_type_calib`}
+            type='select'
+            input_value={generalCalibState.control_rc_type}
+            title='Тип сигнала'
+            variants={[
+              'RS-485',
+              'Реле'
+            ]}
+            changeHandler={handleChange} />
+          <FormInput
+            id={`control_rc_type_calib_save`}
+            name={`control_rc_type_calib`}
+            clickHandler={(event) => handleClick_save('control_rc_type', event)}
+            label='Сохранить'
+            type='button' />
+        </div>
+      </li>      
     </SettingsBlockWrap>
   )
 }

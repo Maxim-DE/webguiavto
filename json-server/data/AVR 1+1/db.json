@@ -399,15 +399,12 @@
         1020,
         10
       ],
-      "input_power": [
-        1001,
-        10
-      ],
       "turn_on_timeout": [
         25,
         1
       ],
-      "input_signal_type": 0
+      "input_signal_type": 0,
+      "control_rc_type": 0
     },
     "slave_add_general": {
       "radio_label": "Радио Россия"
