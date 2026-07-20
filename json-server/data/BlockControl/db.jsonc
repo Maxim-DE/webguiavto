@@ -292,7 +292,9 @@
         "ballast_1": 2
       },
       "pwr_sensor_calib": {
-        "coeff": [1531, 1000]
+        "coeff": [1531, 1000],
+        "coeff_ball": [211, 100]
+
       }
     },
     "calib_info": {
@@ -612,7 +614,8 @@
 
     },
     "calib_pwr_sensor": {
-      "coeff": [3000, 1000]
+      "coeff": [3000, 1000],
+      "coeff_ball": [123, 100]
     },
     "calib_fan": {
       "fan_pwm": 0,

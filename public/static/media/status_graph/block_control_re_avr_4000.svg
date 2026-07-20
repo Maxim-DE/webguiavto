@@ -197,7 +197,7 @@
           <path id="Vector 11" d="M775.825 68.5791L775.999 267.026C776 267.578 776.447 268.025 776.999 268.025L786 268.025"/>
         </g>
         <g id="Frame 12">
-          <use fill-opacity=".01" href="#rect43" transform="translate(771 56.525)"/>
+          <use id="use1" fill-opacity=".01" href="#rect43" transform="translate(771 56.525)"/>
           <text xml:space="preserve" id="amplifier_group_1_input_pwr_value" fill="#000" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em" style="white-space:pre"><tspan id="tspan43" x="788" y="74.177">--</tspan></text>
           <text xml:space="preserve" id="amplifier_group_1_output_pwr_value" x="19.661" y="0" fill="#000" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em" style="text-align:end;white-space:pre" text-anchor="end"><tspan id="tspan44" x="1004.965" y="74.177">--</tspan></text>
           <g id="Ellipse 4">
@@ -597,18 +597,18 @@
           </g>
           <g id="cap_temp">
             <g id="cap_temp_main_exiter_group">
-              <text xml:space="preserve" id="cap_temp_main_exiter_group_2" style="white-space:pre"><tspan id="tspan124" x="410" y="443.652">T основного ПРД</tspan></text>
+              <text xml:space="preserve" id="cap_temp_main_exiter_group_2" display="inline" style="white-space:pre"><tspan id="tspan40" x="0" y="0"><tspan id="tspan124" x="410" y="443.652">Tемпература ПРД-ОСН</tspan></tspan></text>
               <text xml:space="preserve" id="cap_temp_main_exiter_value" x="16.01" y="0" style="text-align:end;white-space:pre" text-anchor="end"><tspan id="tspan125" x="635" y="443.652">--</tspan></text>
             </g>
             <g id="cap_temp_res_exiter_group">
-              <text xml:space="preserve" id="cap_temp_res_exiter_group_2" style="white-space:pre"><tspan id="tspan126" x="410" y="443.652">T резервного ПРД</tspan></text>
+              <text xml:space="preserve" id="cap_temp_res_exiter_group_2" display="inline" style="white-space:pre"><tspan id="tspan126" x="410" y="443.652">Tемпература ПРД-РЕЗ</tspan></text>
               <text xml:space="preserve" id="cap_temp_res_exiter_value" x="16.01" y="0" style="text-align:end;white-space:pre" text-anchor="end"><tspan id="tspan127" x="635" y="443.652">--</tspan></text>
             </g>
           </g>
         </g>
         <g id="Frame 35">
           <g id="Frame 12_3">
-            <use fill-opacity=".01" href="#rect127" transform="matrix(-1 0 0 1 523 271.525)"/>
+            <use id="use2" fill-opacity=".01" href="#rect127" transform="matrix(-1 0 0 1 523 271.525)"/>
             <text xml:space="preserve" id="cap_input_pwr_value" fill="#000" font-family="Roboto" font-size="18" font-weight="300" letter-spacing="0em" style="white-space:pre"><tspan id="tspan128" x="425.664" y="289.177">--</tspan></text>
             <path id="circle8962_2" fill="#626879" d="M418 288.525C420.761 288.525 423 286.286 423 283.525C423 280.764 420.761 278.525 418 278.525C415.239 278.525 413 280.764 413 283.525C413 286.286 415.239 288.525 418 288.525Z"/>
           </g>
@@ -688,7 +688,7 @@
       <path id="rect156" fill="#fff" d="M0 0H46V225H0z" transform="translate(683.5 211.525)"/>
     </clipPath>
     <clipPath id="clip1_3275_762">
-      <use href="#rect157" transform="translate(1005.77 29.5029)"/>
+      <use id="use3" href="#rect157" transform="translate(1005.77 29.5029)"/>
     </clipPath>
     <clipPath id="clip2_3275_762">
       <use id="rect158" href="#rect157" transform="translate(1005.77 445.503)"/>
@@ -697,7 +697,7 @@
       <path id="rect159" fill="#fff" d="M0 0H250V150H0z" transform="translate(1144 172.525)"/>
     </clipPath>
     <clipPath id="clip4_3275_762">
-      <use href="#rect160" transform="translate(227 475.525)"/>
+      <use id="use4" href="#rect160" transform="translate(227 475.525)"/>
     </clipPath>
     <clipPath id="clip5_3275_762">
       <use id="rect161" href="#rect160" transform="translate(300 475.525)"/>

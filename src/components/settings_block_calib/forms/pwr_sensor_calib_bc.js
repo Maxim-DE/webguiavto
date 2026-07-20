@@ -27,7 +27,8 @@ function PWRSensorCalibSettings_BC(props) {
     auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [PWRSensorCalibState, setPWRSensorCalibState] = React.useState({
-    'coeff': 0
+    'coeff': 0,
+    'coeff_ball': 0
   })
 
   // const [auth_store, authGlobalActions] = useGlobalStore()
@@ -167,7 +168,7 @@ function PWRSensorCalibSettings_BC(props) {
           <label
             htmlFor={`coeff_input`}
             className="settings_itemLabel">
-            Коэффициент
+            Коэффициент АЧХ вых. мощности
           </label>
         </div>
         <div className='item_input'>
@@ -190,6 +191,41 @@ function PWRSensorCalibSettings_BC(props) {
             type="button" />
         </div>
       </li>
+
+
+
+            <li
+        key='coeff_ball_calib'
+        id='coeff_ball_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`coeff_ball_input`}
+            className="settings_itemLabel">
+            Коэффициент АЧХ балласта
+          </label>
+        </div>
+        <div className='item_input'>
+          <ADCString
+            label={'K'}
+            adc_value={adcPwrSensor_store?.coeff_ball} />
+          <FormInput
+            id={`coeff_ball_input`}
+            name={`coeff_ball`}
+            class="calib_input"
+            changeHandler={handleChange}
+            input_value={PWRSensorCalibState.coeff_ball}
+            placeholder={'%'}
+            type="text" />
+          <FormInput
+            id={`coeff_ball_save`}
+            name={`coeff_ball`}
+            clickHandler={handleClick_save}
+            label='Сохранить'
+            type="button" />
+        </div>
+      </li>
+
     </Settings_block_calib>
   )
 }
