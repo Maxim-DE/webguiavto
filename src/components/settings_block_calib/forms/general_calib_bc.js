@@ -190,42 +190,6 @@ const section_store = useSelector((store) => store.globalStore.global_data.secti
       <li className="group_divider"></li>
       </>
       }
-      {section_store.info.info_general.IsExistAvr ===1 &&
-       <li
-        key='input_signal_type_calib'
-        id='input_signal_type_calib'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`input_signal_type_calib_input`}
-            className="settings_itemLabel">
-            Тип вход. сигнала
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`input_signal_type_calib_input`}
-            name={`input_signal_type_calib`}
-            type='select'
-            input_value={generalCalibState.input_signal_type}
-            title='Тип сигнала'
-            variants={[
-              'Stereo',
-              'L',
-              'R',
-              'КСС',
-              'AES'
-            ]}
-            changeHandler={handleChange} />
-          <FormInput
-            id={`input_signal_type_calib_save`}
-            name={`input_signal_type_calib`}
-            clickHandler={handleClick_save}  // без обертки, передаем саму функцию
-            label='Сохранить'
-            type='button' />
-        </div>
-      </li>    
-      } 
       <li
         key='watchdog_calib'
         id='watchdog_calib'

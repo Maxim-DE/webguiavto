@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
 
   const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
-  console.log('auth_level',auth_level)
   const [powerCalibState, setPowerCalibState] = React.useState({
     // power_threshold_reserved_value: 1000,
     // power_timeout_reserved_value: 25,
@@ -140,7 +139,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
 
 
   return (
-    <Settings_block_calib header={`установка порогов мощности САР`}
+    <Settings_block_calib header={`пороги мощности сар`}
                           settings_type={`power_threshold_calib`}
                           save_handler={handleClick_save}>
       <li

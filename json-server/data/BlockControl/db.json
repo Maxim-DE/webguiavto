@@ -72,19 +72,76 @@
       "bootloader_enabled_switch": 1,
       "request_period": 1000
     },
+    "slave_general": {
+      "frequency": [
+        1000,
+        10
+      ],
+      "turn_on_timeout": [
+        40,
+        1
+      ],
+      "input_signal_type": 1
+    },
     "calib_power_threshold": {
       "power_threshold_reserved_value": [
-        700,
+        400,
         1
       ],
       "power_timeout_reserved_value": [
-        45,
+        25,
         1
       ],
       "rated_power_value": [
-        3500,
+        500,
         1
       ]
+    },
+    "calib_signal_threshold": {
+      "signal_type_reserved": 2,
+      "signal_0_reserved_value": [
+        30,
+        10
+      ],
+      "signal_1_reserved_value": [
+        25,
+        10
+      ],
+      "signal_2_reserved_value": [
+        55,
+        10
+      ],
+      "signal_3_reserved_value": [
+        94,
+        10
+      ],
+      "signal_4_reserved_value": [
+        72,
+        10
+      ],
+      "reserved_threshold_timeout": 1000,
+      "signal_type_recovery": 4,
+      "signal_0_recovery_value": [
+        150,
+        10
+      ],
+      "signal_1_recovery_value": [
+        20,
+        10
+      ],
+      "signal_2_recovery_value": [
+        50,
+        10
+      ],
+      "signal_3_recovery_value": [
+        90,
+        10
+      ],
+      "signal_4_recovery_value": [
+        70,
+        10
+      ],
+      "recovery_threshold_timeout": 1000
     }
   },
   "network.cgi": {

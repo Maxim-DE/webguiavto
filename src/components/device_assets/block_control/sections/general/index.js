@@ -6,7 +6,11 @@ import { useSelector } from 'react-redux';
 import Time_settings from './forms/time_settings'
 import File_download from './forms/file_download'
 
-import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr';
+import PowerCalibThreshold_AVR from '../../../../settings_block_calib/forms/wattage_threshold_calib_avr.js';
+import SignalThresholdCalib_AVR from '../../../../settings_block_calib/forms/signal_threshold_calib.js';
+import SlaveGeneralCalib_AVR from '../../../../settings_block_calib/forms/slave_general_calib_avr.js';
+
+
 import { reducers } from '../../../../../store/reducers/core_store_reducers'
 
 export default function GeneralSettingsSection(props) {
@@ -14,8 +18,8 @@ export default function GeneralSettingsSection(props) {
     props.updateHandler(data_block);
   }
   
-  const section_store = useSelector((store) => store.globalStore.global_data.section_data.settings.calib_power_threshold)
-
+  const section_store = useSelector((store) => store.globalStore.global_data.section_data.settings)
+  // console.log('section_store',section_store)
   const handleClick = block_data => {
     block_data.data = (block_data.data ? block_data.data : '')
     props.updateHandler(block_data);
@@ -46,10 +50,18 @@ export default function GeneralSettingsSection(props) {
         clickHandler={updateHandler} />
       <File_download
         section_name="settings" />
-        <PowerCalibThreshold_AVR
-          calib_state={section_store}
-          clickHandler={handleClick}
-        />
+      <SlaveGeneralCalib_AVR
+        calib_state={section_store.slave_general}
+        clickHandler={handleClick}
+      />      
+      <PowerCalibThreshold_AVR
+        calib_state={section_store.calib_power_threshold}
+        clickHandler={handleClick}
+      />
+      <SignalThresholdCalib_AVR
+        calib_state={section_store.calib_signal_threshold}
+        clickHandler={handleClick}
+      />
     </SettingsSectionWrap>
   )
 }
