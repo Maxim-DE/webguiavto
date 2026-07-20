@@ -7,9 +7,10 @@ import { diff } from 'deep-object-diff';
 import { dataArray_to_string } from '../../../logic/request_logic';
 import { useFormValidation } from '../../../logic/validation/formValidation_hook';
 import { isInNumRange } from '../../../logic/validation/validators';
+import { useSelector } from 'react-redux';
 
 export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...props }) {
-
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const [generalCalibState, setGeneralCalibState] = React.useState({
     frequency: 0,
     input_power: 0,
@@ -215,6 +216,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' />
         </div>
       </li>
+      {auth_level > 1 && (
       <li
         key='control_rc_type_calib'
         id='control_rc_type_calib'
@@ -245,7 +247,8 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             label='Сохранить'
             type='button' />
         </div>
-      </li>      
+      </li>    
+      )} 
     </SettingsBlockWrap>
   )
 }
