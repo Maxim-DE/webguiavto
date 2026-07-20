@@ -943,10 +943,12 @@
         3000,
         1000
       ],
+      "coeff_avaliable": 1,
       "coeff_ball": [
         123,
         100
-      ]
+      ],
+      "coeff_ball_avaliable": 1
     },
     "calib_fan": {
       "fan_pwm": 0,

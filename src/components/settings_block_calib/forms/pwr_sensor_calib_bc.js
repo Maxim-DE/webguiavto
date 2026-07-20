@@ -19,19 +19,19 @@ function PWRSensorCalibSettings_BC(props) {
       return store.globalStore.global_data.calib_state.data?.calib_pwr_sensor
     } else return ''
   }),
-    adcPwrSensor_store = useSelector((store) => {
-      if (deepKeyExists(store, 'pwr_sensor_calib')) {
-        return store.globalStore.global_data.status_data.calib_adc?.pwr_sensor_calib
-      } else return ''
-    }),
-    auth_store = useSelector((store) => store.authStore.auth_data)
+  adcPwrSensor_store = useSelector((store) => {
+    if (deepKeyExists(store, 'pwr_sensor_calib')) {
+      return store.globalStore.global_data.status_data.calib_adc?.pwr_sensor_calib
+    } else return ''
+  }),
+  auth_store = useSelector((store) => store.authStore.auth_data)
 
   const [PWRSensorCalibState, setPWRSensorCalibState] = React.useState({
     'coeff': 0,
-    'coeff_ball': 0
+    'coeff_ball': 0,
+    'coeff_avaliable': 0,    // Добавлено поле для галочки coeff
+    'coeff_ball_avaliable': 0 // Добавлено поле для галочки coeff_ball
   })
-
-  // const [auth_store, authGlobalActions] = useGlobalStore()
 
   React.useEffect(() => {
     if (!calibPWRSensor_store) return
@@ -77,21 +77,43 @@ function PWRSensorCalibSettings_BC(props) {
     }))
   }
 
+  // Обработчик для сохранения с чекбоксом
+  const handleChange_avaliable_save = (event) => {
+    const target = event.target,
+          name = target.name.replace('_calib', ''),
+          value = target.type === 'checkbox' ? Number(target.checked) : target.value
+
+    const request_obj = {
+      address: 'calib_pwr_sensor.cgi',
+      data: `${name}$${value}`,
+      reducer: reducers.calibration_form,
+      update_data: PWRSensorCalibState,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      save_data: {
+        calib_pwr_sensor: { [name]: value }
+      } 
+    }
+
+    props.clickHandler(request_obj);
+  }
+
   const handleClick_save = (event) => {
     console.log(PWRSensorCalibState);
     const target = event.target,
           name = target.name.replace('_calib', '')
 
     let value, state_to_save, save_str
-          // value = target.type != 'text' ? fanCalibState[name] : fanCalibState[name] * 10
 
     if (calibPWRSensor_store[name]) {
       if (Array.isArray(calibPWRSensor_store[name])) {
         value = PWRSensorCalibState[name]
         let state_obj = { [name]: value }
         state_to_save = calib_state_conversion(state_obj, calibPWRSensor_store)
-        save_str = `${name}$${state_to_save[name][0]}` // берем значение с конветрированного состояния
-  
+        save_str = `${name}$${state_to_save[name][0]}`
+
       } else {
         value = PWRSensorCalibState[name]
         state_to_save = { [name]: value }
@@ -103,8 +125,6 @@ function PWRSensorCalibSettings_BC(props) {
       save_str = `${name}$${state_to_save[name]}`
     }
     
-    
-
     const request_obj = {
       address: 'calib_pwr_sensor.cgi',
       data: save_str,
@@ -165,6 +185,17 @@ function PWRSensorCalibSettings_BC(props) {
         id='coeff_calib'
         className="settings_item calib">
         <div className='item_header'>
+          {auth_store.auth_access.calib_extend &&
+            <FormInput
+              id={`coeff_avaliable_calib_input`}
+              name={`coeff_avaliable_calib`}
+              changeHandler={(e) => {
+                handleChange(e);
+                handleChange_avaliable_save(e)
+              }}
+              input_value={PWRSensorCalibState.coeff_avaliable}
+              type="checkbox" />
+          }
           <label
             htmlFor={`coeff_input`}
             className="settings_itemLabel">
@@ -182,23 +213,34 @@ function PWRSensorCalibSettings_BC(props) {
             changeHandler={handleChange}
             input_value={PWRSensorCalibState.coeff}
             placeholder={'%'}
-            type="text" />
+            type="text"
+            disabled={!PWRSensorCalibState.coeff_avaliable} />
           <FormInput
             id={`coeff_save`}
             name={`coeff`}
             clickHandler={handleClick_save}
             label='Сохранить'
-            type="button" />
+            type="button"
+            disabled={!PWRSensorCalibState.coeff_avaliable} />
         </div>
       </li>
 
-
-
-            <li
+      <li
         key='coeff_ball_calib'
         id='coeff_ball_calib'
         className="settings_item calib">
         <div className='item_header'>
+          {auth_store.auth_access.calib_extend &&
+            <FormInput
+              id={`coeff_ball_avaliable_calib_input`}
+              name={`coeff_ball_avaliable_calib`}
+              changeHandler={(e) => {
+                handleChange(e);
+                handleChange_avaliable_save(e)
+              }}
+              input_value={PWRSensorCalibState.coeff_ball_avaliable}
+              type="checkbox" />
+          }
           <label
             htmlFor={`coeff_ball_input`}
             className="settings_itemLabel">
@@ -216,13 +258,15 @@ function PWRSensorCalibSettings_BC(props) {
             changeHandler={handleChange}
             input_value={PWRSensorCalibState.coeff_ball}
             placeholder={'%'}
-            type="text" />
+            type="text"
+            disabled={!PWRSensorCalibState.coeff_ball_avaliable} />
           <FormInput
             id={`coeff_ball_save`}
             name={`coeff_ball`}
             clickHandler={handleClick_save}
             label='Сохранить'
-            type="button" />
+            type="button"
+            disabled={!PWRSensorCalibState.coeff_ball_avaliable} />
         </div>
       </li>
 
