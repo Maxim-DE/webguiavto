@@ -441,7 +441,7 @@
         ]
       },
       "cap": {
-        "input_exiter_type": 0,
+        "input_exiter_type": 1,
         "temp_main_exiter": [
           42,
           1,

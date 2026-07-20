@@ -103,7 +103,7 @@ function Status_graphs(props) {
         try {
           graph_block_value_span = graph_block.querySelector(graph_block_value_span_id).children[0]
         } catch (error) {
-          console.error("Can't get value span with key: " + item)
+          // console.error("Can't get value span with key: " + item)
           continue
         }
 
