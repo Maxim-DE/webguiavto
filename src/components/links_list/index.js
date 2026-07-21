@@ -24,7 +24,7 @@ const links_items = [
   { id: 'status', name: "Статус", icon: <HiRss size={30} />, req_access_level: 0 },
   { id: 'settings', name: "Общие настройки", icon: <IoMdSettings size={30} />, req_access_level: 1 },
   { id: 'network', name: "Сетевые настройки", icon: <FaNetworkWired size={30} />, req_access_level: 1 },
-  // { id: 'avr', name: "Управление САР", icon: <MdSettingsInputComponent  size={30} />,req_access_level: 1 },
+  { id: 'avr', name: "Управление САР", icon: <MdSettingsInputComponent  size={30} />,req_access_level: 1 },
   { id: 'info', name: "Данные об устройстве", 
     icon: <MdOutlineInfo size={30} />, req_access_level: 0 },
   { id: 'userlog', name: "Польз. журнал", icon: <RiFileList3Line size={30} />, req_access_level: 0 },

@@ -13,13 +13,13 @@ import { MiscCalib } from './sections/calib/misc'
 import { DeveloperCalib } from './sections/calib/developer'
 import { SyslogCalib } from './sections/calib/syslog'
 import { UserlogSection } from './sections/userlog'
+import SettingsAVR from './sections/settings_avr/'
 
 export default function DeviceWrap_BlockControl(props) {
   
   const updateHandler = (data_block) => {
     props.updateHandler(data_block)
   }
-  const auth_store = useSelector((store) => store.authStore.auth_data)
   const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
 
   return (
@@ -43,6 +43,13 @@ export default function DeviceWrap_BlockControl(props) {
                 <>
                   <Route path='settings' element={
                     <GeneralSettingsSection
+                      updateHandler={updateHandler}
+                    />
+                  } />
+                  <Route path='avr' element={
+                    <SettingsAVR
+                      section_name="avr"
+                      section_header="управление"
                       updateHandler={updateHandler}
                     />
                   } />

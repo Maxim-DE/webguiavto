@@ -139,7 +139,7 @@ function PowerCalibThreshold_AVR({ calib_state, clickHandler, ...props }) {
 
 
   return (
-    <Settings_block_calib header={`пороги мощности сар`}
+    <Settings_block_calib header={`пороги мощности`}
                           settings_type={`power_threshold_calib`}
                           save_handler={handleClick_save}>
       <li

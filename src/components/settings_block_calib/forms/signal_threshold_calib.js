@@ -109,7 +109,7 @@ export default function SignalThresholdSettings({ calib_state, clickHandler, ...
   }
 
   return (
-    <Settings_block_calib header={`пороги звука сар`}
+    <Settings_block_calib header={`пороги звука`}
       settings_type={`network_calib`}
       section_name={props.section_name}>
       <li

@@ -100,7 +100,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
 
   return (
     <SettingsBlockWrap 
-      header={`общие настройки сар`}
+      header={`общие настройки`}
       settings_type={`slave_general`}>
       <li
         key='frequency_calib'

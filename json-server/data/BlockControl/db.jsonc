@@ -72,6 +72,8 @@
       "bootloader_enabled_switch": 1,
       "request_period": 1000
     },
+  // },
+  //  "settings_avr.cgi": {
       "slave_general": {
         "frequency": [
           1000,

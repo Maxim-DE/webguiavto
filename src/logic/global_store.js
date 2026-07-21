@@ -18,6 +18,7 @@ const initial_store = {
     },
     section_data: {
       settings: {},
+      settings_avr: {},
       network: {},
       rds: {},
       info: {},
