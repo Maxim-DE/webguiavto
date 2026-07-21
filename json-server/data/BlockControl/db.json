@@ -85,11 +85,11 @@
     },
     "calib_power_threshold": {
       "power_threshold_reserved_value": [
-        400,
+        500,
         1
       ],
       "power_timeout_reserved_value": [
-        25,
+        35,
         1
       ],
       "rated_power_value": [
