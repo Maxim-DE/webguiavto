@@ -17,9 +17,9 @@ export default function GeneralSettingsSection(props) {
   const updateHandler = (data_block) => {
     props.updateHandler(data_block);
   }
-  
+
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
   const section_store = useSelector((store) => store.globalStore.global_data.section_data.settings)
-  // console.log('section_store',section_store)
   const handleClick = block_data => {
     block_data.data = (block_data.data ? block_data.data : '')
     props.updateHandler(block_data);
@@ -54,14 +54,18 @@ export default function GeneralSettingsSection(props) {
         calib_state={section_store.slave_general}
         clickHandler={handleClick}
       />      
+      {auth_level >= 2 &&
       <PowerCalibThreshold_AVR
         calib_state={section_store.calib_power_threshold}
         clickHandler={handleClick}
       />
+      }
+      {auth_level >= 2 &&
       <SignalThresholdCalib_AVR
         calib_state={section_store.calib_signal_threshold}
         clickHandler={handleClick}
       />
+      }
     </SettingsSectionWrap>
   )
 }
