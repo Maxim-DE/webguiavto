@@ -651,7 +651,7 @@ const block_control_buttons_actions = {
 
   network_ping_handler: (dest_device, clickHandler) => {
     const request_obj = {
-      address: 'status_graph_settings.cgi',
+      address: 'status_graph_modbus_ping.cgi',
       data: `${dest_device}$1;ping$1`,
       notifications: {
         good: 'default',

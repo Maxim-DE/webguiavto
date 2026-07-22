@@ -48,7 +48,7 @@ export default function SettingsAVR(props) {
           clickHandler={handleClick}
         />
       }
-      {auth_level >= 2 &&
+      {auth_level == 3 && 
         <SignalThresholdCalib_AVR
           calib_state={section_store.calib_signal_threshold}
           clickHandler={handleClick}
