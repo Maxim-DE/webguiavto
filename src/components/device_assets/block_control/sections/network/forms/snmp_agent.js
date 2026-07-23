@@ -57,10 +57,15 @@ export default function Snmp_agent(props) {
     props.clickHandler(request_obj);
   }
 
-  const clickHandler_mibDownload = (event) => {
-    const url = "mib/okb_alpha.mib.gz"
-    window.location.assign(url);
-  }
+const clickHandler_mibDownload = (event) => {
+    const url = "mib/okb_alpha.mib.gz";  // ← Этот URL используется для запроса к серверу
+    const link = document.createElement('a');
+    link.href = url;  // ← Браузер запросит именно этот URL
+    link.download = 'okb_alpha.mib';  // ← А сохранит файл уже с этим именем
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
   return (
     <SettingsBlockWrap 
