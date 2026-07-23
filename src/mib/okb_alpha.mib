@@ -25,7 +25,7 @@ RTRS-RDS-Param OBJECT IDENTIFIER ::= {_RTRS 3}
 ------------------------------------------------------------------
 RadioExciterV0        OBJECT IDENTIFIER ::= {okbalfa_V0 10}
 ------------------------------------------------------------------
-----------------------V27-----------------------------------------
+----------------------V28-----------------------------------------
 ------------------------------------------------------------------
 RadioExciter              OBJECT IDENTIFIER ::= {okbalfa 0}
 RadioExciter-Info         OBJECT IDENTIFIER ::= {RadioExciter 1}
@@ -109,6 +109,11 @@ DigitalExciter2          OBJECT IDENTIFIER ::= {BlockControl_v2 9}
 DigitalExciter2-Info     OBJECT IDENTIFIER ::= {DigitalExciter2 1}
 DigitalExciter2-Param    OBJECT IDENTIFIER ::= {DigitalExciter2 2}
 DigitalExciter2-Status   OBJECT IDENTIFIER ::= {DigitalExciter2 4}
+------------------------------------------------------------------
+AVR1_1          OBJECT IDENTIFIER ::= {BlockControl_v2 10}
+AVR1_1-Info     OBJECT IDENTIFIER ::= {AVR1_1 1}
+AVR1_1-Param    OBJECT IDENTIFIER ::= {AVR1_1 2}
+AVR1_1-Status   OBJECT IDENTIFIER ::= {AVR1_1 4}
 ------------------------------------------------------------------
 ------------------------------------------------------------------
 ------------------------------------------------------------------
@@ -3877,11 +3882,127 @@ DigitalExciter2-status-Temperature OBJECT-TYPE
           "Celsius degree"
   ::= {DigitalExciter2-Status 30}  
 
-  
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------Блок управление Система-------------------------
+--------------Система автоматического резервирования 1+1--------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+-----------------------Версия ПО -------------------------------------
+----------------------------------------------------------------------
+AVR1_1-SerNumer OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Serial number of the device"
+  ::= {AVR1_1-Info 1}
+----------------------------------------------------------------------
+AVR1_1-Software OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software application"
+  ::= {AVR1_1-Info 2}
+----------------------------------------------------------------------
+AVR1_1-Software-Boot OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "Software bootloader"
+  ::= {AVR1_1-Info 3}
+----------------------------------------------------------------------
+AVR1_1-Software-board OBJECT-TYPE
+  SYNTAX  DisplayString
+  ACCESS  read-only
+  STATUS  mandatory
+  DESCRIPTION
+          "PCB version"
+  ::= {AVR1_1-Info 4}
+
+
+----------------------------------------------------------------------
+------------------------Параметры ------------------------------------
+----------------------------------------------------------------------
+AVR1_1-Param-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {AVR1_1-Param 1}
+----------------------------------------------------------------------
+AVR1_1-Param-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef ,W"
+  ::= {AVR1_1-Param 2}
+----------------------------------------------------------------------
+AVR1_1-Param-SWR OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {AVR1_1-Param 3}
+----------------------------------------------------------------------
+AVR1_1-Param-AC220 OBJECT-TYPE
+  SYNTAX  INTEGER
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "The measured AC input voltage in volts."
+  ::= {AVR1_1-Param 4}
+----------------------------------------------------------------------
+--------------------------STATUS--------------------------------------
+----------------------------------------------------------------------
+AVR1_1-status-PowerOut OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Output power, W"
+  ::= {AVR1_1-Status 1}
+----------------------------------------------------------------------
+AVR1_1-status-PowerRef OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "PowerRef ,W"
+  ::= {AVR1_1-Status 2}
+----------------------------------------------------------------------
+AVR1_1-status-SWR OBJECT-TYPE
+  SYNTAX  INTEGER{STATUS_OFF(0),STATUS_LOW_FAIL(3),STATUS_OK(1),STATUS_ALARM(2),STATUS_FAIL(3),NOT_USED(255)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          "Value/100"
+  ::= {AVR1_1-Status 3}
+----------------------------------------------------------------------
+AVR1_1-status-Connection OBJECT-TYPE
+  SYNTAX  INTEGER{connected(1),disconnected(0)}
+  ACCESS  read-only
+  STATUS  current
+  DESCRIPTION
+          ""
+  ::= {AVR1_1-Status 4}
+
+
+
+
+
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ------------------Блок Автоматического Ввода Резерва------------------
+---------------Система автоматического резервирования 3+1-------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
