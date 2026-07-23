@@ -83,7 +83,11 @@
           40,
           1
         ],
-        "input_signal_type": 1
+        "input_signal_type": 1,
+        "rated_power_value": [
+          500,
+          1
+      ]   
       },
     "calib_power_threshold": {
       "power_threshold_reserved_value": [
@@ -93,11 +97,7 @@
       "power_timeout_reserved_value": [
         35,
         1
-      ],
-      "rated_power_value": [
-        500,
-        1
-      ]      
+      ]   
     },
     "calib_signal_threshold": {
       "signal_type_reserved": 2,
@@ -307,7 +307,7 @@
         {
           "name": "Сеть",
           "value": 220,
-          "status": 0,
+          "status": 1,
           "divider": 1,
           "units": "В"
         },

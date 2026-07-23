@@ -5,6 +5,7 @@ import { reducers } from '../../../store/reducers/calib_forms_reducers';
 import SettingsBlockWrap from '../../settings_block_wrap';
 import { useFormValidation } from '../../../logic/validation/formValidation_hook';
 import { isInNumRange } from '../../../logic/validation/validators';
+import { useSelector } from 'react-redux';
 
 export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...props }) {
 
@@ -13,6 +14,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
     input_signal_type: 0,
     turn_on_timeout: 0
   })
+  const auth_level = useSelector((store) => store.authStore.auth_data.auth_level)
 
   const { isFormValid, validStatus_getter } = useFormValidation()
 
@@ -77,7 +79,7 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
   } else {
     formattedValue = typeof currentValue == "boolean" ? Number(currentValue) : currentValue;
   }
-  
+
   // Формируем строку запроса всегда с текущим значением
   const req_data_str = `${fieldName}$${formattedValue}`;
 
@@ -195,6 +197,35 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' />
         </div>
       </li>
+      {auth_level === 3 && (
+  <li
+    key='rated_power_calib'
+    id='rated_power_calib'
+    className="settings_item calib">
+    <div className='item_header'>
+      <label
+        htmlFor={`rated_power_calib_input`}
+        className="settings_itemLabel">
+        Номинальное значение мощности 
+      </label>
+    </div>
+    <div className='item_input'>
+      <FormInput
+        id={`rated_power_calib_input`}
+        name={`rated_power_value_calib`}
+        changeHandler={handleChange}
+        input_value={generalCalibState.rated_power_value}
+        style={{ margin: '0', maxWidth: '75px' }}
+        type="text" />
+      <FormInput
+        id={`rated_power_calib_save`}
+        name={`rated_power_value_calib`}
+        clickHandler={(event) => handleClick_save('rated_power_value', event)}
+        label='Сохранить'
+        type="button" />
+    </div>
+  </li> 
+)} 
     </SettingsBlockWrap>
   )
 }
