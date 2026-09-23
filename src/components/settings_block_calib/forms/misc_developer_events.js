@@ -15,93 +15,118 @@ function MiscSendEvents(props) {
     maxWidth: '60px'
   }
 
+  // --- Состояние для чтения секторов ---
   const [readSectorState, setReadSectorState] = React.useState({
     init_sector: 0,
     sector_num: 0,
-    get build_link_read() {
-      return readSector_link_build('read')
-    },
-    get build_link_download() {
-      return readSector_link_build('download')
-    },
+  })
+
+  // --- Состояние для переключателей светодиодов ---
+  const [LedSwitchState, setLedSwitchState] = React.useState({
+    Led_enable: false,
   })
 
   const auth_store = useSelector((store) => store.authStore.auth_data)
 
+  // --- Обработчик изменения полей чтения секторов ---
   const handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.value
+    const name = target.name
 
     setReadSectorState(prevState => ({
       ...prevState,
       [name]: value
     }))
   }
-    // Обработчик сохранения для переключателя светодиодов
+
+  // --- Обработчик изменения переключателя светодиодов ---
+  const handleChangeLed = (event) => {
+    const target = event.target
+    const name = target.name.replace('_calib', '')
+    const value = target.type === 'checkbox' ? target.checked : target.value
+
+    setLedSwitchState(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+  // --- Обработчик сохранения переключателя светодиодов ---
   const handleClick_saveLedSwitch = (event) => {
-    const target = event.target,
-          name = target.name.replace('_calib', ''),
-          value = LedSwitchState[name]
+    const target = event.target
+    const name = target.name.replace('_calib', '')
+    const value = target.type === 'checkbox' ? target.checked : target.value
 
     // Преобразуем для отправки на сервер: true (выкл) -> 0, false (вкл) -> 1
-    const dataValue = value ? 0 : 1;
+    const dataValue = value ? 0 : 1
 
     const request_obj = {
-      address: 'DebugEventLed.cgi',  // замените на нужный адрес
+      address: 'DebugEventLed.cgi', // замените на нужный адрес
       data: `${name}$${dataValue}`,
       notifications: {
         good: 'default',
         bad: 'default'
       },
       save_data: {
-        calib_led: LedSwitchState
+        calib_led: { [name]: value }
       }
     }
 
-    props.clickHandler(request_obj);
+    props.clickHandler(request_obj)
   }
 
+  // --- Скачивание файла ---
   const file_download_download = (url) => {
     // const url = "mib/okb_alpha.mib"
-    window.location.assign(url);
+    window.location.assign(url)
   }
 
+  // --- Генерация события для передатчика (SCHEDULER) ---
+  // 192.168.0.116/DebugEventSheduler.cgi?number$1;commnad$1
+  const handleSendEvent = (transmitterId, command) => (event) => {
+    const request_obj = {
+      address: `DebugEventSheduler.cgi?number$${transmitterId};commnad$${command}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
 
-// 192.168.0.116/DebugEventSheduler.cgi?number$1;commnad$1
-
-const handleSendEvent = (transmitterId, command) => (event) => {
-  const request_obj = {
-    
-    address: `DebugEventSheduler.cgi?number$${transmitterId};commnad$${command}`,  // Исправлено: обратные кавычки и ${}
-    notifications: {
-      good: 'default',
-      bad: 'default'
-    },
+    props.clickHandler(request_obj)
   }
 
-  props.clickHandler(request_obj);
-}
+  // --- Генерация события для светодиодов ---
+  const handleSendEvent_Led = (ledId) => (event) => {
+    const request_obj = {
+      address: `DebugEventLed.cgi?number$${ledId}`,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+    }
 
+    props.clickHandler(request_obj)
+  }
 
+  // --- Построение ссылки для чтения/скачивания секторов ---
   const readSector_link_build = (mode) => {
     let link = `/ReadSector.bin?sector$${readSectorState.init_sector};num$${readSectorState.sector_num}`
 
     switch (mode) {
       case 'read':
-        break;
+        break
 
       case 'download':
         link = link + `;download$1`
         break
-    
+
       default:
-        break;
+        break
     }
 
     return link
   }
-
 
   return (
     <Settings_block_calib
@@ -110,68 +135,67 @@ const handleSendEvent = (transmitterId, command) => (event) => {
 
       {auth_store.auth_access.calib_extend &&
       <>
-      {/*Ряд кнопок на генерацию событие включение от SCHEDULER*/}
+        {/* Ряд кнопок на генерацию события включение от SCHEDULER */}
+        <div className='item_input'>От расписания (вкл/выкл)</div>
 
-      <div className='item_input'>От расписания (вкл/выкл)</div>
+        <li className="settings_item">
+          <div className='item_input'>
+            <FormInput
+              id={`generate_event_on_transmiter_1`}
+              name={`generate_event_on_transmiter_1`}
+              label='ПРД-1 Вкл'
+              clickHandler={handleSendEvent(1, 1)}
+              type="button" />
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`generate_event_on_transmiter_2`}
+              name={`generate_event_on_transmiter_2`}
+              label='ПРД-2 Вкл'
+              clickHandler={handleSendEvent(2, 1)}
+              type="button" />
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`generate_event_on_transmiter_3`}
+              name={`generate_event_on_transmiter_3`}
+              label='ПРД-3 Вкл'
+              clickHandler={handleSendEvent(3, 1)}
+              type="button" />
+          </div>
+        </li>
 
-      <li
-        className="settings_item">
-        <div className='item_input'>
-          <FormInput
-            id={`generate_event_on_transmiter_1`}
-            name={`generate_event_on_transmiter_1`}
-            label='ПРД-1 Вкл'
-            clickHandler={handleSendEvent(1,1)}
-            type="button" />
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`generate_event_on_transmiter_2`}
-            name={`generate_event_on_transmiter_2`}
-            label='ПРД-2 Вкл'
-            clickHandler={handleSendEvent(2,1)}
-            type="button" />
-        </div>       
-        <div className='item_input'>
-          <FormInput
-            id={`generate_event_on_transmiter_3`}
-            name={`generate_event_on_transmiter_3`}
-            label='ПРД-3 Вкл'
-            clickHandler={handleSendEvent(3,1)}
-            type="button" />
-        </div>         
-      </li>
-      {/*Ряд кнопок на генерацию событие выключение */}
-      <li
-        className="settings_item">
-        <div className='item_input'>
-          <FormInput
-            id={`generate_event_off_transmiter_1`}
-            name={`generate_event_off_transmiter_1`}
-            label='ПРД-1 Выкл'
-            clickHandler={handleSendEvent(1,0)}
-            type="button" />
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`generate_event_off_transmiter_2`}
-            name={`generate_event_off_transmiter_2`}
-            label='ПРД-2 Выкл'
-            clickHandler={handleSendEvent(2,0)}
-            type="button" />
-        </div>       
-        <div className='item_input'>
-          <FormInput
-            id={`generate_event_off_transmiter_3`}
-            name={`generate_event_off_transmiter_3`}
-            label='ПРД-3 Выкл'
-            clickHandler={handleSendEvent(3,0)}
-            type="button" />
-        </div>         
-      </li>
+        {/* Ряд кнопок на генерацию события выключение */}
+        <li className="settings_item">
+          <div className='item_input'>
+            <FormInput
+              id={`generate_event_off_transmiter_1`}
+              name={`generate_event_off_transmiter_1`}
+              label='ПРД-1 Выкл'
+              clickHandler={handleSendEvent(1, 0)}
+              type="button" />
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`generate_event_off_transmiter_2`}
+              name={`generate_event_off_transmiter_2`}
+              label='ПРД-2 Выкл'
+              clickHandler={handleSendEvent(2, 0)}
+              type="button" />
+          </div>
+          <div className='item_input'>
+            <FormInput
+              id={`generate_event_off_transmiter_3`}
+              name={`generate_event_off_transmiter_3`}
+              label='ПРД-3 Выкл'
+              clickHandler={handleSendEvent(3, 0)}
+              type="button" />
+          </div>
+        </li>
 
-      {/*  продолжение */}
+        {/* Проверка светодиодов */}
         <div className='item_input'>Проверка светодиодов</div>
+
         {/* Переключатель для включения/выключения проверки светодиодов */}
         <li
           key='Led_enable'
@@ -181,7 +205,7 @@ const handleSendEvent = (transmitterId, command) => (event) => {
             <label
               htmlFor={`Led_enable_input`}
               className="settings_itemLabel">
-              Включить проверку светодиодов  
+              Включить проверку светодиодов
             </label>
           </div>
           <div className='item_input'>
@@ -192,13 +216,12 @@ const handleSendEvent = (transmitterId, command) => (event) => {
                 handleChangeLed(e)
                 handleClick_saveLedSwitch(e)
               }}
-              type="switch" 
-              input_value={LedSwitchState.Led_enable}/>
+              type="switch"
+              input_value={LedSwitchState.Led_enable} />
           </div>
         </li>
-        
-        <li
-          className="settings_item">
+
+        <li className="settings_item">
           <div className='item_input'>
             <FormInput
               id={`Led_blue`}
@@ -223,8 +246,7 @@ const handleSendEvent = (transmitterId, command) => (event) => {
               clickHandler={handleSendEvent_Led(3)}
               type="button" />
           </div>
-           
-        </li>        
+        </li>
       </>
       }
     </Settings_block_calib>

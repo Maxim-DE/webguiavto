@@ -18,7 +18,8 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   const [generalCalibState, setGeneralCalibState] = React.useState({
     radio_label: '',
     rds_enable: 0,
-    scheduler_enable:0
+    scheduler_enable: 0,
+    OutputMode: 0, // 0 - Реле, 1 - Бездействие
   })
 
   const state_prev_copy = React.useRef(null)
@@ -50,12 +51,10 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
   }, [calib_state])
 
   React.useEffect(() => {
-    // console.log('rds_enable changed:', generalCalibState.rds_enable);
     props.rdsHandler(generalCalibState.rds_enable);
   }, [generalCalibState.rds_enable]);
 
   React.useEffect(() => {
-    // console.log('scheduler_enable changed:', generalCalibState.scheduler_enable);
     props.schedulerHandler?.(generalCalibState.scheduler_enable);
   }, [generalCalibState.scheduler_enable]);
 
@@ -75,8 +74,6 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
 
     const target = event.currentTarget,
           name = target.name.replace('_calib', '')
-
-    // const target_value = target.type === 'checkbox' ? Number(target.checked) : generalCalibState[name]
 
     const state_diff = target.type === 'checkbox' ? { [name]: generalCalibState[name] } : 
                                                           diff(state_prev_copy.current, generalCalibState),
@@ -114,6 +111,34 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
 
   }
 
+  // Обработчик для радио-кнопок OutputMode
+  const handleOutputModeChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setGeneralCalibState(prev => ({
+      ...prev,
+      OutputMode: value
+    }));
+
+    // Сохраняем сразу при изменении
+    const state_diff = { OutputMode: value };
+    const req_data_str = `OutputMode$${value}`;
+
+    const request_obj = {
+      address: 'calib_add_general.cgi',
+      data: req_data_str,
+      reducer: reducers.save_avr_device_data,
+      notifications: {
+        good: 'default',
+        bad: 'default'
+      },
+      save_data: {
+        slave_add_general: state_diff
+      }
+    };
+
+    clickHandler(request_obj);
+  };
+
   return (
     <SettingsBlockWrap
       header={`дополнительно`}
@@ -144,33 +169,7 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
             type="text" />
         </div>
       </li>
-
-      {/* Работа по расписанию */}
-      <li
-        key='scheduler_enable'
-        id='scheduler_enable'
-        className="settings_item">
-        <div className='item_header'>
-          <label
-            htmlFor={`scheduler_enable_input`}
-            className="settings_itemLabel">
-            Работа по расписанию
-            {/* Расписание работы */}
-          </label>
-        </div>
-        <div className='item_input'>
-          <FormInput
-            id={`scheduler_enable_input`}
-            name={`scheduler_enable`}
-            changeHandler={(e) => {
-              handleChange(e)
-              handleClick_save(e)
-            }}
-            input_value={generalCalibState.scheduler_enable}
-            type="switch" />
-        </div>
-      </li>
-
+      
       {/* Пункт параметры RDS */}
       <li
         key='rds_enable'
@@ -196,8 +195,80 @@ export default function SlaveAddGeneralCalib_AVR({ calib_state, clickHandler, ..
         </div>
       </li>
 
+      {/* Работа по расписанию */}
+      <li
+        key='scheduler_enable'
+        id='scheduler_enable'
+        className="settings_item">
+        <div className='item_header'>
+          <label
+            htmlFor={`scheduler_enable_input`}
+            className="settings_itemLabel">
+            Работа по расписанию
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`scheduler_enable_input`}
+            name={`scheduler_enable`}
+            changeHandler={(e) => {
+              handleChange(e)
+              handleClick_save(e)
+            }}
+            input_value={generalCalibState.scheduler_enable}
+            type="switch" />
+        </div>
+      </li>
 
+      {/* Дополнительные радио-кнопки, появляющиеся при включении расписания */}
+      {generalCalibState.scheduler_enable == 1 && (
+        <li
+          key='output_mode'
+          id='output_mode'
+          className="settings_item"
+        >
+          <div className='item_header'>
+            <label className="settings_itemLabel">
+              ВЫКЛ ПРД
+            </label>
+          </div>
+          <div className='item_input' style={{ display: 'flex', gap: '20px' }}>
+            {/* Радио-кнопка "Реле" */}
+            <div className="scheduler_item">
+              <div className="radio-day">
+                <input
+                  id="output_mode_relay"
+                  name="OutputMode"
+                  type="radio"
+                  value={0}
+                  checked={generalCalibState.OutputMode == 0}
+                  onChange={handleOutputModeChange}
+                />
+              </div>
+              <label htmlFor="output_mode_relay" className="radio-day-label">
+                Да
+              </label>
+            </div>
 
+            {/* Радио-кнопка "Бездействие" */}
+            <div className="scheduler_item">
+              <div className="radio-day">
+                <input
+                  id="output_mode_idle"
+                  name="OutputMode"
+                  type="radio"
+                  value={1}
+                  checked={generalCalibState.OutputMode == 1}
+                  onChange={handleOutputModeChange}
+                />
+              </div>
+              <label htmlFor="output_mode_idle" className="radio-day-label">
+                Бездействие
+              </label>
+            </div>
+          </div>
+        </li>
+      )}
 
     </SettingsBlockWrap>
   )

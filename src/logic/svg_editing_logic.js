@@ -160,12 +160,7 @@ function avr_svg_editing(svg, data_svg, auth_access) {
             button.style.display = ''
           }
         }         
-      }
-  
- 
-    
-
-      
+      }      
     });
   }
 
@@ -230,6 +225,12 @@ function avr_svg_editing(svg, data_svg, auth_access) {
           signal_res_group_list = block.querySelectorAll('g[id*="res_secondary_info"] > g[id*="group"]'),
           signal_type = data_svg[`input_${index+1}`]?.input_signal_type,
           res_signal_type = data_svg[`input_${index+1}`]?.input_res_signal_type
+    // console.log('______________________________________________________')
+    // console.log('signal_primary_group_list',signal_primary_group_list)
+    // console.log('signal_res_group_list',signal_res_group_list)
+    // console.log('signal_type',signal_type)
+    // console.log('res_signal_type',res_signal_type)
+    // console.log('______________________________________________________')
 
     signal_primary_group_list.forEach(group => {
       group.style = "visibility: hidden"
@@ -437,46 +438,6 @@ function avr_svg_editing(svg, data_svg, auth_access) {
       test_output_block.style = "visibility: hidden"
     }
   }
-
-
-
-  // if (amp_1_buttons_list) {
-  //   amp_1_buttons_list.forEach((button) => {
-  //     if (auth_access.calib == 0) {
-  //       button.classList.add("disabled_svg_button");
-  //     } else {
-  //       button.classList.remove("disabled_svg_button");
-  //     }
-  //   })
-  // }
-
-  // if (amp_2_buttons_list) {
-  //   amp_2_buttons_list.forEach((button) => {
-  //     if (auth_access.calib == 0) {
-  //       button.classList.add("disabled_svg_button");
-  //     } else {
-  //       button.classList.remove("disabled_svg_button");
-  //     }
-  //   })
-  // }
-
-  // exiter_buttons_list.forEach((button) => {
-  //   if (auth_access.settings == 0) {
-  //     button.classList.add("disabled_svg_button");
-  //   } else {
-  //     button.classList.remove("disabled_svg_button");
-  //   }
-  // })
-
-  // const exiter_pwr_button = svg.querySelector(`#exiter g#exiter_power_button`),
-  //       exiter_status = data_svg?.exiter?.status
-
-  // if (exiter_status == 1) {
-  //   exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[0]
-  // } else {
-  //   exiter_pwr_button.querySelector('#power_btn_cover').style.fill = status_colors[2]
-  // }
-
 
   return svg
 }
