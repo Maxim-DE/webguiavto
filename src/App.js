@@ -297,6 +297,7 @@ function App() {
       {/* Контейнер с уведомлениями */}
       <ToastContainer
         transition={Zoom}
+        limit={2}
       />
 
       <div className="App">
