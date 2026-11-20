@@ -197,35 +197,34 @@ export default function SlaveGeneralCalib_AVR({ calib_state, clickHandler, ...pr
             type='button' />
         </div>
       </li>
-      {auth_level === 3 && (
-  <li
-    key='rated_power_calib'
-    id='rated_power_calib'
-    className="settings_item calib">
-    <div className='item_header'>
-      <label
-        htmlFor={`rated_power_calib_input`}
-        className="settings_itemLabel">
-        Номинальное значение мощности 
-      </label>
-    </div>
-    <div className='item_input'>
-      <FormInput
-        id={`rated_power_calib_input`}
-        name={`rated_power_value_calib`}
-        changeHandler={handleChange}
-        input_value={generalCalibState.rated_power_value}
-        style={{ margin: '0', maxWidth: '75px' }}
-        type="text" />
-      <FormInput
-        id={`rated_power_calib_save`}
-        name={`rated_power_value_calib`}
-        clickHandler={(event) => handleClick_save('rated_power_value', event)}
-        label='Сохранить'
-        type="button" />
-    </div>
-  </li> 
-)} 
+      <li
+        key='rated_power_calib'
+        id='rated_power_calib'
+        className="settings_item calib">
+        <div className='item_header'>
+          <label
+            htmlFor={`rated_power_calib_input`}
+            className="settings_itemLabel">
+            Уставка номинальной мощности
+          </label>
+        </div>
+        <div className='item_input'>
+          <FormInput
+            id={`rated_power_calib_input`}
+            name={`rated_power_value_calib`}
+            changeHandler={handleChange}
+            input_value={generalCalibState.rated_power_value}
+            style={{ margin: '0', maxWidth: '75px' }}
+            type="text" />
+          <FormInput
+            id={`rated_power_calib_save`}
+            name={`rated_power_value_calib`}
+            clickHandler={(event) => handleClick_save('rated_power_value', event)}
+            label='Установить'
+            type="button" />
+        </div>
+      </li> 
+
     </SettingsBlockWrap>
   )
 }
