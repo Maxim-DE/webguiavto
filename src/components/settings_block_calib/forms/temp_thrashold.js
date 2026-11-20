@@ -102,7 +102,7 @@ function TempThresholdCalibSettings(props) {
   }
 
   return (
-    <Settings_block_calib header={`калибровка защиты по темп.`}
+    <Settings_block_calib header={`Датчик температуры`}
       settings_type={`temp_threshold_calib`}
       save_handler={handleClick_save}>
       <li
@@ -113,7 +113,7 @@ function TempThresholdCalibSettings(props) {
           <label
             htmlFor={`temp_threshold_on_calib_input`}
             className="settings_itemLabel">
-            Порог вкл. усилителя (рабочий)
+            Нижний порог температуры (предупреждающий)
           </label>
         </div>
         <div className='item_input'>
@@ -140,7 +140,7 @@ function TempThresholdCalibSettings(props) {
           <label
             htmlFor={`temp_threshold_off_calib_input`}
             className="settings_itemLabel">
-            Порог выкл. усилителя (аварийный)
+            Верхний порог температуры (аварийный)
           </label>
         </div>
         <div className='item_input'>
