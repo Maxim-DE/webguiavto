@@ -1,80 +1,67 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Начало работы
 
-## Available Scripts
+Проект работает в Docker и состоит из двух частей:
+- **Frontend**: React-приложение
+- **Backend Mock**: json-server для эмуляции API (реальный бэкенд не требуется)
 
-In the project directory, you can run:
+## 🚀 Быстрый старт
+### 1. Запуск проекта
+Перейти в корневую папку проекта и выполнить:
 
-### `npm start`
+```bash
+docker-compose up
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. Frontend (React)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**URL**: [http://localhost:3000/](http://localhost:3000/)
 
-### `npm test`
+### 3. Mock API Server
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**URL**: [http://localhost:4040/](http://localhost:4040/)
 
-### `npm run build`
+## 🔄 Переключение режимов работы
+По умолчанию приложение работает с реальным бэкендом. Для разработки используйте **mock-режим**:
+1. Откройте файл: `src/index.js`
+2. Найдите переменную:
+```
+export const GRAPH_MODE_TEST = false;
+```
+3. Измените на:
+```
+export const GRAPH_MODE_TEST = true;  // Включаем mock-режим
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Mock API (json-server)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для разработки используем **mock API сервер** с предопределенными ответами:
+- **Конфигурация**: `json-server/` 
+- **Mock-данные**: `json-server/data/AVR-1000/db.json`
 
-Also it icreases build number by 1 in `version_build.json`
+**Особенности:**
+- Все эндпоинты `.cgi` замоканы
+- Ответы соответствуют реальному API
+- Данные можно редактировать без риска для production
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 🐳 Docker-команды
+```bash
+# Запуск всего стека
+docker-compose up
+# Запуск в фоновом режиме
+docker-compose up -d
+# Создание релизного билда
+docker-compose run --rm react-app npm run build
+# Создание образа json-server
+docker build -t m65535/web-json-server:1.0.0-beta.3 -f build\json-server\Dockerfile .
+# Создание образа приложения
+# Используеться когда:
+# - Появились новые зависимости в проекте (react)
+# - Для создания контейнера на другой версии node
+docker build -t m65535/web-node:16-alpine -f build/app/Dockerfile .
+```
 
-### `npm run build:wo_build_incr`
-Тоже самое, что и `npm run build`, только без увеличения номера сборки.
 
-### `update_version_tag`
-Записывает текщую версию, указанную в файле `version_build.json`, как тег к последнему коммиту текущей ветки
+# Команды на сборку 
+[Команды npm React](Команды_React.md)
 
-### `incr_minor_version`
-Увеличивает релизную(минорную) версию на 1 (1.x), при этом сбрасывая номер билда, и создавая тег с новой версией в последнем коммите текущей ветки
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
